@@ -235,17 +235,28 @@ var
     // currentResult.r_Feedback.f_RetailersValueRotationIndex[marketID, catID]
   end;
 
-  function shopperShareinfoSchema(idx : integer; marketID : integer; period : integer; actorID : integer) : ISuperObject;
+  function shopperShareinfoSchema(idx : integer; marketID : integer; period : integer; actorID : integer; shopper : TShoppersKind) : ISuperObject;
   var 
     jo : ISuperObject;
+    ShopperStr : String;
   begin
     jo := SO;
     jo.I['marketID'] := marketID;
     jo.I['actorID'] := actorID;
     jo.I['period'] := period;
+    case Shopper of
+         BMS         : ShopperStr := 'BMS';
+         NETIZENS    : ShopperStr := 'NETIZENS';
+         MIXED       : ShopperStr := 'MIXED';
+         ALLSHOPPERS : ShopperStr := 'ALLSHOPPERS';
+     else
+     ShopperStr  := 'wrong';
+     end;
+
+    jo.S['shopperKind'] := ShopperStr;
 
     case (idx) of
-      f_ShoppersShare      : begin jo.D['value'] := currentResult.r_Feedback.f_ShoppersShare[marketID, period, actorID]; end; 
+      f_ShoppersShare      : begin jo.D['value'] := currentResult.r_Feedback.f_ShoppersShare[marketID, period, shopper, actorID]; end;
     end;  
 
     result := jo;
@@ -257,6 +268,7 @@ var
     s_str : string;
     catID,marketID,brandID,topDays,period,actorID, producerID, retailerID: Integer;
     tempBrand:TMR_BrandAwareness;
+    Shopper : TShoppersKind;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -393,7 +405,8 @@ var
       begin
           for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
           begin
-            oJsonFile.A['f_ShoppersShare'].add( ShopperShareinfoSchema(f_ShoppersShare, marketID, period, actorID) );
+            for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
+            oJsonFile.A['f_ShoppersShare'].add( ShopperShareinfoSchema(f_ShoppersShare, marketID, period, actorID, Shopper) );
           end;
       end;
     end;    

@@ -194,6 +194,7 @@ exports.addProducerDecisions = function(options) {
                     }, {
                         nextBudgetExtension: singleDecision.nextBudgetExtension,
                         approvedBudgetExtension: singleDecision.approvedBudgetExtension,
+                        marketResearchOrder : singleDecision.marketResearchOrder,
                         proCatDecision: singleDecision.proCatDecision
                     }, {
                         upsert: true

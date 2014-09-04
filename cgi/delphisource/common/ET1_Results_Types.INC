@@ -790,7 +790,7 @@ TF_SuppliersKPIsExtended = array[TCategoriesTotal, TTimeSpan, TBrandOwners] of s
 
 TF_RetailersKPIs = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TBMRetailers] of single;
 
-TF_ShoppersShare = array[TMarketsTotal, TTimeSpan, TActors] of single;
+TF_ShoppersShare = array[TMarketsTotal, TTimeSpan, TShoppersKind, TActors] of single;
 
 TF_MarketSummary = array[TTimeSpan, TMarketsTotal, TCategoriesTotal] of single;
 

@@ -119,8 +119,9 @@ var supplierKPIExtendedInfoSchema = mongoose.Schema({
 var shopperShareInfoSchema = mongoose.Schema({
     marketID : Number,
     period : Number,
-    actorID : Number, //1~(4+3),
-    shooperKind :String,
+    actorID : Number, //1~(4+3)
+    //added by Hao, 2014 Sept 3
+    shopperKind : String,//BMS, NETIZENS, MIXED, ALLSHOPPERS
     value : Number,
 })
 

@@ -209,7 +209,9 @@ function prepareProdCost(seminar, period){
         require('./../models/BG_oneQuarterParameterData.js').oneQuarterParameterData.find({seminar: seminar}, function(err, docs){
             if(err){ debugUnitCost('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
             if(docs){
-                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });
+                //console.log('debug:' + util.inspect(docs));
+
+                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });                                
                 prodCost[0].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
                 prodCost[0].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
                 prodCost[0].defaultDrop = tempAssort.ProdCost_DefaultDrop;         

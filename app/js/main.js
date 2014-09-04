@@ -60,7 +60,7 @@
 			'highchartMore':['jquery','highchart'],
 			'angularHighcharts' :['angular','highchart'],
 			'highchart' :['jquery'],
-			'ngNotify' :['jquery','angular'],
+			'ngNotify' :['jquery','angular']
 		},
 		priority: [
 			"angular"
