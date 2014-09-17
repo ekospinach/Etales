@@ -211,7 +211,10 @@ function prepareProdCost(seminar, period){
             if(docs){
                 //console.log('debug:' + util.inspect(docs));
 
-                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });                                
+                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });         
+                if(!tempAssort){
+                  return deferred.reject({msg:'tempAssort is undefined, Cannot find parameters...'});
+                }
                 prodCost[0].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
                 prodCost[0].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
                 prodCost[0].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
