@@ -43,7 +43,7 @@ var seminarSchema            = mongoose.Schema({
 	market1ID                    : {type:Number,default:1},
 	market2ID                    : {type:Number,default:2},
 	category1ID                  : {type:Number,default:1},
-	category2ID                  : {type:Number,default:1},
+	category2ID                  : {type:Number,default:2},
 
 	//useTimeSlot                  : {type:Boolean, default:true},
 	isTimerActived			     : {type:Boolean, default:false},
