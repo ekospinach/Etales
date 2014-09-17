@@ -239,7 +239,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 
 
             $scope.selectedPlayer = PlayerInfo.getPlayer();
-            $scope.selectedPeriod = PeriodInfo.getCurrentPeriod();
+            $scope.selectedPeriod = PeriodInfo.getDecisionPeriod();
         }
     ]);
 

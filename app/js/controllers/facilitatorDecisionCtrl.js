@@ -44,7 +44,7 @@ define(['app'], function(app) {
 			$scope.setSupplierPeriod = function(period){
 				if($scope.selectedPeriod && selectedPlayer){
 			    	PlayerInfo.setPlayer(selectedPlayer);					
-					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
+					PeriodInfo.setDecisionPeriod($scope.selectedPeriod);					
 					$location.path('/supplierDecision');
 				} else {
 					$scope.msg = $scope.msg = 'Please choose period.';
@@ -54,7 +54,7 @@ define(['app'], function(app) {
 			$scope.setRetailerPeriod = function(period){
 				if($scope.selectedPeriod && selectedPlayer){					
 			    	PlayerInfo.setPlayer(selectedPlayer);							
-					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
+					PeriodInfo.setDecisionPeriod($scope.selectedPeriod);					
 					$location.path('/retailerDecision');
 				} else {
 					$scope.msg = $scope.msg = 'Please choose period.';

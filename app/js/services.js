@@ -136,23 +136,20 @@ define(['angular',
 
 
 	services.factory('PeriodInfo', function($rootScope){
-		var currentPeriod;
+		var currentPeriod,decisionPeriod;
 		return {
 			getCurrentPeriod:function(){
 				return currentPeriod;
 			},
-			getPreviousPeriod:function(){
-				currentPeriod=currentPeriod-1;
-				return currentPeriod;
-			},
-			getNextPeriod:function(){
-				currentPeriod=currentPeriod+1;
-				return currentPeriod;
+			getDecisionPeriod:function(){
+				return decisionPeriod;
 			},
 			setCurrentPeriod:function(value){
 				currentPeriod=value;
-				
-			}	
+			},
+			setDecisionPeriod:function(value){
+				decisionPeriod=value;
+			}
 		}
 	})
 
