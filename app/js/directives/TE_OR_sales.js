@@ -65,7 +65,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    chart: {
 		                        width:550,
-		                        height:500
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -103,7 +103,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    chart: {
 		                        width:550,
-		                        height:500
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -141,7 +141,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    chart: {
 		                        width:550,
-		                        height:500
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -179,7 +179,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    chart: {
 		                        width:550,
-		                        height:500
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
