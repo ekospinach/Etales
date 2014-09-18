@@ -154,7 +154,7 @@ define(['angular',
 	})
 
 	services.factory('PlayerColor',function($rootScope){
-		var colors=['#004CE5','#BB0000','#FFBC01','#339933','#990099','#FF5200','#00AFEF'];
+		var colors=['#3257A7','#B11E22','#F6B920','#329444','#8B288B','#F05422','#00AFEF'];
 		return {
 			getColors:function(){
 				return colors;
