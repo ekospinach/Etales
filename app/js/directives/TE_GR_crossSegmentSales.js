@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalCrossSegmentSales', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q) {
+    directives.directive('generalCrossSegmentSales', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q','PlayerColor',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerColor) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -91,17 +91,17 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('B&M Only'),
                             "data": [scope.priceSensitives[0][0], scope.valueForMoneies[0][0], scope.fashions[0][0], scope.freakses[0][0]],
                             type: "column",
-                            color: '#D9534F'
+                            color: PlayerColor.getColors()[1]
                         }, {
                             "name": Label.getContent('Online Only'),
                             "data": [scope.priceSensitives[0][1], scope.valueForMoneies[0][1], scope.fashions[0][1], scope.freakses[0][1]],
                             type: "column",
-                            color: '#428BCA'
+                            color: PlayerColor.getColors()[0]
                         }, {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[0][2], scope.valueForMoneies[0][2], scope.fashions[0][2], scope.freakses[0][2]],
                             type: "column",
-                            color: '#5CB85C'
+                            color: PlayerColor.getColors()[3]
                         }, ];
 
                         scope.crossSegment1Config = {
@@ -144,17 +144,17 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('B&M Only'),
                             "data": [scope.priceSensitives[1][0], scope.valueForMoneies[1][0], scope.fashions[1][0], scope.freakses[1][0]],
                             type: "column",
-                            color: '#D9534F'
+                            color: PlayerColor.getColors()[1]
                         }, {
                             "name": Label.getContent('Online Only'),
                             "data": [scope.priceSensitives[1][1], scope.valueForMoneies[1][1], scope.fashions[1][1], scope.freakses[1][1]],
                             type: "column",
-                            color: '#428BCA'
+                            color: PlayerColor.getColors()[0]
                         }, {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[1][2], scope.valueForMoneies[1][2], scope.fashions[1][2], scope.freakses[1][2]],
                             type: "column",
-                            color: '#5CB85C'
+                            color: PlayerColor.getColors()[3]
                         }, ];
 
                         scope.crossSegment2Config = {
@@ -197,17 +197,17 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('B&M Only'),
                             "data": [scope.priceSensitives[2][0], scope.valueForMoneies[2][0], scope.fashions[2][0], scope.freakses[2][0]],
                             type: "column",
-                            color: '#D9534F'
+                            color: PlayerColor.getColors()[1]
                         }, {
                             "name": Label.getContent('Online Only'),
                             "data": [scope.priceSensitives[2][1], scope.valueForMoneies[2][1], scope.fashions[2][1], scope.freakses[2][1]],
                             type: "column",
-                            color: '#428BCA'
+                            color: PlayerColor.getColors()[0]
                         }, {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[2][2], scope.valueForMoneies[2][2], scope.fashions[2][2], scope.freakses[2][2]],
                             type: "column",
-                            color: '#5CB85C'
+                            color: PlayerColor.getColors()[3]
                         }, ];
 
                         scope.crossSegment3Config = {
@@ -250,17 +250,17 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('B&M Only'),
                             "data": [scope.priceSensitives[3][0], scope.valueForMoneies[3][0], scope.fashions[3][0], scope.freakses[3][0]],
                             type: "column",
-                            color: '#D9534F'
+                            color: PlayerColor.getColors()[1]
                         }, {
                             "name": Label.getContent('Online Only'),
                             "data": [scope.priceSensitives[3][1], scope.valueForMoneies[3][1], scope.fashions[3][1], scope.freakses[3][1]],
                             type: "column",
-                            color: '#428BCA'
+                            color: PlayerColor.getColors()[0]
                         }, {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[3][2], scope.valueForMoneies[3][2], scope.fashions[3][2], scope.freakses[3][2]],
                             type: "column",
-                            color: '#5CB85C'
+                            color: PlayerColor.getColors()[3]
                         }, ];
 
                         scope.crossSegment4Config = {

@@ -1000,6 +1000,7 @@ var getLabelBase = function(){
 		{id:'Price Promotions Cost',  ENG:'Price Promotions Cost',  CHN:'价格促销成本',  RUS:''},
 		{id:'Delivered Volume',  ENG:'Delivered Volume',  CHN:'Delivered Volume',  RUS:''},
 		{id:'Operating Profits',  ENG:'Operating Profits',  CHN:'Operating Profits',  RUS:''},
+		{id:'Operating Profits',  ENG:'Operating Profits',  CHN:'Operating Profits',  RUS:''},
 		{id:'Net Profits',  ENG:'Net Profits',  CHN:'Net Profits',  RUS:''},
 		{id:'Operating Profit Margins',  ENG:'Operating Profit Margins',  CHN:'Operating Profit Margins',  RUS:''},
 		{id:'Net Profit Margins',  ENG:'Net Profit Margins',  CHN:'Net Profit Margins',  RUS:''},

@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('marketRetailerPerceptions', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('marketRetailerPerceptions', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor){
         return {
             scope : {
                 isPageShown : '=',
@@ -72,30 +72,30 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     scope.retailerPerceptionsSeries1=[{
-                        name:Label.getContent('Retailer')+' 1',data:scope.latestPlayer1rural,color:'#3257A7'
+                        name:Label.getContent('Retailer')+' 1',data:scope.latestPlayer1rural,color:PlayerColor.getColors()[4]
                     },{
-                        name:Label.getContent('Retailer')+' 2',data:scope.latestPlayer2rural,color:'#B11E22'
+                        name:Label.getContent('Retailer')+' 2',data:scope.latestPlayer2rural,color:PlayerColor.getColors()[5]
                     },{
-                        name:Label.getContent('Traditional Trade'),data:scope.latestPlayer3rural,color:'#F6B920'
+                        name:Label.getContent('Traditional Trade'),data:scope.latestPlayer3rural,color:PlayerColor.getColors()[6]
                     },{
-                        name:Label.getContent('Supplier 1 Online'),data:scope.latestPlayer4rural,color:'#8B288B'
+                        name:Label.getContent('Supplier 1 Online'),data:scope.latestPlayer4rural,color:PlayerColor.getColors()[0]
                     },{
-                        name:Label.getContent('Supplier 2 Online'),data:scope.latestPlayer5rural,color:'#F05422'
+                        name:Label.getContent('Supplier 2 Online'),data:scope.latestPlayer5rural,color:PlayerColor.getColors()[1]
                     },{
-                        name:Label.getContent('Supplier 3 Online'),data:scope.latestPlayer6rural,color:'#329444'
+                        name:Label.getContent('Supplier 3 Online'),data:scope.latestPlayer6rural,color:PlayerColor.getColors()[2]
                     }];
                     scope.retailerPerceptionsSeries2=[{
-                        name:Label.getContent('Retailer')+' 1',data:scope.latestPlayer1urban,color:'#3257A7'
+                        name:Label.getContent('Retailer')+' 1',data:scope.latestPlayer1urban,color:PlayerColor.getColors()[4]
                     },{
-                        name:Label.getContent('Retailer')+' 2',data:scope.latestPlayer2urban,color:'#B11E22'
+                        name:Label.getContent('Retailer')+' 2',data:scope.latestPlayer2urban,color:PlayerColor.getColors()[5]
                     },{
-                        name:Label.getContent('Traditional Trade'),data:scope.latestPlayer3urban,color:'#F6B920'
+                        name:Label.getContent('Traditional Trade'),data:scope.latestPlayer3urban,color:PlayerColor.getColors()[6]
                     },{
-                        name:Label.getContent('Supplier 1 Online'),data:scope.latestPlayer4urban,color:'#8B288B'
+                        name:Label.getContent('Supplier 1 Online'),data:scope.latestPlayer4urban,color:PlayerColor.getColors()[0]
                     },{
-                        name:Label.getContent('Supplier 2 Online'),data:scope.latestPlayer5urban,color:'#F05422'
+                        name:Label.getContent('Supplier 2 Online'),data:scope.latestPlayer5urban,color:PlayerColor.getColors()[1]
                     },{
-                        name:Label.getContent('Supplier 3 Online'),data:scope.latestPlayer6urban,color:'#329444'
+                        name:Label.getContent('Supplier 3 Online'),data:scope.latestPlayer6urban,color:PlayerColor.getColors()[2]
                     }];
                     scope.xTitle3=Label.getContent('Convenience');
                     scope.yTitle3=Label.getContent('Price Appeal');

@@ -153,6 +153,15 @@ define(['angular',
 		}
 	})
 
+	services.factory('PlayerColor',function($rootScope){
+		var colors=['#004CE5','#BB0000','#FFBC01','#339933','#990099','#FF5200','#00AFEF'];
+		return {
+			getColors:function(){
+				return colors;
+			}
+		}
+	})
+
 
 	services.factory('Auth', function($http, $rootScope, $cookieStore, SeminarInfo, RoleInfo, PeriodInfo, PlayerInfo, $location){
 	    var accessLevels = routingConfig.accessLevels

@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-	directives.directive('overviewProfits', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
-		function(Label, SeminarInfo, $http, PeriodInfo, $q) {
+	directives.directive('overviewProfits', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerColor',
+		function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor) {
 			return {
 				scope: {
 					isPageShown: '=',
@@ -27,90 +27,10 @@ define(['directives', 'services'], function(directives) {
 							currentCategories.push(i);
 						}
 						/*highchart data init start*/
-						var currentOperatingProfits = new Array({
-							name: 'Supplier-1',
-							data: new Array(),
-							color: '#3257A7'
-						}, {
-							name: 'Supplier-2',
-							data: new Array(),
-							color: '#B11E22'
-						}, {
-							name: 'Supplier-3',
-							data: new Array(),
-							color: '#F6B920'
-						}, {
-							name: 'Retailer-1',
-							data: new Array(),
-							color: '#8B288B'
-						}, {
-							name: 'Retailer-2',
-							data: new Array(),
-							color: '#F05422'
-						});
-						var currentOperatingProfitMargins = new Array({
-							name: 'Supplier-1',
-							data: new Array(),
-							color: '#3257A7'
-						}, {
-							name: 'Supplier-2',
-							data: new Array(),
-							color: '#B11E22'
-						}, {
-							name: 'Supplier-3',
-							data: new Array(),
-							color: '#F6B920'
-						}, {
-							name: 'Retailer-1',
-							data: new Array(),
-							color: '#8B288B'
-						}, {
-							name: 'Retailer-2',
-							data: new Array(),
-							color: '#F05422'
-						});
-						var currentNetProfits = new Array({
-							name: 'Supplier-1',
-							data: new Array(),
-							color: '#3257A7'
-						}, {
-							name: 'Supplier-2',
-							data: new Array(),
-							color: '#B11E22'
-						}, {
-							name: 'Supplier-3',
-							data: new Array(),
-							color: '#F6B920'
-						}, {
-							name: 'Retailer-1',
-							data: new Array(),
-							color: '#8B288B'
-						}, {
-							name: 'Retailer-2',
-							data: new Array(),
-							color: '#F05422'
-						});
-						var currentNetProfitMargins = new Array({
-							name: 'Supplier-1',
-							data: new Array(),
-							color: '#3257A7'
-						}, {
-							name: 'Supplier-2',
-							data: new Array(),
-							color: '#B11E22'
-						}, {
-							name: 'Supplier-3',
-							data: new Array(),
-							color: '#F6B920'
-						}, {
-							name: 'Retailer-1',
-							data: new Array(),
-							color: '#8B288B'
-						}, {
-							name: 'Retailer-2',
-							data: new Array(),
-							color: '#F05422'
-						});
+						var currentOperatingProfits = new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]});
+						var currentOperatingProfitMargins = new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]});
+						var currentNetProfits = new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]});
+						var currentNetProfitMargins = new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]});
 						/*highchart data init end*/
 						/*highchart set data  start*/
 						//OperatingProfits

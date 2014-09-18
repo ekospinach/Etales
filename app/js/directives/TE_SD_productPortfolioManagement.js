@@ -103,31 +103,6 @@ define(['directives', 'services'], function(directives) {
                                 userID: parseInt(scope.selectedPlayer),
                             }
                         }
-                        (function multipleRequestShooter(postDatas, idx) {
-                            $http({
-                                method: 'POST',
-                                url: '/getCurrentUnitCost',
-                                data: postDatas[idx]
-                            }).then(function(data) {
-                                products[idx].unitCost = data.data.result;
-                            }, function(data) {
-                                idx = postDatas.length - 1;
-                            }).finally(function() {
-                                if (idx != postDatas.length - 1) {
-                                    idx++;
-                                    multipleRequestShooter(postDatas, idx);
-                                } else {
-                                    if (category == "Elecssories") {
-                                        scope.productes = products;
-                                    } else {
-                                        scope.producths = products;
-                                    }
-                                    if (scope.productes.length != 0 && scope.producths.length != 0) {
-                                        scope.selectPacks = selectPacks;
-                                    }
-                                }
-                            })
-                        })(postDatas, 0);
                     }
 
                     var selectPacks = function(category, parentBrandName, varName) {

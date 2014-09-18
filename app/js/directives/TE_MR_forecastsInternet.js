@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('marketForecastsInternet', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('marketForecastsInternet', ['Label','SeminarInfo','$http','PeriodInfo','$q', 'PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor){
         return {
             scope : {
                 isPageShown : '=',
@@ -40,10 +40,10 @@ define(['directives', 'services'], function(directives){
                     //rural value[1]
 
                     scope.forecastInternetSeries=[{
-                        'name':Label.getContent('Rural'),'color':'#3257A7',
+                        'name':Label.getContent('Rural'),'color':PlayerColor.getColors()[0],
                         'data':[[1,parseFloat((data.data[0].minInternetPenetrationRate[0].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[0].value[1]*100).toFixed(2))],[2,parseFloat((data.data[0].minInternetPenetrationRate[1].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[1].value[1]*100).toFixed(2))],[3,parseFloat((data.data[0].minInternetPenetrationRate[2].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[2].value[1]*100).toFixed(2))],[4,parseFloat((data.data[0].minInternetPenetrationRate[3].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[3].value[1]*100).toFixed(2))],[5,parseFloat((data.data[0].minInternetPenetrationRate[4].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[4].value[1]*100).toFixed(2))]]
                     },{
-                        'name':Label.getContent('Urban'),'color':'#B11E22',
+                        'name':Label.getContent('Urban'),'color':PlayerColor.getColors()[1],
                         'data':[[1,parseFloat((data.data[0].minInternetPenetrationRate[0].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[0].value[0]*100).toFixed(2))],[2,parseFloat((data.data[0].minInternetPenetrationRate[1].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[1].value[0]*100).toFixed(2))],[3,parseFloat((data.data[0].minInternetPenetrationRate[2].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[2].value[0]*100).toFixed(2))],[4,parseFloat((data.data[0].minInternetPenetrationRate[3].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[3].value[0]*100).toFixed(2))],[5,parseFloat((data.data[0].minInternetPenetrationRate[4].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[4].value[0]*100).toFixed(2))]]
                     }];
                     scope.segmentYTitle=Label.getContent('Penetration Level')+'(%)';

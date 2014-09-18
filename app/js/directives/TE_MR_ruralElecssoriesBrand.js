@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('marketRuralElecssoriesBrand', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('marketRuralElecssoriesBrand', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerColor){
         return {
             scope : {
                 isPageShown : '=',
@@ -34,26 +34,26 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     scope.mySeries1=[{
-                        name:Label.getContent('Supplier')+' 1',data:scope.quality1s,color:'#3257A7'
+                        name:Label.getContent('Supplier')+' 1',data:scope.quality1s,color:PlayerColor.getColors()[0]
                     },{
-                        name:Label.getContent('Supplier')+' 2',data:scope.quality2s,color:'#B11E22'
+                        name:Label.getContent('Supplier')+' 2',data:scope.quality2s,color:PlayerColor.getColors()[1]
                     },{
-                        name:Label.getContent('Supplier')+' 3',data:scope.quality3s,color:'#F6B920'
+                        name:Label.getContent('Supplier')+' 3',data:scope.quality3s,color:PlayerColor.getColors()[2]
                     },{
-                        name:Label.getContent('Retailer')+' 1',data:scope.quality5s,color:'#8B288B'
+                        name:Label.getContent('Retailer')+' 1',data:scope.quality5s,color:PlayerColor.getColors()[4]
                     },{
-                        name:Label.getContent('Retailer')+' 2',data:scope.quality6s,color:'#F05422'
+                        name:Label.getContent('Retailer')+' 2',data:scope.quality6s,color:PlayerColor.getColors()[5]
                     }];
                     scope.mySeries2=[{
-                        name:Label.getContent('Supplier')+' 1',data:scope.price1s,color:'#3257A7'
+                        name:Label.getContent('Supplier')+' 1',data:scope.price1s,color:PlayerColor.getColors()[0]
                     },{
-                        name:Label.getContent('Supplier')+' 2',data:scope.price2s,color:'#B11E22'
+                        name:Label.getContent('Supplier')+' 2',data:scope.price2s,color:PlayerColor.getColors()[1]
                     },{
-                        name:Label.getContent('Supplier')+' 3',data:scope.price3s,color:'#F6B920'
+                        name:Label.getContent('Supplier')+' 3',data:scope.price3s,color:PlayerColor.getColors()[2]
                     },{
-                        name:Label.getContent('Retailer')+' 1',data:scope.price5s,color:'#8B288B'
+                        name:Label.getContent('Retailer')+' 1',data:scope.price5s,color:PlayerColor.getColors()[4]
                     },{
-                        name:Label.getContent('Retailer')+' 2',data:scope.price6s,color:'#F05422'
+                        name:Label.getContent('Retailer')+' 2',data:scope.price6s,color:PlayerColor.getColors()[5]
                     }];
                     scope.myModel=category+"_"+market+'_'+scope.selectedPeriod;
                 }

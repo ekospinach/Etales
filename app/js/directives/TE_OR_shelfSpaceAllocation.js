@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('overviewShelfSpaceAllocation', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('overviewShelfSpaceAllocation', ['Label','SeminarInfo','$http','PeriodInfo','$q', 'PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor){
         return {
             scope : {
             	isPageShown : '=',
@@ -17,8 +17,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;             
                     scope.Label = Label;
                     if(scope.feedBack!=undefined)
-                    getResult();                   
-                }
+                    getResult();
+            	}
 
                 var getResult =function(){
                 	var currentCategories=new Array();
@@ -26,8 +26,8 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			    	var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-            		var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+			    	var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
+            		var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
 			        for(var j=0;j<currentCategories.length;j++){

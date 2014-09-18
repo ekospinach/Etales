@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('marketAwarenessHealthBeauties', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('marketAwarenessHealthBeauties', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerColor){
         return {
             scope : {
                 isPageShown : '=',
@@ -62,11 +62,11 @@ selectedPeriod : '='
                     switch(market){
                         case 1:
                         scope.awarenessHealthBeauties1Series=[{
-                            name:'Drop',data:scope.dropRural,color:'#D9534F'
+                            name:'Drop',data:scope.dropRural,color:PlayerColor.getColors()[1]
                         },{
-                            name:'Increase',data:scope.increaseRural,color:'#5CB85C'
+                            name:'Increase',data:scope.increaseRural,color:PlayerColor.getColors()[3]
                         },{
-                            name:'Value',data:scope.valueRural,color:'#428BCA'
+                            name:'Value',data:scope.valueRural,color:PlayerColor.getColors()[0]
                         }];
                         scope.awarenessHealthBeauties1Config={
                             options:{
@@ -87,11 +87,11 @@ selectedPeriod : '='
                         };break;
                         case 2:
                         scope.awarenessHealthBeauties2Series=[{
-                            name:'Drop',data:scope.dropUrban,color:'#D9534F'
+                            name:'Drop',data:scope.dropUrban,color:PlayerColor.getColors()[1]
                         },{
-                            name:'Increase',data:scope.increaseUrban,color:'#5CB85C'
+                            name:'Increase',data:scope.increaseUrban,color:PlayerColor.getColors()[3]
                         },{
-                            name:'Value',data:scope.valueUrban,color:'#428BCA'
+                            name:'Value',data:scope.valueUrban,color:PlayerColor.getColors()[0]
                         }];
                         scope.awarenessHealthBeauties2Config={
                             options:{
