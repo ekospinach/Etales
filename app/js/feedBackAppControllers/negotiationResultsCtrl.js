@@ -59,9 +59,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'Supplier-1',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[0].value,'color':'#3257A7'},
-                        {'name':'Supplier-2',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[1].value,'color':'#B11E22'},
-                        {'name':'Supplier-3',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[2].value,'color':'#F6B920'}
+                        {'name':'Supplier-1',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[0].value,'color':'#004CE5'},
+                        {'name':'Supplier-2',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[1].value,'color':'#BB0000'},
+                        {'name':'Supplier-3',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[2].value,'color':'#FFBC01'}
                     ]
                 }],
                 loading: false
@@ -154,9 +154,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'Supplier-1',y:data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[0].value,'color':'#3257A7'},
-                        {'name':'Supplier-2',y:data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[1].value,'color':'#B11E22'},
-                        {'name':'Supplier-3',y:data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[2].value,'color':'#F6B920'}
+                        {'name':'Supplier-1',y:data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[0].value,'color':'#004CE5'},
+                        {'name':'Supplier-2',y:data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[1].value,'color':'#BB0000'},
+                        {'name':'Supplier-3',y:data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[2].value,'color':'#FFBC01'}
                     ]
                 }],
                 loading: false
@@ -249,9 +249,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'Supplier-1',y:data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[0].value,'color':'#3257A7'},
-                        {'name':'Supplier-2',y:data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[1].value,'color':'#B11E22'},
-                        {'name':'Supplier-3',y:data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[2].value,'color':'#F6B920'}
+                        {'name':'Supplier-1',y:data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[0].value,'color':'#004CE5'},
+                        {'name':'Supplier-2',y:data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[1].value,'color':'#BB0000'},
+                        {'name':'Supplier-3',y:data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[2].value,'color':'#FFBC01'}
                     ]
                 }],
                 loading: false
