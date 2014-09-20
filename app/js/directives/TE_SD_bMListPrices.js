@@ -261,7 +261,6 @@ define(['directives', 'services'], function(directives) {
                                 contractCode: contractCode
                             }
                         }).then(function(data) {
-                            console.log(data.data);
 
                             var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return $http({
@@ -296,7 +295,6 @@ define(['directives', 'services'], function(directives) {
                                 }
                             });
                         }).then(function(data) {
-                            console.log(data.data);
 
                         //step 1: Add contract schema between current supplier and retailer 1 
                             postData = {

@@ -296,7 +296,7 @@ define(['angular',
 		return function() {
 			var delay = $q.defer();
 			ProducerDecision.get({producerID :PlayerInfo.getPlayer(),
-									period:PeriodInfo.getCurrentPeriod(),
+									period:PeriodInfo.getDecisionPeriod(),
 									seminar:SeminarInfo.getSelectedSeminar().seminarCode}, function(producerDecision) {
 				delay.resolve(producerDecision);
 			}, function() {
@@ -487,7 +487,7 @@ define(['angular',
 						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
 						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)  ){
 							requestPara.producerID = parseInt(PlayerInfo.getPlayer());
-							requestPara.period = PeriodInfo.getCurrentPeriod();
+							requestPara.period = PeriodInfo.getDecisionPeriod();
 							requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;
 							console.log('active producer base reload!');
 							getLoaderPromise(ProducerDecision, $q).then(function(newBase){
@@ -540,7 +540,7 @@ define(['angular',
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateVariant', 
 							    /* 
@@ -573,7 +573,7 @@ define(['angular',
 				setProducerDecisionBrand:function(categoryID,brandName,location,additionalIdx,value,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateBrand', 
 							    /* 
@@ -604,7 +604,7 @@ define(['angular',
 				setProducerDecisionCategory:function(categoryID,location,value,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateCategory', 
 						categoryID : categoryID,
@@ -623,7 +623,7 @@ define(['angular',
 				setMarketResearchOrders:function(playerID,additionalIdx,value,page){
 					var queryCondition = {
 						producerID:playerID,
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateMarketResearchOrders', 
 						additionalIdx : additionalIdx,
@@ -639,7 +639,7 @@ define(['angular',
 				addProductNewBrand:function(newproducerDecision,categoryID,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
@@ -656,7 +656,7 @@ define(['angular',
 				addProductExistedBrand:function(newproducerDecision,categoryID,brandName,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
@@ -674,7 +674,7 @@ define(['angular',
 				deleteProduct:function(categoryID,brandName,varName,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'deleteProduct', 
 						categoryID : categoryID,
@@ -698,7 +698,7 @@ define(['angular',
 							deleteType:deleteType,
 							index:data.data.index,
 							producerID:PlayerInfo.getPlayer(),
-							period:PeriodInfo.getCurrentPeriod(),
+							period:PeriodInfo.getDecisionPeriod(),
 							seminar:SeminarInfo.getSelectedSeminar().seminarCode
 						}
 						return $http({
@@ -708,7 +708,7 @@ define(['angular',
 						})
 					 }).then(function(data){
 					 	queryCondition={
-							period:PeriodInfo.getCurrentPeriod(),
+							period:PeriodInfo.getDecisionPeriod(),
 							seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 					 		brandName:brandName,
 					 		varName:varName,
@@ -796,7 +796,7 @@ define(['angular',
 						//if changed base is modified by current retailer & seminar, reload decision base and broadcast message...
 						if( (data.retailerID ==  PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode) ){
 							requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
-							requestPara.period = PeriodInfo.getCurrentPeriod();
+							requestPara.period = PeriodInfo.getDecisionPeriod();
 							requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;							
 							getRetailerPromise(RetailerDecision, $q).then(function(newBase){
 								$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', data, newBase);							
@@ -823,7 +823,7 @@ define(['angular',
 					});
 
 					socket.on('socketIO:retailerMarketResearchOrdersChanged',function(data){
-						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.period == PeriodInfo.getCurrentPeriod() && data.retailerID == PlayerInfo.getPlayer()) {
+						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.period == PeriodInfo.getDecisionPeriod() && data.retailerID == PlayerInfo.getPlayer()) {
 							$rootScope.$broadcast('retailerMarketResearchOrdersChanged', data);
 						}
 					});			
@@ -853,7 +853,7 @@ define(['angular',
 				setRetailerDecisionBase:function(location,additionalIdx,value,page){
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateGeneralDecision', 
 						location : location,
@@ -880,7 +880,7 @@ define(['angular',
 					}
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateMarketDecision', 
 						marketID : marketID,
@@ -907,7 +907,7 @@ define(['angular',
 					}
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updatePrivateLabel', 
 						categoryID : categoryID,
@@ -930,7 +930,7 @@ define(['angular',
 				setRetailerDecision:function(categoryID,marketID,brandName,varName,location,additionalIdx,value,page){
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateOrder', 
 						categoryID : categoryID,
@@ -954,7 +954,7 @@ define(['angular',
 				setMarketResearchOrders:function(playerID,additionalIdx,value,page){
 					var queryCondition = {
 						retailerID:playerID,
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateMarketResearchOrders', 
 						additionalIdx : additionalIdx,
@@ -975,7 +975,7 @@ define(['angular',
 				addProductNewBrand:function(newproducerDecision,categoryID,page){
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
@@ -992,7 +992,7 @@ define(['angular',
 				addProductExistedBrand:function(newproducerDecision,categoryID,brandName,page){
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
@@ -1010,7 +1010,7 @@ define(['angular',
 				deleteProduct:function(categoryID,brandName,varName,page){
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'deleteProduct', 
 						categoryID : categoryID,
@@ -1026,7 +1026,7 @@ define(['angular',
 					 	queryCondition={
 					 		//retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
 							//retailerID :PlayerInfo.getPlayer(),
-							period:PeriodInfo.getCurrentPeriod(),
+							period:PeriodInfo.getDecisionPeriod(),
 							seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 							categoryID : categoryID,
 							varName : varName,
@@ -1051,7 +1051,7 @@ define(['angular',
 						if(idx==myProducts.length-1){
 							queryCondition = {
 								retailerID :PlayerInfo.getPlayer(),
-								period:PeriodInfo.getCurrentPeriod(),
+								period:PeriodInfo.getDecisionPeriod(),
 								seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 								behaviour : 'addOrder', 
 								marketID:marketID,
@@ -1061,7 +1061,7 @@ define(['angular',
 						}else{
 							queryCondition = {
 								retailerID :PlayerInfo.getPlayer(),
-								period:PeriodInfo.getCurrentPeriod(),
+								period:PeriodInfo.getDecisionPeriod(),
 								seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 								behaviour : 'addOrder', 
 								marketID:marketID,
@@ -1089,7 +1089,7 @@ define(['angular',
 				deleteOrder:function(marketID,categoryID,brandName,varName,page){
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
-						period:PeriodInfo.getCurrentPeriod(),
+						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'deleteOrder', 
 						marketID:marketID,

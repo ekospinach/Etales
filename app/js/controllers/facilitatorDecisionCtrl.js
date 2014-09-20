@@ -43,21 +43,24 @@ define(['app'], function(app) {
 			$scope.msg = '';		
 			$scope.setSupplierPeriod = function(period){
 				if($scope.selectedPeriod && selectedPlayer){
-			    	PlayerInfo.setPlayer(selectedPlayer);					
+			    	PlayerInfo.setPlayer(selectedPlayer);
+			    	$scope.selectedPeriod = period;		
 					PeriodInfo.setDecisionPeriod($scope.selectedPeriod);					
 					$location.path('/supplierDecision');
 				} else {
-					$scope.msg = $scope.msg = 'Please choose period.';
+					$$scope.msg = 'Please choose period.';
 				}
 			}
 
 			$scope.setRetailerPeriod = function(period){
 				if($scope.selectedPeriod && selectedPlayer){					
 			    	PlayerInfo.setPlayer(selectedPlayer);							
+			    	$scope.selectedPeriod = period;		
+					
 					PeriodInfo.setDecisionPeriod($scope.selectedPeriod);					
 					$location.path('/retailerDecision');
 				} else {
-					$scope.msg = $scope.msg = 'Please choose period.';
+					$scope.msg = 'Please choose period.';
 				}
 			}
 

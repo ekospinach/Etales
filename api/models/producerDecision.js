@@ -469,10 +469,10 @@ exports.updateProducerDecision = function(io) {
                         case 'updateMarketResearchOrders':
                             doc.marketResearchOrder[queryCondition.additionalIdx] = queryCondition.value;
                             break;
-                            break;
                         default:
                             isUpdated = false;
                             res.send(404, 'cannot find matched query behaviour:' + queryCondition.behaviour);
+                            break;
                     }
 
                     if (isUpdated) {

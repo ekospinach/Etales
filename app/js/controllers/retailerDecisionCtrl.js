@@ -33,14 +33,14 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 var abMax = 0,
                     expend = 0,
                     reportExpend = 0;
-                var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/R/' + parseInt(PlayerInfo.getPlayer());
+                var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod() - 1) + '/R/' + parseInt(PlayerInfo.getPlayer());
                 $http({
                     method: 'GET',
                     url: url
                 }).then(function(data) {
                     abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
                     $scope.abMax = abMax.toFixed(2);
-                    url = "/retailerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/location/1';
+                    url = "/retailerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/location/1';
                     return $http({
                         method: 'GET',
                         url: url
@@ -48,7 +48,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 }).then(function(data) {
                     expend = data.data.result;
 
-                    url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/R/' + PlayerInfo.getPlayer();
+                    url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/R/' + PlayerInfo.getPlayer();
                     return $http({
                         method: 'GET',
                         url: url
@@ -56,7 +56,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 }).then(function(data) {
                     reportExpend = data.data.result;
 
-                    url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer();
+                    url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + PlayerInfo.getPlayer();
                     return $http({
                         method: 'GET',
                         url: url
@@ -69,7 +69,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     $scope.surplusExpend = (abMax + additionalBudget - expend - reportExpend).toFixed(2);
 
                     //$scope.percentageExpend=(abMax-expend)/abMax*100;
-                    url = "/retailerShelfSpace/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/0/brandName/varName';
+                    url = "/retailerShelfSpace/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/0/brandName/varName';
                     return $http({
                         method: 'GET',
                         url: url
@@ -89,7 +89,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     $scope.percentageShelf[0][1] = (1 - $scope.surplusShelf[0][1]) * 100;
                     $scope.percentageShelf[1][0] = (1 - $scope.surplusShelf[1][0]) * 100;
                     $scope.percentageShelf[1][1] = (1 - $scope.surplusShelf[1][1]) * 100;
-                    url = '/checkRetailerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                    url = '/checkRetailerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
                     return $http({
                         method: 'GET',
                         url: url
@@ -144,17 +144,17 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 
             $scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {
                 loadBackgroundDataAndCalculateDecisionInfo();
-                notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period + '.');
+                notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
             });
 
             $scope.$on('retailerDecisionReloadError', function(event, data, newBase) {
                 loadBackgroundDataAndCalculateDecisionInfo();
-                notify('Decision reload Error occur, Retailer ' + data.retailerID + ' Period ' + data.period + '.');
+                notify('Decision reload Error occur, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
             });
 
             $scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {
                 loadBackgroundDataAndCalculateDecisionInfo();
-                notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period + '.');
+                notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
             });
 
             $scope.$on('retailerContractDeal', function(event, data) {
@@ -233,9 +233,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
             $scope.$on('timerChanged', function(event, data) {
                 $scope.isTimerActived=data.isTimerActived;
             });
-
-
-            console.log(SeminarInfo.getSelectedSeminar());
 
 
             $scope.selectedPlayer = PlayerInfo.getPlayer();

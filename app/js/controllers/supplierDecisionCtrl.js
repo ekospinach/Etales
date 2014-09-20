@@ -43,7 +43,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					avaiableMax = 0;
 
 				//check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isReady 
-				var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+				var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 				$http({
 					method: 'GET',
 					url: url
@@ -54,7 +54,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					$scope.isDecisionCommitted=data.data.isDecisionCommitted;
 
 					//Get company history information (available budget, capacity, acquired TL...)
-					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method: 'GET',
 						url: url
@@ -67,21 +67,21 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					$scope.acHeaMax = data.data.productionCapacity[1];
 
 					//get how much money have been spent in current period, money left = $scope.surplusExpend
-					url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+					url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
 					return $http({
 						method: 'GET',
 						url: url,
 					});
 				}).then(function(data) {
 					productExpend = data.data.result;
-					url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
+					url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
 					return $http({
 						method: 'GET',
 						url: url
 					});
 				}).then(function(data) {
 					ContractExpend = data.data.result;
-					url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
+					url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/P/' + PlayerInfo.getPlayer();
 					return $http({
 						method: 'GET',
 						url: url
@@ -90,7 +90,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					reportExpend = data.data.result;
 					$scope.estimatedSpending = -(productExpend + ContractExpend + reportExpend).toFixed(2);
 					$scope.surplusExpend = ($scope.abMax - productExpend - ContractExpend - reportExpend).toFixed(2);
-					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
+					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',
 						url: url
@@ -99,7 +99,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					$scope.eleSurplusProduction = ($scope.acEleMax - data.data.result).toFixed(2);
 
 					//get production capacity left = $scope.eleSurplusProduction (Health Beauties)
-					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/HName/varName';
+					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/HName/varName';
 					return $http({
 						method: 'GET',
 						url: url

@@ -61,7 +61,7 @@ define(['directives', 'services'], function(directives){
 	                }).then(function(data){
 	                	reportExpend=data.data.result;
 
-	                    url='/getRetailerAdditionalBudget/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer();
+	                    url='/getRetailerAdditionalBudget/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+PlayerInfo.getPlayer();
 	                    return $http({
 	                        method:'GET',
 	                        url:url

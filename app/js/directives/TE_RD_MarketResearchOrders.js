@@ -25,7 +25,7 @@ define(['directives', 'services'], function(directives) {
                     var showView = function() {
                         RetailerDecisionBase.reload({
                             retailerID: parseInt(PlayerInfo.getPlayer()),
-                            period: PeriodInfo.getCurrentPeriod(),
+                            period: scope.selectedPeriod,
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
@@ -174,7 +174,7 @@ define(['directives', 'services'], function(directives) {
                             }).then(function(data) {
                                 reportExpend = data.data.result;
 
-                                url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer();
+                                url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + PlayerInfo.getPlayer();
                                 return $http({
                                     method: 'GET',
                                     url: url

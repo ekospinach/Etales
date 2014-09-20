@@ -26,7 +26,7 @@ define(['directives', 'services'], function(directives) {
                     var showView = function() {
                         ProducerDecisionBase.reload({
                             producerID: parseInt(PlayerInfo.getPlayer()),
-                            period: PeriodInfo.getCurrentPeriod(),
+                            period: scope.selectedPeriod,
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;

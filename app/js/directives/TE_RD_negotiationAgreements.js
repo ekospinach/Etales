@@ -36,7 +36,7 @@ define(['directives', 'services'], function(directives) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
 
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + producerID;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -46,7 +46,7 @@ define(['directives', 'services'], function(directives) {
                             //negotiationACmac = MAX planned production capacity 
                             negotiationACmax = data.data.productionCapacity[category - 1];
 
-                            url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/' + brandName + '/' + varName;
+                            url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -100,7 +100,7 @@ define(['directives', 'services'], function(directives) {
                                 d.resolve(Label.getContent('set Minimum Order first'))
                             }
 
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + producerID;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -111,7 +111,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -119,7 +119,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
                             ContractExpend = data.data.result;
-                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + producerID;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + producerID;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -127,7 +127,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             reportExpend = data.data.result;
 
-                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(producerID) + '/brandName/location/1';
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(producerID) + '/brandName/location/1';
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -183,7 +183,7 @@ define(['directives', 'services'], function(directives) {
                             if (data.data.result) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
-                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + category + '/1'+ '/' + PeriodInfo.getCurrentPeriod();
+                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + category + '/1'+ '/' + scope.selectedPeriod;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -192,14 +192,14 @@ define(['directives', 'services'], function(directives) {
                             //maxTargetVolumesVsTotalMarket = 50%
                             maxTargetVolumeVsTotalMarket = data.data.MaxTargetVolumeVsTotalMarket;
 
-                            url = '/getMarketSize/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/1/' + category;
+                            url = '/getMarketSize/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/1/' + category;
                             return $http({
                                 method: 'GET',
                                 url: url
                             })
                         }).then(function(data) {
                             marketSize = data.data;
-                            url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/1/' + category;
+                            url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/1/' + category;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -261,7 +261,7 @@ define(['directives', 'services'], function(directives) {
                             }
 
 
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + producerID;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -272,7 +272,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -280,7 +280,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
                             ContractExpend = data.data.result;
-                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + producerID;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + producerID;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -288,7 +288,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             reportExpend = data.data.result;
 
-                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(producerID) + '/brandName/location/1';
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(producerID) + '/brandName/location/1';
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -372,7 +372,7 @@ define(['directives', 'services'], function(directives) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
 
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + producerID;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -383,7 +383,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/' + brandName + '/' + varName + '/otherCompensation/' + retailerID;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName + '/otherCompensation/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -391,7 +391,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
                             ContractExpend = data.data.result;
-                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + producerID;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + producerID;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -399,7 +399,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             reportExpend = data.data.result;
 
-                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(producerID) + '/brandName/location/1';
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(producerID) + '/brandName/location/1';
                             return $http({
                                 method: 'GET',
                                 url: url
