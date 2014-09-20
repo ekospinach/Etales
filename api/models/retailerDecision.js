@@ -97,6 +97,32 @@ var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 var privateLabelVarDecision = mongoose.model('privateLabelVarDecision',privateLabelVarDecisionSchema);
 var privateLabelDecision= mongoose.model('privateLabelDecision',privateLabelDecisionSchema);
 
+exports.getRetailerReportOrder = function(seminar,period,retailerID){
+    var deferred = q.defer();
+
+    retDecision.findOne({
+        seminar:seminar,
+        period:period,
+        retailerID:retailerID
+    },function(err,doc){
+        if(err){
+            deferred.reject({
+                msg: err
+            });
+        }
+        if(!doc){
+            deferred.reject({
+                msg: 'cannot find matched doc. ' + 'retailerID:' +retailerID + '/seminar:' + seminar + '/period:' +period
+            });
+        }
+        else{
+            deferred.resolve(doc.marketResearchOrder);
+        }
+    });
+
+    return deferred.promise;
+}
+
 exports.exportToBinary = function(options) {
     var deferred = q.defer();
     var period = options.period;

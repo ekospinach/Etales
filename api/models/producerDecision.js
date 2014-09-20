@@ -109,6 +109,33 @@ var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
 //     })
 // }
 
+
+exports.getProducerReportOrder = function(seminar,period,producerID){
+    var deferred = q.defer();
+
+    proDecision.findOne({
+        seminar:seminar,
+        period:period,
+        producerID:producerID
+    },function(err,doc){
+        if(err){
+            deferred.reject({
+                msg: err
+            });
+        }
+        if(!doc){
+            deferred.reject({
+                msg: 'cannot find matched doc. ' + 'producerID:' +producerID + '/seminar:' + seminar + '/period:' +period
+            });
+        }
+        else{
+            deferred.resolve(doc.marketResearchOrder);
+        }
+    });
+
+    return deferred.promise;
+}
+
 exports.exportToBinary = function(options) {
     var deferred = q.defer();
     var period = options.period;
