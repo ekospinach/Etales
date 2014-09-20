@@ -942,9 +942,9 @@ exports.getRetailerAdditionalBudget = function(req, res, next) {
                next(new Error(err))
           };
           if (doc) {
-               res.send(200, '125');
+               res.send(200, '0');
           } else {
-               res.send(200, '134');
+               res.send(200, '0');
           }
      })
 }

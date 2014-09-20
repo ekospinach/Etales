@@ -67,10 +67,10 @@ define(['app'], function(app) {
 
 		$scope.$on('SeminarPeriodChanged', function(event, data) {  
 			notify('Period has been changed to ' + data.period + ' / ' + data.span);
-			$scope.currentPeriod = data.period;
-			$scope.span = data.span;
-			$scope.seminar = data.seminar;
-		});	
+			$scope.currentPeriod = data.currentPeriod;
+			$scope.span = data.simulationSpan;
+			$scope.seminar = data.seminarCode;
+		})	
 
 		$scope.$on('SeminarPeriodChangedFromRoute',function(event, data){
 			$scope.currentPeriod = data.currentPeriod;

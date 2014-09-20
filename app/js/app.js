@@ -141,6 +141,15 @@
  					PlayerInfo.setPlayer(cookiesUserInfo.roleID);
  					RoleInfo.setRole(cookiesUserInfo.role);
  					PeriodInfo.setCurrentPeriod(cookiesUserInfo.seminar.currentPeriod);
+					if (Auth.isLoggedIn()) {
+						var url = "/seminarInfo/" + SeminarInfo.getSelectedSeminar().seminarCode;
+						$http.get(url).success(function(data) {
+							if(data.currentPeriod!=PeriodInfo.getCurrentPeriod()){
+								PeriodInfo.setCurrentPeriod(data.currentPeriod);
+								$rootScope.$broadcast('SeminarPeriodChangedFromRoute',data);	
+							}
+						});
+					} 					
  				}
 
  				//when route change, keep authorizing user 

@@ -7,18 +7,19 @@ define(['app', 'socketIO'], function(app) {
 			socket.on('AdminProcessLog', function(data) {
 				$scope.isInitializeMessageShown = true;
 				if (data.msg != '') {
-					if (!$scope.initializeMessage) {
-						$scope.initializeMessage = [];
-					}
+					// if (!$scope.initializeMessage) {
+					// 	$scope.initializeMessage = [];
+					// }
+					$scope.initializeMessage = [];
 					$scope.initializeMessage.push(data.msg);
 				}
 			}).on('PassiveProcessLog', function(data) {
 				$scope.isKernelMessageShown = true;
 				if (data.msg != '') {
-					if (!$scope.kernelMessage) {
-						$scope.kernelMessage = [];
-					}
-					console.log(data.msg)
+					// if (!$scope.kernelMessage) {
+					// 	$scope.kernelMessage = [];
+					// }
+					$scope.kernelMessage = [];
 					$scope.kernelMessage.push(data.msg);
 
 				}
@@ -26,6 +27,7 @@ define(['app', 'socketIO'], function(app) {
 			}).on('KernelProcessLog', function(data) {
 				$scope.isKernelMessageShown = true;
 				if (data.msg != '') {
+					$scope.kernelMessage = [];
 					$scope.kernelMessage.push(data.msg);
 				}
 			});

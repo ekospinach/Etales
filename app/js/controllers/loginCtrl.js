@@ -47,6 +47,7 @@ define(['app','socketIO'], function(app) {
 						PeriodInfo.setDecisionPeriod(data.data.currentPeriod);
 						PlayerInfo.setPlayer($rootScope.user.roleID);
 						RoleInfo.setRole($rootScope.user.role);
+						$rootScope.$broadcast('SeminarPeriodChangedFromRoute',data.data);
 						$location.path('/overviewReport');					
 					});
 				},function(res){

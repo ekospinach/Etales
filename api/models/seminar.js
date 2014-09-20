@@ -602,9 +602,9 @@ exports.setCurrentPeriod = function(io) {
 				doc.save(function(err) {
 					if (!err) {
 						io.sockets.emit('socketIO:seminarPeriodChanged', {
-							period: queryCondition.period,
-							seminar: queryCondition.seminar,
-							span: doc.simulationSpan
+							currentPeriod: queryCondition.period,
+							seminarCode: queryCondition.seminar,
+							simulationSpan: doc.simulationSpan
 						});
 						res.send(200, {
 							result: 'success'
@@ -819,9 +819,9 @@ exports.updateSeminar = function(io) {
 						}
 						if (queryCondition.behaviour == "updateCurrentPeriod") {
 							io.sockets.emit('socketIO:seminarPeriodChanged', {
-								period: doc.currentPeriod,
-								seminar: doc.seminarCode,
-								span: doc.simulationSpan
+								currentPeriod: doc.currentPeriod,
+								seminarCode: doc.seminarCode,
+								simulationSpan: doc.simulationSpan
 							});
 						}
 
