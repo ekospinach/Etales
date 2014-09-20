@@ -157,7 +157,10 @@
  						if (Auth.isLoggedIn()) {
  							var url = "/seminarInfo/" + SeminarInfo.getSelectedSeminar().seminarCode;
  							$http.get(url).success(function(data) {
-
+ 								if(data.currentPeriod!=PeriodInfo.getCurrentPeriod()){
+ 									PeriodInfo.setCurrentPeriod(data.currentPeriod);
+ 									$rootScope.$broadcast('SeminarPeriodChangedFromRoute',data);	
+ 								}
  							});
  						}
  					}

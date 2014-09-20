@@ -37,9 +37,6 @@ define(['app'], function(app) {
 	    
 	    $scope.$on("$routeChangeSuccess", function(next, current){
 	    	if(SeminarInfo.getSelectedSeminar()){
-				$scope.currentPeriod = SeminarInfo.getSelectedSeminar().currentPeriod;	    
-				$scope.span = SeminarInfo.getSelectedSeminar().simulationSpan;
-				$scope.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	
 				//if login
 				$scope.pageHeader="show";
 				$scope.pageFooter="show";
@@ -73,7 +70,13 @@ define(['app'], function(app) {
 			$scope.currentPeriod = data.period;
 			$scope.span = data.span;
 			$scope.seminar = data.seminar;
-		});		
+		});	
+
+		$scope.$on('SeminarPeriodChangedFromRoute',function(event, data){
+			$scope.currentPeriod = data.currentPeriod;
+			$scope.span = data.simulationSpan;
+			$scope.seminar = data.seminarCode;
+		})	
 
 		//Register socketIO listeners in NavCtrl which will only be activated once in application
 		ProducerDecisionBase.startListenChangeFromServer(); 
