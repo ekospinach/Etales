@@ -319,6 +319,7 @@ define(['directives', 'services'], function(directives){
                             if(data.data[i].brandID!=0&&data.data[i].varID!=0){
                                 data.data[i].variantID=data.data[i].varID;
                                 data.data[i].select=false;
+                                data.data[i].show=true;
                                 orderProducts.push(data.data[i]);
                             }
                         }
