@@ -163,8 +163,9 @@
  						//TODO: update Seminar info from server where route changed, just in case currentPeriod has been changed and SocketIO doesn't work right.	            	
  						if (Auth.isLoggedIn()) {
  							var url = "/seminarInfo/" + SeminarInfo.getSelectedSeminar().seminarCode;
+ 							var tmp = PeriodInfo.getCurrentPeriod();
  							$http.get(url).success(function(data) {
- 								if(data.currentPeriod!=PeriodInfo.getCurrentPeriod()){
+ 								if(data.currentPeriod != tmp){
  									PeriodInfo.setCurrentPeriod(data.currentPeriod);
  									$rootScope.$broadcast('SeminarPeriodChangedFromRoute',data);	
  								}

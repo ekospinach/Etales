@@ -1,7 +1,7 @@
 define(['app', 'socketIO'], function(app) {
 
-	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q','Label','$timeout',
-		function($scope, $http, $rootScope, EditSeminarInfo,$q,Label,$timeout) {
+	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q','Label','$timeout','PeriodInfo',
+		function($scope, $http, $rootScope, EditSeminarInfo,$q,Label,$timeout, PeriodInfo) {
 
 			var socket = io.connect('http://localhost');
 			socket.on('AdminProcessLog', function(data) {
@@ -247,6 +247,8 @@ define(['app', 'socketIO'], function(app) {
 				}).
 				success(function(data, status, headers, config) {
 					console.log('update success');
+					PeriodInfo.setCurrentPeriod(seminar.currentPeriod);
+					$rootScope.$broadcast('SeminarPeriodChanged', seminar);
 				}).
 				error(function(data, status, headers, config) {
 					console.log('update error');
