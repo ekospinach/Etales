@@ -998,9 +998,10 @@ var getLabelBase = function(){
 		{id:'Wholesale',  ENG:'Wholesale',  CHN:'经销商',  RUS:''},
 		{id:'Overview Report',  ENG:'Overview Report',  CHN:'整体报告',  RUS:''},
 
+		//Added Sept-23rd-2014
 		{id:'Supplier does not have enough budget.',  ENG:'Supplier does not have enough budget.',  CHN:'',  RUS:''},
-		{id:'BM list price is 0',  ENG:'BM list price is 0',  CHN:'BM list price is 0',  RUS:''},
-		
+		{id:'BM list price is 0',  ENG:'BM list price is 0',  CHN:'BM list price is 0',  RUS:''},		
+
 		{id:'Total Time',  ENG:'Total Time',  CHN:'总时间',  RUS:''},
 		{id:'Gone',  ENG:'Gone',  CHN:'历时',  RUS:''},
 		{id:'Contract Deal',  ENG:'Contract Deal',  CHN:'谈判',  RUS:''},
@@ -1020,6 +1021,18 @@ var getLabelBase = function(){
 		{id:'You are checking the General Report of period',  ENG:'You are checking the General Report of period ',  CHN:'你正在查看综合报告，阶段 ',  RUS:''},
 		{id:'You are checking the Market Research Report of period',  ENG:'You are checking the Market Research Report of period ',  CHN:'你正在查看市场调研报告，阶段 ',  RUS:''},
 
+		{id:'Operating Profits',  ENG:'Operating Profits',  CHN:'Operating Profits',  RUS:''},
+		{id:'Sales by Channel',  ENG:'Sales by Channel',  CHN:'Sales by Channel',  RUS:''},
+		{id:'Channel Preference',  ENG:'Channel Preference',  CHN:'产量',  RUS:''},
+		{id:'Channel Preference Info',  ENG:'0% means full preference for off-line shipments (B&M retailers) and 100% is for full preference for on-line sales. Anything between, will make a proportional effect. ',  CHN:'产量',  RUS:''},		
+		{id:'eMall Commission',  ENG:'eMall Commission',  CHN:'eMall Commission',  RUS:''},
+		{id:'Shipping Cost',  ENG:'Shipping Cost',  CHN:'Shipping Cost',  RUS:''},		
+
+		{id:'Sales by Channel Elecssories Rural Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the rural market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel Elecssories Rural Info',  RUS:''},
+		{id:'Sales by Channel Elecssories Urban Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the urban market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel Elecssories Urban Info',  RUS:''},
+		{id:'Sales by Channel HealthBeauties Rural Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the rural market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel HealthBeauties Rural Info',  RUS:''},
+		{id:'Sales by Channel HealthBeauties Urban Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the urban market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel HealthBeauties Urban Info',  RUS:''},
+		
 	]
 }
 
