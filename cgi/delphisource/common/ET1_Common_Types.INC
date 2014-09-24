@@ -38,6 +38,7 @@ Type
   TMarketsUniverse         = 1..MarketsUniverse;
   TModernRetailers         = 1..ModernRetsMax;
   TModernRetailersTotal    = 1..ModernRetsMaxTotal;
+  TNegotiationsGranularity = ( NONE, VARIANT_MARKET, VARIANT_TOTAL, BRAND_MARKET, BRAND_TOTAL, CATEGORY_MARKET, CATEGORY_TOTAL );
   TOneBrandVariants        = 1..VarsMax;
   TOperatingMode           = ( LOCAL, ONLINE );
   TPeriodNumber            = HistoryStart..FutureEnd;
@@ -72,9 +73,10 @@ Type
   TVariantPriority         = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
   TWebTrawlerDimensions    = ( SENTIMENT, STRENGTH );  
   TWeeksInPeriod           = 0..PeriodLastWeek;
-  TTOPDays                 = 1..DaysInPeriod;
+  TTOPDays                 = 0..DaysInPeriod;
   TMarketStudies           = 1..MarketStudiesMax;
 
+  TNegotiationsTopicsLevel           = array[nt_Consignement..nt_QuantityDiscounts] of TNegotiationsGranularity;
   TIngredientsDetails                = array[TIngredientsInput] of single;
   TProducersIngredientsDetails       = array[TAllProducers] of TIngredientsDetails;
   TAllIngredientsDetails             = array[TSpecs] of TIngredientsDetails;
@@ -307,6 +309,8 @@ Type
   TRetsAssortmentsInitial = array[TModernRetailers, TMarkets, TCategories] of TRetQuarterAssortmentDecision;  
   
 {===============   Negotiations   ============================================================================================}
+
+  
 
   TVariantDetails = record
                           niv_VarID             : TVariantID;

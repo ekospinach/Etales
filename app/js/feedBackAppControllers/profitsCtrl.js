@@ -57,9 +57,9 @@ var profitsCtrl=function($scope,$http){
                     if(data.data.f_OperatingProfitMargin[i].period==currentCategories[j]){
                        if(data.data.f_OperatingProfitMargin[i].categoryID==3){
                             if(data.data.f_OperatingProfitMargin[i].actorID<4){
-                                currentOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value);
+                                currentOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value * 100);
                             }else if(data.data.f_OperatingProfitMargin[i].actorID>4&&data.data.f_OperatingProfitMargin[i].actorID<7){
-                                currentOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-2].data.push(data.data.f_OperatingProfitMargin[i].value);
+                                currentOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-2].data.push(data.data.f_OperatingProfitMargin[i].value * 100);
                             }
                         }
                     }
@@ -83,9 +83,9 @@ var profitsCtrl=function($scope,$http){
                     if(data.data.f_NetProfitMargin[i].period==currentCategories[j]){
                         if(data.data.f_NetProfitMargin[i].categoryID==3){
                             if(data.data.f_NetProfitMargin[i].actorID<4){
-                                currentNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value);
+                                currentNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value * 100);
                             }else if(data.data.f_NetProfitMargin[i].actorID>4&&data.data.f_NetProfitMargin[i].actorID<7){
-                                currentNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-2].data.push(data.data.f_NetProfitMargin[i].value);
+                                currentNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-2].data.push(data.data.f_NetProfitMargin[i].value * 100);
                             }
                         }
                     }
@@ -110,9 +110,9 @@ var profitsCtrl=function($scope,$http){
                     if(data.data.f_OperatingProfitMargin[i].period==previousCategories[j]){
                         if(data.data.f_OperatingProfitMargin[i].categoryID==3){
                             if(data.data.f_OperatingProfitMargin[i].actorID<4){
-                                previousOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value);
+                                previousOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value * 100);
                             }else if(data.data.f_OperatingProfitMargin[i].actorID>4&&data.data.f_OperatingProfitMargin[i].actorID<7){
-                                previousOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-2].data.push(data.data.f_OperatingProfitMargin[i].value);
+                                previousOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-2].data.push(data.data.f_OperatingProfitMargin[i].value * 100);
                             }
                         }
                     }
@@ -136,9 +136,9 @@ var profitsCtrl=function($scope,$http){
                     if(data.data.f_NetProfitMargin[i].period==previousCategories[j]){
                         if(data.data.f_NetProfitMargin[i].categoryID==3){
                             if(data.data.f_NetProfitMargin[i].actorID<4){
-                                previousNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value);
+                                previousNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value * 100);
                             }else if(data.data.f_NetProfitMargin[i].actorID>4&&data.data.f_NetProfitMargin[i].actorID<7){
-                                previousNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-2].data.push(data.data.f_NetProfitMargin[i].value);
+                                previousNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-2].data.push(data.data.f_NetProfitMargin[i].value * 100);
                             }
                         }
                     }
@@ -191,7 +191,7 @@ var profitsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: '$mln'
+                            text: '%'
                         }
                     },
                     xAxis: {
@@ -226,7 +226,7 @@ var profitsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: '%'
+                            text: '$mln'
                         }
                     },
                     xAxis: {
@@ -333,7 +333,7 @@ var profitsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: '$mln'
+                            text: '%'
                         }
                     },
                     xAxis: {
@@ -368,7 +368,7 @@ var profitsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: '%'
+                            text: '$mln'
                         }
                     },
                     xAxis: {

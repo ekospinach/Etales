@@ -51,8 +51,8 @@ Const
   FutureStart        =  HistoryEnd + 1;
   FutureEnd          =  9;
   TimeEnd            =  FutureEnd + 1;
-  OldestPast         =  -12;
-  LatestPast         =  -2;
+  OldestPast         =  HistoryStart;
+  LatestPast         =  FutureEnd - 2;  { -1 for previous = Prev,  0 for current = Now }
 
   VarsMax                  = 3;                 { max # of variants per brand }
   VarsMaxTotal             = VarsMax + 1;       { for one brand totals }
@@ -155,6 +155,17 @@ Const
   SimplePrecision    = 1.0E-3;
   Precision          = 1.0E-6;
   DoublePrecision    = 1.0E-12;
+
+  { Negotiations Topics -----------------------------------------------------------------------------------------------}
+
+  nt_Consignement      = 1;
+  nt_InStoreActivities = 2;
+  nt_OtherCompensation = 3;
+  nt_PaymentDays       = 4;
+  nt_PerformanceBonus  = 5;
+  nt_QuantityDiscounts = 6;
+
+
 
 
 

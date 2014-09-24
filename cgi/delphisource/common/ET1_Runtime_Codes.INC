@@ -247,6 +247,9 @@ const
   kernel_ErrorInShoppersShare                        = 93941;
   kernel_ShoppersShare_OK                            = 93949;
 
+  kernel_ErrorInBudgetsUpdating                      = 93951;
+  kernel_BudgetsUpdating_OK                          = 93959;
+
   kernel_ErrorInOtherCompletingResults               = 93991;
   kernel_OtherCompletingResults_OK                   = 93999;
   

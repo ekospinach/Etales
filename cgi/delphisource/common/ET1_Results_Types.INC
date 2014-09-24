@@ -40,7 +40,7 @@ TVariantNegotiationsDetails = record
                                 vnd_VariantName       : TVariantName;
                                 vnd_ParentBrandID     : TBrandID;
                                 vnd_ParentBrandName   : TBrandName;
-				                        vnd_ParentCompanyID   : TActors;
+                                vnd_ParentCompanyID   : TActors;
                                 vnd_QuantityDiscount  : TDiscountsDetails;
                                 vnd_TargetBonus       : TBonusDetails;
                                 vnd_PaymentTerms      : TDelayOfPayment;
@@ -776,6 +776,7 @@ TF_CategoryNegotiationsItem =
   record
     fcni_SuppliersCost       : array[TProducers] of single;
     fcni_RetailersBenefits   : array[TBMRetailers] of single;
+    fcni_TotalValue          : single;
   end;
 
 TF_NegotiationsItems = array[TCategoriesTotal] of TF_CategoryNegotiationsItem;
@@ -790,9 +791,9 @@ TF_SuppliersKPIsExtended = array[TCategoriesTotal, TTimeSpan, TBrandOwners] of s
 
 TF_RetailersKPIs = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TBMRetailers] of single;
 
-TF_ShoppersShare = array[TMarketsTotal, TTimeSpan, TShoppersKind, TActors] of single;
+TF_ShoppersShare = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TShoppersKind, TAllStores] of single;
 
-TF_MarketSummary = array[TTimeSpan, TMarketsTotal, TCategoriesTotal] of single;
+TF_MarketSummary = array[TMarketsTotal, TCategoriesTotal, TTimeSpan] of single;
 
 TFeedback =
   record

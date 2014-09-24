@@ -26,17 +26,43 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			    	var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-            		var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
+			    	var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
+			    		{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
+			    		{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
+			    		{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
+			    		{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
+			    		{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
+			    		{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
+            		var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
+            			{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
+            			{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
+            			{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
+            			{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
+            			{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
+            			{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
+
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
 			        for(var j=0;j<currentCategories.length;j++){
 		                for(var i=0;i<scope.feedBack.f_ShelfSpaceAllocation.length;i++){
 		                    if(scope.feedBack.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
 		                        if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
-		                            currentShelfSpaceElecssories[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+
+		                            //currentShelfSpaceElecssories[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            currentShelfSpaceElecssories.forEach(function(value, item, array){
+		                                if(scope.feedBack.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+		                                    array[item].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value * 100);
+		                                }
+		                            })		                            
+
 		                        }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
-		                            currentShelfSpaceHealthBeauties[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+
+		                            //currentShelfSpaceHealthBeauties[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            currentShelfSpaceHealthBeauties.forEach(function(value, item, array){
+		                                if(scope.feedBack.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+		                                    array[item].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value * 100);
+		                                }
+		                            })		   
 		                        }
 		                    }
 		                }

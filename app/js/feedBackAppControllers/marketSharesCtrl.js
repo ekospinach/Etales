@@ -44,9 +44,9 @@ var marketSharesCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_VolumeMarketShares.length;i++){
                     if(data.data.f_VolumeMarketShares[i].period==currentCategories[j]){
                         if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                            currentElecssoriesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
+                            currentElecssoriesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value * 100);
                         }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                            currentHealthBeautiesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
+                            currentHealthBeautiesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value * 100);
                         }
                     }
                 }
@@ -55,9 +55,9 @@ var marketSharesCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_ValueMarketShares.length;i++){
                     if(data.data.f_ValueMarketShares[i].period==currentCategories[j]){
                         if(data.data.f_ValueMarketShares[i].categoryID==1){
-                            currentElecssoriesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
+                            currentElecssoriesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value * 100);
                         }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                            currentHealthBeautiesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
+                            currentHealthBeautiesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value * 100);
                         }
                     }
                 }
@@ -66,9 +66,9 @@ var marketSharesCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_VolumeMarketShares.length;i++){
                     if(data.data.f_VolumeMarketShares[i].period==previousCategories[j]){
                         if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                            previousElecssoriesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
+                            previousElecssoriesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value * 100);
                         }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                            previousHealthBeautiesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
+                            previousHealthBeautiesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value * 100);
                         }
                     }
                 }
@@ -77,9 +77,9 @@ var marketSharesCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_ValueMarketShares.length;i++){
                     if(data.data.f_ValueMarketShares[i].period==previousCategories[j]){
                         if(data.data.f_ValueMarketShares[i].categoryID==1){
-                            previousElecssoriesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
+                            previousElecssoriesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value * 100);
                         }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                            previousHealthBeautiesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
+                            previousHealthBeautiesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value * 100);
                         }
                     }
                 }
