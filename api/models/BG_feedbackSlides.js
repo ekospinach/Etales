@@ -52,6 +52,7 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
 var negotiationsItemDetailsSchema = mongoose.Schema({
     categoryID : Number,
+    totalValue : Number,
     fcni_SuppliersCost       : [supplierInfoSchema],
     fcni_RetailersBenefits   : [retailerInfoSchema],
 })

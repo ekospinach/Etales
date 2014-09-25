@@ -119,6 +119,13 @@ var
     jo.I['categoryID'] := catID;
     jo.O['fcni_SuppliersCost'] := SA([]);
     jo.O['fcni_RetailersBenefits'] := SA([]);
+    
+    case (idx) of
+      f_DiscountsValue          : begin jo.D['totalValue'] = currentResult.r_Feedback.f_DiscountsValue[catID].fcni_TotalValue end;
+      f_PerformanceBonusesValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_TotalValue end;
+      f_OtherCompensationsValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_TotalValue end;
+    end;    
+    
 
     for producerID := Low(TProducers) to High(TProducers) do
     begin
@@ -321,7 +328,7 @@ var
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
-      for topDays:= Low(TTOPDays) to High(TTOPDays) do
+      for topDays:= Low(TTOPIntervalIndex) to High(TTOPIntervalIndex) do
       begin
         oJsonFile.A['f_TransactionsPerTOP'].add( transactionsPerTOPSchema(catID, topDays));
       end;
