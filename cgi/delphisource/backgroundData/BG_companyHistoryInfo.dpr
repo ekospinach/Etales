@@ -74,6 +74,11 @@ DataDirectory : string;
     jo.D['budgetOverspent'] := vProd.scr_Info.scrInfo_BudgetOverspent;
     jo.D['budgetSpentToDate'] := vProd.scr_Info.scrInfo_BudgetSpentToDate;
 
+    jo.D['initialBudget'] := vProd.scr_Info.scrInfo_InitialBudget;
+    jo.D['budgetExtensions'] := vProd.scr_Info.scrInfo_BudgetExtensions;
+    jo.D['totalPreviousMarketing'] := vProd.scr_Info.scrInfo_TotalPreviousMarketing;
+    jo.D['totalPreviousTradeSupport'] := vProd.scr_Info.scrInfo_TotalPreviousTradeSupport;
+
     jo.O['productionCapacity']  := SA([]);
     jo.O['acquiredTechnologyLevel']  := SA([]);
     jo.O['acquiredProductionFlexibility']  := SA([]);
@@ -127,6 +132,9 @@ DataDirectory : string;
     jo.D['budgetOverspent'] := vRet.rcr_Info.rcrInfo_BudgetOverspent;
     jo.D['budgetSpentToDate'] := vRet.rcr_Info.rcrInfo_BudgetSpentToDate;
 
+    jo.D['initialBudget'] := vRet.rcr_Info.rcrInfo_InitialBudget;
+    jo.D['budgetExtensions'] := vRet.rcr_Info.rcrInfo_BudgetExtensions;               
+    jo.D['budgetIncreaseFromNegotiations'] := vRet.rcr_Info.rcrInfo_BudgetIncreaseFromNegotiations;
     Result  := jo;    
   end;
 

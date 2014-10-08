@@ -10,8 +10,8 @@ define(['app', 'socketIO'], function(app) {
 					// if (!$scope.initializeMessage) {
 					// 	$scope.initializeMessage = [];
 					// }
-					$scope.initializeMessage = [];
-					$scope.initializeMessage.push(data.msg);
+					$scope.initializeMessage = '';
+					$scope.initializeMessage = data.msg;
 				}
 			}).on('PassiveProcessLog', function(data) {
 				$scope.isKernelMessageShown = true;
@@ -257,7 +257,7 @@ define(['app', 'socketIO'], function(app) {
 
 			$scope.Initialize = function(seminar, isKeepExistedPeriod1Decision) {
 				$scope.isInitializeMessageShown = false;
-				$scope.initializeMessage = [];
+				$scope.initializeMessage = '';
 				$scope.isInitializeConfirmInfoShown = false;
 				$scope.isActive = false;
 				var postData = {
@@ -285,7 +285,7 @@ define(['app', 'socketIO'], function(app) {
 					data: postData
 				}).then(function(res) {
 					$scope.isInitializeMessageShown = true;
-					$scope.initializeMessage.push(res.data);
+					$scope.initializeMessage = res.data;
 
 					//if Initialize seminar successfully, set active of current period into TRUE
 					var newData = {
@@ -300,16 +300,16 @@ define(['app', 'socketIO'], function(app) {
 					}).
 					success(function(res) {
 						$scope.seminar.isInitialise = newData.value;
-						$scope.initializeMessage.push('Seminar ' + seminar.seminarCode + ' has been actived!');
+						$scope.initializeMessage = 'Seminar ' + seminar.seminarCode + ' has been actived!';
 						$scope.isActive = true;
 					}).
 					error(function(res) {
-						$scope.initializeMessage.push('Active seminar ' + seminar.seminarCode + ' failed.');
+						$scope.initializeMessage = 'Active seminar ' + seminar.seminarCode + ' failed.';
 						$scope.isActive = true;
 					});
 				}, function(res) {
 					$scope.isInitializeMessageShown = true;
-					$scope.initializeMessage.push(res.data);
+					$scope.initializeMessage = res.data;
 					$scope.isActive = true;
 				})
 			}

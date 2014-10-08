@@ -119,13 +119,13 @@ var
     jo.I['categoryID'] := catID;
     jo.O['fcni_SuppliersCost'] := SA([]);
     jo.O['fcni_RetailersBenefits'] := SA([]);
-    
+
     case (idx) of
-      f_DiscountsValue          : begin jo.D['totalValue'] = currentResult.r_Feedback.f_DiscountsValue[catID].fcni_TotalValue end;
+      f_DiscountsValue          : begin jo.D['totalValue'] := currentResult.r_Feedback.f_DiscountsValue[catID].fcni_TotalValue end;
       f_PerformanceBonusesValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_TotalValue end;
       f_OtherCompensationsValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_TotalValue end;
     end;    
-    
+
 
     for producerID := Low(TProducers) to High(TProducers) do
     begin

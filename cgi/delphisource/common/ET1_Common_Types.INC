@@ -16,7 +16,7 @@ Type
   TFactoriesTotal          = 1..FactoriesMaxTotal;
   TForecastCoverage        = NearHistory..NearFuture;
   TBrands                  = 1..AllBrandsMax;
-  TBrandsFromPros          = 1..AllProBrandsMax;
+  TBrandsFromPros          = 1..AllProBrandsMax;  
   TCategories              = 1..CatsMax;
   TCategoriesSet           = set of TCategories;            { defines # of current categories }
   TCategoriesTotal         = 1..CatsMaxTotal;

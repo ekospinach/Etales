@@ -10,26 +10,41 @@ var companyHistoryInfoSchema = mongoose.Schema({
 })
 
 var producerViewSchema = mongoose.Schema({
-	producerID : Number, //(1~4)
-	//pt...
-	budgetAvailable : Number,
-	budgetOverspent : Number,
-	budgetSpentToDate : Number,
-	//pc...
-	productionCapacity : [Number], //TCategories(1~2)
-	acquiredTechnologyLevel : [Number], //TCategories(1~2)
-	acquiredProductionFlexibility : [Number], //TCategories(1~2)
-	acquiredDesignLevel : [Number], //TCategories(1~2)
+  producerID                    : Number, //(1~4)
+  //pt...
+  budgetAvailable               : Number,
+  budgetOverspent               : Number,
+  budgetSpentToDate             : Number,
+ 
+  //Added by Hao, 2014 Oct 5
+  initialBudget                 : Number,
+  budgetExtensions              : Number,
+  totalPreviousMarketing        : Number,
+  totalPreviousTradeSupport     : Number,
+
+  //pc...
+  productionCapacity            : [Number], //TCategories(1~2)
+  acquiredTechnologyLevel       : [Number], //TCategories(1~2)
+  acquiredProductionFlexibility : [Number], //TCategories(1~2)
+  acquiredDesignLevel           : [Number], //TCategories(1~2)
   cumulatedDesignVolume         : [],
   cumulatedTechnologyVolume     : []
 })
 
 var retailerViewSchema = mongoose.Schema({
-	retailerID : Number, //(1~4)
-	//rr....
-	budgetAvailable : Number,
-	budgetOverspent : Number,
-	budgetSpentToDate : Number
+  retailerID                     : Number, //(1~4)
+  //rr....
+  budgetAvailable                : Number,
+  budgetOverspent                : Number,
+  budgetSpentToDate              : Number,
+  
+  
+  //Added by Hao, 2014 Oct 5
+  initialBudget                  : Number,
+  budgetExtensions               : Number,
+  budgetIncreaseFromNegotiations : Number,
+  // totalPreviousMarketing      : Number,
+  // totalPreviousTradeSupport   : Number,
 })
 
 var companyHistory=mongoose.model('BG_companyHistory',companyHistoryInfoSchema);

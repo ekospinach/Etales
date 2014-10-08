@@ -93,8 +93,9 @@
 	    ng-model="isKeepExistedPeriod1Decision"
 	    type="checkbox"> Keep existed period 1 deicison in DB?</p>		
 	</b>
-	<pre ng-show="isInitializeMessageShown"><p data-ng-repeat="message in initializeMessage">{{message}}</p></pre>
-
+	<pre ng-show="isInitializeMessageShown">{{initializeMessage}}</pre>
+<!-- 	<pre ng-show="isInitializeMessageShown"><p data-ng-repeat="message in initializeMessage">{{message}}</p></pre>
+ -->
 	
 
 	<div class="alert alert-danger fade in" ng-show="isInitializeConfirmInfoShown">

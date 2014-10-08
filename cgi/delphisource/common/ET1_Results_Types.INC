@@ -74,13 +74,26 @@ TVariantChannelDetails = record
                            vcd_VariantName       : TVariantName;
                            vcd_ParentBrandID     : TBrandID;
                            vcd_ParentBrandName   : TBrandName;
-                           vcd_ParentCompanyID   : TActors;
-                           vcd_Shown             : boolean;    { flag used to determine if should be displayed. For instance, Private Labels of Retailer 1, should not be displayed in Retailer 2 report }
+                           vcd_ParentCompanyID   : TBrandOwners;
+                           vcd_Shown             : boolean;
                            vcd_AbsoluteValue     : array[TAccountsTotal] of single;
                            vcd_ValueChange       : array[TAccountsTotal] of single;
                            vcd_AbsoluteVolume    : array[TAccountsTotal] of single;
                            vcd_VolumeChange      : array[TAccountsTotal] of single;
                          end;
+
+TBrandChannelDetails = record
+                         bcd_BrandID         : TBrandID;
+                         bcd_BrandName       : TBrandName;
+                         bcd_ParentCompanyID : TBrandOwners;
+                         bcd_Shown           : boolean;
+                         bcd_AbsoluteValue   : array[TAccountsTotal] of single;
+                         bcd_ValueChange     : array[TAccountsTotal] of single;
+                         bcd_AbsoluteVolume  : array[TAccountsTotal] of single;
+                         bcd_VolumeChange    : array[TAccountsTotal] of single;
+                         bcd_VariantsDetails : array[TOneBrandVariants] of TVariantChannelDetails;
+                       end;
+
 
 TBrandOwnerChannelDetails = record
                               bocd_CompanyID         : TBrandOwners;
@@ -209,6 +222,7 @@ TSCR_OneVariant =
     scrv_DateOfBirth                          : TTimeSpan;
     scrv_DateOfDeath                          : TTimeSpan;
     scrv_ParentCompanyID                      : TActors;
+
     scrv_Sales                                : array[TProducerDivisions] of single;
     scrv_SalesChange                          : array[TProducerDivisions] of single;
     scrv_SalesShareInCategory                 : array[TProducerDivisions] of single;
@@ -358,6 +372,10 @@ TSCR_KeyPerformanceIndicators = array[TCategoriesTotal] of TSCR_CategoryKeyPerfo
 
 TSCR_AdditionalInfo =
   record
+    scrInfo_InitialBudget                 : single; 
+    scrInfo_BudgetExtensions              : single; 
+    scrinfo_TotalPreviousMarketing        : single; 
+    scrinfo_TotalPreviousTradeSupport     : single; 
     scrInfo_BudgetAvailable               : single;
     scrInfo_BudgetOverspent               : single;
     scrInfo_BudgetSpentToDate             : single;
@@ -578,13 +596,16 @@ TRCR_KeyPerformanceIndicators = array[TMarketsTotal, TCategoriesTotal] of TRCR_Q
 
 TRCR_AdditionalInfo =
   record
-    rcrInfo_BudgetAvailable               : single;
-    rcrInfo_BudgetOverspent               : single;
-    rcrInfo_BudgetSpentToDate             : single;
-    rcrInfo_ServiceLevel                  : array[TMarkets] of TServiceLevel;
-    rcrInfo_LocalAdvertising              : array[TMarkets] of TStorePerceptionsData;
-    rcrInfo_OnlineAdvertising             : TStorePerceptionsData;
-    rcrInfo_TraditionalAdvertising        : TStorePerceptionsData;
+    rcrInfo_InitialBudget                  : single; 
+    rcrInfo_BudgetExtensions               : single; 
+    rcrInfo_BudgetIncreaseFromNegotiations : single; 
+    rcrInfo_BudgetAvailable                : single;
+    rcrInfo_BudgetOverspent                : single;
+    rcrInfo_BudgetSpentToDate              : single;
+    rcrInfo_ServiceLevel                   : array[TMarkets] of TServiceLevel;
+    rcrInfo_LocalAdvertising               : array[TMarkets] of TStorePerceptionsData;
+    rcrInfo_OnlineAdvertising              : TStorePerceptionsData;
+    rcrInfo_TraditionalAdvertising         : TStorePerceptionsData;
   end;
 
 TRetailerConfidentialReport =
@@ -744,11 +765,11 @@ TMR_OneMarketForecasts =
 TMR_Forecasts = array[TForecastCoverage, TMarkets] of TMR_OneMarketForecasts;
 
 TMR_OneQuarterSalesByChannel = record
-                                 mrsbc_VariantsDetails    : array[TBrands, TOneBrandVariants] of TVariantChannelDetails;
+                                 mrsbc_BrandDetails       : array[TBrands] of TBrandChannelDetails;
                                  mrsbc_BrandOwnersDetails : array[TBrandOwners] of TBrandOwnerChannelDetails;
                                 end;
 
-TMR_SalesByChannel = array[TMarkets, TCategories] of TMR_OneQuarterSalesByChannel;
+TMR_SalesByChannel = array[TMarketsTotal, TCategories] of TMR_OneQuarterSalesByChannel;
 
 TMarketResearch =
   record

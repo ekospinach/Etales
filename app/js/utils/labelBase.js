@@ -797,8 +797,6 @@ var getLabelBase = function(){
 		{id:'Cost',  ENG:'Cost',  CHN:'成本',  RUS:''},
 		{id:'Report',  ENG:'Report',  CHN:'报告',  RUS:''},
 		{id:'SubmitOrder',  ENG:'SubmitOrder',  CHN:'提交订单',  RUS:''},
-		{id:'Total Budget',  ENG:'Total Budget',  CHN:'总预算',  RUS:''},
-		{id:'Available Period Capacity',  ENG:'Available Period Capacity',  CHN:'阶段可用产能',  RUS:''},
 		{id:'Time Left',  ENG:'Time Left',  CHN:'剩余时间',  RUS:''},
 		{id:'mins',  ENG:'mins',  CHN:'分钟',  RUS:''},
 		{id:'Decision Info',  ENG:'Decision Info',  CHN:'决策介绍',  RUS:''},
@@ -1032,6 +1030,17 @@ var getLabelBase = function(){
 		{id:'Sales by Channel Elecssories Urban Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the urban market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'该表反映出城市市场上在售的所有电子配件品类（以渠道计）的销售和销售额。将光标置于任何品牌名上，即可看到所有动态结果。',  RUS:''},
 		{id:'Sales by Channel HealthBeauties Rural Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the rural market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'该表反映出农村市场上在售的所有美容保健品类（以渠道计）的销售和销售额。将光标置于任何品牌名上，即可看到所有动态结果。',  RUS:''},
 		{id:'Sales by Channel HealthBeauties Urban Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the urban market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'该表反映出城市市场上在售的所有美容保健品类（以渠道计）的销售和销售额。将光标置于任何品牌名上，即可看到所有动态结果。',  RUS:''},
+
+		{id:'(Total)',  ENG:'(Total)',  CHN:'历史合计',  RUS:''},		
+		{id:'(Current)',  ENG:'(Current)',  CHN:'历史合计',  RUS:''},		
+		{id:'Initial Budget',  ENG:'Initial Budget',  CHN:'历史合计',  RUS:''},		
+		{id:'Previous Spending',  ENG:'Previous Spending',  CHN:'历史合计',  RUS:''},		
+		{id:'Marketing',  ENG:'Marketing',  CHN:'历史合计',  RUS:''},		
+		{id:'Trade Support',  ENG:'Trade Support',  CHN:'历史合计',  RUS:''},		
+		{id:'Budget Extensions',  ENG:'Budget Extensions',  CHN:'历史合计',  RUS:''},		
+		{id:'Budget Increase Due to Negotiation',  ENG:'Budget increase due to Negotiation',  CHN:'历史合计',  RUS:''},		
+		{id:'Remaining Budget',  ENG:'Remaining Budget',  CHN:'可用预算',  RUS:''},
+		{id:'Available Period Capacity',  ENG:'Available Period Capacity',  CHN:'阶段可用产能',  RUS:''},
 		
 	]
 }
