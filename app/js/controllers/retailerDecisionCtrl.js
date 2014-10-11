@@ -38,7 +38,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     method: 'GET',
                     url: url
                 }).then(function(data) {
-                    abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
+                    abMax = data.data.budgetAvailable;
                     $scope.abMax = abMax.toFixed(2);
                     url = "/retailerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/location/1';
                     return $http({

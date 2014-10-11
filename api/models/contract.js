@@ -402,14 +402,86 @@ exports.addContract = function(io) {
 exports.getContractExpend = function(req, res, next) {
      var result = 0;
 
+     // contractVariantDetails
+     //      .find()
+     //      .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period,
+     //           'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period
+     //      ])
+     //      .exec(function(err, docs) {
+     //           if (err) {
+     //                next(new Error(err));
+     //           } else {
+     //                if (docs.length != 0) {
+     //                     for (var i = 0; i < docs.length; i++) {
+     //                          if (docs[i].nc_VolumeDiscountRate == 0) {
+     //                               result += 0;
+     //                          } else {
+     //                               result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+     //                          }
+
+     //                          if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'volumeDiscount') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+
+     //                               if (docs[i].nc_VolumeDiscountRate == 0) {
+     //                                    result -= 0;
+     //                               } else {
+     //                                    console.log(docs[i]);
+     //                                    result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+     //                               }
+     //                          }
+
+     //                          result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
+     //                          if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'performanceBonus') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+
+     //                               result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
+     //                          }
+
+     //                          if (docs[i].nc_OtherCompensation > 0) {
+     //                               result += docs[i].nc_OtherCompensation;
+     //                               if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'otherCompensation') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+
+     //                                    result -= docs[i].nc_OtherCompensation;
+     //                               }
+     //                          }
+     //                     }
+     //                     res.send(200, {
+     //                          'result': result
+     //                     });
+
+
+     //                } else {
+     //                     res.send(200, {
+     //                          'result': 0
+     //                     });
+     //                }
+     //           }
+     //      });
+
+     exports.calculateProducerNegotiationCost(req.params.seminar,
+          req.params.producerID,
+          req.params.period,
+          req.params.parentBrandName,
+          req.params.variantName,
+          req.params.ignoreItem,
+          req.params.ignoreRetailerID).then(function(result){
+               res.send(200, result);
+          }).fail(function(err){
+               res.send(400, err);
+          }).done();
+
+}
+
+exports.calculateProducerNegotiationCost = function(seminar, producerID, period, parentBrandName, variantName, ignoreItem, ignoreRetailerID){
+     var deferred = q.defer();
+
+     var result = 0;
      contractVariantDetails
           .find()
-          .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period,
-               'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period
+          .where('contractCode').in(['P' + producerID + 'andR1_' + seminar + '_' + period,
+               'P' + producerID + 'andR2_' + seminar + '_' + period
           ])
           .exec(function(err, docs) {
                if (err) {
-                    next(new Error(err));
+                    deferred.reject(err);
                } else {
                     if (docs.length != 0) {
                          for (var i = 0; i < docs.length; i++) {
@@ -419,7 +491,7 @@ exports.getContractExpend = function(req, res, next) {
                                    result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
                               }
 
-                              if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'volumeDiscount') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+                              if ((parentBrandName != 'brandName') && (variantName != 'varName') && (docs[i].parentBrandName == parentBrandName) && (docs[i].variantName == variantName) && (ignoreItem == 'volumeDiscount') && (ignoreRetailerID == docs[i].retailerID)) {
 
                                    if (docs[i].nc_VolumeDiscountRate == 0) {
                                         result -= 0;
@@ -430,32 +502,28 @@ exports.getContractExpend = function(req, res, next) {
                               }
 
                               result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
-                              if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'performanceBonus') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+                              if ((parentBrandName != 'brandName') && (variantName != 'varName') && (docs[i].parentBrandName == parentBrandName) && (docs[i].variantName == variantName) && (ignoreItem == 'performanceBonus') && (ignoreRetailerID == docs[i].retailerID)) {
 
                                    result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
                               }
 
                               if (docs[i].nc_OtherCompensation > 0) {
                                    result += docs[i].nc_OtherCompensation;
-                                   if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'otherCompensation') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+                                   if ((parentBrandName != 'brandName') && (variantName != 'varName') && (docs[i].parentBrandName == parentBrandName) && (docs[i].variantName == variantName) && (ignoreItem == 'otherCompensation') && (ignoreRetailerID == docs[i].retailerID)) {
 
                                         result -= docs[i].nc_OtherCompensation;
                                    }
                               }
                          }
-                         res.send(200, {
-                              'result': result
-                         });
-
+                         deferred.resolve({result : result});
 
                     } else {
-                         res.send(200, {
-                              'result': 0
-                         });
+                         deferred.resolve({result : 0});
                     }
                }
           });
 
+     return deferred.promise;
 }
 
 exports.checkVolume = function(req, res, next) {

@@ -62,9 +62,17 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				}).then(function(data) {
 					//assign available budget, capacity for two categories 
 
-					$scope.abMax = (data.data.budgetAvailable + data.data.budgetSpentToDate).toFixed(2);
+					$scope.abMax = (data.data.budgetAvailable).toFixed(2);
 					$scope.acEleMax = data.data.productionCapacity[0];
 					$scope.acHeaMax = data.data.productionCapacity[1];
+
+					$scope.initialBudget = data.data.initialBudget;
+					$scope.budgetExtensions = data.data.budgetExtensions;
+					$scope.totalPreviousMarketing = data.data.totalPreviousMarketing;
+					$scope.totalPreviousTradeSupport = data.data.totalPreviousTradeSupport;
+
+
+					
 
 					//get how much money have been spent in current period, money left = $scope.surplusExpend
 					url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
@@ -106,12 +114,28 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					$scope.heaSurplusProduction = ($scope.acHeaMax - data.data.result).toFixed(2);
+
 					return $http({
                         method:'GET',
                         url:'/getTimerActiveInfo/'+SeminarInfo.getSelectedSeminar().seminarCode
                     });
                 }).then(function(data){
                     $scope.isTimerActived=data.data.result;
+
+					return $http({
+                        method:'GET',
+                        url:'/producerMarketingSpending/'+SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + PlayerInfo.getPlayer()
+                    });
+                }).then(function(data){
+					$scope.totalCurrentMarketing = (data.data.result).toFixed(2);
+
+					return $http({
+                        method:'GET',
+                        url:'/producerTradeSupportSpending/'+SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + PlayerInfo.getPlayer()
+                    });
+                }).then(function(data){
+					$scope.totalCurrentTradeSupport = (data.data.result).toFixed(2);
+
                 }, function() {
 					console.log('fail');
 				});

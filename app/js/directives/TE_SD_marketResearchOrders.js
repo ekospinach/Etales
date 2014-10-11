@@ -171,7 +171,7 @@ define(['directives', 'services'], function(directives) {
                                 method: 'GET',
                                 url: url
                             }).then(function(data) {
-                                max = data.data.budgetAvailable + data.data.budgetSpentToDate;
+                                max = data.data.budgetAvailable;
                                 url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/brandName/location/1';
                                 return $http({
                                     method: 'GET',

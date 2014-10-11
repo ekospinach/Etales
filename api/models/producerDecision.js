@@ -782,6 +782,75 @@ exports.getProducerExpend = function(req, res, next) {
     })
 }
 
+
+//Marketing Spending includes:
+//1 - General Marketing - Advertising
+//2 - Market Research 
+exports.getMarketingSpending = function(req, res, next) {
+    q.all([
+        proDecision.findOne({seminar: req.params.seminar, period: req.params.period, producerID: req.params.producerID}).exec(),
+        require('./BG_oneQuarterExogenousData.js').oneQuarterExogenousData.findOne({seminar:req.params.seminar, period:req.params.period, categoryID:1,marketID:1}).exec(),        
+        exports.getProducerReportOrder(req.params.seminar,req.params.period,req.params.producerID)
+    ]).spread(function(decisionDoc, quarterExogenousDoc, producerOrderDecision){
+            var result = 0;
+            for (var i = 0; i < decisionDoc.proCatDecision.length; i++) {
+                for (var j = 0; j < decisionDoc.proCatDecision[i].proBrandsDecision.length; j++) {
+                    if (decisionDoc.proCatDecision[i].proBrandsDecision[j].brandID != 0 && decisionDoc.proCatDecision[i].proBrandsDecision[j].brandName != "") {
+                        result += (
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[0] +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[1] +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].advertisingOnLine
+                        );
+                    }
+                }
+            }
+            for(var i = 0; i < producerOrderDecision.length; i++){
+                if(producerOrderDecision[i]){
+                    result += quarterExogenousDoc.MarketStudiesPrices[i]
+                }
+            }            
+            res.send(200, {
+                result: result
+            });     
+
+    }).fail(function(err){
+        next(new Error(err));
+    }).done();
+}
+
+//Trade Support Spending
+//1 - General Marketing - Traditional Trade Support 
+//TODO: 2 - All the cost happen in page "Online Store management" AKA Visibility + Promotion Cost
+//3 - All the Negotiation Cost
+exports.getTradeSupportSpending = function(req, res, next) {
+    q.all([
+        proDecision.findOne({seminar: req.params.seminar, period: req.params.period, producerID: req.params.producerID}).exec(),
+        require('./contract.js').calculateProducerNegotiationCost(req.params.seminar, req.params.producerID, req.params.period,'brandName','varName','ingoreItemNull',0)
+    ]).spread(function(decisionDoc, producerNegotiationCost){
+            var result = 0;
+            for (var i = 0; i < decisionDoc.proCatDecision.length; i++) {
+                for (var j = 0; j < decisionDoc.proCatDecision[i].proBrandsDecision.length; j++) {
+                    if (decisionDoc.proCatDecision[i].proBrandsDecision[j].brandID != 0 && decisionDoc.proCatDecision[i].proBrandsDecision[j].brandName != "") {
+                        result += (
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].supportEmall +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0] +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]
+                        );
+                    }
+                }
+            }
+         
+            result += producerNegotiationCost.result;
+            res.send(200, {
+                result: result
+            });     
+
+    }).fail(function(err){
+        next(new Error(err));
+    }).done();
+
+}
+
 exports.getProducerCurrentDecision = function(req, res, next) {
     proDecision.findOne({
         seminar: req.params.seminar,
