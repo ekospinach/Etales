@@ -66,10 +66,10 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					$scope.acEleMax = data.data.productionCapacity[0];
 					$scope.acHeaMax = data.data.productionCapacity[1];
 
-					$scope.initialBudget = data.data.initialBudget;
-					$scope.budgetExtensions = data.data.budgetExtensions;
-					$scope.totalPreviousMarketing = data.data.totalPreviousMarketing;
-					$scope.totalPreviousTradeSupport = data.data.totalPreviousTradeSupport;
+					$scope.initialBudget = (data.data.initialBudget).toFixed(2);
+					$scope.budgetExtensions = (data.data.budgetExtensions).toFixed(2);
+					$scope.totalPreviousMarketing = (data.data.totalPreviousMarketing).toFixed(2);
+					$scope.totalPreviousTradeSupport = (data.data.totalPreviousTradeSupport).toFixed(2);
 
 
 					
