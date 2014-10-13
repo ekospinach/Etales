@@ -82,14 +82,58 @@
                     <thead>
                         <tr>
                             <th colspan="2">
-                                <p>{{Label.getContent('Decision Info')}}</p>
+                                <p>{{Label.getContent('(Total)')}}</p>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                <p>{{Label.getContent('Total Budget')}}</p>
+                                <p>{{Label.getContent('Initial Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{initialBudget}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Previous Spending')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{budgetSpentToDate}}</p>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Budget Extensions')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{budgetExtensions}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Budget Increase Due to Negotiation')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{previousBudgetIncreaseDueToNegotiation}}</p>
+                            </td>
+                        </tr>                    
+                    </tbody>
+                </table>
+                <p></p>
+                <table class="table table-condensed" style="margin:0px auto;">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <p>{{Label.getContent('(Current)')}}</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Remaining Budget')}}</p>
                             </td>
                             <td>
                                 <p class="text-right">{{abMax}}</p>
@@ -97,10 +141,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <p>{{Label.getContent('Additional Budget')}}</p>
+                                <p>{{Label.getContent('Budget Increase Due to Negotiation')}}</p>
                             </td>
                             <td>
-                                <p class="text-right">+{{additionalBudget}}</p>
+                                <p class="text-right">+{{budgetIncreaseDueToNegotiation}}</p>
                             </td>
                         </tr>                        
                         <tr>
@@ -108,7 +152,7 @@
                                 <p>{{Label.getContent('Estimated Period Spending')}}</p>
                             </td>
                             <td>
-                                <p class="text-right">{{estimatedSpending}}</p>
+                                <p class="text-right">-{{estimatedSpending}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -124,7 +168,7 @@
                         </tr>
                         <tr>
                             <td style='word-break: keep-all;white-space:nowrap;'>
-                                <p>{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p>
+                                <p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p>
                             </td>
                             <td>
                                 <p class="text-right"><b>{{percentageShelf[0][0].toFixed(2)}}%</b>/100%</p>
@@ -132,7 +176,7 @@
                         </tr>
                         <tr>
                             <td style='word-break: keep-all;white-space:nowrap;'>
-                                <p>{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauty')}}</p>
+                                <p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauty')}}</p>
                             </td>
                             <td>
                                 <p class="text-right"><b>{{percentageShelf[0][1].toFixed(2)}}%</b>/100%</p>
@@ -140,7 +184,7 @@
                         </tr>
                         <tr>
                             <td style='word-break: keep-all;white-space:nowrap;'>
-                                <p>{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p>
+                                <p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p>
                             </td>
                             <td>
                                 <p class="text-right"><b>{{percentageShelf[1][0].toFixed(2)}}%</b>/100%</p>
@@ -148,7 +192,7 @@
                         </tr>
                         <tr>
                             <td style='word-break: keep-all;white-space:nowrap;'>
-                                <p>{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauty')}}</p>
+                                <p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauty')}}</p>
                             </td>
                             <td>
                                 <p class="text-right"><b>{{percentageShelf[1][1].toFixed(2)}}%</b>/100%</p>

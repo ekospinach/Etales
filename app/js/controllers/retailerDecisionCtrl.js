@@ -38,8 +38,12 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     method: 'GET',
                     url: url
                 }).then(function(data) {
-                    abMax = data.data.budgetAvailable;
-                    $scope.abMax = abMax.toFixed(2);
+                    $scope.previousBudgetIncreaseDueToNegotiation = data.data.budgetIncreaseFromNegotiations.toFixed(2);
+                    $scope.budgetExtensions = data.data.budgetExtensions.toFixed(2);
+                    $scope.budgetSpentToDate = data.data.budgetSpentToDate.toFixed(2);
+                    $scope.initialBudget = data.data.initialBudget.toFixed(2);
+                    $scope.abMax = data.data.budgetAvailable.toFixed(2);
+                    
                     url = "/retailerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/location/1';
                     return $http({
                         method: 'GET',
@@ -62,13 +66,12 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                         url: url
                     });
                 }).then(function(data) {
-                    additionalBudget = data.data;
+                    $scope.budgetIncreaseDueToNegotiation = data.data;
 
-                    $scope.estimatedSpending = -(expend + reportExpend).toFixed(2);
-                    $scope.additionalBudget = additionalBudget;
-                    $scope.surplusExpend = (abMax + additionalBudget - expend - reportExpend).toFixed(2);
+                    $scope.estimatedSpending = (expend + reportExpend).toFixed(2);
+                    $scope.surplusExpend = ($scope.abMax + $scope.budgetIncreaseDueToNegotiation - expend - reportExpend).toFixed(2);
 
-                    //$scope.percentageExpend=(abMax-expend)/abMax*100;
+                    //$scope.percentageExpend=($scope.abMax-expend)/$scope.abMax*100;
                     url = "/retailerShelfSpace/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/0/brandName/varName';
                     return $http({
                         method: 'GET',
