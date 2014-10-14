@@ -12,8 +12,11 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="orderProduct in orderProducts">
-				<td>
+				<td ng-show='orderProduct.show'>
 					<input type="checkbox" ng-model="orderProduct.select">
+				</td>
+				<td ng-show='!orderProduct.show'>
+					{{Label.getContent('Unavaiable')}}
 				</td>
 				<td>{{orderProduct.brandName}}</td>
 				<td>{{orderProduct.varName}}</td>

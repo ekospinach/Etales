@@ -319,6 +319,7 @@ define(['directives', 'services'], function(directives){
                             if(data.data[i].brandID!=0&&data.data[i].varID!=0){
                                 data.data[i].variantID=data.data[i].varID;
                                 data.data[i].select=false;
+                                data.data[i].show=true;
                                 orderProducts.push(data.data[i]);
                             }
                         }
@@ -331,22 +332,25 @@ define(['directives', 'services'], function(directives){
                         (function multipleRequestShooter(checkurls,urls,idx){
                             $http({
                                 method:'GET',
-                                url:checkurls[idx]
-                            }).then(function(data){
-                                if(!data.data.isPortfolioDecisionCommitted){
-                                    urls[idx]="/";
-                                }
+                                url:urls[idx]
+                            }).then(function(urlData){
+                                scope.urlData=urlData;
                                 return $http({
                                     method:'GET',
-                                    url:urls[idx]
+                                    url:checkurls[idx]
                                 });
-                            }).then(function(data){
-                                if(data.data.length<100){
-                                    for(var j=0;j<data.data.length;j++){
-                                        if(data.data[j].brandID!=undefined&&data.data[j].brandID!=0&&data.data[j].varID!=0){
-                                            data.data[j].variantID=data.data[j].varID;
-                                            data.data[j].select=false;
-                                            orderProducts.push(data.data[j]);
+                            }).then(function(checkData){
+                                if(scope.urlData.data.length<100){
+                                    for(var j=0;j<scope.urlData.data.length;j++){
+                                        if(scope.urlData.data[j].brandID!=undefined&&scope.urlData.data[j].brandID!=0&&scope.urlData.data[j].varID!=0){
+                                            scope.urlData.data[j].variantID=scope.urlData.data[j].varID;
+                                            scope.urlData.data[j].select=false;
+                                            if(!checkData.data.isPortfolioDecisionCommitted){
+                                                scope.urlData.data[j].show=false;
+                                            }else{
+                                                scope.urlData.data[j].show=true;
+                                            }
+                                            orderProducts.push(scope.urlData.data[j]);
                                         }
                                     }
                                 }
@@ -387,6 +391,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             })
                         })(checkurls,urls,0); 
+
                     },function(){
                         d.reject(Label.getContent('showView fail'));
                     });
