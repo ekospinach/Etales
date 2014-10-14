@@ -12,10 +12,10 @@ define(['directives', 'services'], function(directives) {
                 templateUrl: '../../partials/singleReportTemplate/GR_marketSales.html',
                 link: function(scope, element, attrs) {
                     
-                    var elecssory_Volume = 0, healthBeauty_Volume = 2, elecssory_Value = 1, healthBeauty_Value = 3;
+                    var elecssory_Volume = 0, elecssory_Value = 1, healthBeauty_Volume = 2, healthBeauty_Value = 3;
                     var urban = 0, rural = 1, marketTotal = 2;
                     var segmentTotal = 4 , price = 0 , value = 1 , fashion = 2 , freaks =3; 
-                    var shopperTotal = 3 , bms = 0 , onlines = 1 , mixeds = 2;
+                    var shopperTotal = 3 , bm = 0 , online = 1 , mixed = 2;
                     var producer1 = 0, producer2 = 1, producer3 = 2, producer4 = 3, retailer1 = 4, retailer2 = 5;
 
                     var initializePage = function() {
