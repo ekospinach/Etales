@@ -19,7 +19,7 @@
     }
 
     .bs-docs-sidebar.affix{
-        position: fixed;
+        position: fixed; s
     }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
@@ -82,17 +82,76 @@
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
                 <div id='supplierClockChart' ng-show='isTimerActived&&chartInit' ng-model='supplierModel' supplier-clock-chart></div>
                 <p ng-show='isTimerActived&&chartInit'>{{supplierClockTitle}}</p>
+
                 <table class="table table-condensed" style="margin:0px auto;">
                     <thead>
                         <th colspan="2">
-                            <p>{{Label.getContent('Decision Info')}}</p>
+                            <p>{{Label.getContent('(Total)')}}</p>
                         </th>
                     </thead>
 
-                    <tbody>               
+                    <tbody> 
                         <tr>
                             <td>
-                                <p>{{Label.getContent('Total Budget')}}</p>
+                                <p>{{Label.getContent('Initial Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{initialBudget}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>{{Label.getContent('Previous Spending')}}</p>
+                            </td>         
+                        </tr>     
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Marketing')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalPreviousMarketing}}</p>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Trade Support')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalPreviousTradeSupport}}</p>
+                            </td>
+                        </tr>                        
+
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Budget Extensions')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{budgetExtensions}}</p>
+                            </td>
+                        </tr>    
+<!--                         <tr>
+                            <td>
+                                <p>{{Label.getContent('Budget Increase Due to Negotiation')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+200</p>
+                            </td>
+                        </tr>                          
+ -->                    </tbody>
+                </table>
+                <p></p>
+                <table class="table table-condensed" style="margin:0px auto;">
+                    <thead>
+                        <th colspan="2">
+                                <p>{{Label.getContent('(Current)')}}</p>
+                        </th>
+                    </thead>
+
+                    <tbody>                 
+
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Remaining Budget')}}</p>
                             </td>
                             <td>
                                 <p class="text-right">{{abMax}}</p>
@@ -100,13 +159,30 @@
                         </tr>
 
                         <tr>
-                            <td style="word-break: keep-all;white-space:nowrap;">
+                            <td colspan="2">
                                 <p>{{Label.getContent('Estimated Period Spending')}}</p>
                             </td>
-                            <td>
+<!--                             <td>
                                 <p class="text-right"><b>{{estimatedSpending}}</b></p>
                             </td>
-                        </tr>
+ -->                        </tr>
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Marketing')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalCurrentMarketing}}</p>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Trade Support')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalCurrentTradeSupport}}</p>
+                            </td>
+                        </tr>      
+                        
                         <tr>
                             <td style="word-break: keep-all;white-space:nowrap;">
                                 <p>{{Label.getContent('Estimated Budget Left')}}</p>
@@ -114,7 +190,10 @@
                             <td>
                                 <p class="text-right"><b>{{surplusExpend}}</b></p>
                             </td>
+                            
                         </tr>
+
+
                         <tr>
                             <td colspan="2">
                                 <p>{{Label.getContent('Available Period Capacity')}}</p>
@@ -135,9 +214,10 @@
                             <td>
                                 <p class="text-right"><b>{{heaSurplusProduction}}</b>/{{acHeaMax}}</p>
                             </td>
-                        </tr>
+                        </tr>                
                     </tbody>
                 </table>
+
             </div>
         </div>
         <div class="col-md-9" ng-show='!isNegotiation' style="padding:0 0 0 15px">

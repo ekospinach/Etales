@@ -22,7 +22,7 @@ var
   begin
     jo := SO;
     jo.I['varID'] := variant.leader_ID;
-    jo.S['varName'] := variant.leader_Name;
+    jo.S['varName'] := variant.leader_ParentBrandName + variant.leader_Name;
     jo.I['parentBrandID'] := variant.leader_ParentBrandID;
     jo.S['parentBrandName'] := variant.leader_ParentBrandName;
     jo.D['share'] := variant.leader_Share;

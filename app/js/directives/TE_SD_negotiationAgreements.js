@@ -121,7 +121,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             //negotiationACmac = MAX planned production capacity 
                             negotiationACmax = data.data.productionCapacity[category - 1];
-                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
+                            max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
                             console.log(url);
@@ -287,7 +287,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             //negotiationACmac = MAX planned production capacity 
                             negotiationACmax = data.data.productionCapacity[category - 1];
-                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
+                            max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
                             console.log(url);
@@ -407,7 +407,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             //negotiationACmac = MAX planned production capacity 
                             negotiationACmax = data.data.productionCapacity[category - 1];
-                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
+                            max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName + '/otherCompensation/' + retailerID;
                             console.log(url);

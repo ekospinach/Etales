@@ -131,7 +131,7 @@ const
   kernel_MarketsUpdate_OK                            = 93179;
 
   kernel_ErrorInWholesales                           = 93401;
-  kernel_Wholesales_OK                               = 93409;
+  kernel_Wholesales_OK                               = 93402;
 
   kernel_ErrorInWebBrandsScores                      = 93411;
   kernel_WebBrandsScores_OK                          = 93412;
@@ -246,6 +246,18 @@ const
 
   kernel_ErrorInShoppersShare                        = 93941;
   kernel_ShoppersShare_OK                            = 93949;
+
+  kernel_ErrorInBudgetsUpdating                      = 93951;
+  kernel_BudgetsUpdating_OK                          = 93959;
+
+  kernel_ErrorInCompleteNegotiations                 = 93961;
+  kernel_CompleteNegotiations_OK                     = 93969;
+
+  kernel_ErrorInPOSFeesAllocation                    = 93971;
+  kernel_POSFeesAllocation_OK                        = 93972;
+  Kernel_ErrorInPOSActivitiesIntensity               = 93973;
+  kernel_POSActivitiesIntensity_OK                   = 93974;
+  kernel_InStoreActivities_OK                        = 93979;
 
   kernel_ErrorInOtherCompletingResults               = 93991;
   kernel_OtherCompletingResults_OK                   = 93999;

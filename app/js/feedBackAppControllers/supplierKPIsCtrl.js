@@ -45,17 +45,27 @@ var supplierKPIsCtrl=function($scope,$http){
             var onlineChannelStrengthHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
 
             //add Retailer
-            var portfolioStrengthElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var portfolioStrengthElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', ownerID : 1},
+                {name:'Supplier-2',data:new Array(),color:'#B11E22', ownerID : 2},
+                {name:'Supplier-3',data:new Array(),color:'#F6B920', ownerID : 3},
+                //{name:'Supplier-4',data:new Array(),color:'#329444', ownerID : 4},
+                {name:'Retailer-1',data:new Array(),color:'#8B288B', ownerID : 5},
+                {name:'Retailer-2',data:new Array(),color:'#F05422', ownerID : 6});
 
-            var portfolioStrengthHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var portfolioStrengthHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', ownerID : 1},
+                {name:'Supplier-2',data:new Array(),color:'#B11E22', ownerID : 2},
+                {name:'Supplier-3',data:new Array(),color:'#F6B920', ownerID : 3},
+                //{name:'Supplier-4',data:new Array(),color:'#329444', ownerID : 4},
+                {name:'Retailer-1',data:new Array(),color:'#8B288B', ownerID : 5},
+                {name:'Retailer-2',data:new Array(),color:'#F05422', ownerID : 6});
 
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_TradeSpendingEffectiveness.length;i++){
                     if(data.data.f_TradeSpendingEffectiveness[i].period==currentCategories[j]){
                         if(data.data.f_TradeSpendingEffectiveness[i].categoryID==1){
-                            tradeSpendingElecssories[data.data.f_TradeSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
+                            tradeSpendingElecssories[data.data.f_TradeSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_TradeSpendingEffectiveness[i].value  * 100);
                         }else if(data.data.f_TradeSpendingEffectiveness[i].categoryID==2){
-                            tradeSpendingHealthBeauties[data.data.f_TradeSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
+                            tradeSpendingHealthBeauties[data.data.f_TradeSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_TradeSpendingEffectiveness[i].value  * 100);
                         }
                     }
                 }
@@ -65,9 +75,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_MarketingSpendingEffectiveness.length;i++){
                     if(data.data.f_MarketingSpendingEffectiveness[i].period==currentCategories[j]){
                         if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==1){
-                            marketingSpendingElecssories[data.data.f_MarketingSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
+                            marketingSpendingElecssories[data.data.f_MarketingSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value * 100);
                         }else if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==2){
-                            marketingSpendingHealthBeauties[data.data.f_MarketingSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
+                            marketingSpendingHealthBeauties[data.data.f_MarketingSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value * 100);
                         }
                     }
                 }
@@ -77,9 +87,20 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_PortfolioStrength.length;i++){
                     if(data.data.f_PortfolioStrength[i].period==currentCategories[j]){
                         if(data.data.f_PortfolioStrength[i].categoryID==1){
-                            portfolioStrengthElecssories[data.data.f_PortfolioStrength[i].ownerID-1].data.push(data.data.f_PortfolioStrength[i].value);
+                            
+                            portfolioStrengthElecssories.forEach(function(value, item, array){
+                                if(data.data.f_PortfolioStrength[i].ownerID == array[item].ownerID){
+                                    array[item].data.push(data.data.f_PortfolioStrength[i].value * 100);
+                                }
+                            })
+
                         }else if(data.data.f_PortfolioStrength[i].categoryID==2){
-                            portfolioStrengthHealthBeauties[data.data.f_PortfolioStrength[i].ownerID-1].data.push(data.data.f_PortfolioStrength[i].value);
+                            portfolioStrengthHealthBeauties.forEach(function(value, item, array){
+                                if(data.data.f_PortfolioStrength[i].ownerID == array[item].ownerID){
+                                    array[item].data.push(data.data.f_PortfolioStrength[i].value * 100);
+                                }
+                            })
+
                         }
                     }
                 }
@@ -90,9 +111,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_SuppliersBMValueSalesShare.length;i++){
                     if(data.data.f_SuppliersBMValueSalesShare[i].period==testCategories[j]){
                         if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==1){
-                            bmChannelStrengthElecssories[data.data.f_SuppliersBMValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
+                            bmChannelStrengthElecssories[data.data.f_SuppliersBMValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value * 100);
                         }else if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==2){
-                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
+                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value * 100);
                         }
                     }
                 }
@@ -105,9 +126,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_SuppliersBMVolumeSalesShare.length;i++){
                     if(data.data.f_SuppliersBMVolumeSalesShare[i].period==testCategories[j]){
                         if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==1){
-                            bmChannelStrengthElecssories[data.data.f_SuppliersBMVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
+                            bmChannelStrengthElecssories[data.data.f_SuppliersBMVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value * 100);
                         }else if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==2){
-                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
+                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value * 100);
                         }
                     }
                 }
@@ -120,9 +141,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_SuppliersBMShareOfShoppers.length;i++){
                     if(data.data.f_SuppliersBMShareOfShoppers[i].period==testCategories[j]){
                         if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==1){
-                            bmChannelStrengthElecssories[data.data.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
+                            bmChannelStrengthElecssories[data.data.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value * 100);
                         }else if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==2){
-                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
+                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value * 100);
                         }
                     }
                 }
@@ -132,9 +153,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_SuppliersOnlineValueSalesShare.length;i++){
                     if(data.data.f_SuppliersOnlineValueSalesShare[i].period==testCategories[j]){
                         if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==1){
-                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
+                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value * 100);
                         }else if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==2){
-                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
+                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value * 100);
                         }
                     }
                 }
@@ -147,9 +168,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_SuppliersOnlineVolumeSalesShare.length;i++){
                     if(data.data.f_SuppliersOnlineVolumeSalesShare[i].period==testCategories[j]){
                         if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==1){
-                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
+                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value * 100);
                         }else if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==2){
-                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
+                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value * 100);
                         }
                     }
                 }
@@ -162,9 +183,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_SuppliersOnlineShareOfShoppers.length;i++){
                     if(data.data.f_SuppliersOnlineShareOfShoppers[i].period==testCategories[j]){
                         if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){
-                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
+                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value * 100);
                         }else if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==2){
-                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
+                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value * 100);
                         }
                     }
                 }
@@ -182,7 +203,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: 'Return on Investment'
+                            text: 'Return on Investment (%)'
                         },
                         gridLineColor: 'transparent'
                     },
@@ -218,7 +239,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: 'Return on Investment'
+                            text: 'Return on Investment (%)'
                         },
                         gridLineColor: 'transparent'
                     },
@@ -254,7 +275,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: 'Return on Investment'
+                            text: 'Return on Investment (%)'
                         },
                         gridLineColor: 'transparent'
                     },
@@ -290,7 +311,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: 'Return on Investment'
+                            text: 'Return on Investment (%)'
                         },
                         gridLineColor: 'transparent'
                     },
@@ -432,7 +453,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     text: 'Elecssories'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Value Sales</p><p style="font-size:20px" class="text-right">Share of Value Sales</p>',
+                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                     useHTML:true,
 
                 },
@@ -486,7 +507,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     text: 'HealthBeauties'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Value Sales</p><p style="font-size:20px" class="text-right">Share of Value Sales</p>',
+                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                     useHTML:true,
                 },
                 credits: {
@@ -539,7 +560,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     text: 'Elecssories'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Value Sales</p><p style="font-size:20px" class="text-right">Share of Value Sales</p>',
+                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                     useHTML:true,
 
                 },
@@ -593,7 +614,7 @@ var supplierKPIsCtrl=function($scope,$http){
                     text: 'HealthBeauties'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Value Sales</p><p style="font-size:20px" class="text-right">Share of Value Sales</p>',
+                    text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                     useHTML:true,
 
                 },

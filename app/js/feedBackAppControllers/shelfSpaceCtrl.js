@@ -30,21 +30,47 @@ var shelfSpaceCtrl=function($scope,$http){
             method:'GET',
             url:url
         }).then(function(data){
-            var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-            var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', actorID : 1},
+                {name:'Supplier-2',data:new Array(),color:'#B11E22', actorID : 2},
+                {name:'Supplier-3',data:new Array(),color:'#F6B920', actorID : 3},
+                //{name:'Supplier-4',data:new Array(),color:'#329444', actorID : 4},
+                {name:'Retailer-1',data:new Array(),color:'#8B288B', actorID : 5},
+                {name:'Retailer-2',data:new Array(),color:'#F05422', actorID : 6},
+                {name:'Retailer-3',data:new Array(),color:'#00AFEF', actorID : 7});
+            var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', actorID : 1},
+                {name:'Supplier-2',data:new Array(),color:'#B11E22', actorID : 2},
+                {name:'Supplier-3',data:new Array(),color:'#F6B920', actorID : 3},
+                //{name:'Supplier-4',data:new Array(),color:'#329444', actorID : 4},
+                {name:'Retailer-1',data:new Array(),color:'#8B288B', actorID : 5},
+                {name:'Retailer-2',data:new Array(),color:'#F05422', actorID : 6},
+                {name:'Retailer-3',data:new Array(),color:'#00AFEF', actorID : 7});
 
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_ShelfSpaceAllocation.length;i++){
                     if(data.data.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
+
                         if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
-                            currentShelfSpaceElecssories[data.data.f_ShelfSpaceAllocation[i].actorID-1].data.push(data.data.f_ShelfSpaceAllocation[i].value);
+
+                            currentShelfSpaceElecssories.forEach(function(value, item, array){
+                                if(data.data.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+                                    array[item].data.push(data.data.f_ShelfSpaceAllocation[i].value * 100);
+                                }
+                            })
+
                         }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
-                            currentShelfSpaceHealthBeauties[data.data.f_ShelfSpaceAllocation[i].actorID-1].data.push(data.data.f_ShelfSpaceAllocation[i].value);
+                            currentShelfSpaceHealthBeauties.forEach(function(value, item, array){
+                                if(data.data.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+                                    array[item].data.push(data.data.f_ShelfSpaceAllocation[i].value * 100);
+                                }
+                            })
+
                         }
                     }
                 }
             }
             
+            console.log(currentShelfSpaceElecssories);
+
             $scope.currentShelfSpaceElecssories = {
                 options: {
                     title:{

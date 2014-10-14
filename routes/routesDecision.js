@@ -99,9 +99,22 @@ module.exports = function(app, io){
     //========== Spending calculation API =======================    
 //    app.get('/availableBudgetLeft/:seminar/:period/:role/:playerID/:brandName/:varName/:marketID/:location/:additionalIdx', );
 
+    //Marketing Spending includes:
+    //1 - General Marketing - Advertising
+    //2 - Market Research 
+    app.get('/producerMarketingSpending/:seminar/:period/:producerID', require('./../api/models/producerDecision.js').getMarketingSpending);
+    
+    //Trade Support Spending
+    //1 - All the Negotiation Cost
+    //2 - General Marketing - Traditional Trade Support 
+    //3 - All the cost happen in page "Online Store management" AKA Visibility + Promotion Cost
+    app.get('/producerTradeSupportSpending/:seminar/:period/:producerID', require('./../api/models/producerDecision.js').getTradeSupportSpending);
+
     app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx', require('./../api/models/producerDecision.js').getProducerExpend);
     app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx', require('./../api/models/retailerDecision.js').getRetailerExpend);
+
     app.get('/getPlayerReportOrderExpend/:seminar/:period/:userType/:playerID', require('./../api/models/BG_oneQuarterExogenousData.js').getPlayerReportOrderExpend);    
+    
     //calculate how much per contractCode cost AKA supplier have to pay for in current period(Volume Discount/Other compensation) or next period(Performance Bonus), Lock supplier's budget for current period by estimated cost
     //ignoreItem : volumeDiscount/performanceBonus/otherCopensation
     app.get('/getContractExpend/:seminar/:period/:producerID/:parentBrandName/:variantName/:ignoreItem/:ignoreRetailerID', require('./../api/models/contract.js').getContractExpend); 

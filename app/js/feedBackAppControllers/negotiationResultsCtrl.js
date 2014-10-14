@@ -67,7 +67,7 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 loading: false
             }
 
-            $scope.supplierNegotiationResultsTotal=(data.data.f_DiscountsValue[2].fcni_SuppliersCost[0].value+data.data.f_DiscountsValue[2].fcni_SuppliersCost[1].value+data.data.f_DiscountsValue[2].fcni_SuppliersCost[2].value).toFixed(2);
+            $scope.supplierNegotiationResultsTotal=(data.data.f_DiscountsValue[2].totalValue).toFixed(2);
 
             $scope.retailerNegotiationResults = {
                 options: {
@@ -162,7 +162,7 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 loading: false
             }
 
-            $scope.supplierPerformanceBonusesTotal=(data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[0].value+data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[1].value+data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[2].value).toFixed(2);
+            $scope.supplierPerformanceBonusesTotal=(data.data.f_PerformanceBonusesValue[2].totalValue).toFixed(2);
 
             $scope.retailerPerformanceBonuses = {
                 options: {
@@ -257,7 +257,7 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 loading: false
             }
 
-            $scope.supplierOtherCompensationTotal=(data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[0].value+data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[1].value+data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[2].value).toFixed(2);
+            $scope.supplierOtherCompensationTotal=(data.data.f_OtherCompensationsValue[2].totalValue).toFixed(2);
 
             $scope.retailerOtherCompensation = {
                 options: {
@@ -313,7 +313,7 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                     if(data.data.f_TransactionsPerTOP[i].topDays==0){
                         if(data.data.f_TransactionsPerTOP[i].value!=0){
                             termsofPayment.push({
-                                name:'Immediately',
+                                name:'COD',
                                 y:data.data.f_TransactionsPerTOP[i].value
                             })
                         }

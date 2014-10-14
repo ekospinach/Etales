@@ -120,6 +120,13 @@ var
     jo.O['fcni_SuppliersCost'] := SA([]);
     jo.O['fcni_RetailersBenefits'] := SA([]);
 
+    case (idx) of
+      f_DiscountsValue          : begin jo.D['totalValue'] := currentResult.r_Feedback.f_DiscountsValue[catID].fcni_TotalValue end;
+      f_PerformanceBonusesValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_TotalValue end;
+      f_OtherCompensationsValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_TotalValue end;
+    end;    
+
+
     for producerID := Low(TProducers) to High(TProducers) do
     begin
       jo.A['fcni_SuppliersCost'].Add( supplierInfoSchema(idx, catID, producerID));
@@ -235,14 +242,15 @@ var
     // currentResult.r_Feedback.f_RetailersValueRotationIndex[marketID, catID]
   end;
 
-  function shopperShareinfoSchema(idx : integer; marketID : integer; period : integer; actorID : integer; shopper : TShoppersKind) : ISuperObject;
+  function shopperShareinfoSchema(idx : integer;catID : integer; marketID : integer; period : integer; storeID : integer; shopper : TShoppersKind) : ISuperObject;
   var 
     jo : ISuperObject;
     ShopperStr : String;
   begin
     jo := SO;
     jo.I['marketID'] := marketID;
-    jo.I['actorID'] := actorID;
+    jo.I['storeID'] := storeID;  //BMRetsMax + ProsMaxPlus, 3 + 4, { all B&M and four E-malls }
+    jo.I['categoryID'] := catID;
     jo.I['period'] := period;
     case Shopper of
          BMS         : ShopperStr := 'BMS';
@@ -256,7 +264,7 @@ var
     jo.S['shopperKind'] := ShopperStr;
 
     case (idx) of
-      f_ShoppersShare      : begin jo.D['value'] := currentResult.r_Feedback.f_ShoppersShare[marketID, period, shopper, actorID]; end;
+      f_ShoppersShare      : begin jo.D['value'] := currentResult.r_Feedback.f_ShoppersShare[marketID,catID, period, shopper, storeID]; end;
     end;  
 
     result := jo;
@@ -266,7 +274,7 @@ var
   procedure makeJson();
   var
     s_str : string;
-    catID,marketID,brandID,topDays,period,actorID, producerID, retailerID: Integer;
+    catID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID: Integer;
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
   begin
@@ -320,7 +328,7 @@ var
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
-      for topDays:= Low(TTOPDays) to High(TTOPDays) do
+      for topDays:= Low(TTOPIntervalIndex) to High(TTOPIntervalIndex) do
       begin
         oJsonFile.A['f_TransactionsPerTOP'].add( transactionsPerTOPSchema(catID, topDays));
       end;
@@ -399,14 +407,17 @@ var
       end;
     end;
 
-    for actorID := Low(TActors) to High(TActors) do
+    for storeID := Low(TAllStores) to High(TAllStores) do
     begin
-      for period := Low(TTimeSpan) to High(TTimeSpan) do
+      for period := Low(TTimeSpan) to 6 do
       begin
           for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
           begin
-            for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
-            oJsonFile.A['f_ShoppersShare'].add( ShopperShareinfoSchema(f_ShoppersShare, marketID, period, actorID, Shopper) );
+            for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+            begin          
+              for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
+              oJsonFile.A['f_ShoppersShare'].add( ShopperShareinfoSchema(f_ShoppersShare, catID, marketID, period, storeID, Shopper) );
+            end;
           end;
       end;
     end;    

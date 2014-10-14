@@ -158,7 +158,7 @@ define(['directives', 'services'], function(directives) {
                                 method: 'GET',
                                 url: url
                             }).then(function(data) {
-                                abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
+                                abMax = data.data.budgetAvailable;
                                 url = "/retailerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/-1/location/1';
                                 return $http({
                                     method: 'GET',

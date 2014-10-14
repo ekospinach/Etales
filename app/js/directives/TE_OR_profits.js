@@ -53,9 +53,9 @@ define(['directives', 'services'], function(directives) {
 								if (scope.feedBack.f_OperatingProfitMargin[i].period == currentCategories[j]) {
 									if (scope.feedBack.f_OperatingProfitMargin[i].categoryID == 3) {
 										if (scope.feedBack.f_OperatingProfitMargin[i].actorID < 4) {
-											currentOperatingProfitMargins[scope.feedBack.f_OperatingProfitMargin[i].actorID - 1].data.push(scope.feedBack.f_OperatingProfitMargin[i].value);
+											currentOperatingProfitMargins[scope.feedBack.f_OperatingProfitMargin[i].actorID - 1].data.push(scope.feedBack.f_OperatingProfitMargin[i].value * 100);
 										} else if (scope.feedBack.f_OperatingProfitMargin[i].actorID > 4 && scope.feedBack.f_OperatingProfitMargin[i].actorID < 7) {
-											currentOperatingProfitMargins[scope.feedBack.f_OperatingProfitMargin[i].actorID - 2].data.push(scope.feedBack.f_OperatingProfitMargin[i].value);
+											currentOperatingProfitMargins[scope.feedBack.f_OperatingProfitMargin[i].actorID - 2].data.push(scope.feedBack.f_OperatingProfitMargin[i].value * 100);
 										}
 									}
 								}
@@ -81,9 +81,9 @@ define(['directives', 'services'], function(directives) {
 								if (scope.feedBack.f_NetProfitMargin[i].period == currentCategories[j]) {
 									if (scope.feedBack.f_NetProfitMargin[i].categoryID == 3) {
 										if (scope.feedBack.f_NetProfitMargin[i].actorID < 4) {
-											currentNetProfitMargins[scope.feedBack.f_NetProfitMargin[i].actorID - 1].data.push(scope.feedBack.f_NetProfitMargin[i].value);
+											currentNetProfitMargins[scope.feedBack.f_NetProfitMargin[i].actorID - 1].data.push(scope.feedBack.f_NetProfitMargin[i].value * 100);
 										} else if (scope.feedBack.f_NetProfitMargin[i].actorID > 4 && scope.feedBack.f_NetProfitMargin[i].actorID < 7) {
-											currentNetProfitMargins[scope.feedBack.f_NetProfitMargin[i].actorID - 2].data.push(scope.feedBack.f_NetProfitMargin[i].value);
+											currentNetProfitMargins[scope.feedBack.f_NetProfitMargin[i].actorID - 2].data.push(scope.feedBack.f_NetProfitMargin[i].value * 100);
 										}
 									}
 								}
@@ -142,7 +142,7 @@ define(['directives', 'services'], function(directives) {
 								},
 								yAxis: {
 									title: {
-										text: '$mln'
+										text: '%'
 									}
 								},
 								xAxis: {
@@ -179,7 +179,7 @@ define(['directives', 'services'], function(directives) {
 								},
 								yAxis: {
 									title: {
-										text: '%'
+										text: '$mln'
 									}
 								},
 								xAxis: {

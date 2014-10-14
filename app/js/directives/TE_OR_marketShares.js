@@ -37,9 +37,9 @@ define(['directives', 'services'], function(directives){
 		                for(var i=0;i<scope.feedBack.f_VolumeMarketShares.length;i++){
 		                    if(scope.feedBack.f_VolumeMarketShares[i].period==currentCategories[j]){
 		                        if(scope.feedBack.f_VolumeMarketShares[i].categoryID==1){
-	                                currentElecssoriesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+	                                currentElecssoriesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value * 100);
 	                            }else if(scope.feedBack.f_VolumeMarketShares[i].categoryID==2){
-	                                currentHealthBeautiesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+	                                currentHealthBeautiesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value * 100);
 	                            }
 		                    }
 		                }
@@ -49,9 +49,9 @@ define(['directives', 'services'], function(directives){
 		                for(var i=0;i<scope.feedBack.f_ValueMarketShares.length;i++){
 		                    if(scope.feedBack.f_ValueMarketShares[i].period==currentCategories[j]){
 		                        if(scope.feedBack.f_ValueMarketShares[i].categoryID==1){
-	                                currentElecssoriesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+	                                currentElecssoriesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value * 100);
 	                            }else if(scope.feedBack.f_ValueMarketShares[i].categoryID==2){
-	                                currentHealthBeautiesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+	                                currentHealthBeautiesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value * 100);
 	                            }
 		                    }
 		                }

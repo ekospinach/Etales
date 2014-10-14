@@ -26,7 +26,6 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
     f_TradeSpendingEffectiveness      : [supplierKPIInfoSchema],
     f_MarketingSpendingEffectiveness  : [supplierKPIInfoSchema],
-    //f_PortfolioStrength               : [supplierKPIInfoSchema],
     f_SuppliersBMValueSalesShare      : [supplierKPIInfoSchema],
     f_SuppliersBMVolumeSalesShare     : [supplierKPIInfoSchema],
     f_SuppliersBMShareOfShoppers      : [supplierKPIInfoSchema],
@@ -53,6 +52,7 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
 var negotiationsItemDetailsSchema = mongoose.Schema({
     categoryID : Number,
+    totalValue : Number,
     fcni_SuppliersCost       : [supplierInfoSchema],
     fcni_RetailersBenefits   : [retailerInfoSchema],
 })
@@ -119,7 +119,7 @@ var supplierKPIExtendedInfoSchema = mongoose.Schema({
 var shopperShareInfoSchema = mongoose.Schema({
     marketID : Number,
     period : Number,
-    actorID : Number, //1~(4+3)
+    storeID : Number, //1~(4+3)
     //added by Hao, 2014 Sept 3
     shopperKind : String,//BMS, NETIZENS, MIXED, ALLSHOPPERS
     value : Number,
@@ -181,7 +181,6 @@ exports.addInfos = function(options){
                                 f_ShelfSpaceAllocation            : singleReport.f_ShelfSpaceAllocation,            
                                 f_TradeSpendingEffectiveness      : singleReport.f_TradeSpendingEffectiveness,      
                                 f_MarketingSpendingEffectiveness  : singleReport.f_MarketingSpendingEffectiveness,  
-                                //f_PortfolioStrength               : singleReport.f_PortfolioStrength,              
                                 f_SuppliersBMValueSalesShare      : singleReport.f_SuppliersBMValueSalesShare,      
                                 f_SuppliersBMVolumeSalesShare     : singleReport.f_SuppliersBMVolumeSalesShare,     
                                 f_SuppliersBMShareOfShoppers      : singleReport.f_SuppliersBMShareOfShoppers,      
