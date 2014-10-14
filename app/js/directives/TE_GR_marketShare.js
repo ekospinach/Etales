@@ -12,6 +12,9 @@ define(['directives', 'services'], function(directives) {
                 templateUrl: '../../partials/singleReportTemplate/GR_marketShare.html',
                 link: function(scope, element, attrs) {
                     scope.test = 'TEST between scope';
+
+                    var urban = 0,rural = 1;
+
                     var initializePage = function() {
                         // console.log('initializePage some big...');
                         scope.isPageLoading = true;
@@ -91,14 +94,17 @@ define(['directives', 'services'], function(directives) {
                                 scope.totalChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange * 100);
                                 scope.totals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue * 100);
                                 scope.totalChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange * 100);
-                                scope.rurals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume * 100);
-                                scope.ruralChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange * 100);
-                                scope.rurals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue * 100);
-                                scope.ruralChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange * 100);
-                                scope.urbans[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume * 100);
-                                scope.urbanChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange * 100);
-                                scope.urbans[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue * 100);
-                                scope.urbanChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange * 100);
+                                
+                                scope.rurals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume * 100);
+                                scope.ruralChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange * 100);
+                                scope.rurals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue * 100);
+                                scope.ruralChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange * 100);
+
+                                scope.urbans[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume * 100);
+                                scope.urbanChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange * 100);
+                                scope.urbans[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue * 100);
+                                scope.urbanChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange * 100);
+                                 
                                 scope.prices[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolume * 100);
                                 scope.priceChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolumeChange * 100);
                                 scope.prices[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValue * 100);

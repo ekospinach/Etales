@@ -177,7 +177,7 @@
  		])
  		.config(function(LabelProvider) {
  			//config default language
- 			LabelProvider.initialiseLanguage('ENG');
+ 			LabelProvider.initialiseLanguage('CHN');
  		}).config(function(cfpLoadingBarProvider) {
  			cfpLoadingBarProvider.includeSpinner = true;
  		});

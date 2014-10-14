@@ -11,6 +11,12 @@ define(['directives', 'services'], function(directives) {
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/GR_marketSales.html',
                 link: function(scope, element, attrs) {
+                    
+                    var urban = 0, rural = 1, marketTotal = 2;
+                    var segmentTotal = 4 , price = 0 , value = 1 , fashion = 2 , freaks =3; 
+                    var shopperTotal = 3 , bms = 0 , onlines = 1 , mixeds = 2;
+                    var producer1 = 0, producer2 = 1, producer1 = 3, retailer1 = 4, retailer2 =5;
+
                     var initializePage = function() {
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
@@ -19,13 +25,11 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var getResult = function() {
-                        //switching('showPerformance');
                         var url = '/marketSales/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod;
 
                         $http({
                             method: 'GET',
-                            url: url,
-                            //tracker: scope.loadingTracker
+                            url: url
                         }).then(function(data) {
                             return organiseArray(data);
                         }).then(function(data) {
@@ -87,64 +91,67 @@ define(['directives', 'services'], function(directives) {
                                 if (j >= 2) {
                                     k = 1;
                                 };
-                                //total actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].xxxx
-                                scope.totals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-                                scope.totalChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange * 100);
-                                scope.totals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-                                scope.totalChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange * 100);
-                                //rural actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3]
-                                scope.rurals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-                                scope.ruralChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange * 100);
-                                scope.rurals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-                                scope.ruralChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange * 100);
+                                var urban = 0, rural = 1, marketTotal = 2;
+                                var segmentTotal = 4 , price = 0 , value = 1 , fashion = 2 , freaks =3; 
+                                var shopperTotal = 3 , bm = 0 , online = 1 , mixed = 2;
+                                //total actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].xxxx
+                                scope.totals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
+                                scope.totalChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
+                                scope.totals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
+                                scope.totalChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
+                                //rural actorMarketInfo[1].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal]
+                                scope.rurals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
+                                scope.ruralChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
+                                scope.rurals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
+                                scope.ruralChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
 
-                                //urban actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3]
-                                scope.urbans[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-                                scope.urbanChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange * 100);
-                                scope.urbans[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-                                scope.urbanChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange * 100);
+                                //urban actorMarketInfo[0].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal]
+                                scope.urbans[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
+                                scope.urbanChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
+                                scope.urbans[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
+                                scope.urbanChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
 
-                                //prices actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3]
-                                scope.prices[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolume);
-                                scope.priceChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolumeChange * 100);
-                                scope.prices[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValue);
-                                scope.priceChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValueChange * 100);
+                                //prices actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal]
+                                scope.prices[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
+                                scope.priceChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
+                                scope.prices[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
+                                scope.priceChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
 
-                                //values actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3]
-                                scope.values[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolume);
-                                scope.valueChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolumeChange * 100);
-                                scope.values[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValue);
-                                scope.valueChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValueChange * 100);
+                                //values actorMarketInfo[marketTotal].actorSegmentInfo[1].actorShopperInfo[shopperTotal]
+                                scope.values[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
+                                scope.valueChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
+                                scope.values[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
+                                scope.valueChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
 
-                                //fashions actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3]
-                                scope.fashions[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolume);
-                                scope.fashionChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolumeChange * 100);
-                                scope.fashions[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValue);
-                                scope.fashionChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValueChange * 100);
+                                //fashions actorMarketInfo[marketTotal].actorSegmentInfo[2].actorShopperInfo[shopperTotal]
+                                scope.fashions[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
+                                scope.fashionChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
+                                scope.fashions[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
+                                scope.fashionChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
 
-                                //freakss actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3]
-                                scope.freakss[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolume);
-                                scope.freaksChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolumeChange * 100);
-                                scope.freakss[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValue);
-                                scope.freaksChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValueChange * 100);
+                                //freakss actorMarketInfo[marketTotal].actorSegmentInfo[3].actorShopperInfo[shopperTotal]
+                                scope.freakss[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
+                                scope.freaksChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
+                                scope.freakss[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
+                                scope.freaksChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
 
-                                //bms actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0]
-                                scope.bms[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolume);
-                                scope.bmChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolumeChange * 100);
-                                scope.bms[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValue);
-                                scope.bmChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValueChange * 100);
+                                //bms actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[0]
+                                scope.bms[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketSalesVolume);
+                                scope.bmChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketSalesVolumeChange * 100);
+                                scope.bms[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketNetSalesValue);
+                                scope.bmChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketNetSalesValueChange * 100);
 
-                                //onlines actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1]
-                                scope.onlines[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolume);
-                                scope.onlineChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolumeChange * 100);
-                                scope.onlines[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValue);
-                                scope.onlineChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValueChange * 100);
+                                //onlines actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[1]
+                                scope.onlines[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketSalesVolume);
+                                scope.onlineChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketSalesVolumeChange * 100);
+                                scope.onlines[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketNetSalesValue);
+                                scope.onlineChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketNetSalesValueChange * 100);
 
-                                //mixed  actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2]
-                                scope.mixeds[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolume);
-                                scope.mixedChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolumeChange * 100);
-                                scope.mixeds[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValue);
-                                scope.mixedChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValueChange * 100);
+                                //mixed  actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[2]
+                                scope.mixeds[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketSalesVolume);
+                                scope.mixedChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketSalesVolumeChange * 100);
+                                scope.mixeds[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketNetSalesValue);
+                                scope.mixedChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketNetSalesValueChange * 100);
                             }
                         }
 
