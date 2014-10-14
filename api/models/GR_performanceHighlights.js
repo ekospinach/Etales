@@ -14,7 +14,23 @@ var performanceHighlightsSchema = mongoose.Schema({
 	period : Number,
     seminar : String,
     actorInfo : [actorInfoSchema],	
+    storeInfo : [storeInfoSchema],
 })	
+
+var storeInfoSchema = mongoose.Schema({
+    storeID : Number,  
+    // AllStoresMax = BMRetsMax + ProsMaxPlus; { all B&M and four E-malls }
+    // 1 ~ (3 + 4)
+    storeCategoryInfo : [storeCategoryInfoSchema],
+})
+
+var storeCategoryInfoSchema = mongoose.Schema({
+    categoryID : Number,
+    grph_ConsumersOffTakeVolume      : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+    grph_ConsumersOffTakeVolumeShare : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+    grph_ConsumersOffTakeValue       : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+    grph_ConsumersOffTakeValueShare  : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+})
 
 var actorInfoSchema = mongoose.Schema({
 	actorID 					 : Number, //TActors : 1~(4+3)
