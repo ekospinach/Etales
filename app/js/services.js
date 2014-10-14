@@ -440,6 +440,7 @@ define(['angular',
 					
 					socket.on('socketIO:seminarPeriodChanged', function(data){	
 						//Only deal with current seminar push notifications					
+						console.log('message');
 						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
 							PeriodInfo.setCurrentPeriod(data.period);	
 							$rootScope.$broadcast('SeminarPeriodChanged',data);						
