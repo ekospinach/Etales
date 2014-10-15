@@ -70,7 +70,7 @@ define(['directives', 'services'], function(directives){
 	                    additionalBudget =data.data;
 
 		      			if(value>max + additionalBudget - expend - reportExpend){
-		      				d.resolve(Label.getContent('Input range')+':0~'+(max-expend-reportExpend).toFixed(2));
+		      				d.resolve(Label.getContent('Input range')+':0~'+(Math.floor((max-expend-reportExpend) * 100) / 100));
 		      			}else{
 		      				d.resolve();
 		    			}
