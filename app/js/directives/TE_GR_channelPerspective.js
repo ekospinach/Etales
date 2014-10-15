@@ -12,6 +12,8 @@ define(['directives', 'services'], function(directives) {
                 templateUrl: '../../partials/singleReportTemplate/GR_channelPerspective.html',
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
+                        console.log('message');
+
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
                         scope.Label         = Label;
@@ -28,7 +30,7 @@ define(['directives', 'services'], function(directives) {
                             url: url,
                             //tracker: scope.loadingTracker
                         }).then(function(data) {
-                            return organiseArray(data);
+                            return organiseArray(data.data[0]);
                         }).then(function(data) {                                          
 
                             scope.isResultShown = true;
@@ -44,12 +46,25 @@ define(['directives', 'services'], function(directives) {
                         var deferred = $q.defer();
 
                         //if(data.data[0] == "XXXXX"){ deferred.reject({msg:'XXXXX'}); }
-                        if (data.data[0]) {
+                        if (data) {
+                        	var players=new Array();
+                        	var categories=new Array();
+                        	for(var i=0;i<6;i++){
+                        		for(j=0;j<data.storeInfo[i].storeCategoryInfo.length;j++){
+                        			categories.push({
+                    					'storeID':data.storeInfo[i].storeID,
+                    					'categoryID':data.storeInfo[i].storeCategoryInfo[j].categoryID,
+                    					'salesVolume':data.storeInfo[i].storeCategoryInfo[j].grph_ConsumersOffTakeVolume,
+                    					'salesValue':data.storeInfo[i].storeCategoryInfo[j].grph_ConsumersOffTakeValue,
+                    					'shareVolume':data.storeInfo[i].storeCategoryInfo[j].grph_ConsumersOffTakeVolumeShare,
+                    					'shareValue':data.storeInfo[i].storeCategoryInfo[j].grph_ConsumersOffTakeValueShare
+                    				});
+                        		}
+                    			players.push({'category':categories});
+                        	}
+                        	console.log(players);
+                        	scope.players=players;
 
-                        	$scope.Sales = new Array();
-                        	$scope.Total = new Array();
-
-                        	var retailer1 = 1,retailer2 = 2, retailer3 = 3, supplier1 = 4, supplier2 = 5, supplier3 = 6;
 
 
                             deferred.resolve({

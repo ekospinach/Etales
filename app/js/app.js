@@ -6,7 +6,7 @@
  	'highchart',
  	'directives/chartLibraryWrapper',
  	'directives/TE_GR_brandPerspective',
-// 	'directives/TE_GR_channelPerspective',
+ 	'directives/TE_GR_channelPerspective',
  	'directives/TE_GR_marketShare',
  	'directives/TE_GR_marketSales',
  	'directives/TE_GR_emallPrices',

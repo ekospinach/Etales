@@ -62,7 +62,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			var showBrandPerspective = function() {
 				switching('showBrandPerspective');
 			}
-			var showChannelPerspective = function() {
+			$scope.showChannelPerspective = function() {
 				switching('showChannelPerspective');
 			}
 
