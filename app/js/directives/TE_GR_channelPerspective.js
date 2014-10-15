@@ -45,34 +45,12 @@ define(['directives', 'services'], function(directives) {
 
                         //if(data.data[0] == "XXXXX"){ deferred.reject({msg:'XXXXX'}); }
                         if (data.data[0]) {
-                            scope.operatingProfits      = new Array();
-                            scope.cumulativeInvestments = new Array();
-                            scope.salesVolumes          = new Array();
-                            scope.salesValues           = new Array();
-                            scope.volumeShares          = new Array();
-                            scope.valueShares           = new Array();
-                            for (var i = 0; i < data.data[0].actorInfo.length; i++) {
-                                scope.operatingProfits.push({
-                                    'value': data.data[0].actorInfo[i].grph_OperatingProfit
-                                });
-                                scope.cumulativeInvestments.push({
-                                    'value': data.data[0].actorInfo[i].grph_CumulativeInvestment
-                                });
-                                for (j = 0; j < data.data[0].actorInfo[i].actorCategoryInfo.length - 1; j++) {
-                                    scope.salesVolumes.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_SalesVolume
-                                    });
-                                    scope.salesValues.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue
-                                    });
-                                    scope.valueShares.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare
-                                    });
-                                    scope.volumeShares.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare
-                                    });
-                                }
-                            }
+
+                        	$scope.Sales = new Array();
+                        	$scope.Total = new Array();
+
+                        	var retailer1 = 1,retailer2 = 2, retailer3 = 3, supplier1 = 4, supplier2 = 5, supplier3 = 6;
+
 
                             deferred.resolve({
                                 msg: 'Array is ready.'
