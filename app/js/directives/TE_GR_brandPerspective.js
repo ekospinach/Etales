@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalPerformanceHighlights', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
+    directives.directive('generalBrandPerspective', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
         function(Label, SeminarInfo, $http, PeriodInfo, $q) {
             return {
                 scope: {
@@ -9,7 +9,7 @@ define(['directives', 'services'], function(directives) {
                     selectedPeriod: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/GR_PerformanceHighlights.html',
+                templateUrl: '../../partials/singleReportTemplate/GR_brandPerspective.html',
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
                         scope.isPageLoading = true;

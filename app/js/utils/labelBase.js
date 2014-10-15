@@ -116,6 +116,8 @@ var getLabelBase = function(){
 		{id:'Ease of Use perception',  ENG:'Ease of Use perception',  CHN:'易用性感知',  RUS:''},
 		{id:'Quality perception',  ENG:'Quality perception',  CHN:'质量感知',  RUS:''},
 		{id:'Performance perception',  ENG:'Performance perception',  CHN:'效果感知',  RUS:''},
+		
+
 		{id:'Gentleness perception',  ENG:'Gentleness perception',  CHN:'亲柔度感知',  RUS:''},
 		{id:'PricePerception',  ENG:'PricePerception',  CHN:'价格感知',  RUS:''},
 		{id:'Price Sensitive',  ENG:'Price Sensitive',  CHN:'价格敏感型',  RUS:''},
@@ -592,6 +594,10 @@ var getLabelBase = function(){
 		{id:'Summary Report popInfo',  ENG:'This table is the consolidated profit/loss statement of both categories at SKU level.',  CHN:'总结报告介绍',  RUS:''},	
 		{id:'Performance Highlights',  ENG:'Performance Highlights',  CHN:'主要业绩',  RUS:''},	
 		{id:'Performance Highlights Info',  ENG:'This table summarizes key performance indicators for suppliers and retailers. For suppliers, the sales figures refer to sales to the retailers. All market share figures are consumer market shares.',  CHN:'业绩突出信息介绍',  RUS:''},	
+		{id:'Brand Perspective',  ENG:'Brand Perspective',  CHN:'品牌角度',  RUS:''},
+		{id:'Channel Perspective',  ENG:'Channel Perspective',  CHN:'通道角度',  RUS:''},
+		{id:'Brand Perspective Info',  ENG:'This table summarizes key performance highlights for suppliers and retailers from a brand perspective. For suppliers, the B&M sales figures refer to sales to all the three the retailers. For Retailers, the sales represent the sale of their private labels. Consumer sales for each supplier and retailer represent the sales of the products from their product portfolios.',  CHN:'品牌角度介绍',  RUS:''},
+		{id:'Channel Perspective Info',  ENG:'This table summarizes key performance highlights for suppliers and retailers from channel perspective. For Retailers, the sales represent the market sales, including private labels. ',  CHN:'通道角度介绍',  RUS:''},
 		{id:'Market Shares',  ENG:'Market Shares',  CHN:'市场份额',  RUS:''},	
 		{id:'Market Shares Info',  ENG:'These graphs show the consumer market shares for suppliers and retailers (private label) by market, consumer segment and shopper segment. More detailed information can be obtained by moving the cursor over the colors in the bar charts.',  CHN:'市场份额介绍',  RUS:''},	
 		{id:'Market Sales',  ENG:'Market Sales.',  CHN:'市场销售',  RUS:''},	

@@ -25,7 +25,9 @@
                 <div style="clear:both;padding:5px 0;"></div>
 
                 <!--general report start -->
-                    <general-performance-highlights ng-show='Performance' is-page-shown='Performance' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-performance-highlights>
+                    <general-brand-perspective ng-show='BrandPerspective' is-page-shown='BrandPerspective' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-brand-perspective>
+
+                    <general-channel-perspective ng-show='ChannelPerspective' is-page-shown='ChannelPerspective' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-channel-perspective>
                     
                     <general-market-share ng-show='MarketShare' is-page-shown='MarketShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-market-share>
                                             
@@ -45,8 +47,17 @@
             <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
                 <ul class="nav bs-docs-sidenav">
                     <li class="active">
-                        <a href="/#/generalReport" style="color:#EEA236" ng-click="showPerformance()">{{Label.getContent('Performance Highlights')}}</a>
+                        <a href="/#/generalReport" style="color:#EEA236" ng-click="showBrandPerspective()">{{Label.getContent('Performance Highlights')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="active">
+                                <a href="/#/marketReport" style="color:#EEA236" ng-click='showBrandPerspective()'>{{Label.getContent('Brand Perspective')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#EEA236" ng-click='showChannelPerspective()'>{{Label.getContent('Channel Perspective')}}</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li class="">
                         <a href="/#/generalReport" style="color:#EEA236" ng-click='showMarketShare()'>{{Label.getContent('Market Shares')}}</a>
                     </li>
