@@ -200,7 +200,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             max = data.data.acquiredDesignLevel[categoryID - 1];
                             if (value < 1 || value > max) {
-                                d.resolve(Label.getContent('Input range') + ':1~' + max);
+                                d.resolve(Label.getContent('Input range') + ':1~' + (Math.floor(max * 100) / 100));
                             } else {
                                 d.resolve();
                             }
@@ -239,7 +239,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             max = data.data.acquiredTechnologyLevel[categoryID - 1];
                             if (value < 1 || value > max) {
-                                d.resolve(Label.getContent('Input range') + ':1~' + max);
+                                d.resolve(Label.getContent('Input range') + ':1~' + (Math.floor(max * 100) / 100));
                             } else {
                                 d.resolve();
                             }
@@ -272,7 +272,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             max = data.data.composition[1] + 2;
                             if (value < 1 || value > max) {
-                                d.resolve(Label.getContent('Input range') + ':1~' + max);
+                                d.resolve(Label.getContent('Input range') + ':1~' + (Math.floor(max * 100) / 100));
                             } else {
                                 d.resolve();
                             }
@@ -334,7 +334,8 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             //Validation 3: input range : MaxBMPriceVsCost*unitCost ~ MinBMPriceVsCost*unitCost 
                             if (value > data.data.MaxBMPriceVsCost * scope.currentUnitCost || value < data.data.MinBMPriceVsCost * scope.currentUnitCost) {
-                                d.resolve(Label.getContent('Input range') + ':' + data.data.MinBMPriceVsCost * scope.currentUnitCost + '~' + data.data.MaxBMPriceVsCost * scope.currentUnitCost);
+                                
+                                d.resolve(Label.getContent('Input range') + ':' + (Math.floor(data.data.MinBMPriceVsCost * scope.currentUnitCost * 100) / 100) + '~' + (Math.floor(data.data.MaxBMPriceVsCost * scope.currentUnitCost * 100) / 100));
                             } else {
                                 //Validation 4: if input value < unitCost, show label "Less than current cost"
                                 // if (scope.currentUnitCost > value) {

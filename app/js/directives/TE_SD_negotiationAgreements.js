@@ -71,7 +71,7 @@ define(['directives', 'services'], function(directives) {
                             if(value < benchMark){
                                 d.resolve();
                             } else {
-                                d.resolve(Label.getContent('Input range') + ': 0 ~ ' + benchMark);
+                                d.resolve(Label.getContent('Input range') + ': 0 ~ ' + (Math.floor(benchMark * 100) / 100));
                             }
 
                         }, function(data) {
@@ -170,7 +170,7 @@ define(['directives', 'services'], function(directives) {
                             } else if(benchMark > 1) {
                                 d.resolve(Label.getContent('Supplier does not have enough budget.'));                                
                             } else {                                
-                                d.resolve(Label.getContent('Input range') + ':' + (benchMark * 100).toFixed(2) + '% ~ 100%');                                
+                                d.resolve(Label.getContent('Input range') + ':' + (Math.floor(benchMark * 100 * 100) / 100) + '% ~ 100%');                                
                             }
 
                         }, function() {
@@ -230,14 +230,14 @@ define(['directives', 'services'], function(directives) {
                             if (marketSize * maxTargetVolumeVsTotalMarket > salesVolume) {
                                 if (value < salesVolume) {
                                     d.resolve();
-                                } else {
-                                    d.resolve(Label.getContent('Input range') + ':0~' + salesVolume);
+                                } else {    
+                                    d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor(salesVolume * 100) / 100));
                                 }
                             } else {
                                 if (value < (marketSize * maxTargetVolumeVsTotalMarket)) {
                                     d.resolve();
                                 } else {
-                                    d.resolve(Label.getContent('Input range') + ':0~' + marketSize * maxTargetVolumeVsTotalMarket);
+                                    d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor(marketSize * maxTargetVolumeVsTotalMarket * 100) / 100));
                                 }
                             }
                         }, function() {
@@ -335,8 +335,8 @@ define(['directives', 'services'], function(directives) {
                                 d.resolve();
                             } else if(benchMark < 0) {
                                 d.resolve(Label.getContent('Supplier does not have enough budget.'));                                
-                            } else {                                
-                                d.resolve(Label.getContent('Input range') + ':0% ~ ' + (benchMark * 100).toFixed(2) + '%');                                
+                            } else {                                 
+                                d.resolve(Label.getContent('Input range') + ':0% ~ ' + (Math.floor((benchMark * 100 * 100) / 100) + '%');                                
                             }
 
                         }, function() {
