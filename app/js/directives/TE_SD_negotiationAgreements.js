@@ -1,4 +1,4 @@
-te_sd_nedefine(['directives', 'services'], function(directives) {
+define(['directives', 'services'], function(directives) {
 
     directives.directive('supplierNegotiationAgreements', ['ProducerDecisionBase', 'ProducerDecision', 'Label', 'SeminarInfo', '$http', '$location', '$filter', 'PeriodInfo', '$q', 'PlayerInfo','notify',
         function(ProducerDecisionBase, ProducerDecision, Label, SeminarInfo, $http, $location, $filter, PeriodInfo, $q, PlayerInfo, notify) {
