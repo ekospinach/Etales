@@ -21,6 +21,13 @@ var storeInfoSchema = mongoose.Schema({
     storeID : Number,  
     // AllStoresMax = BMRetsMax + ProsMaxPlus; { all B&M and four E-malls }
     // 1 ~ (3 + 4)
+    // 1 - Retailer 1
+    // 2 - Retailer 2
+    // 3 - Retailer 3 (Tradition Trade)
+    // 4 - Supplier 1 Online 
+    // 5 - Supplier 2 Online 
+    // 6 - Supplier 3 Online 
+    // 7 ...
     storeCategoryInfo : [storeCategoryInfoSchema],
 })
 
