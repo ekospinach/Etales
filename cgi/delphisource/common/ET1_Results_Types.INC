@@ -106,23 +106,29 @@ TBrandOwnerChannelDetails = record
 
 TGR_PerformanceHighlights =
   record
-    grph_SalesVolume              : array[TActors, TCategoriesTotal] of single;   {  For Suppliers it refers to on-line sales only }
-    grph_NetSalesValue            : array[TActors, TCategoriesTotal] of single;   {                    as above                    }
-    grph_WholeSalesVolume         : array[TAllProducers, TCategoriesTotal] of single;    { This covers shipments to retailers only       }
-    grph_WholeSalesNetValue       : array[TAllProducers, TCategoriesTotal] of single;    {                    as above                   }
-    grph_VolumeMarketShare        : array[TActors, TCategoriesTotal] of single;
-    grph_ValueMarketShare         : array[TActors, TCategoriesTotal] of single;
+    grph_SalesVolume                 : array[TActors, TCategoriesTotal] of single;   {  For Suppliers it refers to on-line sales only }
+    grph_NetSalesValue               : array[TActors, TCategoriesTotal] of single;   {                    as above                    }
+    grph_WholeSalesVolume            : array[TAllProducers, TCategoriesTotal] of single;    { This covers shipments to retailers only       }
+    grph_WholeSalesNetValue          : array[TAllProducers, TCategoriesTotal] of single;    {                    as above                   }
+    grph_VolumeMarketShare           : array[TActors, TCategoriesTotal] of single;
+    grph_ValueMarketShare            : array[TActors, TCategoriesTotal] of single;
 
-    grph_SalesVolumeChange        : array[TActors, TCategoriesTotal] of single;
-    grph_NetSalesValueChange      : array[TActors, TCategoriesTotal] of single;
-    grph_VolumeMarketShareChange  : array[TActors, TCategoriesTotal] of single;
-    grph_ValueMarketShareChange   : array[TActors, TCategoriesTotal] of single;
-    grph_WholeSalesVolumeChange   : array[TAllProducers, TCategoriesTotal] of single;   
-    grph_WholeSalesNetValueChange : array[TAllProducers, TCategoriesTotal] of single;    
-    
-    grph_OperatingProfit          : array[TActiveActors] of single;
-    grph_OperatingProfitChange    : array[TActiveActors] of single;
-    grph_CumulativeInvestment     : array[TActiveActors] of single;
+    grph_SalesVolumeChange           : array[TActors, TCategoriesTotal] of single;
+    grph_NetSalesValueChange         : array[TActors, TCategoriesTotal] of single;
+    grph_VolumeMarketShareChange     : array[TActors, TCategoriesTotal] of single;
+    grph_ValueMarketShareChange      : array[TActors, TCategoriesTotal] of single;
+    grph_WholeSalesVolumeChange      : array[TAllProducers, TCategoriesTotal] of single;
+    grph_WholeSalesNetValueChange    : array[TAllProducers, TCategoriesTotal] of single;
+
+    grph_OperatingProfit             : array[TActiveActors] of single;
+    grph_OperatingProfitChange       : array[TActiveActors] of single;
+    grph_CumulativeInvestment        : array[TActiveActors] of single;
+
+    { added on 13 October 2014 for channel perspective }
+    grph_ConsumersOffTakeVolume      : array[TAllStores, TMarketsTotal, TCategories] of single;
+    grph_ConsumersOffTakeVolumeShare : array[TAllStores, TMarketsTotal, TCategories] of single;
+    grph_ConsumersOffTakeValue       : array[TAllStores, TMarketsTotal, TCategoriesTotal] of single;
+    grph_ConsumersOffTakeValueShare  : array[TAllStores, TMarketsTotal, TCategoriesTotal] of single;
   end;
 
 TGR_SharesOfMarket =

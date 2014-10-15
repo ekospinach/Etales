@@ -973,7 +973,7 @@ var getLabelBase = function(){
 		/*retailer marketingend*/
 		/*retailer Store Management start*/
 		{id:'Order Volume',  ENG:'Order Volume',  CHN:'订货量',  RUS:''},
-		{id:'Unavaiable',  ENG:'Unavaiable',  CHN:'不可用',  RUS:''},
+		{id:'Unavailable',  ENG:'Unavailable',  CHN:'不可用',  RUS:''},
 		{id:'Order Volume Info',  ENG:'volume your order from manufacturer; you need to take into account brand potential, your current stocks and negotiated volumes/discounts to make a balanced decision.',  CHN:'你向生产商的下单量，建议综合考虑品牌的潜力、前期库存、你和生产商约定的数量／折扣协议等。',  RUS:''},
 		{id:'Shelf Space',  ENG:'Shelf Space',  CHN:'货架空间',  RUS:''},
 		{id:'Shelf Space Info',  ENG:'you may give a brand 5% of shelf space minimum.',  CHN:'每个品牌最低分配的货架份额不能低于5%',  RUS:''},
