@@ -50,7 +50,7 @@ var getLabelBase = function(){
 		{id:'Chart',  ENG:'Chart',  CHN:'图表',  RUS:''},
 		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'图表帮助你直观地比较自己和竞争对手的情况。',  RUS:''},
 		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以通过选择，查看其它行业（零售或生产）标杆。可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息。把光标放在趋势线上，可以看到相应的数字。',  RUS:''},
-		{id:'Total',  ENG:'Total',  CHN:'',  RUS:''},
+		{id:'Total',  ENG:'Total',  CHN:'合计',  RUS:''},
 		{id:'TOTAL',  ENG:'TOTAL',  CHN:'合计',  RUS:''},
 		{id:'Amount Info',  ENG:'Amount Info',  CHN:'Amount输入提示',  RUS:''},
 

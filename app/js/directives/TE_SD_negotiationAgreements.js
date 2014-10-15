@@ -1,4 +1,4 @@
-define(['directives', 'services'], function(directives) {
+te_sd_nedefine(['directives', 'services'], function(directives) {
 
     directives.directive('supplierNegotiationAgreements', ['ProducerDecisionBase', 'ProducerDecision', 'Label', 'SeminarInfo', '$http', '$location', '$filter', 'PeriodInfo', '$q', 'PlayerInfo','notify',
         function(ProducerDecisionBase, ProducerDecision, Label, SeminarInfo, $http, $location, $filter, PeriodInfo, $q, PlayerInfo, notify) {
@@ -336,7 +336,7 @@ define(['directives', 'services'], function(directives) {
                             } else if(benchMark < 0) {
                                 d.resolve(Label.getContent('Supplier does not have enough budget.'));                                
                             } else {                                 
-                                d.resolve(Label.getContent('Input range') + ':0% ~ ' + (Math.floor((benchMark * 100 * 100) / 100) + '%');                                
+                                d.resolve(Label.getContent('Input range') + ':0% ~ ' + (Math.floor((benchMark * 100 * 100) / 100) + '%'));                                
                             }
 
                         }, function() {

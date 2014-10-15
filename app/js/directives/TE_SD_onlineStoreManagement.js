@@ -120,7 +120,7 @@ define(['directives', 'services'], function(directives) {
                             availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
                             console.log(availableBudgetLeft);
                             if(value>availableBudgetLeft){
-                                d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor((availableBudgetLeft * 100) / 100));
+                                d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor((availableBudgetLeft * 100) / 100)));
                             }else{
                                 d.resolve();
                             }
