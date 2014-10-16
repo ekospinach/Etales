@@ -65,6 +65,13 @@
       margin-bottom:0px;
       text-align: center;
     }
+    table{
+      font-size: 16px;
+    }
+    .p-center{
+      text-align: center;
+      margin: 0;
+    }
 
     .normal-left{
       width: 500px;
@@ -113,6 +120,60 @@
     .padding-0{
       padding: 0;
     }
+    .table-bordered .supplier1{
+       background-color: #D4DCE6;
+    }
+    .table-bordered .supplier2{
+       background-color: #D69492;
+    }
+    .table-bordered .supplier3{
+       background-color: #FFF2CC;
+    }
+    .table-bordered .retailer1{
+       background-color: #DFDAE4;
+    }
+    .table-bordered .retailer2{
+       background-color: #FCD5B5;
+    }
+    .table-title{
+      font-size: 26px;
+      padding: 8px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .table-bordered {
+      border-collapse:collapse;
+      font-size: 16px;
+    }
+    .table-bordered span{
+      display: inline-block;
+      height: 19px;
+      width: 19px;
+    }
+    .table-bordered p{
+      padding: 8px;
+      margin: 0;
+      line-height: 18px;
+    }
+    .table-bordered h4{
+      font-size: 26px;
+      font-family: "League Gothic",Impact,sans-serif;
+      font-variant: 
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+      border: 2px solid #000;
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > thead > tr > td {
+      border-bottom-width: 2px;
+    }
+
 
     </style>
     <!--[if lt IE 9]>
@@ -352,7 +413,74 @@
         </section>   
 
         <section ng-controller="finalScoreCtrl">
-          
+          <h3><span class="orangeLetter">Final Score</h3>
+          <hr>
+          <table class="table-bordered" style="font-size:16px;margin-bottom:20px">
+            <thead>
+              <tr>
+                <th colspan="6"><p style="font-size:26px" class="p-center">Supplier Scores</p></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th style="width:10%"></th>
+                <th style="width:20%"><p class="p-center">Incremental market Share (IMS)</p></th>
+                <th style="width:20%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
+                <th style="width:20%"><p class="p-center">Portfolio Strength (PS)</p></th>
+                <th style="width:20%"><p class="p-center">Channel Strength (CS)</p></th>
+                <th style="width:10%"><p class="p-center">Final Score</p></th>
+              </tr>
+              <tr>
+                <th><p class="p-center">Weightage</p></th>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td></td>
+              </tr>
+              <tr ng-repeat='supplier in suppliers' class="{{'supplier'+supplier.supplierID}}">
+                <td><p class="p-center">
+                  <span style="background-color:{{supplier.color}};">&nbsp;</span>Supplier {{supplier.supplierID}}</p></td>
+                <td ng-repeat='d in supplier.data'>
+                  <p class="p-center">{{d}}</p>
+                </td>
+                <td><p class="fragment p-center" data-fragment-index="{{$index}}">{{supplier.score}}</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table-bordered" style="font-size:16px;margin-bottom:150px">
+            <thead>
+              <tr>
+                <th colspan="6"><p style="font-size:26px" class="p-center">Retailer Scores</p></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th style="width:10%"></th>
+                <th style="width:20%"><p class="p-center">Incremental market Share (IMS)</p></th>
+                <th style="width:20%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
+                <th style="width:20%"><p class="p-center">Relative Profitability (RP)</p></th>
+                <th style="width:20%"><p class="p-center">Shopper Base (Share of Pocket SOP)</p></th>
+                <th style="width:10%"><p class="p-center">Final Score</p></th>
+              </tr>
+              <tr>
+                <th><p class="p-center">Weightage</p></th>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td></td>
+              </tr>
+              <tr ng-repeat='retailer in retailers' class="{{'retailer'+retailer.retailerID}}">
+                <td><p class="p-center"><span style="background-color:{{retailer.color}};">&nbsp;</span>Retailer {{retailer.retailerID}}</p></td>
+                <td ng-repeat='d in retailer.data'>
+                  <p class="p-center">{{d}}</p>
+                </td>
+                <td><p class="fragment p-center" data-fragment-index="{{3+$index}}">{{retailer.score}}</p></td>
+              </tr>
+            </tbody>
+          </table>
+
         </section>
 
 
@@ -381,7 +509,6 @@
     <script src="js/feedBackAppControllers/supplierKPIsCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerKPIsCtrl.js"></script>
     <script src="js/feedBackAppControllers/finalScoreCtrl.js"></script>
-    
     <script src="js/feedBackAppControllers/shareOfShoppersCtrl.js"></script>
 
 
