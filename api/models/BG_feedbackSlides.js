@@ -43,12 +43,36 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 //    f_RetailersBMShoppersShare        : [retailerKPIInfoSchema],
 //    f_RetailersAllShoppersShare       : [retailerKPIInfoSchema],
 
-//  updated by Hao, 2014 July 10th
+    //updated by Hao, 2014 July 10th
     f_GrossProfit : [marketResultSchema],
     f_GrossProfitMargin : [marketResultSchema],
     f_PortfolioStrength  : [supplierKPIExtendedInfoSchema],
-    f_ShoppersShare : [shopperShareInfoSchema]    
+    f_ShoppersShare : [shopperShareInfoSchema],
+
+    //updated by Hao, 2014, Oct, 16, FinalScore    
+    ffs_SuppliersAbsoluteValues    : [evaluationSupplierScoresSchema],
+    ffs_SuppliersStandarisedValues : [evaluationSupplierScoresSchema], //       { not used in the current template }
+    ffs_SuppliersFinalScore        : [supplierInfoSchema],
+    ffs_RetailersAbsoluteValues    : [evaluationRetailerScoresSchema],
+    ffs_RetailersStandarisedValues : [evaluationRetailerScoresSchema], // { not used in the current template }
+    ffs_RetailersFinalScore        : [retailerInfoSchema],  
 })  
+
+// evaluation Idx:  { 1 = Incremental Market }
+//                                     { 2 = ROOB }
+//                                     { 3 = Portfolio Strength ( Suppliers ) / Relative Profitability ( Retailers }
+//                                     { 4 = Trade Strength ( Suppliers ) / Shoppers base ( Retailers ) }      
+var evaluationSupplierScoresSchema = mongoose.Schema({
+    supplierID : Number,
+    evaluationIdx : Number, 
+    value : Number,
+})
+
+var evaluationRetailerScoresSchema = mongoose.Schema({
+    retailerID : Number,
+    evaluationIdx : Number, 
+    value : Number,
+})
 
 var negotiationsItemDetailsSchema = mongoose.Schema({
     categoryID : Number,
@@ -122,6 +146,7 @@ var shopperShareInfoSchema = mongoose.Schema({
     storeID : Number, //1~(4+3)
     //added by Hao, 2014 Sept 3
     shopperKind : String,//BMS, NETIZENS, MIXED, ALLSHOPPERS
+    categoryID : Number,
     value : Number,
 })
 
@@ -198,6 +223,13 @@ exports.addInfos = function(options){
                                 f_GrossProfitMargin : singleReport.f_GrossProfitMargin, 
                                 f_PortfolioStrength : singleReport.f_PortfolioStrength, 
                                 f_ShoppersShare     : singleReport.f_ShoppersShare,
+
+                                ffs_SuppliersAbsoluteValues    : singleReport.ffs_SuppliersAbsoluteValues,
+                                ffs_SuppliersStandarisedValues : singleReport.ffs_SuppliersStandarisedValues, //       { not used in the current template }
+                                ffs_SuppliersFinalScore        : singleReport.ffs_SuppliersFinalScore,
+                                ffs_RetailersAbsoluteValues    : singleReport.ffs_RetailersAbsoluteValues,
+                                ffs_RetailersStandarisedValues : singleReport.ffs_RetailersStandarisedValues, // { not used in the current template }
+                                ffs_RetailersFinalScore        : singleReport.ffs_RetailersFinalScore,                               
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

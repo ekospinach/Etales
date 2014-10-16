@@ -19,5 +19,6 @@ mongoimport -d Etales -c retailerdecisions retailerdecisions.data
 mongoimport -d Etales -c contractvariantdetails contractvariantdetails.data
 mongoimport -d Etales -c contracts contracts.data
 
+#备份数据库/恢复数据库
 mongodump -h dbhost -d dbname -o dbdirectory
 mongorestore -h dbhost -d dbname --directoryperdb dbdirectory 
