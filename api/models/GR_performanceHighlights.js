@@ -32,7 +32,7 @@ var storeInfoSchema = mongoose.Schema({
 })
 
 var storeCategoryInfoSchema = mongoose.Schema({
-    categoryID : Number,
+    categoryID : Number, //TCategories: 1~2 
     grph_ConsumersOffTakeVolume      : [Number], // 0 - Urban, 1 - Rural, 3 - Total
     grph_ConsumersOffTakeVolumeShare : [Number], // 0 - Urban, 1 - Rural, 3 - Total
     grph_ConsumersOffTakeValue       : [Number], // 0 - Urban, 1 - Rural, 3 - Total
@@ -106,7 +106,8 @@ exports.addReports = function(options){
 
           performanceHighlights.update({seminar: singleReport.seminar, 
                               period: singleReport.period},
-                              {actorInfo: singleReport.actorInfo},
+                              {actorInfo: singleReport.actorInfo,
+                               storeInfo: singleReport.storeInfo},
                                 {upsert: true},
                                 function(err, numberAffected, raw){
                                   if(err) deferred.reject({msg:err, options: options});                                  

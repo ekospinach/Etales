@@ -16,6 +16,39 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
+  function storeCategoryInfoSchema(storeID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+  var
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['categoryID'] := catID;
+    jo.O['grph_ConsumersOffTakeVolume'] := SA([]);       // 0 - Urban, 1 - Rural, 3 - Total
+    jo.O['grph_ConsumersOffTakeVolumeShare'] := SA([]); // 0 - Urban, 1 - Rural, 3 - Total
+    jo.O['grph_ConsumersOffTakeValue'] := SA([]); // 0 - Urban, 1 - Rural, 3 - Total
+    jo.O['grph_ConsumersOffTakeValueShare'] := SA([]); // 0 - Urban, 1 - Rural, 3 - Total
+
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+
+      jo.A['grph_ConsumersOffTakeValue'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeValue[storeID, marketID, catID];
+      jo.A['grph_ConsumersOffTakeValueShare'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeValueShare[storeID, marketID, catID];
+
+      if(catID == 3)then
+      begin
+        jo.A['grph_ConsumersOffTakeVolume'].D[marketID - 1] = -1;
+        jo.A['grph_ConsumersOffTakeVolumeShare'].D[marketID - 1] = -1;
+      end 
+      else
+      begin
+        jo.A['grph_ConsumersOffTakeVolume'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeVolume[storeID, marketID, catID];
+        jo.A['grph_ConsumersOffTakeVolumeShare'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeVolumeShare[storeID, marketID, catID];
+      end;
+      
+    end;
+
+    result := jo;
+  end;
+
   function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
   var
     jo : ISuperObject;
@@ -158,6 +191,21 @@ var
       result := producerID;
   end;
 
+  function storeInfoSchema(storeID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+  var
+    jo: ISuperObject;
+    I, cat: Integer;
+  begin
+    jo := SO;
+    jo.I['storeID'] := storeID;
+    
+    jo.O['storeCategoryInfo'] := SA([]);
+    for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+      jo.A['storeCategoryInfo'].Add( storeCategoryInfoSchema(storeID, cat, binaryReport) );
+
+    result := jo;
+  end;
+
   function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
   var
     jo: ISuperObject;
@@ -189,7 +237,7 @@ var
   procedure makeJson();
   var
     s_str : string;
-    actorID : Integer;
+    actorID,storeID : Integer;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -197,6 +245,10 @@ var
     oJsonFile.O['actorInfo'] := SA([]);
     for actorID := Low(TActors) to High(TActors) do
       oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_PerformanceHighlights) );
+
+    oJsonFile.O['storeInfo'] := SA([]);
+    for storeID := Low(TAllStores) to High(TAllStores) do
+      oJsonFile.A['storeInfo'].Add(  storeInfoSchema(storeID, currentResult.r_GeneralReport.gr_PerformanceHighlights ));
 
     //for debug used
     s_str := 'out' + '.json';

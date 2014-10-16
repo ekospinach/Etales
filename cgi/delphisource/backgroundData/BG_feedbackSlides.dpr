@@ -66,6 +66,12 @@ const
     f_GrossProfitMargin               = 129;
 
     f_ShoppersShare                   = 131; 
+    ffs_SuppliersAbsoluteValues       = 132;
+    ffs_SuppliersStandarisedValues    = 133;
+    ffs_SuppliersFinalScore           = 134; 
+    ffs_RetailersAbsoluteValues       = 135;
+    ffs_RetailersStandarisedValues    = 136; 
+    ffs_RetailersFinalScore           = 137;
 var
   //decision: TDecision;
   jo : ISuperObject;
@@ -319,6 +325,13 @@ var
     // oJsonFile.O['f_RetailersAllShoppersShare']          := SA([]);
      oJsonFile.O['f_ShoppersShare']          := SA([]);
 
+    oJsonFile.O['ffs_SuppliersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_SuppliersStandarisedValues']    := SA([]);
+    oJsonFile.O['ffs_SuppliersFinalScore']           := SA([]); 
+    oJsonFile.O['ffs_RetailersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_RetailersStandarisedValues']    := SA([]); 
+    oJsonFile.O['ffs_RetailersFinalScore']           := SA([]);     
+
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
       oJsonFile.A['f_DiscountsValue'].add(negotiationItemDetailsSchema(f_DiscountsValue, catID));
@@ -421,6 +434,33 @@ var
           end;
       end;
     end;    
+
+    oJsonFile.O['ffs_SuppliersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_SuppliersStandarisedValues']    := SA([]);
+    oJsonFile.O['ffs_SuppliersFinalScore']           := SA([]); 
+
+    oJsonFile.O['ffs_RetailersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_RetailersStandarisedValues']    := SA([]); 
+    oJsonFile.O['ffs_RetailersFinalScore']           := SA([]);  
+    for supplierID := Low(TProducers) to High(TProducers) do
+    begin
+      oJsonFile.A['ffs_SuppliersFinalScore'].Add( supplierInfoSchema(ffs_SuppliersFinalScore, 0, supplierID));
+      for evaluationIdx := Low(TEvaluationScores) to High(TEvaluationScores) do
+      begin
+        oJsonFile.A['ffs_SuppliersAbsoluteValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersAbsoluteValues, supplierID, evaluationIdx) );
+        oJsonFile.A['ffs_SuppliersStandarisedValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersStandarisedValues, supplierID, evaluationIdx) );
+      end;
+    end;
+
+    for retailerID := Low(TModernRetailers) to High(TModernRetailers) do
+    begin
+      oJsonFile.A['ffs_RetailersFinalScore'].Add( retailerInfoSchema(ffs_RetailersFinalScore, 0, supplierID));
+      for evaluationIdx := Low(TEvaluationScores) to High(TEvaluationScores) do
+      begin
+        oJsonFile.A['ffs_SuppliersAbsoluteValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersAbsoluteValues, supplierID, evaluationIdx) );
+        oJsonFile.A['ffs_SuppliersStandarisedValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersStandarisedValues, supplierID, evaluationIdx) );
+      end;      
+    end;
 
     //for debug used
     s_str := 'out' + '.json';
