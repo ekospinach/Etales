@@ -26,358 +26,358 @@ var salesCtrl=function($scope,$http){
             }
         }
 
-        $http({
-            method:'GET',
-            url:url
-        }).then(function(data){
-            var currentElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-            var currentElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-            var previousElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-            var previousElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-            var currentHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-            var currentHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-            var previousHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-            var previousHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
-             
+        var currentElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+        var currentElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+        var previousElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+        var previousElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+        var currentHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+        var currentHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+        var previousHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+        var previousHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'})
+         
 
-            for(var j=0;j<currentCategories.length;j++){
-                for(var i=0;i<data.data.f_MarketSalesVolume.length;i++){
-                    if(data.data.f_MarketSalesVolume[i].period==currentCategories[j]){
-                        if(data.data.f_MarketSalesVolume[i].categoryID==1){
-                            currentElecssoriesVolume[data.data.f_MarketSalesVolume[i].actorID-1].data.push(data.data.f_MarketSalesVolume[i].value);
-                        }else if(data.data.f_MarketSalesVolume[i].categoryID==2){
-                            currentHealthBeautiesVolume[data.data.f_MarketSalesVolume[i].actorID-1].data.push(data.data.f_MarketSalesVolume[i].value);
-                        }
+        for(var j=0;j<currentCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_MarketSalesVolume.length;i++){
+                if($scope.feedBack.f_MarketSalesVolume[i].period==currentCategories[j]){
+                    if($scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
+                        currentElecssoriesVolume[$scope.feedBack.f_MarketSalesVolume[i].actorID-1].data.push($scope.feedBack.f_MarketSalesVolume[i].value);
+                    }else if($scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
+                        currentHealthBeautiesVolume[$scope.feedBack.f_MarketSalesVolume[i].actorID-1].data.push($scope.feedBack.f_MarketSalesVolume[i].value);
                     }
                 }
             }
-            for(var j=0;j<currentCategories.length;j++){
-                for(var i=0;i<data.data.f_MarketSalesValue.length;i++){
-                    if(data.data.f_MarketSalesValue[i].period==currentCategories[j]){
-                        if(data.data.f_MarketSalesValue[i].categoryID==1){
-                            currentElecssoriesValue[data.data.f_MarketSalesValue[i].actorID-1].data.push(data.data.f_MarketSalesValue[i].value);
-                        }else if(data.data.f_MarketSalesValue[i].categoryID==2){
-                            currentHealthBeautiesValue[data.data.f_MarketSalesValue[i].actorID-1].data.push(data.data.f_MarketSalesValue[i].value);
-                        }
+        }
+        for(var j=0;j<currentCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_MarketSalesValue.length;i++){
+                if($scope.feedBack.f_MarketSalesValue[i].period==currentCategories[j]){
+                    if($scope.feedBack.f_MarketSalesValue[i].categoryID==1){
+                        currentElecssoriesValue[$scope.feedBack.f_MarketSalesValue[i].actorID-1].data.push($scope.feedBack.f_MarketSalesValue[i].value);
+                    }else if($scope.feedBack.f_MarketSalesValue[i].categoryID==2){
+                        currentHealthBeautiesValue[$scope.feedBack.f_MarketSalesValue[i].actorID-1].data.push($scope.feedBack.f_MarketSalesValue[i].value);
                     }
                 }
             }
-            for(var j=0;j<previousCategories.length;j++){
-                for(var i=0;i<data.data.f_MarketSalesVolume.length;i++){
-                    if(data.data.f_MarketSalesVolume[i].period==previousCategories[j]){
-                        if(data.data.f_MarketSalesVolume[i].categoryID==1){
-                            previousElecssoriesVolume[data.data.f_MarketSalesVolume[i].actorID-1].data.push(data.data.f_MarketSalesVolume[i].value);
-                        }else if(data.data.f_MarketSalesVolume[i].categoryID==2){
-                            previousHealthBeautiesVolume[data.data.f_MarketSalesVolume[i].actorID-1].data.push(data.data.f_MarketSalesVolume[i].value);
-                        }
+        }
+        for(var j=0;j<previousCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_MarketSalesVolume.length;i++){
+                if($scope.feedBack.f_MarketSalesVolume[i].period==previousCategories[j]){
+                    if($scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
+                        previousElecssoriesVolume[$scope.feedBack.f_MarketSalesVolume[i].actorID-1].data.push($scope.feedBack.f_MarketSalesVolume[i].value);
+                    }else if($scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
+                        previousHealthBeautiesVolume[$scope.feedBack.f_MarketSalesVolume[i].actorID-1].data.push($scope.feedBack.f_MarketSalesVolume[i].value);
                     }
                 }
             }
-            for(var j=0;j<previousCategories.length;j++){
-                for(var i=0;i<data.data.f_MarketSalesValue.length;i++){
-                    if(data.data.f_MarketSalesValue[i].period==previousCategories[j]){
-                        if(data.data.f_MarketSalesValue[i].categoryID==1){
-                            previousElecssoriesValue[data.data.f_MarketSalesValue[i].actorID-1].data.push(data.data.f_MarketSalesValue[i].value);
-                        }else if(data.data.f_MarketSalesValue[i].categoryID==2){
-                            previousHealthBeautiesValue[data.data.f_MarketSalesValue[i].actorID-1].data.push(data.data.f_MarketSalesValue[i].value);
-                        }
+        }
+        for(var j=0;j<previousCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_MarketSalesValue.length;i++){
+                if($scope.feedBack.f_MarketSalesValue[i].period==previousCategories[j]){
+                    if($scope.feedBack.f_MarketSalesValue[i].categoryID==1){
+                        previousElecssoriesValue[$scope.feedBack.f_MarketSalesValue[i].actorID-1].data.push($scope.feedBack.f_MarketSalesValue[i].value);
+                    }else if($scope.feedBack.f_MarketSalesValue[i].categoryID==2){
+                        previousHealthBeautiesValue[$scope.feedBack.f_MarketSalesValue[i].actorID-1].data.push($scope.feedBack.f_MarketSalesValue[i].value);
                     }
                 }
             }
+        }
 
-            $scope.previousSalesVolumeElecssories = {
-                options: {
-                    title:{
-                        text:'Sales Volumes',
+        $scope.previousSalesVolumeElecssories = {
+            options: {
+                title:{
+                    text:'Sales Volumes',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'mln units'
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: previousCategories,
+                    title: {
+                        text: 'Period'
                     },
-                    yAxis: {
-                        title: {
-                            text: 'mln units'
-                        },
-                        gridLineColor: 'transparent'
+                    tickmarkPlacement: 'on'
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    xAxis: {
-                        categories: previousCategories,
-                        title: {
-                            text: 'Period'
-                        },
-                        tickmarkPlacement: 'on'
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: previousElecssoriesVolume,
+            loading: false
+        }
+        $scope.previousSalesVolumeHealthBeauties = {
+            options: {
+                title:{
+                    text:'Sales Volumes',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'mln units'
                     },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: previousCategories,
+                    title: {
+                        text: 'Period'
                     }
                 },
-                series: previousElecssoriesVolume,
-                loading: false
-            }
-            $scope.previousSalesVolumeHealthBeauties = {
-                options: {
-                    title:{
-                        text:'Sales Volumes',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: previousHealthBeautiesVolume,
+            loading: false
+        }
+        $scope.previousSalesValueElecssories = {
+            options: {
+                title:{
+                    text:'Sales Values',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: '$mln'
                     },
-                    yAxis: {
-                        title: {
-                            text: 'mln units'
-                        },
-                        gridLineColor: 'transparent'
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: previousCategories,
+                    title: {
+                        text: 'Period'
                     },
-                    xAxis: {
-                        categories: previousCategories,
-                        title: {
-                            text: 'Period'
-                        }
+                    tickmarkPlacement: 'on'
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: previousElecssoriesValue,
+            loading: false
+        }
+        $scope.previousSalesValueHealthBeauties = {
+            options: {
+                title:{
+                    text:'Sales Values',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: '$mln'
                     },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: previousCategories,
+                    title: {
+                        text: 'Period'
                     }
                 },
-                series: previousHealthBeautiesVolume,
-                loading: false
-            }
-            $scope.previousSalesValueElecssories = {
-                options: {
-                    title:{
-                        text:'Sales Values',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: previousHealthBeautiesValue,
+            loading: false
+        }
+        $scope.currentSalesVolumeElecssories = {
+            options: {
+                title:{
+                    text:'Sales Volumes',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'mln units'
                     },
-                    yAxis: {
-                        title: {
-                            text: '$mln'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: previousCategories,
-                        title: {
-                            text: 'Period'
-                        },
-                        tickmarkPlacement: 'on'
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period'
                     }
                 },
-                series: previousElecssoriesValue,
-                loading: false
-            }
-            $scope.previousSalesValueHealthBeauties = {
-                options: {
-                    title:{
-                        text:'Sales Values',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: currentElecssoriesVolume,
+            loading: false
+        }
+        $scope.currentSalesVolumeHealthBeauties = {
+            options: {
+                title:{
+                    text:'Sales Volumes',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'mln units'
                     },
-                    yAxis: {
-                        title: {
-                            text: '$mln'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: previousCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period'
                     }
                 },
-                series: previousHealthBeautiesValue,
-                loading: false
-            }
-            $scope.currentSalesVolumeElecssories = {
-                options: {
-                    title:{
-                        text:'Sales Volumes',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: currentHealthBeautiesVolume,
+            loading: false
+        }
+        $scope.currentSalesValueElecssories = {
+            options: {
+                title:{
+                    text:'Sales Values',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: '$mln'
                     },
-                    yAxis: {
-                        title: {
-                            text: 'mln units'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period'
                     }
                 },
-                series: currentElecssoriesVolume,
-                loading: false
-            }
-            $scope.currentSalesVolumeHealthBeauties = {
-                options: {
-                    title:{
-                        text:'Sales Volumes',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: currentElecssoriesValue,
+            loading: false
+        }
+        $scope.currentSalesValueHealthBeauties = {
+            options: {
+                title:{
+                    text:'Sales Values',
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: '$mln'
                     },
-                    yAxis: {
-                        title: {
-                            text: 'mln units'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period'
                     }
                 },
-                series: currentHealthBeautiesVolume,
-                loading: false
-            }
-            $scope.currentSalesValueElecssories = {
-                options: {
-                    title:{
-                        text:'Sales Values',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: '$mln'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
-                    }
+                    shared: false,
+                    useHTML: true
                 },
-                series: currentElecssoriesValue,
-                loading: false
-            }
-            $scope.currentSalesValueHealthBeauties = {
-                options: {
-                    title:{
-                        text:'Sales Values',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: '$mln'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
-                    }
-                },
-                series: currentHealthBeautiesValue,
-                loading: false
-            }
+                credits: {
+                    enabled: false
+                }
+            },
+            series: currentHealthBeautiesValue,
+            loading: false
+        }
 
-        });
     }
-    initPage();
+    $scope.$watch('feedBack', function(newValue, oldValue){
+        if(newValue!=undefined) {
+            console.log(newValue);
+            initPage();
+        }
+    });
 }
 
