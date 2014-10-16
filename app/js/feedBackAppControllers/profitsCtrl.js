@@ -145,6 +145,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Operating Profits',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -152,13 +155,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -180,6 +189,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Operating Profit Margins',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -187,13 +199,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -215,6 +233,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Net Profits',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -222,13 +243,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -250,6 +277,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Net Profit Margins',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -257,13 +287,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -287,6 +323,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Operating Profits',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -294,13 +333,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -322,6 +367,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Operating Profit Margins',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -329,13 +377,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -357,6 +411,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Net Profits',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -364,13 +421,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -392,6 +455,9 @@ var profitsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Net Profit Margins',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -399,13 +465,19 @@ var profitsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {

@@ -80,12 +80,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -107,7 +113,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanOnline.chartSeries,
             title: {
-                text: 'Online Only'
+                text: 'Online Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -116,12 +125,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -143,7 +158,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanBM.chartSeries,
             title: {
-                text: 'B & M Only'
+                text: 'B&M Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -152,12 +170,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -179,7 +203,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanMixed.chartSeries,
             title: {
-                text: 'Mixed'
+                text: 'Mixed',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -188,12 +215,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -215,7 +248,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanTotal.chartSeries,
             title: {
-                text: 'Total'
+                text: 'Total',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -224,12 +260,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -251,7 +293,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralOnline.chartSeries,
             title: {
-                text: 'Online Only'
+                text: 'Online Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -260,12 +305,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -287,7 +338,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralBM.chartSeries,
             title: {
-                text: 'B & M Only'
+                text: 'B&M Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -296,12 +350,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -323,7 +383,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralMixed.chartSeries,
             title: {
-                text: 'Mixed'
+                text: 'Mixed',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -333,12 +396,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -360,7 +429,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralTotal.chartSeries,
             title: {
-                text: 'Total'
+                text: 'Total',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -372,12 +444,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -399,7 +477,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanOnline.chartSeries,
             title: {
-                text: 'Online Only'
+                text: 'Online Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -408,12 +489,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -435,7 +522,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanBM.chartSeries,
             title: {
-                text: 'B & M Only'
+                text: 'B&M Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -444,12 +534,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -471,7 +567,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanMixed.chartSeries,
             title: {
-                text: 'Mixed'
+                text: 'Mixed',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -480,12 +579,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -507,7 +612,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanTotal.chartSeries,
             title: {
-                text: 'Total'
+                text: 'Total',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -516,12 +624,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -543,7 +657,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralOnline.chartSeries,
             title: {
-                text: 'Online Only'
+                text: 'Online Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -552,12 +669,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -579,7 +702,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralBM.chartSeries,
             title: {
-                text: 'B & M Only'
+                text: 'B&M Only',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -588,12 +714,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -615,7 +747,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralMixed.chartSeries,
             title: {
-                text: 'Mixed'
+                text: 'Mixed',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }
@@ -625,12 +760,18 @@ var shareOfShoppersCtrl=function($scope,$http){
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -652,7 +793,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralTotal.chartSeries,
             title: {
-                text: 'Total'
+                text: 'Total',
+                style: {
+                    'font-size':'16px'
+                }
             },
             loading: false
         }

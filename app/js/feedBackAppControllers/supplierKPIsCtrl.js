@@ -191,6 +191,9 @@ var supplierKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Elecssories',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -198,14 +201,20 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Return on Investment (%)'
+                        text: 'Return on Investment (%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -227,6 +236,9 @@ var supplierKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'HealthBeauties',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -234,14 +246,20 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Return on Investment (%)'
+                        text: 'Return on Investment (%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -263,6 +281,9 @@ var supplierKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Elecssories',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -270,14 +291,20 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Return on Investment (%)'
+                        text: 'Return on Investment (%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -299,6 +326,9 @@ var supplierKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'HealthBeauties',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -306,14 +336,20 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Return on Investment (%)'
+                        text: 'Return on Investment (%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -335,6 +371,9 @@ var supplierKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Elecssories',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -342,14 +381,20 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Average Brand Awareness(%)'
+                        text: 'Average Brand Awareness(%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -371,6 +416,9 @@ var supplierKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'HealthBeauties',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -378,14 +426,20 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Average Brand Awareness(%)'
+                        text: 'Average Brand Awareness(%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -408,12 +462,18 @@ var supplierKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -445,7 +505,10 @@ var supplierKPIsCtrl=function($scope,$http){
             },
             series: bmChannelStrengthElecssories,
             title: {
-                text: 'Elecssories'
+                text: 'Elecssories',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
@@ -462,12 +525,18 @@ var supplierKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -499,7 +568,10 @@ var supplierKPIsCtrl=function($scope,$http){
             },
             series: bmChannelStrengthHealthBeauties,
             title: {
-                text: 'HealthBeauties'
+                text: 'HealthBeauties',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
@@ -515,12 +587,18 @@ var supplierKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -552,7 +630,10 @@ var supplierKPIsCtrl=function($scope,$http){
             },
             series: onlineChannelStrengthElecssories,
             title: {
-                text: 'Elecssories'
+                text: 'Elecssories',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
@@ -569,12 +650,18 @@ var supplierKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -606,7 +693,10 @@ var supplierKPIsCtrl=function($scope,$http){
             },
             series: onlineChannelStrengthHealthBeauties,
             title: {
-                text: 'HealthBeauties'
+                text: 'HealthBeauties',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',

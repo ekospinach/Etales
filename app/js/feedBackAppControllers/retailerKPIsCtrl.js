@@ -168,12 +168,18 @@ var retailerKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -200,7 +206,10 @@ var retailerKPIsCtrl=function($scope,$http){
             },
             series: rotationIndexSalesValueElecssories,
             title: {
-                text: 'Elecssories - Sales Value'
+                text: 'Elecssories - Sales Value',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
@@ -217,12 +226,18 @@ var retailerKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -249,7 +264,10 @@ var retailerKPIsCtrl=function($scope,$http){
             },
             series: rotationIndexSalesValueHealthBeauties,
             title: {
-                text: 'HealthBeauties - Sales Value'
+                text: 'HealthBeauties - Sales Value',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
@@ -266,12 +284,18 @@ var retailerKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: 'mln units'
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -298,7 +322,10 @@ var retailerKPIsCtrl=function($scope,$http){
             },
             series: rotationIndexSalesVolumeElecssories,
             title: {
-                text: 'Elecssories - Sales Volume'
+                text: 'Elecssories - Sales Volume',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
@@ -315,12 +342,18 @@ var retailerKPIsCtrl=function($scope,$http){
                 xAxis: {
                     categories: myCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 yAxis:{
                     title: {
-                        text: 'mln units'
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -347,7 +380,10 @@ var retailerKPIsCtrl=function($scope,$http){
             },
             series: rotationIndexSalesVolumeHealthBeauties,
             title: {
-                text: 'HealthBeauties - Sales Volume'
+                text: 'HealthBeauties - Sales Volume',
+                style: {
+                    'font-size':'16px'
+                }
             },
             subtitle: {
                 text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
@@ -364,6 +400,9 @@ var retailerKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Rural Market',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -371,14 +410,20 @@ var retailerKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Profitability Index($mln)'
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -400,6 +445,10 @@ var retailerKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Urban Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -407,14 +456,20 @@ var retailerKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Profitability Index($mln)'
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -436,6 +491,10 @@ var retailerKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Rural Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -443,14 +502,20 @@ var retailerKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Profitability Index($mln)'
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -472,6 +537,10 @@ var retailerKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Urban Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -479,14 +548,20 @@ var retailerKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Profitability Index($mln)'
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -509,6 +584,10 @@ var retailerKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Urban Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -516,14 +595,20 @@ var retailerKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Stock Cover (in Weeks)'
+                        text: 'Stock Cover (in Weeks)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -545,6 +630,10 @@ var retailerKPIsCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Rural Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -552,14 +641,20 @@ var retailerKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Stock Cover (in Weeks)'
+                        text: 'Stock Cover (in Weeks)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {

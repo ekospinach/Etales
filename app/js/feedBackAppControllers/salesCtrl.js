@@ -85,6 +85,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Volumes',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -92,14 +95,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units'
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     tickmarkPlacement: 'on'
                 },
@@ -122,6 +131,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Volumes',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -129,14 +141,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units'
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -158,6 +176,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Values',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -165,14 +186,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     tickmarkPlacement: 'on'
                 },
@@ -195,6 +222,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Values',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -202,14 +232,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -231,6 +267,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Volumes',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -238,14 +277,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units'
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -267,6 +312,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Volumes',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -274,14 +322,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units'
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -303,6 +357,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Values',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -310,14 +367,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -339,6 +402,9 @@ var salesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Sales Values',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -346,14 +412,20 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '$mln'
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {

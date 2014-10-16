@@ -70,6 +70,9 @@ var shelfSpaceCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Elecssories',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -77,14 +80,21 @@ var shelfSpaceCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Shelf Space Allocation (%)'
+                        text: 'Shelf Space Allocation (%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
-                    gridLineColor: 'transparent'
+
+                    gridLineColor: 'transparent',
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -106,6 +116,9 @@ var shelfSpaceCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'HealthBeauties',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -113,14 +126,20 @@ var shelfSpaceCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Shelf Space Allocation (%)'
+                        text: 'Shelf Space Allocation (%)',
+                        style: {
+                            'font-size':'16px'
+                        }
                     },
                     gridLineColor: 'transparent'
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {

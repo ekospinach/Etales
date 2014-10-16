@@ -19,6 +19,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             options: {
                 title:{
                     text:'Breakdown of Volume Discounts given by Suppliers',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'pie',
@@ -68,6 +71,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             options: {
                 title:{
                     text:'Breakdown of Volume Discounts received by Retailers',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'pie',
@@ -114,6 +120,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             options: {
                 title:{
                     text:'Breakdown of Performance Bonuses given by Suppliers',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'pie',
@@ -163,6 +172,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             options: {
                 title:{
                     text:'Breakdown of Performance Bonuses received by Retailers',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'pie',
@@ -209,6 +221,10 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             options: {
                 title:{
                     text:'Breakdown of Other Compensation given by Suppliers',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'pie',
@@ -258,6 +274,10 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             options: {
                 title:{
                     text:'Breakdown of Other Compensation received by Retailers',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'pie',
@@ -328,6 +348,10 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             options: {
                 title:{
                     text:'Transaction Values by Terms of Payment',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'pie',

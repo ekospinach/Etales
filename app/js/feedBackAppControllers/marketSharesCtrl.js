@@ -84,6 +84,9 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Volumes Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -91,13 +94,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -119,6 +128,9 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Volumes Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -126,13 +138,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -154,6 +172,9 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Values Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
                 },
                 chart: {
                     type: 'line',
@@ -161,13 +182,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -189,6 +216,10 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Values Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -196,13 +227,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -224,6 +261,10 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Volumes Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -231,13 +272,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -259,6 +306,10 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Volumes Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -266,13 +317,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -294,6 +351,10 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Values Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -301,13 +362,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
@@ -329,6 +396,10 @@ var marketSharesCtrl=function($scope,$http){
             options: {
                 title:{
                     text:'Values Shares',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
                 chart: {
                     type: 'line',
@@ -336,13 +407,19 @@ var marketSharesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: '%',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: 'Period'
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
                 tooltip: {
