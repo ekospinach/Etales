@@ -21,13 +21,13 @@ define(['directives', 'services'], function(directives){
                 }
 
                 function newChartData(searchKeys){
-			        var chartSeries = new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},
-			                                        {name:'Supplier-2',data:new Array(),color:'#B11E22'},
-			                                        {name:'Supplier-3',data:new Array(),color:'#F6B920'},
-			                                        {name:'Supplier-4',data:new Array(),color:'#329444'},
-			                                        {name:'Retailer-1',data:new Array(),color:'#8B288B'},
-			                                        {name:'Retailer-2',data:new Array(),color:'#F05422'},
-			                                        {name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+			        var chartSeries = new Array({name:Label.getContent('Supplier')+'-1',data:new Array(),color:'#3257A7'},
+			                                        {name:Label.getContent('Supplier')+'-2',data:new Array(),color:'#B11E22'},
+			                                        {name:Label.getContent('Supplier')+'-3',data:new Array(),color:'#F6B920'},
+			                                        {name:Label.getContent('Supplier')+'-4',data:new Array(),color:'#329444'},
+			                                        {name:Label.getContent('Retailer')+'-1',data:new Array(),color:'#8B288B'},
+			                                        {name:Label.getContent('Retailer')+'-2',data:new Array(),color:'#F05422'},
+			                                        {name:Label.getContent('Retailer')+'-3',data:new Array(),color:'#00AFEF'});
 
 			        return {
 			            searchKeys : {shopperKind : searchKeys.shopperKind, marketID : searchKeys.marketID, categoryID : searchKeys.categoryID},
@@ -107,7 +107,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -146,7 +146,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -185,7 +185,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -224,7 +224,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -263,7 +263,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -302,7 +302,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -341,7 +341,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -381,7 +381,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -423,7 +423,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -462,7 +462,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -501,7 +501,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -540,7 +540,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -579,7 +579,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -618,7 +618,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -657,7 +657,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
@@ -697,7 +697,7 @@ define(['directives', 'services'], function(directives){
 			                },
 			                tooltip: {
 			                    formatter: function() {
-			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 			                        return s;
 			                    },
 			                    shared: false,
