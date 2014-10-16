@@ -355,3 +355,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 .relative{
   position : relative;
 }
+.normal-size{
+  width: 45%;
+  margin-right: 50px;
+}

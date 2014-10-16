@@ -64,8 +64,7 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Volume Shares'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -101,8 +100,7 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Volume Shares'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -138,8 +136,7 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Value Shares'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -175,8 +172,7 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Value Shares'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },

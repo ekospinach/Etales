@@ -7,7 +7,7 @@ define(['directives', 'services'], function(directives) {
 					isPageShown: '=',
 					isPageLoading: '=',
 					feedBack: '=',
-					selectedLabel.getContent("Period"): '='
+					selectedPeriod: '='
 				},
 				restrict: 'E',
 				templateUrl: '../../partials/singleReportTemplate/OR_profits.html',
@@ -98,8 +98,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Operating Profits'),
 								},
 								chart: {
-									width:550,
-									height:500,
+									
 									type: 'line',
 									backgroundColor: 'transparent',
 								},
@@ -135,8 +134,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Operating Profit Margins'),
 								},
 								chart: {
-									width:550,
-									height:500,
+									
 									type: 'line',
 									backgroundColor: 'transparent',
 								},
@@ -172,8 +170,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Net Profits'),
 								},
 								chart: {
-									width:550,
-									height:500,
+									
 									type: 'line',
 									backgroundColor: 'transparent',
 								},
@@ -209,8 +206,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Net Profit Margins'),
 								},
 								chart: {
-									width:550,
-									height:500,
+									
 									type: 'line',
 									backgroundColor: 'transparent',
 								},

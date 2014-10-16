@@ -75,8 +75,7 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Elecssories'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -113,8 +112,7 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('HealthBeauties'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },

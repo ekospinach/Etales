@@ -64,8 +64,6 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Sales Volumes'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -102,8 +100,6 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Sales Volumes'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -140,8 +136,6 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Sales Values'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -178,8 +172,6 @@ define(['directives', 'services'], function(directives){
 		                        text:Label.getContent('Sales Values'),
 		                    },
 		                    chart: {
-		                        width:550,
-		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
