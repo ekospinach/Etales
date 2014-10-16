@@ -375,7 +375,6 @@ var salesCtrl=function($scope,$http){
     }
     $scope.$watch('feedBack', function(newValue, oldValue){
         if(newValue!=undefined) {
-            console.log(newValue);
             initPage();
         }
     });

@@ -413,6 +413,9 @@ var profitsCtrl=function($scope,$http){
                         var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
+                    positioner: function () {
+                        return { x: 80, y: 50 };
+                    },
                     shared: false,
                     useHTML: true
                 },
@@ -427,7 +430,6 @@ var profitsCtrl=function($scope,$http){
     }
     $scope.$watch('feedBack', function(newValue, oldValue){
         if(newValue!=undefined) {
-            console.log(newValue);
             initPage();
         }
     });

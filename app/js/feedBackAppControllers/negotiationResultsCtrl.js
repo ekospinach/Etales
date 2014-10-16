@@ -372,7 +372,6 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
 
     $scope.$watch('feedBack', function(newValue, oldValue){
         if(newValue!=undefined) {
-            console.log(newValue);
             initPage();
         }
     });
