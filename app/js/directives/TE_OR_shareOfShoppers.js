@@ -26,14 +26,14 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			    	var urbanOnline=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-		            var urbanBM=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-		            var urbanMixed=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-		            var urbanTotal=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-		            var ruralOnline=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-		            var ruralBM=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-		            var ruralMixed=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
-		            var ruralTotal=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6]});
+			    	var urbanOnline=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
+		            var urbanBM=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
+		            var urbanMixed=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
+		            var urbanTotal=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
+		            var ruralOnline=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
+		            var ruralBM=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
+		            var ruralMixed=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
+		            var ruralTotal=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});
 		        /*highchart data init end*/
 		        /*set highchart data start*/
 		            for(var j=0;j<currentCategories.length;j++){
@@ -42,30 +42,30 @@ define(['directives', 'services'], function(directives){
 		                        switch(scope.feedBack.f_ShoppersShare[i].shopperKind){
 		                            case 'BMS':
 		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
-		                                    urbanBM[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    urbanBM[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
-		                                    ruralBM[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    ruralBM[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }
 		                            break; 
 		                            case 'NETIZENS':
 		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
-		                                    urbanOnline[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    urbanOnline[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
-		                                    ruralOnline[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    ruralOnline[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }
 		                            break; 
 		                            case 'MIXED':
 		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
-		                                    urbanMixed[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    urbanMixed[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
-		                                    ruralMixed[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    ruralMixed[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }
 		                            break; 
 		                            case 'ALLSHOPPERS':
 		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
-		                                    urbanTotal[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    urbanTotal[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
-		                                    ruralTotal[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                    ruralTotal[scope.feedBack.f_ShoppersShare[i].storeID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
 		                                }
 		                            break; 
 		                        }
@@ -80,7 +80,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -97,7 +97,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -109,7 +109,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: urbanOnline,
 		                title: {
-		                    text: 'Online Only'
+		                    text: Label.getContent('Online Only')
 		                },
 		                loading: false
 		            }
@@ -118,7 +118,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -135,7 +135,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -147,7 +147,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: urbanBM,
 		                title: {
-		                    text: 'B & M Only'
+		                    text: Label.getContent('B&M Only')
 		                },
 		                loading: false
 		            }
@@ -156,7 +156,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -173,7 +173,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -185,7 +185,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: urbanMixed,
 		                title: {
-		                    text: 'Mixed'
+		                    text: Label.getContent('Mixed')
 		                },
 		                loading: false
 		            }
@@ -194,7 +194,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -211,7 +211,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -223,7 +223,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: urbanTotal,
 		                title: {
-		                    text: 'Total'
+		                    text: Label.getContent('Total')
 		                },
 		                loading: false
 		            }
@@ -232,7 +232,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -249,7 +249,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -261,7 +261,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: ruralOnline,
 		                title: {
-		                    text: 'Online Only'
+		                    text: Label.getContent('Online Only')
 		                },
 		                loading: false
 		            }
@@ -270,7 +270,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -287,7 +287,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -299,7 +299,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: ruralBM,
 		                title: {
-		                    text: 'B & M Only'
+		                    text: Label.getContent('B&M Only')
 		                },
 		                loading: false
 		            }
@@ -308,7 +308,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -325,7 +325,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -337,7 +337,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: ruralMixed,
 		                title: {
-		                    text: 'Mixed'
+		                    text: Label.getContent('Mixed')
 		                },
 		                loading: false
 		            }
@@ -346,7 +346,7 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    yAxis:{
@@ -363,7 +363,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%)</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -375,7 +375,7 @@ define(['directives', 'services'], function(directives){
 		                },
 		                series: ruralTotal,
 		                title: {
-		                    text: 'Total'
+		                    text: Label.getContent('Total')
 		                },
 		                loading: false
 		            }

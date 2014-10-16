@@ -1055,6 +1055,11 @@ var getLabelBase = function(){
 		{id:'Remaining Budget',  ENG:'Remaining Budget',  CHN:'可用预算',  RUS:''},
 		{id:'Available Period Capacity',  ENG:'Available Period Capacity',  CHN:'阶段可用产能',  RUS:''},		
 		
+		/*or*/
+		{id:'Sales Volumes',  ENG:'Sales Volumes',  CHN:'销售量',  RUS:''},		
+		{id:'Sales Values',  ENG:'Sales Values',  CHN:'销售额',  RUS:''},		
+
+
 	]
 }
 

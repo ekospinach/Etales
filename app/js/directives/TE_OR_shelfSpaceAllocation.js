@@ -26,20 +26,20 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			    	var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
-			    		{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
-			    		{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
-			    		{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
-			    		{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
-			    		{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
-			    		{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
-            		var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
-            			{name:'Supplier-2',data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
-            			{name:'Supplier-3',data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
-            			{name:'Supplier-4',data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
-            			{name:'Retailer-1',data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
-            			{name:'Retailer-2',data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
-            			{name:'Retailer-3',data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
+			    	var currentShelfSpaceElecssories=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
+			    		{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
+			    		{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
+			    		{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
+			    		{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
+			    		{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
+			    		{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
+            		var currentShelfSpaceHealthBeauties=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
+            			{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
+            			{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
+            			{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
+            			{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
+            			{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
+            			{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
 
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
@@ -72,7 +72,7 @@ define(['directives', 'services'], function(directives){
 		        	scope.currentShelfSpaceElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Elecssories',
+		                        text:Label.getContent('Elecssories'),
 		                    },
 		                    chart: {
 		                        width:550,
@@ -82,19 +82,19 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'Shelf Space Allocation (%)'
+		                            text: Label.getContent('Shelf Space Allocation')+' (%)'
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -110,7 +110,7 @@ define(['directives', 'services'], function(directives){
 		            scope.currentShelfSpaceHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'HealthBeauties',
+		                        text:Label.getContent('HealthBeauties'),
 		                    },
 		                    chart: {
 		                        width:550,
@@ -120,19 +120,19 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'Shelf Space Allocation (%)'
+		                            text: Label.getContent('Shelf Space Allocation')+' (%)'
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
