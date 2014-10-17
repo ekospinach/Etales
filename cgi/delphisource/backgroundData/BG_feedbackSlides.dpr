@@ -457,8 +457,8 @@ var
       oJsonFile.A['ffs_RetailersFinalScore'].Add( retailerInfoSchema(ffs_RetailersFinalScore, 0, supplierID));
       for evaluationIdx := Low(TEvaluationScores) to High(TEvaluationScores) do
       begin
-        oJsonFile.A['ffs_SuppliersAbsoluteValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersAbsoluteValues, supplierID, evaluationIdx) );
-        oJsonFile.A['ffs_SuppliersStandarisedValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersStandarisedValues, supplierID, evaluationIdx) );
+        oJsonFile.A['ffs_RetailersAbsoluteValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersAbsoluteValues, RetailerID, evaluationIdx) );
+        oJsonFile.A['ffs_RetailersStandarisedValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersStandarisedValues, RetailerID, evaluationIdx) );
       end;      
     end;
 
