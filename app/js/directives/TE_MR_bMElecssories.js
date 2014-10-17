@@ -18,9 +18,9 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadRetailerPrice=function(data,category){
-                    for(var i=0;i<data.data[0].variantInfo.length;i++){
-                        if(data.data[0].variantInfo[i].parentCategoryID==category){
-                            var fullName=data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName;
+                    for(var i=0;i<data.variantInfo.length;i++){
+                        if(data.variantInfo[i].parentCategoryID==category){
+                            var fullName=data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName;
                             var rural1Value=rural1ValueChange=urban1Value=urban1ValueChange=rural2Value=rural2ValueChange=urban2Value=urban2ValueChange=0;
                             /*
                                 urban=latestNetMarketPrice[0]
@@ -28,19 +28,19 @@ define(['directives', 'services'], function(directives){
                                 urbanChange=netMarketPriceChange[0]
                                 ruralChange=netMarketPriceChange[1]
                             */
-                            if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
-                                rural1Value=data.data[0].variantInfo[i].accountInfo[0].latestNetMarketPrice[1];
-                                rural1ValueChange=data.data[0].variantInfo[i].accountInfo[0].netMarketPriceChange[1]*100;
-                                urban1Value=data.data[0].variantInfo[i].accountInfo[0].latestNetMarketPrice[0];
-                                urban1ValueChange=data.data[0].variantInfo[i].accountInfo[0].netMarketPriceChange[0]*100;
+                            if(data.variantInfo[i].accountInfo[0]!=undefined){
+                                rural1Value=data.variantInfo[i].accountInfo[0].latestNetMarketPrice[1];
+                                rural1ValueChange=data.variantInfo[i].accountInfo[0].netMarketPriceChange[1]*100;
+                                urban1Value=data.variantInfo[i].accountInfo[0].latestNetMarketPrice[0];
+                                urban1ValueChange=data.variantInfo[i].accountInfo[0].netMarketPriceChange[0]*100;
                             }
-                            if(data.data[0].variantInfo[i].accountInfo[1]!=undefined){
-                                rural2Value=data.data[0].variantInfo[i].accountInfo[1].latestNetMarketPrice[1];
-                                rural2ValueChange=data.data[0].variantInfo[i].accountInfo[1].netMarketPriceChange[1]*100;
-                                urban2Value=data.data[0].variantInfo[i].accountInfo[1].latestNetMarketPrice[0];
-                                urban2ValueChange=data.data[0].variantInfo[i].accountInfo[1].netMarketPriceChange[0]*100;
+                            if(data.variantInfo[i].accountInfo[1]!=undefined){
+                                rural2Value=data.variantInfo[i].accountInfo[1].latestNetMarketPrice[1];
+                                rural2ValueChange=data.variantInfo[i].accountInfo[1].netMarketPriceChange[1]*100;
+                                urban2Value=data.variantInfo[i].accountInfo[1].latestNetMarketPrice[0];
+                                urban2ValueChange=data.variantInfo[i].accountInfo[1].netMarketPriceChange[0]*100;
                             }
-                            switch(data.data[0].variantInfo[i].parentCompanyID){
+                            switch(data.variantInfo[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':fullName,'rural1Value':rural1Value,'rural1ValueChange':rural1ValueChange,'urban1Value':urban1Value,'urban1ValueChange':urban1ValueChange,'rural2Value':rural2Value,'rural2ValueChange':rural2ValueChange,'urban2Value':urban2Value,'urban2ValueChange':urban2ValueChange});break;
                                 case 2:scope.player2s.push({'fullName':fullName,'rural1Value':rural1Value,'rural1ValueChange':rural1ValueChange,'urban1Value':urban1Value,'urban1ValueChange':urban1ValueChange,'rural2Value':rural2Value,'rural2ValueChange':rural2ValueChange,'urban2Value':urban2Value,'urban2ValueChange':urban2ValueChange});break;
                                 case 3:scope.player3s.push({'fullName':fullName,'rural1Value':rural1Value,'rural1ValueChange':rural1ValueChange,'urban1Value':urban1Value,'urban1ValueChange':urban1ValueChange,'rural2Value':rural2Value,'rural2ValueChange':rural2ValueChange,'urban2Value':urban2Value,'urban2ValueChange':urban2ValueChange});break;
@@ -58,7 +58,7 @@ define(['directives', 'services'], function(directives){
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         

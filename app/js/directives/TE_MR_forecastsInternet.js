@@ -24,7 +24,7 @@ define(['directives', 'services'], function(directives){
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
@@ -41,10 +41,10 @@ define(['directives', 'services'], function(directives){
 
                     scope.forecastInternetSeries=[{
                         'name':Label.getContent('Rural'),'color':PlayerColor.getColors()[0],
-                        'data':[[1,parseFloat((data.data[0].minInternetPenetrationRate[0].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[0].value[1]*100).toFixed(2))],[2,parseFloat((data.data[0].minInternetPenetrationRate[1].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[1].value[1]*100).toFixed(2))],[3,parseFloat((data.data[0].minInternetPenetrationRate[2].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[2].value[1]*100).toFixed(2))],[4,parseFloat((data.data[0].minInternetPenetrationRate[3].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[3].value[1]*100).toFixed(2))],[5,parseFloat((data.data[0].minInternetPenetrationRate[4].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[4].value[1]*100).toFixed(2))]]
+                        'data':[[1,parseFloat((data.minInternetPenetrationRate[0].value[1]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[0].value[1]*100).toFixed(2))],[2,parseFloat((data.minInternetPenetrationRate[1].value[1]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[1].value[1]*100).toFixed(2))],[3,parseFloat((data.minInternetPenetrationRate[2].value[1]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[2].value[1]*100).toFixed(2))],[4,parseFloat((data.minInternetPenetrationRate[3].value[1]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[3].value[1]*100).toFixed(2))],[5,parseFloat((data.minInternetPenetrationRate[4].value[1]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[4].value[1]*100).toFixed(2))]]
                     },{
                         'name':Label.getContent('Urban'),'color':PlayerColor.getColors()[1],
-                        'data':[[1,parseFloat((data.data[0].minInternetPenetrationRate[0].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[0].value[0]*100).toFixed(2))],[2,parseFloat((data.data[0].minInternetPenetrationRate[1].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[1].value[0]*100).toFixed(2))],[3,parseFloat((data.data[0].minInternetPenetrationRate[2].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[2].value[0]*100).toFixed(2))],[4,parseFloat((data.data[0].minInternetPenetrationRate[3].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[3].value[0]*100).toFixed(2))],[5,parseFloat((data.data[0].minInternetPenetrationRate[4].value[0]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[4].value[0]*100).toFixed(2))]]
+                        'data':[[1,parseFloat((data.minInternetPenetrationRate[0].value[0]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[0].value[0]*100).toFixed(2))],[2,parseFloat((data.minInternetPenetrationRate[1].value[0]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[1].value[0]*100).toFixed(2))],[3,parseFloat((data.minInternetPenetrationRate[2].value[0]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[2].value[0]*100).toFixed(2))],[4,parseFloat((data.minInternetPenetrationRate[3].value[0]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[3].value[0]*100).toFixed(2))],[5,parseFloat((data.minInternetPenetrationRate[4].value[0]*100).toFixed(2)),parseFloat((data.maxInternetPenetrationRate[4].value[0]*100).toFixed(2))]]
                     }];
                     scope.segmentYTitle=Label.getContent('Penetration Level')+'(%)';
                     scope.segmentXTitle=Label.getContent('Period');
