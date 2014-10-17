@@ -19,6 +19,7 @@ var
   function storeCategoryInfoSchema(storeID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
   var
     jo : ISuperObject;
+    marketID  : Integer;
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
@@ -30,18 +31,18 @@ var
     for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin
 
-      jo.A['grph_ConsumersOffTakeValue'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeValue[storeID, marketID, catID];
-      jo.A['grph_ConsumersOffTakeValueShare'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeValueShare[storeID, marketID, catID];
+      jo.A['grph_ConsumersOffTakeValue'].D[marketID - 1] := binaryReport.grph_ConsumersOffTakeValue[storeID, marketID, catID];
+      jo.A['grph_ConsumersOffTakeValueShare'].D[marketID - 1] := binaryReport.grph_ConsumersOffTakeValueShare[storeID, marketID, catID];
 
-      if(catID == 3)then
+      if(catID = 3)then
       begin
-        jo.A['grph_ConsumersOffTakeVolume'].D[marketID - 1] = -1;
-        jo.A['grph_ConsumersOffTakeVolumeShare'].D[marketID - 1] = -1;
+        jo.A['grph_ConsumersOffTakeVolume'].D[marketID - 1] := -1;
+        jo.A['grph_ConsumersOffTakeVolumeShare'].D[marketID - 1] := -1;
       end 
       else
       begin
-        jo.A['grph_ConsumersOffTakeVolume'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeVolume[storeID, marketID, catID];
-        jo.A['grph_ConsumersOffTakeVolumeShare'].D[marketID - 1] = binaryReport.grph_ConsumersOffTakeVolumeShare[storeID, marketID, catID];
+        jo.A['grph_ConsumersOffTakeVolume'].D[marketID - 1] := binaryReport.grph_ConsumersOffTakeVolume[storeID, marketID, catID];
+        jo.A['grph_ConsumersOffTakeVolumeShare'].D[marketID - 1] := binaryReport.grph_ConsumersOffTakeVolumeShare[storeID, marketID, catID];
       end;
       
     end;

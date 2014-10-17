@@ -152,6 +152,8 @@ Const
 
   ForecastError            = 0.05;
 
+  ScoresMax                = 4;
+
   SimplePrecision    = 1.0E-3;
   Precision          = 1.0E-6;
   DoublePrecision    = 1.0E-12;

@@ -87,6 +87,37 @@ var
   sListData: tStrings;
   oJsonFile : ISuperObject;
 
+  function evaluationSupplierScoresSchema(idx : integer; supplierID : integer; evaluationIdx : integer) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin 
+    jo := SO;
+    jo.I['supplierID'] := supplierID;
+    jo.I['evaluationIdx'] := evaluationIdx;
+
+    case (idx) of
+      ffs_SuppliersAbsoluteValues       : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_SuppliersAbsoluteValues[supplierID, evaluationIdx];end;
+      ffs_SuppliersStandarisedValues    : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_SuppliersStandarisedValues[supplierID, evaluationIdx]; end;
+    end;
+
+    result := jo;
+  end;
+
+  function evaluationRetailerScoresSchema(idx : integer; RetailerID : integer; evaluationIdx : integer) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin 
+    jo := SO;
+    jo.I['retailerID'] := RetailerID;
+    jo.I['evaluationIdx'] := evaluationIdx;
+
+    case (idx) of
+      ffs_RetailersAbsoluteValues       : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_RetailersAbsoluteValues[retailerID, evaluationIdx];end;
+      ffs_RetailersStandarisedValues    : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_RetailersStandarisedValues[retailerID, evaluationIdx]; end;
+    end;
+
+    result := jo;
+  end;
 
   function retailerInfoSchema(idx : Integer; catID : Integer; retailerID : Integer) : ISuperObject;
   var 
@@ -98,6 +129,7 @@ var
       f_DiscountsValue          : begin jo.D['value'] := currentResult.r_Feedback.f_DiscountsValue[catID].fcni_RetailersBenefits[retailerID] end;
       f_PerformanceBonusesValue : begin jo.D['value'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_RetailersBenefits[retailerID]; end;
       f_OtherCompensationsValue : begin jo.D['value'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_RetailersBenefits[retailerID]; end;        
+      ffs_RetailersFinalScore   : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_RetailersFinalScore[retailerID];end;
     end;
     result := jo;
   end;
@@ -112,6 +144,7 @@ var
       f_DiscountsValue          : begin jo.D['value'] := currentResult.r_Feedback.f_DiscountsValue[catID].fcni_SuppliersCost[producerID] end;
       f_PerformanceBonusesValue : begin jo.D['value'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_SuppliersCost[producerID]; end;
       f_OtherCompensationsValue : begin jo.D['value'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_SuppliersCost[producerID]; end;        
+      ffs_SuppliersFinalScore   : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_SuppliersFinalScore[producerID];end;
     end;
     result := jo;
   end;
@@ -280,7 +313,7 @@ var
   procedure makeJson();
   var
     s_str : string;
-    catID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID: Integer;
+    catID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx: Integer;
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
   begin
@@ -454,11 +487,11 @@ var
 
     for retailerID := Low(TModernRetailers) to High(TModernRetailers) do
     begin
-      oJsonFile.A['ffs_RetailersFinalScore'].Add( retailerInfoSchema(ffs_RetailersFinalScore, 0, supplierID));
+      oJsonFile.A['ffs_RetailersFinalScore'].Add( retailerInfoSchema(ffs_RetailersFinalScore, 0, retailerID));
       for evaluationIdx := Low(TEvaluationScores) to High(TEvaluationScores) do
       begin
-        oJsonFile.A['ffs_RetailersAbsoluteValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersAbsoluteValues, RetailerID, evaluationIdx) );
-        oJsonFile.A['ffs_RetailersStandarisedValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersStandarisedValues, RetailerID, evaluationIdx) );
+        oJsonFile.A['ffs_RetailersAbsoluteValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersAbsoluteValues, retailerID, evaluationIdx) );
+        oJsonFile.A['ffs_RetailersStandarisedValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersStandarisedValues, retailerID, evaluationIdx) );
       end;      
     end;
 

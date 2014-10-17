@@ -367,7 +367,16 @@ Type
 
   TNegotiationsFile = file of TAllDeals;
 
-{------------------------- Configuration Record ------------------------------------------------------------------------------}
+  TEvaluationScores = 1..ScoresMax;   { 1 = Incremental Market }
+                                      { 2 = ROOB }
+                                      { 3 = Portfolio Strength ( Suppliers ) / Relative Profitability ( Retailers }
+                                      { 4 = Trade Strength ( Suppliers ) / Shoppers base ( Retailers ) }                    
+
+
+
+{------------------------- Configuration Record ----------------------------------------------------------------------------------------------------}
+
+TFinalScoresWeights = array[TEvaluationScores] of single;  
 
 TConfigurationRecord
     = record
@@ -385,6 +394,9 @@ TConfigurationRecord
         cr_VirtualSupplierActive        : boolean;
         cr_IndependentMarkets           : boolean; 
         cr_ForceNextDecisionsOverwrite  : boolean;
+        cr_Sup_FinalScoreWeigths        : TFinalScoresWeights;
+        cr_Ret_FinalScoreWeigths        : TFinalScoresWeights;
+
 {
         cr_OperatingMode              : TOperatingMode;
         cr_Language                   : THCD_Language;
