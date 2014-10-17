@@ -442,13 +442,13 @@
                 <td><p class="p-center">
                   <span style="background-color:{{supplier.color}};">&nbsp;</span>Supplier {{supplier.supplierID}}</p></td>
                 <td ng-repeat='d in supplier.data'>
-                  <p class="p-center">{{d}}</p>
+                  <p class="p-center">{{d.value}}</p>
                 </td>
                 <td><p class="fragment p-center" data-fragment-index="{{$index}}">{{supplier.score}}</p></td>
               </tr>
             </tbody>
           </table>
-          <table class="table-bordered" style="font-size:16px;margin-bottom:150px">
+          <table class="table-bordered" style="font-size:16px;margin-bottom:100px">
             <thead>
               <tr>
                 <th colspan="6"><p style="font-size:26px" class="p-center">Retailer Scores</p></th>
@@ -474,7 +474,7 @@
               <tr ng-repeat='retailer in retailers' class="{{'retailer'+retailer.retailerID}}">
                 <td><p class="p-center"><span style="background-color:{{retailer.color}};">&nbsp;</span>Retailer {{retailer.retailerID}}</p></td>
                 <td ng-repeat='d in retailer.data'>
-                  <p class="p-center">{{d}}</p>
+                  <p class="p-center">{{d.value}}</p>
                 </td>
                 <td><p class="fragment p-center" data-fragment-index="{{3+$index}}">{{retailer.score}}</p></td>
               </tr>
