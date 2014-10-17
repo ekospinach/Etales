@@ -33,22 +33,22 @@ var finalScoreCtrl=function($scope,$http){
             bg:"#FCD5B5"
         });
         $scope.feedBack.ffs_SuppliersAbsoluteValues.forEach(function(singleData){
-            if(singleData.supplierID!=4){
+            if(singleData.supplierID!=4&&singleData.value!=undefined){
                 suppliers[singleData.supplierID-1].data[singleData.evaluationIdx-1]=singleData.value;
             }
         });
         $scope.feedBack.ffs_RetailersAbsoluteValues.forEach(function(singleData){
-            if(singleData.retailerID!=3){
+            if(singleData.retailerID!=3&&singleData.value!=undefined){
                 retailers[singleData.retailerID-1].data[singleData.evaluationIdx-1]=singleData.value;
             }
         })
         $scope.feedBack.ffs_SuppliersFinalScore.forEach(function(singleData){
-            if(singleData.supplierID!=4){
+            if(singleData.supplierID!=4&&singleData.value!=undefined){
                 suppliers[singleData.supplierID-1].score=singleData.value;
             }
         });
         $scope.feedBack.ffs_RetailersFinalScore.forEach(function(singleData){
-            if(singleData.retailerID!=3){
+            if(singleData.retailerID!=3&&singleData.value!=undefined){
                 retailers[singleData.retailerID-1].score=singleData.value;
             }
         });
