@@ -33,267 +33,267 @@
             <tr>
                 <td colspan='8'>{{Label.getContent('Supplier')}} 1</td>
             </tr>
-            <tr class="success" ng-repeat='product1e in product1es'>
+            <tr class="success" ng-repeat='product in product1es'>
                 <td>
-                    <p class="padding-20">{{product1e.fullName}}</p>
+                    <p class="padding-20">{{product.fullName}}</p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1e.discount_MinimumVolume}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{product1e.discount_Rate}}
+                        {{product.discount_MinimumVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1e.bonus_TargetVolume}}
+                        {{(product.discount_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1e.bonus_Rate}}
+                        {{product.bonus_TargetVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1e.vnd_PaymentTerm}}
+                        {{(product.bonus_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1e.vnd_OtherCompensation}}
+                        {{product.vnd_PaymentTerm | number2}}
                     </p>
                 </td>
                 <td>
-                    <p class="text-center" ng-show="product1e.vnd_ContractHonoured=='yes'">
-                        {{product1e.vnd_ContractHonoured}}
+                    <p class="text-right">
+                        {{product.vnd_OtherCompensation | number2}}
                     </p>
-                    <p class="text-center" style='color:red' ng-show="product1e.vnd_ContractHonoured=='no'">
-                        {{product1e.vnd_ContractHonoured}}
+                </td>
+                <td>
+                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
+                        {{product.vnd_ContractHonoured}}
+                    </p>
+                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
+                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='product1h in product1hs'>
+            <tr class="danger" ng-repeat='product in product1hs'>
                 <td>
-                    <p class="padding-20">{{product1h.fullName}}</p>
+                    <p class="padding-20">{{product.fullName}}</p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1h.discount_MinimumVolume}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{product1h.discount_Rate}}
+                        {{product.discount_MinimumVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1h.bonus_TargetVolume}}
+                        {{(product.discount_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1h.bonus_Rate}}
+                        {{product.bonus_TargetVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1h.vnd_PaymentTerm}}
+                        {{(product.bonus_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product1h.vnd_OtherCompensation}}
+                        {{product.vnd_PaymentTerm | number2}}
                     </p>
                 </td>
                 <td>
-                    <p class="text-center" ng-show="product1h.vnd_ContractHonoured=='yes'">
-                        {{product1h.vnd_ContractHonoured}}
+                    <p class="text-right">
+                        {{product.vnd_OtherCompensation | number2}}
                     </p>
-                    <p class="text-center" style='color:red' ng-show="product1h.vnd_ContractHonoured=='no'">
-                        {{product1h.vnd_ContractHonoured}}
+                </td>
+                <td>
+                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
+                        {{product.vnd_ContractHonoured}}
+                    </p>
+                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
+                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
             <tr>
                 <td colspan='8'>{{Label.getContent('Supplier')}} 2</td>
             </tr>
-            <tr class="success" ng-repeat='product2e in product2es'>
+            <tr class="success" ng-repeat='product in product2es'>
                 <td>
-                    <p class="padding-20">{{product2e.fullName}}</p>
+                    <p class="padding-20">{{product.fullName}}</p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2e.discount_MinimumVolume}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{product2e.discount_Rate}}
+                        {{product.discount_MinimumVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2e.bonus_TargetVolume}}
+                        {{(product.discount_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2e.bonus_Rate}}
+                        {{product.bonus_TargetVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2e.vnd_PaymentTerm}}
+                        {{(product.bonus_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2e.vnd_OtherCompensation}}
+                        {{product.vnd_PaymentTerm | number2}}
                     </p>
                 </td>
                 <td>
-                    <p class="text-center" ng-show="product2e.vnd_ContractHonoured=='yes'">
-                        {{product2e.vnd_ContractHonoured}}
+                    <p class="text-right">
+                        {{product.vnd_OtherCompensation | number2}}
                     </p>
-                    <p class="text-center" style='color:red' ng-show="product2e.vnd_ContractHonoured=='no'">
-                        {{product2e.vnd_ContractHonoured}}
+                </td>
+                <td>
+                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
+                        {{product.vnd_ContractHonoured}}
+                    </p>
+                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
+                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='product2h in product2hs'>
+            <tr class="danger" ng-repeat='product in product2hs'>
                 <td>
-                    <p class="padding-20">{{product2h.fullName}}</p>
+                    <p class="padding-20">{{product.fullName}}</p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2h.discount_MinimumVolume}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{product2h.discount_Rate}}
+                        {{product.discount_MinimumVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2h.bonus_TargetVolume}}
+                        {{(product.discount_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2h.bonus_Rate}}
+                        {{product.bonus_TargetVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2h.vnd_PaymentTerm}}
+                        {{(product.bonus_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product2h.vnd_OtherCompensation}}
+                        {{product.vnd_PaymentTerm | number2}}
                     </p>
                 </td>
                 <td>
-                    <p class="text-center" ng-show="product2h.vnd_ContractHonoured=='yes'">
-                        {{product2h.vnd_ContractHonoured}}
+                    <p class="text-right">
+                        {{product.vnd_OtherCompensation | number2}}
                     </p>
-                    <p class="text-center" style='color:red' ng-show="product2h.vnd_ContractHonoured=='no'">
-                        {{product2h.vnd_ContractHonoured}}
+                </td>
+                <td>
+                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
+                        {{product.vnd_ContractHonoured}}
+                    </p>
+                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
+                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
             <tr>
                 <td colspan='8'>{{Label.getContent('Supplier')}} 3</td>
             </tr>
-            <tr class="success" ng-repeat='product3e in product3es'>
+            <tr class="success" ng-repeat='product in product3es'>
                 <td>
-                    <p class="padding-20">{{product3e.fullName}}</p>
+                    <p class="padding-20">{{product.fullName}}</p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3e.discount_MinimumVolume}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{product3e.discount_Rate}}
+                        {{product.discount_MinimumVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3e.bonus_TargetVolume}}
+                        {{(product.discount_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3e.bonus_Rate}}
+                        {{product.bonus_TargetVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3e.vnd_PaymentTerm}}
+                        {{(product.bonus_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3e.vnd_OtherCompensation}}
+                        {{product.vnd_PaymentTerm | number2}}
                     </p>
                 </td>
                 <td>
-                    <p class="text-center" ng-show="product3e.vnd_ContractHonoured=='yes'">
-                        {{product3e.vnd_ContractHonoured}}
+                    <p class="text-right">
+                        {{product.vnd_OtherCompensation | number2}}
                     </p>
-                    <p class="text-center" style='color:red' ng-show="product3e.vnd_ContractHonoured=='no'">
-                        {{product3e.vnd_ContractHonoured}}
+                </td>
+                <td>
+                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
+                        {{product.vnd_ContractHonoured}}
+                    </p>
+                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
+                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='product3h in product3hs'>
+            <tr class="danger" ng-repeat='product in product3hs'>
                 <td>
-                    <p class="padding-20">{{product3h.fullName}}</p>
+                    <p class="padding-20">{{product.fullName}}</p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3h.discount_MinimumVolume}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{product3h.discount_Rate}}
+                        {{product.discount_MinimumVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3h.bonus_TargetVolume}}
+                        {{(product.discount_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3h.bonus_Rate}}
+                        {{product.bonus_TargetVolume | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3h.vnd_PaymentTerm}}
+                        {{(product.bonus_Rate*100) | number2}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{product3h.vnd_OtherCompensation}}
+                        {{product.vnd_PaymentTerm | number2}}
                     </p>
                 </td>
                 <td>
-                    <p class="text-center" ng-show="product3h.vnd_ContractHonoured=='yes'">
-                        {{product3h.vnd_ContractHonoured}}
+                    <p class="text-right">
+                        {{product.vnd_OtherCompensation | number2}}
                     </p>
-                    <p class="text-center" style='color:red' ng-show="product3h.vnd_ContractHonoured=='no'">
-                        {{product3h.vnd_ContractHonoured}}
+                </td>
+                <td>
+                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
+                        {{product.vnd_ContractHonoured}}
+                    </p>
+                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
+                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
