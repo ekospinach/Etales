@@ -2,44 +2,44 @@ var finalScoreCtrl=function($scope,$http){
     var initPage=function(){
         var suppliers=new Array({
             supplierID:1,
-            data:[0,0,0,0],
+            data:[{value:0},{value:0},{value:0},{value:0}],
             score:0,
             color:"#3257A7",
             bg:"#D4DCE6"
         },{
             supplierID:2,
-            data:[0,0,0,0],
+            data:[{value:0},{value:0},{value:0},{value:0}],
             score:0,
             color:"#B11E22",
             bg:"#D69492"
         },{
             supplierID:3,
-            data:[0,0,0,0],
+            data:[{value:0},{value:0},{value:0},{value:0}],
             score:0,
             color:"#F6B920",
             bg:"#FFF2CC"
         });
         var retailers=new Array({
             retailerID:1,
-            data:[0,0,0,0],
+            data:[{value:0},{value:0},{value:0},{value:0}],
             score:0,
             color:"#8B288B",
             bg:"#DFDAE4"
         },{
             retailerID:2,
-            data:[0,0,0,0],
+            data:[{value:0},{value:0},{value:0},{value:0}],
             score:0,
             color:"#F05422",
             bg:"#FCD5B5"
         });
         $scope.feedBack.ffs_SuppliersAbsoluteValues.forEach(function(singleData){
             if(singleData.supplierID!=4&&singleData.value!=undefined){
-                suppliers[singleData.supplierID-1].data[singleData.evaluationIdx-1]=singleData.value;
+                suppliers[singleData.supplierID-1].data[singleData.evaluationIdx-1].value=singleData.value;
             }
         });
         $scope.feedBack.ffs_RetailersAbsoluteValues.forEach(function(singleData){
             if(singleData.retailerID!=3&&singleData.value!=undefined){
-                retailers[singleData.retailerID-1].data[singleData.evaluationIdx-1]=singleData.value;
+                retailers[singleData.retailerID-1].data[singleData.evaluationIdx-1].value=singleData.value;
             }
         })
         $scope.feedBack.ffs_SuppliersFinalScore.forEach(function(singleData){
