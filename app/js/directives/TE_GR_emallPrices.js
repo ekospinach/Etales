@@ -25,7 +25,7 @@ define(['directives', 'services'], function(directives) {
                             url: url,
                             //tracker: scope.loadingTracker
                         }).then(function(data) {
-                            return organiseArray(data);
+                            return organiseArray(data.data[0]);
                         }).then(function(data) {
                             scope.isResultShown = true;
                             scope.isPageLoading = false;
@@ -52,35 +52,35 @@ define(['directives', 'services'], function(directives) {
 
                     */
 
-                        for (var i = 0; i < data.data[0].categoryInfo[0].variantInfo.length; i++) {
-                            if (data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.substring(0, 1) == "E") {
-                                switch (data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.substring(data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.length - 1)) {
+                        for (var i = 0; i < data.categoryInfo[0].variantInfo.length; i++) {
+                            if (data.categoryInfo[0].variantInfo[i].parentBrandName.substring(0, 1) == "E") {
+                                switch (data.categoryInfo[0].variantInfo[i].parentBrandName.substring(data.categoryInfo[0].variantInfo[i].parentBrandName.length - 1)) {
                                     case '1':
-                                        scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+                                        scope.producer1es.push(data.categoryInfo[0].variantInfo[i]);
                                         break;
                                     case '2':
-                                        scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+                                        scope.producer2es.push(data.categoryInfo[0].variantInfo[i]);
                                         break;
                                     case '3':
-                                        scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+                                        scope.producer3es.push(data.categoryInfo[0].variantInfo[i]);
                                         break;
                                     case '4':
                                         break;
                                 }
                             }
                         }
-                        for (var i = 0; i < data.data[0].categoryInfo[1].variantInfo.length; i++) {
-                            if (data.data[0].categoryInfo[1].variantInfo[i].parentBrandName.substring(0, 1) == "H") {
+                        for (var i = 0; i < data.categoryInfo[1].variantInfo.length; i++) {
+                            if (data.categoryInfo[1].variantInfo[i].parentBrandName.substring(0, 1) == "H") {
 
-                                switch (data.data[0].categoryInfo[1].variantInfo[i].parentBrandName.substring(data.data[0].categoryInfo[1].variantInfo[i].parentBrandName.length - 1)) {
+                                switch (data.categoryInfo[1].variantInfo[i].parentBrandName.substring(data.categoryInfo[1].variantInfo[i].parentBrandName.length - 1)) {
                                     case '1':
-                                        scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
+                                        scope.producer1hs.push(data.categoryInfo[1].variantInfo[i]);
                                         break;
                                     case '2':
-                                        scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
+                                        scope.producer2hs.push(data.categoryInfo[1].variantInfo[i]);
                                         break;
                                     case '3':
-                                        scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
+                                        scope.producer3hs.push(data.categoryInfo[1].variantInfo[i]);
                                         break;
                                     case '4':
                                         break;

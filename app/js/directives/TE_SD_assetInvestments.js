@@ -88,7 +88,7 @@ define(['directives', 'services'], function(directives){
                         }).then(function(data){
                             max=data.data.productionCapacity[categoryID-1];
                             if(value<max*MaxCapacityReduction||value>max*MaxCapacityIncrease){
-                                d.resolve(Label.getContent('Input range')+':'+max*MaxCapacityReduction+'~'+max*MaxCapacityIncrease);
+                                d.resolve(Label.getContent('Input range')+':'+(Math.floor(max*MaxCapacityReduction * 100) / 100)+'~'+(Math.floor(max*MaxCapacityIncrease * 100) / 100));
                             }else{
                                 d.resolve();
                             }
@@ -111,7 +111,7 @@ define(['directives', 'services'], function(directives){
                             url:url
                         }).then(function(data){
                             if(value>data.data[0]){
-                                d.resolve(Label.getContent('Input range')+':0~'+data.data[0].toFixed(2));
+                                d.resolve(Label.getContent('Input range')+':0~'+Math.floor(data.data[0] * 100) / 100);
                             }else{
                                 d.resolve();
                             }

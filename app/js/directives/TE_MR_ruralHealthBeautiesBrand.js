@@ -19,17 +19,17 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadBrandPerceptions=function(data,category,market){
-                    for(var i=0;i<data.data[0].variantInfo.length;i++){
-                        if(category==data.data[0].variantInfo[i].parentCategoryID&&market==data.data[0].variantInfo[i].marketID){
+                    for(var i=0;i<data.variantInfo.length;i++){
+                        if(category==data.variantInfo[i].parentCategoryID&&market==data.variantInfo[i].marketID){
                             //variantInfo[].parentCompanyID decide the player
                             //quality data (variantInfo[].latestPerception[1],variantInfo[].latestPerception[0],fullName)--> use fullName to pop the info of this circle
                             //prices data (1,latestPerception[2],fullName) -->use num '1' to posit all the circle in line . and use fullName to pop the info of this circle
-                            switch(data.data[0].variantInfo[i].parentCompanyID){
-                                case 1:scope.quality1s.push([data.data[0].variantInfo[i].latestPerception[0],data.data[0].variantInfo[i].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);scope.price1s.push([1,data.data[0].variantInfo[i].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
-                                case 2:scope.quality2s.push([data.data[0].variantInfo[i].latestPerception[0],data.data[0].variantInfo[i].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);scope.price2s.push([1,data.data[0].variantInfo[i].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
-                                case 3:scope.quality3s.push([data.data[0].variantInfo[i].latestPerception[0],data.data[0].variantInfo[i].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);scope.price3s.push([1,data.data[0].variantInfo[i].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
-                                case 5:scope.quality5s.push([data.data[0].variantInfo[i].latestPerception[0],data.data[0].variantInfo[i].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);scope.price5s.push([1,data.data[0].variantInfo[i].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
-                                case 6:scope.quality6s.push([data.data[0].variantInfo[i].latestPerception[0],data.data[0].variantInfo[i].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);scope.price6s.push([1,data.data[0].variantInfo[i].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
+                            switch(data.variantInfo[i].parentCompanyID){
+                                case 1:scope.quality1s.push([data.variantInfo[i].latestPerception[0],data.variantInfo[i].latestPerception[1],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);scope.price1s.push([1,data.variantInfo[i].latestPerception[2],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);break;
+                                case 2:scope.quality2s.push([data.variantInfo[i].latestPerception[0],data.variantInfo[i].latestPerception[1],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);scope.price2s.push([1,data.variantInfo[i].latestPerception[2],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);break;
+                                case 3:scope.quality3s.push([data.variantInfo[i].latestPerception[0],data.variantInfo[i].latestPerception[1],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);scope.price3s.push([1,data.variantInfo[i].latestPerception[2],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);break;
+                                case 5:scope.quality5s.push([data.variantInfo[i].latestPerception[0],data.variantInfo[i].latestPerception[1],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);scope.price5s.push([1,data.variantInfo[i].latestPerception[2],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);break;
+                                case 6:scope.quality6s.push([data.variantInfo[i].latestPerception[0],data.variantInfo[i].latestPerception[1],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);scope.price6s.push([1,data.variantInfo[i].latestPerception[2],data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName]);break;
                             }
                         }
                     }
@@ -67,7 +67,7 @@ define(['directives', 'services'], function(directives){
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         

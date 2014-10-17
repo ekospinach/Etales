@@ -26,126 +26,143 @@ var shelfSpaceCtrl=function($scope,$http){
             }
         }
 
-        $http({
-            method:'GET',
-            url:url
-        }).then(function(data){
-            var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', actorID : 1},
-                {name:'Supplier-2',data:new Array(),color:'#B11E22', actorID : 2},
-                {name:'Supplier-3',data:new Array(),color:'#F6B920', actorID : 3},
-                //{name:'Supplier-4',data:new Array(),color:'#329444', actorID : 4},
-                {name:'Retailer-1',data:new Array(),color:'#8B288B', actorID : 5},
-                {name:'Retailer-2',data:new Array(),color:'#F05422', actorID : 6},
-                {name:'Retailer-3',data:new Array(),color:'#00AFEF', actorID : 7});
-            var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', actorID : 1},
-                {name:'Supplier-2',data:new Array(),color:'#B11E22', actorID : 2},
-                {name:'Supplier-3',data:new Array(),color:'#F6B920', actorID : 3},
-                //{name:'Supplier-4',data:new Array(),color:'#329444', actorID : 4},
-                {name:'Retailer-1',data:new Array(),color:'#8B288B', actorID : 5},
-                {name:'Retailer-2',data:new Array(),color:'#F05422', actorID : 6},
-                {name:'Retailer-3',data:new Array(),color:'#00AFEF', actorID : 7});
+        var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', actorID : 1},
+            {name:'Supplier-2',data:new Array(),color:'#B11E22', actorID : 2},
+            {name:'Supplier-3',data:new Array(),color:'#F6B920', actorID : 3},
+            //{name:'Supplier-4',data:new Array(),color:'#329444', actorID : 4},
+            {name:'Retailer-1',data:new Array(),color:'#8B288B', actorID : 5},
+            {name:'Retailer-2',data:new Array(),color:'#F05422', actorID : 6},
+            {name:'Retailer-3',data:new Array(),color:'#00AFEF', actorID : 7});
+        var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', actorID : 1},
+            {name:'Supplier-2',data:new Array(),color:'#B11E22', actorID : 2},
+            {name:'Supplier-3',data:new Array(),color:'#F6B920', actorID : 3},
+            //{name:'Supplier-4',data:new Array(),color:'#329444', actorID : 4},
+            {name:'Retailer-1',data:new Array(),color:'#8B288B', actorID : 5},
+            {name:'Retailer-2',data:new Array(),color:'#F05422', actorID : 6},
+            {name:'Retailer-3',data:new Array(),color:'#00AFEF', actorID : 7});
 
-            for(var j=0;j<currentCategories.length;j++){
-                for(var i=0;i<data.data.f_ShelfSpaceAllocation.length;i++){
-                    if(data.data.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
+        for(var j=0;j<currentCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_ShelfSpaceAllocation.length;i++){
+                if($scope.feedBack.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
 
-                        if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
+                    if($scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
 
-                            currentShelfSpaceElecssories.forEach(function(value, item, array){
-                                if(data.data.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
-                                    array[item].data.push(data.data.f_ShelfSpaceAllocation[i].value * 100);
-                                }
-                            })
+                        currentShelfSpaceElecssories.forEach(function(value, item, array){
+                            if($scope.feedBack.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+                                array[item].data.push($scope.feedBack.f_ShelfSpaceAllocation[i].value * 100);
+                            }
+                        })
 
-                        }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
-                            currentShelfSpaceHealthBeauties.forEach(function(value, item, array){
-                                if(data.data.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
-                                    array[item].data.push(data.data.f_ShelfSpaceAllocation[i].value * 100);
-                                }
-                            })
+                    }else if($scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
+                        currentShelfSpaceHealthBeauties.forEach(function(value, item, array){
+                            if($scope.feedBack.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+                                array[item].data.push($scope.feedBack.f_ShelfSpaceAllocation[i].value * 100);
+                            }
+                        })
 
-                        }
                     }
                 }
             }
-            
-            console.log(currentShelfSpaceElecssories);
+        }
+        
 
-            $scope.currentShelfSpaceElecssories = {
-                options: {
-                    title:{
-                        text:'Elecssories',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Shelf Space Allocation (%)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+        $scope.currentShelfSpaceElecssories = {
+            options: {
+                title:{
+                    text:'Elecssories',
+                    style: {
+                        'font-size':'16px'
                     }
                 },
-                series: currentShelfSpaceElecssories,
-                loading: false
-            }
-            $scope.currentShelfSpaceHealthBeauties = {
-                options: {
-                    title:{
-                        text:'HealthBeauties',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Shelf Space Allocation (%)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Shelf Space Allocation (%)',
+                        style: {
+                            'font-size':'16px'
                         }
                     },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+
+                    gridLineColor: 'transparent',
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
-                series: currentShelfSpaceHealthBeauties,
-                loading: false
-            }
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: currentShelfSpaceElecssories,
+            loading: false
+        }
+        $scope.currentShelfSpaceHealthBeauties = {
+            options: {
+                title:{
+                    text:'HealthBeauties',
+                    style: {
+                        'font-size':'16px'
+                    }
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Shelf Space Allocation (%)',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: currentShelfSpaceHealthBeauties,
+            loading: false
+        }
 
-        });
     }
-    initPage();
+    $scope.$watch('feedBack', function(newValue, oldValue){
+        if(newValue!=undefined) {
+            initPage();
+        }
+    });
 }
 

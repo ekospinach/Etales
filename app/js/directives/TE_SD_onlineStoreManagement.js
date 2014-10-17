@@ -120,7 +120,7 @@ define(['directives', 'services'], function(directives) {
                             availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
                             console.log(availableBudgetLeft);
                             if(value>availableBudgetLeft){
-                                d.resolve(Label.getContent('Input range') + ':0~' + availableBudgetLeft.toFixed(2));
+                                d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor((availableBudgetLeft * 100) / 100)));
                             }else{
                                 d.resolve();
                             }
@@ -157,7 +157,7 @@ define(['directives', 'services'], function(directives) {
                             //result=data.result;
                             var limited = data.data.result + production;
                             if (value > limited) {
-                                d.resolve(Label.getContent('Input range') + ':0~' + limited);
+                                d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor((limited * 100) / 100)));
                             } else {
 
                                 d.resolve();
@@ -166,7 +166,7 @@ define(['directives', 'services'], function(directives) {
                             //if error comes from request to /SCR-ClosingInternetInventoryVolume/...
                             var limited = production;
                             if (value > limited) {
-                                d.resolve(Label.getContent('Input range') + ':0~' + limited);
+                                d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor((limited * 100) / 100)));
                             } else {
                                 d.resolve();
                             }
@@ -239,7 +239,7 @@ define(['directives', 'services'], function(directives) {
                             })
                         }).then(function(data) {
                             if (value > data.data.MaxOnlinePriceVsCost * scope.currentUnitCost || value < data.data.MinOnlinePriceVsCost * scope.currentUnitCost) {
-                                d.resolve(Label.getContent('Input range') + ':' + data.data.MinOnlinePriceVsCost * scope.currentUnitCost + '~' + data.data.MaxOnlinePriceVsCost * scope.currentUnitCost);
+                                d.resolve(Label.getContent('Input range') + ':' + (Math.floor((data.data.MinOnlinePriceVsCost * scope.currentUnitCost * 100) / 100) )+ '~' + (Math.floor((data.data.MaxOnlinePriceVsCost * scope.currentUnitCost * 100) / 100)));
                             } else {
                                 d.resolve();
                             }

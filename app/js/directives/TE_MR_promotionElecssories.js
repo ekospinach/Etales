@@ -18,9 +18,9 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadPromotion=function(data,category){
-                    for(var i=0;i<data.data[0].variantInfo.length;i++){
-                        if(data.data[0].variantInfo[i].parentCategoryID==category){
-                            var fullName=data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName;
+                    for(var i=0;i<data.variantInfo.length;i++){
+                        if(data.variantInfo[i].parentCategoryID==category){
+                            var fullName=data.variantInfo[i].parentBrandName+data.variantInfo[i].variantName;
                             var rural1Length=rural1Depth=urban1Length=urban1Depth=rural2Length=rural2Depth=urban2Length=urban2Depth=0;
                             
                             //depth=variantInfo[].accountInfo[retailerID-1].promoRate[catrgoryID-1]
@@ -29,36 +29,36 @@ define(['directives', 'services'], function(directives){
                             //player 1 2 3 -->supplier
                             //player 5 6 -->retailer
 
-                            if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
-                                if(data.data[0].variantInfo[i].accountInfo[0].promoRate[1]!=0){
-                                    rural1Depth=(data.data[0].variantInfo[i].accountInfo[0].promoRate[1]*100).toFixed(2)+'%';
+                            if(data.variantInfo[i].accountInfo[0]!=undefined){
+                                if(data.variantInfo[i].accountInfo[0].promoRate[1]!=0){
+                                    rural1Depth=(Math.floor(data.variantInfo[i].accountInfo[0].promoRate[1]*100 * 100) / 100)+'%';
                                 }else{
-                                    rural1Depth=data.data[0].variantInfo[i].accountInfo[0].promoRate[1];
+                                    rural1Depth=data.variantInfo[i].accountInfo[0].promoRate[1];
                                 }
-                                rural1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[1];
-                                if(data.data[0].variantInfo[i].accountInfo[0].promoRate[0]!=0){
-                                    urban1Depth=(data.data[0].variantInfo[i].accountInfo[0].promoRate[0]*100).toFixed(2)+'%';
+                                rural1Length=data.variantInfo[i].accountInfo[0].promoFrequency[1];
+                                if(data.variantInfo[i].accountInfo[0].promoRate[0]!=0){
+                                    urban1Depth=(Math.floor(data.variantInfo[i].accountInfo[0].promoRate[0]*100 * 100) / 100)+'%';
                                 }else{
-                                    urban1Depth=data.data[0].variantInfo[i].accountInfo[0].promoRate[0];
+                                    urban1Depth=data.variantInfo[i].accountInfo[0].promoRate[0];
                                 }
-                                urban1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[0];
+                                urban1Length=data.variantInfo[i].accountInfo[0].promoFrequency[0];
                             }
-                            if(data.data[0].variantInfo[i].accountInfo[1]!=undefined){
-                                if(data.data[0].variantInfo[i].accountInfo[1].promoRate[1]!=0){
-                                    rural2Depth=(data.data[0].variantInfo[i].accountInfo[1].promoRate[1]*100).toFixed(2)+'%';
+                            if(data.variantInfo[i].accountInfo[1]!=undefined){
+                                if(data.variantInfo[i].accountInfo[1].promoRate[1]!=0){
+                                    rural2Depth=(Math.floor(data.variantInfo[i].accountInfo[1].promoRate[1]*100 * 100) / 100)+'%';
                                 }else{
-                                    rural1Depth=data.data[0].variantInfo[i].accountInfo[1].promoRate[1];
+                                    rural1Depth=data.variantInfo[i].accountInfo[1].promoRate[1];
                                 }
-                                rural2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[1];
-                                if(data.data[0].variantInfo[i].accountInfo[1].promoRate[0]!=0){
-                                    urban2Depth=(data.data[0].variantInfo[i].accountInfo[1].promoRate[0]*100).toFixed(2)+'%';
+                                rural2Length=data.variantInfo[i].accountInfo[1].promoFrequency[1];
+                                if(data.variantInfo[i].accountInfo[1].promoRate[0]!=0){
+                                    urban2Depth=(Math.floor(data.variantInfo[i].accountInfo[1].promoRate[0]*100 * 100) / 100)+'%';
                                 }else{
-                                    urban2Depth=data.data[0].variantInfo[i].accountInfo[1].promoRate[0];
+                                    urban2Depth=data.variantInfo[i].accountInfo[1].promoRate[0];
 
                                 }
-                                urban2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[0];
+                                urban2Length=data.variantInfo[i].accountInfo[1].promoFrequency[0];
                             }
-                            switch(data.data[0].variantInfo[i].parentCompanyID){
+                            switch(data.variantInfo[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
                                 case 2:scope.player2s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
                                 case 3:scope.player3s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
@@ -76,7 +76,7 @@ define(['directives', 'services'], function(directives){
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         

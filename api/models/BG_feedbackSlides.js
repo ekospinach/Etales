@@ -51,7 +51,7 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
     //updated by Hao, 2014, Oct, 16, FinalScore    
     ffs_SuppliersAbsoluteValues    : [evaluationSupplierScoresSchema],
-    ffs_SuppliersStandarisedValues : [evaluationSupplierScoresSchema], //       { not used in the current template }
+    ffs_SuppliersStandarisedValues : [evaluationSupplierScoresSchema], // { not used in the current template }
     ffs_SuppliersFinalScore        : [supplierInfoSchema],
     ffs_RetailersAbsoluteValues    : [evaluationRetailerScoresSchema],
     ffs_RetailersStandarisedValues : [evaluationRetailerScoresSchema], // { not used in the current template }
@@ -59,9 +59,9 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 })  
 
 // evaluation Idx:  { 1 = Incremental Market }
-//                                     { 2 = ROOB }
-//                                     { 3 = Portfolio Strength ( Suppliers ) / Relative Profitability ( Retailers }
-//                                     { 4 = Trade Strength ( Suppliers ) / Shoppers base ( Retailers ) }      
+//                  { 2 = ROOB }
+//                  { 3 = Portfolio Strength ( Suppliers ) / Relative Profitability ( Retailers }
+//                  { 4 = Trade Strength ( Suppliers ) / Shoppers base ( Retailers ) }      
 var evaluationSupplierScoresSchema = mongoose.Schema({
     supplierID : Number,
     evaluationIdx : Number, 

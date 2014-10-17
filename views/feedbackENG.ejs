@@ -25,9 +25,9 @@
     .redLetter { color    : #f26c4f;}
     .roseLetter { color   : #bd8cbf;}
     .highcharts-title{
-      font-family: "League Gothic",Impact,sans-serif;
-      text-shadow: none;
-      text-transform: uppercase;
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
     }
     .p-font{
       font-family: "League Gothic",Impact,sans-serif;
@@ -65,6 +65,116 @@
       margin-bottom:0px;
       text-align: center;
     }
+    table{
+      font-size: 16px;
+    }
+    .p-center{
+      text-align: center;
+      margin: 0;
+    }
+
+    .normal-left{
+      width: 500px;
+      height: 500px;
+      float: left;
+    }
+    .normal-sp-left{
+      width: 500px;
+      height: 450px;
+      float: left;
+    }
+    .normal-sp-right{
+      width: 500px;
+      height: 450px;
+      float: right;
+    }
+    .normal-right{
+      width: 500px;
+      height: 500px;
+      float: right;
+    }
+    .large-small{
+      width: 1024px;
+      height: 250px;
+    }
+    .large-normal{
+      width: 1024px;
+      height: 500px;
+    }
+    .small-small-left{
+      width: 500px;
+      height: 250px;
+      float: left;
+    }
+    .small-small-right{
+      width: 500px;
+      height: 250px;
+      float: right;
+    }
+    .clear-both{
+      clear: both;
+    }
+    .paddingtop-20{
+      padding-top: 20px;
+    }
+    .padding-0{
+      padding: 0;
+    }
+    .table-bordered .supplier1{
+       background-color: #D4DCE6;
+    }
+    .table-bordered .supplier2{
+       background-color: #D69492;
+    }
+    .table-bordered .supplier3{
+       background-color: #FFF2CC;
+    }
+    .table-bordered .retailer1{
+       background-color: #DFDAE4;
+    }
+    .table-bordered .retailer2{
+       background-color: #FCD5B5;
+    }
+    .table-title{
+      font-size: 26px;
+      padding: 8px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .table-bordered {
+      border-collapse:collapse;
+      font-size: 16px;
+    }
+    .table-bordered span{
+      display: inline-block;
+      height: 19px;
+      width: 19px;
+    }
+    .table-bordered p{
+      padding: 8px;
+      margin: 0;
+      line-height: 18px;
+    }
+    .table-bordered h4{
+      font-size: 26px;
+      font-family: "League Gothic",Impact,sans-serif;
+      font-variant: 
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+      border: 2px solid #000;
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > thead > tr > td {
+      border-bottom-width: 2px;
+    }
+
+
     </style>
     <!--[if lt IE 9]>
     <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
@@ -75,41 +185,43 @@
 
     <div class="reveal">
       <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides">
+      <div class="slides" ng-controller='feedBackCtrl'>
         <section>
           <h1>Feedback session</h1>
           <h3>Seminar : <%=  seminar %></h3>
           <h3>Period : <%= period %></h3>           
-          <small>Designed by <a href="http://www.hcdglobal.com">HCD Learning</a></small>            
+          <small>Designed by <a href="http://www.hcdglobal.com">HCD Learning</a></small>        
         </section>
 
         <section ng-controller="negotiationResultsCtrl">
           <section>
-            <h3><a>Negotiation Results</a> - Volume Discounts</h3>
+            <h3>{{message}}<a>Negotiation Results</a> - Volume Discounts</h3>
             <hr>
-              <highchart id="chart1" config="supplierNegotiationResults"style="width:480px;float:left;height:500px"></highchart>
-              <highchart id="chart2" config="retailerNegotiationResults" style="width:480px;float:left;height:500px"></highchart>
-            <p> </p>
+            <highchart id="chart1" config="supplierNegotiationResults" class="normal-sp-left"></highchart>
+            <highchart id="chart2" config="retailerNegotiationResults" class="normal-sp-right"></highchart>
+            <div class="clear-both paddingtop-20"></div>
             <h5>Total Volume Discounts : {{supplierNegotiationResultsTotal}} ($mln)</h5>
           </section>
           <section>
             <h3><a>Negotiation Results</a> - Performance Bonus</h3>
             <hr>
-            <highchart id="chart3" config="supplierPerformanceBonuses"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart4" config="retailerPerformanceBonuses" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart3" config="supplierPerformanceBonuses" class="normal-sp-left"></highchart>
+            <highchart id="chart4" config="retailerPerformanceBonuses" class="normal-sp-right"></highchart>
+            <div class="clear-both paddingtop-20"></div>
             <h4>Total Performance Bonuses : {{supplierPerformanceBonusesTotal}} ($mln)</h4>
           </section>
           <section>
             <h3><a>Negotiation Results</a> - Other Compensation</h3>
-            <highchart id="chart5" config="supplierOtherCompensation"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart6" config="retailerOtherCompensation" style="width:480px;float:left;height:500px"></highchart>
-            
+            <hr>
+            <highchart id="chart5" config="supplierOtherCompensation" class="normal-left"></highchart>
+            <highchart id="chart6" config="retailerOtherCompensation" class="normal-right"></highchart>
+            <div class="clear-both paddingtop-20"></div>
             <h4>Total Transaction Value of Other Compensation : {{supplierOtherCompensationTotal}} ($mln)</h4>
           </section>
           <section>
             <h3><a>Negotiation Results</a> - Terms of Payment</h3>
             <hr>
-            <highchart id="chart7" config="termsofPayment" style="height:600px;width:960px"></highchart>
+            <highchart id="chart7" config="termsofPayment" class="large-normal"></highchart>
           </section>
         </section>
 
@@ -117,26 +229,26 @@
           <section>
             <h3><span class="roseLetter">Sales</span> - Elecssories - previous</h3>
             <hr>
-            <highchart id="chart8" config="previousSalesVolumeElecssories"style="width:480px;float:left;height:500px"></highchart>
-             <highchart id="chart9" config="previousSalesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart8" config="previousSalesVolumeElecssories" class="normal-left"></highchart>
+            <highchart id="chart9" config="previousSalesValueElecssories" class="normal-right"></highchart>
           </section>          
           <section>
             <h3><span class="roseLetter">Sales</span> - Elecssories - current</h3>
             <hr>
-            <highchart id="chart10" config="currentSalesVolumeElecssories"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart11" config="currentSalesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart10" config="currentSalesVolumeElecssories" class="normal-left"></highchart>
+            <highchart id="chart11" config="currentSalesValueElecssories" class="normal-right"></highchart>
           </section>          
           <section>
             <h3><span class="roseLetter">Sales</span> - HealthBeauties - Previous</h3>
             <hr>
-            <highchart id="chart12" config="previousSalesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart13" config="previousSalesValueHealthBeauties"style="width:480px;float:right;height:500px"></highchart>
+            <highchart id="chart12" config="previousSalesVolumeHealthBeauties" class="normal-left"></highchart>
+            <highchart id="chart13" config="previousSalesValueHealthBeauties" class="normal-right"></highchart>
           </section>     
           <section>
             <h3><span class="roseLetter">Sales</span> - HealthBeauties - Current</h3>
             <hr>
-            <highchart id="chart14" config="currentSalesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart15" config="currentSalesValueHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart14" config="currentSalesVolumeHealthBeauties" class="normal-left"></highchart>
+            <highchart id="chart15" config="currentSalesValueHealthBeauties" class="normal-right"></highchart>
           </section>     
         </section>
 
@@ -144,26 +256,26 @@
           <section>
             <h3><span class="greenLetter">Market Shares</span> - Elecssories - Previous</h3>
             <hr>
-            <highchart id="chart16" config="previousSharesVolumeElecssories" style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart17" config="previousSharesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart16" config="previousSharesVolumeElecssories" class="normal-left"></highchart>
+            <highchart id="chart17" config="previousSharesValueElecssories" class="normal-right"></highchart>
           </section>          
           <section>
             <h3><span class="greenLetter">Market Shares</span> - Elecssories - Current</h3>
             <hr>
-            <highchart id="chart18" config="currentSharesVolumeElecssories"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart19" config="currentSharesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart18" config="currentSharesVolumeElecssories" class="normal-left"></highchart>
+            <highchart id="chart19" config="currentSharesValueElecssories" class="normal-right"></highchart>
           </section>          
           <section>
             <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Previous</h3>
             <hr>
-            <highchart id="chart20" config="previousSharesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart21" config="previousSharesValueHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart20" config="previousSharesVolumeHealthBeauties" class="normal-left"></highchart>
+            <highchart id="chart21" config="previousSharesValueHealthBeauties" class="normal-right"></highchart>
           </section>     
           <section>
             <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Current</h3>
             <hr>
-            <highchart id="chart22" config="currentSharesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart23" config="currentSharesValueHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart22" config="currentSharesVolumeHealthBeauties" class="normal-left"></highchart>
+            <highchart id="chart23" config="currentSharesValueHealthBeauties" class="normal-right"></highchart>
           </section>     
         </section>
 
@@ -171,66 +283,66 @@
           <section>
             <h3><span class="purpleLetter">Operating Profits</span> - Previous</h3>
             <hr>
-            <highchart id="chart240" config="previousOperatingProfits"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart250" config="previousOperatingProfitMargins"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart240" config="previousOperatingProfits" class="normal-left"></highchart>
+            <highchart id="chart250" config="previousOperatingProfitMargins" class="normal-right"></highchart>
           </section>
           <section>
             <h3><span class="purpleLetter">Net Profits</span> - Previous</h3>
             <hr>
-            <highchart id="chart241" config="previousNetProfits"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart251" config="previousNetProfitMargins"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart241" config="previousNetProfits" class="normal-left"></highchart>
+            <highchart id="chart251" config="previousNetProfitMargins" class="normal-right"></highchart>
           </section>          
           <section>
             <h3><span class="purpleLetter">Operating Profits</span> - Current</h3>
             <hr>
-            <highchart id="chart260" config="currentOperatingProfits"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart270" config="currentOperatingProfitMargins"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart260" config="currentOperatingProfits" class="normal-left"></highchart>
+            <highchart id="chart270" config="currentOperatingProfitMargins" class="normal-right"></highchart>
           </section> 
           <section>
             <h3><span class="purpleLetter">Net Profits</span> - Current</h3>
             <hr>
-            <highchart id="chart261" config="currentNetProfits"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart271" config="currentNetProfitMargins"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart261" config="currentNetProfits" class="normal-left"></highchart>
+            <highchart id="chart271" config="currentNetProfitMargins" class="normal-right"></highchart>
           </section>           
         </section>
 
         <section ng-controller="shelfSpaceCtrl">
           <h3><span class="redLetter">Shelf Space Allocation</h3>
           <hr>
-          <highchart id="chart28" config="currentShelfSpaceElecssories"style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart29" config="currentShelfSpaceHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+          <highchart id="chart28" config="currentShelfSpaceElecssories" class="normal-left"></highchart>
+            <highchart id="chart29" config="currentShelfSpaceHealthBeauties" class="normal-right"></highchart>
         </section>
 
         <section ng-controller="supplierKPIsCtrl">
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Trade Spending</h3>
             <hr>
-            <highchart id="chart30" config="tradeSpendingElecssories" style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart31" config="tradeSpendingHealthBeauties" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart30" config="tradeSpendingElecssories" class="normal-left"></highchart>
+            <highchart id="chart31" config="tradeSpendingHealthBeauties" class="normal-right"></highchart>
           </section>          
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Marketing Spending</h3>
             <hr>
-            <highchart id="chart32" config="marketingSpendingElecssories" style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart33" config="marketingSpendingHealthBeauties" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart32" config="marketingSpendingElecssories" class="normal-left"></highchart>
+            <highchart id="chart33" config="marketingSpendingHealthBeauties" class="normal-right"></highchart>
           </section>     
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Portfolio Strength</h3>
             <hr>
-            <highchart id="chart34" config="portfolioStrengthElecssories" style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart35" config="portfolioStrengthHealthBeauties" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart34" config="portfolioStrengthElecssories" class="normal-left"></highchart>
+            <highchart id="chart35" config="portfolioStrengthHealthBeauties" class="normal-right"></highchart>
           </section>     
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - B&M Channel Strength</h3>
             <hr>
-            <highchart id="chart36" config="bmChannelStrengthElecssories" style="width:960px;height:300px"></highchart>
-            <highchart id="chart37" config="bmChannelStrengthHealthBeauties" style="width:960px;height:300px"></highchart>
+            <highchart id="chart36" config="bmChannelStrengthElecssories" class="large-small"></highchart>
+            <highchart id="chart37" config="bmChannelStrengthHealthBeauties" class="large-small"></highchart>
           </section>                                           
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Online Channel Strength</h3>
             <hr>
-            <highchart id="chart38" config="onlineChannelStrengthElecssories" style="width:960px;height:300px"></highchart>
-            <highchart id="chart39" config="onlineChannelStrengthHealthBeauties" style="width:960px;height:300px"></highchart>
+            <highchart id="chart38" config="onlineChannelStrengthElecssories" class="large-small"></highchart>
+            <highchart id="chart39" config="onlineChannelStrengthHealthBeauties" class="large-small"></highchart>
           </section>                  
         </section>
 
@@ -238,28 +350,28 @@
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Rotation Index</h3>
             <hr>
-            <highchart id="chart40" config="rotationIndexSalesValueElecssories" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart41" config="rotationIndexSalesVolumeElecssories" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart42" config="rotationIndexSalesValueHealthBeauties" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart43" config="rotationIndexSalesVolumeHealthBeauties" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart40" config="rotationIndexSalesValueElecssories" class="small-small-left"></highchart>
+            <highchart id="chart41" config="rotationIndexSalesVolumeElecssories" class="small-small-right"></highchart>
+            <highchart id="chart42" config="rotationIndexSalesValueHealthBeauties" class="small-small-left"></highchart>
+            <highchart id="chart43" config="rotationIndexSalesVolumeHealthBeauties" class="small-small-right"></highchart>
           </section>          
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Previous</h3>
             <hr>
-            <highchart id="chart45" config="previousUrbanProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart44" config="previousRuralProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart45" config="previousUrbanProfitabilityIndex" class="normal-left"></highchart>
+            <highchart id="chart44" config="previousRuralProfitabilityIndex" class="normal-right"></highchart>
           </section>     
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Current</h3>
             <hr>
-            <highchart id="chart47" config="currentUrbanProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart46" config="currentRuralProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart47" config="currentUrbanProfitabilityIndex" class="normal-left"></highchart>
+            <highchart id="chart46" config="currentRuralProfitabilityIndex" class="normal-right"></highchart>
           </section>     
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Stock Cover</h3>
             <hr>
-            <highchart id="chart49" config="urbanStockCover" style="width:480px;float:left;height:500px"></highchart>
-            <highchart id="chart48" config="ruralStockCover" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart49" config="urbanStockCover" class="normal-left"></highchart>
+            <highchart id="chart48" config="ruralStockCover" class="normal-right"></highchart>
           </section>                                           
                          
         </section>
@@ -268,38 +380,108 @@
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Urban Market</h3>
             <hr>
-            <highchart id="chart50" config="E_urbanOnlineShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart51" config="E_urbanBMShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart52" config="E_urbanMixedShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart53" config="E_urbanTotalShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart50" config="E_urbanOnlineShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart51" config="E_urbanBMShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart52" config="E_urbanMixedShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart53" config="E_urbanTotalShareOfShoppers" class="small-small-right"></highchart>
           </section>
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Rural Market</h3>
             <hr>
-            <highchart id="chart54" config="E_ruralOnlineShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart55" config="E_ruralBMShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart56" config="E_ruralMixedShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart57" config="E_ruralTotalShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart54" config="E_ruralOnlineShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart55" config="E_ruralBMShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart56" config="E_ruralMixedShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart57" config="E_ruralTotalShareOfShoppers" class="small-small-right"></highchart>
           </section>
 
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Urban Market</h3>
             <hr>
-            <highchart id="chart50" config="H_urbanOnlineShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart51" config="H_urbanBMShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart52" config="H_urbanMixedShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart53" config="H_urbanTotalShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart50" config="H_urbanOnlineShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart51" config="H_urbanBMShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart52" config="H_urbanMixedShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart53" config="H_urbanTotalShareOfShoppers" class="small-small-right"></highchart>
           </section>
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Rural Market</h3>
             <hr>
-            <highchart id="chart54" config="H_ruralOnlineShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart55" config="H_ruralBMShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart56" config="H_ruralMixedShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
-            <highchart id="chart57" config="H_ruralTotalShareOfShoppers" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart54" config="H_ruralOnlineShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart55" config="H_ruralBMShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart56" config="H_ruralMixedShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart57" config="H_ruralTotalShareOfShoppers" class="small-small-right"></highchart>
           </section>          
         </section>   
 
+        <section ng-controller="finalScoreCtrl">
+          <h3><span class="orangeLetter">Final Score</h3>
+          <hr>
+          <table class="table-bordered" style="font-size:16px;margin-bottom:20px">
+            <thead>
+              <tr>
+                <th colspan="6"><p style="font-size:26px" class="p-center">Supplier Scores</p></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th style="width:10%"></th>
+                <th style="width:20%"><p class="p-center">Incremental market Share (IMS)</p></th>
+                <th style="width:20%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
+                <th style="width:20%"><p class="p-center">Portfolio Strength (PS)</p></th>
+                <th style="width:20%"><p class="p-center">Channel Strength (CS)</p></th>
+                <th style="width:10%"><p class="p-center">Final Score</p></th>
+              </tr>
+              <tr>
+                <th><p class="p-center">Weightage</p></th>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td></td>
+              </tr>
+              <tr ng-repeat='supplier in suppliers' class="{{'supplier'+supplier.supplierID}}">
+                <td><p class="p-center">
+                  <span style="background-color:{{supplier.color}};">&nbsp;</span>Supplier {{supplier.supplierID}}</p></td>
+                <td ng-repeat='d in supplier.data'>
+                  <p class="p-center">{{d}}</p>
+                </td>
+                <td><p class="fragment p-center" data-fragment-index="{{$index}}">{{supplier.score}}</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table-bordered" style="font-size:16px;margin-bottom:150px">
+            <thead>
+              <tr>
+                <th colspan="6"><p style="font-size:26px" class="p-center">Retailer Scores</p></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th style="width:10%"></th>
+                <th style="width:20%"><p class="p-center">Incremental market Share (IMS)</p></th>
+                <th style="width:20%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
+                <th style="width:20%"><p class="p-center">Relative Profitability (RP)</p></th>
+                <th style="width:20%"><p class="p-center">Shopper Base (Share of Pocket SOP)</p></th>
+                <th style="width:10%"><p class="p-center">Final Score</p></th>
+              </tr>
+              <tr>
+                <th><p class="p-center">Weightage</p></th>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">35%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td><p class="p-center">15%</p></td>
+                <td></td>
+              </tr>
+              <tr ng-repeat='retailer in retailers' class="{{'retailer'+retailer.retailerID}}">
+                <td><p class="p-center"><span style="background-color:{{retailer.color}};">&nbsp;</span>Retailer {{retailer.retailerID}}</p></td>
+                <td ng-repeat='d in retailer.data'>
+                  <p class="p-center">{{d}}</p>
+                </td>
+                <td><p class="fragment p-center" data-fragment-index="{{3+$index}}">{{retailer.score}}</p></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </section>
 
 
         <section>
@@ -318,6 +500,7 @@
     <script src="bower_components/highcharts/highcharts.js"></script>
     <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
 
+    <script src="js/feedBackAppControllers/feedBackCtrl.js"></script>
     <script src="js/feedBackAppControllers/negotiationResultsCtrl.js"></script>
     <script src="js/feedBackAppControllers/salesCtrl.js"></script>
     <script src="js/feedBackAppControllers/marketSharesCtrl.js"></script>
@@ -325,6 +508,7 @@
     <script src="js/feedBackAppControllers/shelfSpaceCtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierKPIsCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerKPIsCtrl.js"></script>
+    <script src="js/feedBackAppControllers/finalScoreCtrl.js"></script>
     <script src="js/feedBackAppControllers/shareOfShoppersCtrl.js"></script>
 
 
@@ -338,6 +522,9 @@
         progress: true,
         history: true,
         center: true,
+        width: 1024,
+        height: 768,
+        minScale:1.0,
 
         theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
         transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none

@@ -115,7 +115,7 @@ define(['directives', 'services'], function(directives){
                             url:url
                         }).then(function(data){
                             if(value>100-data.data.exclude*100){
-                                d.resolve(Label.getContent('Input range')+':0~'+(100-data.data.exclude*100).toFixed(2));
+                                d.resolve(Label.getContent('Input range')+':0~'+(Math.floor((100-data.data.exclude*100) * 100) / 100));
                             }else{
                                 d.resolve();
                             }
@@ -162,7 +162,7 @@ define(['directives', 'services'], function(directives){
                             });
                         }).then(function(data){
                             if(value>max*data.data.MaxRetailPriceVsNetBMPrice||value<data.data.MinRetailPriceVsNetBMPrice*max){
-                                d.resolve(Label.getContent('Input range')+':'+data.data.MinRetailPriceVsNetBMPrice*max+'~'+data.data.MaxRetailPriceVsNetBMPrice*max);
+                                d.resolve(Label.getContent('Input range')+':'+(Math.floor(data.data.MinRetailPriceVsNetBMPrice*max * 100) / 100)+'~'+(Math.floor(data.data.MaxRetailPriceVsNetBMPrice*max * 100) / 100));
                             }else{
                                 d.resolve();
                             }
@@ -195,7 +195,7 @@ define(['directives', 'services'], function(directives){
                         }).then(function(data){
                             if(data.data && currentUnitCost){
                                 if(value>data.data.MaxBMPriceVsCost*currentUnitCost||value<data.data.MinBMPriceVsCost*currentUnitCost){
-                                    d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost+'~'+data.data.MaxPLPriceVsCost*currentUnitCost);
+                                    d.resolve(Label.getContent('Input range')+':'+(Math.floor(data.data.MinBMPriceVsCost*currentUnitCost * 100) / 100) +'~'+(Math.floor(data.data.MaxPLPriceVsCost*currentUnitCost * 100) / 100));
                                 }else{
                                     d.resolve();
                                 }                                

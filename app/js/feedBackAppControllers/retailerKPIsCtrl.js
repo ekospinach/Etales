@@ -32,701 +32,651 @@ var retailerKPIsCtrl=function($scope,$http){
 
         var salesValueElecssories=new Array();
 
+        var rotationIndexSalesValueElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var rotationIndexSalesValueHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var rotationIndexSalesVolumeElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var rotationIndexSalesVolumeHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
 
-        $http({
-            method:'GET',
-            url:url
-        }).then(function(data){
-            var rotationIndexSalesValueElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var rotationIndexSalesValueHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var rotationIndexSalesVolumeElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var rotationIndexSalesVolumeHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var previousUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var currentUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var previousRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var currentRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var ruralStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var urbanStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var ruralShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var urbanShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
 
-            var previousUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var currentUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var previousRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var currentRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var ruralStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var urbanStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var ruralShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-            var urbanShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-
-            //rotationIndexSalesValue
-            for(var j=0;j<testCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersValueRotationIndex.length;i++){
-                    if(data.data.f_RetailersValueRotationIndex[i].period==testCategories[j]){
-                        if(data.data.f_RetailersValueRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==1){
-                                rotationIndexSalesValueElecssories[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
-                            }
-                        }else if(data.data.f_RetailersValueRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==1){
-                                rotationIndexSalesValueHealthBeauties[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
-                            }
+        //rotationIndexSalesValue
+        for(var j=0;j<testCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_RetailersValueRotationIndex.length;i++){
+                if($scope.feedBack.f_RetailersValueRotationIndex[i].period==testCategories[j]){
+                    if($scope.feedBack.f_RetailersValueRotationIndex[i].categoryID==1){
+                        if($scope.feedBack.f_RetailersValueRotationIndex[i].marketID==1){
+                            rotationIndexSalesValueElecssories[$scope.feedBack.f_RetailersValueRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersValueRotationIndex[i].value);
+                        }
+                    }else if($scope.feedBack.f_RetailersValueRotationIndex[i].categoryID==2){
+                        if($scope.feedBack.f_RetailersValueRotationIndex[i].marketID==1){
+                            rotationIndexSalesValueHealthBeauties[$scope.feedBack.f_RetailersValueRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersValueRotationIndex[i].value);
                         }
                     }
                 }
             }
-            for(var i=0;i<2;i++){
-                rotationIndexSalesValueElecssories[i].data.push('');
-                rotationIndexSalesValueHealthBeauties[i].data.push('');
-            }
-            for(var j=0;j<testCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersValueRotationIndex.length;i++){
-                    if(data.data.f_RetailersValueRotationIndex[i].period==testCategories[j]){
-                        if(data.data.f_RetailersValueRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==2){
-                                rotationIndexSalesValueElecssories[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
-                            }
-                        }else if(data.data.f_RetailersValueRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==2){
-                                rotationIndexSalesValueHealthBeauties[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
-                            }
+        }
+        for(var i=0;i<2;i++){
+            rotationIndexSalesValueElecssories[i].data.push('');
+            rotationIndexSalesValueHealthBeauties[i].data.push('');
+        }
+        for(var j=0;j<testCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_RetailersValueRotationIndex.length;i++){
+                if($scope.feedBack.f_RetailersValueRotationIndex[i].period==testCategories[j]){
+                    if($scope.feedBack.f_RetailersValueRotationIndex[i].categoryID==1){
+                        if($scope.feedBack.f_RetailersValueRotationIndex[i].marketID==2){
+                            rotationIndexSalesValueElecssories[$scope.feedBack.f_RetailersValueRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersValueRotationIndex[i].value);
+                        }
+                    }else if($scope.feedBack.f_RetailersValueRotationIndex[i].categoryID==2){
+                        if($scope.feedBack.f_RetailersValueRotationIndex[i].marketID==2){
+                            rotationIndexSalesValueHealthBeauties[$scope.feedBack.f_RetailersValueRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersValueRotationIndex[i].value);
                         }
                     }
                 }
             }
-            
-            //rotationIndexSalesVolume
-            for(var j=0;j<testCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersVolumeRotationIndex.length;i++){
-                    if(data.data.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
-                        if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==1){
-                                rotationIndexSalesVolumeElecssories[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
-                            }
-                        }else if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==1){
-                                rotationIndexSalesVolumeHealthBeauties[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
-                            }
+        }
+        
+        //rotationIndexSalesVolume
+        for(var j=0;j<testCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_RetailersVolumeRotationIndex.length;i++){
+                if($scope.feedBack.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
+                    if($scope.feedBack.f_RetailersVolumeRotationIndex[i].categoryID==1){
+                        if($scope.feedBack.f_RetailersVolumeRotationIndex[i].marketID==1){
+                            rotationIndexSalesVolumeElecssories[$scope.feedBack.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersVolumeRotationIndex[i].value);
+                        }
+                    }else if($scope.feedBack.f_RetailersVolumeRotationIndex[i].categoryID==2){
+                        if($scope.feedBack.f_RetailersVolumeRotationIndex[i].marketID==1){
+                            rotationIndexSalesVolumeHealthBeauties[$scope.feedBack.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersVolumeRotationIndex[i].value);
                         }
                     }
                 }
             }
-            for(var i=0;i<2;i++){
-                rotationIndexSalesVolumeElecssories[i].data.push('');
-                rotationIndexSalesVolumeHealthBeauties[i].data.push('');
-            }
-            for(var j=0;j<testCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersVolumeRotationIndex.length;i++){
-                    if(data.data.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
-                        if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==2){
-                                rotationIndexSalesVolumeElecssories[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
-                            }
-                        }else if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==2){
-                                rotationIndexSalesVolumeHealthBeauties[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
-                            }
+        }
+        for(var i=0;i<2;i++){
+            rotationIndexSalesVolumeElecssories[i].data.push('');
+            rotationIndexSalesVolumeHealthBeauties[i].data.push('');
+        }
+        for(var j=0;j<testCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_RetailersVolumeRotationIndex.length;i++){
+                if($scope.feedBack.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
+                    if($scope.feedBack.f_RetailersVolumeRotationIndex[i].categoryID==1){
+                        if($scope.feedBack.f_RetailersVolumeRotationIndex[i].marketID==2){
+                            rotationIndexSalesVolumeElecssories[$scope.feedBack.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersVolumeRotationIndex[i].value);
+                        }
+                    }else if($scope.feedBack.f_RetailersVolumeRotationIndex[i].categoryID==2){
+                        if($scope.feedBack.f_RetailersVolumeRotationIndex[i].marketID==2){
+                            rotationIndexSalesVolumeHealthBeauties[$scope.feedBack.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersVolumeRotationIndex[i].value);
                         }
                     }
                 }
             }
+        }
 
-            //currentProfitability Index
-            for(var j=0;j<currentCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersProfitabilityIndex.length;i++){
-                    if(data.data.f_RetailersProfitabilityIndex[i].period==currentCategories[j]){
-                        if(data.data.f_RetailersProfitabilityIndex[i].categoryID==3){
-                            if(data.data.f_RetailersProfitabilityIndex[i].marketID==1){
-                                currentUrbanProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
-                            }else if(data.data.f_RetailersProfitabilityIndex[i].marketID==2){
-                                currentRuralProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
-                            }
+        //currentProfitability Index
+        for(var j=0;j<currentCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_RetailersProfitabilityIndex.length;i++){
+                if($scope.feedBack.f_RetailersProfitabilityIndex[i].period==currentCategories[j]){
+                    if($scope.feedBack.f_RetailersProfitabilityIndex[i].categoryID==3){
+                        if($scope.feedBack.f_RetailersProfitabilityIndex[i].marketID==1){
+                            currentUrbanProfitabilityIndex[$scope.feedBack.f_RetailersProfitabilityIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersProfitabilityIndex[i].value);
+                        }else if($scope.feedBack.f_RetailersProfitabilityIndex[i].marketID==2){
+                            currentRuralProfitabilityIndex[$scope.feedBack.f_RetailersProfitabilityIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersProfitabilityIndex[i].value);
                         }
                     }
                 }
             }
-            //previousProfitability Index
-            for(var j=0;j<previousCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersProfitabilityIndex.length;i++){
-                    if(data.data.f_RetailersProfitabilityIndex[i].period==previousCategories[j]){
-                        if(data.data.f_RetailersProfitabilityIndex[i].categoryID==3){
-                            if(data.data.f_RetailersProfitabilityIndex[i].marketID==1){
-                                previousUrbanProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
-                            }else if(data.data.f_RetailersProfitabilityIndex[i].marketID==2){
-                                previousRuralProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
-                            }
+        }
+        //previousProfitability Index
+        for(var j=0;j<previousCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_RetailersProfitabilityIndex.length;i++){
+                if($scope.feedBack.f_RetailersProfitabilityIndex[i].period==previousCategories[j]){
+                    if($scope.feedBack.f_RetailersProfitabilityIndex[i].categoryID==3){
+                        if($scope.feedBack.f_RetailersProfitabilityIndex[i].marketID==1){
+                            previousUrbanProfitabilityIndex[$scope.feedBack.f_RetailersProfitabilityIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersProfitabilityIndex[i].value);
+                        }else if($scope.feedBack.f_RetailersProfitabilityIndex[i].marketID==2){
+                            previousRuralProfitabilityIndex[$scope.feedBack.f_RetailersProfitabilityIndex[i].retailerID-1].data.push($scope.feedBack.f_RetailersProfitabilityIndex[i].value);
                         }
                     }
                 }
             }
-            //Stock Cover
-            for(var j=0;j<currentCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersStocksCover.length;i++){
-                    if(data.data.f_RetailersStocksCover[i].period==currentCategories[j]){
-                        if(data.data.f_RetailersStocksCover[i].categoryID==3){
-                            if(data.data.f_RetailersStocksCover[i].marketID==1){
-                                urbanStockCover[data.data.f_RetailersStocksCover[i].retailerID-1].data.push(data.data.f_RetailersStocksCover[i].value);
-                            }else if(data.data.f_RetailersStocksCover[i].marketID==2){
-                                ruralStockCover[data.data.f_RetailersStocksCover[i].retailerID-1].data.push(data.data.f_RetailersStocksCover[i].value);
-                            }
+        }
+        //Stock Cover
+        for(var j=0;j<currentCategories.length;j++){
+            for(var i=0;i<$scope.feedBack.f_RetailersStocksCover.length;i++){
+                if($scope.feedBack.f_RetailersStocksCover[i].period==currentCategories[j]){
+                    if($scope.feedBack.f_RetailersStocksCover[i].categoryID==3){
+                        if($scope.feedBack.f_RetailersStocksCover[i].marketID==1){
+                            urbanStockCover[$scope.feedBack.f_RetailersStocksCover[i].retailerID-1].data.push($scope.feedBack.f_RetailersStocksCover[i].value);
+                        }else if($scope.feedBack.f_RetailersStocksCover[i].marketID==2){
+                            ruralStockCover[$scope.feedBack.f_RetailersStocksCover[i].retailerID-1].data.push($scope.feedBack.f_RetailersStocksCover[i].value);
                         }
                     }
                 }
             }
-
-            // //B&M Shoppers
-            // for(var j=0;j<testCategories.length;j++){
-            //     for(var i=0;i<data.data.f_RetailersBMShoppersShare.length;i++){
-            //         if(data.data.f_RetailersBMShoppersShare[i].period==testCategories[j]){
-            //             if(data.data.f_RetailersBMShoppersShare[i].categoryID==3){
-            //                 if(data.data.f_RetailersBMShoppersShare[i].marketID==2){
-            //                     ruralShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
-            //                 }else if(data.data.f_RetailersBMShoppersShare[i].marketID==1){
-            //                     urbanShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
-            // //ALL Shoppers is not ready
-            // for(var i=0;i<2;i++){
-            //     ruralShareOfShoppers[i].data.push('');
-            //     urbanShareOfShoppers[i].data.push('');
-            // }
-            // for(var j=0;j<testCategories.length;j++){
-            //     for(var i=0;i<data.data.f_RetailersAllShoppersShare.length;i++){
-            //         if(data.data.f_RetailersAllShoppersShare[i].period==testCategories[j]){
-            //             if(data.data.f_RetailersAllShoppersShare[i].categoryID==3){
-            //                 if(data.data.f_RetailersAllShoppersShare[i].marketID==2){
-            //                     ruralShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
-            //                 }else if(data.data.f_RetailersAllShoppersShare[i].marketID==1){
-            //                     urbanShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
+        }
 
 
 
-            $scope.rotationIndexSalesValueElecssories={
-                options: {
-                    xAxis: {
-                        categories: myCategories,
-                        title: {
-                            text: 'Period'
+        $scope.rotationIndexSalesValueElecssories={
+            options: {
+                xAxis: {
+                    categories: myCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
                         }
-                    },
-                    yAxis:{
-                        title: {
-                            text: '$mln'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    chart: {
-                        type: 'column',
-                        backgroundColor: 'transparent',
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    // legend: {
-                    //     layout: 'vertical',
-                    //     align: 'right',
-                    //     verticalAlign: 'middle'
-                    // },
-                    credits: {
-                        enabled: false
                     }
                 },
-                series: rotationIndexSalesValueElecssories,
-                title: {
-                    text: 'Elecssories - Sales Value'
+                yAxis:{
+                    title: {
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
                 },
-                subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
-                    useHTML:true,
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent',
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                // legend: {
+                //     layout: 'vertical',
+                //     align: 'right',
+                //     verticalAlign: 'middle'
+                // },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: rotationIndexSalesValueElecssories,
+            title: {
+                text: 'Elecssories - Sales Value',
+                style: {
+                    'font-size':'16px'
+                }
+            },
+            subtitle: {
+                text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
+                useHTML:true,
 
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        $scope.rotationIndexSalesValueHealthBeauties={
+            options: {
+                xAxis: {
+                    categories: myCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    }
+                },
+                yAxis:{
+                    title: {
+                        text: '$mln',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
+                },
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent',
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                // legend: {
+                //     layout: 'vertical',
+                //     align: 'right',
+                //     verticalAlign: 'middle'
+                // },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: rotationIndexSalesValueHealthBeauties,
+            title: {
+                text: 'HealthBeauties - Sales Value',
+                style: {
+                    'font-size':'16px'
+                }
+            },
+            subtitle: {
+                text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
+                useHTML:true,
+
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        $scope.rotationIndexSalesVolumeElecssories={
+            options: {
+                xAxis: {
+                    categories: myCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    }
+                },
+                yAxis:{
+                    title: {
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
+                },
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent',
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                // legend: {
+                //     layout: 'vertical',
+                //     align: 'right',
+                //     verticalAlign: 'middle'
+                // },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: rotationIndexSalesVolumeElecssories,
+            title: {
+                text: 'Elecssories - Sales Volume',
+                style: {
+                    'font-size':'16px'
+                }
+            },
+            subtitle: {
+                text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
+                useHTML:true,
+
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        $scope.rotationIndexSalesVolumeHealthBeauties={
+            options: {
+                xAxis: {
+                    categories: myCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    }
+                },
+                yAxis:{
+                    title: {
+                        text: 'mln units',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
+                },
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent',
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                // legend: {
+                //     layout: 'vertical',
+                //     align: 'right',
+                //     verticalAlign: 'middle'
+                // },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: rotationIndexSalesVolumeHealthBeauties,
+            title: {
+                text: 'HealthBeauties - Sales Volume',
+                style: {
+                    'font-size':'16px'
+                }
+            },
+            subtitle: {
+                text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
+                useHTML:true,
+
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        $scope.previousRuralProfitabilityIndex = {
+            options: {
+                title:{
+                    text:'Rural Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
                 },
                 credits: {
                     enabled: false
+                }
+            },
+            series: previousRuralProfitabilityIndex,
+            loading: false
+        }
+        $scope.previousUrbanProfitabilityIndex = {
+            options: {
+                title:{
+                    text:'Urban Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
-                loading: false
-            }
-            $scope.rotationIndexSalesValueHealthBeauties={
-                options: {
-                    xAxis: {
-                        categories: myCategories,
-                        title: {
-                            text: 'Period'
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
                         }
                     },
-                    yAxis:{
-                        title: {
-                            text: '$mln'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    chart: {
-                        type: 'column',
-                        backgroundColor: 'transparent',
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    // legend: {
-                    //     layout: 'vertical',
-                    //     align: 'right',
-                    //     verticalAlign: 'middle'
-                    // },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
-                series: rotationIndexSalesValueHealthBeauties,
-                title: {
-                    text: 'HealthBeauties - Sales Value'
-                },
-                subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
-                    useHTML:true,
-
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
                 },
                 credits: {
                     enabled: false
+                }
+            },
+            series: previousUrbanProfitabilityIndex,
+            loading: false
+        }
+        $scope.currentRuralProfitabilityIndex = {
+            options: {
+                title:{
+                    text:'Rural Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
-                loading: false
-            }
-            $scope.rotationIndexSalesVolumeElecssories={
-                options: {
-                    xAxis: {
-                        categories: myCategories,
-                        title: {
-                            text: 'Period'
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
                         }
                     },
-                    yAxis:{
-                        title: {
-                            text: 'mln units'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    chart: {
-                        type: 'column',
-                        backgroundColor: 'transparent',
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    // legend: {
-                    //     layout: 'vertical',
-                    //     align: 'right',
-                    //     verticalAlign: 'middle'
-                    // },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
-                series: rotationIndexSalesVolumeElecssories,
-                title: {
-                    text: 'Elecssories - Sales Volume'
-                },
-                subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
-                    useHTML:true,
-
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
                 },
                 credits: {
                     enabled: false
+                }
+            },
+            series: currentRuralProfitabilityIndex,
+            loading: false
+        }
+        $scope.currentUrbanProfitabilityIndex = {
+            options: {
+                title:{
+                    text:'Urban Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
                 },
-                loading: false
-            }
-            $scope.rotationIndexSalesVolumeHealthBeauties={
-                options: {
-                    xAxis: {
-                        categories: myCategories,
-                        title: {
-                            text: 'Period'
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Profitability Index($mln)',
+                        style: {
+                            'font-size':'16px'
                         }
                     },
-                    yAxis:{
-                        title: {
-                            text: 'mln units'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    chart: {
-                        type: 'column',
-                        backgroundColor: 'transparent',
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    // legend: {
-                    //     layout: 'vertical',
-                    //     align: 'right',
-                    //     verticalAlign: 'middle'
-                    // },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
-                series: rotationIndexSalesVolumeHealthBeauties,
-                title: {
-                    text: 'HealthBeauties - Sales Volume'
-                },
-                subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
-                    useHTML:true,
-
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
                 },
                 credits: {
                     enabled: false
-                },
-                loading: false
-            }
+                }
+            },
+            series: currentUrbanProfitabilityIndex,
+            loading: false
+        }
 
-            $scope.previousRuralProfitabilityIndex = {
-                options: {
-                    title:{
-                        text:'Rural Market',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Profitability Index($mln)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
+        $scope.urbanStockCover = {
+            options: {
+                title:{
+                    text:'Urban Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Stock Cover (in Weeks)',
+                        style: {
+                            'font-size':'16px'
                         }
                     },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
+                        }
                     }
                 },
-                series: previousRuralProfitabilityIndex,
-                loading: false
-            }
-            $scope.previousUrbanProfitabilityIndex = {
-                options: {
-                    title:{
-                        text:'Urban Market',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Stock Cover:'+this.point.y.toFixed(2)+'(in Weeks)</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Profitability Index($mln)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: urbanStockCover,
+            loading: false
+        }
+        $scope.ruralStockCover = {
+            options: {
+                title:{
+                    text:'Rural Market',
+                    style: {
+                        'font-size':'16px'
+                    }
+
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: 'Stock Cover (in Weeks)',
+                        style: {
+                            'font-size':'16px'
                         }
                     },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
-                    }
+                    gridLineColor: 'transparent'
                 },
-                series: previousUrbanProfitabilityIndex,
-                loading: false
-            }
-            $scope.currentRuralProfitabilityIndex = {
-                options: {
-                    title:{
-                        text:'Rural Market',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Profitability Index($mln)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
+                xAxis: {
+                    categories: currentCategories,
+                    title: {
+                        text: 'Period',
+                        style: {
+                            'font-size':'16px'
                         }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
                     }
                 },
-                series: currentRuralProfitabilityIndex,
-                loading: false
-            }
-            $scope.currentUrbanProfitabilityIndex = {
-                options: {
-                    title:{
-                        text:'Urban Market',
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Stock Cover:'+this.point.y.toFixed(2)+'(in Weeks)</p>';
+                        return s;
                     },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Profitability Index($mln)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
-                    }
+                    shared: false,
+                    useHTML: true
                 },
-                series: currentUrbanProfitabilityIndex,
-                loading: false
-            }
-
-            $scope.urbanStockCover = {
-                options: {
-                    title:{
-                        text:'Urban Market',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Stock Cover (in Weeks)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Stock Cover:'+this.point.y.toFixed(2)+'(in Weeks)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
-                    }
-                },
-                series: urbanStockCover,
-                loading: false
-            }
-            $scope.ruralStockCover = {
-                options: {
-                    title:{
-                        text:'Rural Market',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Stock Cover (in Weeks)'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Stock Cover:'+this.point.y.toFixed(2)+'(in Weeks)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    credits: {
-                        enabled: false
-                    }
-                },
-                series: ruralStockCover,
-                loading: false
-            }
-
-            // $scope.ruralShareOfShoppers={
-            //     options: {
-            //         xAxis: {
-            //             categories: myCategories,
-            //             title: {
-            //                 text: 'Period'
-            //             }
-            //         },
-            //         yAxis:{
-            //             title: {
-            //                 text: '%'
-            //             },
-            //             gridLineColor: 'transparent'
-            //         },
-            //         chart: {
-            //             type: 'column',
-            //             backgroundColor: 'transparent',
-            //         },
-            //         tooltip: {
-            //             formatter: function() {
-            //                 var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'('+this.point.percentage.toFixed(2)+'%)</p>';
-            //                 return s;
-            //             },
-            //             shared: false,
-            //             useHTML: true
-            //         },
-            //         plotOptions: {
-            //             series: {
-            //                 stacking: 'percent'
-            //             }
-            //         },
-            //         // legend: {
-            //         //     layout: 'vertical',
-            //         //     align: 'right',
-            //         //     verticalAlign: 'middle'
-            //         // },
-            //         credits: {
-            //             enabled: false
-            //         }
-            //     },
-            //     series: ruralShareOfShoppers,
-            //     title: {
-            //         text: 'Rural Market'
-            //     },
-            //     subtitle: {
-            //         text: '<p style="font-size:20px;float:left;" class="text-left">B&M Shoppers</p><p style="font-size:20px;float:right;" class="text-right">All Shoppers</p>',
-            //         useHTML:true,
-
-            //     },
-            //     credits: {
-            //         enabled: false
-            //     },
-            //     loading: false
-            // }
-            // $scope.urbanShareOfShoppers={
-            //     options: {
-            //         xAxis: {
-            //             categories: myCategories,
-            //             title: {
-            //                 text: 'Period'
-            //             }
-            //         },
-            //         yAxis:{
-            //             title: {
-            //                 text: '%'
-            //             },
-            //             gridLineColor: 'transparent'
-            //         },
-            //         chart: {
-            //             type: 'column',
-            //             backgroundColor: 'transparent',
-            //         },
-            //         tooltip: {
-            //             formatter: function() {
-            //                 var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'('+this.point.percentage.toFixed(2)+'%)</p>';
-            //                 return s;
-            //             },
-            //             shared: false,
-            //             useHTML: true
-            //         },
-            //         plotOptions: {
-            //             series: {
-            //                 stacking: 'percent'
-            //             }
-            //         },
-            //         // legend: {
-            //         //     layout: 'vertical',
-            //         //     align: 'right',
-            //         //     verticalAlign: 'middle'
-            //         // },
-            //         credits: {
-            //             enabled: false
-            //         }
-            //     },
-            //     series: urbanShareOfShoppers,
-            //     title: {
-            //         text: 'Urban Market'
-            //     },
-            //     subtitle: {
-            //         text: '<p style="font-size:20px;float:left;" class="text-left">B&M Shoppers</p><p style="font-size:20px;float:right;" class="text-right">All Shoppers</p>',
-            //         useHTML:true,
-
-            //     },
-            //     credits: {
-            //         enabled: false
-            //     },
-            //     loading: false
-            // }
-
-        });
+                credits: {
+                    enabled: false
+                }
+            },
+            series: ruralStockCover,
+            loading: false
+        }
     }
-    initPage();
+    $scope.$watch('feedBack', function(newValue, oldValue){
+        if(newValue!=undefined) {
+            initPage();
+        }
+    });
 }
 

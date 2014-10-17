@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalPerformanceHighlights', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
+    directives.directive('generalBrandPerspective', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
         function(Label, SeminarInfo, $http, PeriodInfo, $q) {
             return {
                 scope: {
@@ -9,7 +9,7 @@ define(['directives', 'services'], function(directives) {
                     selectedPeriod: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/GR_PerformanceHighlights.html',
+                templateUrl: '../../partials/singleReportTemplate/GR_brandPerspective.html',
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
                         scope.isPageLoading = true;
@@ -58,13 +58,18 @@ define(['directives', 'services'], function(directives) {
                                 scope.cumulativeInvestments.push({
                                     'value': data.data[0].actorInfo[i].grph_CumulativeInvestment
                                 });
-                                for (j = 0; j < data.data[0].actorInfo[i].actorCategoryInfo.length - 1; j++) {
+
+                                for (j = 0; j < 2; j++) {
                                     scope.salesVolumes.push({
+                                        'categoryID': data.data[0].actorInfo[i].actorCategoryInfo[j].categoryID,
                                         'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_SalesVolume
                                     });
                                     scope.salesValues.push({
+                                        'categoryID': data.data[0].actorInfo[i].actorCategoryInfo[j].categoryID,
                                         'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue
                                     });
+
+
                                     scope.valueShares.push({
                                         'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare
                                     });

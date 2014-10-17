@@ -59,7 +59,7 @@ define(['directives', 'services'], function(directives){
                         });
                     }).then(function(data){
                         if(parseInt(data.data.result)+parseInt(value)>max){
-                            d.resolve(Label.getContent('Input range')+':0~'+(max-parseInt(data.data.result)));
+                            d.resolve(Label.getContent('Input range')+':0~'+(Math.floor((max-parseInt(data.data.result)) * 100) / 100));
                         }else{
                             d.resolve();
                         }

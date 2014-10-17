@@ -15,7 +15,6 @@ define(['directives', 'services'], function(directives) {
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {
-                        console.log('initializePage some small...');
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
                         scope.Label = Label;
@@ -100,8 +99,9 @@ define(['directives', 'services'], function(directives) {
                             })
                         }).then(function(data) {
                         //Validation 3: input range : MaxBMPriceVsCost*unitCost ~ MinBMPriceVsCost*unitCost 
+                        
                             if (value > data.data.MaxBMPriceVsCost * scope.currentUnitCost || value < data.data.MinBMPriceVsCost * scope.currentUnitCost) {
-                                d.resolve(Label.getContent('Input range') + ':' + data.data.MinBMPriceVsCost * scope.currentUnitCost + '~' + data.data.MaxBMPriceVsCost * scope.currentUnitCost);
+                                d.resolve(Label.getContent('Input range') + ':' + (Math.floor(data.data.MinBMPriceVsCost * scope.currentUnitCost * 100) / 100) + '~' + (Math.floor(data.data.MaxBMPriceVsCost * scope.currentUnitCost * 100) / 100));
                             } else {
                                 //Validation 4: if input value < unitCost, show label "Less than current cost"
                                 // if (scope.currentUnitCost > value) {
