@@ -33,16 +33,17 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 var abMax = 0,
                     expend = 0,
                     reportExpend = 0;
+                console.log(PlayerInfo.getPlayer());
                 var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod() - 1) + '/R/' + parseInt(PlayerInfo.getPlayer());
                 $http({
                     method: 'GET',
                     url: url
                 }).then(function(data) {
-                    $scope.previousBudgetIncreaseDueToNegotiation = data.data.budgetIncreaseFromNegotiations.toFixed(2);
-                    $scope.budgetExtensions = data.data.budgetExtensions.toFixed(2);
-                    $scope.budgetSpentToDate = data.data.budgetSpentToDate.toFixed(2);
-                    $scope.initialBudget = data.data.initialBudget.toFixed(2);
-                    $scope.abMax = data.data.budgetAvailable.toFixed(2);
+                    $scope.previousBudgetIncreaseDueToNegotiation = (Math.floor(data.data.budgetIncreaseFromNegotiations * 100) / 100);
+                    $scope.budgetExtensions = (Math.floor(data.data.budgetExtensions* 100) / 100);
+                    $scope.budgetSpentToDate = (Math.floor(data.data.budgetSpentToDate* 100) / 100);
+                    $scope.initialBudget = (Math.floor(data.data.initialBudget* 100) / 100);
+                    $scope.abMax = (Math.floor(data.data.budgetAvailable* 100) / 100);
                     
                     url = "/retailerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/location/1';
                     return $http({
@@ -68,8 +69,10 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 }).then(function(data) {
                     $scope.budgetIncreaseDueToNegotiation = data.data;
 
-                    $scope.estimatedSpending = (expend + reportExpend).toFixed(2);
-                    $scope.surplusExpend = ($scope.abMax + $scope.budgetIncreaseDueToNegotiation - expend - reportExpend).toFixed(2);
+                    
+                    
+                    $scope.estimatedSpending = (Math.floor((expend + reportExpend) * 100) / 100);
+                    $scope.surplusExpend = (Math.floor(($scope.abMax + $scope.budgetIncreaseDueToNegotiation - expend - reportExpend) * 100) / 100);
 
                     //$scope.percentageExpend=($scope.abMax-expend)/$scope.abMax*100;
                     url = "/retailerShelfSpace/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/-1/0/brandName/varName';
