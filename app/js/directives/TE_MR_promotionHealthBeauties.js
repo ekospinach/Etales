@@ -29,13 +29,13 @@ define(['directives', 'services'], function(directives){
                             //player 5 6 -->retailer
                             if(data.variantInfo[i].accountInfo[0]!=undefined){
                                 if(data.variantInfo[i].accountInfo[0].promoRate[1]!=0){
-                                    rural1Depth=(data.variantInfo[i].accountInfo[0].promoRate[1]*100).toFixed(2)+'%';
+                                    rural1Depth=(Math.floor(data.variantInfo[i].accountInfo[0].promoRate[1]*100 * 100) / 100)+'%';
                                 }else{
                                     rural1Depth=data.variantInfo[i].accountInfo[0].promoRate[1];
                                 }
                                 rural1Length=data.variantInfo[i].accountInfo[0].promoFrequency[1];
                                 if(data.variantInfo[i].accountInfo[0].promoRate[0]!=0){
-                                    urban1Depth=(data.variantInfo[i].accountInfo[0].promoRate[0]*100).toFixed(2)+'%';
+                                    urban1Depth=(Math.floor(data.variantInfo[i].accountInfo[0].promoRate[0]*100 * 100) / 100)+'%';
                                 }else{
                                     urban1Depth=data.variantInfo[i].accountInfo[0].promoRate[0];
                                 }
@@ -43,13 +43,13 @@ define(['directives', 'services'], function(directives){
                             }
                             if(data.variantInfo[i].accountInfo[1]!=undefined){
                                 if(data.variantInfo[i].accountInfo[1].promoRate[1]!=0){
-                                    rural2Depth=(data.variantInfo[i].accountInfo[1].promoRate[1]*100).toFixed(2)+'%';
+                                    rural2Depth=(Math.floor(data.variantInfo[i].accountInfo[1].promoRate[1]*100 * 100) / 100)+'%';
                                 }else{
                                     rural1Depth=data.variantInfo[i].accountInfo[1].promoRate[1];
                                 }
                                 rural2Length=data.variantInfo[i].accountInfo[1].promoFrequency[1];
                                 if(data.variantInfo[i].accountInfo[1].promoRate[0]!=0){
-                                    urban2Depth=(data.variantInfo[i].accountInfo[1].promoRate[0]*100).toFixed(2)+'%';
+                                    urban2Depth=(Math.floor(data.variantInfo[i].accountInfo[1].promoRate[0]*100 * 100) / 100)+'%';
                                 }else{
                                     urban2Depth=data.variantInfo[i].accountInfo[1].promoRate[0];
 
