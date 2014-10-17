@@ -62,14 +62,14 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				}).then(function(data) {
 					//assign available budget, capacity for two categories 
 
-					$scope.abMax = (data.data.budgetAvailable).toFixed(2);
+					$scope.abMax = (Math.floor(data.data.budgetAvailable * 100) / 100);
 					$scope.acEleMax = data.data.productionCapacity[0];
 					$scope.acHeaMax = data.data.productionCapacity[1];
 
-					$scope.initialBudget = (data.data.initialBudget).toFixed(2);
-					$scope.budgetExtensions = (data.data.budgetExtensions).toFixed(2);
-					$scope.totalPreviousMarketing = (data.data.totalPreviousMarketing).toFixed(2);
-					$scope.totalPreviousTradeSupport = (data.data.totalPreviousTradeSupport).toFixed(2);
+					$scope.initialBudget = (Math.floor(data.data.initialBudget * 100) / 100);
+					$scope.budgetExtensions = (Math.floor(data.data.budgetExtensions * 100) / 100);
+					$scope.totalPreviousMarketing = (Math.floor(data.data.totalPreviousMarketing * 100) / 100);
+					$scope.totalPreviousTradeSupport = (Math.floor(data.data.totalPreviousTradeSupport * 100) / 100);
 
 
 					
@@ -96,15 +96,16 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					reportExpend = data.data.result;
-					$scope.estimatedSpending = -(productExpend + ContractExpend + reportExpend).toFixed(2);
-					$scope.surplusExpend = ($scope.abMax - productExpend - ContractExpend - reportExpend).toFixed(2);
+
+					$scope.estimatedSpending = -(Math.floor((productExpend + ContractExpend + reportExpend) * 100) / 100);
+					$scope.surplusExpend = (Math.floor(($scope.abMax - productExpend - ContractExpend - reportExpend) * 100) / 100);
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',
 						url: url
 					});
 				}).then(function(data) {
-					$scope.eleSurplusProduction = ($scope.acEleMax - data.data.result).toFixed(2);
+					$scope.eleSurplusProduction = (Math.floor(($scope.acEleMax - data.data.result) * 100) / 100);
 
 					//get production capacity left = $scope.eleSurplusProduction (Health Beauties)
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/HName/varName';
@@ -113,7 +114,8 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 						url: url
 					});
 				}).then(function(data) {
-					$scope.heaSurplusProduction = ($scope.acHeaMax - data.data.result).toFixed(2);
+
+					$scope.heaSurplusProduction = (Math.floor(($scope.acHeaMax - data.data.result) * 100) / 100);
 
 					return $http({
                         method:'GET',
@@ -127,14 +129,16 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                         url:'/producerMarketingSpending/'+SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + PlayerInfo.getPlayer()
                     });
                 }).then(function(data){
-					$scope.totalCurrentMarketing = (data.data.result).toFixed(2);
+
+					$scope.totalCurrentMarketing = (Math.floor(data.data.result * 100) / 100);
 
 					return $http({
                         method:'GET',
                         url:'/producerTradeSupportSpending/'+SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + PlayerInfo.getPlayer()
                     });
                 }).then(function(data){
-					$scope.totalCurrentTradeSupport = (data.data.result).toFixed(2);
+                	
+					$scope.totalCurrentTradeSupport = (Math.floor(data.data.result * 100) / 100);
 
                 }, function() {
 					console.log('fail');
