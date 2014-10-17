@@ -46,11 +46,74 @@
                     </a>
                     <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.investInProductionFlexibility || 0 }}</p>
                 </td>
-                <td>
+                <td ng-show='category.categoryID==1'>
                     <a href="#" editable-text="category.investInDesign" ng-show='!isDecisionCommitted' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInDesign',$index)">
                         <p class="text-right">{{ category.investInDesign || 0 }}</p>
                     </a>
                     <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.investInDesign || 0 }}</p>
+                </td>
+                <td ng-show='category.categoryID==2'>
+                    <p class="text-right">/</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class='panel panel-success my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center text-muted">
+            {{Label.getContent('Reference Information')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th style="width:50%"></th>
+                <th style="width:25%">
+                    <p class="text-center text-muted">{{Label.getContent('Elecssories')}}</p>
+                </th>
+                <th style="width:25%">
+                    <p class="text-center text-muted">{{Label.getContent('HealthBeauties')}}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p class="text-muted">{{Label.getContent('Increase in Technology by 1 level')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">140 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">250 mln$</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-muted">{{Label.getContent('Increase in Production Flexibility by 1%')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">3 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">5 mln$</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-muted">{{Label.getContent('Increase in Design by 1 level')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">140 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">/</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p class="text-muted">{{Label.getContent('Reference Information Info')}}</p>
                 </td>
             </tr>
         </tbody>

@@ -356,6 +356,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   position : relative;
 }
 .normal-size{
-  width: 45%;
+  width: 500px;
   margin-right: 50px;
 }

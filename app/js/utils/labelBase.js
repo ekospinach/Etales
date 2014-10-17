@@ -1057,7 +1057,13 @@ var getLabelBase = function(){
 		/*or*/
 		{id:'Sales Volumes',  ENG:'Sales Volumes',  CHN:'销售量',  RUS:''},		
 		{id:'Sales Values',  ENG:'Sales Values',  CHN:'销售额',  RUS:''},		
-
+		
+		/*Reference Information*/
+		{id:'Reference Information',  ENG:'Reference Information',  CHN:'参考信息',  RUS:''},		
+		{id:'Increase in Technology by 1 level',  ENG:'Increase in Technology by 1 level',  CHN:'参考信息1',  RUS:''},		
+		{id:'Increase in Production Flexibility by 1%',  ENG:'Increase in Production Flexibility by 1%',  CHN:'参考信息2',  RUS:''},		
+		{id:'Increase in Design by 1 level',  ENG:'Increase in Design by 1 level',  CHN:'参考信息3',  RUS:''},	
+		{id:'Reference Information Info',  ENG:'In all cases, small increases can be achieved with lower than average investments. At the same time, major increases will prove substantially higher above average.',  CHN:'参考信息介绍',  RUS:''},		
 
 	]
 }
