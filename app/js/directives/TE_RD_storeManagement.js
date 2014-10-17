@@ -114,8 +114,10 @@ define(['directives', 'services'], function(directives){
                             method:'GET',
                             url:url
                         }).then(function(data){
-                            if(value>100-data.data.exclude*100){
-                                d.resolve(Label.getContent('Input range')+':0~'+(Math.floor((100-data.data.exclude*100) * 100) / 100));
+                            var exclude=Math.round(data.data.exclude*100*100)/100;
+
+                            if(value>100-exclude){
+                                d.resolve(Label.getContent('Input range')+':0~'+(100-exclude));
                             }else{
                                 d.resolve();
                             }

@@ -51,7 +51,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                         url: url
                     });
                 }).then(function(data) {
-                    expend = data.data.result;
+                    expend = (Math.floor(data.data.result * 100) / 100);
 
                     url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/R/' + PlayerInfo.getPlayer();
                     return $http({
@@ -59,7 +59,8 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                         url: url
                     });
                 }).then(function(data) {
-                    reportExpend = data.data.result;
+                    reportExpend = (Math.floor(data.data.result * 100) / 100);
+
 
                     url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + PlayerInfo.getPlayer();
                     return $http({
@@ -67,7 +68,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                         url: url
                     });
                 }).then(function(data) {
-                    $scope.budgetIncreaseDueToNegotiation = data.data;
+                    $scope.budgetIncreaseDueToNegotiation = (Math.floor(data.data * 100) / 100);
 
                     
                     
@@ -87,14 +88,14 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     $scope.surplusShelf[1] = new Array();
                     $scope.percentageShelf[0] = new Array();
                     $scope.percentageShelf[1] = new Array();
-                    $scope.surplusShelf[0][0] = data.data.result[0][0];
-                    $scope.surplusShelf[0][1] = data.data.result[0][1];
-                    $scope.surplusShelf[1][0] = data.data.result[1][0];
-                    $scope.surplusShelf[1][1] = data.data.result[1][1];
-                    $scope.percentageShelf[0][0] = (1 - $scope.surplusShelf[0][0]) * 100;
-                    $scope.percentageShelf[0][1] = (1 - $scope.surplusShelf[0][1]) * 100;
-                    $scope.percentageShelf[1][0] = (1 - $scope.surplusShelf[1][0]) * 100;
-                    $scope.percentageShelf[1][1] = (1 - $scope.surplusShelf[1][1]) * 100;
+                    $scope.surplusShelf[0][0] = (Math.floor(10000*data.data.result[0][0])/10000);
+                    $scope.surplusShelf[0][1] = (Math.floor(10000*data.data.result[0][1])/10000);
+                    $scope.surplusShelf[1][0] = (Math.floor(10000*data.data.result[1][0])/10000);
+                    $scope.surplusShelf[1][1] = (Math.floor(10000*data.data.result[1][1])/10000);
+                    $scope.percentageShelf[0][0] = (Math.floor(((1 - $scope.surplusShelf[0][0]) * 100)*100)/100);
+                    $scope.percentageShelf[0][1] = (Math.floor(((1 - $scope.surplusShelf[0][1]) * 100)*100)/100);
+                    $scope.percentageShelf[1][0] = (Math.floor(((1 - $scope.surplusShelf[1][0]) * 100)*100)/100);
+                    $scope.percentageShelf[1][1] = (Math.floor(((1 - $scope.surplusShelf[1][1]) * 100)*100)/100);
                     url = '/checkRetailerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getDecisionPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
                     return $http({
                         method: 'GET',
