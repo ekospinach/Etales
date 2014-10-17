@@ -46,11 +46,14 @@
                     </a>
                     <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.investInProductionFlexibility || 0 }}</p>
                 </td>
-                <td>
+                <td ng-show='category.categoryID==1'>
                     <a href="#" editable-text="category.investInDesign" ng-show='!isDecisionCommitted' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInDesign',$index)">
                         <p class="text-right">{{ category.investInDesign || 0 }}</p>
                     </a>
                     <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.investInDesign || 0 }}</p>
+                </td>
+                <td ng-show='category.categoryID==2'>
+                    <p class="text-right">/</p>
                 </td>
             </tr>
         </tbody>
