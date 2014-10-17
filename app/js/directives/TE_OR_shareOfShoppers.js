@@ -21,13 +21,13 @@ define(['directives', 'services'], function(directives){
                 }
 
                 function newChartData(searchKeys){
-			        var chartSeries = new Array({name:Label.getContent('Supplier')+'-1',data:new Array(),color:'#3257A7'},
+			        var chartSeries = new Array({name:Label.getContent('Retailer')+'-1',data:new Array(),color:'#8B288B'},
+			                                        {name:Label.getContent('Retailer')+'-2',data:new Array(),color:'#F05422'},
+			                                        {name:Label.getContent('Traditional Trade'),data:new Array(),color:'#00AFEF'},
+			                                        {name:Label.getContent('Supplier')+'-1',data:new Array(),color:'#3257A7'},
 			                                        {name:Label.getContent('Supplier')+'-2',data:new Array(),color:'#B11E22'},
 			                                        {name:Label.getContent('Supplier')+'-3',data:new Array(),color:'#F6B920'},
-			                                        {name:Label.getContent('Supplier')+'-4',data:new Array(),color:'#329444'},
-			                                        {name:Label.getContent('Retailer')+'-1',data:new Array(),color:'#8B288B'},
-			                                        {name:Label.getContent('Retailer')+'-2',data:new Array(),color:'#F05422'},
-			                                        {name:Label.getContent('Retailer')+'-3',data:new Array(),color:'#00AFEF'});
+			                                        {name:Label.getContent('Supplier')+'-4',data:new Array(),color:'#329444'});
 
 			        return {
 			            searchKeys : {shopperKind : searchKeys.shopperKind, marketID : searchKeys.marketID, categoryID : searchKeys.categoryID},

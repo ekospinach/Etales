@@ -76,7 +76,6 @@ var getLabelBase = function(){
 		{id:'Retail Market Share (Value) Info',  ENG:'Retail Market Share (Value) Info',  CHN:'Retail Market Share (Value) Info零售商市场份额（以销售额计）信息',  RUS:''},
 		{id:'Retail Market Share (Volume) Info',  ENG:'Retail Market Share (Volume) Info',  CHN:'零售商市场份额（以销量计）信息',  RUS:''},
 		{id:'Volume Info',  ENG:'Volume Info',  CHN:'销量信息',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'Buy this Report',  ENG:'Buy this Report',  CHN:'购买此报告',  RUS:''},
 
 
