@@ -59,3 +59,63 @@
         </tbody>
     </table>
 </div>
+<div class='panel panel-success my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">
+            {{Label.getContent('Reference Information')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th style="width:60%"></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Elecssories')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('HealthBeauties')}}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p>{{Label.getContent('Increase in Technology by 1 level')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">140 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">250 mln$</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>{{Label.getContent('Increase in Production Flexibility by 1%')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">3 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">5 mln$</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>{{Label.getContent('Increase in Design by 1 level')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">140 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">/</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p>{{Label.getContent('Reference Information Info')}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
