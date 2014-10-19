@@ -59,7 +59,7 @@ Type
   TSpecsExtended           = 1..SpecsMax + 3;  { Composition + Perceived Price + alpha + beta }
   TSpecsIndices            = 1..MaxSpecsIndex;
   TStoreDimensions         = 1..StoresDimsMax;
-  TStorePerceptions        = ( PRICE, CONVENIENCE );
+  TStorePerceptions        = ( PRICE_APPEAL, CONVENIENCE );
   TTechnology              = 1..MaxTechnologyLevel;  
   TTimeSpan                = TimeStart..TimeEnd;
   TTOPIntervalIndex        = 0..IntervalsMax;  { this is used as multiplications of 15 days to cover - almost - the entire half a year }
@@ -117,7 +117,7 @@ Type
   TSegmentsShoppersData              = array[TSegmentsTotal] of TShoppersData;
   TSpecsToBasePerceptionDetails      = array[TVariantBasePerceptions, TSpecsExtended] of single;
   TStorePerceptionsData              = array[TStorePerceptions] of single;
-  TStoreAxisImportance               = array[TMarkets, TCategories, TSegments, TStorePerceptions] of single;
+  TStoreAxisImportance               = array[TMarkets, TCategories, TSegments, BMS..MIXED, TStorePerceptions] of single;
   TTechnologiesDetails               = array[TTechnology] of single;
   TVariantComposition                = array[TSpecs] of TSpecsIndices;
 

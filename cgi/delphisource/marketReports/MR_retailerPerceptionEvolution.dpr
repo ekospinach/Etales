@@ -26,15 +26,15 @@ var
     jo.I['marketID'] := marketID;
 
     jo.O['previousPerception'] := SA([]);
-    jo.A['previousPerception'].D[0] := store.mrsp_PreviousPerception[PRICE];
+    jo.A['previousPerception'].D[0] := store.mrsp_PreviousPerception[PRICE_APPEAL];
     jo.A['previousPerception'].D[1] := store.mrsp_PreviousPerception[CONVENIENCE];
 
     jo.O['latestPerception'] := SA([]);
-    jo.A['latestPerception'].D[0] := store.mrsp_latestPerception[PRICE];
+    jo.A['latestPerception'].D[0] := store.mrsp_latestPerception[PRICE_APPEAL];
     jo.A['latestPerception'].D[1] := store.mrsp_latestPerception[CONVENIENCE];
 
     jo.O['perceptionChange'] := SA([]);
-    jo.A['perceptionChange'].D[0] := store.mrsp_perceptionChange[PRICE];
+    jo.A['perceptionChange'].D[0] := store.mrsp_perceptionChange[PRICE_APPEAL];
     jo.A['perceptionChange'].D[1] := store.mrsp_perceptionChange[CONVENIENCE];
 
     result := jo;
