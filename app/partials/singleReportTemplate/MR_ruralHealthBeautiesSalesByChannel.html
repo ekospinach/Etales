@@ -61,28 +61,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer1Volume=="0.00"?0:playerTotals[0].retailer1Volume}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer1VolumeChange=="0.00"?0:playerTotals[0].retailer1VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer2Volume=="0.00"?0:playerTotals[0].retailer2Volume}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer2VolumeChange=="0.00"?0:playerTotals[0].retailer2VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer3Volume=="0.00"?0:playerTotals[0].retailer3Volume}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer3VolumeChange=="0.00"?0:playerTotals[0].retailer3VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer4Volume=="0.00"?0:playerTotals[0].retailer4Volume}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer4VolumeChange=="0.00"?0:playerTotals[0].retailer4VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player1s'>
@@ -90,28 +90,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Volume=="0.00"?0:player.retailer1Volume}}</p>
+                    <p class="text-right">{{player.retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1VolumeChange=="0.00"?0:player.retailer1VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Volume=="0.00"?0:player.retailer2Volume}}</p>
+                    <p class="text-right">{{player.retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2VolumeChange=="0.00"?0:player.retailer2VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Volume=="0.00"?0:player.retailer3Volume}}</p>
+                    <p class="text-right">{{player.retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3VolumeChange=="0.00"?0:player.retailer3VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Volume=="0.00"?0:player.retailer4Volume}}</p>
+                    <p class="text-right">{{player.retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4VolumeChange=="0.00"?0:player.retailer4VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
 
@@ -125,28 +125,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer1Volume=="0.00"?0:playerTotals[1].retailer1Volume}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer1VolumeChange=="0.00"?0:playerTotals[1].retailer1VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer2Volume=="0.00"?0:playerTotals[1].retailer2Volume}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer2VolumeChange=="0.00"?0:playerTotals[1].retailer2VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer3Volume=="0.00"?0:playerTotals[1].retailer3Volume}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer3VolumeChange=="0.00"?0:playerTotals[1].retailer3VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer4Volume=="0.00"?0:playerTotals[1].retailer4Volume}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer4VolumeChange=="0.00"?0:playerTotals[1].retailer4VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player2s'>
@@ -154,28 +154,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Volume=="0.00"?0:player.retailer1Volume}}</p>
+                    <p class="text-right">{{player.retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1VolumeChange=="0.00"?0:player.retailer1VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Volume=="0.00"?0:player.retailer2Volume}}</p>
+                    <p class="text-right">{{player.retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2VolumeChange=="0.00"?0:player.retailer2VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Volume=="0.00"?0:player.retailer3Volume}}</p>
+                    <p class="text-right">{{player.retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3VolumeChange=="0.00"?0:player.retailer3VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Volume=="0.00"?0:player.retailer4Volume}}</p>
+                    <p class="text-right">{{player.retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4VolumeChange=="0.00"?0:player.retailer4VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -188,28 +188,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer1Volume=="0.00"?0:playerTotals[2].retailer1Volume}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer1VolumeChange=="0.00"?0:playerTotals[2].retailer1VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer2Volume=="0.00"?0:playerTotals[2].retailer2Volume}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer2VolumeChange=="0.00"?0:playerTotals[2].retailer2VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer3Volume=="0.00"?0:playerTotals[2].retailer3Volume}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer3VolumeChange=="0.00"?0:playerTotals[2].retailer3VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer4Volume=="0.00"?0:playerTotals[2].retailer4Volume}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer4VolumeChange=="0.00"?0:playerTotals[2].retailer4VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player3s'>
@@ -217,28 +217,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Volume=="0.00"?0:player.retailer1Volume}}</p>
+                    <p class="text-right">{{player.retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1VolumeChange=="0.00"?0:player.retailer1VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Volume=="0.00"?0:player.retailer2Volume}}</p>
+                    <p class="text-right">{{player.retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2VolumeChange=="0.00"?0:player.retailer2VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Volume=="0.00"?0:player.retailer3Volume}}</p>
+                    <p class="text-right">{{player.retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3VolumeChange=="0.00"?0:player.retailer3VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Volume=="0.00"?0:player.retailer4Volume}}</p>
+                    <p class="text-right">{{player.retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4VolumeChange=="0.00"?0:player.retailer4VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -251,28 +251,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer1Volume=="0.00"?0:playerTotals[4].retailer1Volume}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer1VolumeChange=="0.00"?0:playerTotals[4].retailer1VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer2Volume=="0.00"?0:playerTotals[4].retailer2Volume}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer2VolumeChange=="0.00"?0:playerTotals[4].retailer2VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer3Volume=="0.00"?0:playerTotals[4].retailer3Volume}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer3VolumeChange=="0.00"?0:playerTotals[4].retailer3VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer4Volume=="0.00"?0:playerTotals[4].retailer4Volume}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer4VolumeChange=="0.00"?0:playerTotals[4].retailer4VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player5s'>
@@ -280,28 +280,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Volume=="0.00"?0:player.retailer1Volume}}</p>
+                    <p class="text-right">{{player.retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1VolumeChange=="0.00"?0:player.retailer1VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Volume=="0.00"?0:player.retailer2Volume}}</p>
+                    <p class="text-right">{{player.retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2VolumeChange=="0.00"?0:player.retailer2VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Volume=="0.00"?0:player.retailer3Volume}}</p>
+                    <p class="text-right">{{player.retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3VolumeChange=="0.00"?0:player.retailer3VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Volume=="0.00"?0:player.retailer4Volume}}</p>
+                    <p class="text-right">{{player.retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4VolumeChange=="0.00"?0:player.retailer4VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -314,28 +314,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer1Volume=="0.00"?0:playerTotals[5].retailer1Volume}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer1VolumeChange=="0.00"?0:playerTotals[5].retailer1VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer2Volume=="0.00"?0:playerTotals[5].retailer2Volume}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer2VolumeChange=="0.00"?0:playerTotals[5].retailer2VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer3Volume=="0.00"?0:playerTotals[5].retailer3Volume}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer3VolumeChange=="0.00"?0:playerTotals[5].retailer3VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer4Volume=="0.00"?0:playerTotals[5].retailer4Volume}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer4VolumeChange=="0.00"?0:playerTotals[5].retailer4VolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player6s'>
@@ -343,28 +343,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Volume=="0.00"?0:player.retailer1Volume}}</p>
+                    <p class="text-right">{{player.retailer1Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1VolumeChange=="0.00"?0:player.retailer1VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer1VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Volume=="0.00"?0:player.retailer2Volume}}</p>
+                    <p class="text-right">{{player.retailer2Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2VolumeChange=="0.00"?0:player.retailer2VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer2VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Volume=="0.00"?0:player.retailer3Volume}}</p>
+                    <p class="text-right">{{player.retailer3Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3VolumeChange=="0.00"?0:player.retailer3VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer3VolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Volume=="0.00"?0:player.retailer4Volume}}</p>
+                    <p class="text-right">{{player.retailer4Volume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4VolumeChange=="0.00"?0:player.retailer4VolumeChange}}</p>
+                    <p class="text-right">{{player.retailer4VolumeChange | number : 1 }}</p>
                 </td>
             </tr>
 
@@ -420,28 +420,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer1Value=="0.00"?0:playerTotals[0].retailer1Value}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer1ValueChange=="0.00"?0:playerTotals[0].retailer1ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer2Value=="0.00"?0:playerTotals[0].retailer2Value}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer2ValueChange=="0.00"?0:playerTotals[0].retailer2ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer3Value=="0.00"?0:playerTotals[0].retailer3Value}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer3ValueChange=="0.00"?0:playerTotals[0].retailer3ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer4Value=="0.00"?0:playerTotals[0].retailer4Value}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].retailer4ValueChange=="0.00"?0:playerTotals[0].retailer4ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[0].retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player1s'>
@@ -449,28 +449,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Value=="0.00"?0:player.retailer1Value}}</p>
+                    <p class="text-right">{{player.retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1ValueChange=="0.00"?0:player.retailer1ValueChange}}</p>
+                    <p class="text-right">{{player.retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Value=="0.00"?0:player.retailer2Value}}</p>
+                    <p class="text-right">{{player.retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2ValueChange=="0.00"?0:player.retailer2ValueChange}}</p>
+                    <p class="text-right">{{player.retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Value=="0.00"?0:player.retailer3Value}}</p>
+                    <p class="text-right">{{player.retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3ValueChange=="0.00"?0:player.retailer3ValueChange}}</p>
+                    <p class="text-right">{{player.retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Value=="0.00"?0:player.retailer4Value}}</p>
+                    <p class="text-right">{{player.retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4ValueChange=="0.00"?0:player.retailer4ValueChange}}</p>
+                    <p class="text-right">{{player.retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
 
@@ -484,28 +484,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer1Value=="0.00"?0:playerTotals[1].retailer1Value}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer1ValueChange=="0.00"?0:playerTotals[1].retailer1ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer2Value=="0.00"?0:playerTotals[1].retailer2Value}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer2ValueChange=="0.00"?0:playerTotals[1].retailer2ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer3Value=="0.00"?0:playerTotals[1].retailer3Value}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer3ValueChange=="0.00"?0:playerTotals[1].retailer3ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer4Value=="0.00"?0:playerTotals[1].retailer4Value}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].retailer4ValueChange=="0.00"?0:playerTotals[1].retailer4ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[1].retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player2s'>
@@ -513,28 +513,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Value=="0.00"?0:player.retailer1Value}}</p>
+                    <p class="text-right">{{player.retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1ValueChange=="0.00"?0:player.retailer1ValueChange}}</p>
+                    <p class="text-right">{{player.retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Value=="0.00"?0:player.retailer2Value}}</p>
+                    <p class="text-right">{{player.retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2ValueChange=="0.00"?0:player.retailer2ValueChange}}</p>
+                    <p class="text-right">{{player.retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Value=="0.00"?0:player.retailer3Value}}</p>
+                    <p class="text-right">{{player.retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3ValueChange=="0.00"?0:player.retailer3ValueChange}}</p>
+                    <p class="text-right">{{player.retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Value=="0.00"?0:player.retailer4Value}}</p>
+                    <p class="text-right">{{player.retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4ValueChange=="0.00"?0:player.retailer4ValueChange}}</p>
+                    <p class="text-right">{{player.retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -547,28 +547,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer1Value=="0.00"?0:playerTotals[2].retailer1Value}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer1ValueChange=="0.00"?0:playerTotals[2].retailer1ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer2Value=="0.00"?0:playerTotals[2].retailer2Value}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer2ValueChange=="0.00"?0:playerTotals[2].retailer2ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer3Value=="0.00"?0:playerTotals[2].retailer3Value}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer3ValueChange=="0.00"?0:playerTotals[2].retailer3ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer4Value=="0.00"?0:playerTotals[2].retailer4Value}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].retailer4ValueChange=="0.00"?0:playerTotals[2].retailer4ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[2].retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player3s'>
@@ -576,28 +576,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Value=="0.00"?0:player.retailer1Value}}</p>
+                    <p class="text-right">{{player.retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1ValueChange=="0.00"?0:player.retailer1ValueChange}}</p>
+                    <p class="text-right">{{player.retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Value=="0.00"?0:player.retailer2Value}}</p>
+                    <p class="text-right">{{player.retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2ValueChange=="0.00"?0:player.retailer2ValueChange}}</p>
+                    <p class="text-right">{{player.retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Value=="0.00"?0:player.retailer3Value}}</p>
+                    <p class="text-right">{{player.retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3ValueChange=="0.00"?0:player.retailer3ValueChange}}</p>
+                    <p class="text-right">{{player.retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Value=="0.00"?0:player.retailer4Value}}</p>
+                    <p class="text-right">{{player.retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4ValueChange=="0.00"?0:player.retailer4ValueChange}}</p>
+                    <p class="text-right">{{player.retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -610,28 +610,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer1Value=="0.00"?0:playerTotals[4].retailer1Value}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer1ValueChange=="0.00"?0:playerTotals[4].retailer1ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer2Value=="0.00"?0:playerTotals[4].retailer2Value}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer2ValueChange=="0.00"?0:playerTotals[4].retailer2ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer3Value=="0.00"?0:playerTotals[4].retailer3Value}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer3ValueChange=="0.00"?0:playerTotals[4].retailer3ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer4Value=="0.00"?0:playerTotals[4].retailer4Value}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].retailer4ValueChange=="0.00"?0:playerTotals[4].retailer4ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[4].retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player5s'>
@@ -639,28 +639,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Value=="0.00"?0:player.retailer1Value}}</p>
+                    <p class="text-right">{{player.retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1ValueChange=="0.00"?0:player.retailer1ValueChange}}</p>
+                    <p class="text-right">{{player.retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Value=="0.00"?0:player.retailer2Value}}</p>
+                    <p class="text-right">{{player.retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2ValueChange=="0.00"?0:player.retailer2ValueChange}}</p>
+                    <p class="text-right">{{player.retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Value=="0.00"?0:player.retailer3Value}}</p>
+                    <p class="text-right">{{player.retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3ValueChange=="0.00"?0:player.retailer3ValueChange}}</p>
+                    <p class="text-right">{{player.retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Value=="0.00"?0:player.retailer4Value}}</p>
+                    <p class="text-right">{{player.retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4ValueChange=="0.00"?0:player.retailer4ValueChange}}</p>
+                    <p class="text-right">{{player.retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -673,28 +673,28 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer1Value=="0.00"?0:playerTotals[5].retailer1Value}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer1ValueChange=="0.00"?0:playerTotals[5].retailer1ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer2Value=="0.00"?0:playerTotals[5].retailer2Value}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer2ValueChange=="0.00"?0:playerTotals[5].retailer2ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer3Value=="0.00"?0:playerTotals[5].retailer3Value}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer3ValueChange=="0.00"?0:playerTotals[5].retailer3ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer4Value=="0.00"?0:playerTotals[5].retailer4Value}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].retailer4ValueChange=="0.00"?0:playerTotals[5].retailer4ValueChange}}</p>
+                    <p class="text-right">{{playerTotals[5].retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player6s'>
@@ -702,28 +702,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1Value=="0.00"?0:player.retailer1Value}}</p>
+                    <p class="text-right">{{player.retailer1Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer1ValueChange=="0.00"?0:player.retailer1ValueChange}}</p>
+                    <p class="text-right">{{player.retailer1ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2Value=="0.00"?0:player.retailer2Value}}</p>
+                    <p class="text-right">{{player.retailer2Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer2ValueChange=="0.00"?0:player.retailer2ValueChange}}</p>
+                    <p class="text-right">{{player.retailer2ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3Value=="0.00"?0:player.retailer3Value}}</p>
+                    <p class="text-right">{{player.retailer3Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer3ValueChange=="0.00"?0:player.retailer3ValueChange}}</p>
+                    <p class="text-right">{{player.retailer3ValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4Value=="0.00"?0:player.retailer4Value}}</p>
+                    <p class="text-right">{{player.retailer4Value | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.retailer4ValueChange=="0.00"?0:player.retailer4ValueChange}}</p>
+                    <p class="text-right">{{player.retailer4ValueChange | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>
