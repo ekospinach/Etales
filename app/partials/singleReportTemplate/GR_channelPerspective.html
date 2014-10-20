@@ -74,7 +74,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index].salesVolume[0] | number2}}
+                        {{play.category[3*$index].salesVolume[0] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -84,7 +84,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index].salesVolume[1] | number2}}
+                        {{play.category[3*$index].salesVolume[1] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -94,7 +94,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index].salesVolume[2] | number2}}
+                        {{play.category[3*$index].salesVolume[2] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -109,7 +109,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index+1].salesVolume[0] | number2}}
+                        {{play.category[3*$index+1].salesVolume[0] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -119,7 +119,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index+1].salesVolume[1] | number2}}
+                        {{play.category[3*$index+1].salesVolume[1] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -129,7 +129,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index+1].salesVolume[2] | number2}}
+                        {{play.category[3*$index+1].salesVolume[2] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -149,7 +149,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index].salesValue[0] | number2}}
+                        {{play.category[3*$index].salesValue[0] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -159,7 +159,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index].salesValue[1] | number2}}
+                        {{play.category[3*$index].salesValue[1] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -169,7 +169,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index].salesValue[2] | number2}}
+                        {{play.category[3*$index].salesValue[2] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -184,7 +184,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index+1].salesValue[0] | number2}}
+                        {{play.category[3*$index+1].salesValue[0] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -194,7 +194,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index+1].salesValue[1] | number2}}
+                        {{play.category[3*$index+1].salesValue[1] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -204,7 +204,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index+1].salesValue[2] | number2}}
+                        {{play.category[3*$index+1].salesValue[2] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -216,7 +216,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{play.category[3*$index+2].salesValue[2] | number2}}
+                        {{play.category[3*$index+2].salesValue[2] | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -236,7 +236,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index].shareVolume[0]*100) | number2}}
+                        {{(play.category[3*$index].shareVolume[0]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -246,7 +246,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index].shareVolume[1]*100) | number2}}
+                        {{(play.category[3*$index].shareVolume[1]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -256,7 +256,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index].shareVolume[2]*100) | number2}}
+                        {{(play.category[3*$index].shareVolume[2]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -271,7 +271,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index+1].shareVolume[0]*100) | number2}}
+                        {{(play.category[3*$index+1].shareVolume[0]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -281,7 +281,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index+1].shareVolume[1]*100) | number2}}
+                        {{(play.category[3*$index+1].shareVolume[1]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -291,7 +291,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index+1].shareVolume[2]*100) | number2}}
+                        {{(play.category[3*$index+1].shareVolume[2]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -311,7 +311,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index].shareValue[0]*100) | number2}}
+                        {{(play.category[3*$index].shareValue[0]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -321,7 +321,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index].shareValue[1]*100) | number2}}
+                        {{(play.category[3*$index].shareValue[1]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -331,7 +331,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index].shareValue[2]*100) | number2}}
+                        {{(play.category[3*$index].shareValue[2]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -346,7 +346,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index+1].shareValue[0]*100) | number2}}
+                        {{(play.category[3*$index+1].shareValue[0]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -356,7 +356,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index+1].shareValue[1]*100) | number2}}
+                        {{(play.category[3*$index+1].shareValue[1]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
@@ -366,7 +366,7 @@
                 </td>
                 <td ng-repeat='play in players'>
                     <p class="text-right">
-                        {{(play.category[3*$index+1].shareValue[2]*100) | number2}}
+                        {{(play.category[3*$index+1].shareValue[2]*100) | number : 1}}
                     </p>
                 </td>
             </tr>
