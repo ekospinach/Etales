@@ -32,10 +32,10 @@
                     <p class="padding-40">{{Label.getContent('Elecssories')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0][0].value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0][0].value[1] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0][0].value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0][0].value[0] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -43,10 +43,10 @@
                     <p class="padding-40">{{Label.getContent('HealthBeauties')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1][0].value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1][0].value[1] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1][0].value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1][0].value[0] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -54,10 +54,10 @@
                     <p class="padding-20">{{Label.getContent('Value')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2][0].value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2][0].value[1] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2][0].value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2][0].value[0] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -65,10 +65,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Profitability Index Info')}}" popover-title="{{Label.getContent('Profitability Index')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Profitability Index')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2][0].value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2][0].value[1] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2][0].value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2][0].value[0] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -76,10 +76,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Stock Cover Info')}}" popover-title="{{Label.getContent('Stock Cover')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Stock Cover')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_StockCover[2][0].value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_StockCover[2][0].value[1] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_StockCover[2][0].value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{data.rcrkpi_StockCover[2][0].value[0] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -92,10 +92,10 @@
                     <p class="padding-20">{{Label.getContent('B&M Shoppers')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(BMShoppers1*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(BMShoppers1*100) | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(BMShoppers2*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(BMShoppers2*100) | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -103,10 +103,10 @@
                     <p class="padding-20">{{Label.getContent('All Shoppers')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(AllShoppers1*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(AllShoppers1*100) | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(AllShoppers2*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(AllShoppers2*100) | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>

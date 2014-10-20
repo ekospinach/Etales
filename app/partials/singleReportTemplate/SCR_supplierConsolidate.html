@@ -42,32 +42,32 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{sales[2].value[0].toFixed(2)=="0.00"?'0':sales[2].value[0].toFixed(2)}}
+                        {{sales[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{sales[0].value[0].toFixed(2)=="0.00"?'0':sales[0].value[0].toFixed(2)}}
+                        {{sales[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{sales[1].value[0].toFixed(2)=="0.00"?'0':sales[1].value[0].toFixed(2)}}
+                        {{sales[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{sales[2].value[1].toFixed(2)=="0.00"?'0':sales[2].value[1].toFixed(2)}}
+                        {{sales[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{sales[0].value[1].toFixed(2)=="0.00"?'0':sales[0].value[1].toFixed(2)}}
+                        {{sales[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{sales[1].value[1].toFixed(2)=="0.00"?'0':sales[1].value[1].toFixed(2)}}
+                        {{sales[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -77,32 +77,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{(salesChanges[2].value[0]*100).toFixed(2)=="0.00"?0:(salesChanges[2].value[0]*100).toFixed(2)}}
+                        {{(salesChanges[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesChanges[0].value[0]*100).toFixed(2)=="0.00"?0:(salesChanges[0].value[0]*100).toFixed(2)}}
+                        {{(salesChanges[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesChanges[1].value[0]*100).toFixed(2)=="0.00"?0:(salesChanges[1].value[0]*100).toFixed(2)}}
+                        {{(salesChanges[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td class="td-info">
                     <p class="text-right">
-                        {{(salesChanges[2].value[1]*100).toFixed(2)=="0.00"?0:(salesChanges[2].value[1]*100).toFixed(2)}}
+                        {{(salesChanges[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesChanges[0].value[1]*100).toFixed(2)=="0.00"?0:(salesChanges[0].value[1]*100).toFixed(2)}}
+                        {{(salesChanges[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesChanges[1].value[1]*100).toFixed(2)=="0.00"?0:(salesChanges[1].value[1]*100).toFixed(2)}}
+                        {{(salesChanges[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -112,32 +112,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{materialCosts[2].value[0].toFixed(2)=="0.00"?'0':materialCosts[2].value[0].toFixed(2)}}
+                        {{materialCosts[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{materialCosts[0].value[0].toFixed(2)=="0.00"?'0':materialCosts[0].value[0].toFixed(2)}}
+                        {{materialCosts[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{materialCosts[1].value[0].toFixed(2)=="0.00"?'0':materialCosts[1].value[0].toFixed(2)}}
+                        {{materialCosts[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{materialCosts[2].value[1].toFixed(2)=="0.00"?'0':materialCosts[2].value[1].toFixed(2)}}
+                        {{materialCosts[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{materialCosts[0].value[1].toFixed(2)=="0.00"?'0':materialCosts[0].value[1].toFixed(2)}}
+                        {{materialCosts[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{materialCosts[1].value[1].toFixed(2)=="0.00"?'0':materialCosts[1].value[1].toFixed(2)}}
+                        {{materialCosts[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -147,32 +147,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{costGoodsSolds[2].value[0].toFixed(2)=="0.00"?'0':costGoodsSolds[2].value[0].toFixed(2)}}
+                        {{costGoodsSolds[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costGoodsSolds[0].value[0].toFixed(2)=="0.00"?'0':costGoodsSolds[0].value[0].toFixed(2)}}
+                        {{costGoodsSolds[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costGoodsSolds[1].value[0].toFixed(2)=="0.00"?'0':costGoodsSolds[1].value[0].toFixed(2)}}
+                        {{costGoodsSolds[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{costGoodsSolds[2].value[1].toFixed(2)=="0.00"?'0':costGoodsSolds[2].value[1].toFixed(2)}}
+                        {{costGoodsSolds[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costGoodsSolds[0].value[1].toFixed(2)=="0.00"?'0':costGoodsSolds[0].value[1].toFixed(2)}}
+                        {{costGoodsSolds[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costGoodsSolds[1].value[1].toFixed(2)=="0.00"?'0':costGoodsSolds[1].value[1].toFixed(2)}}
+                        {{costGoodsSolds[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -182,32 +182,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{discontinuedGoodsCosts[2].value[0].toFixed(2)=="0.00"?'0':discontinuedGoodsCosts[2].value[0].toFixed(2)}}
+                        {{discontinuedGoodsCosts[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{discontinuedGoodsCosts[0].value[0].toFixed(2)=="0.00"?'0':discontinuedGoodsCosts[0].value[0].toFixed(2)}}
+                        {{discontinuedGoodsCosts[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{discontinuedGoodsCosts[1].value[0].toFixed(2)=="0.00"?'0':discontinuedGoodsCosts[1].value[0].toFixed(2)}}
+                        {{discontinuedGoodsCosts[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{discontinuedGoodsCosts[2].value[1].toFixed(2)=="0.00"?'0':discontinuedGoodsCosts[2].value[1].toFixed(2)}}
+                        {{discontinuedGoodsCosts[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{discontinuedGoodsCosts[0].value[1].toFixed(2)=="0.00"?'0':discontinuedGoodsCosts[0].value[1].toFixed(2)}}
+                        {{discontinuedGoodsCosts[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{discontinuedGoodsCosts[1].value[1].toFixed(2)=="0.00"?'0':discontinuedGoodsCosts[1].value[1].toFixed(2)}}
+                        {{discontinuedGoodsCosts[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -217,32 +217,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{holdingCosts[2].value[0].toFixed(2)=="0.00"?'0':holdingCosts[2].value[0].toFixed(2)}}
+                        {{holdingCosts[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{holdingCosts[0].value[0].toFixed(2)=="0.00"?'0':holdingCosts[0].value[0].toFixed(2)}}
+                        {{holdingCosts[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{holdingCosts[1].value[0].toFixed(2)=="0.00"?'0':holdingCosts[1].value[0].toFixed(2)}}
+                        {{holdingCosts[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{holdingCosts[2].value[1].toFixed(2)=="0.00"?'0':holdingCosts[2].value[1].toFixed(2)}}
+                        {{holdingCosts[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{holdingCosts[0].value[1].toFixed(2)=="0.00"?'0':holdingCosts[0].value[1].toFixed(2)}}
+                        {{holdingCosts[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{holdingCosts[1].value[1].toFixed(2)=="0.00"?'0':holdingCosts[1].value[1].toFixed(2)}}
+                        {{holdingCosts[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -264,17 +264,17 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{eMallCommissions[2].value[1].toFixed(2)=="0.00"?'0':eMallCommissions[2].value[1].toFixed(2)}}
+                        {{eMallCommissions[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{eMallCommissions[0].value[1].toFixed(2)=="0.00"?'0':eMallCommissions[0].value[1].toFixed(2)}}
+                        {{eMallCommissions[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{eMallCommissions[1].value[1].toFixed(2)=="0.00"?'0':eMallCommissions[1].value[1].toFixed(2)}}
+                        {{eMallCommissions[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -296,17 +296,17 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{ShippingCosts[2].value[1].toFixed(2)=="0.00"?'0':ShippingCosts[2].value[1].toFixed(2)}}
+                        {{ShippingCosts[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{ShippingCosts[0].value[1].toFixed(2)=="0.00"?'0':ShippingCosts[0].value[1].toFixed(2)}}
+                        {{ShippingCosts[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{ShippingCosts[1].value[1].toFixed(2)=="0.00"?'0':ShippingCosts[1].value[1].toFixed(2)}}
+                        {{ShippingCosts[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -317,32 +317,32 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{grossProfits[2].value[0].toFixed(2)=="0.00"?'0':grossProfits[2].value[0].toFixed(2)}}
+                        {{grossProfits[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{grossProfits[0].value[0].toFixed(2)=="0.00"?'0':grossProfits[0].value[0].toFixed(2)}}
+                        {{grossProfits[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{grossProfits[1].value[0].toFixed(2)=="0.00"?'0':grossProfits[1].value[0].toFixed(2)}}
+                        {{grossProfits[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{grossProfits[2].value[1].toFixed(2)=="0.00"?'0':grossProfits[2].value[1].toFixed(2)}}
+                        {{grossProfits[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{grossProfits[0].value[1].toFixed(2)=="0.00"?'0':grossProfits[0].value[1].toFixed(2)}}
+                        {{grossProfits[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{grossProfits[1].value[1].toFixed(2)=="0.00"?'0':grossProfits[1].value[1].toFixed(2)}}
+                        {{grossProfits[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -352,32 +352,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{(grossProfitChanges[2].value[0]*100).toFixed(2)=="0.00"?0:(grossProfitChanges[2].value[0]*100).toFixed(2)}}
+                        {{(grossProfitChanges[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitChanges[0].value[0]*100).toFixed(2)=="0.00"?0:(grossProfitChanges[0].value[0]*100).toFixed(2)}}
+                        {{(grossProfitChanges[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitChanges[1].value[0]*100).toFixed(2)=="0.00"?0:(grossProfitChanges[1].value[0]*100).toFixed(2)}}
+                        {{(grossProfitChanges[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td class="td-info">
                     <p class="text-right">
-                        {{(grossProfitChanges[2].value[1]*100).toFixed(2)=="0.00"?0:(grossProfitChanges[2].value[1]*100).toFixed(2)}}
+                        {{(grossProfitChanges[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitChanges[0].value[1]*100).toFixed(2)=="0.00"?0:(grossProfitChanges[0].value[1]*100).toFixed(2)}}
+                        {{(grossProfitChanges[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitChanges[1].value[1]*100).toFixed(2)=="0.00"?0:(grossProfitChanges[1].value[1]*100).toFixed(2)}}
+                        {{(grossProfitChanges[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -387,32 +387,32 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitMargins[2].value[0]*100).toFixed(2)=="0.00"?0:(grossProfitMargins[2].value[0]*100).toFixed(2)}}
+                        {{(grossProfitMargins[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitMargins[0].value[0]*100).toFixed(2)=="0.00"?0:(grossProfitMargins[0].value[0]*100).toFixed(2)}}
+                        {{(grossProfitMargins[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitMargins[1].value[0]*100).toFixed(2)=="0.00"?0:(grossProfitMargins[1].value[0]*100).toFixed(2)}}
+                        {{(grossProfitMargins[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td>
                     <p class="text-right">
-                        {{(grossProfitMargins[2].value[1]*100).toFixed(2)=="0.00"?0:(grossProfitMargins[2].value[1]*100).toFixed(2)}}
+                        {{(grossProfitMargins[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitMargins[0].value[1]*100).toFixed(2)=="0.00"?0:(grossProfitMargins[0].value[1]*100).toFixed(2)}}
+                        {{(grossProfitMargins[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(grossProfitMargins[1].value[1]*100).toFixed(2)=="0.00"?0:(grossProfitMargins[1].value[1]*100).toFixed(2)}}
+                        {{(grossProfitMargins[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -422,32 +422,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{expenseValues[2].value[0].toFixed(2)=="0.00"?'0':expenseValues[2].value[0].toFixed(2)}}
+                        {{expenseValues[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{expenseValues[0].value[0].toFixed(2)=="0.00"?'0':expenseValues[0].value[0].toFixed(2)}}
+                        {{expenseValues[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{expenseValues[1].value[0].toFixed(2)=="0.00"?'0':expenseValues[1].value[0].toFixed(2)}}
+                        {{expenseValues[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{expenseValues[2].value[1].toFixed(2)=="0.00"?'0':expenseValues[2].value[1].toFixed(2)}}
+                        {{expenseValues[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{expenseValues[0].value[1].toFixed(2)=="0.00"?'0':expenseValues[0].value[1].toFixed(2)}}
+                        {{expenseValues[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{expenseValues[1].value[1].toFixed(2)=="0.00"?'0':expenseValues[1].value[1].toFixed(2)}}
+                        {{expenseValues[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -457,32 +457,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{(expenseShares[2].value[0]*100).toFixed(2)=="0.00"?0:(expenseShares[2].value[0]*100).toFixed(2)}}
+                        {{(expenseShares[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(expenseShares[0].value[0]*100).toFixed(2)=="0.00"?0:(expenseShares[0].value[0]*100).toFixed(2)}}
+                        {{(expenseShares[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(expenseShares[1].value[0]*100).toFixed(2)=="0.00"?0:(expenseShares[1].value[0]*100).toFixed(2)}}
+                        {{(expenseShares[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td class="td-info">
                     <p class="text-right">
-                        {{(expenseShares[2].value[1]*100).toFixed(2)=="0.00"?0:(expenseShares[2].value[1]*100).toFixed(2)}}
+                        {{(expenseShares[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(expenseShares[0].value[1]*100).toFixed(2)=="0.00"?0:(expenseShares[0].value[1]*100).toFixed(2)}}
+                        {{(expenseShares[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(expenseShares[1].value[1]*100).toFixed(2)=="0.00"?0:(expenseShares[1].value[1]*100).toFixed(2)}}
+                        {{(expenseShares[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -492,32 +492,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{generalExpenses[2].value[0].toFixed(2)=="0.00"?'0':generalExpenses[2].value[0].toFixed(2)}}
+                        {{generalExpenses[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{generalExpenses[0].value[0].toFixed(2)=="0.00"?'0':generalExpenses[0].value[0].toFixed(2)}}
+                        {{generalExpenses[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{generalExpenses[1].value[0].toFixed(2)=="0.00"?'0':generalExpenses[1].value[0].toFixed(2)}}
+                        {{generalExpenses[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{generalExpenses[2].value[1].toFixed(2)=="0.00"?'0':generalExpenses[2].value[1].toFixed(2)}}
+                        {{generalExpenses[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{generalExpenses[0].value[1].toFixed(2)=="0.00"?'0':generalExpenses[0].value[1].toFixed(2)}}
+                        {{generalExpenses[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{generalExpenses[1].value[1].toFixed(2)=="0.00"?'0':generalExpenses[1].value[1].toFixed(2)}}
+                        {{generalExpenses[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -527,32 +527,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{amortisations[2].value[0].toFixed(2)=="0.00"?'0':amortisations[2].value[0].toFixed(2)}}
+                        {{amortisations[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{amortisations[0].value[0].toFixed(2)=="0.00"?'0':amortisations[0].value[0].toFixed(2)}}
+                        {{amortisations[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{amortisations[1].value[0].toFixed(2)=="0.00"?'0':amortisations[1].value[0].toFixed(2)}}
+                        {{amortisations[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{amortisations[2].value[1].toFixed(2)=="0.00"?'0':amortisations[2].value[1].toFixed(2)}}
+                        {{amortisations[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{amortisations[0].value[1].toFixed(2)=="0.00"?'0':amortisations[0].value[1].toFixed(2)}}
+                        {{amortisations[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{amortisations[1].value[1].toFixed(2)=="0.00"?'0':amortisations[1].value[1].toFixed(2)}}
+                        {{amortisations[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -562,32 +562,32 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{operatingProfits[2].value[0].toFixed(2)=="0.00"?'0':operatingProfits[2].value[0].toFixed(2)}}
+                        {{operatingProfits[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{operatingProfits[0].value[0].toFixed(2)=="0.00"?'0':operatingProfits[0].value[0].toFixed(2)}}
+                        {{operatingProfits[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{operatingProfits[1].value[0].toFixed(2)=="0.00"?'0':operatingProfits[1].value[0].toFixed(2)}}
+                        {{operatingProfits[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{operatingProfits[2].value[1].toFixed(2)=="0.00"?'0':operatingProfits[2].value[1].toFixed(2)}}
+                        {{operatingProfits[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{operatingProfits[0].value[1].toFixed(2)=="0.00"?'0':operatingProfits[0].value[1].toFixed(2)}}
+                        {{operatingProfits[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{operatingProfits[1].value[1].toFixed(2)=="0.00"?'0':operatingProfits[1].value[1].toFixed(2)}}
+                        {{operatingProfits[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -597,32 +597,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{(operatingProfitChanges[2].value[0]*100).toFixed(2)=="0.00"?0:(operatingProfitChanges[2].value[0]*100).toFixed(2)}}
+                        {{(operatingProfitChanges[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitChanges[0].value[0]*100).toFixed(2)=="0.00"?0:(operatingProfitChanges[0].value[0]*100).toFixed(2)}}
+                        {{(operatingProfitChanges[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitChanges[1].value[0]*100).toFixed(2)=="0.00"?0:(operatingProfitChanges[1].value[0]*100).toFixed(2)}}
+                        {{(operatingProfitChanges[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td class="td-info">
                     <p class="text-right">
-                        {{(operatingProfitChanges[2].value[1]*100).toFixed(2)=="0.00"?0:(operatingProfitChanges[2].value[1]*100).toFixed(2)}}
+                        {{(operatingProfitChanges[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitChanges[0].value[1]*100).toFixed(2)=="0.00"?0:(operatingProfitChanges[0].value[1]*100).toFixed(2)}}
+                        {{(operatingProfitChanges[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitChanges[1].value[1]*100).toFixed(2)=="0.00"?0:(operatingProfitChanges[1].value[1]*100).toFixed(2)}}
+                        {{(operatingProfitChanges[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -632,32 +632,32 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitMargins[2].value[0]*100).toFixed(2)=="0.00"?0:(operatingProfitMargins[2].value[0]*100).toFixed(2)}}
+                        {{(operatingProfitMargins[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitMargins[0].value[0]*100).toFixed(2)=="0.00"?0:(operatingProfitMargins[0].value[0]*100).toFixed(2)}}
+                        {{(operatingProfitMargins[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitMargins[1].value[0]*100).toFixed(2)=="0.00"?0:(operatingProfitMargins[1].value[0]*100).toFixed(2)}}
+                        {{(operatingProfitMargins[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td>
                     <p class="text-right">
-                        {{(operatingProfitMargins[2].value[1]*100).toFixed(2)=="0.00"?0:(operatingProfitMargins[2].value[1]*100).toFixed(2)}}
+                        {{(operatingProfitMargins[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitMargins[0].value[1]*100).toFixed(2)=="0.00"?0:(operatingProfitMargins[0].value[1]*100).toFixed(2)}}
+                        {{(operatingProfitMargins[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(operatingProfitMargins[1].value[1]*100).toFixed(2)=="0.00"?0:(operatingProfitMargins[1].value[1]*100).toFixed(2)}}
+                        {{(operatingProfitMargins[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -667,32 +667,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{interests[2].value[0].toFixed(2)=="0.00"?'0':interests[2].value[0].toFixed(2)}}
+                        {{interests[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{interests[0].value[0].toFixed(2)=="0.00"?'0':interests[0].value[0].toFixed(2)}}
+                        {{interests[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{interests[1].value[0].toFixed(2)=="0.00"?'0':interests[1].value[0].toFixed(2)}}
+                        {{interests[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{interests[2].value[1].toFixed(2)=="0.00"?'0':interests[2].value[1].toFixed(2)}}
+                        {{interests[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{interests[0].value[1].toFixed(2)=="0.00"?'0':interests[0].value[1].toFixed(2)}}
+                        {{interests[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{interests[1].value[1].toFixed(2)=="0.00"?'0':interests[1].value[1].toFixed(2)}}
+                        {{interests[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -702,32 +702,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{taxes[2].value[0].toFixed(2)=="0.00"?'0':taxes[2].value[0].toFixed(2)}}
+                        {{taxes[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{taxes[0].value[0].toFixed(2)=="0.00"?'0':taxes[0].value[0].toFixed(2)}}
+                        {{taxes[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{taxes[1].value[0].toFixed(2)=="0.00"?'0':taxes[1].value[0].toFixed(2)}}
+                        {{taxes[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{taxes[2].value[1].toFixed(2)=="0.00"?'0':taxes[2].value[1].toFixed(2)}}
+                        {{taxes[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{taxes[0].value[1].toFixed(2)=="0.00"?'0':taxes[0].value[1].toFixed(2)}}
+                        {{taxes[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{taxes[1].value[1].toFixed(2)=="0.00"?'0':taxes[1].value[1].toFixed(2)}}
+                        {{taxes[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -737,32 +737,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{costsProfits[2].value[0].toFixed(2)=="0.00"?'0':costsProfits[2].value[0].toFixed(2)}}
+                        {{costsProfits[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costsProfits[0].value[0].toFixed(2)=="0.00"?'0':costsProfits[0].value[0].toFixed(2)}}
+                        {{costsProfits[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costsProfits[1].value[0].toFixed(2)=="0.00"?'0':costsProfits[1].value[0].toFixed(2)}}
+                        {{costsProfits[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{costsProfits[2].value[1].toFixed(2)=="0.00"?'0':costsProfits[2].value[1].toFixed(2)}}
+                        {{costsProfits[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costsProfits[0].value[1].toFixed(2)=="0.00"?'0':costsProfits[0].value[1].toFixed(2)}}
+                        {{costsProfits[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costsProfits[1].value[1].toFixed(2)=="0.00"?'0':costsProfits[1].value[1].toFixed(2)}}
+                        {{costsProfits[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -772,32 +772,32 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{netProfits[2].value[0].toFixed(2)=="0.00"?'0':netProfits[2].value[0].toFixed(2)}}
+                        {{netProfits[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{netProfits[0].value[0].toFixed(2)=="0.00"?'0':netProfits[0].value[0].toFixed(2)}}
+                        {{netProfits[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{netProfits[1].value[0].toFixed(2)=="0.00"?'0':netProfits[1].value[0].toFixed(2)}}
+                        {{netProfits[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{netProfits[2].value[1].toFixed(2)=="0.00"?'0':netProfits[2].value[1].toFixed(2)}}
+                        {{netProfits[2].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{netProfits[0].value[1].toFixed(2)=="0.00"?'0':netProfits[0].value[1].toFixed(2)}}
+                        {{netProfits[0].value[1] | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{netProfits[1].value[1].toFixed(2)=="0.00"?'0':netProfits[1].value[1].toFixed(2)}}
+                        {{netProfits[1].value[1] | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -807,32 +807,32 @@
                 </td>
                 <td class="td-info">
                     <p class="text-right">
-                        {{(netProfitChanges[2].value[0]*100).toFixed(2)=="0.00"?0:(netProfitChanges[2].value[0]*100).toFixed(2)}}
+                        {{(netProfitChanges[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitChanges[0].value[0]*100).toFixed(2)=="0.00"?0:(netProfitChanges[0].value[0]*100).toFixed(2)}}
+                        {{(netProfitChanges[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitChanges[1].value[0]*100).toFixed(2)=="0.00"?0:(netProfitChanges[1].value[0]*100).toFixed(2)}}
+                        {{(netProfitChanges[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td class="td-info">
                     <p class="text-right">
-                        {{(netProfitChanges[2].value[1]*100).toFixed(2)=="0.00"?0:(netProfitChanges[2].value[1]*100).toFixed(2)}}
+                        {{(netProfitChanges[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitChanges[0].value[1]*100).toFixed(2)=="0.00"?0:(netProfitChanges[0].value[1]*100).toFixed(2)}}
+                        {{(netProfitChanges[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitChanges[1].value[1]*100).toFixed(2)=="0.00"?0:(netProfitChanges[1].value[1]*100).toFixed(2)}}
+                        {{(netProfitChanges[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
@@ -842,32 +842,32 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitMargins[2].value[0]*100).toFixed(2)=="0.00"?0:(netProfitMargins[2].value[0]*100).toFixed(2)}}
+                        {{(netProfitMargins[2].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitMargins[0].value[0]*100).toFixed(2)=="0.00"?0:(netProfitMargins[0].value[0]*100).toFixed(2)}}
+                        {{(netProfitMargins[0].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitMargins[1].value[0]*100).toFixed(2)=="0.00"?0:(netProfitMargins[1].value[0]*100).toFixed(2)}}
+                        {{(netProfitMargins[1].value[0]*100) | number : 1 }}
                     </p>
                 </td>
                  <td>
                     <p class="text-right">
-                        {{(netProfitMargins[2].value[1]*100).toFixed(2)=="0.00"?0:(netProfitMargins[2].value[1]*100).toFixed(2)}}
+                        {{(netProfitMargins[2].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitMargins[0].value[1]*100).toFixed(2)=="0.00"?0:(netProfitMargins[0].value[1]*100).toFixed(2)}}
+                        {{(netProfitMargins[0].value[1]*100) | number : 1 }}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(netProfitMargins[1].value[1]*100).toFixed(2)=="0.00"?0:(netProfitMargins[1].value[1]*100).toFixed(2)}}
+                        {{(netProfitMargins[1].value[1]*100) | number : 1 }}
                     </p>
                 </td>
             </tr>
