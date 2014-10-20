@@ -1065,5 +1065,8 @@ var getLabelBase = function(){
 		{id:'Increase in Design by 1 level',  ENG:'Increase in Design by 1 level',  CHN:'参考信息3',  RUS:''},	
 		{id:'Reference Information Info',  ENG:'In all cases, small increases can be achieved with lower than average investments. At the same time, major increases will prove substantially higher above average.',  CHN:'参考信息介绍',  RUS:''},		
 
+		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
+
+
 	]
 }
