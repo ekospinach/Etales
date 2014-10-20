@@ -10,7 +10,7 @@ define(['angular', 'services'], function (angular, services) {
 
 		.filter('number2',function(){
 		    return function(item){
-		        return Math.round(item*100)/100;
+		        return Math.round(item*10)/10;
 		    }
 		})
 		.filter('isNull',function(){
@@ -18,7 +18,7 @@ define(['angular', 'services'], function (angular, services) {
 				if(item==0||item=="0.00"){
 					return '/';
 				}else{
-					return Math.round(item*100)/100;
+					return Math.round(item*10)/10;
 				}
 			}
 		});
