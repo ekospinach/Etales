@@ -42,16 +42,16 @@
                     <p class="padding-20">{{Label.getContent('Online')}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(data[0].onlineAdvertising[0]!=0)?data[0].onlineAdvertising[0].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].onlineAdvertising[0] | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(data[0].onlineAdvertising[2]!=0)?data[0].onlineAdvertising[2].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].onlineAdvertising[2] | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(data[0].onlineAdvertising[1]!=0)?data[0].onlineAdvertising[1].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].onlineAdvertising[1] | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(data[0].onlineAdvertising[3]!=0)?data[0].onlineAdvertising[3].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].onlineAdvertising[3] | number : 1}}</p>
                 </td>
             </tr>
             <tr>
@@ -59,16 +59,16 @@
                     <p class="padding-20">{{Label.getContent('Offline')}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(data[0].offlineAdvertising[0]!=0)?data[0].offlineAdvertising[0].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].offlineAdvertising[0] | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(data[0].offlineAdvertising[2]!=0)?data[0].offlineAdvertising[2].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].offlineAdvertising[2] | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(data[0].offlineAdvertising[1]!=0)?data[0].offlineAdvertising[1].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].offlineAdvertising[1] | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(data[0].offlineAdvertising[3]!=0)?data[0].offlineAdvertising[3].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].offlineAdvertising[3] | number : 1}}</p>
                 </td>
             </tr>
             <tr>
@@ -76,16 +76,16 @@
                     <p class="padding-20">{{Label.getContent('Local')}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(data[0].localAdvertising[0]!=0)?data[0].localAdvertising[0].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].localAdvertising[0] | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(data[0].localAdvertising[2]!=0)?data[0].localAdvertising[2].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].localAdvertising[2] | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(data[0].localAdvertising[1]!=0)?data[0].localAdvertising[1].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].localAdvertising[1] | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(data[0].localAdvertising[3]!=0)?data[0].localAdvertising[3].toFixed(2):0}}</p>
+                    <p class="text-right">{{data[0].localAdvertising[3] | number : 1}}</p>
                 </td>
             </tr>
             <tr>
@@ -120,16 +120,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player2es.length>=1'>
@@ -142,16 +142,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100)  | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player3es.length>=1'>
@@ -164,16 +164,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player5es.length>=1'>
@@ -186,16 +186,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player6es.length>=1'>
@@ -208,16 +208,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player1hs.length>=1'>
@@ -230,16 +230,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player2hs.length>=1'>
@@ -252,16 +252,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player3hs.length>=1'>
@@ -274,16 +274,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player5hs.length>=1'>
@@ -296,16 +296,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr ng-show='player6hs.length>=1'>
@@ -318,16 +318,16 @@
                     <p class="padding-40">{{player.parentBrandName+player.variantName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[0]!=0)?(player.shelfSpace[0]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[0]*100) | number : 1}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(player.shelfSpace[2]!=0)?(player.shelfSpace[2]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[2]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[1]!=0)?(player.shelfSpace[1]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[1]*100) | number : 1}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(player.shelfSpace[3]!=0)?(player.shelfSpace[3]*100).toFixed(2)+'%':'/'}}</p>
+                    <p class="text-right">{{(player.shelfSpace[3]*100) | number : 1}}</p>
                 </td>
             </tr>
         </tbody>

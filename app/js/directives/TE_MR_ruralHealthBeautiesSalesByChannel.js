@@ -22,10 +22,10 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(Values!=undefined){
-                        var retailer1Value=Values.value[0].toFixed(2);
-                        var retailer2Value=Values.value[1].toFixed(2);
-                        var retailer3Value=Values.value[2].toFixed(2);
-                        var retailer4Value=Values.value[3].toFixed(2);
+                        var retailer1Value=Values.value[0];
+                        var retailer2Value=Values.value[1];
+                        var retailer3Value=Values.value[2];
+                        var retailer4Value=Values.value[3];
                     }else{
                         var retailer1Value=0;
                         var retailer2Value=0;
@@ -36,10 +36,10 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(Changes!=undefined){
-                        var retailer1ValueChange=(Changes.value[0]*100).toFixed(2);
-                        var retailer2ValueChange=(Changes.value[1]*100).toFixed(2);
-                        var retailer3ValueChange=(Changes.value[2]*100).toFixed(2); 
-                        var retailer4ValueChange=(Changes.value[3]*100).toFixed(2); 
+                        var retailer1ValueChange=(Changes.value[0]*100);
+                        var retailer2ValueChange=(Changes.value[1]*100);
+                        var retailer3ValueChange=(Changes.value[2]*100); 
+                        var retailer4ValueChange=(Changes.value[3]*100); 
                     }else{
                         var retailer1ValueChange=0;
                         var retailer2ValueChange=0;
@@ -50,10 +50,10 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(Volumes!=undefined){
-                        var retailer1Volume=Volumes.value[0].toFixed(2);
-                        var retailer2Volume=Volumes.value[1].toFixed(2);
-                        var retailer3Volume=Volumes.value[2].toFixed(2);
-                        var retailer4Volume=Volumes.value[3].toFixed(2);
+                        var retailer1Volume=Volumes.value[0];
+                        var retailer2Volume=Volumes.value[1];
+                        var retailer3Volume=Volumes.value[2];
+                        var retailer4Volume=Volumes.value[3];
                     }else{
                         var retailer1Volume=0;
                         var retailer2Volume=0;
@@ -64,10 +64,10 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(VolumeChanges!=undefined){
-                        var retailer1VolumeChange=(VolumeChanges.value[0]*100).toFixed(2);
-                        var retailer2VolumeChange=(VolumeChanges.value[1]*100).toFixed(2);
-                        var retailer3VolumeChange=(VolumeChanges.value[2]*100).toFixed(2); 
-                        var retailer4VolumeChange=(VolumeChanges.value[3]*100).toFixed(2); 
+                        var retailer1VolumeChange=(VolumeChanges.value[0]*100);
+                        var retailer2VolumeChange=(VolumeChanges.value[1]*100);
+                        var retailer3VolumeChange=(VolumeChanges.value[2]*100); 
+                        var retailer4VolumeChange=(VolumeChanges.value[3]*100); 
                     }else{
                         var retailer1VolumeChange=0;
                         var retailer2VolumeChange=0;
@@ -91,18 +91,18 @@ define(['directives', 'services'], function(directives){
                             // retailer3Volume=absoluteVolume[].value[2]
                             // retailer4Volume=absoluteVolume[].value[3]
                             // xxxVolumeChange=Changes(find from volumeChange by variantName and parentBrandName and marketID).value[]
-                            var retailer1Value=data.absoluteValue[i].value[0].toFixed(2);
-                            var retailer2Value=data.absoluteValue[i].value[1].toFixed(2);
-                            var retailer3Value=data.absoluteValue[i].value[2].toFixed(2);
-                            var retailer4Value=data.absoluteValue[i].value[3].toFixed(2);
+                            var retailer1Value=data.absoluteValue[i].value[0];
+                            var retailer2Value=data.absoluteValue[i].value[1];
+                            var retailer3Value=data.absoluteValue[i].value[2];
+                            var retailer4Value=data.absoluteValue[i].value[3];
                             var Changes=_.find(data.valueChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Changes!=undefined){
-                                var retailer1ValueChange=(Changes.value[0]*100).toFixed(2);
-                                var retailer2ValueChange=(Changes.value[1]*100).toFixed(2);
-                                var retailer3ValueChange=(Changes.value[2]*100).toFixed(2); 
-                                var retailer4ValueChange=(Changes.value[3]*100).toFixed(2); 
+                                var retailer1ValueChange=(Changes.value[0]*100);
+                                var retailer2ValueChange=(Changes.value[1]*100);
+                                var retailer3ValueChange=(Changes.value[2]*100); 
+                                var retailer4ValueChange=(Changes.value[3]*100); 
                             }else{
                                 var retailer1ValueChange=0;
                                 var retailer2ValueChange=0;
@@ -117,10 +117,10 @@ define(['directives', 'services'], function(directives){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Volumes!=undefined){
-                                var retailer1Volume=Volumes.value[0].toFixed(2);
-                                var retailer2Volume=Volumes.value[1].toFixed(2);
-                                var retailer3Volume=Volumes.value[2].toFixed(2);
-                                var retailer4Volume=Volumes.value[3].toFixed(2);
+                                var retailer1Volume=Volumes.value[0];
+                                var retailer2Volume=Volumes.value[1];
+                                var retailer3Volume=Volumes.value[2];
+                                var retailer4Volume=Volumes.value[3];
                             }else{
                                 var retailer1Volume=0;
                                 var retailer2Volume=0;
@@ -128,10 +128,10 @@ define(['directives', 'services'], function(directives){
                                 var retailer4Volume=0;
                             }
                             if(VolumeChanges!=undefined){
-                                var retailer1VolumeChange=(VolumeChanges.value[0]*100).toFixed(2);
-                                var retailer2VolumeChange=(VolumeChanges.value[1]*100).toFixed(2);
-                                var retailer3VolumeChange=(VolumeChanges.value[2]*100).toFixed(2); 
-                                var retailer4VolumeChange=(VolumeChanges.value[3]*100).toFixed(2); 
+                                var retailer1VolumeChange=(VolumeChanges.value[0]*100);
+                                var retailer2VolumeChange=(VolumeChanges.value[1]*100);
+                                var retailer3VolumeChange=(VolumeChanges.value[2]*100); 
+                                var retailer4VolumeChange=(VolumeChanges.value[3]*100); 
                             }else{
                                 var retailer1VolumeChange=0;
                                 var retailer2VolumeChange=0;

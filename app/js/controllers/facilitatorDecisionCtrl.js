@@ -1,4 +1,4 @@
-define(['app'], function(app) {
+atdefine(['app'], function(app) {
 		app.controller('facilitatorDecisionCtrl',
 			['RoleInfo', '$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','$window',
 	 function(RoleInfo, $scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo, $window) {

@@ -67,7 +67,7 @@ define(['directives', 'services'], function(directives){
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
