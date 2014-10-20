@@ -27,8 +27,8 @@ var retailerKPIsCtrl=function($scope,$http){
             }
         }
         
-        testCategories=[Request['period']-2,Request['period']-1];
-        myCategories=[Request['period']-2,Request['period']-1,'',Request['period']-2,Request['period']-1];
+        testCategories=[Request['period']-1,Request['period']];
+        myCategories=[Request['period']-1,Request['period'],'',Request['period']-1,Request['period']];
 
         var salesValueElecssories=new Array();
 
