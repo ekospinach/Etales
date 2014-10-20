@@ -24,7 +24,7 @@
                 </td>
 
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.Sales=="0.00"?0:variant.Sales}}</p>
+                    <p class="text-right">{{variant.Sales | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.SalesChange=="0.00"?0:variant.SalesChange}}</p>
+                    <p class="text-right">{{variant.SalesChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                     <p class="text-right">{{Label.getContent('Value Share in Category')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.SalesShareInCategory=="0.00"?0:variant.SalesShareInCategory}}</p>
+                    <p class="text-right">{{variant.SalesShareInCategory | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='OLShow'>
@@ -48,7 +48,7 @@
                     <p class="padding-20">- {{Label.getContent('Material Costs')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.MaterialCosts=="0.00"?0:variant.MaterialCosts}}</p>
+                    <p class="text-right">{{variant.MaterialCosts | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -57,7 +57,7 @@
                     <p class="padding-20" ng-show='BMShow'>(1) {{Label.getContent('Cost of Goods Sold')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.CostOfGoodsSold=="0.00"?0:variant.CostOfGoodsSold}}</p>
+                    <p class="text-right">{{variant.CostOfGoodsSold | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -66,7 +66,7 @@
                     <p class="padding-20" ng-show='BMShow'>(2) {{Label.getContent('Discontinued Goods Cost')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.DiscontinuedGoodsCost=="0.00"?0:variant.DiscontinuedGoodsCost}}</p>
+                    <p class="text-right">{{variant.DiscontinuedGoodsCost | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -75,7 +75,7 @@
                     <p class="padding-20" ng-show='BMShow'>(3) {{Label.getContent('Inventory Holding Cost')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.InventoryHoldingCost=="0.00"?0:variant.InventoryHoldingCost}}</p>
+                    <p class="text-right">{{variant.InventoryHoldingCost | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -83,7 +83,7 @@
                     <p class="padding-40">(4) {{Label.getContent('eMall Commission')}} ($mln)
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.eMallCommission=="0.00"?0:variant.eMallCommission}}</p>
+                    <p class="text-right">{{variant.eMallCommission | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -91,7 +91,7 @@
                     <p class="padding-40">(5) {{Label.getContent('Shipping Cost')}} ($mln)
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.ShippingCost=="0.00"?0:variant.ShippingCost}}</p>
+                    <p class="text-right">{{variant.ShippingCost | number : 1 }}</p>
                 </td>
             </tr>
             <tr class="tr-info">
@@ -99,7 +99,7 @@
                     <p>{{Label.getContent('Gross Profit')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.GrossProfit=="0.00"?0:variant.GrossProfit}}</p>
+                    <p class="text-right">{{variant.GrossProfit | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -107,7 +107,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.GrossProfitChange=="0.00"?0:variant.GrossProfitChange}}</p>
+                    <p class="text-right">{{variant.GrossProfitChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr class="tr-info">
@@ -115,7 +115,7 @@
                     <p>{{Label.getContent('Gross Profit Margin')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.GrossProfitMargin=="0.00"?0:variant.GrossProfitMargin}}</p>
+                    <p class="text-right">{{variant.GrossProfitMargin | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -123,7 +123,7 @@
                     <p class="text-right">{{Label.getContent('Share of Gross Profit/Loss in Category')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.GrossProfitMarginShare=="0.00"?0:variant.GrossProfitMarginShare}}</p>
+                    <p class="text-right">{{variant.GrossProfitMarginShare | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -131,7 +131,7 @@
                     <p class="padding-20">- {{Label.getContent('Marketing Expenses')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.TradeAndMarketing=="0.00"?0:variant.TradeAndMarketing}}</p>
+                    <p class="text-right">{{variant.TradeAndMarketing | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -139,7 +139,7 @@
                     <p class="padding-40">(1) {{Label.getContent('Advertising Online')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.AdvertisingOnLine=="0.00"?0:variant.AdvertisingOnLine}}</p>
+                    <p class="text-right">{{variant.AdvertisingOnLine | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -147,7 +147,7 @@
                     <p class="padding-40">(2) {{Label.getContent('Advertising Offline')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.AdvertisingOffLine=="0.00"?0:variant.AdvertisingOffLine}}</p>
+                    <p class="text-right">{{variant.AdvertisingOffLine | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -155,7 +155,7 @@
                     <p class="padding-40">(3) {{Label.getContent('eMall Support')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.TradeSupport=="0.00"?0:variant.TradeSupport}}</p>
+                    <p class="text-right">{{variant.TradeSupport | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -163,7 +163,7 @@
                     <p class="text-right">{{Label.getContent('Marketing Expenses')}} ({{Label.getContent('as % of sales')}})</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.TradeAndMarketingAsPercentageOfSales=="0.00"?0:variant.TradeAndMarketingAsPercentageOfSales}}</p>
+                    <p class="text-right">{{variant.TradeAndMarketingAsPercentageOfSales | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -171,7 +171,7 @@
                     <p class="text-right">{{Label.getContent('Share of Marketing Expenses in Category')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.TradeAndMarketingShareInCategory=="0.00"?0:variant.TradeAndMarketingShareInCategory}}</p>
+                    <p class="text-right">{{variant.TradeAndMarketingShareInCategory | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -179,7 +179,7 @@
                     <p class="padding-20">- {{Label.getContent('General Expenses')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.GeneralExpenses=="0.00"?0:variant.GeneralExpenses}}</p>
+                    <p class="text-right">{{variant.GeneralExpenses | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -187,7 +187,7 @@
                     <p class="padding-20">- {{Label.getContent('Amortisation')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.Amortisation=="0.00"?0:variant.Amortisation}}</p>
+                    <p class="text-right">{{variant.Amortisation | number : 1 }}</p>
                 </td>
             </tr>
             <tr class="tr-info">
@@ -195,7 +195,7 @@
                     <p>{{Label.getContent('Operating Profit')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.OperatingProfit=="0.00"?0:variant.OperatingProfit}}</p>
+                    <p class="text-right">{{variant.OperatingProfit | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -203,7 +203,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.OperatingProfitChange=="0.00"?0:variant.OperatingProfitChange}}</p>
+                    <p class="text-right">{{variant.OperatingProfitChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr class="tr-info">
@@ -211,7 +211,7 @@
                     <p>{{Label.getContent('Operating Profit Margin')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.OperatingProfitMargin=="0.00"?0:variant.OperatingProfitMargin}}</p>
+                    <p class="text-right">{{variant.OperatingProfitMargin | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -219,7 +219,7 @@
                     <p class="text-right">{{Label.getContent('Share of Operating Profit/Loss in Category')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.OperatingProfitShareInCategory=="0.00"?0:variant.OperatingProfitShareInCategory}}</p>
+                    <p class="text-right">{{variant.OperatingProfitShareInCategory | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -227,7 +227,7 @@
                     <p class="padding-20">- {{Label.getContent('Interest')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.Interest=="0.00"?0:variant.Interest}}</p>
+                    <p class="text-right">{{variant.Interest | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -235,7 +235,7 @@
                     <p class="padding-20">- {{Label.getContent('Taxes')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.Taxes=="0.00"?0:variant.Taxes}}</p>
+                    <p class="text-right">{{variant.Taxes | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -243,7 +243,7 @@
                     <p class="padding-20">- {{Label.getContent('Exceptional Costs/Profits')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.ExceptionalItems=="0.00"?0:variant.ExceptionalItems}}</p>
+                    <p class="text-right">{{variant.ExceptionalItems | number : 1 }}</p>
                 </td>
             </tr>
             <tr class="tr-info">
@@ -251,7 +251,7 @@
                     <p>{{Label.getContent('Net Profit')}} ($mln)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.NetProfit=="0.00"?0:variant.NetProfit}}</p>
+                    <p class="text-right">{{variant.NetProfit | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -259,7 +259,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.NetProfitChange=="0.00"?0:variant.NetProfitChange}}</p>
+                    <p class="text-right">{{variant.NetProfitChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr class="tr-info">
@@ -267,7 +267,7 @@
                     <p>{{Label.getContent('Net Profit Margin')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.NetProfitMargin=="0.00"?0:variant.NetProfitMargin}}</p>
+                    <p class="text-right">{{variant.NetProfitMargin | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -275,7 +275,7 @@
                     <p class="text-right">{{Label.getContent('Share of Net Profit/Loss in Category')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.NetProfitShareInCategory=="0.00"?0:variant.NetProfitShareInCategory}}</p>
+                    <p class="text-right">{{variant.NetProfitShareInCategory | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>
