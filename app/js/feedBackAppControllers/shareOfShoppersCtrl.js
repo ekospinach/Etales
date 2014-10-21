@@ -13,7 +13,7 @@ var shareOfShoppersCtrl=function($scope,$http){
     }
 
     function newChartData(searchKeys){
-        var chartSeries = new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},
+        var chartSeries = new Array({name:'Retailer-1',data:new Array(),color:'#8B288B',},
                                         {name:'Retailer-2',data:new Array(),color:'#F05422'},
                                         {name:'Traditional Trade',data:new Array(),color:'#00AFEF'},
                                         {name:'Suppler-1',data:new Array(),color:'#3257A7'},
@@ -74,6 +74,8 @@ var shareOfShoppersCtrl=function($scope,$http){
             }
         }
 
+        // $scope.E_urbanOnline=E_urbanOnline;
+    
         //Category E:
         $scope.E_urbanOnlineShareOfShoppers={
             options: {
@@ -81,17 +83,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -101,11 +97,14 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
                     useHTML: true
+                },
+                legend: {
+                    enabled: false
                 },
                 credits: {
                     enabled: false
@@ -126,17 +125,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -146,11 +139,14 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
                     useHTML: true
+                },
+                legend: {
+                    enabled: false
                 },
                 credits: {
                     enabled: false
@@ -171,17 +167,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -191,7 +181,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -216,17 +206,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -236,7 +220,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -261,17 +245,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -281,7 +259,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -306,17 +284,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -326,7 +298,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -351,17 +323,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -371,7 +337,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -397,17 +363,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -417,7 +377,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -445,17 +405,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -465,7 +419,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -490,17 +444,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -510,7 +458,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -535,17 +483,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -555,7 +497,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -580,17 +522,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -600,7 +536,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -625,17 +561,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -645,7 +575,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -670,17 +600,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -690,7 +614,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -715,17 +639,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -735,7 +653,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -761,17 +679,11 @@ var shareOfShoppersCtrl=function($scope,$http){
                     categories: periodsShown,
                     title: {
                         text: 'Period',
-                        style: {
-                            'font-size':'16px'
-                        }
                     }
                 },
                 yAxis:{
                     title: {
                         text: '%',
-                        style: {
-                            'font-size':'16px'
-                        }
                     },
                     gridLineColor: 'transparent'
                 },
@@ -781,7 +693,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
                         return s;
                     },
                     shared: false,
@@ -800,7 +712,10 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             loading: false
         }
+        $scope.myModel=$scope.H_ruralTotalShareOfShoppers;
     }
+    
+
     $scope.$watch('feedBack', function(newValue, oldValue){
         if(newValue!=undefined) {
             initPage();
