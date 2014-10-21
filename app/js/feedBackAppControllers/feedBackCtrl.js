@@ -1,4 +1,5 @@
-var feedBackCtrl=function($scope,$http){
+var app=angular.module('feedback',['highcharts-ng','directive']);
+app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) {
     function GetRequest() {
        var url = document.location.search; //获取url中"?"符后的字串
        var theRequest = new Object();
@@ -22,5 +23,5 @@ var feedBackCtrl=function($scope,$http){
         });
     }
     initPage();
-}
+}]);
 

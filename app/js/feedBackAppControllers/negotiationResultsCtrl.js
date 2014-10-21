@@ -1,5 +1,4 @@
-var app=angular.module('feedback',['highcharts-ng']);
-app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,$http,$q) {
+var negotiationResultsCtrl=function($scope,$http,$q){
     function GetRequest() {
        var url = document.location.search; //获取url中"?"符后的字串
        var theRequest = new Object();
@@ -399,4 +398,4 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             initPage();
         }
     });
-}]);
+}
