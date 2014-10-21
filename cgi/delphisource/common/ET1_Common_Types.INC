@@ -59,7 +59,7 @@ Type
   TSpecsExtended           = 1..SpecsMax + 3;  { Composition + Perceived Price + alpha + beta }
   TSpecsIndices            = 1..MaxSpecsIndex;
   TStoreDimensions         = 1..StoresDimsMax;
-  TStorePerceptions        = ( PRICE, CONVENIENCE );
+  TStorePerceptions        = ( PRICE_APPEAL, CONVENIENCE );
   TTechnology              = 1..MaxTechnologyLevel;  
   TTimeSpan                = TimeStart..TimeEnd;
   TTOPIntervalIndex        = 0..IntervalsMax;  { this is used as multiplications of 15 days to cover - almost - the entire half a year }
@@ -117,7 +117,7 @@ Type
   TSegmentsShoppersData              = array[TSegmentsTotal] of TShoppersData;
   TSpecsToBasePerceptionDetails      = array[TVariantBasePerceptions, TSpecsExtended] of single;
   TStorePerceptionsData              = array[TStorePerceptions] of single;
-  TStoreAxisImportance               = array[TMarkets, TCategories, TSegments, TStorePerceptions] of single;
+  TStoreAxisImportance               = array[TMarkets, TCategories, TSegments, BMS..MIXED, TStorePerceptions] of single;
   TTechnologiesDetails               = array[TTechnology] of single;
   TVariantComposition                = array[TSpecs] of TSpecsIndices;
 
@@ -367,7 +367,16 @@ Type
 
   TNegotiationsFile = file of TAllDeals;
 
-{------------------------- Configuration Record ------------------------------------------------------------------------------}
+  TEvaluationScores = 1..ScoresMax;   { 1 = Incremental Market }
+                                      { 2 = ROOB }
+                                      { 3 = Portfolio Strength ( Suppliers ) / Relative Profitability ( Retailers }
+                                      { 4 = Trade Strength ( Suppliers ) / Shoppers base ( Retailers ) }                    
+
+
+
+{------------------------- Configuration Record ----------------------------------------------------------------------------------------------------}
+
+TFinalScoresWeights = array[TEvaluationScores] of single;  
 
 TConfigurationRecord
     = record
@@ -385,6 +394,9 @@ TConfigurationRecord
         cr_VirtualSupplierActive        : boolean;
         cr_IndependentMarkets           : boolean; 
         cr_ForceNextDecisionsOverwrite  : boolean;
+        cr_Sup_FinalScoreWeigths        : TFinalScoresWeights;
+        cr_Ret_FinalScoreWeigths        : TFinalScoresWeights;
+
 {
         cr_OperatingMode              : TOperatingMode;
         cr_Language                   : THCD_Language;

@@ -51,7 +51,7 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
     //updated by Hao, 2014, Oct, 16, FinalScore    
     ffs_SuppliersAbsoluteValues    : [evaluationSupplierScoresSchema],
-    ffs_SuppliersStandarisedValues : [evaluationSupplierScoresSchema], // { not used in the current template }
+    ffs_SuppliersStandarisedValues : [evaluationSupplierScoresSchema], //       { not used in the current template }
     ffs_SuppliersFinalScore        : [supplierInfoSchema],
     ffs_RetailersAbsoluteValues    : [evaluationRetailerScoresSchema],
     ffs_RetailersStandarisedValues : [evaluationRetailerScoresSchema], // { not used in the current template }
@@ -143,7 +143,7 @@ var supplierKPIExtendedInfoSchema = mongoose.Schema({
 var shopperShareInfoSchema = mongoose.Schema({
     marketID : Number,
     period : Number,
-    storeID : Number, //1~(4+3)
+    storeID : Number, //1~(3+4), R1, R2, TT, S1, S2, S3, S4
     //added by Hao, 2014 Sept 3
     shopperKind : String,//BMS, NETIZENS, MIXED, ALLSHOPPERS
     categoryID : Number,

@@ -457,9 +457,10 @@ var
         for retailer := Low(TBMRetailers) to High(TBMRetailers) do
           begin
             jp  := jo.A['producerDeal'].O[producer - 1];
-            jr  := jp.A['retailerDeal'].O[0];
+            jr  := jp.A['retailerDeal'].O[retailer - 1];
             currentAllDeals[producer, retailer].neg_RetailerID := retailer;
             currentAllDeals[producer, retailer].neg_ProducerID := producer;
+            
             Log('Deal with currentAllDeals[' + IntToStr(producer) + ', ' + IntToStr(retailer) + ']');
             fromJSONretailerDealSchema( currentAllDeals[producer, retailer], jr );
           end;

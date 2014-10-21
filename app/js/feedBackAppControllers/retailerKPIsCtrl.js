@@ -27,8 +27,8 @@ var retailerKPIsCtrl=function($scope,$http){
             }
         }
         
-        testCategories=[Request['period']-2,Request['period']-1];
-        myCategories=[Request['period']-2,Request['period']-1,'',Request['period']-2,Request['period']-1];
+        testCategories=[Request['period']-1,Request['period']];
+        myCategories=[Request['period']-1,Request['period'],'',Request['period']-1,Request['period']];
 
         var salesValueElecssories=new Array();
 
@@ -41,8 +41,12 @@ var retailerKPIsCtrl=function($scope,$http){
         var currentUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
         var previousRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
         var currentRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        
         var ruralStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
         var urbanStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var EStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var HStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+
         var ruralShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
         var urbanShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
 
@@ -150,11 +154,11 @@ var retailerKPIsCtrl=function($scope,$http){
         for(var j=0;j<currentCategories.length;j++){
             for(var i=0;i<$scope.feedBack.f_RetailersStocksCover.length;i++){
                 if($scope.feedBack.f_RetailersStocksCover[i].period==currentCategories[j]){
-                    if($scope.feedBack.f_RetailersStocksCover[i].categoryID==3){
-                        if($scope.feedBack.f_RetailersStocksCover[i].marketID==1){
-                            urbanStockCover[$scope.feedBack.f_RetailersStocksCover[i].retailerID-1].data.push($scope.feedBack.f_RetailersStocksCover[i].value);
-                        }else if($scope.feedBack.f_RetailersStocksCover[i].marketID==2){
-                            ruralStockCover[$scope.feedBack.f_RetailersStocksCover[i].retailerID-1].data.push($scope.feedBack.f_RetailersStocksCover[i].value);
+                    if($scope.feedBack.f_RetailersStocksCover[i].marketID==3){
+                        if($scope.feedBack.f_RetailersStocksCover[i].categoryID==1){
+                            EStockCover[$scope.feedBack.f_RetailersStocksCover[i].retailerID-1].data.push($scope.feedBack.f_RetailersStocksCover[i].value);
+                        } else if($scope.feedBack.f_RetailersStocksCover[i].categoryID==2){
+                            HStockCover[$scope.feedBack.f_RetailersStocksCover[i].retailerID-1].data.push($scope.feedBack.f_RetailersStocksCover[i].value);
                         }
                     }
                 }
@@ -580,10 +584,10 @@ var retailerKPIsCtrl=function($scope,$http){
             loading: false
         }
 
-        $scope.urbanStockCover = {
+        $scope.EStockCover = {
             options: {
                 title:{
-                    text:'Urban Market',
+                    text:'Elecssories',
                     style: {
                         'font-size':'16px'
                     }
@@ -623,13 +627,13 @@ var retailerKPIsCtrl=function($scope,$http){
                     enabled: false
                 }
             },
-            series: urbanStockCover,
+            series: EStockCover,
             loading: false
         }
-        $scope.ruralStockCover = {
+        $scope.HStockCover = {
             options: {
                 title:{
-                    text:'Rural Market',
+                    text:'HealthBeauties',
                     style: {
                         'font-size':'16px'
                     }
@@ -669,7 +673,7 @@ var retailerKPIsCtrl=function($scope,$http){
                     enabled: false
                 }
             },
-            series: ruralStockCover,
+            series: HStockCover,
             loading: false
         }
     }

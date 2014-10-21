@@ -112,14 +112,12 @@ TGR_PerformanceHighlights =
     grph_WholeSalesNetValue          : array[TAllProducers, TCategoriesTotal] of single;    {                    as above                   }
     grph_VolumeMarketShare           : array[TActors, TCategoriesTotal] of single;
     grph_ValueMarketShare            : array[TActors, TCategoriesTotal] of single;
-
     grph_SalesVolumeChange           : array[TActors, TCategoriesTotal] of single;
     grph_NetSalesValueChange         : array[TActors, TCategoriesTotal] of single;
     grph_VolumeMarketShareChange     : array[TActors, TCategoriesTotal] of single;
     grph_ValueMarketShareChange      : array[TActors, TCategoriesTotal] of single;
     grph_WholeSalesVolumeChange      : array[TAllProducers, TCategoriesTotal] of single;
     grph_WholeSalesNetValueChange    : array[TAllProducers, TCategoriesTotal] of single;
-
     grph_OperatingProfit             : array[TActiveActors] of single;
     grph_OperatingProfitChange       : array[TActiveActors] of single;
     grph_CumulativeInvestment        : array[TActiveActors] of single;
@@ -822,6 +820,15 @@ TF_ShoppersShare = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TShoppersKi
 
 TF_MarketSummary = array[TMarketsTotal, TCategoriesTotal, TTimeSpan] of single;
 
+TF_Scores = record
+              ffs_SuppliersAbsoluteValues    : array[TProducers, TEvaluationScores] of single;
+              ffs_SuppliersStandarisedValues : array[TProducers, TEvaluationScores] of single;        { not used in the current template }
+              ffs_SuppliersFinalScore        : array[TProducers] of single;
+              ffs_RetailersAbsoluteValues    : array[TModernRetailers, TEvaluationScores] of single;
+              ffs_RetailersStandarisedValues : array[TModernRetailers, TEvaluationScores] of single;  { not used in the current template }
+              ffs_RetailersFinalScore        : array[TModernRetailers] of single;
+            end;
+
 TFeedback =
   record
     f_DiscountsValue                  : TF_NegotiationsItems;
@@ -861,6 +868,9 @@ TFeedback =
     f_TotalMarketVolume               : TF_MarketSummary;
     f_TotalMarketValue                : TF_MarketSummary;
     f_AverageTotalMarketNetPrice      : TF_MarketSummary;
+
+    { Added on October 14, 2014 }
+    f_FinalScores                     : TF_Scores;  
   end;
 
 {-----------------------------------------------------------------------------------------------------------------------------------------------}

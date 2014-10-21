@@ -85,13 +85,13 @@ define(['directives', 'services'], function(directives){
                             StockCover[0][1]=loadValue(data.rcrkpi_StockCover,1,2);
                             StockCover[0][2]=loadValue(data.rcrkpi_StockCover,1,3);
 
-                            bm[0][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,1);
-                            bm[0][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,2);
-                            bm[0][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,3);
+                            bm[0][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,1) * 100;
+                            bm[0][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,2) * 100;
+                            bm[0][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,3) * 100;
 
-                            all[0][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,1);
-                            all[0][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,2);
-                            all[0][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,3);
+                            all[0][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,1) * 100;
+                            all[0][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,2) * 100;
+                            all[0][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,3) * 100;
                             break;
                         }
                     }
@@ -116,13 +116,13 @@ define(['directives', 'services'], function(directives){
                             StockCover[1][1]=loadValue(data.rcrkpi_StockCover,2,2);
                             StockCover[1][2]=loadValue(data.rcrkpi_StockCover,2,3);
 
-                            bm[1][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,1);
-                            bm[1][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,2);
-                            bm[1][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,3);
+                            bm[1][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,1) * 100;
+                            bm[1][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,2) * 100;
+                            bm[1][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,3) * 100;
 
-                            all[1][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,1);
-                            all[1][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,2);
-                            all[1][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,3);
+                            all[1][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,1) * 100;
+                            all[1][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,2) * 100;
+                            all[1][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,3) * 100;
 
                             break;
                         }
@@ -147,13 +147,13 @@ define(['directives', 'services'], function(directives){
                             StockCover[2][1]=loadValue(data.rcrkpi_StockCover,3,2);
                             StockCover[2][2]=loadValue(data.rcrkpi_StockCover,3,3);
 
-                            bm[2][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,1);
-                            bm[2][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,2);
-                            bm[2][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,3);
+                            bm[2][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,1) * 100;
+                            bm[2][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,2) * 100;
+                            bm[2][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,3) * 100;
 
-                            all[2][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,1);
-                            all[2][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,2);
-                            all[2][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,3);
+                            all[2][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,1) * 100;
+                            all[2][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,2) * 100;
+                            all[2][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,3) * 100;
                             break;
                         }
                     }

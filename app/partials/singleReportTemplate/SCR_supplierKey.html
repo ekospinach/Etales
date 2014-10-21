@@ -22,10 +22,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Effectiveness of Trade Spending Info')}}" popover-title="{{Label.getContent('Effectiveness of Trade Spending')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Effectiveness of Trade Spending')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[0].value[2] | number : 1 }}</p>
+                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[0].value[2]*100 | number : 1 }}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[1].value[2] | number : 1 }}</p>
+                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[1].value[2]*100 | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -33,10 +33,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Effectiveness of Marketing Spending Info')}}" popover-title="{{Label.getContent('Effectiveness of Marketing Spending')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Effectiveness of Marketing Spending')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[0].value[2] | number : 1 }}</p>
+                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[0].value[2]*100 | number : 1 }}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[1].value[2] | number : 1 }}</p>
+                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[1].value[2]*100 | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
