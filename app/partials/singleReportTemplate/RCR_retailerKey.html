@@ -9,10 +9,10 @@
             <tr>
                 <th></th>
                 <th class="td-info">
-                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
                 </th>
                 <th class="td-warning">
-                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
                 </th>
             </tr>
             <tr>
@@ -32,10 +32,10 @@
                     <p class="padding-40">{{Label.getContent('Elecssories')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0][0].value[1] | number : 1 }}</p>
+                    <p class="text-right">{{data.VolumeRotationIndex[0][0] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0][0].value[0] | number : 1 }}</p>
+                    <p class="text-right">{{data.VolumeRotationIndex[0][1] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -43,10 +43,10 @@
                     <p class="padding-40">{{Label.getContent('HealthBeauties')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1][0].value[1] | number : 1 }}</p>
+                    <p class="text-right">{{data.VolumeRotationIndex[1][0] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1][0].value[0] | number : 1 }}</p>
+                    <p class="text-right">{{data.VolumeRotationIndex[1][1] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -54,10 +54,10 @@
                     <p class="padding-20">{{Label.getContent('Value')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2][0].value[1] | number : 1 }}</p>
+                    <p class="text-right">{{data.ValueRotationIndex[2][0] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2][0].value[0] | number : 1 }}</p>
+                    <p class="text-right">{{data.ValueRotationIndex[2][1] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -65,10 +65,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Profitability Index Info')}}" popover-title="{{Label.getContent('Profitability Index')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Profitability Index')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2][0].value[1] | number : 1 }}</p>
+                    <p class="text-right">{{data.ProfitabilityIndex[2][0] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2][0].value[0] | number : 1 }}</p>
+                    <p class="text-right">{{data.ProfitabilityIndex[2][1] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -76,10 +76,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Stock Cover Info')}}" popover-title="{{Label.getContent('Stock Cover')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Stock Cover')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{data.rcrkpi_StockCover[2][0].value[1] | number : 1 }}</p>
+                    <p class="text-right">{{data.StockCover[2][0] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{data.rcrkpi_StockCover[2][0].value[0] | number : 1 }}</p>
+                    <p class="text-right">{{data.StockCover[2][1] | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
