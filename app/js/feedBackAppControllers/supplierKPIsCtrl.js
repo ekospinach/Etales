@@ -85,14 +85,14 @@ var supplierKPIsCtrl=function($scope,$http){
                         
                         portfolioStrengthElecssories.forEach(function(value, item, array){
                             if($scope.feedBack.f_PortfolioStrength[i].ownerID == array[item].ownerID){
-                                array[item].data.push($scope.feedBack.f_PortfolioStrength[i].value * 100);
+                                array[item].data.push($scope.feedBack.f_PortfolioStrength[i].value);
                             }
                         })
 
                     }else if($scope.feedBack.f_PortfolioStrength[i].categoryID==2){
                         portfolioStrengthHealthBeauties.forEach(function(value, item, array){
                             if($scope.feedBack.f_PortfolioStrength[i].ownerID == array[item].ownerID){
-                                array[item].data.push($scope.feedBack.f_PortfolioStrength[i].value * 100);
+                                array[item].data.push($scope.feedBack.f_PortfolioStrength[i].value);
                             }
                         })
 
@@ -381,7 +381,7 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Average Brand Awareness(%)',
+                        text: 'Strength Index',
                         style: {
                             'font-size':'16px'
                         }
@@ -426,7 +426,7 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'Average Brand Awareness(%)',
+                        text: 'Strength Index',
                         style: {
                             'font-size':'16px'
                         }
