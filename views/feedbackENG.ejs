@@ -173,6 +173,13 @@
     .table-bordered > thead > tr > td {
       border-bottom-width: 2px;
     }
+    #legend li
+    {
+     cursor:pointer;   
+    }
+    li.hidden {
+        color: #ddd !important;    
+    }
 
 
     </style>
@@ -385,10 +392,17 @@
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Urban Market</h3>
             <hr>
+            <div feedback-ele-urban ng-model='myModel'>
+                <div id="shareChart50" class="small-small-left"></div>
+                <div id="shareChart51" class="small-small-left"></div>
+                <div id="shareChart52" class="small-small-left"></div>
+                <div id="shareChart53" class="small-small-left"></div>
+            </div>
+            <!-- <div style="clear:both"></div>
             <highchart id="chart50" config="E_urbanOnlineShareOfShoppers" class="small-small-left"></highchart>
             <highchart id="chart51" config="E_urbanBMShareOfShoppers" class="small-small-right"></highchart>
             <highchart id="chart52" config="E_urbanMixedShareOfShoppers" class="small-small-left"></highchart>
-            <highchart id="chart53" config="E_urbanTotalShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart53" config="E_urbanTotalShareOfShoppers" class="small-small-right"></highchart> -->
           </section>
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Rural Market</h3>
@@ -402,18 +416,18 @@
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Urban Market</h3>
             <hr>
-            <highchart id="chart50" config="H_urbanOnlineShareOfShoppers" class="small-small-left"></highchart>
-            <highchart id="chart51" config="H_urbanBMShareOfShoppers" class="small-small-right"></highchart>
-            <highchart id="chart52" config="H_urbanMixedShareOfShoppers" class="small-small-left"></highchart>
-            <highchart id="chart53" config="H_urbanTotalShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart150" config="H_urbanOnlineShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart151" config="H_urbanBMShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart152" config="H_urbanMixedShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart153" config="H_urbanTotalShareOfShoppers" class="small-small-right"></highchart>
           </section>
           <section>
             <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Rural Market</h3>
             <hr>
-            <highchart id="chart54" config="H_ruralOnlineShareOfShoppers" class="small-small-left"></highchart>
-            <highchart id="chart55" config="H_ruralBMShareOfShoppers" class="small-small-right"></highchart>
-            <highchart id="chart56" config="H_ruralMixedShareOfShoppers" class="small-small-left"></highchart>
-            <highchart id="chart57" config="H_ruralTotalShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart154" config="H_ruralOnlineShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart155" config="H_ruralBMShareOfShoppers" class="small-small-right"></highchart>
+            <highchart id="chart156" config="H_ruralMixedShareOfShoppers" class="small-small-left"></highchart>
+            <highchart id="chart157" config="H_ruralTotalShareOfShoppers" class="small-small-right"></highchart>
           </section>          
         </section>   
 
@@ -502,8 +516,12 @@
     <script src="bower_components/reveal.js/js/reveal.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/highcharts/highcharts.js"></script>
+    <!--<script src="bower_components/highcharts/highcharts.js"></script>-->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+
+    
+    <script src="js/feedBackAppControllers/directives.js"></script>
 
     <script src="js/feedBackAppControllers/feedBackCtrl.js"></script>
     <script src="js/feedBackAppControllers/negotiationResultsCtrl.js"></script>
