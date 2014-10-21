@@ -62,11 +62,11 @@ define(['directives', 'services'], function(directives){
                     switch(market){
                         case 1:
                         scope.awarenessHealthBeauties1Series=[{
-                            name:'Drop',data:scope.dropRural,color:PlayerColor.getColors()[1]
+                            name:Label.getConent('Drop'),data:scope.dropRural,color:PlayerColor.getColors()[1]
                         },{
-                            name:'Increase',data:scope.increaseRural,color:PlayerColor.getColors()[3]
+                            name:Label.getContent('Increase'),data:scope.increaseRural,color:PlayerColor.getColors()[3]
                         },{
-                            name:'Value',data:scope.valueRural,color:PlayerColor.getColors()[0]
+                            name:Label.getContent('Awareness Value'),data:scope.valueRural,color:PlayerColor.getColors()[0]
                         }];
                         scope.awarenessHealthBeauties1Config={
                             options:{
@@ -87,11 +87,11 @@ define(['directives', 'services'], function(directives){
                         };break;
                         case 2:
                         scope.awarenessHealthBeauties2Series=[{
-                            name:'Drop',data:scope.dropUrban,color:PlayerColor.getColors()[1]
+                            name:Label.getConent('Drop'),data:scope.dropUrban,color:PlayerColor.getColors()[1]
                         },{
-                            name:'Increase',data:scope.increaseUrban,color:PlayerColor.getColors()[3]
+                            name:Label.getContent('Increase'),data:scope.increaseUrban,color:PlayerColor.getColors()[3]
                         },{
-                            name:'Value',data:scope.valueUrban,color:PlayerColor.getColors()[0]
+                            name:Label.getContent('Awareness Value'),data:scope.valueUrban,color:PlayerColor.getColors()[0]
                         }];
                         scope.awarenessHealthBeauties2Config={
                             options:{
