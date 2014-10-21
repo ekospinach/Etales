@@ -105,25 +105,57 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <p class="padding-20">{{Label.getContent('B&M Shoppers')}}</p>
-                </td>
-                <td class="td-info">
-                    <p class="text-right">{{(BMShoppers1*100) | number : 1 }}</p>
-                </td>
-                <td class="td-warning">
-                    <p class="text-right">{{(BMShoppers2*100) | number : 1 }}</p>
+                <td colspan="3">
+                    <p>{{Label.getContent('B&M Shoppers')}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p class="padding-20">{{Label.getContent('All Shoppers')}}</p>
+                    <p class="padding-20">{{Label.getContent('Elecssories')}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{(AllShoppers1*100) | number : 1 }}</p>
+                    <p class="text-right">{{data.BM[0][0] | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{(AllShoppers2*100) | number : 1 }}</p>
+                    <p class="text-right">{{data.BM[0][1] | number : 1 }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('HealthBeauties')}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{data.BM[1][0] | number : 1 }}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{data.BM[1][1] | number : 1 }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p>{{Label.getContent('All Shoppers')}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Elecssories')}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{data.All[0][0] | number : 1 }}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{data.All[0][1] | number : 1 }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('HealthBeauties')}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{data.All[1][0] | number : 1 }}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{data.All[1][1] | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>

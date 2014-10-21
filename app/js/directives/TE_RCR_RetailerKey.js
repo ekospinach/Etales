@@ -51,6 +51,8 @@ define(['directives', 'services'], function(directives){
                     var ValueRotationIndex=new Array();
                     var ProfitabilityIndex=new Array();
                     var StockCover=new Array();
+                    var bm=new Array();
+                    var all=new Array();
                     var ShoppersShare=new Array();
                     var value=new Array();
                     for(var i=0;i<3;i++){
@@ -58,6 +60,8 @@ define(['directives', 'services'], function(directives){
                         ValueRotationIndex[i]=new Array();
                         ProfitabilityIndex[i]=new Array();
                         StockCover[i]=new Array();
+                        bm[i]=new Array();
+                        all[i]=new Array();
                     }
                     for(var i=0;i<data.rcrkpi_VolumeRotationIndex.length;i++){
                         if(data.rcrkpi_VolumeRotationIndex[i].categoryID==1&&data.rcrkpi_VolumeRotationIndex[i].marketID==1){
@@ -80,6 +84,14 @@ define(['directives', 'services'], function(directives){
                             StockCover[0][0]=loadValue(data.rcrkpi_StockCover,1,1);
                             StockCover[0][1]=loadValue(data.rcrkpi_StockCover,1,2);
                             StockCover[0][2]=loadValue(data.rcrkpi_StockCover,1,3);
+
+                            bm[0][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,1);
+                            bm[0][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,2);
+                            bm[0][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,3);
+
+                            all[0][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,1);
+                            all[0][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,2);
+                            all[0][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,3);
                             break;
                         }
                     }
@@ -103,6 +115,15 @@ define(['directives', 'services'], function(directives){
                             StockCover[1][0]=loadValue(data.rcrkpi_StockCover,2,1);
                             StockCover[1][1]=loadValue(data.rcrkpi_StockCover,2,2);
                             StockCover[1][2]=loadValue(data.rcrkpi_StockCover,2,3);
+
+                            bm[1][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,1);
+                            bm[1][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,2);
+                            bm[1][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,3);
+
+                            all[1][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,1);
+                            all[1][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,2);
+                            all[1][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,3);
+
                             break;
                         }
                     }
@@ -125,28 +146,20 @@ define(['directives', 'services'], function(directives){
                             StockCover[2][0]=loadValue(data.rcrkpi_StockCover,3,1);
                             StockCover[2][1]=loadValue(data.rcrkpi_StockCover,3,2);
                             StockCover[2][2]=loadValue(data.rcrkpi_StockCover,3,3);
+
+                            bm[2][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,1);
+                            bm[2][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,2);
+                            bm[2][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,3);
+
+                            all[2][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,1);
+                            all[2][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,2);
+                            all[2][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,3);
                             break;
-                        }
-                    }
-                    for(var i=0;i<data.rcrkpi_ShoppersShare[0].categoryInfo.length;i++){
-                        if(data.rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==1){
-                            scope.BMShoppers1=data.rcrkpi_ShoppersShare[0].categoryInfo[i].value;
-                        }
-                        if(data.rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==2){
-                            scope.BMShoppers2=data.rcrkpi_ShoppersShare[0].categoryInfo[i].value;
-                        }
-                    }
-                    for(var i=0;i<data.rcrkpi_ShoppersShare[3].categoryInfo.length;i++){
-                        if(data.rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==1){
-                            scope.AllShoppers1=data.rcrkpi_ShoppersShare[0].categoryInfo[i].value;
-                        }
-                        if(data.rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==2){
-                            scope.AllShoppers2=data.rcrkpi_ShoppersShare[0].categoryInfo[i].value;
                         }
                     }
 
                     var newData=new Array();
-                    newData.push({'VolumeRotationIndex':VolumeRotationIndex,'ValueRotationIndex':ValueRotationIndex,'ProfitabilityIndex':ProfitabilityIndex,'StockCover':StockCover});
+                    newData.push({'VolumeRotationIndex':VolumeRotationIndex,'ValueRotationIndex':ValueRotationIndex,'ProfitabilityIndex':ProfitabilityIndex,'StockCover':StockCover,'BM':bm,'All':all});
                     scope.data=newData[0];
                 
                     deferred.resolve({msg:'Array is ready.'});                    
