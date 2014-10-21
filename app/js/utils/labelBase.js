@@ -1001,7 +1001,7 @@ var getLabelBase = function(){
 		{id:'Delivered Volume',  ENG:'Delivered Volume',  CHN:'到货量',  RUS:''},
 		{id:'Operating Profits',  ENG:'Operating Profits',  CHN:'运营利润',  RUS:''},
 		{id:'Net Profits',  ENG:'Net Profits',  CHN:'净利润',  RUS:''},
-		{id:'Operating Profit Margins',  ENG:'运营利润率',  CHN:'运营利润率',  RUS:''},
+		{id:'Operating Profit Margins',  ENG:'Operating Profit Margins',  CHN:'运营利润率',  RUS:''},
 		{id:'Net Profit Margins',  ENG:'Net Profit Margins',  CHN:'净利率',  RUS:''},
 		{id:'Overview',  ENG:'Overview',  CHN:'概述',  RUS:''},
 		{id:'B&M',  ENG:'B&M',  CHN:'实体店',  RUS:''},

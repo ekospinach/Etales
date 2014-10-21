@@ -74,7 +74,6 @@ define(['directives', 'services'], function(directives){
 			                        if ((singleChartData.searchKeys.shopperKind == scope.feedBack.f_ShoppersShare[i].shopperKind) 
 			                            && (singleChartData.searchKeys.marketID == scope.feedBack.f_ShoppersShare[i].marketID)
 			                            && (singleChartData.searchKeys.categoryID == scope.feedBack.f_ShoppersShare[i].categoryID)){
-
 			                            singleChartData.chartSeries[scope.feedBack.f_ShoppersShare[i].storeID - 1].data.push(scope.feedBack.f_ShoppersShare[i].value * 100);
 			                        }
 			                    });
@@ -85,6 +84,21 @@ define(['directives', 'services'], function(directives){
 		        /*set highchart data end*/
 		        /*set highchart function start*/
 		        	//Category E:
+		        	for (var i=0;i<7;i++){
+		        		if(i==0||i==1||i==2||i==6){
+		        			E_urbanOnline.chartSeries[i].visible=false;
+		        			E_ruralOnline.chartSeries[i].visible=false;
+		        			H_urbanOnline.chartSeries[i].visible=false;
+		        			H_ruralOnline.chartSeries[i].visible=false;
+		        		}
+		        		if(i==3||i==4||i==5||i==6){
+		        			E_urbanBM.chartSeries[i].visible=false;
+		        			E_ruralBM.chartSeries[i].visible=false;
+		        			H_urbanBM.chartSeries[i].visible=false;
+		        			H_ruralBM.chartSeries[i].visible=false;
+		        		}
+		        	}
+
 			        scope.E_urbanOnlineShareOfShoppers={
 			            options: {
 			                xAxis: {
