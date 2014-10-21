@@ -80,25 +80,25 @@ define(['directives', 'services'], function(directives) {
                             'playerStatus': scope.pageBase.marketResearchOrder[2]
                         });
                         playDatas.push({
-                            'name': 'Market Share By Consumer Segment',
+                            'name': 'Market Shares by Consumer Segment',
                             'realName': 'marketShareByConsumerSegment',
                             'reportPrice': prices[3],
                             'playerStatus': scope.pageBase.marketResearchOrder[3]
                         });
                         playDatas.push({
-                            'name': 'Sales By Consumer Segment',
+                            'name': 'Sales by Consumer Segment',
                             'realName': 'salesByConsumerSegment',
                             'reportPrice': prices[4],
                             'playerStatus': scope.pageBase.marketResearchOrder[4]
                         });
                         playDatas.push({
-                            'name': 'Market Share ByShopper Segment',
+                            'name': 'Market Shares by Shopper Segment',
                             'realName': 'marketShareByShopperSegment',
                             'reportPrice': prices[5],
                             'playerStatus': scope.pageBase.marketResearchOrder[5]
                         });
                         playDatas.push({
-                            'name': 'Sales By Shopper Segment',
+                            'name': 'Sales by Shopper Segment',
                             'realName': 'salesByShopperSegment',
                             'reportPrice': prices[6],
                             'playerStatus': scope.pageBase.marketResearchOrder[6]
@@ -134,7 +134,7 @@ define(['directives', 'services'], function(directives) {
                             'playerStatus': scope.pageBase.marketResearchOrder[11]
                         });
                         playDatas.push({
-                            'name': 'Sales By Channel',
+                            'name': 'Sales by Channel',
                             'realName': 'salesByChannel',
                             'reportPrice': prices[12],
                             'playerStatus': scope.pageBase.marketResearchOrder[12]
