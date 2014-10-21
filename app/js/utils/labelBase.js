@@ -644,7 +644,7 @@ var getLabelBase = function(){
 		{id:'Change over the Previous Period',  ENG:'Change over the Previous Period',  CHN:'相比上一轮变化',  RUS:''},
 		{id:'Change from Previous Period',  ENG:'Change over the Previous Period',  CHN:'相比上一轮变化',  RUS:''},
 		{id:'Length of Promotion',  ENG:'Length of Promotion',  CHN:'促销周数 (0-26周)',  RUS:''},
-		{id:'Depth of Promotion',  ENG:'Depth of Promotion',  CHN:'折扣率（%）',  RUS:''},
+		{id:'Depth of Promotion',  ENG:'Depth of Promotion',  CHN:'折扣率',  RUS:''},
 		{id:'Facilitator Report',  ENG:'Facilitator Report',  CHN:'讲师报告',  RUS:''},
 		{id:'B&M Only',  ENG:'B&M Only',  CHN:'仅实体店购买',  RUS:''},
 		{id:'Online Only',  ENG:'Online Only',  CHN:'仅网上购买',  RUS:''},
