@@ -1061,10 +1061,10 @@ var getLabelBase = function(){
 		
 		/*Reference Information*/
 		{id:'Reference Information',  ENG:'Reference Information',  CHN:'参考信息',  RUS:''},		
-		{id:'Increase in Technology by 1 level',  ENG:'Increase in Technology by 1 level',  CHN:'参考信息1',  RUS:''},		
-		{id:'Increase in Production Flexibility by 1%',  ENG:'Increase in Production Flexibility by 1%',  CHN:'参考信息2',  RUS:''},		
-		{id:'Increase in Design by 1 level',  ENG:'Increase in Design by 1 level',  CHN:'参考信息3',  RUS:''},	
-		{id:'Reference Information Info',  ENG:'In all cases, small increases can be achieved with lower than average investments. At the same time, major increases will prove substantially higher above average.',  CHN:'参考信息介绍',  RUS:''},		
+		{id:'Increase in Technology by 1 level',  ENG:'Increase in Technology by 1 level',  CHN:'提升1个等级的技术水平所需的投资',  RUS:''},		
+		{id:'Increase in Production Flexibility by 1%',  ENG:'Increase in Production Flexibility by 1%',  CHN:'提升1%的生产灵活性所需的投资',  RUS:''},		
+		{id:'Increase in Design by 1 level',  ENG:'Increase in Design by 1 level',  CHN:'提升1个等级的设计水平所需的投资',  RUS:''},	
+		{id:'Reference Information Info',  ENG:'In all cases, small increases can be achieved with lower than average investments. At the same time, major increases will prove substantially higher above average.',  CHN:'总体而言，以低于平均水平的投资即可实现小幅提升，而大幅提升所需要的投入远高于平均水平。',  RUS:''},		
 
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
 		{id:'Drop',  ENG:'Drop',  CHN:'减少',  RUS:''},		
