@@ -58,11 +58,11 @@ var
     for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin
       case (retailerInfo.mrri_StoreServiceLevel[marketID]) of
-        SL_BASE: begin jo.A['storeServiceLevel'].S[marketID-1]:='BASE'; end;
-        SL_FAIR:begin jo.A['storeServiceLevel'].S[marketID-1]:='FAIR'; end;
-        SL_MEDIUM:begin jo.A['storeServiceLevel'].S[marketID-1]:='MEDIUM'; end;
-        SL_ENHANCED:begin jo.A['storeServiceLevel'].S[marketID-1]:='ENHANCED'; end;
-        SL_PREMIUM:begin jo.A['storeServiceLevel'].S[marketID-1]:='PREMIUM'; end;
+        SL_BASE: begin jo.A['storeServiceLevel'].S[marketID-1]:='SL_BASE'; end;
+        SL_FAIR:begin jo.A['storeServiceLevel'].S[marketID-1]:='SL_FAIR'; end;
+        SL_MEDIUM:begin jo.A['storeServiceLevel'].S[marketID-1]:='SL_MEDIUM'; end;
+        SL_ENHANCED:begin jo.A['storeServiceLevel'].S[marketID-1]:='SL_ENHANCED'; end;
+        SL_PREMIUM:begin jo.A['storeServiceLevel'].S[marketID-1]:='SL_PREMIUM'; end;
       end;
       jo.A['onlineAdvertising'].D[marketID-1] := retailerInfo.mrri_onlineAdvertising[marketID];
       jo.A['offlineAdvertising'].D[marketID-1] := retailerInfo.mrri_offlineAdvertising[marketID];
