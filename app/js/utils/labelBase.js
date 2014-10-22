@@ -1071,6 +1071,7 @@ var getLabelBase = function(){
 		{id:'Increase',  ENG:'Increase',  CHN:'增加',  RUS:''},		
 		{id:'Awareness Value',  ENG:'Value',  CHN:'基数',  RUS:''},		
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
+		{id:'(units mln)',  ENG:'(units mln)',  CHN:'(百万件)',  RUS:''},		
 
 
 	]
