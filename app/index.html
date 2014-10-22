@@ -109,13 +109,17 @@
 					    </ul>
 
 					    <ul class="nav navbar-nav pull-right" data-access-level="{{ accessLevels.producerView }}" ng-show='clock'>
-					    	<p popover-template="../../partials/toolTip/supplierClock.html" popover-trigger="mouseenter" popover-placement="bottom">
-					    		<img src="img/clock.png" style="width:41px;margin-top:5px;">
+					    	<p popover-template="../../partials/toolTip/supplierClock.html" popover-trigger="mouseenter" popover-placement="bottom" popover-title="{{Label.getContent('Clock Info')}}">
+					    		<img src="img/clock.png" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted>5'>
+					    		<img src="img/timeup.gif" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted<=5'>
+
 					    	</p>
 					    </ul>
 					    <ul class="nav navbar-nav pull-right" data-access-level="{{ accessLevels.retailerView }}" ng-show='clock'>
-					    	<p popover-template="../../partials/toolTip/retailerClock.html" popover-trigger="mouseenter" popover-placement="bottom">
-					    		<img src="img/clock.png" style="width:41px;margin-top:5px;">
+					    	<p popover-template="../../partials/toolTip/retailerClock.html" popover-trigger="mouseenter" popover-placement="bottom" popover-title="{{Label.getContent('Clock Info')}}">
+					    		<img src="img/clock.png" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted>5'>
+					    		<img src="img/timeup.gif" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted<=5'>
+
 					    	</p>
 					    </ul>
 					</nav>

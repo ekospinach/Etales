@@ -1089,6 +1089,8 @@ var getLabelBase = function(){
 		{id:'Negotiation decisions had been Locked',  ENG:'Negotiation decisions had been Locked',  CHN:'Negotiation decisions had been Locked',  RUS:''},		
 		{id:'all the rest decisions',  ENG:'all the rest decisions',  CHN:'剩余所有决策',  RUS:''},		
 		{id:'Participants Manual',  ENG:'Participants Manual',  CHN:'学员手册',  RUS:''},		
+		{id:'all the rest decisions Locked',  ENG:'all the rest decisions Locked',  CHN:'all the rest decisions Locked',  RUS:''},		
+		{id:'Clock Info',  ENG:'Clock Info',  CHN:'Clock 介绍',  RUS:''},		
 		
 
 		//{id:'Complete Participants Manual',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
