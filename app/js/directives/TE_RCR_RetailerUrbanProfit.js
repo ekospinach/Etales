@@ -25,7 +25,7 @@ define(['directives', 'services'], function(directives){
                         return (obj.brandName==name&&obj.marketID==num);
                     });
                     if(array!=undefined){
-                        return array.value.toFixed(2);
+                        return array.value;
                     }else{
                         return 0;
                     }
@@ -36,7 +36,7 @@ define(['directives', 'services'], function(directives){
                         return (obj.brandName==name&&obj.marketID==num);
                     });
                     if(array!=undefined){
-                        return (array.value*100).toFixed(2);
+                        return (array.value*100);
                     }else{
                         return 0;
                     }
@@ -49,7 +49,7 @@ define(['directives', 'services'], function(directives){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==num);
                         });
                         if(array!=undefined){
-                            return array.value.toFixed(2);
+                            return array.value;
                         }else{
                             return 0;
                         }
@@ -60,7 +60,7 @@ define(['directives', 'services'], function(directives){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==num);
                         });
                         if(array!=undefined){
-                            return (array.value*100).toFixed(2);
+                            return (array.value*100);
                         }else{
                             return 0;
                         }
