@@ -759,7 +759,7 @@ var getLabelBase = function(){
 		{id:'Online Investments',  ENG:'Online Investments',  CHN:'线上投资',  RUS:''},
 		{id:'Other',  ENG:'Other',  CHN:'其他',  RUS:''},
 		{id:'Production',  ENG:'Production',  CHN:'生产',  RUS:''},
-		{id:'Capacity',  ENG:'Capacity',  CHN:'产能',  RUS:''},
+		{id:'Capacity',  ENG:'Capacity',  CHN:'提升可用产能',  RUS:''},
 		{id:'Utilization Rate',  ENG:'Utilization Rate',  CHN:'利用率',  RUS:''},
 		{id:'Supplier 1 Online',  ENG:'Supplier 1 Online',  CHN:'生产商1在线',  RUS:''},
 		{id:'Supplier 2 Online',  ENG:'Supplier 2 Online',  CHN:'生产商2在线',  RUS:''},
@@ -954,7 +954,7 @@ var getLabelBase = function(){
 		/*supplier Online Store Management end*/
 		/*supplier Asset Investments start*/
 		{id:'Capacity',  ENG:'Capacity',  CHN:'能力',  RUS:''},
-		{id:'Capacity Info',  ENG:'to extend your capacity you have to invest a period before it gets ready; current period extension is also possible but at 50% higher charge; your capacity increases your fixed assets and labor cost; you cannot sell out or lease your capacity to other players.',  CHN:'投资后，产能将从下阶段起得到提升。如果需要提升当前阶段的产能，所需的费用会比正常情况高出50%。投资产能会增加固定资产和人工成本。你不能将产能出售或租借给其它公司。',  RUS:''},
+		{id:'Capacity Info',  ENG:'to extend your capacity you have to invest a period before it gets ready; current period extension is also possible but at 50% higher charge; your capacity increases your fixed assets and labor cost; you cannot sell out or lease your capacity to other players.',  CHN:'请输入你希望增加多少产能，相应的产能将从下阶段累加到已有的可用产能之上。投资产能会增加固定资产和人工成本。你不能将产能出售或租借给其它公司。',  RUS:''},
 		{id:'Technology',  ENG:'Technology',  CHN:'技术',  RUS:''},
 		{id:'Flexibility',  ENG:'Flexibility',  CHN:'灵活性',  RUS:''},
 		{id:'Design',  ENG:'Design',  CHN:'设计',  RUS:''},
@@ -1061,10 +1061,10 @@ var getLabelBase = function(){
 		
 		/*Reference Information*/
 		{id:'Reference Information',  ENG:'Reference Information',  CHN:'参考信息',  RUS:''},		
-		{id:'Increase in Technology by 1 level',  ENG:'Increase in Technology by 1 level',  CHN:'参考信息1',  RUS:''},		
-		{id:'Increase in Production Flexibility by 1%',  ENG:'Increase in Production Flexibility by 1%',  CHN:'参考信息2',  RUS:''},		
-		{id:'Increase in Design by 1 level',  ENG:'Increase in Design by 1 level',  CHN:'参考信息3',  RUS:''},	
-		{id:'Reference Information Info',  ENG:'In all cases, small increases can be achieved with lower than average investments. At the same time, major increases will prove substantially higher above average.',  CHN:'参考信息介绍',  RUS:''},		
+		{id:'Increase in Technology by 1 level',  ENG:'Increase in Technology by 1 level',  CHN:'提升1个等级的技术水平所需的投资',  RUS:''},		
+		{id:'Increase in Production Flexibility by 1%',  ENG:'Increase in Production Flexibility by 1%',  CHN:'提升1%的生产灵活性所需的投资',  RUS:''},		
+		{id:'Increase in Design by 1 level',  ENG:'Increase in Design by 1 level',  CHN:'提升1个等级的设计水平所需的投资',  RUS:''},	
+		{id:'Reference Information Info',  ENG:'In all cases, small increases can be achieved with lower than average investments. At the same time, major increases will prove substantially higher above average.',  CHN:'总体而言，以低于平均水平的投资即可实现小幅提升，而大幅提升所需要的投入远高于平均水平。',  RUS:''},		
 
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
 		{id:'Drop',  ENG:'Drop',  CHN:'减少',  RUS:''},		

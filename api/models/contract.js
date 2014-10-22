@@ -274,6 +274,7 @@ exports.dealContractsByAdmin = function(seminar, period) {
                     contractCode: currentPeriodCode1,
                     $where: "this.isRetailerApproved != true || this.isProducerApproved != true"
                }).exec();
+               
                promise.then(function(docs) {
                     details = docs;
                }).then(function(data) {
@@ -402,60 +403,6 @@ exports.addContract = function(io) {
 exports.getContractExpend = function(req, res, next) {
      var result = 0;
 
-     // contractVariantDetails
-     //      .find()
-     //      .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period,
-     //           'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period
-     //      ])
-     //      .exec(function(err, docs) {
-     //           if (err) {
-     //                next(new Error(err));
-     //           } else {
-     //                if (docs.length != 0) {
-     //                     for (var i = 0; i < docs.length; i++) {
-     //                          if (docs[i].nc_VolumeDiscountRate == 0) {
-     //                               result += 0;
-     //                          } else {
-     //                               result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
-     //                          }
-
-     //                          if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'volumeDiscount') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-     //                               if (docs[i].nc_VolumeDiscountRate == 0) {
-     //                                    result -= 0;
-     //                               } else {
-     //                                    console.log(docs[i]);
-     //                                    result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
-     //                               }
-     //                          }
-
-     //                          result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
-     //                          if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'performanceBonus') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-     //                               result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
-     //                          }
-
-     //                          if (docs[i].nc_OtherCompensation > 0) {
-     //                               result += docs[i].nc_OtherCompensation;
-     //                               if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'otherCompensation') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-     //                                    result -= docs[i].nc_OtherCompensation;
-     //                               }
-     //                          }
-     //                     }
-     //                     res.send(200, {
-     //                          'result': result
-     //                     });
-
-
-     //                } else {
-     //                     res.send(200, {
-     //                          'result': 0
-     //                     });
-     //                }
-     //           }
-     //      });
-
      exports.calculateProducerNegotiationCost(req.params.seminar,
           req.params.producerID,
           req.params.period,
@@ -488,7 +435,7 @@ exports.calculateProducerNegotiationCost = function(seminar, producerID, period,
                               if (docs[i].nc_VolumeDiscountRate == 0) {
                                    result += 0;
                               } else {
-                                   result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                                   result += docs[i].nc_MinimumOrder * docs[i].nc_VolumeDiscountRate * docs[i].currentPriceBM;
                               }
 
                               if ((parentBrandName != 'brandName') && (variantName != 'varName') && (docs[i].parentBrandName == parentBrandName) && (docs[i].variantName == variantName) && (ignoreItem == 'volumeDiscount') && (ignoreRetailerID == docs[i].retailerID)) {
@@ -496,8 +443,7 @@ exports.calculateProducerNegotiationCost = function(seminar, producerID, period,
                                    if (docs[i].nc_VolumeDiscountRate == 0) {
                                         result -= 0;
                                    } else {
-                                        console.log(docs[i]);
-                                        result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                                        result -= docs[i].nc_MinimumOrder * docs[i].nc_VolumeDiscountRate * docs[i].currentPriceBM;
                                    }
                               }
 
