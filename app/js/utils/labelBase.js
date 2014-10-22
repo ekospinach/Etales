@@ -1071,6 +1071,25 @@ var getLabelBase = function(){
 		{id:'Increase',  ENG:'Increase',  CHN:'增加',  RUS:''},		
 		{id:'Awareness Value',  ENG:'Value',  CHN:'基数',  RUS:''},		
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
+		//new clock
+		{id:'System will',  ENG:'System will',  CHN:'系统将',  RUS:''},		
+		{id:'your',  ENG:'your',  CHN:'你的',  RUS:''},		
+		{id:'Portfolio & List Price',  ENG:'Portfolio & List Price',  CHN:'产品组合&定价',  RUS:''},		
+		{id:'negotiation decisions',  ENG:'negotiation decisions',  CHN:'谈判决策',  RUS:''},		
+		{id:'decision',  ENG:'decision',  CHN:'决策',  RUS:''},		
+		{id:'in next',  ENG:'in next',  CHN:'在接下来',  RUS:''},		
+		{id:'Make negotiation decisions with Retailers',  ENG:'Make negotiation decisions with Retailers',  CHN:'Make negotiation decisions with Retailers',  RUS:''},		
+		{id:'Finalise negotiation decisions with Retailers',  ENG:'Finalise negotiation decisions with Retailers',  CHN:'Finalise negotiation decisions with Retailers',  RUS:''},		
+		{id:'Complete all the rest decisions',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
+		{id:'Portfolio & List Price Locked',  ENG:'Portfolio & List Price Locked',  CHN:'Portfolio & List Price Locked',  RUS:''},		
+		{id:'Negotiation decisions had been made with Retailers',  ENG:'Negotiation decisions had been made with Retailers',  CHN:'Negotiation decisions had been made with Retailers',  RUS:''},		
+		{id:'Negotiation decisions had been Locked',  ENG:'Negotiation decisions had been Locked',  CHN:'Negotiation decisions had been Locked',  RUS:''},		
+		{id:'all the rest decisions',  ENG:'all the rest decisions',  CHN:'剩余所有决策',  RUS:''},		
+		
+
+		//{id:'Complete all the rest decisions',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
+		//{id:'Complete all the rest decisions',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
+		//{id:'Complete all the rest decisions',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
 
 
 	]
