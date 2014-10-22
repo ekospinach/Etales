@@ -267,7 +267,7 @@
                     <p>{{Label.getContent('Net Profit Margin')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.NetProfitMargin | number : 1 }}</p>
+                    <p class="text-right">{{(variant.NetProfitMargin*100) | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -275,7 +275,7 @@
                     <p class="text-right">{{Label.getContent('Share of Net Profit/Loss in Category')}} (%)</p>
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">{{variant.NetProfitShareInCategory | number : 1 }}</p>
+                    <p class="text-right">{{(variant.NetProfitShareInCategory*100) | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>

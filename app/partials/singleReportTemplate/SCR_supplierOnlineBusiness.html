@@ -434,7 +434,7 @@
                         <p class="text-right">{{(netProfitMargins[0].value[1]*100) | number : 1 }}</p>
                     </td>
                     <td ng-repeat='brand in brand1s'>
-                        <p class="text-right">{{brand.NetProfitMargin | number : 1 }}</p>
+                        <p class="text-right">{{(brand.NetProfitMargin*100) | number : 1 }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -442,7 +442,7 @@
                         <p class="text-right">100</p>
                     </td>
                     <td ng-repeat='brand in brand1s'>
-                        <p class="text-right">{{brand.NetProfitShareInCategory | number : 1 }}</p>
+                        <p class="text-right">{{(brand.NetProfitShareInCategory*100) | number : 1 }}</p>
                     </td>
                 </tr>
             </tbody>
@@ -886,7 +886,7 @@
                         <p class="text-right">{{(netProfitMargins[1].value[1]*100) | number : 1 }}</p>
                     </td>
                     <td ng-repeat='brand in brand2s'>
-                        <p class="text-right">{{brand.NetProfitMargin | number : 1 }}</p>
+                        <p class="text-right">{{(brand.NetProfitMargin*100) | number : 1 }}</p>
                     </td>
                 </tr>
                 <tr>
@@ -894,7 +894,7 @@
                         <p class="text-right">100</p>
                     </td>
                     <td ng-repeat='brand in brand2s'>
-                        <p class="text-right">{{brand.NetProfitShareInCategory | number : 1 }}</p>
+                        <p class="text-right">{{(brand.NetProfitShareInCategory*100) | number : 1 }}</p>
                     </td>
                 </tr>
             </tbody>
