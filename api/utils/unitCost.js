@@ -16,12 +16,12 @@ exports.getCurrentUnitCost = function(req, res, next) {
 
   var prodCost = [];
 
-  //debugUnitCost('try to get production cost: ' + util.inspect(query));
+  debugUnitCost('try to get production cost: ' + util.inspect(query));
   //get variant composition/catNow/isPrivateLabel/packFormat
   prepareProdCost(query.seminar, query.period).then(function(success){
     
     prodCost = success.result;
-    //debugUnitCost(prodCost);
+   // debugUnitCost(prodCost);
 
     return getProduct(query);
   }).then(function(variant) {
@@ -43,7 +43,7 @@ exports.getCurrentUnitCost = function(req, res, next) {
       variant.result.cumVolumes,
       prodCost);
 
-    //debugUnitCost('done:' + value);
+    debugUnitCost('done:' + value);
     res.send(200, {
       result: value.toFixed(2)
     });
@@ -54,7 +54,7 @@ exports.getCurrentUnitCost = function(req, res, next) {
 }
 
 function debugUnitCost(msg){
-  //console.log(msg);
+  console.log(msg);
 }
 
 function calculateUnitCost(catNow, isPrivateLabel, packFormat, composition,  cumVolumes, prodCost) {
