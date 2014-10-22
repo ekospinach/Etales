@@ -698,7 +698,7 @@ var getLabelBase = function(){
 		{id:'Channel Strength',  ENG:'Channel Strength',  CHN:'渠道竞争力',  RUS:''},
 		{id:'B&M Channel',  ENG:'B&M Channel',  CHN:'实体店渠道',  RUS:''},
 		{id:'Online Channel',  ENG:'Online Channel',  CHN:'线上渠道',  RUS:''},
-		{id:'Share of Value Sales',  ENG:'Share of Value Sales',  CHN:'销售额占比（%）',  RUS:''},
+		{id:'Share of Value Sales',  ENG:'Share of Value Sales',  CHN:'销售额占比',  RUS:''},
 		{id:'Share of Shoppers',  ENG:'Share of Shoppers',  CHN:'购物者占比',  RUS:''},
 		{id:'Value Share in Category',  ENG:'Value Share in Category',  CHN:'销售额占该品类百分比',  RUS:''},
 		{id:'Trade Support',  ENG:'Trade Support',  CHN:'通路支持',  RUS:''},
