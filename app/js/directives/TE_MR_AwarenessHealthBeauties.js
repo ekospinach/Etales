@@ -62,7 +62,7 @@ define(['directives', 'services'], function(directives){
                     switch(market){
                         case 1:
                         scope.awarenessHealthBeauties1Series=[{
-                            name:Label.getConent('Drop'),data:scope.dropRural,color:PlayerColor.getColors()[1]
+                            name:Label.getContent('Drop'),data:scope.dropRural,color:PlayerColor.getColors()[1]
                         },{
                             name:Label.getContent('Increase'),data:scope.increaseRural,color:PlayerColor.getColors()[3]
                         },{

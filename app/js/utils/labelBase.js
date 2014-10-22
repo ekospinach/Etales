@@ -724,7 +724,7 @@ var getLabelBase = function(){
 		{id:'Gross Contribution Per 1% of Shelf Space',  ENG:'Gross Contribution Per 1% of Shelf Space',  CHN:'每1%货架空间的毛利润贡献',  RUS:''},
 		{id:'As % of Value Sales',  ENG:'As % of Value Sales',  CHN:'占销售额百分比',  RUS:''},
 		{id:'Share of Gross Contribution',  ENG:'Share of Gross Contribution',  CHN:'占毛利润贡献百分比',  RUS:''},
-		{id:'Terms of Payment',  ENG:'Terms of Payment',  CHN:'账期(天数)',  RUS:''},
+		{id:'Terms of Payment',  ENG:'Terms of Payment',  CHN:'账期',  RUS:''},
 		{id:'Value Share',  ENG:'Value Share',  CHN:'市场份额（销售额）',  RUS:''},
 		{id:'Ordered Volume',  ENG:'Ordered Volume',  CHN:'订货量',  RUS:''},
 		{id:'Rotation Index',  ENG:'Rotation Index',  CHN:'旋转指针',  RUS:''},
