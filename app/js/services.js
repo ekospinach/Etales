@@ -332,6 +332,8 @@ define(['angular',
 						}
 					});	
 
+
+
 					socket.on('socketIO:deadlinePortfolio', function(data){	
 						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
 							 $rootScope.$broadcast('deadlinePortfolio',data);
@@ -356,8 +358,9 @@ define(['angular',
 						}
 					});	
 
+
+
 					socket.on('socketIO:committedPortfolio',function(data){
-						console.log('aaaaaaaaaaaaaaaaaaaaaaadata:'+data);
 						//result
 						if(data.seminarCode==SeminarInfo.getSelectedSeminar().seminarCode){
 							 $rootScope.$broadcast('committedPortfolio',data);
@@ -365,7 +368,6 @@ define(['angular',
 					});
 
 					socket.on('socketIO:dealContract',function(data){
-						console.log('bbbbbbbbbbbbbbbbbbbbbbdata:'+data);
 						//producerID
 						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.producerID==PlayerInfo.getPlayer()){
 							 $rootScope.$broadcast('producerContractDeal',data);
@@ -376,7 +378,6 @@ define(['angular',
 					});
 
 					socket.on('socketIO:finalizeContract',function(data){
-						console.log('ccccccccccccccccccccccdata:'+data);
 						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Producer"){
 							$rootScope.$broadcast('producerContractFinalized',data);
 						}else if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Retailer"){
@@ -387,7 +388,6 @@ define(['angular',
 					});
 
 					socket.on('socketIO:committeDecision',function(data){
-						console.log('ddddddddddddddddddddddata:'+data);
 						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Producer"){
 							$rootScope.$broadcast('producerDecisionLocked',data);
 						}else if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Retailer"){
@@ -396,6 +396,8 @@ define(['angular',
 							$rootScope.$broadcast('committeDecision',data);
 						}
 					});
+
+
 
 
 				}

@@ -970,7 +970,7 @@ var getLabelBase = function(){
 		{id:'Advertising Local Rural',  ENG:'Advertising Local Rural',  CHN:'农村广告',  RUS:''},
 		{id:'Advertising Local Urban',  ENG:'Advertising Local Urban',  CHN:'城市广告',  RUS:''},
 		{id:'Advertising Local Rural Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'控制当地门店广告投入预算（户外广告、传单）；促进门店便利性',  RUS:''},
-		{id:'Advertising Local Urban Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'城市广告',  RUS:''},
+		{id:'Advertising Local Urban Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'控制当地门店广告投入预算（户外广告、传单）；促进门店便利性',  RUS:''},
 		{id:'In-Store Service Level',  ENG:'In-Store Service Level',  CHN:'店内服务水平',  RUS:''},
 		{id:'In-Store Service',  ENG:'In-Store Service',  CHN:'店内服务水平',  RUS:''},
 		{id:'In-Store Service Level Info',  ENG:'is a synthetic variable encompassing such aspects of store functioning like: opening hours, accessibility, number of open check-outs, friendliness and competence of the stuff, overall store layout, etc. The value ranges from 1 to 5, 1 being the lowest or basic and 5 being the highest or premium in-store service level',  CHN:'店内服务水平是综合变量，提供\“基础\”、\“一般\”、\“中等\”、\“好\”和\“优质\”五种选择，直接影响购物者对你门店的便利性和产品组合感知，对价格感知起反作用。',  RUS:''},
@@ -1067,9 +1067,9 @@ var getLabelBase = function(){
 		{id:'Reference Information Info',  ENG:'In all cases, small increases can be achieved with lower than average investments. At the same time, major increases will prove substantially higher above average.',  CHN:'总体而言，以低于平均水平的投资即可实现小幅提升，而大幅提升所需要的投入远高于平均水平。',  RUS:''},		
 
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
-		{id:'Drop',  ENG:'Drop',  CHN:'减少',  RUS:''},		
-		{id:'Increase',  ENG:'Increase',  CHN:'增加',  RUS:''},		
-		{id:'Awareness Value',  ENG:'Value',  CHN:'基数',  RUS:''},		
+		{id:'Drop',  ENG:'Drop',  CHN:'相较于上阶段降低的部分',  RUS:''},		
+		{id:'Increase',  ENG:'Increase',  CHN:'相较于上阶段增加的部分',  RUS:''},		
+		{id:'Awareness Value',  ENG:'Value',  CHN:'数值',  RUS:''},		
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
 
 
