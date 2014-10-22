@@ -435,7 +435,7 @@ exports.calculateProducerNegotiationCost = function(seminar, producerID, period,
                               if (docs[i].nc_VolumeDiscountRate == 0) {
                                    result += 0;
                               } else {
-                                   result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                                   result += docs[i].nc_MinimumOrder * docs[i].nc_VolumeDiscountRate * docs[i].currentPriceBM;
                               }
 
                               if ((parentBrandName != 'brandName') && (variantName != 'varName') && (docs[i].parentBrandName == parentBrandName) && (docs[i].variantName == variantName) && (ignoreItem == 'volumeDiscount') && (ignoreRetailerID == docs[i].retailerID)) {
@@ -443,8 +443,7 @@ exports.calculateProducerNegotiationCost = function(seminar, producerID, period,
                                    if (docs[i].nc_VolumeDiscountRate == 0) {
                                         result -= 0;
                                    } else {
-                                        console.log(docs[i]);
-                                        result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                                        result -= docs[i].nc_MinimumOrder * docs[i].nc_VolumeDiscountRate * docs[i].currentPriceBM;
                                    }
                               }
 
