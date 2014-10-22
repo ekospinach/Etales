@@ -17,6 +17,8 @@
                         </p>
                     </th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr class="tr-info">
                     <td>
                         <p>{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
@@ -25,6 +27,7 @@
                         <p class="text-right">{{variant.Sales | number : 1 }}</p>
                     </td>
                 </tr>
+                
                 <tr>
                     <td>
                         <p class="padding-20">- {{Label.getContent('Cost of Price Promotions')}} ({{Label.getContent('$mln')}})</p>
@@ -233,7 +236,7 @@
                         <p class="text-right">{{variant.NetProfitShareInCategory | number : 1 }}</p>
                     </td>
                 </tr>
-            </thead>
+            </tbody>
         </table>
 </div>
 <div class="modal-footer">

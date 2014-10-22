@@ -274,6 +274,7 @@ exports.dealContractsByAdmin = function(seminar, period) {
                     contractCode: currentPeriodCode1,
                     $where: "this.isRetailerApproved != true || this.isProducerApproved != true"
                }).exec();
+               
                promise.then(function(docs) {
                     details = docs;
                }).then(function(data) {
@@ -402,60 +403,6 @@ exports.addContract = function(io) {
 exports.getContractExpend = function(req, res, next) {
      var result = 0;
 
-     // contractVariantDetails
-     //      .find()
-     //      .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period,
-     //           'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period
-     //      ])
-     //      .exec(function(err, docs) {
-     //           if (err) {
-     //                next(new Error(err));
-     //           } else {
-     //                if (docs.length != 0) {
-     //                     for (var i = 0; i < docs.length; i++) {
-     //                          if (docs[i].nc_VolumeDiscountRate == 0) {
-     //                               result += 0;
-     //                          } else {
-     //                               result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
-     //                          }
-
-     //                          if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'volumeDiscount') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-     //                               if (docs[i].nc_VolumeDiscountRate == 0) {
-     //                                    result -= 0;
-     //                               } else {
-     //                                    console.log(docs[i]);
-     //                                    result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
-     //                               }
-     //                          }
-
-     //                          result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
-     //                          if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'performanceBonus') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-     //                               result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
-     //                          }
-
-     //                          if (docs[i].nc_OtherCompensation > 0) {
-     //                               result += docs[i].nc_OtherCompensation;
-     //                               if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'otherCompensation') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-     //                                    result -= docs[i].nc_OtherCompensation;
-     //                               }
-     //                          }
-     //                     }
-     //                     res.send(200, {
-     //                          'result': result
-     //                     });
-
-
-     //                } else {
-     //                     res.send(200, {
-     //                          'result': 0
-     //                     });
-     //                }
-     //           }
-     //      });
-
      exports.calculateProducerNegotiationCost(req.params.seminar,
           req.params.producerID,
           req.params.period,
@@ -488,7 +435,7 @@ exports.calculateProducerNegotiationCost = function(seminar, producerID, period,
                               if (docs[i].nc_VolumeDiscountRate == 0) {
                                    result += 0;
                               } else {
-                                   result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                                   result += docs[i].nc_MinimumOrder * docs[i].nc_VolumeDiscountRate * docs[i].currentPriceBM;
                               }
 
                               if ((parentBrandName != 'brandName') && (variantName != 'varName') && (docs[i].parentBrandName == parentBrandName) && (docs[i].variantName == variantName) && (ignoreItem == 'volumeDiscount') && (ignoreRetailerID == docs[i].retailerID)) {
@@ -496,8 +443,7 @@ exports.calculateProducerNegotiationCost = function(seminar, producerID, period,
                                    if (docs[i].nc_VolumeDiscountRate == 0) {
                                         result -= 0;
                                    } else {
-                                        console.log(docs[i]);
-                                        result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                                        result -= docs[i].nc_MinimumOrder * docs[i].nc_VolumeDiscountRate * docs[i].currentPriceBM;
                                    }
                               }
 
@@ -598,67 +544,67 @@ exports.addContractDetails = function(io) {
                          next(new Error(err));
                     }
 
-                    //check previous period input first, if anything, copy original ones.
+                    //check previous period input first, if anything, copy original ones.(without discountRate/bonusRate/OtherCompensation just in case out of budget in the last period)
                     if (previousDoc) {
                          var newContractVariantDetails = new contractVariantDetails({
-                              contractCode: req.body.contractCode,
-                              producerID: req.body.producerID,
-                              retailerID: req.body.retailerID,
-                              parentBrandName: req.body.brandName,
-                              parentBrandID: req.body.brandID,
-                              variantName: req.body.varName,
-                              variantID: req.body.varID,
-                              nc_MinimumOrder: previousDoc.nc_MinimumOrder,
-                              nc_MinimumOrder_lastModifiedBy: previousDoc.nc_MinimumOrder_lastModifiedBy,
-                              nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
-                              nc_VolumeDiscountRate_lastModifiedBy: previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
-                              nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
-                              nc_SalesTargetVolume_lastModifiedBy: previousDoc.nc_SalesTargetVolume_lastModifiedBy,
-                              nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
-                              nc_PerformanceBonusRate_lastModifiedBy: previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
-                              nc_PaymentDays: previousDoc.nc_PaymentDays,
-                              nc_PaymentDays_lastModifiedBy: previousDoc.nc_PaymentDays_lastModifiedBy,
-                              nc_OtherCompensation: previousDoc.nc_OtherCompensation,
-                              nc_OtherCompensation_lastModifiedBy: previousDoc.nc_OtherCompensation_lastModifiedBy,
-                              isProducerApproved: false,
-                              isRetailerApproved: false,
-                              isNewProduct: false, //used for showing tag "NEW"
-                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
-                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM: req.body.currentPriceBM,
-                              packFormat: req.body.packFormat,
-                              seminar: req.body.seminar
+                              contractCode                           : req.body.contractCode,
+                              producerID                             : req.body.producerID,
+                              retailerID                             : req.body.retailerID,
+                              parentBrandName                        : req.body.brandName,
+                              parentBrandID                          : req.body.brandID,
+                              variantName                            : req.body.varName,
+                              variantID                              : req.body.varID,
+                              nc_MinimumOrder                        : previousDoc.nc_MinimumOrder,
+                              nc_MinimumOrder_lastModifiedBy         : previousDoc.nc_MinimumOrder_lastModifiedBy,
+                              nc_VolumeDiscountRate                  : 0,
+                              nc_VolumeDiscountRate_lastModifiedBy   : previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
+                              nc_SalesTargetVolume                   : previousDoc.nc_SalesTargetVolume,
+                              nc_SalesTargetVolume_lastModifiedBy    : previousDoc.nc_SalesTargetVolume_lastModifiedBy,
+                              nc_PerformanceBonusRate                : 0,
+                              nc_PerformanceBonusRate_lastModifiedBy : previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
+                              nc_PaymentDays                         : previousDoc.nc_PaymentDays,
+                              nc_PaymentDays_lastModifiedBy          : previousDoc.nc_PaymentDays_lastModifiedBy,
+                              nc_OtherCompensation                   : 0,
+                              nc_OtherCompensation_lastModifiedBy    : previousDoc.nc_OtherCompensation_lastModifiedBy,
+                              isProducerApproved                     : false,
+                              isRetailerApproved                     : false,
+                              isNewProduct                           : false, //used for showing tag "NEW"
+                              isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM                         : req.body.currentPriceBM,
+                              packFormat                             : req.body.packFormat,
+                              seminar                                : req.body.seminar
                          });
                          //if no history, create empty doc
                     } else {
                          var newContractVariantDetails = new contractVariantDetails({
-                              contractCode: req.body.contractCode,
-                              producerID: req.body.producerID,
-                              retailerID: req.body.retailerID,
-                              parentBrandName: req.body.brandName,
-                              parentBrandID: req.body.brandID,
-                              variantName: req.body.varName,
-                              variantID: req.body.varID,
-                              nc_MinimumOrder: 0,
-                              nc_MinimumOrder_lastModifiedBy: 'P',
-                              nc_VolumeDiscountRate: 0,
-                              nc_VolumeDiscountRate_lastModifiedBy: 'P',
-                              nc_SalesTargetVolume: 0,
-                              nc_SalesTargetVolume_lastModifiedBy: 'P',
-                              nc_PerformanceBonusRate: 0,
-                              nc_PerformanceBonusRate_lastModifiedBy: 'P',
-                              nc_PaymentDays: 0,
-                              nc_PaymentDays_lastModifiedBy: 'P',
-                              nc_OtherCompensation: 0,
-                              nc_OtherCompensation_lastModifiedBy: 'P',
-                              isProducerApproved: false,
-                              isRetailerApproved: false,
-                              isNewProduct: false, //used for showing tag "NEW"
-                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
-                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM: req.body.currentPriceBM,
-                              packFormat: req.body.packFormat,
-                              seminar: req.body.seminar
+                              contractCode                           : req.body.contractCode,
+                              producerID                             : req.body.producerID,
+                              retailerID                             : req.body.retailerID,
+                              parentBrandName                        : req.body.brandName,
+                              parentBrandID                          : req.body.brandID,
+                              variantName                            : req.body.varName,
+                              variantID                              : req.body.varID,
+                              nc_MinimumOrder                        : 0,
+                              nc_MinimumOrder_lastModifiedBy         : 'P',
+                              nc_VolumeDiscountRate                  : 0,
+                              nc_VolumeDiscountRate_lastModifiedBy   : 'P',
+                              nc_SalesTargetVolume                   : 0,
+                              nc_SalesTargetVolume_lastModifiedBy    : 'P',
+                              nc_PerformanceBonusRate                : 0,
+                              nc_PerformanceBonusRate_lastModifiedBy : 'P',
+                              nc_PaymentDays                         : 0,
+                              nc_PaymentDays_lastModifiedBy          : 'P',
+                              nc_OtherCompensation                   : 0,
+                              nc_OtherCompensation_lastModifiedBy    : 'P',
+                              isProducerApproved                     : false,
+                              isRetailerApproved                     : false,
+                              isNewProduct                           : false, //used for showing tag "NEW"
+                              isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM                         : req.body.currentPriceBM,
+                              packFormat                             : req.body.packFormat,
+                              seminar                                : req.body.seminar
                          });
                     }
 
