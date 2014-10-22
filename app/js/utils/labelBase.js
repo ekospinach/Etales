@@ -713,8 +713,8 @@ var getLabelBase = function(){
 		{id:'Value of Quantity Discounts',  ENG:'Value of Quantity Discounts',  CHN:'数量折扣金额',  RUS:''},
 		{id:'Value of Performance Bonus',  ENG:'Value of Performance Bonus',  CHN:'销售业绩奖励',  RUS:''},
 		{id:'Cost of Price Promotions',  ENG:'Cost of Price Promotions',  CHN:'促销成本',  RUS:''},
-		{id:'Rural Profit & Loss Statement',  ENG:'Rural Profit & Loss Statement',  CHN:'城市损益表',  RUS:''},
-		{id:'Urban Profit & Loss Statement',  ENG:'Urban Profit & Loss Statement',  CHN:' 农村损益表',  RUS:''},
+		{id:'Rural Profit & Loss Statement',  ENG:'Rural Profit & Loss Statement',  CHN:'农村损益表',  RUS:''},
+		{id:'Urban Profit & Loss Statement',  ENG:'Urban Profit & Loss Statement',  CHN:'城市损益表',  RUS:''},
 		{id:'Rural Profit & Loss Statement Info',  ENG:'This table gives the Profit & Loss statement for both categories by brand level in the rural market. When moving the cursor on the brand name, the Profit & Loss statement of that brand and all its variants will appear.',  CHN:'城市盈利和亏损的声明介绍',  RUS:''},
 		{id:'Urban Profit & Loss Statement Info',  ENG:'This table gives the Profit & Loss statement for both categories by brand level in the urban market. When moving the cursor on the brand name, the Profit & Loss statement of that brand and all its variants will appear.',  CHN:'乡村盈利和亏损的声明介绍',  RUS:''},
 		{id:'Suppliers',  ENG:'Suppliers',  CHN:'供应商',  RUS:''},
@@ -1072,6 +1072,7 @@ var getLabelBase = function(){
 		{id:'Increase',  ENG:'Increase',  CHN:'相较于上阶段增加的部分',  RUS:''},		
 		{id:'Awareness Value',  ENG:'Value',  CHN:'数值',  RUS:''},		
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
+		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		
 
 
 	]
