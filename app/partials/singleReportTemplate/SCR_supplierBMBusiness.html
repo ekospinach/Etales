@@ -402,7 +402,7 @@
                         <p class="text-right">{{(netProfitChanges[0].value[0]*100) | number : 1 }}</p>
                     </td>
                     <td ng-repeat='brand in brand1s'>
-                        <p class="text-right">{{brand.NetProfitChange | number : 1 }}</p>
+                        <p class="text-right">{{(brand.NetProfitChange*100) | number : 1 }}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">

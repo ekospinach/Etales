@@ -21,7 +21,7 @@
         <tbody>
             <tr ng-repeat='playData in playDatas'>
                 <td>
-                    <p class="padding-20">{{playData.name}}</p>
+                    <p class="padding-20">{{Label.getContent(playData.name)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{playData.reportPrice.toFixed(2)}}</p>

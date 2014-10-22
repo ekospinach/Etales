@@ -104,7 +104,7 @@ define(['directives', 'services'], function(directives) {
                             'playerStatus': scope.pageBase.marketResearchOrder[6]
                         });
                         playDatas.push({
-                            'name': 'BM Retailer Prices',
+                            'name': 'B&M Retailer Prices',
                             'realName': 'BMRetailerPrices',
                             'reportPrice': prices[7],
                             'playerStatus': scope.pageBase.marketResearchOrder[7]

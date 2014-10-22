@@ -66,13 +66,13 @@ define(['directives', 'services'], function(directives){
 			    	var array=_.find(data,function(obj){
 			    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
 			    	});
-			    	return array.value[num].toFixed(2);
+			    	return array.value[num];
 			    }
 			    var loadVariantPercentageValue=function(data,brandName,variantName,num){
 			    	var array=_.find(data,function(obj){
 			    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
 			    	});
-			    	return (array.value[num]*100).toFixed(2);
+			    	return (array.value[num]*100);
 			    }
 			    
 
@@ -113,7 +113,7 @@ define(['directives', 'services'], function(directives){
 				    		var ExceptionalItems=loadValue(data.data[0].scrb_ExceptionalItems,brandName,num);
 				    		var NetProfit=loadValue(data.data[0].scrb_NetProfit,brandName,num);
 				    		var NetProfitChange=loadPercentageValue(data.data[0].scrb_NetProfitChange,brandName,num);
-				    		var NetProfitMargin=loadValue(data.data[0].scrb_NetProfitMargin,brandName,num);
+				    		var NetProfitMargin=loadPercentageValue(data.data[0].scrb_NetProfitMargin,brandName,num);
 				    		var NetProfitShareInCategory=loadPercentageValue(data.data[0].scrb_NetProfitShareInCategory,brandName,num);
 				    		if(category==1){
 								scope.brand1s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
@@ -136,13 +136,13 @@ define(['directives', 'services'], function(directives){
 				    	var array=_.find(data,function(obj){
 				    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
 				    	});
-				    	return array.value[num].toFixed(2);
+				    	return array.value[num];
 				    }
 				    var loadVariantPercentageValue=function(data,brandName,variantName,num){
                         var array=_.find(data,function(obj){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName);
                         });
-                        return (array.value[num]*100).toFixed(2);
+                        return (array.value[num]*100);
                     }
 			    	var num=0;
                     scope.variants=new Array();
@@ -192,7 +192,7 @@ define(['directives', 'services'], function(directives){
                                 var ExceptionalItems=loadVariantValue(data.data[0].scrv_ExceptionalItems,brandName,variantName,num);
                                 var NetProfit=loadVariantValue(data.data[0].scrv_NetProfit,brandName,variantName,num);
                                 var NetProfitChange=loadVariantPercentageValue(data.data[0].scrv_NetProfitChange,brandName,variantName,num);
-                                var NetProfitMargin=loadVariantValue(data.data[0].scrv_NetProfitMargin,brandName,variantName,num);
+                                var NetProfitMargin=loadVariantPercentageValue(data.data[0].scrv_NetProfitMargin,brandName,variantName,num);
                                 var NetProfitShareInCategory=loadVariantPercentageValue(data.data[0].scrv_NetProfitShareInCategory,brandName,variantName,num);
                                 scope.variants.push({'variantName':variantName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
                                 'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
