@@ -334,29 +334,29 @@ define(['angular',
 
 
 
-					socket.on('socketIO:deadlinePortfolio', function(data){	
-						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-							 $rootScope.$broadcast('deadlinePortfolio',data);
-						}
-					});	
+					// socket.on('socketIO:deadlinePortfolio', function(data){	
+					// 	if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+					// 		 $rootScope.$broadcast('deadlinePortfolio',data);
+					// 	}
+					// });	
 
-					socket.on('socketIO:deadlineContractDeal', function(data){	
-						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-							 $rootScope.$broadcast('deadlineContractDeal',data);
-						}
-					});	
+					// socket.on('socketIO:deadlineContractDeal', function(data){	
+					// 	if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+					// 		 $rootScope.$broadcast('deadlineContractDeal',data);
+					// 	}
+					// });	
 
-					socket.on('socketIO:deadlineContractFinalized', function(data){	
-						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-							 $rootScope.$broadcast('deadlineContractFinalized',data);
-						}
-					});	
+					// socket.on('socketIO:deadlineContractFinalized', function(data){	
+					// 	if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+					// 		 $rootScope.$broadcast('deadlineContractFinalized',data);
+					// 	}
+					// });	
 
-					socket.on('socketIO:deadlineDecisionCommitted', function(data){	
-						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-							 $rootScope.$broadcast('deadlineDecisionCommitted',data);
-						}
-					});	
+					// socket.on('socketIO:deadlineDecisionCommitted', function(data){	
+					// 	if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+					// 		 $rootScope.$broadcast('deadlineDecisionCommitted',data);
+					// 	}
+					// });	
 
 
 

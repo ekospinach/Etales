@@ -1361,58 +1361,57 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 		} else if (countDown.contractDecisionCommitted > 0) {
 			countDown.contractDecisionCommitted--;
 		}
+		io.sockets.emit('socketIO:timerWork', {
+			'seminar': seminarCode,
+			'pass': countDown.pass,
+			'portfolio': countDown.portfolio,
+			'contractDeal': countDown.contractDeal,
+			'contractFinalized': countDown.contractFinalized,
+			'contractDecisionCommitted': countDown.contractDecisionCommitted
+		});
 		if (countDown.pass == countDown.timersEvent[0]) {
 			timersEvents.emit('deadlinePortfolio', seminarCode, io);
-			io.sockets.emit('socketIO:deadlinePortfolio', {
-				'seminar': seminarCode,
-				'pass': countDown.pass,
-				'portfolio': countDown.portfolio,
-				'contractDeal': countDown.contractDeal,
-				'contractFinalized': countDown.contractFinalized,
-				'contractDecisionCommitted': countDown.contractDecisionCommitted
-			});
+			// io.sockets.emit('socketIO:deadlinePortfolio', {
+			// 	'seminar': seminarCode,
+			// 	'pass': countDown.pass,
+			// 	'portfolio': countDown.portfolio,
+			// 	'contractDeal': countDown.contractDeal,
+			// 	'contractFinalized': countDown.contractFinalized,
+			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
+			// });
 
 		} else if (countDown.pass == countDown.timersEvent[1]) {
 			timersEvents.emit('deadlineContractDeal', seminarCode, io);
-			io.sockets.emit('socketIO:deadlineContractDeal', {
-				'seminar': seminarCode,
-				'pass': countDown.pass,
-				'portfolio': countDown.portfolio,
-				'contractDeal': countDown.contractDeal,
-				'contractFinalized': countDown.contractFinalized,
-				'contractDecisionCommitted': countDown.contractDecisionCommitted
-			});
+			// io.sockets.emit('socketIO:deadlineContractDeal', {
+			// 	'seminar': seminarCode,
+			// 	'pass': countDown.pass,
+			// 	'portfolio': countDown.portfolio,
+			// 	'contractDeal': countDown.contractDeal,
+			// 	'contractFinalized': countDown.contractFinalized,
+			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
+			// });
 
 		} else if (countDown.pass == countDown.timersEvent[2]) {
 			timersEvents.emit('deadlineContractFinalized', seminarCode, io);
-			io.sockets.emit('socketIO:deadlineContractFinalized', {
-				'seminar': seminarCode,
-				'pass': countDown.pass,
-				'portfolio': countDown.portfolio,
-				'contractDeal': countDown.contractDeal,
-				'contractFinalized': countDown.contractFinalized,
-				'contractDecisionCommitted': countDown.contractDecisionCommitted
-			});
+			// io.sockets.emit('socketIO:deadlineContractFinalized', {
+			// 	'seminar': seminarCode,
+			// 	'pass': countDown.pass,
+			// 	'portfolio': countDown.portfolio,
+			// 	'contractDeal': countDown.contractDeal,
+			// 	'contractFinalized': countDown.contractFinalized,
+			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
+			// });
 
 		} else if (countDown.pass == countDown.timersEvent[3]) {
 			timersEvents.emit('deadlineDecisionCommitted', seminarCode, io);
-			io.sockets.emit('socketIO:deadlineDecisionCommitted', {
-				'seminar': seminarCode,
-				'pass': countDown.pass,
-				'portfolio': countDown.portfolio,
-				'contractDeal': countDown.contractDeal,
-				'contractFinalized': countDown.contractFinalized,
-				'contractDecisionCommitted': countDown.contractDecisionCommitted
-			});
-		} else {
-			io.sockets.emit('socketIO:timerWork', {
-				'seminar': seminarCode,
-				'pass': countDown.pass,
-				'portfolio': countDown.portfolio,
-				'contractDeal': countDown.contractDeal,
-				'contractFinalized': countDown.contractFinalized,
-				'contractDecisionCommitted': countDown.contractDecisionCommitted
-			});
+			// io.sockets.emit('socketIO:deadlineDecisionCommitted', {
+			// 	'seminar': seminarCode,
+			// 	'pass': countDown.pass,
+			// 	'portfolio': countDown.portfolio,
+			// 	'contractDeal': countDown.contractDeal,
+			// 	'contractFinalized': countDown.contractFinalized,
+			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
+			// });
 		}
 	}, 60000);
 	newTimer.seminarCode = seminarCode;
