@@ -968,6 +968,7 @@ var getLabelBase = function(){
 		{id:'Convenience',  ENG:'Convenience',  CHN:'便利性',  RUS:''},
 		{id:'Convenience Info',  ENG:'budget you give online advertising agencies to promote convenience of your store chain.',  CHN:'投入线上广告，提升门店促销便利性',  RUS:''},
 		{id:'Advertising Local Rural',  ENG:'Advertising Local Rural',  CHN:'农村广告',  RUS:''},
+		{id:'Advertising Local Rural',  ENG:'Advertising Local Rural',  CHN:'农村广告',  RUS:''},
 		{id:'Advertising Local Urban',  ENG:'Advertising Local Urban',  CHN:'城市广告',  RUS:''},
 		{id:'Advertising Local Rural Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'控制当地门店广告投入预算（户外广告、传单）；促进门店便利性',  RUS:''},
 		{id:'Advertising Local Urban Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'城市广告',  RUS:''},
@@ -1072,6 +1073,8 @@ var getLabelBase = function(){
 		{id:'Awareness Value',  ENG:'Value',  CHN:'基数',  RUS:''},		
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
 		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		
+		{id:'Retailer Marketing Advertising Online Info',  ENG:'Retailer Marketing Advertising Online Info',  CHN:'Retailer Marketing Advertising Online 介绍',  RUS:''},		
+		{id:'Retailer Marketing Advertising Offline Info',  ENG:'Retailer Marketing Advertising Offline Info',  CHN:'Retailer Marketing Advertising Offline 介绍',  RUS:''},		
 
 
 	]
