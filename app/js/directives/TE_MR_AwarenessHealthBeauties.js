@@ -87,7 +87,7 @@ define(['directives', 'services'], function(directives){
                         };break;
                         case 2:
                         scope.awarenessHealthBeauties2Series=[{
-                            name:Label.getConent('Drop'),data:scope.dropUrban,color:PlayerColor.getColors()[1]
+                            name:Label.getContent('Drop'),data:scope.dropUrban,color:PlayerColor.getColors()[1]
                         },{
                             name:Label.getContent('Increase'),data:scope.increaseUrban,color:PlayerColor.getColors()[3]
                         },{
