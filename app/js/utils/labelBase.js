@@ -1088,9 +1088,10 @@ var getLabelBase = function(){
 		{id:'Negotiation decisions had been made with Suppliers',  ENG:'Negotiation decisions had been made with Suppliers',  CHN:'Negotiation decisions had been made with Suppliers',  RUS:''},		
 		{id:'Negotiation decisions had been Locked',  ENG:'Negotiation decisions had been Locked',  CHN:'Negotiation decisions had been Locked',  RUS:''},		
 		{id:'all the rest decisions',  ENG:'all the rest decisions',  CHN:'剩余所有决策',  RUS:''},		
+		{id:'Participants Manual',  ENG:'Participants Manual',  CHN:'学员手册',  RUS:''},		
 		
 
-		//{id:'Complete all the rest decisions',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
+		//{id:'Complete Participants Manual',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
 		//{id:'Complete all the rest decisions',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
 		//{id:'Complete all the rest decisions',  ENG:'Complete all the rest decisions',  CHN:'Complete all the rest decisions',  RUS:''},		
 
