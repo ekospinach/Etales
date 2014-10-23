@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-selectedPeriod : '='
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/MR_awarenessElecssories.html',            
@@ -34,7 +34,7 @@ selectedPeriod : '='
                         if(data.brandInfo[i].parentCategoryID==category&&data.brandInfo[i].marketID==market){
                             scope.brandNames[count]=data.brandInfo[i].brandName;
                             switch(market){
-                                case 1:
+                                case 2:
                                 if(data.brandInfo[i].latestAwareness>=data.brandInfo[i].previousAwareness){
                                     scope.valueRural[count]=data.brandInfo[i].previousAwareness*100;
                                     scope.increaseRural[count]=(data.brandInfo[i].latestAwareness-data.brandInfo[i].previousAwareness)*100;
@@ -44,7 +44,7 @@ selectedPeriod : '='
                                     scope.dropRural[count]=(data.brandInfo[i].previousAwareness-data.brandInfo[i].latestAwareness)*100;
                                     scope.increaseRural[count]=0;
                                 };break;
-                                case 2:
+                                case 1:
                                 if(data.brandInfo[i].latestAwareness>=data.brandInfo[i].previousAwareness){
                                     scope.valueUrban[count]=data.brandInfo[i].previousAwareness*100;
                                     scope.increaseUrban[count]=(data.brandInfo[i].latestAwareness-data.brandInfo[i].previousAwareness)*100;
@@ -60,7 +60,7 @@ selectedPeriod : '='
                         }
                     }
                     switch(market){
-                        case 1:
+                        case 2:
                         scope.awarenessElecssories1Series=[{
                             name:Label.getContent('Drop'),data:scope.dropRural,color:PlayerColor.getColors()[1]
                         },{
@@ -85,7 +85,7 @@ selectedPeriod : '='
                             },
                             title:{text:Label.getContent('Rural')}
                         };break;
-                        case 2:
+                        case 1:
                         scope.awarenessElecssories2Series=[{
                             name:Label.getContent('Drop'),data:scope.dropUrban,color:PlayerColor.getColors()[1]
                         },{

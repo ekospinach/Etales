@@ -34,7 +34,7 @@ define(['directives', 'services'], function(directives){
                         if(data.brandInfo[i].parentCategoryID==category&&data.brandInfo[i].marketID==market){
                             scope.brandNames[count]=data.brandInfo[i].brandName;
                             switch(market){
-                                case 1:
+                                case 2:
                                 if(data.brandInfo[i].latestAwareness>=data.brandInfo[i].previousAwareness){
                                     scope.valueRural[count]=data.brandInfo[i].previousAwareness*100;
                                     scope.increaseRural[count]=(data.brandInfo[i].latestAwareness-data.brandInfo[i].previousAwareness)*100;
@@ -44,7 +44,7 @@ define(['directives', 'services'], function(directives){
                                     scope.dropRural[count]=(data.brandInfo[i].previousAwareness-data.brandInfo[i].latestAwareness)*100;
                                     scope.increaseRural[count]=0;
                                 };break;
-                                case 2:
+                                case 1:
                                 if(data.brandInfo[i].latestAwareness>=data.brandInfo[i].previousAwareness){
                                     scope.valueUrban[count]=data.brandInfo[i].previousAwareness*100;
                                     scope.increaseUrban[count]=(data.brandInfo[i].latestAwareness-data.brandInfo[i].previousAwareness)*100;
@@ -60,7 +60,7 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     switch(market){
-                        case 1:
+                        case 2:
                         scope.awarenessHealthBeauties1Series=[{
                             name:Label.getContent('Drop'),data:scope.dropRural,color:PlayerColor.getColors()[1]
                         },{
@@ -85,7 +85,7 @@ define(['directives', 'services'], function(directives){
                             },
                             title:{text:Label.getContent('Rural')}
                         };break;
-                        case 2:
+                        case 1:
                         scope.awarenessHealthBeauties2Series=[{
                             name:Label.getContent('Drop'),data:scope.dropUrban,color:PlayerColor.getColors()[1]
                         },{
