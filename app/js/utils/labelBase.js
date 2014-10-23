@@ -3,7 +3,7 @@ var getLabelBase = function(){
 		{id:'Manual popInfo',  ENG:'Remark: If it is not specified otherwise in this simulation game, the monetary unit is Million dollar(mln$), the unit price is dollar($) and the volume unit is Million Package(mln packs).',  CHN:'备注：除非特别说明，本模拟游戏中使用的货币单位均为人民币（百万元），产品单价均为人民币（元），产品数量单位均为百万件。 ',  RUS:''},	
 		/*retail report new label */
 		/*line chart page */
-		{id:'e-Mall',  ENG:'E-Mall',  CHN:'在线广告',  RUS:''},
+		{id:'e-Mall',  ENG:'E-Mall',  CHN:'线上商城',  RUS:''},
         {id:'Retail Market Sales (Value)',  ENG:'Retail Market Sales (Value)',  CHN:'各零售商的销售额',  RUS:''},        
         {id:'Retail Market Share (Value)',  ENG:'Retail Market Share (Value)',  CHN:'各零售商的市场份额（按销售额计）',  RUS:''},        
         {id:'Retail Market Sales (Volume)',  ENG:'Retail Market Sales (Volume)',  CHN:'各零售商的市场销量',  RUS:''},        
@@ -686,7 +686,7 @@ var getLabelBase = function(){
 		{id:'Discontinued Goods Volume',  ENG:'Discontinued Goods Volume',  CHN:'停产产品数量',  RUS:''},
 		{id:'Offline',  ENG:'OffLine',  CHN:'线下',  RUS:''},
 		{id:'Online',  ENG:'Online',  CHN:'线上',  RUS:''},
-		{id:'Offline Adv',  ENG:'OffLine',  CHN:'线下广告',  RUS:''},
+		{id:'Offline Adv',  ENG:'OffLine',  CHN:'传统广告',  RUS:''},
 		{id:'Online Adv',  ENG:'Online',  CHN:'网络广告',  RUS:''},
 		{id:'Key Performance Indicators Info',  ENG:'Key Performance Indicators Info',  CHN:'关键性能指标介绍',  RUS:''},
 		{id:'Effectiveness of Trade Spending',  ENG:'Effectiveness of Trade Spending',  CHN:'通路投资的有效性',  RUS:''},
@@ -732,7 +732,7 @@ var getLabelBase = function(){
 		{id:'Consumer Segment Size',  ENG:'Consumer Segment Size',  CHN:'消费者市场规模',  RUS:''},
 		{id:'Shopper Segment Size',  ENG:'Shopper Segment Size',  CHN:'购物者市场规模',  RUS:''},
 		{id:'Segment Size',  ENG:'Segment Size',  CHN:'细分市场规模',  RUS:''},
-		{id:'Category Volume s by Market',  ENG:'Category Volume s by Market',  CHN:'市场类别',  RUS:''},
+		{id:'Category Volume s by Market',  ENG:'Category Volume s by Market',  CHN:'品类销量（按市场）',  RUS:''},
 		{id:'Internet Penetration Rates',  ENG:'Internet Penetration Rates',  CHN:'互联网普及率',  RUS:''},
 		{id:'Awareness Info',  ENG:'The bar charts show the levels of awareness for each SKU in each market. The red section of the bar shows the drop in awareness over the last two periods; hence, the grey section is the level of awareness in the last period. The green section of the bar shows the increase in awareness over the last two periods; hence, the grey section plus the green section is the level of awareness in the last period. Moving the cursor on the bar segments gives the exact values.',  CHN:'awareness 介绍',  RUS:''},
 		{id:'Brand Perceptions Info',  ENG:'These graphs show the perceptual positions of the SKUs by category and market. The positions are color-coded by supplier and retailer (for private label SKUs). Moving the cursor on any of the circles will identify the SKU and the exact perceptual coordinates of that SKU.',  CHN:'Brand Perceptions介绍',  RUS:''},
@@ -768,7 +768,7 @@ var getLabelBase = function(){
 		{id:'Two-Period Ahead Forecasts',  ENG:'Two-Period Ahead Forecasts',  CHN:'未来一年的预测',  RUS:''},
 		{id:'Category Volumes by Market Info',  ENG:'This graph shows the historical values and the two-period ahead forecasts of category volumes by market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'该表显示了历史数据和对未来两个阶段销售的预测。将光标置于预测区域，将会显示未来两阶段的预测数据',  RUS:''},
 		{id:'Internet Penetration Rates Info',  ENG:'These graphs show the historical values and the two-period ahead forecasts of the internet penetration rates by market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'Internet Penetration Rates介绍',  RUS:''},
-		{id:'Penetration Level',  ENG:'Penetration Level',  CHN:'渗透率',  RUS:''},
+		{id:'Penetration Level',  ENG:'Penetration Level',  CHN:'普及率',  RUS:''},
 		{id:'Easy of Use',  ENG:'Easy of Use',  CHN:'易用性',  RUS:''},
 		{id:'Ease of Use',  ENG:'Ease of Use',  CHN:'易用性',  RUS:''},
 		{id:'Category Volumes by Market',  ENG:'Category Volumes by Market',  CHN:'市场类别',  RUS:''},
@@ -1094,8 +1094,8 @@ var getLabelBase = function(){
 
 		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		
 		{id:'$mln',  ENG:'$mln',  CHN:'百万元',  RUS:''},
-		{id:'Retailer Marketing Advertising Online Info',  ENG:'Is a component of advertising that you spend online for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'Is a component of advertising that you spend online for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  RUS:''},		
-		{id:'Retailer Marketing Advertising Offline Info',  ENG:'Is a component of advertising that you spend through classic media channels such as television and newspaper for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'Is a component of advertising that you spend through classic media channels such as television and newspaper for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  RUS:''},		
+		{id:'Retailer Marketing Advertising Online Info',  ENG:'Is a component of advertising that you spend online for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'网络广告指你在网络上针对两个市场消费者所做的广告, 它可以帮助你在两个维度上改善: 价格吸引力和便利性.',  RUS:''},		
+		{id:'Retailer Marketing Advertising Offline Info',  ENG:'Is a component of advertising that you spend through classic media channels such as television and newspaper for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'传统广告指通过传统媒体面对两个市场消费者所做的广告，包括电视、报纸，它可以帮助你在两个维度上改善：价格吸引力和便利性。',  RUS:''},		
 
 
 	]
