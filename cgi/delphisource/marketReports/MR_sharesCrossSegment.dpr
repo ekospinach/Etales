@@ -137,7 +137,7 @@ var
     segmentID : integer;
   begin
     jo := SO;
-    jo.I['ownerID'] := owner.bosd_VariantID;
+    jo.I['ownerID'] := owner.bosd_CompanyID;
     jo.I['categoryID'] := catID;
     jo.I['marketID'] := marketID;
     
