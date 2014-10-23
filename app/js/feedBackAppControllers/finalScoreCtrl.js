@@ -29,7 +29,7 @@ var finalScoreCtrl=function($scope,$http){
             retailerID:2,
             data:[{value:0},{value:0},{value:0},{value:0}],
             score:0,
-            color:"#F05422",
+            color:"#329444",
             bg:"#FCD5B5"
         });
         $scope.feedBack.ffs_SuppliersAbsoluteValues.forEach(function(singleData){

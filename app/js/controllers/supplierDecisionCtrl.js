@@ -247,7 +247,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 						break;
 					}
 				}
-			})
+			});
 
 			$scope.$on('finalizeContract', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();

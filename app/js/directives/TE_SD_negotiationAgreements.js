@@ -503,8 +503,7 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var initializePage = function() {
-                        //if Portfolio deicison isReady       
-                        console.log('message');                     
+                        //if Portfolio deicison isReady                         
                         if(scope.isPortfolioDecisionCommitted){
                             scope.isPageLoading = true;
                             scope.isResultShown = false;
@@ -518,7 +517,6 @@ define(['directives', 'services'], function(directives) {
                     var getResult = function(retailerID) {
                         var d=$q.defer();
                         var url = '/getContractDetails/' + 'P' + scope.selectedPlayer + 'andR' + retailerID + '_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                        console.log(url);
                         $http({
                             method: 'GET',
                             url: url,
@@ -669,7 +667,6 @@ define(['directives', 'services'], function(directives) {
                                 //     getResult(2);
                                 // }
                                 setTimeout(initializePage, 10000);
-                                notify('Time is up, Contract Deal,Period ' + data.period + '.');
                                 break;
                             }
                         }
