@@ -22,9 +22,9 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(Values!=undefined){
-                        var bmValue=(Values.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                        var onlineValue=(Values.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                        var mixedValue=(Values.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                        var bmValue=(Values.segmentInfo[4].shopperInfo[0].value*100);
+                        var onlineValue=(Values.segmentInfo[4].shopperInfo[1].value*100);
+                        var mixedValue=(Values.segmentInfo[4].shopperInfo[2].value*100);
                     }else{
                         var bmValue=0;
                         var onlineValue=0;
@@ -34,9 +34,9 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(ValueChanges!=undefined){
-                        var bmValueChange=(ValueChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                        var onlineValueChange=(ValueChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                        var mixedValueChange=(ValueChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                        var bmValueChange=(ValueChanges.segmentInfo[4].shopperInfo[0].value*100);
+                        var onlineValueChange=(ValueChanges.segmentInfo[4].shopperInfo[1].value*100);
+                        var mixedValueChange=(ValueChanges.segmentInfo[4].shopperInfo[2].value*100);
                     }else{
                         var bmValueChange=0;
                         var onlineValueChange=0;
@@ -46,9 +46,9 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(Volumes!=undefined){
-                        var bmVolume=(Volumes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                        var onlineVolume=(Volumes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                        var mixedVolume=(Volumes.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                        var bmVolume=(Volumes.segmentInfo[4].shopperInfo[0].value*100);
+                        var onlineVolume=(Volumes.segmentInfo[4].shopperInfo[1].value*100);
+                        var mixedVolume=(Volumes.segmentInfo[4].shopperInfo[2].value*100);
                     }else{
                         var bmVolume=0;
                         var onlineVolume=0;
@@ -58,9 +58,9 @@ define(['directives', 'services'], function(directives){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
                     if(VolumeChanges!=undefined){
-                        var bmVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                        var onlineVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                        var mixedVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                        var bmVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[0].value*100);
+                        var onlineVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[1].value*100);
+                        var mixedVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[2].value*100);
                     }else{
                         var bmVolumeChange=0;
                         var onlineVolumeChange=0;
@@ -83,16 +83,16 @@ define(['directives', 'services'], function(directives){
                             // mixedVolume=absoluteVolume[].segmentInfo[4].shopperInfo[2].value
                             // xxxVolumeChange=Changes(find from volumeChange by variantName and parentBrandName and marketID).segmentInfo[4].shopperInfo[]
 
-                            var bmValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                            var onlineValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                            var mixedValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                            var bmValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[0].value*100);
+                            var onlineValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[1].value*100);
+                            var mixedValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[2].value*100);
                             var Changes=_.find(data.valueChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Changes!=undefined){
-                                var bmValueChange=(Changes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                                var onlineValueChange=(Changes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                                var mixedValueChange=(Changes.segmentInfo[4].shopperInfo[2].value*100).toFixed(2); 
+                                var bmValueChange=(Changes.segmentInfo[4].shopperInfo[0].value*100);
+                                var onlineValueChange=(Changes.segmentInfo[4].shopperInfo[1].value*100);
+                                var mixedValueChange=(Changes.segmentInfo[4].shopperInfo[2].value*100); 
                             }else{
                                 var bmValueChange=0;
                                 var onlineValueChange=0;
@@ -106,18 +106,18 @@ define(['directives', 'services'], function(directives){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Volumes!=undefined){
-                                var bmVolume=(Volumes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                                var onlineVolume=(Volumes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                                var mixedVolume=(Volumes.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                                var bmVolume=(Volumes.segmentInfo[4].shopperInfo[0].value*100);
+                                var onlineVolume=(Volumes.segmentInfo[4].shopperInfo[1].value*100);
+                                var mixedVolume=(Volumes.segmentInfo[4].shopperInfo[2].value*100);
                             }else{
                                 var bmVolume=0;
                                 var onlineVolume=0;
                                 var mixedVolume=0;
                             }
                             if(VolumeChanges!=undefined){
-                                var bmVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                                var onlineVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                                var mixedVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);                                
+                                var bmVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[0].value*100);
+                                var onlineVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[1].value*100);
+                                var mixedVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[2].value*100);                                
                             }else{
                                 var bmVolumeChange=0;
                                 var onlineVolumeChange=0;

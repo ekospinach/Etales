@@ -409,7 +409,7 @@ var
     function serveRequest() : ISuperObject;
     var
       jo : ISuperObject;
-      cat : Integer;
+      cat,marketStudies : Integer;
     begin
       jo := SO; //initialise JSON object
       jo.S['seminar'] := currentSeminar;
@@ -420,6 +420,11 @@ var
 
       {** Data Collection **}
       jo.O['proCatDecision'] := SA([]);
+
+      //fill array for MarketResearchOrder
+      jo.O['marketResearchOrder'] := SA([]);
+      for marketStudies := Low(TMarketStudies) to High(TMarketStudies) do
+        jo.A['marketResearchOrder'].B[marketStudies - 1] := currentDecision.dp_MarketResearch[marketStudies];
 
       //build categories decisions
       //category
@@ -498,6 +503,7 @@ var
       pCategory.dpc_InvestInProductionFlexibility := jo.D['investInProductionFlexibility'];
       pCategory.dpc_InvestInTechnology  := jo.D['investInTechnology'];
 
+
       // translate brand decisions
       for brn := Low(TProBrands) to High(TProBrands) do
         translateBrand(jo.A['proBrandsDecision'].O[brn - 1], pCategory.dpc_Brands[brn]);
@@ -507,10 +513,15 @@ var
     procedure translateJson(jo : ISuperObject; var curDec : TProDecision);
     var
       cat : TCategories;
+      marketStudies : integer;
     begin
       curDec.dp_ProducerID := currentProducer;
       curDec.dp_NextBudgetExtension  := jo.D['nextBudgetExtension'];
       curDec.dp_ApprovedBudgetExtension  := jo.D['approvedBudgetExtension'];
+      
+      for marketStudies := Low(TMarketStudies) to High(TMarketStudies) do
+        curDec.dp_MarketResearch[marketStudies] := jo.A['marketResearchOrder'].B[marketStudies-1];
+
 
       //translate categories decisions
       //category

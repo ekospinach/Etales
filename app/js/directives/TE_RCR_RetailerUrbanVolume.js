@@ -4,7 +4,10 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '=',
+                selectedPlayer : '=',
+                retailerShow : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RCR_retailerUrbanVolume.html',            
@@ -22,7 +25,11 @@ define(['directives', 'services'], function(directives){
                     var array=_.find(data,function(obj){
                         return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==market);
                     });
-                    return array.value.toFixed(2);
+                    if(array!=undefined){
+                        return array.value.toFixed(2);
+                    }else{
+                        return '-100';
+                    }
                 }
 
                 var loadretailerVolume=function(data,category,market){
@@ -69,7 +76,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     scope.product1es=new Array();scope.product1hs=new Array();scope.product2es=new Array();scope.product2hs=new Array();scope.product3es=new Array();scope.product3hs=new Array();scope.product4es=new Array();scope.product4hs=new Array();
-                    var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
 			    	$http({
                         method:'GET',
                         url:url,
@@ -95,6 +102,16 @@ define(['directives', 'services'], function(directives){
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPeriod', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.retailerShow) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPlayer', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.retailerShow) {
                         initializePage();
                     }
                 })

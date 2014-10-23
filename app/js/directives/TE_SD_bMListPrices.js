@@ -6,6 +6,8 @@ define(['directives', 'services'], function(directives) {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
+                    selectedPlayer: '=',
+                    selectedPeriod: '=',
                     isReady: '='
                 },
                 restrict: 'E',
@@ -13,12 +15,11 @@ define(['directives', 'services'], function(directives) {
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {
-                        console.log('initializePage some small...');
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
                         scope.Label = Label;
 
-                        scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+                        scope.currentPeriod = scope.selectedPeriod;
                         scope.packs = [{
                             value: 1,
                             text: Label.getContent('ECONOMY')
@@ -31,8 +32,8 @@ define(['directives', 'services'], function(directives) {
                         }];
                         //ProducerDecisionBase.startListenChangeFromServer(); 
                         ProducerDecisionBase.reload({
-                            producerID: parseInt(PlayerInfo.getPlayer()),
-                            period: PeriodInfo.getCurrentPeriod(),
+                            producerID: parseInt(scope.selectedPlayer),
+                            period: scope.selectedPeriod,
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
@@ -67,7 +68,7 @@ define(['directives', 'services'], function(directives) {
                         }
 
                         //Validation 2: Check if supplier has submitted portfolio decision 
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
@@ -76,13 +77,13 @@ define(['directives', 'services'], function(directives) {
                                 d.resolve(Label.getContent('Supplier has submit portfolio decision, input LOCK.'));
                             }
                             var postData = {
-                                period    : PeriodInfo.getCurrentPeriod(),
+                                period    : scope.selectedPeriod,
                                 seminar   : SeminarInfo.getSelectedSeminar().seminarCode,
                                 brandName : brandName,
                                 varName   : varName,
                                 catID     : categoryID,
                                 userRole  : 2,
-                                userID    : PlayerInfo.getPlayer(),
+                                userID    : scope.selectedPlayer,
                             }
                             return $http({
                                 method: 'POST',
@@ -91,15 +92,16 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
                             scope.currentUnitCost = data.data.result;
-                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + categoryID + '/1'+ '/' + PeriodInfo.getCurrentPeriod();
+                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + categoryID + '/1'+ '/' + scope.selectedPeriod;
                             return $http({
                                 method : 'GET',
                                 url    : url
                             })
                         }).then(function(data) {
                         //Validation 3: input range : MaxBMPriceVsCost*unitCost ~ MinBMPriceVsCost*unitCost 
+                        
                             if (value > data.data.MaxBMPriceVsCost * scope.currentUnitCost || value < data.data.MinBMPriceVsCost * scope.currentUnitCost) {
-                                d.resolve(Label.getContent('Input range') + ':' + data.data.MinBMPriceVsCost * scope.currentUnitCost + '~' + data.data.MaxBMPriceVsCost * scope.currentUnitCost);
+                                d.resolve(Label.getContent('Input range') + ':' + (Math.floor(data.data.MinBMPriceVsCost * scope.currentUnitCost * 100) / 100) + '~' + (Math.floor(data.data.MaxBMPriceVsCost * scope.currentUnitCost * 100) / 100));
                             } else {
                                 //Validation 4: if input value < unitCost, show label "Less than current cost"
                                 // if (scope.currentUnitCost > value) {
@@ -251,7 +253,7 @@ define(['directives', 'services'], function(directives) {
                         //lock button 
                         scope.isReady = true;
                         //step 0: Delete all the related contract schema and contractDetails schema 
-                        var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                        var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                         $http({
                             method: 'POST',
                             url: '/removeContract',
@@ -259,9 +261,8 @@ define(['directives', 'services'], function(directives) {
                                 contractCode: contractCode
                             }
                         }).then(function(data) {
-                            console.log(data.data);
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return $http({
                                 method: 'POST',
                                 url: '/removeContract',
@@ -273,7 +274,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             console.log(data.data);
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return $http({
                                 method: 'POST',
                                 url: '/removeContractDetailsByContractCode',
@@ -285,7 +286,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             console.log(data.data);
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return $http({
                                 method: 'POST',
                                 url: '/removeContractDetailsByContractCode',
@@ -294,14 +295,13 @@ define(['directives', 'services'], function(directives) {
                                 }
                             });
                         }).then(function(data) {
-                            console.log(data.data);
 
                         //step 1: Add contract schema between current supplier and retailer 1 
                             postData = {
-                                period: PeriodInfo.getCurrentPeriod(),
+                                period: scope.selectedPeriod,
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
-                                draftedByCompanyID: PlayerInfo.getPlayer(),
-                                producerID: PlayerInfo.getPlayer(),
+                                draftedByCompanyID: scope.selectedPlayer,
+                                producerID: scope.selectedPlayer,
                                 retailerID: 1
                             }
                             return $http({
@@ -326,32 +326,32 @@ define(['directives', 'services'], function(directives) {
 
                         //step 3: Add related contract details for two contact schema
                         //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.productes, PlayerInfo.getPlayer(), 1);
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
+                            return contractDetailsCreateShooter(contractCode, scope.productes);
 
                         }).then(function(data) {
                             console.log(data.msg);
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.producths, PlayerInfo.getPlayer(), 1);
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
+                            return contractDetailsCreateShooter(contractCode, scope.producths);
                         }).then(function(data) {
                             console.log(data.msg);
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.productes, PlayerInfo.getPlayer(), 2);
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
+                            return contractDetailsCreateShooter(contractCode, scope.productes);
                         }).then(function(data) {
                             console.log(data.msg);
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.producths, PlayerInfo.getPlayer(), 2);
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
+                            return contractDetailsCreateShooter(contractCode, scope.producths);
                         }).then(function(data) {
                             console.log(data.msg);
 
                         //step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
                             var queryCondition = {
-                                producerID: parseInt(PlayerInfo.getPlayer()),
+                                producerID: parseInt(scope.selectedPlayer),
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
-                                period: PeriodInfo.getCurrentPeriod(),
+                                period: scope.selectedPeriod,
                                 value: true
                             }
                             return $http({

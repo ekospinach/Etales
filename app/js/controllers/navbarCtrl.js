@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window','$routeParams', 
-									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window,$routeParams) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window','$routeParams','TimerBase', 
+									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window,$routeParams, TimerBase) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -29,17 +29,14 @@ define(['app'], function(app) {
 	    }
 
 	    $scope.openTabs = function(){	    	
-			$window.open('#/facilitatorConfidentialReport');		
-			$window.open('#/facilitatorGeneralReport');		
-			$window.open('#/facilitatorMarketReport');		
+			$window.open('#/confidentialReport');		
+			$window.open('#/generalReport');		
+			$window.open('#/marketReport');		
 
 	    }
 	    
 	    $scope.$on("$routeChangeSuccess", function(next, current){
 	    	if(SeminarInfo.getSelectedSeminar()){
-				$scope.currentPeriod = SeminarInfo.getSelectedSeminar().currentPeriod;	    
-				$scope.span = SeminarInfo.getSelectedSeminar().simulationSpan;
-				$scope.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	
 				//if login
 				$scope.pageHeader="show";
 				$scope.pageFooter="show";
@@ -69,18 +66,44 @@ define(['app'], function(app) {
 		});
 
 		$scope.$on('SeminarPeriodChanged', function(event, data) {  
-			notify('Period has been changed to ' + data.period + ' / ' + data.span);
-			$scope.currentPeriod = data.period;
-			$scope.span = data.span;
-			$scope.seminar = data.seminar;
-		});		
+			if(data.seminarCode == SeminarInfo.getSelectedSeminar().seminarCode ){
+				notify('Period has been changed to ' + data.currentPeriod + ' / ' + data.simulationSpan);
+				$scope.currentPeriod = data.currentPeriod;
+				$scope.span = data.simulationSpan;
+				$scope.seminar = data.seminarCode;				
+			}
+		})	
+
+		$scope.$on('SeminarPeriodChangedFromRoute',function(event, data){	
+			if(data.seminarCode == SeminarInfo.getSelectedSeminar().seminarCode ){
+				$scope.currentPeriod = data.currentPeriod;
+				$scope.span = data.simulationSpan;
+				$scope.seminar = data.seminarCode;
+			}				
+		})
+
+		$scope.$on('timerWork', function(event, data) {
+			$scope.clock=data;
+		});
+		// $scope.$on('deadlinePortfolio', function(event, data) {
+		// 	$scope.clock=data;
+		// });
+		// $scope.$on('deadlineContractDeal', function(event, data) {
+		// 	$scope.clock=data;
+		// });
+		// $scope.$on('deadlineContractFinalized', function(event, data) {
+		// 	$scope.clock=data;
+		// });
+		// $scope.$on('deadlineDecisionCommitted', function(event, data) {
+		// 	$scope.clock=data;
+		// });	
 
 		//Register socketIO listeners in NavCtrl which will only be activated once in application
 		ProducerDecisionBase.startListenChangeFromServer(); 
 		RetailerDecisionBase.startListenChangeFromServer();		
 		NegotiationBase.startListenChangeFromServer();
+		TimerBase.startListenChangeFromServer();
 
-		console.log('$routeParams: ' + $routeParams.reportLocateId);
 	}]);
 
 });

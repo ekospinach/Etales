@@ -1,7 +1,7 @@
 <div class='panel panel-success my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}     <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('Elecssories','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+            {{Label.getContent('Store Management')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}     <a ng-show='isResultShown' ng-disabled="isDecisionCommitted" ng-click="open('Elecssories','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -18,7 +18,7 @@
                     <p>{{Label.getContent('Brand')}}</p>
                 </th>
                 <th style="width:120px">
-                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} (units mln) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} ({{Label.getContent('units mln')}}) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </th>
                 <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}} (%) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
@@ -44,39 +44,39 @@
                     <p class="pull-left">
                       {{product.brandName}}{{product.varName}}
                     </p>
-                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isReady' ng-click="deleteOrder('Elecssories','Urban',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isDecisionCommitted' ng-click="deleteOrder('Elecssories','Urban',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
                         </p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <p class="text-right">{{product.netRetailerPrice}}</p>
@@ -89,7 +89,7 @@
 <div class='panel panel-success my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban')}} <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('HealthBeauties','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+            {{Label.getContent('Store Management')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban')}} <a ng-show='isResultShown' ng-disabled="isDecisionCommitted" ng-click="open('HealthBeauties','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -106,7 +106,7 @@
                     <p>{{Label.getContent('Brand')}}</p>
                 </th>
                 <th style="width:120px">
-                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} (units mln) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} ({{Label.getContent('units mln')}}) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </th>
                 <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}} (%) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
@@ -132,38 +132,38 @@
                     <p class="pull-left">
                       {{product.brandName}}{{product.varName}}
                     </p>
-                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isReady' ng-click="deleteOrder('HealthBeauties','Urban',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isDecisionCommitted' ng-click="deleteOrder('HealthBeauties','Urban',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
-                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <p class="text-right">{{product.netRetailerPrice}}</p>
@@ -176,7 +176,7 @@
 <div class='panel panel-success my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Rural')}}    <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('Elecssories','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+            {{Label.getContent('Store Management')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Rural')}}    <a ng-show='isResultShown' ng-disabled="isDecisionCommitted" ng-click="open('Elecssories','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -193,7 +193,7 @@
                     <p>{{Label.getContent('Brand')}}</p>
                 </th>
                 <th style="width:120px">
-                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} (units mln) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} ({{Label.getContent('units mln')}}) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </th>
                 <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}} (%) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
@@ -219,38 +219,38 @@
                     <p class="pull-left">
                       {{product.brandName}}{{product.varName}}
                     </p>
-                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isReady' ng-click="deleteOrder('Elecssories','Rural',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isDecisionCommitted' ng-click="deleteOrder('Elecssories','Rural',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <p class="text-right">{{product.netRetailerPrice}}</p>
@@ -263,7 +263,7 @@
 <div class='panel panel-success my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Rural')}}     <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('HealthBeauties','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+            {{Label.getContent('Store Management')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Rural')}}     <a ng-show='isResultShown' ng-disabled="isDecisionCommitted" ng-click="open('HealthBeauties','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -280,7 +280,7 @@
                     <p>{{Label.getContent('Brand')}}</p>
                 </th>
                 <th style="width:120px">
-                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} (units mln) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}} ({{Label.getContent('units mln')}}) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </th>
                 <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}} (%) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
@@ -306,38 +306,38 @@
                     <p class="pull-left">
                       {{product.brandName}}{{product.varName}}
                     </p>
-                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isReady' ng-click="deleteOrder('HealthBeauties','Rural',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-show='!isDecisionCommitted' ng-click="deleteOrder('HealthBeauties','Rural',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
-                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isDecisionCommitted' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <p class="text-right">{{product.netRetailerPrice}}</p>

@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalPerformanceHighlights', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
+    directives.directive('generalBrandPerspective', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
         function(Label, SeminarInfo, $http, PeriodInfo, $q) {
             return {
                 scope: {
@@ -9,7 +9,7 @@ define(['directives', 'services'], function(directives) {
                     selectedPeriod: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/GR_PerformanceHighlights.html',
+                templateUrl: '../../partials/singleReportTemplate/GR_brandPerspective.html',
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
                         scope.isPageLoading = true;
@@ -28,7 +28,7 @@ define(['directives', 'services'], function(directives) {
                             url: url,
                             //tracker: scope.loadingTracker
                         }).then(function(data) {
-                            return organiseArray(data);
+                            return organiseArray(data.data[0]);
                         }).then(function(data) {                                          
 
                             scope.isResultShown = true;
@@ -43,33 +43,38 @@ define(['directives', 'services'], function(directives) {
                     var organiseArray = function(data) {
                         var deferred = $q.defer();
 
-                        //if(data.data[0] == "XXXXX"){ deferred.reject({msg:'XXXXX'}); }
-                        if (data.data[0]) {
+                        //if(data == "XXXXX"){ deferred.reject({msg:'XXXXX'}); }
+                        if (data) {
                             scope.operatingProfits      = new Array();
                             scope.cumulativeInvestments = new Array();
                             scope.salesVolumes          = new Array();
                             scope.salesValues           = new Array();
                             scope.volumeShares          = new Array();
                             scope.valueShares           = new Array();
-                            for (var i = 0; i < data.data[0].actorInfo.length; i++) {
+                            for (var i = 0; i < data.actorInfo.length; i++) {
                                 scope.operatingProfits.push({
-                                    'value': data.data[0].actorInfo[i].grph_OperatingProfit
+                                    'value': data.actorInfo[i].grph_OperatingProfit
                                 });
                                 scope.cumulativeInvestments.push({
-                                    'value': data.data[0].actorInfo[i].grph_CumulativeInvestment
+                                    'value': data.actorInfo[i].grph_CumulativeInvestment
                                 });
-                                for (j = 0; j < data.data[0].actorInfo[i].actorCategoryInfo.length - 1; j++) {
+
+                                for (j = 0; j < 2; j++) {
                                     scope.salesVolumes.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_SalesVolume
+                                        'categoryID': data.actorInfo[i].actorCategoryInfo[j].categoryID,
+                                        'value': data.actorInfo[i].actorCategoryInfo[j].grph_SalesVolume
                                     });
                                     scope.salesValues.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue
+                                        'categoryID': data.actorInfo[i].actorCategoryInfo[j].categoryID,
+                                        'value': data.actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue
                                     });
+
+
                                     scope.valueShares.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare
+                                        'value': data.actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare
                                     });
                                     scope.volumeShares.push({
-                                        'value': data.data[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare
+                                        'value': data.actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare
                                     });
                                 }
                             }
@@ -79,7 +84,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         } else {
                             deferred.reject({
-                                msg: 'data.data[0] is undefined'
+                                msg: 'data is undefined'
                             });
                         }
                         return deferred.promise;

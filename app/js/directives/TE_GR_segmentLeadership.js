@@ -26,7 +26,7 @@ define(['directives', 'services'], function(directives) {
                             url: url,
                             //tracker: scope.loadingTracker
                         }).then(function(data) {
-                            return organiseArray(data);
+                            return organiseArray(data.data[0]);
                         }).then(function(data) {
                             scope.isResultShown = true;
                             scope.isPageLoading = false;
@@ -45,14 +45,14 @@ define(['directives', 'services'], function(directives) {
                         scope.bms             = new Array();
                         scope.onlines         = new Array();
                         scope.mixeds          = new Array();
-                        //data.data[0].categoryInfo[2].marketInfo[2].segmentInfo[0].shopperInfo[3].grsl_ValueLeaders
-                        scope.priceSensitives.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[0].shopperInfo[3], data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[0].shopperInfo[3]);
-                        scope.valueForMoneies.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[1].shopperInfo[3], data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[1].shopperInfo[3]);
-                        scope.fashions.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[2].shopperInfo[3], data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[2].shopperInfo[3]);
-                        scope.freakses.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[3].shopperInfo[3], data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[3].shopperInfo[3]);
-                        scope.bms.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[0], data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[0]);
-                        scope.onlines.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[1], data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[1]);
-                        scope.mixeds.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[2], data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[2]);
+                        //data.categoryInfo[2].marketInfo[2].segmentInfo[0].shopperInfo[3].grsl_ValueLeaders
+                        scope.priceSensitives.push(data.categoryInfo[0].marketInfo[2].segmentInfo[0].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[0].shopperInfo[3]);
+                        scope.valueForMoneies.push(data.categoryInfo[0].marketInfo[2].segmentInfo[1].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[1].shopperInfo[3]);
+                        scope.fashions.push(data.categoryInfo[0].marketInfo[2].segmentInfo[2].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[2].shopperInfo[3]);
+                        scope.freakses.push(data.categoryInfo[0].marketInfo[2].segmentInfo[3].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[3].shopperInfo[3]);
+                        scope.bms.push(data.categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[0], data.categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[0]);
+                        scope.onlines.push(data.categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[1], data.categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[1]);
+                        scope.mixeds.push(data.categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[2], data.categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[2]);
 
                         deferred.resolve({
                             msg: 'Array is ready.'

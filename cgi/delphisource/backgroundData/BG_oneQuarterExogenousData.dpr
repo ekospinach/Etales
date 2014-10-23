@@ -78,29 +78,29 @@ var
     jo.S['marketID'] := IntToStr(marketID);
     jo.S['categoryID'] := IntToStr(catID);
 
-    jo.D['MinBMPriceVsCost']                := XNOW[marketID, catID].MinBMPriceVsCost;
-    jo.D['MaxBMPriceVsCost']                := XNOW[marketID, catID].MaxBMPriceVsCost;
-    jo.D['IngredientsQualityVsATLGap']      := XNOW[marketID, catID].IngredientsQualityVsATLGap;
-    jo.D['ActiveAgentVsSmoothenerGap']      := XNOW[marketID, catID].ActiveAgentVsSmoothenerGap;
-    jo.D['MaxTargetVolumeVsTotalMarket']    := XNOW[marketID, catID].MaxTargetVolumeVsTotalMarket;
-    jo.D['MinOnlinePriceVsCost']            := XNOW[marketID, catID].MinOnlinePriceVsCost;
-    jo.D['MaxOnlinePriceVsCost']            := XNOW[marketID, catID].MaxOnlinePriceVsCost;
-    jo.D['MaxCapacityReduction']            := XNOW[marketID, catID].MaxCapacityReduction;
-    jo.D['MaxCapacityIncrease']             := XNOW[marketID, catID].MaxCapacityIncrease;
-    jo.D['Supplier4AcquiredLevelsGapForPL'] := XNOW[marketID, catID].Supplier4AcquiredLevelsGapForPL;
-    jo.D['MinPLPriceVsCost']                := XNOW[marketID, catID].MinPLPriceVsCost;
-    jo.D['MaxPLPriceVsCost']                := XNOW[marketID, catID].MaxPLPriceVsCost;
-    jo.D['MinRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].MinRetailPriceVsNetBMPrice;
-    jo.D['MaxRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].MaxRetailPriceVsNetBMPrice;    
+    jo.D['MinBMPriceVsCost']                := XNOW[marketID, catID].x_MinBMPriceVsCost;
+    jo.D['MaxBMPriceVsCost']                := XNOW[marketID, catID].x_MaxBMPriceVsCost;
+    jo.D['IngredientsQualityVsATLGap']      := XNOW[marketID, catID].x_IngredientsQualityVsATLGap;
+    jo.D['ActiveAgentVsSmoothenerGap']      := XNOW[marketID, catID].x_ActiveAgentVsSmoothenerGap;
+    jo.D['MaxTargetVolumeVsTotalMarket']    := XNOW[marketID, catID].x_MaxTargetVolumeVsTotalMarket;
+    jo.D['MinOnlinePriceVsCost']            := XNOW[marketID, catID].x_MinOnlinePriceVsCost;
+    jo.D['MaxOnlinePriceVsCost']            := XNOW[marketID, catID].x_MaxOnlinePriceVsCost;
+    jo.D['MaxCapacityReduction']            := XNOW[marketID, catID].x_MaxCapacityReduction;
+    jo.D['MaxCapacityIncrease']             := XNOW[marketID, catID].x_MaxCapacityIncrease;
+    jo.D['Supplier4AcquiredLevelsGapForPL'] := XNOW[marketID, catID].x_Supplier4AcquiredLevelsGapForPL;
+    jo.D['MinPLPriceVsCost']                := XNOW[marketID, catID].x_MinPLPriceVsCost;
+    jo.D['MaxPLPriceVsCost']                := XNOW[marketID, catID].x_MaxPLPriceVsCost;
+    jo.D['MinRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].x_MinRetailPriceVsNetBMPrice;
+    jo.D['MaxRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].x_MaxRetailPriceVsNetBMPrice;    
     jo.O['MarketStudiesPrices']             := SA([]);
 
     for marketStudiesID := Low(TMarketStudies) to High(TMarketStudies) do
     begin
-        jo.A['MarketStudiesPrices'].D[marketStudiesID-1] := XNOW[marketID, catID].MarketStudiesPrices[marketStudiesID];
+        jo.A['MarketStudiesPrices'].D[marketStudiesID-1] := XNOW[marketID, catID].x_MarketStudiesPrices[marketStudiesID];
     end;
 
-    jo.D['ProdCost_LogisticsCost']          := XNOW[marketID, catID].ProdCost_LogisticsCost;
-    jo.D['ProdCost_LabourCost']             := XNOW[marketID, catID].ProdCost_LabourCost;
+    jo.D['ProdCost_LogisticsCost']          := XNOW[marketID, catID].x_ProdCost_LogisticsCost;
+    jo.D['ProdCost_LabourCost']             := XNOW[marketID, catID].x_ProdCost_LabourCost;
     jo.O['ProdCost_IngredientPrices']       := SA([]);
 
     for spec := Low(TSpecs) to High(TSpecs) do
@@ -108,7 +108,7 @@ var
         ingredientPirces := SA([]);
         for input := Low(TIngredientsInput) to High(TIngredientsInput) do
         begin
-            ingredientPirces.D[inttostr(input - 1)] := XNOW[marketID, catID].ProdCost_IngredientPrices[spec, input];
+            ingredientPirces.D[inttostr(input - 1)] := XNOW[marketID, catID].x_ProdCost_IngredientPrices[spec, input];
         end;
         jo.A['ProdCost_IngredientPrices'].Add(ingredientPirces);
     end;

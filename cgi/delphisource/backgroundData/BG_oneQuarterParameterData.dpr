@@ -77,15 +77,15 @@ var
     jo.S['marketID'] := IntToStr(marketID);
     jo.S['categoryID'] := IntToStr(catID);
 
-    jo.D['ProdCost_HigherDesignImpact']  := Parameters[marketID, catID].ProdCost_HigherDesignImpact;
-    jo.D['ProdCost_HigherTechImpact']  := Parameters[marketID, catID].ProdCost_HigherTechImpact;
-    jo.D['ProdCost_DefaultDrop']  := Parameters[marketID, catID].ProdCost_DefaultDrop;
-    jo.D['ProdCost_MarginOnPrivateLabel']  := Parameters[marketID, catID].ProdCost_MarginOnPrivateLabel;
-    jo.D['MinProductionVolume']  := Parameters[marketID, catID].MinProductionVolume;
+    jo.D['ProdCost_HigherDesignImpact']  := Parameters[marketID, catID].z_ProdCost_HigherDesignImpact;
+    jo.D['ProdCost_HigherTechImpact']  := Parameters[marketID, catID].z_ProdCost_HigherTechImpact;
+    jo.D['ProdCost_DefaultDrop']  := Parameters[marketID, catID].z_ProdCost_DefaultDrop;
+    jo.D['ProdCost_MarginOnPrivateLabel']  := Parameters[marketID, catID].z_ProdCost_MarginOnPrivateLabel;
+    jo.D['MinProductionVolume']  := Parameters[marketID, catID].z_MinProductionVolume;
 
-    jo.D['ProdCost_ECONOMY']  := Parameters[marketID, catID].ProdCost_PackFormat[ECONOMY];
-    jo.D['ProdCost_STANDARD']  := Parameters[marketID, catID].ProdCost_PackFormat[STANDARD];
-    jo.D['ProdCost_PREMIUM']  := Parameters[marketID, catID].ProdCost_PackFormat[PREMIUM];   
+    jo.D['ProdCost_ECONOMY']  := Parameters[marketID, catID].z_ProdCost_PackFormat[ECONOMY];
+    jo.D['ProdCost_STANDARD']  := Parameters[marketID, catID].z_ProdCost_PackFormat[STANDARD];
+    jo.D['ProdCost_PREMIUM']  := Parameters[marketID, catID].z_ProdCost_PackFormat[PREMIUM];   
 
     result  := jo;
   end;

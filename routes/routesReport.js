@@ -61,6 +61,9 @@ module.exports = function(app, io){
 	// app.get('/addMR-retailerPerceptionEvolution',                         require('./../api/models/MR_retailerPerceptionEvolution.js').addMR_retailerPerceptionEvolution);
 	// app.get('/addMR-retailersIntelligence',                               require('./../api/models/MR_retailersIntelligence.js').addMR_retailersIntelligence);
 	//get market report
+    app.get('/getSupplierReportPurchaseStatus/:seminar/:period/:producerID',                             require('./../api/models/producerDecision.js').getReportPurchaseStatus);
+    app.get('/getRetailerReportPurchaseStatus/:seminar/:period/:retailerID',                             require('./../api/models/retailerDecision.js').getReportPurchaseStatus);
+	
 	app.get('/getMR-awarenessEvolution/:seminar/:period',                 require('./../api/models/MR_awarenessEvolution.js').getMR_awarenessEvolution);
 	app.get('/getMR-sharesCrossSegment/:seminar/:period',                 require('./../api/models/MR_sharesCrossSegment.js').getMR_sharesCrossSegment);
 	app.get('/getMR-salesCrossSegment/:seminar/:period',                  require('./../api/models/MR_salesCrossSegment.js').getMR_salesCrossSegment);

@@ -14,7 +14,30 @@ var performanceHighlightsSchema = mongoose.Schema({
 	period : Number,
     seminar : String,
     actorInfo : [actorInfoSchema],	
+    storeInfo : [storeInfoSchema],
 })	
+
+var storeInfoSchema = mongoose.Schema({
+    storeID : Number,  
+    // AllStoresMax = BMRetsMax + ProsMaxPlus; { all B&M and four E-malls }
+    // 1 ~ (3 + 4)
+    // 1 - Retailer 1
+    // 2 - Retailer 2
+    // 3 - Retailer 3 (Tradition Trade)
+    // 4 - Supplier 1 Online 
+    // 5 - Supplier 2 Online 
+    // 6 - Supplier 3 Online 
+    // 7 ...
+    storeCategoryInfo : [storeCategoryInfoSchema],
+})
+
+var storeCategoryInfoSchema = mongoose.Schema({
+    categoryID : Number, //TCategories: 1~2 
+    grph_ConsumersOffTakeVolume      : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+    grph_ConsumersOffTakeVolumeShare : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+    grph_ConsumersOffTakeValue       : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+    grph_ConsumersOffTakeValueShare  : [Number], // 0 - Urban, 1 - Rural, 3 - Total
+})
 
 var actorInfoSchema = mongoose.Schema({
 	actorID 					 : Number, //TActors : 1~(4+3)
@@ -83,7 +106,8 @@ exports.addReports = function(options){
 
           performanceHighlights.update({seminar: singleReport.seminar, 
                               period: singleReport.period},
-                              {actorInfo: singleReport.actorInfo},
+                              {actorInfo: singleReport.actorInfo,
+                               storeInfo: singleReport.storeInfo},
                                 {upsert: true},
                                 function(err, numberAffected, raw){
                                   if(err) deferred.reject({msg:err, options: options});                                  

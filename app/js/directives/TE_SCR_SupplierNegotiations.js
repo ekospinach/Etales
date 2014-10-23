@@ -3,7 +3,10 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '=',
+                selectedPlayer : '=',
+                producerShow : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SCR_supplierNegotiations.html',            
@@ -18,13 +21,13 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
 			    	$http({
                         method:'GET',
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
@@ -37,25 +40,26 @@ define(['directives', 'services'], function(directives){
                     var results=_.find(data,function(obj){
                         return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.modernRetailerID==retailer);
                     })
-                    if(results.value!=false){
-                        return results.value.toFixed(2);
-                    }else{
-                        return results.value;
-                    }
+                    // if(results.value!=false){
+                    //     return results.value.toFixed(2);
+                    // }else{
+                    //     return results.value;
+                    // }
+                    return results.value;
                 }
 
                 var loadNegotiations=function(data,category,retailer,i){
                     var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
-                    brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
-                    varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
-                    discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].value.toFixed(2);
-                    discount_Rate=loadValue(data.data[0].vnd_QuantityDiscount.discount_Rate,varName,brandName,retailer);
-                    bonus_TargetVolume=loadValue(data.data[0].vnd_TargetBonus.bonus_TargetVolume,varName,brandName,retailer);
-                    bonus_Rate=loadValue(data.data[0].vnd_TargetBonus.bonus_Rate,varName,brandName,retailer);
-                    bonus_Value=loadValue(data.data[0].vnd_TargetBonus.bonus_Value,varName,brandName,retailer);
-                    vnd_PaymentTerm=loadValue(data.data[0].vnd_PaymentTerms,varName,brandName,retailer);
-                    vnd_OtherCompensation=loadValue(data.data[0].vnd_OtherCompensation,varName,brandName,retailer);
-                    vnd_ContractHonoured=loadValue(data.data[0].vnd_ContractHonoured,varName,brandName,retailer);
+                    brandName=data.vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
+                    varName=data.vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
+                    discount_MinimumVolume=data.vnd_QuantityDiscount.discount_MinimumVolume[i].value;
+                    discount_Rate=loadValue(data.vnd_QuantityDiscount.discount_Rate,varName,brandName,retailer);
+                    bonus_TargetVolume=loadValue(data.vnd_TargetBonus.bonus_TargetVolume,varName,brandName,retailer);
+                    bonus_Rate=loadValue(data.vnd_TargetBonus.bonus_Rate,varName,brandName,retailer);
+                    bonus_Value=loadValue(data.vnd_TargetBonus.bonus_Value,varName,brandName,retailer);
+                    vnd_PaymentTerm=loadValue(data.vnd_PaymentTerms,varName,brandName,retailer);
+                    vnd_OtherCompensation=loadValue(data.vnd_OtherCompensation,varName,brandName,retailer);
+                    vnd_ContractHonoured=loadValue(data.vnd_ContractHonoured,varName,brandName,retailer);
                     if(vnd_ContractHonoured==1){
                         vnd_ContractHonoured="yes";
                     }else{
@@ -96,14 +100,14 @@ define(['directives', 'services'], function(directives){
                     scope.product2hs=new Array();
                     var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
 
-                    for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
-                        if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
-                            switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerID){
+                    for(var i=0;i<data.vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
+                        if(data.vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
+                            switch(data.vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerID){
                                 case 1:loadNegotiations(data,1,1,i);break;
                                 case 2:loadNegotiations(data,1,2,i);break;
                             }
                         }else{
-                            switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerID){
+                            switch(data.vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerID){
                                 case 1:loadNegotiations(data,2,1,i);break;
                                 case 2:loadNegotiations(data,2,2,i);break;
                             }
@@ -115,6 +119,16 @@ define(['directives', 'services'], function(directives){
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPeriod', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.producerShow) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPlayer', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.producerShow) {
                         initializePage();
                     }
                 })

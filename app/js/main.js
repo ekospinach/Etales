@@ -10,7 +10,6 @@
 	require.config({
 		paths: {
 			angular: 				'../bower_components/angular/angular',
-			angularSanitize: 		'../bower_components/angular-sanitize/angular-sanitize',
 			angularCookies: 		'../bower_components/angular-cookies/angular-cookies',
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
@@ -19,9 +18,8 @@
 			angularLoadingBar : 	'../bower_components/angular-loading-bar/src/loading-bar', 
 			text: 					'../bower_components/requirejs-text/text',
 			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
-			socketIO: 				'../bower_components/socket.io-client/dist/socket.io',
+			socketIO: 				'../bower_components/socket.io-client/socket.io',
 			jquery: 				'../bower_components/jquery/dist/jquery',
-			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			require: 				'../bower_components/requirejs/require',
 			underscore: 			'../bower_components/underscore/underscore',
 			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
@@ -38,7 +36,6 @@
 			//angular notification 
 			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min',
 			//Period slider for reports module 
-			ngSlider: 				'../bower_components/ng-slider/src/ng-slider'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -61,12 +58,9 @@
 			'textRenderer':['jqplot','jquery'],
 			'tree':['jquery'],
 			'highchartMore':['jquery','highchart'],
-			'bootstrapswitch' : ['jquery'],
 			'angularHighcharts' :['angular','highchart'],
-			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 			'highchart' :['jquery'],
-			'ngNotify' :['jquery','angular'],
-			'ngSlider' :['jquery','angular']
+			'ngNotify' :['jquery','angular']
 		},
 		priority: [
 			"angular"

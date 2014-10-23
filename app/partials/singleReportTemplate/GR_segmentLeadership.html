@@ -8,12 +8,13 @@
                 <th></th>
                 <th colspan="4">
                     <p class="text-center">
-                        {{Label.getContent('Volume Market Shares')}}
+                    {{Label.getContent('Value Market Shares')}}
+                    
                     </p>
                 </th>
                 <th colspan="4">
                     <p class="text-center">
-                        {{Label.getContent('Value Market Shares')}}
+                    {{Label.getContent('Volume Market Shares')}}    
                     </p>
                 </th>
             </tr>
@@ -85,25 +86,25 @@
                     <p class="text-center">{{priceSensitives[0].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[0].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[0].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{priceSensitives[0].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[0].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[0].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{priceSensitives[0].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[0].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[0].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{priceSensitives[0].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[0].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[0].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
 
@@ -115,25 +116,25 @@
                     <p class="text-center">{{valueForMoneies[0].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[0].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[0].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{valueForMoneies[0].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[0].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[0].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{valueForMoneies[0].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[0].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[0].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{valueForMoneies[0].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[0].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[0].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="success">
@@ -144,25 +145,25 @@
                     <p class="text-center">{{fashions[0].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[0].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[0].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{fashions[0].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[0].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[0].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{fashions[0].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[0].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[0].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{fashions[0].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[0].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[0].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="success">
@@ -173,25 +174,25 @@
                     <p class="text-center">{{freakses[0].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[0].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[0].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{freakses[0].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[0].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[0].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{freakses[0].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[0].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[0].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{freakses[0].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[0].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[0].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="success">
@@ -207,25 +208,25 @@
                     <p class="text-center">{{bms[0].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[0].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[0].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{bms[0].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[0].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[0].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{bms[0].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[0].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[0].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{bms[0].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[0].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[0].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="success">
@@ -236,25 +237,25 @@
                     <p class="text-center">{{onlines[0].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[0].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[0].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{onlines[0].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[0].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[0].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{onlines[0].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[0].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[0].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{onlines[0].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[0].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[0].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="success">
@@ -265,25 +266,25 @@
                     <p class="text-center">{{mixeds[0].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[0].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[0].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{mixeds[0].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[0].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[0].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{mixeds[0].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[0].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[0].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{mixeds[0].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[0].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[0].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
 
@@ -304,25 +305,25 @@
                     <p class="text-center">{{priceSensitives[1].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[1].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[1].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{priceSensitives[1].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[1].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[1].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{priceSensitives[1].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[1].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[1].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{priceSensitives[1].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(priceSensitives[1].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(priceSensitives[1].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
 
@@ -334,25 +335,25 @@
                     <p class="text-center">{{valueForMoneies[1].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[1].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[1].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{valueForMoneies[1].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[1].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[1].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{valueForMoneies[1].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[1].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[1].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{valueForMoneies[1].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(valueForMoneies[1].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(valueForMoneies[1].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -363,25 +364,25 @@
                     <p class="text-center">{{fashions[1].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[1].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[1].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{fashions[1].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[1].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[1].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{fashions[1].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[1].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[1].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{fashions[1].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(fashions[1].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(fashions[1].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -392,25 +393,25 @@
                     <p class="text-center">{{freakses[1].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[1].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[1].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{freakses[1].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[1].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[1].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{freakses[1].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[1].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[1].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{freakses[1].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(freakses[1].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(freakses[1].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -426,25 +427,25 @@
                     <p class="text-center">{{bms[1].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[1].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[1].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{bms[1].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[1].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[1].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{bms[1].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[1].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[1].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{bms[1].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(bms[1].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(bms[1].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -455,25 +456,25 @@
                     <p class="text-center">{{onlines[1].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[1].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[1].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{onlines[1].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[1].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[1].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{onlines[1].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[1].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[1].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{onlines[1].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(onlines[1].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(onlines[1].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -484,25 +485,25 @@
                     <p class="text-center">{{mixeds[1].grsl_ValueLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[1].grsl_ValueLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[1].grsl_ValueLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{mixeds[1].grsl_ValueLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[1].grsl_ValueLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[1].grsl_ValueLeaders[1].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{mixeds[1].grsl_VolumeLeaders[0].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[1].grsl_VolumeLeaders[0].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[1].grsl_VolumeLeaders[0].share*100) | number : 1}}</p>
                 </td>
                 <td>
                     <p class="text-center">{{mixeds[1].grsl_VolumeLeaders[1].varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(mixeds[1].grsl_VolumeLeaders[1].share*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(mixeds[1].grsl_VolumeLeaders[1].share*100) | number : 1}}</p>
                 </td>
             </tr> 
 

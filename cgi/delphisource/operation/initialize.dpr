@@ -97,20 +97,57 @@ var
       ReturnCode   : LongWord;
       PeriodNumber : TPeriodNumber;
    begin
+
+
+      with conf do
+      begin
+        cr_TraceActive                 := TRUE;
+
+//
+//        aString := 'EJT4';
+//
+//
+//
+//        StrPLCopy( cr_SeminarCode, aString, SeminarCodeLength - 1 );
+
+
+
+//        cr_AdministratorFilesLocation  := 'C:\EtalesData\EJT4';
+//
+//
+//
+//        aString                        := ParamStr(0);
+//        aString                        := ExtractFilePath( aString );
+//        StrPLCopy( cr_ProgramsFilesLocation, IncludeTrailingPathDelimiter( aString ), PathLengthMax - 1 );
+        cr_Market_1_ID                 := 1;
+        cr_Market_2_ID                 := 2;
+        cr_Category_1_ID               := 1;
+        cr_Category_2_ID               := 2;
+        cr_TraditionalTradeActive      := FALSE;
+        cr_E_MallActive                := FALSE;
+        cr_VirtualSupplierActive       := FALSE;
+        cr_ForceNextDecisionsOverwrite := FALSE;
+
+      end;
+
+
       ReturnCode := InitialiseFiles( conf );
       sResponseData.Add( 'Initialisation Exit Code:  ' + IntToStr( ReturnCode ));
+//      sResponseData.Add( 'conf.cr_Market_1_ID:  ' + IntToStr( conf.cr_Market_1_ID));
+//      sResponseData.Add( 'conf.cr_Market_2_ID:  ' + IntToStr( conf.cr_Market_2_ID));
+
 
       if ( ReturnCode = init_InitialisationRun_OK ) then
       begin
         PeriodNumber := HistoryStart;
         ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -3
-
+//
         if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
         begin
           ReturnCode := RunOnePeriod( conf, PeriodNumber );
           if ( ReturnCode = kernel_SimulationRun_OK ) then
           begin
-            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -3
+            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNu    mber = -3
             if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
             begin
               ReturnCode := RunOnePeriod( conf, PeriodNumber );
@@ -153,18 +190,14 @@ var
 
 
                 end;
-
-
-
-
               end;
             end;
           end;
         end;
 
-        //sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
+        sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
       end;
-      sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
+      //sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
 
       if (ReturnCode = kernel_SimulationRun_OK) then
       begin

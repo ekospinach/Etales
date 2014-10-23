@@ -2,53 +2,6 @@
 		<PropertyGroup>
 			<ProjectGuid>{5280A333-2C47-4E8B-843F-088C88C34D73}</ProjectGuid>
 		</PropertyGroup>
-		<ItemGroup>
-			<Projects Include="marketReport\marketReport.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="lineChart\lineChart.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="perceptionMap\perceptionMap.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="finReport\finReport.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="volReport\volReport.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="producerDecision\producerDecision.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="retailerDecision\retailerDecision.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="variantHistoryInfo\variantHistoryInfo.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="companyHistoryInfo\companyHistoryInfo.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="brandHistoryinfo\brandHistoryInfo.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="quarterHistoryInfo\quarterHistoryInfo.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="negotiationDecision\negotiationDecision.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="operating\initialize.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="operating\kernel.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="operating\passive.dproj">
-				<Dependencies/>
-			</Projects>
-		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
 			<Borland.ProjectType/>
@@ -56,149 +9,14 @@
 				<Default.Personality/>
 			</BorlandProject>
 		</ProjectExtensions>
-		<Target Name="marketReport">
-			<MSBuild Projects="marketReport\marketReport.dproj"/>
-		</Target>
-		<Target Name="marketReport:Clean">
-			<MSBuild Projects="marketReport\marketReport.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="marketReport:Make">
-			<MSBuild Projects="marketReport\marketReport.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="lineChart">
-			<MSBuild Projects="lineChart\lineChart.dproj"/>
-		</Target>
-		<Target Name="lineChart:Clean">
-			<MSBuild Projects="lineChart\lineChart.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="lineChart:Make">
-			<MSBuild Projects="lineChart\lineChart.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="perceptionMap">
-			<MSBuild Projects="perceptionMap\perceptionMap.dproj"/>
-		</Target>
-		<Target Name="perceptionMap:Clean">
-			<MSBuild Projects="perceptionMap\perceptionMap.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="perceptionMap:Make">
-			<MSBuild Projects="perceptionMap\perceptionMap.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="finReport">
-			<MSBuild Projects="finReport\finReport.dproj"/>
-		</Target>
-		<Target Name="finReport:Clean">
-			<MSBuild Projects="finReport\finReport.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="finReport:Make">
-			<MSBuild Projects="finReport\finReport.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="volReport">
-			<MSBuild Projects="volReport\volReport.dproj"/>
-		</Target>
-		<Target Name="volReport:Clean">
-			<MSBuild Projects="volReport\volReport.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="volReport:Make">
-			<MSBuild Projects="volReport\volReport.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="producerDecision">
-			<MSBuild Projects="producerDecision\producerDecision.dproj"/>
-		</Target>
-		<Target Name="producerDecision:Clean">
-			<MSBuild Projects="producerDecision\producerDecision.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="producerDecision:Make">
-			<MSBuild Projects="producerDecision\producerDecision.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="retailerDecision">
-			<MSBuild Projects="retailerDecision\retailerDecision.dproj"/>
-		</Target>
-		<Target Name="retailerDecision:Clean">
-			<MSBuild Projects="retailerDecision\retailerDecision.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="retailerDecision:Make">
-			<MSBuild Projects="retailerDecision\retailerDecision.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="variantHistoryInfo">
-			<MSBuild Projects="variantHistoryInfo\variantHistoryInfo.dproj"/>
-		</Target>
-		<Target Name="variantHistoryInfo:Clean">
-			<MSBuild Projects="variantHistoryInfo\variantHistoryInfo.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="variantHistoryInfo:Make">
-			<MSBuild Projects="variantHistoryInfo\variantHistoryInfo.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="companyHistoryInfo">
-			<MSBuild Projects="companyHistoryInfo\companyHistoryInfo.dproj"/>
-		</Target>
-		<Target Name="companyHistoryInfo:Clean">
-			<MSBuild Projects="companyHistoryInfo\companyHistoryInfo.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="companyHistoryInfo:Make">
-			<MSBuild Projects="companyHistoryInfo\companyHistoryInfo.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="brandHistoryInfo">
-			<MSBuild Projects="brandHistoryinfo\brandHistoryInfo.dproj"/>
-		</Target>
-		<Target Name="brandHistoryInfo:Clean">
-			<MSBuild Projects="brandHistoryinfo\brandHistoryInfo.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="brandHistoryInfo:Make">
-			<MSBuild Projects="brandHistoryinfo\brandHistoryInfo.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="quarterHistoryInfo">
-			<MSBuild Projects="quarterHistoryInfo\quarterHistoryInfo.dproj"/>
-		</Target>
-		<Target Name="quarterHistoryInfo:Clean">
-			<MSBuild Projects="quarterHistoryInfo\quarterHistoryInfo.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="quarterHistoryInfo:Make">
-			<MSBuild Projects="quarterHistoryInfo\quarterHistoryInfo.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="negotiationDecision">
-			<MSBuild Projects="negotiationDecision\negotiationDecision.dproj"/>
-		</Target>
-		<Target Name="negotiationDecision:Clean">
-			<MSBuild Projects="negotiationDecision\negotiationDecision.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="negotiationDecision:Make">
-			<MSBuild Projects="negotiationDecision\negotiationDecision.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="initialize">
-			<MSBuild Projects="operating\initialize.dproj"/>
-		</Target>
-		<Target Name="initialize:Clean">
-			<MSBuild Projects="operating\initialize.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="initialize:Make">
-			<MSBuild Projects="operating\initialize.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="kernel">
-			<MSBuild Projects="operating\kernel.dproj"/>
-		</Target>
-		<Target Name="kernel:Clean">
-			<MSBuild Projects="operating\kernel.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="kernel:Make">
-			<MSBuild Projects="operating\kernel.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="passive">
-			<MSBuild Projects="operating\passive.dproj"/>
-		</Target>
-		<Target Name="passive:Clean">
-			<MSBuild Projects="operating\passive.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="passive:Make">
-			<MSBuild Projects="operating\passive.dproj" Targets="Make"/>
-		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="marketReport;lineChart;perceptionMap;finReport;volReport;producerDecision;retailerDecision;variantHistoryInfo;companyHistoryInfo;brandHistoryInfo;quarterHistoryInfo;negotiationDecision;initialize;kernel;passive"/>
+			<CallTarget/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="marketReport:Clean;lineChart:Clean;perceptionMap:Clean;finReport:Clean;volReport:Clean;producerDecision:Clean;retailerDecision:Clean;variantHistoryInfo:Clean;companyHistoryInfo:Clean;brandHistoryInfo:Clean;quarterHistoryInfo:Clean;negotiationDecision:Clean;initialize:Clean;kernel:Clean;passive:Clean"/>
+			<CallTarget/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="marketReport:Make;lineChart:Make;perceptionMap:Make;finReport:Make;volReport:Make;producerDecision:Make;retailerDecision:Make;variantHistoryInfo:Make;companyHistoryInfo:Make;brandHistoryInfo:Make;quarterHistoryInfo:Make;negotiationDecision:Make;initialize:Make;kernel:Make;passive:Make"/>
+			<CallTarget/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

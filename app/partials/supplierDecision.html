@@ -1,6 +1,5 @@
 <link href="/js/steps/steps.css" type="text/css" rel="stylesheet">
 <style TYPE="text/css">
-
     .table-bordered > thead > tr > th,
     .table-bordered > tbody > tr > th,
     .table-bordered > tfoot > tr > th,
@@ -20,13 +19,14 @@
     }
 
     .bs-docs-sidebar.affix{
-        position: fixed;
+        position: fixed; s
     }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
       .bs-docs-section.affix-bottom,
       .bs-docs-section.affix {
         padding: 0;
+        width: 255px;
       }
     }
 
@@ -40,35 +40,23 @@
         padding-top:60px;
     }
     .col-md-9{
-        width: 80%;
+        width: 77%;
     }
     .col-md-3{
-        width: 20%;
+        width: 23%;
     }
-    @media (min-width: 1200px) {
-      /* Widen the fixed sidebar again */
-      .bs-docs-sidebar.affix-bottom,
-      .bs-docs-sidebar.affix {1
-        width: 213px;
-      }
-    }
-
 </style>
 
-<div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
+<div class="my-super-awesome-loading-box" ng-show="isPageLoading" access-level='{{accessLevels.playerView}}'>Loading...</div>
 
 <div class="container bs-docs-container">
     <div class="row">
-        <div class="col-md-12">
-
+        <div ng-class="{true: 'col-md-12', false: 'col-md-9'}[isNegotiation]">
             <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator steps-7">
                     <li class="done editing">
                         <a href="/#/supplierDecision" ng-click="showProductPortfolioManagement()">{{Label.getContent('Product Portfolio Management')}}</a>
-                        </li>
-                    <!-- <li class="done">
-                        <a href="/#/supplierDecision" ng-click='showBMListPrices()'>{{Label.getContent('B&M List Prices')}}</a>
-                    </li> -->
+                    </li>
                     <li class="done">
                         <a href="/#/supplierDecision" ng-click='showNegotiationAgreements()'>{{Label.getContent('Negotiation Agreements')}}</a>
                     </li>
@@ -90,72 +78,170 @@
                 </ul>
             </div>
         </div>
+        <div class="col-md-3 pull-right" ng-show='!isNegotiation' style="padding:0 0 0 15px">
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
+                <div id='supplierClockChart' ng-show='isTimerActived&&chartInit' ng-model='supplierModel' supplier-clock-chart></div>
+                <p ng-show='isTimerActived&&chartInit'>{{supplierClockTitle}}</p>
+
+                <table class="table table-condensed" style="margin:0px auto;">
+                    <thead>
+                        <th colspan="2">
+                            <p>{{Label.getContent('(Total)')}}</p>
+                        </th>
+                    </thead>
+
+                    <tbody> 
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Initial Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{initialBudget}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>{{Label.getContent('Previous Spending')}}</p>
+                            </td>         
+                        </tr>     
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Marketing')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalPreviousMarketing}}</p>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Trade Support')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalPreviousTradeSupport}}</p>
+                            </td>
+                        </tr>                        
+
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Budget Extensions')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{budgetExtensions}}</p>
+                            </td>
+                        </tr>    
+<!--                         <tr>
+                            <td>
+                                <p>{{Label.getContent('Budget Increase Due to Negotiation')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+200</p>
+                            </td>
+                        </tr>                          
+ -->                    </tbody>
+                </table>
+                <p></p>
+                <table class="table table-condensed" style="margin:0px auto;">
+                    <thead>
+                        <th colspan="2">
+                                <p>{{Label.getContent('(Current)')}}</p>
+                        </th>
+                    </thead>
+
+                    <tbody>                 
+
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Remaining Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{abMax}}</p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <p>{{Label.getContent('Estimated Period Spending')}}</p>
+                            </td>
+<!--                             <td>
+                                <p class="text-right"><b>{{estimatedSpending}}</b></p>
+                            </td>
+ -->                        </tr>
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Marketing')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalCurrentMarketing}}</p>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Trade Support')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{totalCurrentTradeSupport}}</p>
+                            </td>
+                        </tr>      
+                        
+                        <tr>
+                            <td style="word-break: keep-all;white-space:nowrap;">
+                                <p>{{Label.getContent('Estimated Budget Left')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{surplusExpend}}</b></p>
+                            </td>
+                            
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2">
+                                <p>{{Label.getContent('Available Period Capacity')}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Elecssories')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{eleSurplusProduction}}</b>/{{acEleMax}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('HealthBeauties')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{heaSurplusProduction}}</b>/{{acHeaMax}}</p>
+                            </td>
+                        </tr>                
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
         <div class="col-md-9" ng-show='!isNegotiation' style="padding:0 0 0 15px">
 
             <div class="bs-docs-section">
-                <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{currentPeriod}}</b>, Supplier {{PlayerID}}</p>
+                <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Supplier {{selectedPlayer}}</p>
 
-                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-product-portfolio-management>
+                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-product-portfolio-management>
                 
-               <!--  <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-b-m-list-prices> -->
+                <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-production-volume>
                 
-                <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading' is-ready='isFinalDecisionReady'></supplier-production-volume>
+                <supplier-general-marketing ng-show='GeneralMarketing' is-page-shown='GeneralMarketing' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-general-marketing>
                 
-                <supplier-general-marketing ng-show='GeneralMarketing' is-page-shown='GeneralMarketing' is-page-loading='isPageLoading' is-ready='isFinalDecisionReady'></supplier-general-marketing>
+                <supplier-online-store-management ng-show='OnlineStoreManagement' is-page-shown='OnlineStoreManagement' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-online-store-management>
                 
-                <supplier-online-store-management ng-show='OnlineStoreManagement' is-page-shown='OnlineStoreManagement' is-page-loading='isPageLoading' is-ready='isFinalDecisionReady'></supplier-online-store-management>
-                
-                <supplier-asset-investments ng-show='AssetInvestments' is-page-shown='AssetInvestments' is-page-loading='isPageLoading' is-ready='isFinalDecisionReady'></supplier-asset-investments>
+                <supplier-asset-investments ng-show='AssetInvestments' is-page-shown='AssetInvestments' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-asset-investments>
 
-                <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' is-ready='isFinalDecisionReady'></supplier-market-research-orders> 
+                <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-market-research-orders> 
             </div>
         </div>
-        <div class="col-md-3" ng-show='!isNegotiation' style="padding:0 0 0 15px">
-            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
-                <table class="table table-condensed">
-                    <thead>
-                        <th colspan="2">
-                            <p>{{Label.getContent('Decision Info')}}</p>
-                        </th>
-                    </thead>
-                    <tbody>
-<!--                         <tr>
-                            <td><p>{{Label.getContent('Time Left')}}</p></td>
-                            <td><p class="text-right">30 {{Label.getContent('mins')}}</p></td>
-                        </tr>
- -->                    
-                        <tr>
-                            <td><p>{{Label.getContent('Total Budget')}}</p></td>
-                            <td><p class="text-right">{{abMax}}</p></td>
-                        </tr>
 
-                        <tr>
-                            <td><p>{{Label.getContent('Estimated Period Spending')}}</p></td>
-                            <td><p class="text-right"><b>{{estimatedSpending}}</b></p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Estimated Budget Left')}}</p></td>
-                            <td><p class="text-right"><b>{{surplusExpend}}</b></p></td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="2"><p>{{Label.getContent('Available Period Capacity')}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><p class="padding-10">{{Label.getContent('Elecssories')}}</p></td>
-                            <td><p class="text-right"><b>{{eleSurplusProduction}}</b>/{{acEleMax}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><p class="padding-10">{{Label.getContent('HealthBeauties')}}</p></td>
-                            <td><p class="text-right"><b>{{heaSurplusProduction}}</b>/{{acHeaMax}}</p></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
-                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-portfolio-decision-ready='isPortfolioDecisionReady' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
+                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-portfolio-decision-ready='isPortfolioDecisionReady' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-negotiation-agreements>
             </div>
         </div>
     </div>

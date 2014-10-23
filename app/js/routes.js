@@ -13,9 +13,6 @@ define(['angular',
 		'controllers/generalReportCtrl',
 		'controllers/marketReportCtrl',
 		'controllers/confidentialReportCtrl',
-		'controllers/facilitatorConfidentialReportCtrl',
-		'controllers/facilitatorGeneralReportCtrl',
-		'controllers/facilitatorMarketReportCtrl',		
 		'controllers/supplierDecisionCtrl',
 		'controllers/retailerDecisionCtrl',
 		'controllers/navbarCtrl',
@@ -49,11 +46,11 @@ define(['angular',
 		}).when('/admin',{
 			templateUrl:'partials/admin.html',
 			controller:'adminCtrl',
-			access : access.public			
+			access : access.facilitatorView			
 		}).when('/adminDetails',{
 			templateUrl:'partials/adminDetails.html',
 			controller:'adminDetailsCtrl',
-			access : access.public
+			access : access.facilitatorView
 		}).when('/test',{
 			controller:'testCtrl',
 			templateUrl:'partials/test.html',
@@ -61,7 +58,7 @@ define(['angular',
 		}).when('/facilitatorDecision',{
 			controller:'facilitatorDecisionCtrl',
 			templateUrl:'partials/facilitatorDecision.html',
-			access:access.facilitatorView
+			access:access.playerView
 		}).when('/feedback',{
 			controller:'feedbackCtrl',
 			templateUrl:'partials/feedback.html',
@@ -70,18 +67,6 @@ define(['angular',
 			controller:'summaryReportCtrl',
 			templateUrl:'partials/summaryReport.html',
 			access:access.playerView
-		}).when('/facilitatorConfidentialReport',{
-			controller:'facilitatorConfidentialReportCtrl',
-			templateUrl:'partials/facilitatorConfidentialReport.html',
-			access:access.facilitatorView
-		}).when('/facilitatorGeneralReport',{
-			controller:'facilitatorGeneralReportCtrl',
-			templateUrl:'partials/facilitatorGeneralReport.html',
-			access:access.facilitatorView
-		}).when('/facilitatorMarketReport',{
-			controller:'facilitatorMarketReportCtrl',
-			templateUrl:'partials/facilitatorMarketReport.html',
-			access:access.facilitatorView
 		}).when('/supplierDecision',{
 			templateUrl:'partials/supplierDecision.html',
 			controller:'supplierDecisionCtrl',
@@ -89,7 +74,7 @@ define(['angular',
 		}).when('/retailerDecision',{
 			templateUrl:'partials/retailerDecision.html',
 			controller:'retailerDecisionCtrl',
-			access : access.producerView			
+			access : access.retailerView			
 		}).when('/generalReport',{
 			templateUrl:'partials/generalReport.html',
 			controller:'generalReportCtrl',

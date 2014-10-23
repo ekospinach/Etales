@@ -1,5 +1,5 @@
 define(['app','socketIO','routingConfig'], function(app) {
-	app.controller('confidentialReportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo) {
+	app.controller('confidentialReportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo','$filter', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo,$filter) {
 
 		    $scope.$watch('isPageLoading', function(newValue, oldValue){
 		    	$scope.isPageLoading = newValue;	    	
@@ -116,7 +116,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	switching('showRuralVolume');
 		    }
 
-		    $scope.showRuralVolume = showRuralVolume
+		    $scope.showRuralVolume = showRuralVolume;
 
 		    $scope.showUrbanConsumer=function(){
 		    	switching('showUrbanConsumer');
@@ -131,26 +131,112 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.showRetailerKey=function(){
 		    	switching('showRetailerKey');
 		    }
+		    var setPlayer=function(userRole){
+		    	var role=2;
+		    	$scope.showPlayer=userRole;
+		    	if(userRole>4){
+		    		userRole-=4;
+		    		role=4;
+		    	}
+		    	if(role==4&&$scope.producerShow){
+		    		$scope.producerShow=false;
+	    			$scope.retailerShow=true;
+		    		showRetailerConsolidate();
+		    	}
+		    	if(role==2&&$scope.retailerShow){
+		    		$scope.producerShow=true;
+			    	$scope.retailerShow=false;
+			    	showProducerConsolidate();
+		    	}
+		    	$scope.selectedPlayer=userRole;
+		    }
+
 		    $scope.switching=switching;	
+		    $scope.setPlayer=setPlayer;
 		    $scope.showRetailerConsolidate=showRetailerConsolidate;
 		    $scope.showProducerConsolidate=showProducerConsolidate;
 
+		    $scope.selectedPeriod = PeriodInfo.getCurrentPeriod() - 1;
+			$scope.nextBtn = false;
+			$scope.previousBtn = true;
+
+			var userRoles = routingConfig.userRoles;
+			$scope.facilitatorShow=false;
+		    if(RoleInfo.getRole() == userRoles.facilitator){
+			    
+			    $scope.selectedPlayer=1;
+			    $scope.showPlayer=1;
+			    $scope.producerShow=true;
+			    $scope.retailerShow=false;
+			    $scope.facilitatorShow=true;
+			    showProducerConsolidate();
+		    }
 
 		    if(RoleInfo.getRole()==2){
+		    	$scope.selectedPlayer=PlayerInfo.getPlayer();
+		    	$scope.showPlayer=PlayerInfo.getPlayer();
 		    	$scope.producerShow=true;
 		    	$scope.retailerShow=false;
 		    	showProducerConsolidate();
-		    	$scope.roleStr = 'Supplier';
 		    }else if(RoleInfo.getRole()==4){
+		    	$scope.selectedPlayer=PlayerInfo.getPlayer();
+		    	$scope.showPlayer=(parseInt(PlayerInfo.getPlayer())+4);
 		    	$scope.retailerShow=true;
 		    	$scope.producerShow=false;
 		    	showRetailerConsolidate();
-		    	$scope.roleStr = 'Retailer';
 		    }
 
-		    $scope.playerID = PlayerInfo.getPlayer();
-		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
-		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod() - 1;		    
+			$scope.players = [{
+				value: 1,
+				text: Label.getContent('Supplier')+' 1'
+			}, {
+				value: 2,
+				text: Label.getContent('Supplier')+' 2'
+			}, {
+				value: 3,
+				text: Label.getContent('Supplier')+' 3'
+			}, {
+				value: 4,
+				text: Label.getContent('Supplier')+' 4'
+			}, {
+				value: 5,
+				text: Label.getContent('Retailer')+' 1'
+			}, {
+				value: 6,
+				text: Label.getContent('Retailer')+' 2'
+			}, {
+				value: 7,
+				text: Label.getContent('Traditional Trade')
+			}, {
+				value: 8,
+				text: Label.getContent('eMall')
+			}];
+
+			$scope.showSelectedPlayer = function() {
+				var selected = $filter('filter')($scope.players, {
+					value: $scope.showPlayer
+				});
+				return ($scope.showPlayer && selected.length) ? selected[0].text : 'Not set';
+			};
+			
+			$scope.changePeriod = function(type) {
+				if (type == "add") {
+					$scope.selectedPeriod = $scope.selectedPeriod + 1;
+				} else {
+					$scope.selectedPeriod = $scope.selectedPeriod - 1;
+				}
+				if ($scope.selectedPeriod < PeriodInfo.getCurrentPeriod() - 1) {
+					$scope.nextBtn = true;
+				} else {
+					$scope.nextBtn = false;
+				}
+				if ($scope.selectedPeriod > -3) {
+					$scope.previousBtn = true;
+				} else {
+					$scope.previousBtn = false;
+				}
+			}
+	    
 		}]);
 
 });

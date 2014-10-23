@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('overviewMarketShares', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('overviewMarketShares', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerColor){
         return {
             scope : {
             	isPageShown : '=',
@@ -16,8 +16,6 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;  
                     scope.isResultShown = false;             
                     scope.Label = Label;
-                    console.log(scope.feedBack);
-                    //if(scope.feedBack!=undefined)
                     getResult();                    
                 }
 
@@ -27,10 +25,11 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			    	var currentElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-			    	var currentElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-			    	var currentHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-			    	var currentHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+			    	var currentElecssoriesVolume=
+			    	new Array({name:Label.getContent('Supplier')+'-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-3',data:new Array(),color:PlayerColor.getColors()[6]});
+			    	var currentElecssoriesValue=new Array({name:Label.getContent('Supplier')+'-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-3',data:new Array(),color:PlayerColor.getColors()[6]});
+			    	var currentHealthBeautiesVolume=new Array({name:Label.getContent('Supplier')+'-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-3',data:new Array(),color:PlayerColor.getColors()[6]});
+			    	var currentHealthBeautiesValue=new Array({name:Label.getContent('Supplier')+'-1',data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-2',data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-3',data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-4',data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-1',data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-2',data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-3',data:new Array(),color:PlayerColor.getColors()[6]});
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
 		        	//share Volume
@@ -38,9 +37,9 @@ define(['directives', 'services'], function(directives){
 		                for(var i=0;i<scope.feedBack.f_VolumeMarketShares.length;i++){
 		                    if(scope.feedBack.f_VolumeMarketShares[i].period==currentCategories[j]){
 		                        if(scope.feedBack.f_VolumeMarketShares[i].categoryID==1){
-	                                currentElecssoriesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+	                                currentElecssoriesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value * 100);
 	                            }else if(scope.feedBack.f_VolumeMarketShares[i].categoryID==2){
-	                                currentHealthBeautiesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+	                                currentHealthBeautiesVolume[scope.feedBack.f_VolumeMarketShares[i].actorID-1].data.push(scope.feedBack.f_VolumeMarketShares[i].value * 100);
 	                            }
 		                    }
 		                }
@@ -50,9 +49,9 @@ define(['directives', 'services'], function(directives){
 		                for(var i=0;i<scope.feedBack.f_ValueMarketShares.length;i++){
 		                    if(scope.feedBack.f_ValueMarketShares[i].period==currentCategories[j]){
 		                        if(scope.feedBack.f_ValueMarketShares[i].categoryID==1){
-	                                currentElecssoriesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+	                                currentElecssoriesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value * 100);
 	                            }else if(scope.feedBack.f_ValueMarketShares[i].categoryID==2){
-	                                currentHealthBeautiesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+	                                currentHealthBeautiesValue[scope.feedBack.f_ValueMarketShares[i].actorID-1].data.push(scope.feedBack.f_ValueMarketShares[i].value * 100);
 	                            }
 		                    }
 		                }
@@ -62,9 +61,10 @@ define(['directives', 'services'], function(directives){
 		        	scope.currentSharesVolumeElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Volumes Shares',
+		                        text:Label.getContent('Volume Shares'),
 		                    },
 		                    chart: {
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -76,12 +76,12 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent("Period")+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -97,9 +97,10 @@ define(['directives', 'services'], function(directives){
 		            scope.currentSharesVolumeHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'Volumes Shares',
+		                        text:Label.getContent('Volume Shares'),
 		                    },
 		                    chart: {
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -111,12 +112,12 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent("Period")+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -132,9 +133,10 @@ define(['directives', 'services'], function(directives){
 		            scope.currentSharesValueElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Values Shares',
+		                        text:Label.getContent('Value Shares'),
 		                    },
 		                    chart: {
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -146,12 +148,12 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent("Period")+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -167,9 +169,10 @@ define(['directives', 'services'], function(directives){
 		            scope.currentSharesValueHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'Values Shares',
+		                        text:Label.getContent('Value Shares'),
 		                    },
 		                    chart: {
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -181,12 +184,12 @@ define(['directives', 'services'], function(directives){
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent("Period")+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,

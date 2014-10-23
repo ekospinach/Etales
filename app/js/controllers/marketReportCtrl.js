@@ -264,20 +264,19 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				$scope.awareness = true;
 				//if()
 				if (type != 'Full') {
-					$scope.forecasts                    = data.forecasts;
-					$scope.retailerIntelligence         = data.retailerIntelligence;
-					$scope.supplierIntelligence         = data.supplierIntelligence;
-					$scope.promotionIntensity           = data.promotionIntensity;
-					$scope.BMRetailerPrices             = data.BMRetailerPrices;
-					$scope.salesByShopperSegment        = data.salesByShopperSegment;
-					$scope.marketShareByShopperSegment  = data.marketShareByShopperSegment;
-					$scope.salesByConsumerSegment       = data.salesByConsumerSegment;
-					$scope.marketShareByConsumerSegment = data.marketShareByConsumerSegment;
-					//salesByChannel
-					$scope.salesByChannel               = data.salesByChannel;
-					$scope.retailerPerceptions          = data.retailerPerceptions;
-					$scope.brandPerceptions             = data.brandPerceptions;
-					$scope.awareness                    = data.awareness;
+					$scope.salesByChannel               = data[12];
+					$scope.forecasts                    = data[11];
+					$scope.retailerIntelligence         = data[10];
+					$scope.supplierIntelligence         = data[9];
+					$scope.promotionIntensity           = data[8];
+					$scope.BMRetailerPrices             = data[7];
+					$scope.salesByShopperSegment        = data[6];
+					$scope.marketShareByShopperSegment  = data[5];
+					$scope.salesByConsumerSegment       = data[4];
+					$scope.marketShareByConsumerSegment = data[3];
+					$scope.retailerPerceptions          = data[2];
+					$scope.brandPerceptions             = data[1];
+					$scope.awareness                    = data[0];
 				}
 				if ($scope.awareness) {
 					showAwarenessElecssories();
@@ -313,7 +312,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					showAwarenessElecssories();
 					$scope.isPageLoading = false;
 				} else if ($rootScope.user.role == userRoles.retailer) {
-					var url = '/getSeminarReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/R/' + PlayerInfo.getPlayer();
+					var url = '/getRetailerReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) +'/'+  PlayerInfo.getPlayer();
 					$http({
 						method: 'GET',
 						url: url
@@ -325,7 +324,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 						$scope.isPageLoading = false;
 					})
 				} else if ($rootScope.user.role == userRoles.producer) {
-					var url = '/getSeminarReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + PlayerInfo.getPlayer();
+					var url = '/getSupplierReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) +'/'+  PlayerInfo.getPlayer();
 					$http({
 						method: 'GET',
 						url: url

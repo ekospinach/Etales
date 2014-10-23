@@ -7,11 +7,14 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			})
 
 			var switching = function(type) {
-				$scope.Performance = $scope.MarketShare = $scope.MarketSales = $scope.Segment = $scope.Cross = $scope.Product = $scope.EMallPrices = $scope.ProducerConsolidate = $scope.ProducerBMBusiness = $scope.ProducerOnlineBusiness = $scope.ProducerProfitability = $scope.ProducerNegotiations = $scope.ElecssoriesConsumer = $scope.ElecssoriesShopper = $scope.ElecssoriesVolume = $scope.HealthBeautiesConsumer = $scope.HealthBeautiesShopper = $scope.HealthBeautiesVolume = $scope.ProducerKey = $scope.RuralConsumer = $scope.RuralShopper = $scope.RuralVolume = $scope.UrbanConsumer = $scope.UrbanShopper = $scope.UrbanVolume = $scope.RetailerKey = $scope.RetailerConsolidate = $scope.RetailerRuralProfit = $scope.RetailerUrbanProfit = $scope.RetailerProfitability = $scope.RetailerNegotiations = false;
+				$scope.BrandPerspective = $scope.ChannelPerspective = $scope.MarketShare = $scope.MarketSales = $scope.Segment = $scope.Cross = $scope.Product = $scope.EMallPrices = $scope.ProducerConsolidate = $scope.ProducerBMBusiness = $scope.ProducerOnlineBusiness = $scope.ProducerProfitability = $scope.ProducerNegotiations = $scope.ElecssoriesConsumer = $scope.ElecssoriesShopper = $scope.ElecssoriesVolume = $scope.HealthBeautiesConsumer = $scope.HealthBeautiesShopper = $scope.HealthBeautiesVolume = $scope.ProducerKey = $scope.RuralConsumer = $scope.RuralShopper = $scope.RuralVolume = $scope.UrbanConsumer = $scope.UrbanShopper = $scope.UrbanVolume = $scope.RetailerKey = $scope.RetailerConsolidate = $scope.RetailerRuralProfit = $scope.RetailerUrbanProfit = $scope.RetailerProfitability = $scope.RetailerNegotiations = false;
 				$scope.AwarenessElecssories = $scope.AwarenessHealthBeauties = $scope.RuralElecssoriesBrand = $scope.UrbanElecssoriesBrand = $scope.RuralHealthBeautiesBrand = $scope.UrbanHealthBeautiesBrand = $scope.RetailerPerceptions = $scope.RuralElecssoriesConsumerShare = $scope.UrbanElecssoriesConsumerShare = $scope.RuralHealthBeautiesConsumerShare = $scope.UrbanHealthBeautiesConsumerShare = $scope.RuralElecssoriesConsumerSales = $scope.UrbanElecssoriesConsumerSales = $scope.RuralHealthBeautiesConsumerSales = $scope.UrbanHealthBeautiesConsumerSales = $scope.RuralElecssoriesShopperShare = $scope.UrbanElecssoriesShopperShare = $scope.RuralHealthBeautiesShopperShare = $scope.UrbanHealthBeautiesShopperShare = $scope.RuralElecssoriesShopperSales = $scope.UrbanElecssoriesShopperSales = $scope.RuralHealthBeautiesShopperSales = $scope.UrbanHealthBeautiesShopperSales = $scope.BMElecssories = $scope.BMHealthBeauties = $scope.PromotionElecssories = $scope.PromotionHealthBeauties = $scope.SupplierIntelligence = $scope.RetailerIntelligence = $scope.ForecastsConsumer = $scope.ForecastsShopper = $scope.ForecastsCategory = $scope.ForecastsInternet = false;
 				switch (type) {
-					case 'showPerformance':
-						$scope.Performance = true;
+					case 'showBrandPerspective':
+						$scope.BrandPerspective = true;
+						break;
+					case 'showChannelPerspective':
+						$scope.ChannelPerspective = true;
 						break;
 					case 'showMarketShare':
 						$scope.MarketShare = true;
@@ -37,8 +40,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			$scope.selectedPeriod = PeriodInfo.getCurrentPeriod() - 1;
 			$scope.nextBtn = false;
 			$scope.previousBtn = true;
-
-
+			
 			$scope.changePeriod = function(type) {
 				if (type == "add") {
 					$scope.selectedPeriod = $scope.selectedPeriod + 1;
@@ -57,8 +59,11 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				}
 			}
 
-			var showPerformance = function() {
-				switching('showPerformance');
+			var showBrandPerspective = function() {
+				switching('showBrandPerspective');
+			}
+			$scope.showChannelPerspective = function() {
+				switching('showChannelPerspective');
 			}
 
 			$scope.showMarketShare = function() {
@@ -87,8 +92,8 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 
 
 			$scope.switching = switching;
-			$scope.showPerformance = showPerformance;
-			showPerformance();
+			$scope.showBrandPerspective = showBrandPerspective;
+			showBrandPerspective();
 
 			$scope.currentPeriod = PeriodInfo.getCurrentPeriod();
 			$scope.historyPeriod = PeriodInfo.getCurrentPeriod() - 1;

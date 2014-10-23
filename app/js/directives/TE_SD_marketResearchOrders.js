@@ -1,12 +1,17 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('supplierMarketResearchOrders', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerInfo',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerInfo) {
+    directives.directive('supplierMarketResearchOrders', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerInfo','ProducerDecisionBase',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerInfo,ProducerDecisionBase) {
             return {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
-                    isReady: '='
+                    selectedPlayer: '=',
+                    selectedPeriod: '=',
+                    isPortfolioDecisionCommitted: '=',
+                    isContractDeal: '=',
+                    isContractFinalized: '=',
+                    isDecisionCommitted: '='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/SD_marketResearchOrders.html',
@@ -15,24 +20,34 @@ define(['directives', 'services'], function(directives) {
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
                         scope.Label = Label;
-                        getResult();
+                        showView();
+                    }
+
+                    var showView = function() {
+                        ProducerDecisionBase.reload({
+                            producerID: parseInt(PlayerInfo.getPlayer()),
+                            period: scope.selectedPeriod,
+                            seminar: SeminarInfo.getSelectedSeminar().seminarCode
+                        }).then(function(base) {
+                            scope.pageBase = base;
+                        }).then(function() {
+                            return getResult();
+                        }),
+                        function(reason) {
+                            console.log('from ctr: ' + reason);
+                        },
+                        function(update) {
+                            console.log('from ctr: ' + update);
+                        };
                     }
 
                     var getResult = function() {
                         var reportStatus = {};
                         var prices = {};
-                        var url = '/getSeminarReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/getReportPrice/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod;
                         $http({
                             method: 'GET',
                             url: url
-                        }).then(function(data) {
-                            reportStatus = data.data;
-                            url = '/getReportPrice/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod();
-                            return $http({
-                                method: 'GET',
-                                url: url
-                            });
-                            //return organiseArray(data);
                         }).then(function(data) {
                             prices = data.data;
                             return organiseArray(reportStatus, prices)
@@ -54,79 +69,79 @@ define(['directives', 'services'], function(directives) {
                             'name': 'Awareness',
                             'realName': 'awareness',
                             'reportPrice': prices[0],
-                            'playerStatus': reportStatus.awareness
+                            'playerStatus': scope.pageBase.marketResearchOrder[0]
                         });
                         playDatas.push({
                             'name': 'Brand Perceptions',
                             'realName': 'brandPerceptions',
                             'reportPrice': prices[1],
-                            'playerStatus': reportStatus.brandPerceptions
+                            'playerStatus': scope.pageBase.marketResearchOrder[1]
                         });
                         playDatas.push({
                             'name': 'Retailer Perceptions',
                             'realName': 'retailerPerceptions',
                             'reportPrice': prices[2],
-                            'playerStatus': reportStatus.retailerPerceptions
+                            'playerStatus': scope.pageBase.marketResearchOrder[2]
                         });
                         playDatas.push({
-                            'name': 'Market Share By Consumer Segment',
+                            'name': 'Market Shares by Consumer Segment',
                             'realName': 'marketShareByConsumerSegment',
                             'reportPrice': prices[3],
-                            'playerStatus': reportStatus.marketShareByConsumerSegment
+                            'playerStatus': scope.pageBase.marketResearchOrder[3]
                         });
                         playDatas.push({
-                            'name': 'Sales By Consumer Segment',
+                            'name': 'Sales by Consumer Segment',
                             'realName': 'salesByConsumerSegment',
                             'reportPrice': prices[4],
-                            'playerStatus': reportStatus.salesByConsumerSegment
+                            'playerStatus': scope.pageBase.marketResearchOrder[4]
                         });
                         playDatas.push({
-                            'name': 'Market Share ByShopper Segment',
+                            'name': 'Market Shares by Shopper Segment',
                             'realName': 'marketShareByShopperSegment',
                             'reportPrice': prices[5],
-                            'playerStatus': reportStatus.marketShareByShopperSegment
+                            'playerStatus': scope.pageBase.marketResearchOrder[5]
                         });
                         playDatas.push({
-                            'name': 'Sales By Shopper Segment',
+                            'name': 'Sales by Shopper Segment',
                             'realName': 'salesByShopperSegment',
                             'reportPrice': prices[6],
-                            'playerStatus': reportStatus.salesByShopperSegment
+                            'playerStatus': scope.pageBase.marketResearchOrder[6]
                         });
                         playDatas.push({
-                            'name': 'BM Retailer Prices',
+                            'name': 'B&M Retailer Prices',
                             'realName': 'BMRetailerPrices',
                             'reportPrice': prices[7],
-                            'playerStatus': reportStatus.BMRetailerPrices
+                            'playerStatus': scope.pageBase.marketResearchOrder[7]
                         });
                         playDatas.push({
                             'name': 'Promotion Intensity',
                             'realName': 'promotionIntensity',
                             'reportPrice': prices[8],
-                            'playerStatus': reportStatus.promotionIntensity
+                            'playerStatus': scope.pageBase.marketResearchOrder[8]
                         });
                         playDatas.push({
                             'name': 'Supplier Intelligence',
                             'realName': 'supplierIntelligence',
                             'reportPrice': prices[9],
-                            'playerStatus': reportStatus.supplierIntelligence
+                            'playerStatus': scope.pageBase.marketResearchOrder[9]
                         });
                         playDatas.push({
                             'name': 'Retailer Intelligence',
                             'realName': 'retailerIntelligence',
                             'reportPrice': prices[10],
-                            'playerStatus': reportStatus.retailerIntelligence
+                            'playerStatus': scope.pageBase.marketResearchOrder[10]
                         });
                         playDatas.push({
                             'name': 'Forecasts',
                             'realName': 'forecasts',
                             'reportPrice': prices[11],
-                            'playerStatus': reportStatus.forecasts
+                            'playerStatus': scope.pageBase.marketResearchOrder[11]
                         });
                         playDatas.push({
-                            'name': 'Sales By Channel',
+                            'name': 'Sales by Channel',
                             'realName': 'salesByChannel',
                             'reportPrice': prices[12],
-                            'playerStatus': reportStatus.salesByChannel
+                            'playerStatus': scope.pageBase.marketResearchOrder[12]
                         });
 
                         scope.playDatas = playDatas;
@@ -138,24 +153,8 @@ define(['directives', 'services'], function(directives) {
                     }
 
 
-                    scope.submitOrder = function(name, value) {
-                        var postData = {
-                            player: 'Producer',
-                            playerID: PlayerInfo.getPlayer(),
-                            period: PeriodInfo.getCurrentPeriod(),
-                            seminarCode: SeminarInfo.getSelectedSeminar().seminarCode,
-                            name: name,
-                            value: value
-                        }
-                        $http({
-                            method: 'POST',
-                            url: '/submitOrder',
-                            data: postData
-                        }).then(function(data) {
-                            console.log('success');
-                        }, function() {
-                            console.log('fail');
-                        })
+                    scope.submitOrder = function(additionalIdx, value) {
+                        ProducerDecisionBase.setMarketResearchOrders(scope.selectedPlayer, additionalIdx, value,'supplierMarketResearchOrders');
                     }
 
                     scope.checkBudget = function(price, value) {
@@ -167,35 +166,35 @@ define(['directives', 'services'], function(directives) {
                             availableBudgetLeft = 0,
                             reportExpend = 0;
                         if (value) {
-                            var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
                             $http({
                                 method: 'GET',
                                 url: url
                             }).then(function(data) {
-                                max = data.data.budgetAvailable + data.data.budgetSpentToDate;
-                                url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                                max = data.data.budgetAvailable;
+                                url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/brandName/location/1';
                                 return $http({
                                     method: 'GET',
                                     url: url,
                                 });
                             }).then(function(data) {
                                 producerExpend = data.data.result;
-                                url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
+                                url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/brandName/varName/ignoreItem/1';
                                 return $http({
                                     method: 'GET',
                                     url: url
                                 });
                             }).then(function(data) {
                                 ContractExpend = data.data.result;
-                                url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
+                                url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + scope.selectedPlayer;
                                 return $http({
                                     method: 'GET',
                                     url: url
                                 });
                             }).then(function(data) {
                                 reportExpend = data.data.result;
-                                availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
-                                
+                                availableBudgetLeft = max - ContractExpend - reportExpend - producerExpend;
+
                                 if (availableBudgetLeft < price) {
                                     d.resolve(Label.getContent('Not enough budget'));
                                 } else {
@@ -217,10 +216,16 @@ define(['directives', 'services'], function(directives) {
                         }
                     })
 
-                    scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {
-                        getResult();
-                    });
+                    // scope.$on('supplierMarketResearchOrdersChanged', function(event, data) {
+                    //     showView();
+                    // });
 
+                    scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
+                        //decision base had been updated, re-render the page with newBase
+                        if(data.page=="supplierMarketResearchOrders"){
+                            showView();
+                        }
+                });
                 }
             }
         }

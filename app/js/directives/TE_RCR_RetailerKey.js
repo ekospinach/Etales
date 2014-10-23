@@ -4,7 +4,10 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '=',
+                selectedPlayer : '=',
+                retailerShow : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RCR_retailerKey.html',            
@@ -19,13 +22,13 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/RCR-keyPerformanceIndicators/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/RCR-keyPerformanceIndicators/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
 			    	$http({
                         method:'GET',
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
@@ -37,140 +40,127 @@ define(['directives', 'services'], function(directives){
                 var loadValue=function(data,category,market){
                     //return the value find from data where obj.categoryID=category and obj.marketID=market
                     var array=_.find(data,function(obj){
-                        return (obj.categoryID==category&&obj.marketID==market);
+                        return ((obj.categoryID==category)&&(obj.marketID==market));
                     });
                     return array.value;
                 }
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
-                    var rcrkpi_VolumeRotationIndex=new Array();
-                    var rcrkpi_ValueRotationIndex=new Array();
-                    var rcrkpi_ProfitabilityIndex=new Array();
-                    var rcrkpi_StockCover=new Array();
-                    var rcrkpi_ShoppersShare=new Array();
+                    var VolumeRotationIndex=new Array();
+                    var ValueRotationIndex=new Array();
+                    var ProfitabilityIndex=new Array();
+                    var StockCover=new Array();
+                    var bm=new Array();
+                    var all=new Array();
+                    var ShoppersShare=new Array();
                     var value=new Array();
                     for(var i=0;i<3;i++){
-                        rcrkpi_VolumeRotationIndex[i]=new Array();
-                        rcrkpi_ValueRotationIndex[i]=new Array();
-                        rcrkpi_ProfitabilityIndex[i]=new Array();
-                        rcrkpi_StockCover[i]=new Array();
+                        VolumeRotationIndex[i]=new Array();
+                        ValueRotationIndex[i]=new Array();
+                        ProfitabilityIndex[i]=new Array();
+                        StockCover[i]=new Array();
+                        bm[i]=new Array();
+                        all[i]=new Array();
                     }
-                    for(var i=0;i<data.data[0].rcrkpi_VolumeRotationIndex.length;i++){
-                        value=new Array();
-                        if(data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID==1&&data.data[0].rcrkpi_VolumeRotationIndex[i].marketID==1){
+                    for(var i=0;i<data.rcrkpi_VolumeRotationIndex.length;i++){
+                        if(data.rcrkpi_VolumeRotationIndex[i].categoryID==1&&data.rcrkpi_VolumeRotationIndex[i].marketID==1){
                             //make sure that the following find function won't find this one
-                            data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID=-1;
-                            data.data[0].rcrkpi_VolumeRotationIndex[i].marketID=-1;
+                            data.rcrkpi_VolumeRotationIndex[i].categoryID=-1;
+                            data.rcrkpi_VolumeRotationIndex[i].marketID=-1;
                             
-                            var market1=data.data[0].rcrkpi_VolumeRotationIndex[i].value;
-                            var market2=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,1,2);
-                            var market3=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,1,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_VolumeRotationIndex[0].push({'value':value});
+                            VolumeRotationIndex[0][0]=data.rcrkpi_VolumeRotationIndex[i].value;
+                            VolumeRotationIndex[0][1]=loadValue(data.rcrkpi_VolumeRotationIndex,1,2);
+                            VolumeRotationIndex[0][2]=loadValue(data.rcrkpi_VolumeRotationIndex,1,3);
                             
-                            market1=loadValue(data.data[0].rcrkpi_ValueRotationIndex,1,1);
-                            market2=loadValue(data.data[0].rcrkpi_ValueRotationIndex,1,2);
-                            market3=loadValue(data.data[0].rcrkpi_ValueRotationIndex,1,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_ValueRotationIndex[0].push({'value':value});
+                            ValueRotationIndex[0][0]=loadValue(data.rcrkpi_ValueRotationIndex,1,1);
+                            ValueRotationIndex[0][1]=loadValue(data.rcrkpi_ValueRotationIndex,1,2);
+                            ValueRotationIndex[0][2]=loadValue(data.rcrkpi_ValueRotationIndex,1,3);
                             
-                            market1=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,1,1);
-                            market2=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,1,2);
-                            market3=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,1,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_ProfitabilityIndex[0].push({'value':value});
+                            ProfitabilityIndex[0][0]=loadValue(data.rcrkpi_ProfitabilityIndex,1,1);
+                            ProfitabilityIndex[0][1]=loadValue(data.rcrkpi_ProfitabilityIndex,1,2);
+                            ProfitabilityIndex[0][2]=loadValue(data.rcrkpi_ProfitabilityIndex,1,3);
+                            
+                            StockCover[0][0]=loadValue(data.rcrkpi_StockCover,1,1);
+                            StockCover[0][1]=loadValue(data.rcrkpi_StockCover,1,2);
+                            StockCover[0][2]=loadValue(data.rcrkpi_StockCover,1,3);
 
-                            market1=loadValue(data.data[0].rcrkpi_StockCover,1,1);
-                            market2=loadValue(data.data[0].rcrkpi_StockCover,1,2);
-                            market3=loadValue(data.data[0].rcrkpi_StockCover,1,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_StockCover[0].push({'value':value});
+                            bm[0][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,1) * 100;
+                            bm[0][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,2) * 100;
+                            bm[0][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,1,3) * 100;
+
+                            all[0][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,1) * 100;
+                            all[0][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,2) * 100;
+                            all[0][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,1,3) * 100;
                             break;
                         }
                     }
-                    for(var i=0;i<data.data[0].rcrkpi_VolumeRotationIndex.length;i++){
-                        value=new Array();
-                        if(data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID==2&&data.data[0].rcrkpi_VolumeRotationIndex[i].marketID==1){
-                            data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID=-1;
-                            data.data[0].rcrkpi_VolumeRotationIndex[i].marketID=-1;
-                            var market1=data.data[0].rcrkpi_VolumeRotationIndex[i].value;
-                            var market2=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,2,2);
-                            var market3=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,2,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_VolumeRotationIndex[1].push({'value':value});
+                    for(var i=0;i<data.rcrkpi_VolumeRotationIndex.length;i++){
+                        if(data.rcrkpi_VolumeRotationIndex[i].categoryID==2&&data.rcrkpi_VolumeRotationIndex[i].marketID==1){
+                            data.rcrkpi_VolumeRotationIndex[i].categoryID=-1;
+                            data.rcrkpi_VolumeRotationIndex[i].marketID=-1;
 
-                            market1=loadValue(data.data[0].rcrkpi_ValueRotationIndex,2,1);
-                            market2=loadValue(data.data[0].rcrkpi_ValueRotationIndex,2,2);
-                            market3=loadValue(data.data[0].rcrkpi_ValueRotationIndex,2,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_ValueRotationIndex[1].push({'value':value});
+                            VolumeRotationIndex[1][0]=data.rcrkpi_VolumeRotationIndex[i].value;
+                            VolumeRotationIndex[1][1]=loadValue(data.rcrkpi_VolumeRotationIndex,2,2);
+                            VolumeRotationIndex[1][2]=loadValue(data.rcrkpi_VolumeRotationIndex,2,3);
                             
-                            market1=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,2,1);
-                            market2=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,2,2);
-                            market3=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,2,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_ProfitabilityIndex[1].push({'value':value});
+                            ValueRotationIndex[1][0]=loadValue(data.rcrkpi_ValueRotationIndex,2,1);
+                            ValueRotationIndex[1][1]=loadValue(data.rcrkpi_ValueRotationIndex,2,2);
+                            ValueRotationIndex[1][2]=loadValue(data.rcrkpi_ValueRotationIndex,2,3);
+                            
+                            ProfitabilityIndex[1][0]=loadValue(data.rcrkpi_ProfitabilityIndex,2,1);
+                            ProfitabilityIndex[1][1]=loadValue(data.rcrkpi_ProfitabilityIndex,2,2);
+                            ProfitabilityIndex[1][2]=loadValue(data.rcrkpi_ProfitabilityIndex,2,3);
+                            
+                            StockCover[1][0]=loadValue(data.rcrkpi_StockCover,2,1);
+                            StockCover[1][1]=loadValue(data.rcrkpi_StockCover,2,2);
+                            StockCover[1][2]=loadValue(data.rcrkpi_StockCover,2,3);
 
-                            market1=loadValue(data.data[0].rcrkpi_StockCover,2,1);
-                            market2=loadValue(data.data[0].rcrkpi_StockCover,2,2);
-                            market3=loadValue(data.data[0].rcrkpi_StockCover,2,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_StockCover[1].push({'value':value});
+                            bm[1][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,1) * 100;
+                            bm[1][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,2) * 100;
+                            bm[1][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,2,3) * 100;
+
+                            all[1][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,1) * 100;
+                            all[1][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,2) * 100;
+                            all[1][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,2,3) * 100;
+
                             break;
                         }
                     }
-                    for(var i=0;i<data.data[0].rcrkpi_VolumeRotationIndex.length;i++){
-                        value=new Array();
-                        if(data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID==3&&data.data[0].rcrkpi_VolumeRotationIndex[i].marketID==1){
-                            data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID=-1;
-                            var market1=data.data[0].rcrkpi_VolumeRotationIndex[i].value;
-                            var market2=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,3,2);
-                            var market3=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,3,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_VolumeRotationIndex[2].push({'value':value});
-
-                            market1=loadValue(data.data[0].rcrkpi_ValueRotationIndex,3,1);
-                            market2=loadValue(data.data[0].rcrkpi_ValueRotationIndex,3,2);
-                            market3=loadValue(data.data[0].rcrkpi_ValueRotationIndex,3,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_ValueRotationIndex[2].push({'value':value});
+                    for(var i=0;i<data.rcrkpi_VolumeRotationIndex.length;i++){
+                        if(data.rcrkpi_VolumeRotationIndex[i].categoryID==3&&data.rcrkpi_VolumeRotationIndex[i].marketID==1){
+                            data.rcrkpi_VolumeRotationIndex[i].categoryID=-1;
+                            data.rcrkpi_VolumeRotationIndex[i].marketID=-1;
+                            VolumeRotationIndex[2][0]=data.rcrkpi_VolumeRotationIndex[i].value;
+                            VolumeRotationIndex[2][1]=loadValue(data.rcrkpi_VolumeRotationIndex,3,2);
+                            VolumeRotationIndex[2][2]=loadValue(data.rcrkpi_VolumeRotationIndex,3,3);
                             
-                            market1=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,3,1);
-                            market2=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,3,2);
-                            market3=loadValue(data.data[0].rcrkpi_ProfitabilityIndex,3,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_ProfitabilityIndex[2].push({'value':value});
+                            ValueRotationIndex[2][0]=loadValue(data.rcrkpi_ValueRotationIndex,3,1);
+                            ValueRotationIndex[2][1]=loadValue(data.rcrkpi_ValueRotationIndex,3,2);
+                            ValueRotationIndex[2][2]=loadValue(data.rcrkpi_ValueRotationIndex,3,3);
+                            
+                            ProfitabilityIndex[2][0]=loadValue(data.rcrkpi_ProfitabilityIndex,3,1);
+                            ProfitabilityIndex[2][1]=loadValue(data.rcrkpi_ProfitabilityIndex,3,2);
+                            ProfitabilityIndex[2][2]=loadValue(data.rcrkpi_ProfitabilityIndex,3,3);
+                            
+                            StockCover[2][0]=loadValue(data.rcrkpi_StockCover,3,1);
+                            StockCover[2][1]=loadValue(data.rcrkpi_StockCover,3,2);
+                            StockCover[2][2]=loadValue(data.rcrkpi_StockCover,3,3);
 
-                            market1=loadValue(data.data[0].rcrkpi_StockCover,3,1);
-                            market2=loadValue(data.data[0].rcrkpi_StockCover,3,2);
-                            market3=loadValue(data.data[0].rcrkpi_StockCover,3,3);
-                            value[0]=market1;value[1]=market2;value[2]=market3;
-                            rcrkpi_StockCover[2].push({'value':value});
+                            bm[2][0]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,1) * 100;
+                            bm[2][1]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,2) * 100;
+                            bm[2][2]=loadValue(data.rcrkpi_ShoppersShare[0].categoryInfo,3,3) * 100;
+
+                            all[2][0]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,1) * 100;
+                            all[2][1]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,2) * 100;
+                            all[2][2]=loadValue(data.rcrkpi_ShoppersShare[3].categoryInfo,3,3) * 100;
                             break;
                         }
                     }
-                    for(var i=0;i<data.data[0].rcrkpi_ShoppersShare[0].categoryInfo.length;i++){
-                        if(data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==1){
-                            scope.BMShoppers1=data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].value;
-                        }
-                        if(data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==2){
-                            scope.BMShoppers2=data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].value;
-                        }
-                    }
-                    for(var i=0;i<data.data[0].rcrkpi_ShoppersShare[3].categoryInfo.length;i++){
-                        if(data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==1){
-                            scope.AllShoppers1=data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].value;
-                        }
-                        if(data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].categoryID==3&&data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].marketID==2){
-                            scope.AllShoppers2=data.data[0].rcrkpi_ShoppersShare[0].categoryInfo[i].value;
-                        }
-                    }
 
-                    var myData=new Array();
-                    myData.push({'rcrkpi_VolumeRotationIndex':rcrkpi_VolumeRotationIndex,'rcrkpi_ValueRotationIndex':rcrkpi_ValueRotationIndex,'rcrkpi_ProfitabilityIndex':rcrkpi_ProfitabilityIndex,'rcrkpi_StockCover':rcrkpi_StockCover});
-                    scope.data=myData[0];
-                    console.log(scope.data);
+                    var newData=new Array();
+                    newData.push({'VolumeRotationIndex':VolumeRotationIndex,'ValueRotationIndex':ValueRotationIndex,'ProfitabilityIndex':ProfitabilityIndex,'StockCover':StockCover,'BM':bm,'All':all});
+                    scope.data=newData[0];
                 
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;
@@ -178,6 +168,16 @@ define(['directives', 'services'], function(directives){
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPeriod', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.retailerShow) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPlayer', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.retailerShow) {
                         initializePage();
                     }
                 })

@@ -1,7 +1,7 @@
 <div class='panel panel-success my-success-panel' ng-show='isResultShown'>
 	<div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Product Portfolio Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Product Portfolio Management')}} <a ng-show='isResultShown' ng-click="openProductModal()" ng-disabled="isReady" class="btn btn-default">{{Label.getContent('New Product')}}</a>
+            {{Label.getContent('Product Portfolio Management')}} <a ng-show='isResultShown' ng-click="openProductModal()" ng-disabled="isPortfolioDecisionCommitted" class="btn btn-default">{{Label.getContent('New Product')}}</a>
         </h3>
     </div>
 
@@ -43,46 +43,46 @@
     		<tr class="success" ng-repeat='producte in productes'>
     			<td>
     				<div style="clear:both"></div>
-    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod&&(!isReady))" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
     				<p>{{producte.parentBrandName}}{{producte.varName}}</p>
                     <div style="clear:both"></div>
     			</td>
     			<td>
-    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producte.dateOfBirth==currentPeriod&&(!isReady))' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index)">
+    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producte.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index)">
     					<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
     				</a>
-                    <p class="text-right text-muted" ng-show="producte.dateOfBirth<currentPeriod||isReady">{{ selectPacks('Elecssories',producte.parentBrandName,producte.varName) }}</p>
+                    <p class="text-right text-muted" ng-show="producte.dateOfBirth<currentPeriod||isPortfolioDecisionCommitted">{{ selectPacks('Elecssories',producte.parentBrandName,producte.varName) }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.composition[1]" onbeforesave="checkTechnology('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index)">
+    				<a href="#" editable-text="producte.composition[1]" onbeforesave="checkTechnology('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index)">
     					<p class="text-right">{{ producte.composition[1] || 0 }}</p>
     				</a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producte.composition[1] || 0 }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producte.composition[1] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.composition[0]" onbeforesave="checkDesign('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index)">
+    				<a href="#" editable-text="producte.composition[0]" onbeforesave="checkDesign('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index)">
     					<p class="text-right">{{ producte.composition[0] || 0 }}</p>
     				</a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producte.composition[0] || 0 }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producte.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkValue('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index)">
+    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkValue('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index)">
     					<p class="text-right">{{ producte.composition[2] || 0 }}</p>
     				</a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producte.currentPriceBM" onbeforesave="checkCurrentBM('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index)" ng-show='!isReady'>
+                    <a href="#" editable-text="producte.currentPriceBM" onbeforesave="checkCurrentBM('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index)" ng-show='!isPortfolioDecisionCommitted'>
                         <p class="text-right">{{ producte.currentPriceBM || 0 }}</p>
                         <p ng-show='producte.showInfo'>{{Label.getContent('Less than current cost')}}</p>
                     </a>
-                    <p class="text-right text-muted" ng-show='isReady'>{{ producte.currentPriceBM || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted'>{{ producte.currentPriceBM || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-checkbox="producte.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isReady" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'discontinue','0',$index)">
+                    <a href="#" editable-checkbox="producte.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isPortfolioDecisionCommitted" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'discontinue','0',$index)">
                         <p class="text-right">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                     </a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producte.unitCost}}<p>
@@ -122,45 +122,45 @@
     		<tr class="danger" ng-repeat='producth in producths'>
     			<td>
     				<div style="clear:both"></div>
-    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod&&(!isReady))" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
     				<p>{{producth.parentBrandName}}{{producth.varName}}</p>
     				<div style="clear:both"></div>
     			</td>
     			<td>
-    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producth.dateOfBirth==currentPeriod&&(!isReady))' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index)">
+    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producth.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index)">
     					<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
     				</a>
-                    <p class="text-right text-muted" ng-show="producth.dateOfBirth<currentPeriod||isReady">{{ selectPacks('HealthBeauty',producth.parentBrandName,producth.varName) }}</p>
+                    <p class="text-right text-muted" ng-show="producth.dateOfBirth<currentPeriod||isPortfolioDecisionCommitted">{{ selectPacks('HealthBeauty',producth.parentBrandName,producth.varName) }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[1]" onbeforesave="checkTechnology('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index)">
+    				<a href="#" editable-text="producth.composition[1]" onbeforesave="checkTechnology('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index)">
     					<p class="text-right">{{ producth.composition[1] || 0 }}</p>
     				</a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producth.composition[1] || 0 }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producth.composition[1] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkValue('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index)">
+    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkValue('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index)">
     					<p class="text-right">{{ producth.composition[0] || 0 }}</p>
     				</a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producth.composition[0] || 0 }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producth.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkValue('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index)">
+    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkValue('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index)">
     					<p class="text-right">{{ producth.composition[2] || 0 }}</p>
     				</a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producth.composition[2] || 0 }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producth.composition[2] || 0 }}</p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producth.currentPriceBM" onbeforesave="checkCurrentBM('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index)" ng-show='!isReady'>
+                    <a href="#" editable-text="producth.currentPriceBM" onbeforesave="checkCurrentBM('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index)" ng-show='!isPortfolioDecisionCommitted'>
                         <p class="text-right">{{ producth.currentPriceBM || 0 }}</p>                  
                     </a>
-                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.currentPriceBM || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted'>{{ producth.currentPriceBM || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-checkbox="producth.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isReady" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'discontinue','0',$index)">
+                    <a href="#" editable-checkbox="producth.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isPortfolioDecisionCommitted" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'discontinue','0',$index)">
                         <p class="text-right">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                     </a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                    <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producth.unitCost}}<p>
@@ -170,14 +170,14 @@
     </table>
 </div>
 <div ng-show='isResultShown'>
-    <a href="" class="btn btn-primary" ng-disabled="isReady" ng-click="isCommitConfirmInfoShown=true" class="btn btn-primary">{{Label.getContent('Commit Portflio decision')}}</a>
+    <a href="" class="btn btn-primary" ng-disabled="isPortfolioDecisionCommitted" ng-click="isCommitConfirmInfoShown=true" class="btn btn-primary">{{Label.getContent('Commit Portfolio & List Price decision')}}</a>
 </div>
 <div class="alert alert-danger fade in" ng-show="isCommitConfirmInfoShown">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
     <h4>{{Label.getContent("Warning! Commit confirmation")}}</h4>
     <p>{{Label.getContent("Producer portfolio confirm info")}}</p>
     <p>
-        <button type="button" class="btn btn-danger" ng-click='submitDecision()' ng-disabled='isReady'>{{Label.getContent("Take this action")}}</button>
+        <button type="button" class="btn btn-danger" ng-click='submitDecision()' ng-disabled='isPortfolioDecisionCommitted'>{{Label.getContent("Take this action")}}</button>
         <button type="button" ng-click="isCommitConfirmInfoShown=false" class="btn btn-default">{{Label.getContent("Cancel")}}</button>
     </p>
 </div>

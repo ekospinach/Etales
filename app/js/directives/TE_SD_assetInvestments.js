@@ -5,7 +5,12 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                isReady: '='
+                selectedPlayer: '=',
+                selectedPeriod: '=',
+                isPortfolioDecisionCommitted:'=',
+                isContractDeal:'=',
+                isContractFinalized:'=',
+                isDecisionCommitted:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_assetInvestments.html',            
@@ -17,8 +22,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
 
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                    scope.currentPeriod=scope.selectedPeriod;
+                    ProducerDecisionBase.reload({producerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
                         return showView();
@@ -68,14 +73,14 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
                     }else{
-                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1' + '/' + PeriodInfo.getCurrentPeriod();
+                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1' + '/' + scope.selectedPeriod;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
                             MaxCapacityReduction=data.data.MaxCapacityReduction;
                             MaxCapacityIncrease=data.data.MaxCapacityIncrease;
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -83,7 +88,7 @@ define(['directives', 'services'], function(directives){
                         }).then(function(data){
                             max=data.data.productionCapacity[categoryID-1];
                             if(value<max*MaxCapacityReduction||value>max*MaxCapacityIncrease){
-                                d.resolve(Label.getContent('Input range')+':'+max*MaxCapacityReduction+'~'+max*MaxCapacityIncrease);
+                                d.resolve(Label.getContent('Input range')+':'+(Math.floor(max*MaxCapacityReduction * 100) / 100)+'~'+(Math.floor(max*MaxCapacityIncrease * 100) / 100));
                             }else{
                                 d.resolve();
                             }
@@ -100,13 +105,13 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }else{
-                        var url='/getScrplSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+categoryID;
+                        var url='/getScrplSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1)+'/'+scope.selectedPlayer+'/'+categoryID;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
                             if(value>data.data[0]){
-                                d.resolve(Label.getContent('Input range')+':0~'+data.data[0].toFixed(2));
+                                d.resolve(Label.getContent('Input range')+':0~'+Math.floor(data.data[0] * 100) / 100);
                             }else{
                                 d.resolve();
                             }
@@ -118,7 +123,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 scope.updateProducerDecision=function(categoryID,location,index){
-                    ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,scope.categorys[index][location]);
+                    ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,scope.categorys[index][location],'supplierAssetInvestments');
                 }
 
                 scope.updateVariantDecision=function(category,brandName,varName,location,additionalIdx,index,value){
@@ -129,7 +134,7 @@ define(['directives', 'services'], function(directives){
                     }else{
                         categoryID=2;
                     }
-                    ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                         
+                    ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value,'supplierAssetInvestments');                         
                 }
 
                 var showView=function(){
@@ -158,8 +163,10 @@ define(['directives', 'services'], function(directives){
                 
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                         //decision base had been updated, re-render the page with newBase
+                    if(data.page=="supplierAssetInvestments"){
                         scope.pageBase = newBase;
                         showView();
+                    }
                 });
 
             }

@@ -93,8 +93,9 @@
 	    ng-model="isKeepExistedPeriod1Decision"
 	    type="checkbox"> Keep existed period 1 deicison in DB?</p>		
 	</b>
-	<pre ng-show="isInitializeMessageShown"><p data-ng-repeat="message in initializeMessage">{{message}}</p></pre>
-
+	<pre ng-show="isInitializeMessageShown">{{initializeMessage}}</pre>
+<!-- 	<pre ng-show="isInitializeMessageShown"><p data-ng-repeat="message in initializeMessage">{{message}}</p></pre>
+ -->
 	
 
 	<div class="alert alert-danger fade in" ng-show="isInitializeConfirmInfoShown">
@@ -141,7 +142,52 @@
 		  </span>				  
 		</div>		
 		
-	</div>         
+	</div> 
+	<div class="page-header">
+		<h3>Timer Setting
+			<small>
+	
+			</small>
+		</h3>
+	</div>    
+
+	<div class="row">
+		<div class="col-md-12">
+			<p>Active Timer
+				<a href="#" editable-checkbox="seminar.isTimerActived" e-title="Active Timer?" onaftersave="switchTimer($data)">{{ seminar.isTimerActived && 'On' || 'Off' }}</a>
+			</p>
+			<p ng-show='seminar.isTimerActived'>TimeslotPortfolioDecisionCommitted
+				<a href="#" editable-text="seminar.timeslotPortfolioDecisionCommitted" onbeforesave="checkTimerSet($data)" onaftersave="updateTimeslotPortfolioDecisionCommitted($data)">
+					{{ seminar.timeslotPortfolioDecisionCommitted }}
+				</a> Mins
+			</p>
+			<p ng-show='seminar.isTimerActived'>TimeslotContractDeal
+				<a href="#" editable-text="seminar.timeslotContractDeal" onbeforesave="checkTimerSet($data)" onaftersave="updateTimeslotContractDeal($data)">
+					{{ seminar.timeslotContractDeal }}
+				</a> Mins
+			</p>
+			<p ng-show='seminar.isTimerActived'>TimeslotContractFinalized
+				<a href="#" editable-text="seminar.timeslotContractFinalized" onbeforesave="checkTimerSet($data)" onaftersave="updateTimeslotContractFinalized($data)">
+					{{ seminar.timeslotContractFinalized }}
+				</a> Mins
+			</p>
+			<p ng-show='seminar.isTimerActived'>TimeslotDecisionCommitted
+				<a href="#" editable-text="seminar.timeslotDecisionCommitted" onbeforesave="checkTimerSet($data)" onaftersave="updateTimeslotDecisionCommitted($data)">
+					{{ seminar.timeslotDecisionCommitted }}
+				</a> Mins
+			</p>
+
+			<div id='supplierClockChart' ng-show='seminar.isTimerActived' ng-model='supplierModel' supplier-clock-chart></div>
+			<p>{{supplierClockTitle}}</p>
+			<hr>
+			<div id='retailerClockChart' ng-show='seminar.isTimerActived' ng-model='retailerModel' retailer-clock-chart></div>
+			<p>{{retailerClockTitle}}</p>
+
+			<button ng-show='seminar.isTimerActived' class="btn btn-primary" ng-click='startTimer()'>Start/Reset</button>
+			<button ng-show='seminar.isTimerActived' class="btn btn-default" ng-click="stopTimer()">Stop</button>
+
+		</div>
+	</div>      
 
 	<div class="page-header">
 		<h3>Game progress monitor
@@ -161,6 +207,8 @@
 						<tr>
 							<td></td>
 							<td>Is portfolio decision committed?</td>
+							<td>Is contract deal?</td>
+							<td>Is contract finalized?</td>
 							<td>Is decision committed(Lock)?</td>
 						</tr>
 					</thead>
@@ -168,9 +216,17 @@
 						<tr ng-repeat='periodInfo in supplier.decisionCommitStatus'>
 							<td><strong>Period {{periodInfo.period}}</strong></td>
 							<td>
-								<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>				
+								<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>		
 							</td>
-							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}} </a>		
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}} </a>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -185,13 +241,25 @@
 					<thead>
 						<tr>
 							<td></td>
+							<td>Is contract deal?</td>
+							<td>Is contract finalized?</td>
 							<td>Is decision committed(Lock)?</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat='periodInfo in retailer.decisionCommitStatus'>
-							<td><strong>Period {{periodInfo.period}}</strong></td>
-							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
+							<td>
+								<strong>Period {{periodInfo.period}}</strong>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}}</a>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}}</a>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

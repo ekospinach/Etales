@@ -453,6 +453,12 @@ function runPromiseChain(io, options, res){
 		}).then(function(result){ 
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
 
+			options.cgiPath = conf.cgi.path_BG_feedbackSlides;
+			options.schemaName = 'BG_feedbackSlides';
+			return require('./models/BG_feedbackSlides.js').addInfos(options);							
+		}).then(function(result){ 
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 	            
+
 	       	//import background data 
 			options.cgiPath = conf.cgi.path_companyHistoryInfo;
 			options.schemaName = 'companyHistoryInfo';
@@ -468,12 +474,6 @@ function runPromiseChain(io, options, res){
 		}).then(function(result){ 
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 
 
-
-			options.cgiPath = conf.cgi.path_BG_feedbackSlides;
-			options.schemaName = 'BG_feedbackSlides';
-			return require('./models/BG_feedbackSlides.js').addInfos(options);							
-		}).then(function(result){ 
-	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 	            
 
 	        //deal with promises chain 
 	        res.send(200, 'Run period start from ' + options.startFrom + ' to ' + options.endWith + ' done.');
@@ -873,7 +873,12 @@ function runPromiseChainWithOutImportingNewDecisions(io, options, res){
 		}).then(function(result){ 
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
 
-
+			options.cgiPath = conf.cgi.path_MR_salesByChannel;
+			options.schemaName = 'MR_salesByChannel';
+			return require('./models/MR_salesByChannel.js').addReports(options);									
+		}).then(function(result){ 
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
+	        
 			options.cgiPath = conf.cgi.path_MR_forecasts;
 			options.schemaName = 'MR_forecasts';
 			return require('./models/MR_forecasts.js').addReports(options);									

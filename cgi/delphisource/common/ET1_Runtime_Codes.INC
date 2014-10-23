@@ -131,7 +131,7 @@ const
   kernel_MarketsUpdate_OK                            = 93179;
 
   kernel_ErrorInWholesales                           = 93401;
-  kernel_Wholesales_OK                               = 93409;
+  kernel_Wholesales_OK                               = 93402;
 
   kernel_ErrorInWebBrandsScores                      = 93411;
   kernel_WebBrandsScores_OK                          = 93412;
@@ -215,6 +215,14 @@ const
   kernel_ErrorInResultsCompleting                    = 93701;
   kernel_ResultsCompleting_OK                        = 93709;
                                           
+
+  kernel_ErrorInProductionCapacity                   = 93801;
+  kernel_ProductionCapacity_OK                       = 93809;
+  kernel_ErrorInTechnology                           = 93811;
+  kernel_Technology_OK                               = 93819;
+  kernel_ErrorInTechnologyAndCapacity                = 93831;
+  kernel_TechnologyAndCapacity_OK                    = 93839;
+
   kernel_CannotWriteToResultsFile                    = 93900;
   kernel_WritingResultsToFile_OK                     = 93909;
 
@@ -233,14 +241,26 @@ const
   kernel_WritingNextRetailersDecisions_OK            = 93929;
   kernel_WritingNextDecisions_OK                     = 93930;
   
-  kernel_PrivateLabelsProcurement_OK                 = 93931;
-  kernel_ErrorInPrivateLabelsProcurement             = 93939;
+  kernel_ErrorInPrivateLabelsProcurement             = 93931;
+  kernel_PrivateLabelsProcurement_OK                 = 93939;
 
-  kernel_ShoppersShare_OK                            = 93941;
-  kernel_ErrorInShoppersShare                        = 93949;
+  kernel_ErrorInShoppersShare                        = 93941;
+  kernel_ShoppersShare_OK                            = 93949;
 
-  kernel_OtherCompletingResults_OK                   = 93991;
-  kernel_ErrorInOtherCompletingResults               = 93999;
+  kernel_ErrorInBudgetsUpdating                      = 93951;
+  kernel_BudgetsUpdating_OK                          = 93959;
+
+  kernel_ErrorInCompleteNegotiations                 = 93961;
+  kernel_CompleteNegotiations_OK                     = 93969;
+
+  kernel_ErrorInPOSFeesAllocation                    = 93971;
+  kernel_POSFeesAllocation_OK                        = 93972;
+  Kernel_ErrorInPOSActivitiesIntensity               = 93973;
+  kernel_POSActivitiesIntensity_OK                   = 93974;
+  kernel_InStoreActivities_OK                        = 93979;
+
+  kernel_ErrorInOtherCompletingResults               = 93991;
+  kernel_OtherCompletingResults_OK                   = 93999;
   
   kernel_SimulationRun_OK                            = 94000;
 

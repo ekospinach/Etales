@@ -5,7 +5,11 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                isReady : '='
+                selectedPeriod : '=',
+                selectedPlayer : '=',
+                isContractDeal:'=',
+                isContractFinalized:'=',
+                isDecisionCommitted:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_marketing.html',            
@@ -17,8 +21,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
 
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();                    
-					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                    scope.currentPeriod=scope.selectedPeriod;                    
+					RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 						scope.pageBase = base;
 					}).then(function(){
 						return showView();
@@ -36,20 +40,20 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a number'));
 					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1)+'/R/'+parseInt(scope.selectedPlayer);
 		      		$http({
 		      			method:'GET',
 		      			url:url
 		      		}).then(function(data){
 		      			max=data.data.budgetAvailable+data.data.budgetSpentToDate;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
+		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod)+'/'+parseInt(scope.selectedPlayer)+'/'+marketID+'/'+location+'/'+additionalIdx;
 		      			return $http({
 		      				method:'GET',
 		      				url:url
 		      			});
 		      		}).then(function(data){
 		      			expend=data.data.result;
-		      			url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
+		      			url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/R/'+scope.selectedPlayer;
 	                    return $http({
 	                        method:'GET',
 	                        url:url
@@ -57,7 +61,7 @@ define(['directives', 'services'], function(directives){
 	                }).then(function(data){
 	                	reportExpend=data.data.result;
 
-	                    url='/getRetailerAdditionalBudget/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer();
+	                    url='/getRetailerAdditionalBudget/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+PlayerInfo.getPlayer();
 	                    return $http({
 	                        method:'GET',
 	                        url:url
@@ -66,7 +70,7 @@ define(['directives', 'services'], function(directives){
 	                    additionalBudget =data.data;
 
 		      			if(value>max + additionalBudget - expend - reportExpend){
-		      				d.resolve(Label.getContent('Input range')+':0~'+(max-expend-reportExpend).toFixed(2));
+		      				d.resolve(Label.getContent('Input range')+':0~'+(Math.floor((max-expend-reportExpend) * 100) / 100));
 		      			}else{
 		      				d.resolve();
 		    			}
@@ -77,17 +81,17 @@ define(['directives', 'services'], function(directives){
 				}
 
 				scope.updateRetailerDecision=function(location,additionalIdx){
-					RetailerDecisionBase.setRetailerDecisionBase(location,additionalIdx,scope.pageBase[location][additionalIdx]);
+					RetailerDecisionBase.setRetailerDecisionBase(location,additionalIdx,scope.pageBase[location][additionalIdx],'retailerMarketing');
 				}
 
 				scope.updateMarketingDecision=function(marketID,location,postion,additionalIdx,index){
 					if(location=="localAdvertising"){
-						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,scope.markets[index][location][additionalIdx]);					
+						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,scope.markets[index][location][additionalIdx],'retailerMarketing');					
 					}else if(location=="categorySurfaceShare"){
-						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,(scope.markets[index][location][additionalIdx])/100);
+						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,(scope.markets[index][location][additionalIdx])/100,'retailerMarketing');
 						scope.markets[index][location][1-additionalIdx]=((100-scope.markets[index][location][additionalIdx])).toFixed(2);					
 					}else{
-						RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,scope.markets[index][location]);										
+						RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,scope.markets[index][location],'retailerMarketing');										
 					}
 				}
 
@@ -163,8 +167,10 @@ define(['directives', 'services'], function(directives){
                 });
 
 	            scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-            		scope.pageBase = newBase;
-                	showView();	
+                	if(data.page=="retailerMarketing"){
+                        scope.pageBase = newBase;
+                        showView();
+                    }
 	            });				
 
             }

@@ -16,12 +16,12 @@ exports.getCurrentUnitCost = function(req, res, next) {
 
   var prodCost = [];
 
-  //debugUnitCost('try to get production cost: ' + util.inspect(query));
+  debugUnitCost('try to get production cost: ' + util.inspect(query));
   //get variant composition/catNow/isPrivateLabel/packFormat
   prepareProdCost(query.seminar, query.period).then(function(success){
     
     prodCost = success.result;
-    //debugUnitCost(prodCost);
+   // debugUnitCost(prodCost);
 
     return getProduct(query);
   }).then(function(variant) {
@@ -43,7 +43,7 @@ exports.getCurrentUnitCost = function(req, res, next) {
       variant.result.cumVolumes,
       prodCost);
 
-    //debugUnitCost('done:' + value);
+    debugUnitCost('done:' + value);
     res.send(200, {
       result: value.toFixed(2)
     });
@@ -209,7 +209,12 @@ function prepareProdCost(seminar, period){
         require('./../models/BG_oneQuarterParameterData.js').oneQuarterParameterData.find({seminar: seminar}, function(err, docs){
             if(err){ debugUnitCost('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
             if(docs){
-                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });
+                //console.log('debug:' + util.inspect(docs));
+
+                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });         
+                if(!tempAssort){
+                  return deferred.reject({msg:'tempAssort is undefined, Cannot find parameters...'});
+                }
                 prodCost[0].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
                 prodCost[0].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
                 prodCost[0].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
@@ -796,4 +801,3 @@ function getCumVolumes(query, variant) {
 
   return deferred.promise;
 }
-

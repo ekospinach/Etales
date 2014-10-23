@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th>
-                    <p class="padding-20">(units mln)</p>
+                    <p class="padding-20">({{Label.getContent('units mln')}})</p>
                 </th>
                 <th colspan="2">
                     <p class="text-center">
@@ -82,31 +82,31 @@
                     <p class="padding-20">{{product.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.initial.value[0].toFixed(2)=="0.00"?0:product.initial.value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{product.initial.value[0] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.initial.value[1].toFixed(2)=="0.00"?0:product.initial.value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{product.initial.value[1] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.production.value[2].toFixed(2)=="0.00"?0:product.production.value[2].toFixed(2)}}</p>
+                    <p class="text-right">{{product.production.value[2] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.sales.value[0].toFixed(2)=="0.00"?0:product.sales.value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{product.sales.value[0] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.sales.value[1].toFixed(2)=="0.00"?0:product.sales.value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{product.sales.value[1] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.discontinued.value[2].toFixed(2)=="0.00"?0:product.discontinued.value[2].toFixed(2)}}</p>
+                    <p class="text-right">{{product.discontinued.value[2] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.closing.value[0].toFixed(2)=="0.00"?0:product.closing.value[0].toFixed(2)}}</p>
+                    <p class="text-right">{{product.closing.value[0] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.closing.value[1].toFixed(2)=="0.00"?0:product.closing.value[1].toFixed(2)}}</p>
+                    <p class="text-right">{{product.closing.value[1] | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.unitProductionCost.value[2].toFixed(2)=="0.00"?0:product.unitProductionCost.value[2].toFixed(2)}}</p>
+                    <p class="text-right">{{product.unitProductionCost.value[2] | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>
@@ -121,7 +121,7 @@
         <thead>
             <tr>
                 <th>
-                    <p class="padding-20">(units mln)</p>
+                    <p class="padding-20">({{Label.getContent('units mln')}})</p>
                 </th>
                 <th colspan="4">
                     <p class="text-center">
@@ -189,28 +189,28 @@
                     <p class="padding-20">{{product.brandName}}{{product.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r1Order.toFixed(2)=="0.00"?0:product.r1Order.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r1Order | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r2Order.toFixed(2)=="0.00"?0:product.r2Order.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r2Order | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r3Order.toFixed(2)=="0.00"?0:product.r3Order.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r3Order | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.onlineOrder.toFixed(2)=="0.00"?0:product.onlineOrder.toFixed(2)}}</p>
+                    <p class="text-right">{{product.onlineOrder | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r1Sales.toFixed(2)=="0.00"?0:product.r1Sales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r1Sales | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r2Sales.toFixed(2)=="0.00"?0:product.r2Sales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r2Sales | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r3Sales.toFixed(2)=="0.00"?0:product.r3Sales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r3Sales | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.onlineSales.toFixed(2)=="0.00"?0:product.onlineSales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.onlineSales | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='ruralProducts.length!=0'>
@@ -223,28 +223,28 @@
                     <p class="padding-20">{{product.brandName}}{{product.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r1Order.toFixed(2)=="0.00"?0:product.r1Order.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r1Order | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r2Order.toFixed(2)=="0.00"?0:product.r2Order.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r2Order | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r3Order.toFixed(2)=="0.00"?0:product.r3Order.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r3Order | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.onlineOrder.toFixed(2)=="0.00"?0:product.onlineOrder.toFixed(2)}}</p>
+                    <p class="text-right">{{product.onlineOrder | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r1Sales.toFixed(2)=="0.00"?0:product.r1Sales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r1Sales | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r2Sales.toFixed(2)=="0.00"?0:product.r2Sales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r2Sales | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.r3Sales.toFixed(2)=="0.00"?0:product.r3Sales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.r3Sales | number : 1 }}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{product.onlineSales.toFixed(2)=="0.00"?0:product.onlineSales.toFixed(2)}}</p>
+                    <p class="text-right">{{product.onlineSales | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>

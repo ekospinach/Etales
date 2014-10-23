@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('overviewShareOfShoppers', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('overviewShareOfShoppers', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor){
         return {
             scope : {
             	isPageShown : '=',
@@ -20,356 +20,716 @@ define(['directives', 'services'], function(directives){
                     getResult();                   
                 }
 
+                function newChartData(searchKeys){
+			        var chartSeries = new Array({name:Label.getContent('Retailer')+'-1',data:new Array(),color:PlayerColor.getColors()[4]},
+			                                        {name:Label.getContent('Retailer')+'-2',data:new Array(),color:PlayerColor.getColors()[5]},
+			                                        {name:Label.getContent('Traditional Trade'),data:new Array(),color:PlayerColor.getColors()[6]},
+			                                        {name:Label.getContent('Supplier')+'-1',data:new Array(),color:PlayerColor.getColors()[0]},
+			                                        {name:Label.getContent('Supplier')+'-2',data:new Array(),color:PlayerColor.getColors()[1]},
+			                                        {name:Label.getContent('Supplier')+'-3',data:new Array(),color:PlayerColor.getColors()[2]},
+			                                        {name:Label.getContent('Supplier')+'-4',data:new Array(),color:PlayerColor.getColors()[3]});
+
+			        return {
+			            searchKeys : {shopperKind : searchKeys.shopperKind, marketID : searchKeys.marketID, categoryID : searchKeys.categoryID},
+			            chartSeries : chartSeries
+			        }
+			    }
+
                 var getResult =function(){
                 	var currentCategories=new Array();
 			        for(var i=-3;i<=scope.selectedPeriod;i++){
 			            currentCategories.push(i);
 			        }
-			    // /*highchart data init start*/
-			    //     var currentElecssoriesVolume=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //        var currentElecssoriesValue=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
+			    /*highchart data init start*/
+			    	var E_urbanOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 1, categoryID : 1});
+			        var E_urbanBM     = newChartData({ shopperKind : 'BMS', marketID : 1, categoryID : 1});
+			        var E_urbanMixed  = newChartData({ shopperKind : 'MIXED', marketID : 1, categoryID : 1});
+			        var E_urbanTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 1, categoryID : 1});
 
-		     //        var previousElecssoriesValue=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //        var currentHealthBeautiesVolume=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //        var currentHealthBeautiesValue=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //    /*highchart data init end*/
-		     //    /*highchart set data  start*/
-		     //    	//sales Volume
-			    //     for(var j=0;j<currentCategories.length;j++){
-		     //            for(var i=0;i<scope.feedBack.f_MarketSalesVolume.length;i++){
-		     //                if(scope.feedBack.f_MarketSalesVolume[i].period==currentCategories[j]){
-		     //                    switch(scope.feedBack.f_MarketSalesVolume[i].actorID){
-		     //                        case 1:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 2:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 3:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 4:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 5:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                    }
-		     //                }
-		     //            }
-		     //        }
-		     //        //sales Value
-		     //        for(var j=0;j<currentCategories.length;j++){
-		     //            for(var i=0;i<scope.feedBack.f_MarketSalesValue.length;i++){
-		     //                if(scope.feedBack.f_MarketSalesValue[i].period==currentCategories[j]){
-		     //                    switch(scope.feedBack.f_MarketSalesValue[i].actorID){
-		     //                        case 1:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 2:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 3:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 4:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 5:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                    }
-		     //                }
-		     //            }
-		     //        }
-		     //    /*highchart set data end*/
-		     //    /*set highchart function start*/
-		     //    	scope.currentSalesVolumeElecssories = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Volumes',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: 'mln units'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentElecssoriesVolume,
-		     //            loading: false
-		     //        }
-		     //        scope.currentSalesVolumeHealthBeauties = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Volumes',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: 'mln units'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentHealthBeautiesVolume,
-		     //            loading: false
-		     //        }
-		     //        scope.currentSalesValueElecssories = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Values',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: '$mln'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentElecssoriesValue,
-		     //            loading: false
-		     //        }
-		     //        scope.currentSalesValueHealthBeauties = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Values',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: '$mln'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentHealthBeautiesValue,
-		     //            loading: false
-		     //        }
-		            scope.isPageLoading = false;
-		            scope.isResultShown = true;  
+			        var E_ruralOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 2, categoryID : 1});
+			        var E_ruralBM     = newChartData({ shopperKind : 'BMS', marketID : 2, categoryID : 1});
+			        var E_ruralMixed  = newChartData({ shopperKind : 'MIXED', marketID : 2, categoryID : 1});
+			        var E_ruralTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 2, categoryID : 1});
+			        
+			        var H_urbanOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 1, categoryID : 2});
+			        var H_urbanBM     = newChartData({ shopperKind : 'BMS', marketID : 1, categoryID : 2});
+			        var H_urbanMixed  = newChartData({ shopperKind : 'MIXED', marketID : 1, categoryID : 2});
+			        var H_urbanTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 1, categoryID : 2});
+
+			        var H_ruralOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 2, categoryID : 2});
+			        var H_ruralBM     = newChartData({ shopperKind : 'BMS', marketID : 2, categoryID : 2});
+			        var H_ruralMixed  = newChartData({ shopperKind : 'MIXED', marketID : 2, categoryID : 2});
+			        var H_ruralTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 2, categoryID : 2});
+		        /*highchart data init end*/
+		        /*set highchart data start*/
+		        	var allChartsData = [];
+			        allChartsData.push(E_urbanOnline, E_urbanBM, E_urbanMixed, E_urbanTotal, E_ruralOnline, E_ruralBM, E_ruralMixed, E_ruralTotal,
+			                      H_urbanOnline, H_urbanBM, H_urbanMixed, H_urbanTotal, H_ruralOnline, H_ruralBM, H_ruralMixed, H_ruralTotal);
+			    
+			        for(var j=0;j<currentCategories.length;j++){
+			            for(var i=0;i<scope.feedBack.f_ShoppersShare.length;i++){
+			                if(scope.feedBack.f_ShoppersShare[i].period==currentCategories[j]){
+
+			                    allChartsData.forEach(function(singleChartData){
+			                        if ((singleChartData.searchKeys.shopperKind == scope.feedBack.f_ShoppersShare[i].shopperKind) 
+			                            && (singleChartData.searchKeys.marketID == scope.feedBack.f_ShoppersShare[i].marketID)
+			                            && (singleChartData.searchKeys.categoryID == scope.feedBack.f_ShoppersShare[i].categoryID)){
+			                            singleChartData.chartSeries[scope.feedBack.f_ShoppersShare[i].storeID - 1].data.push(scope.feedBack.f_ShoppersShare[i].value * 100);
+			                        }
+			                    });
+			                }
+			            }
+			        }
+
+		        /*set highchart data end*/
+		        /*set highchart function start*/
+		        	//Category E:
+		        	for (var i=0;i<7;i++){
+		        		if(i==0||i==1||i==2||i==6){
+		        			E_urbanOnline.chartSeries[i].visible=false;
+		        			E_ruralOnline.chartSeries[i].visible=false;
+		        			H_urbanOnline.chartSeries[i].visible=false;
+		        			H_ruralOnline.chartSeries[i].visible=false;
+		        		}
+		        		if(i==3||i==4||i==5||i==6){
+		        			E_urbanBM.chartSeries[i].visible=false;
+		        			E_ruralBM.chartSeries[i].visible=false;
+		        			H_urbanBM.chartSeries[i].visible=false;
+		        			H_ruralBM.chartSeries[i].visible=false;
+		        		}
+		        	}
+
+			        scope.E_urbanOnlineShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_urbanOnline.chartSeries,
+			            title: {
+			                text: Label.getContent('Online Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.E_urbanBMShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_urbanBM.chartSeries,
+			            title: {
+			                text: Label.getContent('B&M Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.E_urbanMixedShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_urbanMixed.chartSeries,
+			            title: {
+			                text: Label.getContent('Mixed'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.E_urbanTotalShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_urbanTotal.chartSeries,
+			            title: {
+			                text: Label.getContent('Total'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.E_ruralOnlineShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_ruralOnline.chartSeries,
+			            title: {
+			                text: Label.getContent('Online Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.E_ruralBMShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_ruralBM.chartSeries,
+			            title: {
+			                text: Label.getContent('B&M Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.E_ruralMixedShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_ruralMixed.chartSeries,
+			            title: {
+			                text: Label.getContent('Mixed'),
+			                
+			            },
+			            loading: false
+			        }
+
+			        scope.E_ruralTotalShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: E_ruralTotal.chartSeries,
+			            title: {
+			                text: Label.getContent('Total'),
+			                
+			            },
+			            loading: false
+			        }
+
+
+			        //Category H:
+			        scope.H_urbanOnlineShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_urbanOnline.chartSeries,
+			            title: {
+			                text: Label.getContent('Online Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.H_urbanBMShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_urbanBM.chartSeries,
+			            title: {
+			                text: Label.getContent('B&M Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.H_urbanMixedShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_urbanMixed.chartSeries,
+			            title: {
+			                text: Label.getContent('Mixed'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.H_urbanTotalShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_urbanTotal.chartSeries,
+			            title: {
+			                text: Label.getContent('Total'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.H_ruralOnlineShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_ruralOnline.chartSeries,
+			            title: {
+			                text: Label.getContent('Online Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.H_ruralBMShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_ruralBM.chartSeries,
+			            title: {
+			                text: Label.getContent('B&M Only'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.H_ruralMixedShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_ruralMixed.chartSeries,
+			            title: {
+			                text: Label.getContent('Mixed'),
+			                
+			            },
+			            loading: false
+			        }
+
+			        scope.H_ruralTotalShareOfShoppers={
+			            options: {
+			                xAxis: {
+			                    categories: currentCategories,
+			                    title: {
+			                        text: Label.getContent('Period'),
+			                        
+			                    }
+			                },
+			                yAxis:{
+			                    title: {
+			                        text: '%',
+			                        
+			                    },
+			                    gridLineColor: 'transparent'
+			                },
+			                chart: {
+			                    type: 'line',
+			                    backgroundColor: 'transparent',
+			                },
+			                tooltip: {
+			                    formatter: function() {
+			                        var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
+			                        return s;
+			                    },
+			                    shared: false,
+			                    useHTML: true
+			                },
+			                credits: {
+			                    enabled: false
+			                }
+			            },
+			            series: H_ruralTotal.chartSeries,
+			            title: {
+			                text: Label.getContent('Total'),
+			                
+			            },
+			            loading: false
+			        }
+			        scope.isPageLoading = false;
+		            scope.isResultShown = true; 
 		        /*set highchart function end*/
 
                 }

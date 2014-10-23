@@ -1,11 +1,11 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('marketAwarenessHealthBeauties', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('marketAwarenessHealthBeauties', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerColor){
         return {
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-selectedPeriod : '='
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/MR_awarenessHealthBeauties.html',            
@@ -30,28 +30,28 @@ selectedPeriod : '='
                         drop=previousAwareness-latestAwareness;
                         increase=0;
                     */
-                    for(var i=0;i<data.data[0].brandInfo.length;i++){
-                        if(data.data[0].brandInfo[i].parentCategoryID==category&&data.data[0].brandInfo[i].marketID==market){
-                            scope.brandNames[count]=data.data[0].brandInfo[i].brandName;
+                    for(var i=0;i<data.brandInfo.length;i++){
+                        if(data.brandInfo[i].parentCategoryID==category&&data.brandInfo[i].marketID==market){
+                            scope.brandNames[count]=data.brandInfo[i].brandName;
                             switch(market){
                                 case 1:
-                                if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
-                                    scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness*100;
-                                    scope.increaseRural[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness)*100;
+                                if(data.brandInfo[i].latestAwareness>=data.brandInfo[i].previousAwareness){
+                                    scope.valueRural[count]=data.brandInfo[i].previousAwareness*100;
+                                    scope.increaseRural[count]=(data.brandInfo[i].latestAwareness-data.brandInfo[i].previousAwareness)*100;
                                     scope.dropRural[count]=0;
                                 }else{
-                                    scope.valueRural[count]=data.data[0].brandInfo[i].latestAwareness*100;
-                                    scope.dropRural[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness)*100;
+                                    scope.valueRural[count]=data.brandInfo[i].latestAwareness*100;
+                                    scope.dropRural[count]=(data.brandInfo[i].previousAwareness-data.brandInfo[i].latestAwareness)*100;
                                     scope.increaseRural[count]=0;
                                 };break;
                                 case 2:
-                                if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
-                                    scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness*100;
-                                    scope.increaseUrban[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness)*100;
+                                if(data.brandInfo[i].latestAwareness>=data.brandInfo[i].previousAwareness){
+                                    scope.valueUrban[count]=data.brandInfo[i].previousAwareness*100;
+                                    scope.increaseUrban[count]=(data.brandInfo[i].latestAwareness-data.brandInfo[i].previousAwareness)*100;
                                     scope.dropUrban[count]=0;
                                 }else{
-                                    scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness*100;
-                                    scope.dropUrban[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness)*100;
+                                    scope.valueUrban[count]=data.brandInfo[i].latestAwareness*100;
+                                    scope.dropUrban[count]=(data.brandInfo[i].previousAwareness-data.brandInfo[i].latestAwareness)*100;
                                     scope.increaseUrban[count]=0;
                                 };break;
 
@@ -62,11 +62,11 @@ selectedPeriod : '='
                     switch(market){
                         case 1:
                         scope.awarenessHealthBeauties1Series=[{
-                            name:'Drop',data:scope.dropRural,color:'#D9534F'
+                            name:Label.getContent('Drop'),data:scope.dropRural,color:PlayerColor.getColors()[1]
                         },{
-                            name:'Increase',data:scope.increaseRural,color:'#5CB85C'
+                            name:Label.getContent('Increase'),data:scope.increaseRural,color:PlayerColor.getColors()[3]
                         },{
-                            name:'Value',data:scope.valueRural,color:'#428BCA'
+                            name:Label.getContent('Awareness Value'),data:scope.valueRural,color:PlayerColor.getColors()[0]
                         }];
                         scope.awarenessHealthBeauties1Config={
                             options:{
@@ -87,11 +87,11 @@ selectedPeriod : '='
                         };break;
                         case 2:
                         scope.awarenessHealthBeauties2Series=[{
-                            name:'Drop',data:scope.dropUrban,color:'#D9534F'
+                            name:Label.getContent('Drop'),data:scope.dropUrban,color:PlayerColor.getColors()[1]
                         },{
-                            name:'Increase',data:scope.increaseUrban,color:'#5CB85C'
+                            name:Label.getContent('Increase'),data:scope.increaseUrban,color:PlayerColor.getColors()[3]
                         },{
-                            name:'Value',data:scope.valueUrban,color:'#428BCA'
+                            name:Label.getContent('Awareness Value'),data:scope.valueUrban,color:PlayerColor.getColors()[0]
                         }];
                         scope.awarenessHealthBeauties2Config={
                             options:{
@@ -120,7 +120,7 @@ selectedPeriod : '='
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         

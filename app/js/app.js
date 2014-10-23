@@ -5,7 +5,8 @@
  	'directives/basicDirectives',
  	'highchart',
  	'directives/chartLibraryWrapper',
- 	'directives/TE_GR_performanceHighlights',
+ 	'directives/TE_GR_brandPerspective',
+ 	'directives/TE_GR_channelPerspective',
  	'directives/TE_GR_marketShare',
  	'directives/TE_GR_marketSales',
  	'directives/TE_GR_emallPrices',
@@ -90,12 +91,12 @@
 	'directives/TE_OR_marketShares',
 	'directives/TE_OR_profits',
 	'directives/TE_OR_shelfSpaceAllocation',
+	'directives/TE_OR_shareOfShoppers',
  	'directives/revealJSWrapper',
  	'angularRoute',
  	'angularXeditable',
  	'angularBootstrap',
  	'underscore',
- 	'socketIO',
  	'jquery',
  	'bootstrap',
  	'angularLoadingBar',
@@ -106,11 +107,8 @@
  	'angularMocks',
  	'angularAnimate',
  	'text',
- 	'bootstrapswitch',
  	'reveal',
  	'ngNotify',
- 	'angularSanitize',
- 	'ngSlider',
  ], function(angular, filters, services, directives, bootstrap, controllers) {
  	'use strict';
  	return angular.module('myApp', [
@@ -123,8 +121,7 @@
  			'chieffancypants.loadingBar',
  			'ngCookies',
  			'highcharts-ng',
- 			'cgNotify',
- 			'ngSlider'
+ 			'cgNotify'
  		]).run(function(editableOptions, editableThemes) {
  			editableThemes.bs3.inputClass = 'input-sm';
  			editableThemes.bs3.buttonsClass = 'btn-sm';
@@ -145,19 +142,34 @@
  					PlayerInfo.setPlayer(cookiesUserInfo.roleID);
  					RoleInfo.setRole(cookiesUserInfo.role);
  					PeriodInfo.setCurrentPeriod(cookiesUserInfo.seminar.currentPeriod);
+					if (Auth.isLoggedIn()) {
+						var url = "/seminarInfo/" + SeminarInfo.getSelectedSeminar().seminarCode;
+						$http.get(url).success(function(data) {
+							PeriodInfo.setCurrentPeriod(data.currentPeriod);
+							$rootScope.$broadcast('SeminarPeriodChangedFromRoute',data);	
+						});
+					} 					
  				}
 
  				//when route change, keep authorizing user 
  				$rootScope.$on("$routeChangeStart", function(event, next, current) {
+
+ 					console.log('next.access:'+next.access+',next.path:'+next.path+',value:'+Auth.authorize(next.access));
+
  					if (!Auth.authorize(next.access)) {
  						//console.log('authorize fail, jump to login page...');
  						if (!Auth.isLoggedIn()) $location.path('/login');
+ 						else $location.path('/overviewReport');
  					} else {
  						//TODO: update Seminar info from server where route changed, just in case currentPeriod has been changed and SocketIO doesn't work right.	            	
  						if (Auth.isLoggedIn()) {
  							var url = "/seminarInfo/" + SeminarInfo.getSelectedSeminar().seminarCode;
+ 							var tmp = PeriodInfo.getCurrentPeriod();
  							$http.get(url).success(function(data) {
-
+ 								if(data.currentPeriod != tmp){
+ 									PeriodInfo.setCurrentPeriod(data.currentPeriod);
+ 									$rootScope.$broadcast('SeminarPeriodChangedFromRoute',data);	
+ 								}
  							});
  						}
  					}

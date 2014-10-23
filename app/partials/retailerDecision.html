@@ -21,11 +21,18 @@
     .bs-docs-sidebar.affix{
         position: fixed;
     }
+    .col-md-9{
+        width: 77%;
+    }
+    .col-md-3{
+        width: 23%;
+    }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
       .bs-docs-sidebar.affix-bottom,
       .bs-docs-sidebar.affix {
-        width: 213px;
+        width: 255px;
+        padding: 0;
       }
     }
     .my-super-awesome-loading-box {
@@ -34,9 +41,9 @@
       border: 0px solid gray;
       background: #EFEFEF;
     }
-    .bs-docs-section{
+/*    .bs-docs-section{
         padding-top:60px;
-    }
+    }*/
 </style>
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
@@ -44,8 +51,7 @@
 
 <div class="container bs-docs-container">
     <div class="row">
-        <div class="col-md-12">
-      
+        <div ng-class="{true: 'col-md-12', false: 'col-md-9'}[isNegotiation]">
             <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator steps-5">
                    <li class="done editing">
@@ -66,76 +72,152 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-9" style="width:80%;padding:0 0 0 15px" ng-show='!isNegotiation'>
-            <div class="bs-docs-section">
-            <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{currentPeriod}}</b>, Retailer {{PlayerID}}</p>              
-                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-marketing>
-
-                <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-private-label-portfolio-management>
-
-                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-store-management>
-
-                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-market-research-orders>
-                
-            </div>
-        </div>
-        <div class="col-md-3" style="width:20%;padding:0 0 0 15px" ng-show='!isNegotiation'>
-            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
-                <table class="table table-condensed">
+        <div class="col-md-3 pull-right" style="padding:0 0 0 15px" ng-show='!isNegotiation'>
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
+                <div id='clockChart' ng-model='myModel' clock-chart></div>
+                <!-- <p>19m59s left for commiting portfolio decision</p> -->
+                <div id='retailerClockChart' ng-show='isTimerActived&&chartInit' ng-model='retailerModel' retailer-clock-chart></div>
+                <p ng-show='isTimerActived&&chartInit'>{{retailerClockTitle}}</p>
+                <table class="table table-condensed" style="margin:0px auto;">
                     <thead>
-                        <th colspan="2">
-                            <p>{{Label.getContent('Decision Info')}}</p>
-                        </th>
+                        <tr>
+                            <th colspan="2">
+                                <p>{{Label.getContent('(Total)')}}</p>
+                            </th>
+                        </tr>
                     </thead>
                     <tbody>
-<!--                         <tr>
-                            <td><p>{{Label.getContent('Time Left')}}</p></td>
-                            <td><p class="text-right">30 {{Label.getContent('mins')}}</p></td>
-                        </tr> -->
                         <tr>
-                            <td><p>{{Label.getContent('Total Budget')}}</p></td>
-                            <td><p class="text-right">{{abMax}}</p></td>
+                            <td>
+                                <p>{{Label.getContent('Initial Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{initialBudget}}</p>
+                            </td>
                         </tr>
                         <tr>
-                            <td><p>{{Label.getContent('Additional Budget')}}</p></td>
-                            <td><p class="text-right">+{{additionalBudget}}</p></td>
+                            <td>
+                                <p>{{Label.getContent('Previous Spending')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{budgetSpentToDate}}</p>
+                            </td>
                         </tr>                        
                         <tr>
-                            <td><p>{{Label.getContent('Estimated Period Spending')}}</p></td>
-                            <td><p class="text-right">{{estimatedSpending}}</p></td>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Budget Extensions')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{budgetExtensions}}</p>
+                            </td>
                         </tr>
                         <tr>
-                            <td><p>{{Label.getContent('Estimated Budget Left')}}</p></td>
-                            <td><p class="text-right"><b>{{surplusExpend}}</b></p></td>
-                        </tr>
-
-
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Budget Increase Due to Negotiation')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{previousBudgetIncreaseDueToNegotiation}}</p>
+                            </td>
+                        </tr>                    
+                    </tbody>
+                </table>
+                <p></p>
+                <table class="table table-condensed" style="margin:0px auto;">
+                    <thead>
                         <tr>
-                            <td colspan="2"><p>{{Label.getContent('Shelf Space Left')}}</p></td>
+                            <th colspan="2">
+                                <p>{{Label.getContent('(Current)')}}</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Remaining Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{abMax}}</p>
+                            </td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[0][0].toFixed(2)}}%</b>/100%</p></td>
+                            <td>
+                                <p>{{Label.getContent('Budget Increase Due to Negotiation')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{budgetIncreaseDueToNegotiation}}</p>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Estimated Period Spending')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">-{{estimatedSpending}}</p>
+                            </td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauties')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[0][1].toFixed(2)}}%</b>/100%</p></td>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Estimated Budget Left')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{surplusExpend}}</b></p>
+                            </td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[1][0].toFixed(2)}}%</b>/100%</p></td>
+                            <td colspan="4"><p>{{Label.getContent('Shelf Space Left')}}</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauties')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[1][1].toFixed(2)}}%</b>/100%</p></td>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[0][0].toFixed(2)}}%</b>/100%</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauty')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[0][1].toFixed(2)}}%</b>/100%</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[1][0].toFixed(2)}}%</b>/100%</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauty')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[1][1].toFixed(2)}}%</b>/100%</p>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <div class="col-md-9" style="padding:0 0 0 15px" ng-show='!isNegotiation'>
+            <div class="bs-docs-section">
+            <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Retailer {{selectedPlayer}}</p>              
+                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-marketing>
+
+                <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-private-label-portfolio-management>
+
+                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-store-management>
+
+                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-market-research-orders>
+                
+            </div>
+        </div>
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
-                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-negotiation-change='isNegotiationChange' is-page-loading='isPageLoading'></retailer-negotiation-agreements>
+                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-negotiation-change='isNegotiationChange' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-negotiation-agreements>
             </div>
         </div>
     </div>

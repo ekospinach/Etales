@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('overviewShelfSpaceAllocation', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('overviewShelfSpaceAllocation', ['Label','SeminarInfo','$http','PeriodInfo','$q', 'PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor){
         return {
             scope : {
             	isPageShown : '=',
@@ -17,8 +17,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;             
                     scope.Label = Label;
                     if(scope.feedBack!=undefined)
-                    getResult();                   
-                }
+                    getResult();
+            	}
 
                 var getResult =function(){
                 	var currentCategories=new Array();
@@ -26,17 +26,43 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			    	var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-            		var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+			    	var currentShelfSpaceElecssories=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
+			    		{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
+			    		{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
+			    		{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
+			    		{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
+			    		{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
+			    		{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
+            		var currentShelfSpaceHealthBeauties=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0], actorID : 1},
+            			{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1], actorID : 2},
+            			{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2], actorID : 3},
+            			{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3], actorID : 4},
+            			{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4], actorID : 5},
+            			{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5], actorID : 6},
+            			{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6], actorID : 7});
+
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
 			        for(var j=0;j<currentCategories.length;j++){
 		                for(var i=0;i<scope.feedBack.f_ShelfSpaceAllocation.length;i++){
 		                    if(scope.feedBack.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
 		                        if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
-		                            currentShelfSpaceElecssories[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+
+		                            //currentShelfSpaceElecssories[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            currentShelfSpaceElecssories.forEach(function(value, item, array){
+		                                if(scope.feedBack.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+		                                    array[item].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value * 100);
+		                                }
+		                            })		                            
+
 		                        }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
-		                            currentShelfSpaceHealthBeauties[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+
+		                            //currentShelfSpaceHealthBeauties[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            currentShelfSpaceHealthBeauties.forEach(function(value, item, array){
+		                                if(scope.feedBack.f_ShelfSpaceAllocation[i].actorID == array[item].actorID){
+		                                    array[item].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value * 100);
+		                                }
+		                            })		   
 		                        }
 		                    }
 		                }
@@ -46,27 +72,28 @@ define(['directives', 'services'], function(directives){
 		        	scope.currentShelfSpaceElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Elecssories',
+		                        text:Label.getContent('Elecssories'),
 		                    },
 		                    chart: {
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'Shelf Space Allocation (%)'
+		                            text: Label.getContent('Shelf Space Allocation')+' (%)'
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('Shelf Space Allocation')+':'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -82,27 +109,28 @@ define(['directives', 'services'], function(directives){
 		            scope.currentShelfSpaceHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'HealthBeauties',
+		                        text:Label.getContent('HealthBeauties'),
 		                    },
 		                    chart: {
+		                        
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'Shelf Space Allocation (%)'
+		                            text: Label.getContent('Shelf Space Allocation')+' (%)'
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('Shelf Space Allocation')+':'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,

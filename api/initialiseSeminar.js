@@ -413,6 +413,13 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 		         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 			
+				options.cgiPath = conf.cgi.path_BG_feedbackSlides;
+				options.schemaName = 'BG_feedbackSlides';
+				//return require('./models/companyHistoryInfo.js').addInfos(options);
+				return require('./models/BG_feedbackSlides.js').addInfos(options);							
+			}).then(function(result){ 
+		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
+			
 		    //import Supplier decision 
 		        if(options.isKeepExistedPeriod1Decision){					        	
 		        	options.endWith = 0;
@@ -498,12 +505,6 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 
-				options.cgiPath = conf.cgi.path_BG_feedbackSlides;
-				options.schemaName = 'BG_feedbackSlides';
-				//return require('./models/companyHistoryInfo.js').addInfos(options);
-				return require('./models/BG_feedbackSlides.js').addInfos(options);							
-			}).then(function(result){ 
-		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 
 		        status = 'actived';
 		        res.send(200, 'Initialization done.');

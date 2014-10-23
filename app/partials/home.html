@@ -8,12 +8,13 @@
  -->
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Participants Manual</h1>
+        <h1>{{Label.getContent('Participants Manual')}}</h1>
         <p>{{Label.getContent('Manual popInfo')}}</p>
     </div>
 </div>
 
-<div class="container bs-docs-container">
+
+<div class="container bs-docs-container" ng-show='Label.getCurrentLanguage()=="ENG"'>
     <div class="row">
         <div class="col-md-12">
             <div class="bs-docs-section">
@@ -572,8 +573,8 @@
                     The report depicts the volume and value sales for the brands in Elecssories and HealthBeauties category by Shopper Segments. It has four sub reports one for the combination of each category and market.
                 </p>
                 <p class="lead padding-20">
-                    ➢<strong>B&M Retail Prices</strong><br />
-                    The report shows the B&M Retail prices of all the SKU’s in both the product categories by all the retailers.
+                    ➢<strong>B&M Retailer Prices</strong><br />
+                    The report shows the B&M Retailer Prices of all the SKU’s in both the product categories by all the retailers.
                 </p>
 
                 <p class="lead padding-20">
@@ -742,4 +743,6 @@
             </div>
         </div> -->
     </div>
+</div>
+<div class="container bs-docs-container" ng-show='Label.getCurrentLanguage()=="CHN"'>
 </div>

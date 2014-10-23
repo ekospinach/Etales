@@ -40,7 +40,7 @@ TVariantNegotiationsDetails = record
                                 vnd_VariantName       : TVariantName;
                                 vnd_ParentBrandID     : TBrandID;
                                 vnd_ParentBrandName   : TBrandName;
-				                        vnd_ParentCompanyID   : TActors;
+                                vnd_ParentCompanyID   : TActors;
                                 vnd_QuantityDiscount  : TDiscountsDetails;
                                 vnd_TargetBonus       : TBonusDetails;
                                 vnd_PaymentTerms      : TDelayOfPayment;
@@ -74,13 +74,26 @@ TVariantChannelDetails = record
                            vcd_VariantName       : TVariantName;
                            vcd_ParentBrandID     : TBrandID;
                            vcd_ParentBrandName   : TBrandName;
-                           vcd_ParentCompanyID   : TActors;
-                           vcd_Shown             : boolean;    { flag used to determine if should be displayed. For instance, Private Labels of Retailer 1, should not be displayed in Retailer 2 report }
+                           vcd_ParentCompanyID   : TBrandOwners;
+                           vcd_Shown             : boolean;
                            vcd_AbsoluteValue     : array[TAccountsTotal] of single;
                            vcd_ValueChange       : array[TAccountsTotal] of single;
                            vcd_AbsoluteVolume    : array[TAccountsTotal] of single;
                            vcd_VolumeChange      : array[TAccountsTotal] of single;
                          end;
+
+TBrandChannelDetails = record
+                         bcd_BrandID         : TBrandID;
+                         bcd_BrandName       : TBrandName;
+                         bcd_ParentCompanyID : TBrandOwners;
+                         bcd_Shown           : boolean;
+                         bcd_AbsoluteValue   : array[TAccountsTotal] of single;
+                         bcd_ValueChange     : array[TAccountsTotal] of single;
+                         bcd_AbsoluteVolume  : array[TAccountsTotal] of single;
+                         bcd_VolumeChange    : array[TAccountsTotal] of single;
+                         bcd_VariantsDetails : array[TOneBrandVariants] of TVariantChannelDetails;
+                       end;
+
 
 TBrandOwnerChannelDetails = record
                               bocd_CompanyID         : TBrandOwners;
@@ -93,23 +106,27 @@ TBrandOwnerChannelDetails = record
 
 TGR_PerformanceHighlights =
   record
-    grph_SalesVolume              : array[TActors, TCategoriesTotal] of single;   {  For Suppliers it refers to on-line sales only }
-    grph_NetSalesValue            : array[TActors, TCategoriesTotal] of single;   {                    as above                    }
-    grph_WholeSalesVolume         : array[TAllProducers, TCategoriesTotal] of single;    { This covers shipments to retailers only       }
-    grph_WholeSalesNetValue       : array[TAllProducers, TCategoriesTotal] of single;    {                    as above                   }
-    grph_VolumeMarketShare        : array[TActors, TCategoriesTotal] of single;
-    grph_ValueMarketShare         : array[TActors, TCategoriesTotal] of single;
+    grph_SalesVolume                 : array[TActors, TCategoriesTotal] of single;   {  For Suppliers it refers to on-line sales only }
+    grph_NetSalesValue               : array[TActors, TCategoriesTotal] of single;   {                    as above                    }
+    grph_WholeSalesVolume            : array[TAllProducers, TCategoriesTotal] of single;    { This covers shipments to retailers only       }
+    grph_WholeSalesNetValue          : array[TAllProducers, TCategoriesTotal] of single;    {                    as above                   }
+    grph_VolumeMarketShare           : array[TActors, TCategoriesTotal] of single;
+    grph_ValueMarketShare            : array[TActors, TCategoriesTotal] of single;
+    grph_SalesVolumeChange           : array[TActors, TCategoriesTotal] of single;
+    grph_NetSalesValueChange         : array[TActors, TCategoriesTotal] of single;
+    grph_VolumeMarketShareChange     : array[TActors, TCategoriesTotal] of single;
+    grph_ValueMarketShareChange      : array[TActors, TCategoriesTotal] of single;
+    grph_WholeSalesVolumeChange      : array[TAllProducers, TCategoriesTotal] of single;
+    grph_WholeSalesNetValueChange    : array[TAllProducers, TCategoriesTotal] of single;
+    grph_OperatingProfit             : array[TActiveActors] of single;
+    grph_OperatingProfitChange       : array[TActiveActors] of single;
+    grph_CumulativeInvestment        : array[TActiveActors] of single;
 
-    grph_SalesVolumeChange        : array[TActors, TCategoriesTotal] of single;
-    grph_NetSalesValueChange      : array[TActors, TCategoriesTotal] of single;
-    grph_VolumeMarketShareChange  : array[TActors, TCategoriesTotal] of single;
-    grph_ValueMarketShareChange   : array[TActors, TCategoriesTotal] of single;
-    grph_WholeSalesVolumeChange   : array[TAllProducers, TCategoriesTotal] of single;   
-    grph_WholeSalesNetValueChange : array[TAllProducers, TCategoriesTotal] of single;    
-    
-    grph_OperatingProfit          : array[TActiveActors] of single;
-    grph_OperatingProfitChange    : array[TActiveActors] of single;
-    grph_CumulativeInvestment     : array[TActiveActors] of single;
+    { added on 13 October 2014 for channel perspective }
+    grph_ConsumersOffTakeVolume      : array[TAllStores, TMarketsTotal, TCategories] of single;
+    grph_ConsumersOffTakeVolumeShare : array[TAllStores, TMarketsTotal, TCategories] of single;
+    grph_ConsumersOffTakeValue       : array[TAllStores, TMarketsTotal, TCategoriesTotal] of single;
+    grph_ConsumersOffTakeValueShare  : array[TAllStores, TMarketsTotal, TCategoriesTotal] of single;
   end;
 
 TGR_SharesOfMarket =
@@ -209,6 +226,7 @@ TSCR_OneVariant =
     scrv_DateOfBirth                          : TTimeSpan;
     scrv_DateOfDeath                          : TTimeSpan;
     scrv_ParentCompanyID                      : TActors;
+
     scrv_Sales                                : array[TProducerDivisions] of single;
     scrv_SalesChange                          : array[TProducerDivisions] of single;
     scrv_SalesShareInCategory                 : array[TProducerDivisions] of single;
@@ -358,6 +376,10 @@ TSCR_KeyPerformanceIndicators = array[TCategoriesTotal] of TSCR_CategoryKeyPerfo
 
 TSCR_AdditionalInfo =
   record
+    scrInfo_InitialBudget                 : single; 
+    scrInfo_BudgetExtensions              : single; 
+    scrinfo_TotalPreviousMarketing        : single; 
+    scrinfo_TotalPreviousTradeSupport     : single; 
     scrInfo_BudgetAvailable               : single;
     scrInfo_BudgetOverspent               : single;
     scrInfo_BudgetSpentToDate             : single;
@@ -578,13 +600,16 @@ TRCR_KeyPerformanceIndicators = array[TMarketsTotal, TCategoriesTotal] of TRCR_Q
 
 TRCR_AdditionalInfo =
   record
-    rcrInfo_BudgetAvailable               : single;
-    rcrInfo_BudgetOverspent               : single;
-    rcrInfo_BudgetSpentToDate             : single;
-    rcrInfo_ServiceLevel                  : array[TMarkets] of TServiceLevel;
-    rcrInfo_LocalAdvertising              : array[TMarkets] of TStorePerceptionsData;
-    rcrInfo_OnlineAdvertising             : TStorePerceptionsData;
-    rcrInfo_TraditionalAdvertising        : TStorePerceptionsData;
+    rcrInfo_InitialBudget                  : single; 
+    rcrInfo_BudgetExtensions               : single; 
+    rcrInfo_BudgetIncreaseFromNegotiations : single; 
+    rcrInfo_BudgetAvailable                : single;
+    rcrInfo_BudgetOverspent                : single;
+    rcrInfo_BudgetSpentToDate              : single;
+    rcrInfo_ServiceLevel                   : array[TMarkets] of TServiceLevel;
+    rcrInfo_LocalAdvertising               : array[TMarkets] of TStorePerceptionsData;
+    rcrInfo_OnlineAdvertising              : TStorePerceptionsData;
+    rcrInfo_TraditionalAdvertising         : TStorePerceptionsData;
   end;
 
 TRetailerConfidentialReport =
@@ -744,11 +769,11 @@ TMR_OneMarketForecasts =
 TMR_Forecasts = array[TForecastCoverage, TMarkets] of TMR_OneMarketForecasts;
 
 TMR_OneQuarterSalesByChannel = record
-                                 mrsbc_VariantsDetails    : array[TBrands, TOneBrandVariants] of TVariantChannelDetails;
+                                 mrsbc_BrandDetails       : array[TBrands] of TBrandChannelDetails;
                                  mrsbc_BrandOwnersDetails : array[TBrandOwners] of TBrandOwnerChannelDetails;
                                 end;
 
-TMR_SalesByChannel = array[TMarkets, TCategories] of TMR_OneQuarterSalesByChannel;
+TMR_SalesByChannel = array[TMarketsTotal, TCategories] of TMR_OneQuarterSalesByChannel;
 
 TMarketResearch =
   record
@@ -776,6 +801,7 @@ TF_CategoryNegotiationsItem =
   record
     fcni_SuppliersCost       : array[TProducers] of single;
     fcni_RetailersBenefits   : array[TBMRetailers] of single;
+    fcni_TotalValue          : single;
   end;
 
 TF_NegotiationsItems = array[TCategoriesTotal] of TF_CategoryNegotiationsItem;
@@ -790,9 +816,18 @@ TF_SuppliersKPIsExtended = array[TCategoriesTotal, TTimeSpan, TBrandOwners] of s
 
 TF_RetailersKPIs = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TBMRetailers] of single;
 
-TF_ShoppersShare = array[TMarketsTotal, TTimeSpan, TActors] of single;
+TF_ShoppersShare = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TShoppersKind, TAllStores] of single;
 
-TF_MarketSummary = array[TTimeSpan, TMarketsTotal, TCategoriesTotal] of single;
+TF_MarketSummary = array[TMarketsTotal, TCategoriesTotal, TTimeSpan] of single;
+
+TF_Scores = record
+              ffs_SuppliersAbsoluteValues    : array[TProducers, TEvaluationScores] of single;
+              ffs_SuppliersStandarisedValues : array[TProducers, TEvaluationScores] of single;        { not used in the current template }
+              ffs_SuppliersFinalScore        : array[TProducers] of single;
+              ffs_RetailersAbsoluteValues    : array[TModernRetailers, TEvaluationScores] of single;
+              ffs_RetailersStandarisedValues : array[TModernRetailers, TEvaluationScores] of single;  { not used in the current template }
+              ffs_RetailersFinalScore        : array[TModernRetailers] of single;
+            end;
 
 TFeedback =
   record
@@ -833,6 +868,9 @@ TFeedback =
     f_TotalMarketVolume               : TF_MarketSummary;
     f_TotalMarketValue                : TF_MarketSummary;
     f_AverageTotalMarketNetPrice      : TF_MarketSummary;
+
+    { Added on October 14, 2014 }
+    f_FinalScores                     : TF_Scores;  
   end;
 
 {-----------------------------------------------------------------------------------------------------------------------------------------------}

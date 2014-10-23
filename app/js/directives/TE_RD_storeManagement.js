@@ -5,7 +5,11 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                isReady : '='
+                selectedPeriod : '=',
+                selectedPlayer : '=',
+                isContractDeal:'=',
+                isContractFinalized:'=',
+                isDecisionCommitted:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_storeManagement.html',            
@@ -17,8 +21,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
                     scope.showView=showView;
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();                    
-                    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                    scope.currentPeriod=scope.selectedPeriod;                    
+                    RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base;
                     }).then(function(){
                         return showView('Elecssories','Rural');
@@ -69,7 +73,7 @@ define(['directives', 'services'], function(directives){
                     }else{
                         d.resolve();
                     }
-                    // var url='/quarterHistoryInfo/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    // var url='/quarterHistoryInfo/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1);
                     // $http({
                     //     method:'GET',
                     //     url:url
@@ -105,13 +109,15 @@ define(['directives', 'services'], function(directives){
                         }else {
                             category=2;
                         }
-                        var url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+market+'/'+category+'/'+brandName+'/'+varName;
+                        var url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod)+'/'+parseInt(scope.selectedPlayer)+'/'+market+'/'+category+'/'+brandName+'/'+varName;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
-                            if(value>100-data.data.exclude*100){
-                                d.resolve(Label.getContent('Input range')+':0~'+(100-data.data.exclude*100).toFixed(2));
+                            var exclude=Math.round(data.data.exclude*100*100)/100;
+
+                            if(value>100-exclude){
+                                d.resolve(Label.getContent('Input range')+':0~'+(100-exclude));
                             }else{
                                 d.resolve();
                             }
@@ -145,20 +151,20 @@ define(['directives', 'services'], function(directives){
                     }
                     if(brandName.substring(brandName.length-1)<4){
                         //producer product
-                        var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
+                        var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
                             max=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + PeriodInfo.getCurrentPeriod();
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + scope.selectedPeriod;
                             return $http({
                                 method:'GET',
                                 url:url
                             });
                         }).then(function(data){
                             if(value>max*data.data.MaxRetailPriceVsNetBMPrice||value<data.data.MinRetailPriceVsNetBMPrice*max){
-                                d.resolve(Label.getContent('Input range')+':'+data.data.MinRetailPriceVsNetBMPrice*max+'~'+data.data.MaxRetailPriceVsNetBMPrice*max);
+                                d.resolve(Label.getContent('Input range')+':'+(Math.floor(data.data.MinRetailPriceVsNetBMPrice*max * 100) / 100)+'~'+(Math.floor(data.data.MaxRetailPriceVsNetBMPrice*max * 100) / 100));
                             }else{
                                 d.resolve();
                             }
@@ -168,13 +174,13 @@ define(['directives', 'services'], function(directives){
                     }else{
                         //retailer variant
                         var postData = {
-                            period : PeriodInfo.getCurrentPeriod(),
+                            period : scope.selectedPeriod,
                             seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                             brandName : brandName,
                             varName : varName,
                             catID : category,
                             userRole :  4,                      
-                            userID : PlayerInfo.getPlayer(),
+                            userID : scope.selectedPlayer,
                         }   
 
                         $http({
@@ -183,7 +189,7 @@ define(['directives', 'services'], function(directives){
                             data:postData
                         }).then(function(data){
                             currentUnitCost=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + PeriodInfo.getCurrentPeriod();
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + scope.selectedPeriod;
                             return $http({
                                 method:'GET',
                                 url:url
@@ -191,7 +197,7 @@ define(['directives', 'services'], function(directives){
                         }).then(function(data){
                             if(data.data && currentUnitCost){
                                 if(value>data.data.MaxBMPriceVsCost*currentUnitCost||value<data.data.MinBMPriceVsCost*currentUnitCost){
-                                    d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost+'~'+data.data.MaxPLPriceVsCost*currentUnitCost);
+                                    d.resolve(Label.getContent('Input range')+':'+(Math.floor(data.data.MinBMPriceVsCost*currentUnitCost * 100) / 100) +'~'+(Math.floor(data.data.MaxPLPriceVsCost*currentUnitCost * 100) / 100));
                                 }else{
                                     d.resolve();
                                 }                                
@@ -246,13 +252,13 @@ define(['directives', 'services'], function(directives){
                         category=2;
                     }
                     if(location=="pricePromotions"&&postion=="promo_Frequency"){
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                  
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value,'retailerStoreManagement');                
                     }else if(location=="pricePromotions"&&postion=="promo_Rate"){
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100,'retailerStoreManagement');
                     }else if(location=="shelfSpace"){
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);                 
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100,'retailerStoreManagement');                 
                     }else{
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                   
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value,'retailerStoreManagement');                   
                     }
                 }
 
@@ -306,7 +312,7 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     //添加retailer load
-                    var url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
+                    var url='/retailerProducts/'+parseInt(scope.selectedPlayer)+'/'+scope.selectedPeriod+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
                     $http({
                         method:'GET',
                         url:url
@@ -315,34 +321,38 @@ define(['directives', 'services'], function(directives){
                             if(data.data[i].brandID!=0&&data.data[i].varID!=0){
                                 data.data[i].variantID=data.data[i].varID;
                                 data.data[i].select=false;
+                                data.data[i].show=true;
                                 orderProducts.push(data.data[i]);
                             }
                         }
                         var urls=new Array();
                         var checkurls=new Array();
                         for(i=0;i<3;i++){
-                            urls[i]='/producerProducts/'+(i+1)+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
-                            checkurls[i]='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+(i+1);
+                            urls[i]='/producerProducts/'+(i+1)+'/'+scope.selectedPeriod+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
+                            checkurls[i]='/checkProducerDecisionStatus/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+(i+1);
                         }
                         (function multipleRequestShooter(checkurls,urls,idx){
                             $http({
                                 method:'GET',
-                                url:checkurls[idx]
-                            }).then(function(data){
-                                if(data.data=="unReady"){
-                                    urls[idx]="/";
-                                }
+                                url:urls[idx]
+                            }).then(function(urlData){
+                                scope.urlData=urlData;
                                 return $http({
                                     method:'GET',
-                                    url:urls[idx]
+                                    url:checkurls[idx]
                                 });
-                            }).then(function(data){
-                                if(data.data.length<100){
-                                    for(var j=0;j<data.data.length;j++){
-                                        if(data.data[j].brandID!=undefined&&data.data[j].brandID!=0&&data.data[j].varID!=0){
-                                            data.data[j].variantID=data.data[j].varID;
-                                            data.data[j].select=false;
-                                            orderProducts.push(data.data[j]);
+                            }).then(function(checkData){
+                                if(scope.urlData.data.length<100){
+                                    for(var j=0;j<scope.urlData.data.length;j++){
+                                        if(scope.urlData.data[j].brandID!=undefined&&scope.urlData.data[j].brandID!=0&&scope.urlData.data[j].varID!=0){
+                                            scope.urlData.data[j].variantID=scope.urlData.data[j].varID;
+                                            scope.urlData.data[j].select=false;
+                                            if(!checkData.data.isPortfolioDecisionCommitted){
+                                                scope.urlData.data[j].show=false;
+                                            }else{
+                                                scope.urlData.data[j].show=true;
+                                            }
+                                            orderProducts.push(scope.urlData.data[j]);
                                         }
                                     }
                                 }
@@ -383,6 +393,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             })
                         })(checkurls,urls,0); 
+
                     },function(){
                         d.reject(Label.getContent('showView fail'));
                     });
@@ -424,7 +435,7 @@ define(['directives', 'services'], function(directives){
                     /*set add function is lauch new Brand*/
                     var close = function () {
                         $modalInstance.dismiss('cancel');
-                        RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                        RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                             $scope.pageBase = base;
                         }).then(function(){
                             return showView($scope.category,$scope.market);
@@ -451,10 +462,10 @@ define(['directives', 'services'], function(directives){
                             }
                         }
                         if(market=="Urban"){
-                            RetailerDecisionBase.addOrders(1,ordersProducts);
+                            RetailerDecisionBase.addOrders(1,ordersProducts,'retailerStoreManagement');
                         }
                         else{
-                            RetailerDecisionBase.addOrders(2,ordersProducts);
+                            RetailerDecisionBase.addOrders(2,ordersProducts,'retailerStoreManagement');
                         }
                         close();
                     }
@@ -474,7 +485,7 @@ define(['directives', 'services'], function(directives){
                     }else{
                         category=2;
                     }
-                    RetailerDecisionBase.deleteOrder(market,category,brandName,varName);
+                    RetailerDecisionBase.deleteOrder(market,category,brandName,varName,'retailerStoreManagement');
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
@@ -484,15 +495,17 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    scope.pageBase = newBase;
-                    if (data.categoryID == 1 && data.marketID == 1) {
-                        showView('Elecssories', 'Urban');
-                    } else if (data.categoryID == 1 && data.marketID == 2) {
-                        showView('Elecssories', 'Rural');
-                    } else if (data.categoryID == 2 && data.marketID == 1) {
-                        showView('HealthBeauties', 'Urban');
-                    } else if (data.categoryID == 2 && data.marketID == 2) {
-                        showView('HealthBeauties', 'Rural');
+                    if(data.page="retailerStoreManagement"){
+                        scope.pageBase = newBase;
+                        if (data.categoryID == 1 && data.marketID == 1) {
+                            showView('Elecssories', 'Urban');
+                        } else if (data.categoryID == 1 && data.marketID == 2) {
+                            showView('Elecssories', 'Rural');
+                        } else if (data.categoryID == 2 && data.marketID == 1) {
+                            showView('HealthBeauties', 'Urban');
+                        } else if (data.categoryID == 2 && data.marketID == 2) {
+                            showView('HealthBeauties', 'Rural');
+                        }
                     }
                     // } else if(data.categoryID != undefined && data.marketID==undefined){
                     //     initializePage();

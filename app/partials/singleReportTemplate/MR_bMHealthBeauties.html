@@ -1,7 +1,7 @@
 <div class="panel panel-danger my-panel-danger" ng-show='isResultShown'>
     <div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('B&M Retail Prices Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('B&M Retail Prices')}} - {{Label.getContent('HealthBeauties')}}
+        <h3 class="panel-title text-center" popover="{{Label.getContent('B&M Retailer Prices Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('B&M Retailer Prices')}} - {{Label.getContent('HealthBeauties')}}
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-danger">
@@ -69,28 +69,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -103,28 +103,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -137,28 +137,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -171,28 +171,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2ValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -205,28 +205,28 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural1ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2Value | number : 1 }}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.urban2ValueChange | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2Value | number : 1 }}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
+                    <p class="text-right">{{player.rural2ValueChange | number : 1 }}</p>
                 </td>
                 
             </tr>

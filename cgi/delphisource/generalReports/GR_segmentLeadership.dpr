@@ -19,10 +19,13 @@ var
   function variantInfoSchema(variant : TSegmentVariantLeader):ISuperObject;
   var 
     jo : ISuperObject;
+    LeaderName : AnsiString;
   begin
+    LeaderName := variant.leader_ParentBrandName;
+    LeaderName := LeaderName + variant.leader_Name;
     jo := SO;
     jo.I['varID'] := variant.leader_ID;
-    jo.S['varName'] := variant.leader_Name;
+    jo.S['varName'] := LeaderName;
     jo.I['parentBrandID'] := variant.leader_ParentBrandID;
     jo.S['parentBrandName'] := variant.leader_ParentBrandName;
     jo.D['share'] := variant.leader_Share;
@@ -33,7 +36,7 @@ var
   function shopperInfoSchema(catID : Integer; marketID : Integer; segmentID : Integer; Shopper : TShoppersKind; binaryReport : TGR_SegmentLeadership):ISuperObject;
   var
     jo : ISuperObject;
-    ShopperStr : string;    
+    ShopperStr : string;
     valueLeaders : TSegmentVariantLeaders;
     volumeLeaders : TSegmentVariantLeaders;
     i : Integer;

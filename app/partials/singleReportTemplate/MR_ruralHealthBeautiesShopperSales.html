@@ -52,22 +52,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmVolume=="0.00"?0:playerTotals[0].bmVolume}}</p>
+                    <p class="text-right">{{playerTotals[0].bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmVolumeChange=="0.00"?0:playerTotals[0].bmVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[0].bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineVolume=="0.00"?0:playerTotals[0].onlineVolume}}</p>
+                    <p class="text-right">{{playerTotals[0].onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineVolumeChange=="0.00"?0:playerTotals[0].onlineVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[0].onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedVolume=="0.00"?0:playerTotals[0].mixedVolume}}</p>
+                    <p class="text-right">{{playerTotals[0].mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedVolumeChange=="0.00"?0:playerTotals[0].mixedVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[0].mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player1s'>
@@ -75,22 +75,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
@@ -103,22 +103,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmVolume=="0.00"?0:playerTotals[1].bmVolume}}</p>
+                    <p class="text-right">{{playerTotals[1].bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmVolumeChange=="0.00"?0:playerTotals[1].bmVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[1].bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineVolume=="0.00"?0:playerTotals[1].onlineVolume}}</p>
+                    <p class="text-right">{{playerTotals[1].onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineVolumeChange=="0.00"?0:playerTotals[1].onlineVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[1].onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedVolume=="0.00"?0:playerTotals[1].mixedVolume}}</p>
+                    <p class="text-right">{{playerTotals[1].mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedVolumeChange=="0.00"?0:playerTotals[1].mixedVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[1].mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player2s'>
@@ -126,22 +126,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -154,22 +154,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmVolume=="0.00"?0:playerTotals[2].bmVolume}}</p>
+                    <p class="text-right">{{playerTotals[2].bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmVolumeChange=="0.00"?0:playerTotals[2].bmVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[2].bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineVolume=="0.00"?0:playerTotals[2].onlineVolume}}</p>
+                    <p class="text-right">{{playerTotals[2].onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineVolumeChange=="0.00"?0:playerTotals[2].onlineVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[2].onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedVolume=="0.00"?0:playerTotals[2].mixedVolume}}</p>
+                    <p class="text-right">{{playerTotals[2].mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedVolumeChange=="0.00"?0:playerTotals[2].mixedVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[2].mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player3s'>
@@ -177,22 +177,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -205,22 +205,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmVolume=="0.00"?0:playerTotals[4].bmVolume}}</p>
+                    <p class="text-right">{{playerTotals[4].bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmVolumeChange=="0.00"?0:playerTotals[4].bmVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[4].bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineVolume=="0.00"?0:playerTotals[4].onlineVolume}}</p>
+                    <p class="text-right">{{playerTotals[4].onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineVolumeChange=="0.00"?0:playerTotals[4].onlineVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[4].onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedVolume=="0.00"?0:playerTotals[4].mixedVolume}}</p>
+                    <p class="text-right">{{playerTotals[4].mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedVolumeChange=="0.00"?0:playerTotals[4].mixedVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[4].mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player5s'>
@@ -228,22 +228,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -256,22 +256,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmVolume=="0.00"?0:playerTotals[5].bmVolume}}</p>
+                    <p class="text-right">{{playerTotals[5].bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmVolumeChange=="0.00"?0:playerTotals[5].bmVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[5].bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineVolume=="0.00"?0:playerTotals[5].onlineVolume}}</p>
+                    <p class="text-right">{{playerTotals[5].onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineVolumeChange=="0.00"?0:playerTotals[5].onlineVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[5].onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedVolume=="0.00"?0:playerTotals[5].mixedVolume}}</p>
+                    <p class="text-right">{{playerTotals[5].mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedVolumeChange=="0.00"?0:playerTotals[5].mixedVolumeChange}}</p>
+                    <p class="text-right">{{playerTotals[5].mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player6s'>
@@ -279,22 +279,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -340,22 +340,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmValue=="0.00"?0:playerTotals[0].bmValue}}</p>
+                    <p class="text-right">{{playerTotals[0].bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmValueChange=="0.00"?0:playerTotals[0].bmValueChange}}</p>
+                    <p class="text-right">{{playerTotals[0].bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineValue=="0.00"?0:playerTotals[0].onlineValue}}</p>
+                    <p class="text-right">{{playerTotals[0].onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineValueChange=="0.00"?0:playerTotals[0].onlineValueChange}}</p>
+                    <p class="text-right">{{playerTotals[0].onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedValue=="0.00"?0:playerTotals[0].mixedValue}}</p>
+                    <p class="text-right">{{playerTotals[0].mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedValueChange=="0.00"?0:playerTotals[0].mixedValueChange}}</p>
+                    <p class="text-right">{{playerTotals[0].mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player1s'>
@@ -363,22 +363,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
@@ -391,22 +391,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmValue=="0.00"?0:playerTotals[1].bmValue}}</p>
+                    <p class="text-right">{{playerTotals[1].bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmValueChange=="0.00"?0:playerTotals[1].bmValueChange}}</p>
+                    <p class="text-right">{{playerTotals[1].bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineValue=="0.00"?0:playerTotals[1].onlineValue}}</p>
+                    <p class="text-right">{{playerTotals[1].onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineValueChange=="0.00"?0:playerTotals[1].onlineValueChange}}</p>
+                    <p class="text-right">{{playerTotals[1].onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedValue=="0.00"?0:playerTotals[1].mixedValue}}</p>
+                    <p class="text-right">{{playerTotals[1].mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedValueChange=="0.00"?0:playerTotals[1].mixedValueChange}}</p>
+                    <p class="text-right">{{playerTotals[1].mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player2s'>
@@ -414,22 +414,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -442,22 +442,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmValue=="0.00"?0:playerTotals[2].bmValue}}</p>
+                    <p class="text-right">{{playerTotals[2].bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmValueChange=="0.00"?0:playerTotals[2].bmValueChange}}</p>
+                    <p class="text-right">{{playerTotals[2].bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineValue=="0.00"?0:playerTotals[2].onlineValue}}</p>
+                    <p class="text-right">{{playerTotals[2].onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineValueChange=="0.00"?0:playerTotals[2].onlineValueChange}}</p>
+                    <p class="text-right">{{playerTotals[2].onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedValue=="0.00"?0:playerTotals[2].mixedValue}}</p>
+                    <p class="text-right">{{playerTotals[2].mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedValueChange=="0.00"?0:playerTotals[2].mixedValueChange}}</p>
+                    <p class="text-right">{{playerTotals[2].mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player3s'>
@@ -465,22 +465,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -493,22 +493,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmValue=="0.00"?0:playerTotals[4].bmValue}}</p>
+                    <p class="text-right">{{playerTotals[4].bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmValueChange=="0.00"?0:playerTotals[4].bmValueChange}}</p>
+                    <p class="text-right">{{playerTotals[4].bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineValue=="0.00"?0:playerTotals[4].onlineValue}}</p>
+                    <p class="text-right">{{playerTotals[4].onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineValueChange=="0.00"?0:playerTotals[4].onlineValueChange}}</p>
+                    <p class="text-right">{{playerTotals[4].onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedValue=="0.00"?0:playerTotals[4].mixedValue}}</p>
+                    <p class="text-right">{{playerTotals[4].mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedValueChange=="0.00"?0:playerTotals[4].mixedValueChange}}</p>
+                    <p class="text-right">{{playerTotals[4].mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player5s'>
@@ -516,22 +516,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -544,22 +544,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmValue=="0.00"?0:playerTotals[5].bmValue}}</p>
+                    <p class="text-right">{{playerTotals[5].bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmValueChange=="0.00"?0:playerTotals[5].bmValueChange}}</p>
+                    <p class="text-right">{{playerTotals[5].bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineValue=="0.00"?0:playerTotals[5].onlineValue}}</p>
+                    <p class="text-right">{{playerTotals[5].onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineValueChange=="0.00"?0:playerTotals[5].onlineValueChange}}</p>
+                    <p class="text-right">{{playerTotals[5].onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedValue=="0.00"?0:playerTotals[5].mixedValue}}</p>
+                    <p class="text-right">{{playerTotals[5].mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedValueChange=="0.00"?0:playerTotals[5].mixedValueChange}}</p>
+                    <p class="text-right">{{playerTotals[5].mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player6s'>
@@ -567,22 +567,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>
@@ -642,22 +642,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
@@ -678,22 +678,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -714,22 +714,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -750,22 +750,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -786,22 +786,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr>
@@ -855,22 +855,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
@@ -891,22 +891,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -927,22 +927,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -963,22 +963,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -999,22 +999,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>

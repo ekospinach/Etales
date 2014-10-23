@@ -9,7 +9,11 @@
             <tr>
                 <th></th>
                 <th>
-                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Capacity Info')}}" popover-title="{{Label.getContent('Capacity')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Capacity')}}(units mln) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+<<<<<<< HEAD
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Capacity Info')}}" popover-title="{{Label.getContent('Capacity')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Capacity')}}({{Label.getContent('units mln')}}) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+=======
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Capacity Info')}}" popover-title="{{Label.getContent('Increased Capacity')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Increased Capacity')}}(units mln) <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+>>>>>>> af22fa1183c7cab21d38adc70a832bf9db3deb58
                 </th>
                 <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Technology Info')}}" popover-title="{{Label.getContent('Technology')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
@@ -29,30 +33,94 @@
                     <p class="padding-20" ng-show='$index==1'>{{Label.getContent('HealthBeauties')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.capacityChange" ng-show='!isReady' onbeforesave="checkCapacity(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
+                    <a href="#" editable-text="category.capacityChange" ng-show='!isDecisionCommitted' onbeforesave="checkCapacity(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
                         <p class="text-right">{{ category.capacityChange || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ category.capacityChange || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.capacityChange || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.investInTechnology" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">
+                    <a href="#" editable-text="category.investInTechnology" ng-show='!isDecisionCommitted' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">
                         <p class="text-right">{{ category.investInTechnology || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ category.investInTechnology || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.investInTechnology || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.investInProductionFlexibility" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">
+                    <a href="#" editable-text="category.investInProductionFlexibility" ng-show='!isDecisionCommitted' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">
                         <p class="text-right">{{ category.investInProductionFlexibility || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ category.investInProductionFlexibility || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.investInProductionFlexibility || 0 }}</p>
                 </td>
-                <td>
-                    <a href="#" editable-text="category.investInDesign" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInDesign',$index)">
+                <td ng-show='category.categoryID==1'>
+                    <a href="#" editable-text="category.investInDesign" ng-show='!isDecisionCommitted' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInDesign',$index)">
                         <p class="text-right">{{ category.investInDesign || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ category.investInDesign || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ category.investInDesign || 0 }}</p>
+                </td>
+                <td ng-show='category.categoryID==2'>
+                    <p class="text-right">/</p>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+<div class='panel panel-success my-success-panel' ng-show='isResultShown' style="width:70%">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center text-muted">
+            {{Label.getContent('Reference Information')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th style="width:50%"></th>
+                <th style="width:25%">
+                    <p class="text-center text-muted">{{Label.getContent('Elecssories')}}</p>
+                </th>
+                <th style="width:25%">
+                    <p class="text-center text-muted">{{Label.getContent('HealthBeauties')}}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p class="text-muted">{{Label.getContent('Increase in Technology by 1 level')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">140 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">250 mln$</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-muted">{{Label.getContent('Increase in Production Flexibility by 1%')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">3 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">5 mln$</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-muted">{{Label.getContent('Increase in Design by 1 level')}}</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">140 mln$</p>
+                </td>
+                <td>
+                    <p class="text-right text-muted">/</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p class="text-muted">{{Label.getContent('Reference Information Info')}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div style="clear:both"></div>

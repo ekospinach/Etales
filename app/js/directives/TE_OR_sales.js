@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('overviewSales', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('overviewSales', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerColor', function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor){
         return {
             scope : {
             	isPageShown : '=',
@@ -26,10 +26,10 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			        var currentElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-		            var currentElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-		            var currentHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
-		            var currentHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+			        var currentElecssoriesVolume=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});;
+		            var currentElecssoriesValue=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});;
+		            var currentHealthBeautiesVolume=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});;
+		            var currentHealthBeautiesValue=new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Supplier')+'-'+4,data:new Array(),color:PlayerColor.getColors()[3]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]},{name:Label.getContent('Retailer')+'-'+3,data:new Array(),color:PlayerColor.getColors()[6]});;
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
 		        	//sales Volume
@@ -61,7 +61,7 @@ define(['directives', 'services'], function(directives){
 		        	scope.currentSalesVolumeElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Sales Volumes',
+		                        text:Label.getContent('Sales Volumes'),
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -69,19 +69,19 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
+		                            text: Label.getContent('units mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('units mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -97,7 +97,7 @@ define(['directives', 'services'], function(directives){
 		            scope.currentSalesVolumeHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'Sales Volumes',
+		                        text:Label.getContent('Sales Volumes'),
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -105,19 +105,19 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
+		                            text: Label.getContent('units mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('units mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -133,7 +133,7 @@ define(['directives', 'services'], function(directives){
 		            scope.currentSalesValueElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Sales Values',
+		                        text:Label.getContent('Sales Values'),
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -141,19 +141,19 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: '$mln'
+		                            text: Label.getContent('$mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('$mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -169,7 +169,7 @@ define(['directives', 'services'], function(directives){
 		            scope.currentSalesValueHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'Sales Values',
+		                        text:Label.getContent('Sales Values'),
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -177,19 +177,19 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: '$mln'
+		                            text: Label.getContent('$mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
 		                        title: {
-		                            text: 'Period'
+		                            text: Label.getContent('Period')
 		                        }
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('$mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -209,7 +209,6 @@ define(['directives', 'services'], function(directives){
                 }
                 
                 scope.$watch('isPageShown', function(newValue, oldValue){
-                    console.log('watch is actived');
                     if(newValue==true) {
                         initializePage();
                     }

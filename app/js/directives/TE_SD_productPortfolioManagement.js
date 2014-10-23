@@ -6,7 +6,12 @@ define(['directives', 'services'], function(directives) {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
-                    isReady: '='
+                    selectedPlayer: '=',
+                    selectedPeriod: '=',
+                    isPortfolioDecisionCommitted: '=',
+                    isContractDeal: '=',
+                    isContractFinalized: '=',
+                    isDecisionCommitted: '='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/SD_productPortfolioManagement.html',
@@ -16,9 +21,9 @@ define(['directives', 'services'], function(directives) {
                         console.log('initializePage some small...');
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
-                        scope.Label         = Label;
-                        scope.currentPeriod = PeriodInfo.getCurrentPeriod();
-                        scope.packs         = [{
+                        scope.Label = Label;
+                        scope.currentPeriod = scope.selectedPeriod;
+                        scope.packs = [{
                             value: 1,
                             text: Label.getContent('ECONOMY')
                         }, {
@@ -30,11 +35,12 @@ define(['directives', 'services'], function(directives) {
                         }];
                         scope.parameter = "NewBrand"; /*default add new Brand*/
                         ProducerDecisionBase.reload({
-                            producerID: parseInt(PlayerInfo.getPlayer()),
-                            period: PeriodInfo.getCurrentPeriod(),
+                            producerID: parseInt(scope.selectedPlayer),
+                            period: scope.selectedPeriod,
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
+                            console.log(base);
                         }).then(function() {
                             return showView();
                         }),
@@ -47,10 +53,10 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var loadSelectCategory = function(category) {
-                        var count      = 0;
+                        var count = 0;
                         var categoryID = 1;
-                        var products   = new Array();
-                        var postDatas  = new Array();
+                        var products = new Array();
+                        var postDatas = new Array();
                         if (category == "HealthBeauty") {
                             categoryID = 2;
                         } else {
@@ -89,13 +95,13 @@ define(['directives', 'services'], function(directives) {
 
                         for (var i = 0; i < products.length; i++) {
                             postDatas[i] = {
-                                period: PeriodInfo.getCurrentPeriod(),
+                                period: scope.selectedPeriod,
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
                                 brandName: products[i].parentBrandName,
                                 varName: products[i].varName,
                                 catID: categoryID,
                                 userRole: 2,
-                                userID: parseInt(PlayerInfo.getPlayer()),
+                                userID: parseInt(scope.selectedPlayer),
                             }
                         }
                         (function multipleRequestShooter(postDatas, idx) {
@@ -174,15 +180,15 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Check Error'));
                             }
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -195,7 +201,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             max = data.data.acquiredDesignLevel[categoryID - 1];
                             if (value < 1 || value > max) {
-                                d.resolve(Label.getContent('Input range') + ':1~' + max);
+                                d.resolve(Label.getContent('Input range') + ':1~' + (Math.floor(max * 100) / 100));
                             } else {
                                 d.resolve();
                             }
@@ -213,15 +219,15 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Check Error'));
                             }
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -234,7 +240,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             max = data.data.acquiredTechnologyLevel[categoryID - 1];
                             if (value < 1 || value > max) {
-                                d.resolve(Label.getContent('Input range') + ':1~' + max);
+                                d.resolve(Label.getContent('Input range') + ':1~' + (Math.floor(max * 100) / 100));
                             } else {
                                 d.resolve();
                             }
@@ -251,15 +257,15 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Check Error'));
                             }
-                            url = "/producerCurrentDecision/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + brandName + '/' + varName;
+                            url = "/producerCurrentDecision/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer) + '/' + brandName + '/' + varName;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -267,7 +273,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             max = data.data.composition[1] + 2;
                             if (value < 1 || value > max) {
-                                d.resolve(Label.getContent('Input range') + ':1~' + max);
+                                d.resolve(Label.getContent('Input range') + ':1~' + (Math.floor(max * 100) / 100));
                             } else {
                                 d.resolve();
                             }
@@ -297,22 +303,22 @@ define(['directives', 'services'], function(directives) {
                         }
 
                         //Validation 2: Check if supplier has submitted portfolio decision 
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Supplier has submit portfolio decision, input LOCK.'));
                             }
                             var postData = {
-                                period: PeriodInfo.getCurrentPeriod(),
+                                period: scope.selectedPeriod,
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
                                 brandName: brandName,
                                 varName: varName,
                                 catID: categoryID,
                                 userRole: 2,
-                                userID: PlayerInfo.getPlayer(),
+                                userID: scope.selectedPlayer,
                             }
                             return $http({
                                 method: 'POST',
@@ -321,7 +327,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
                             scope.currentUnitCost = data.data.result;
-                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + categoryID + '/1' + '/' + PeriodInfo.getCurrentPeriod();
+                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + categoryID + '/1' + '/' + scope.selectedPeriod;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -329,7 +335,8 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             //Validation 3: input range : MaxBMPriceVsCost*unitCost ~ MinBMPriceVsCost*unitCost 
                             if (value > data.data.MaxBMPriceVsCost * scope.currentUnitCost || value < data.data.MinBMPriceVsCost * scope.currentUnitCost) {
-                                d.resolve(Label.getContent('Input range') + ':' + data.data.MinBMPriceVsCost * scope.currentUnitCost + '~' + data.data.MaxBMPriceVsCost * scope.currentUnitCost);
+                                
+                                d.resolve(Label.getContent('Input range') + ':' + (Math.floor(data.data.MinBMPriceVsCost * scope.currentUnitCost * 100) / 100) + '~' + (Math.floor(data.data.MaxBMPriceVsCost * scope.currentUnitCost * 100) / 100));
                             } else {
                                 //Validation 4: if input value < unitCost, show label "Less than current cost"
                                 // if (scope.currentUnitCost > value) {
@@ -391,12 +398,12 @@ define(['directives', 'services'], function(directives) {
                                 $scope.brandFirstName = "H";
                                 $scope.lauchNewCategory = 2;
                             }
-                            $scope.brandLastName = parseInt(PlayerInfo.getPlayer()); /*need check*/
+                            $scope.brandLastName = parseInt(scope.selectedPlayer); /*need check*/
                         }
                         var cancel = function() {
                             ProducerDecisionBase.reload({
-                                producerID: parseInt(PlayerInfo.getPlayer()),
-                                period: PeriodInfo.getCurrentPeriod(),
+                                producerID: parseInt(scope.selectedPlayer),
+                                period: scope.selectedPeriod,
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode
                             }).then(function(base) {
                                 scope.pageBase = base;
@@ -484,7 +491,7 @@ define(['directives', 'services'], function(directives) {
 
                             var newproducerDecision = new ProducerDecision();
                             newproducerDecision.packFormat = "ECONOMY";
-                            newproducerDecision.dateOfBirth = PeriodInfo.getCurrentPeriod();
+                            newproducerDecision.dateOfBirth = scope.selectedPeriod;
                             newproducerDecision.dateOfDeath = 10;
                             newproducerDecision.composition = new Array(1, 1, 1);
                             newproducerDecision.production = 0;
@@ -502,11 +509,11 @@ define(['directives', 'services'], function(directives) {
                                 var proBrandsDecision = _.find($scope.pageBase.proCatDecision, function(obj) {
                                     return (obj.categoryID == $scope.lauchNewCategory);
                                 });
-                                newBrand.brandID = calculateBrandID(proBrandsDecision, PlayerInfo.getPlayer());
-                                newBrand.brandName = $scope.brandFirstName + myForm[1].value + parseInt(PlayerInfo.getPlayer());
-                                newBrand.parentCompanyID = PlayerInfo.getPlayer();
+                                newBrand.brandID = calculateBrandID(proBrandsDecision, scope.selectedPlayer);
+                                newBrand.brandName = $scope.brandFirstName + myForm[1].value + parseInt(scope.selectedPlayer);
+                                newBrand.parentCompanyID = scope.selectedPlayer;
                                 newBrand.dateOfDeath = 10;
-                                newBrand.dateOfBirth = PeriodInfo.getCurrentPeriod();
+                                newBrand.dateOfBirth = scope.selectedPeriod;
                                 newBrand.advertisingOffLine = new Array(0, 0);
                                 newBrand.advertisingOnLine = 0;
                                 newBrand.supportEmall = 0;
@@ -518,12 +525,12 @@ define(['directives', 'services'], function(directives) {
                                 //need add 2 null vars
                                 newBrand.proVarDecision.push(newproducerDecision, nullDecision, nullDecision);
 
-                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.lauchNewCategory + '/brand/' + newBrand.brandName + '/' + newproducerDecision.varName;
+                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer) + '/' + $scope.lauchNewCategory + '/brand/' + newBrand.brandName + '/' + newproducerDecision.varName;
                                 $http({
                                     method: 'GET',
                                     url: url
                                 }).then(function(data) {
-                                    ProducerDecisionBase.addProductNewBrand(newBrand, $scope.lauchNewCategory);
+                                    ProducerDecisionBase.addProductNewBrand(newBrand, $scope.lauchNewCategory,'supplierProductPortfolioManagement');
                                     showbubleMsg(Label.getContent('Add new brand successful'), 2);
                                     cancel();
                                 }, function(data) {
@@ -546,13 +553,13 @@ define(['directives', 'services'], function(directives) {
                                         break;
                                     }
                                 }
-                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.addNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
+                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer) + '/' + $scope.addNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
 
                                 $http({
                                     method: 'GET',
                                     url: url
                                 }).then(function(data) {
-                                    ProducerDecisionBase.addProductExistedBrand(newproducerDecision, $scope.addNewCategory, newBrandName);
+                                    ProducerDecisionBase.addProductExistedBrand(newproducerDecision, $scope.addNewCategory, newBrandName,'supplierProductPortfolioManagement');
                                     showbubleMsg(Label.getContent('Add new variant successful'), 2);
                                     cancel();
                                 }, function(data) {
@@ -637,18 +644,18 @@ define(['directives', 'services'], function(directives) {
                         if (location == "composition") {
                             if (category == "Elecssories") {
                                 categoryID = 1;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location][additionalIdx]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location][additionalIdx],'supplierProductPortfolioManagement');
                             } else {
                                 categoryID = 2;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location][additionalIdx]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location][additionalIdx],'supplierProductPortfolioManagement');
                             }
                         } else {
                             if (category == "Elecssories") {
                                 categoryID = 1;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location],'supplierProductPortfolioManagement');
                             } else {
                                 categoryID = 2;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location],'supplierProductPortfolioManagement');
                             }
                         }
                     }
@@ -659,7 +666,7 @@ define(['directives', 'services'], function(directives) {
                         } else {
                             category = 2;
                         }
-                        ProducerDecisionBase.deleteProduct(category, brandName, varName);
+                        ProducerDecisionBase.deleteProduct(category, brandName, varName,'supplierProductPortfolioManagement');
                     }
 
                     var showView = function() {
@@ -675,9 +682,9 @@ define(['directives', 'services'], function(directives) {
                         var postData;
 
                         //lock button 
-                        scope.isReady = true;
+                        scope.isPortfolioDecisionCommitted = true;
                         //step 0: Delete all the related contract schema and contractDetails schema 
-                        var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                        var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                         $http({
                             method: 'POST',
                             url: '/removeContract',
@@ -686,7 +693,7 @@ define(['directives', 'services'], function(directives) {
                             }
                         }).then(function(data) {
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return $http({
                                 method: 'POST',
                                 url: '/removeContract',
@@ -697,7 +704,7 @@ define(['directives', 'services'], function(directives) {
 
                         }).then(function(data) {
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return $http({
                                 method: 'POST',
                                 url: '/removeContractDetailsByContractCode',
@@ -708,7 +715,7 @@ define(['directives', 'services'], function(directives) {
 
                         }).then(function(data) {
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return $http({
                                 method: 'POST',
                                 url: '/removeContractDetailsByContractCode',
@@ -718,12 +725,12 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
 
-                        //step 1: Add contract schema between current supplier and retailer 1 
+                            //step 1: Add contract schema between current supplier and retailer 1 
                             postData = {
-                                period: PeriodInfo.getCurrentPeriod(),
+                                period: scope.selectedPeriod,
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
-                                draftedByCompanyID: PlayerInfo.getPlayer(),
-                                producerID: PlayerInfo.getPlayer(),
+                                draftedByCompanyID: scope.selectedPlayer,
+                                producerID: scope.selectedPlayer,
                                 retailerID: 1
                             }
                             return $http({
@@ -736,7 +743,7 @@ define(['directives', 'services'], function(directives) {
 
                             console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
 
-                        //step 2: Add contract schema between current supplier and retailer 2
+                            //step 2: Add contract schema between current supplier and retailer 2
                             postData.retailerID = 2;
                             return $http({
                                 method: 'POST',
@@ -746,30 +753,30 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
 
-                        //step 3: Add related contract details for two contact schema
-                        //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            //step 3: Add related contract details for two contact schema
+                            //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return contractDetailsCreateShooter(contractCode, scope.productes);
 
                         }).then(function(data) {
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return contractDetailsCreateShooter(contractCode, scope.producths);
                         }).then(function(data) {
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return contractDetailsCreateShooter(contractCode, scope.productes);
                         }).then(function(data) {
 
-                            var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
+                            var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return contractDetailsCreateShooter(contractCode, scope.producths);
                         }).then(function(data) {
 
-                        //step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
+                            //step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
                             var queryCondition = {
-                                producerID: parseInt(PlayerInfo.getPlayer()),
+                                producerID: parseInt(scope.selectedPlayer),
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
-                                period: PeriodInfo.getCurrentPeriod(),
+                                period: scope.selectedPeriod,
                                 value: true
                             }
                             return $http({
@@ -778,6 +785,7 @@ define(['directives', 'services'], function(directives) {
                                 data: queryCondition
                             });
                         }).then(function(data) {
+                            scope.isCommitConfirmInfoShown = false;
                             console.log('Submitted decision complete, lock input.');
                         }, function(data) {
                             if (data.msg != undefined) {
@@ -798,8 +806,8 @@ define(['directives', 'services'], function(directives) {
                                 varID: products[idx].varID,
                                 composition: products[idx].composition,
                                 currentPriceBM: products[idx].currentPriceBM,
-                                packFormat:products[idx].realPackFormat,
-                                seminar : SeminarInfo.getSelectedSeminar().seminarCode
+                                packFormat: products[idx].realPackFormat,
+                                seminar: SeminarInfo.getSelectedSeminar().seminarCode
                             }
                             $http({
                                 method: 'POST',
@@ -833,8 +841,10 @@ define(['directives', 'services'], function(directives) {
 
                     scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {
                         //decision base had been updated, re-render the page with newBase
-                        scope.pageBase = newBase;
-                        showView();
+                        if(data.page=="supplierProductPortfolioManagement"){
+                            scope.pageBase = newBase;
+                            showView();
+                        }
                     });
 
                 }

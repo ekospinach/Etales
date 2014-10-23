@@ -138,6 +138,42 @@ exports.getReportPrice=function(req,res,next){
         }
     })
 }
+exports.getPlayerReportOrderExpend=function(req,res,next){
+  return oneQuarterExogenousData.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        categoryID:1,
+        marketID:1
+  },function(err,doc){
+      if(err){
+          next(new Error(err));
+      }
+      if(doc){
+          var result = 0;
+          if (req.params.userType == "P") {
+              require('./producerDecision.js').getProducerReportOrder(req.params.seminar,req.params.period,req.params.playerID).then(function(data){
+                  for(var i = 0; i < data.length; i++){
+                      if(data[i]){
+                          result+=doc.MarketStudiesPrices[i]
+                      }
+                  }
+                  res.send(200, {'result': result});
+              });
+          }else{
+              require('./retailerDecision.js').getRetailerReportOrder(req.params.seminar,req.params.period,req.params.playerID).then(function(data){
+                  for(var i = 0; i < data.length; i++){
+                      if(data[i]){
+                          result+=doc.MarketStudiesPrices[i]
+                      }
+                  }
+                  res.send(200, {'result': result});
+              });
+          }
+      }else{
+          res.send(400,'fail');
+      }  
+  });
+}
 
 exports.getOneQuarterExogenousData=function(req,res,next){
     return oneQuarterExogenousData.findOne({

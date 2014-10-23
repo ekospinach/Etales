@@ -66,6 +66,12 @@ const
     f_GrossProfitMargin               = 129;
 
     f_ShoppersShare                   = 131; 
+    ffs_SuppliersAbsoluteValues       = 132;
+    ffs_SuppliersStandarisedValues    = 133;
+    ffs_SuppliersFinalScore           = 134; 
+    ffs_RetailersAbsoluteValues       = 135;
+    ffs_RetailersStandarisedValues    = 136; 
+    ffs_RetailersFinalScore           = 137;
 var
   //decision: TDecision;
   jo : ISuperObject;
@@ -81,6 +87,37 @@ var
   sListData: tStrings;
   oJsonFile : ISuperObject;
 
+  function evaluationSupplierScoresSchema(idx : integer; supplierID : integer; evaluationIdx : integer) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin 
+    jo := SO;
+    jo.I['supplierID'] := supplierID;
+    jo.I['evaluationIdx'] := evaluationIdx;
+
+    case (idx) of
+      ffs_SuppliersAbsoluteValues       : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_SuppliersAbsoluteValues[supplierID, evaluationIdx];end;
+      ffs_SuppliersStandarisedValues    : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_SuppliersStandarisedValues[supplierID, evaluationIdx]; end;
+    end;
+
+    result := jo;
+  end;
+
+  function evaluationRetailerScoresSchema(idx : integer; RetailerID : integer; evaluationIdx : integer) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin 
+    jo := SO;
+    jo.I['retailerID'] := RetailerID;
+    jo.I['evaluationIdx'] := evaluationIdx;
+
+    case (idx) of
+      ffs_RetailersAbsoluteValues       : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_RetailersAbsoluteValues[retailerID, evaluationIdx];end;
+      ffs_RetailersStandarisedValues    : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_RetailersStandarisedValues[retailerID, evaluationIdx]; end;
+    end;
+
+    result := jo;
+  end;
 
   function retailerInfoSchema(idx : Integer; catID : Integer; retailerID : Integer) : ISuperObject;
   var 
@@ -92,6 +129,7 @@ var
       f_DiscountsValue          : begin jo.D['value'] := currentResult.r_Feedback.f_DiscountsValue[catID].fcni_RetailersBenefits[retailerID] end;
       f_PerformanceBonusesValue : begin jo.D['value'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_RetailersBenefits[retailerID]; end;
       f_OtherCompensationsValue : begin jo.D['value'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_RetailersBenefits[retailerID]; end;        
+      ffs_RetailersFinalScore   : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_RetailersFinalScore[retailerID];end;
     end;
     result := jo;
   end;
@@ -106,6 +144,7 @@ var
       f_DiscountsValue          : begin jo.D['value'] := currentResult.r_Feedback.f_DiscountsValue[catID].fcni_SuppliersCost[producerID] end;
       f_PerformanceBonusesValue : begin jo.D['value'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_SuppliersCost[producerID]; end;
       f_OtherCompensationsValue : begin jo.D['value'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_SuppliersCost[producerID]; end;        
+      ffs_SuppliersFinalScore   : begin jo.D['value'] := currentResult.r_Feedback.f_FinalScores.ffs_SuppliersFinalScore[producerID];end;
     end;
     result := jo;
   end;
@@ -119,6 +158,13 @@ var
     jo.I['categoryID'] := catID;
     jo.O['fcni_SuppliersCost'] := SA([]);
     jo.O['fcni_RetailersBenefits'] := SA([]);
+
+    case (idx) of
+      f_DiscountsValue          : begin jo.D['totalValue'] := currentResult.r_Feedback.f_DiscountsValue[catID].fcni_TotalValue end;
+      f_PerformanceBonusesValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_PerformanceBonusesValue[catID].fcni_TotalValue end;
+      f_OtherCompensationsValue : begin jo.D['totalValue'] := currentResult.r_Feedback.f_OtherCompensationsValue[catID].fcni_TotalValue end;
+    end;    
+
 
     for producerID := Low(TProducers) to High(TProducers) do
     begin
@@ -235,17 +281,29 @@ var
     // currentResult.r_Feedback.f_RetailersValueRotationIndex[marketID, catID]
   end;
 
-  function shopperShareinfoSchema(idx : integer; marketID : integer; period : integer; actorID : integer) : ISuperObject;
+  function shopperShareinfoSchema(idx : integer;catID : integer; marketID : integer; period : integer; storeID : integer; shopper : TShoppersKind) : ISuperObject;
   var 
     jo : ISuperObject;
+    ShopperStr : String;
   begin
     jo := SO;
     jo.I['marketID'] := marketID;
-    jo.I['actorID'] := actorID;
+    jo.I['storeID'] := storeID;  //BMRetsMax + ProsMaxPlus, 3 + 4, { all B&M and four E-malls }
+    jo.I['categoryID'] := catID;
     jo.I['period'] := period;
+    case Shopper of
+         BMS         : ShopperStr := 'BMS';
+         NETIZENS    : ShopperStr := 'NETIZENS';
+         MIXED       : ShopperStr := 'MIXED';
+         ALLSHOPPERS : ShopperStr := 'ALLSHOPPERS';
+     else
+     ShopperStr  := 'wrong';
+     end;
+
+    jo.S['shopperKind'] := ShopperStr;
 
     case (idx) of
-      f_ShoppersShare      : begin jo.D['value'] := currentResult.r_Feedback.f_ShoppersShare[marketID, period, actorID]; end; 
+      f_ShoppersShare      : begin jo.D['value'] := currentResult.r_Feedback.f_ShoppersShare[marketID,catID, period, shopper, storeID]; end;
     end;  
 
     result := jo;
@@ -255,8 +313,9 @@ var
   procedure makeJson();
   var
     s_str : string;
-    catID,marketID,brandID,topDays,period,actorID, producerID, retailerID: Integer;
+    catID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx: Integer;
     tempBrand:TMR_BrandAwareness;
+    Shopper : TShoppersKind;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -299,6 +358,13 @@ var
     // oJsonFile.O['f_RetailersAllShoppersShare']          := SA([]);
      oJsonFile.O['f_ShoppersShare']          := SA([]);
 
+    oJsonFile.O['ffs_SuppliersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_SuppliersStandarisedValues']    := SA([]);
+    oJsonFile.O['ffs_SuppliersFinalScore']           := SA([]); 
+    oJsonFile.O['ffs_RetailersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_RetailersStandarisedValues']    := SA([]); 
+    oJsonFile.O['ffs_RetailersFinalScore']           := SA([]);     
+
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
       oJsonFile.A['f_DiscountsValue'].add(negotiationItemDetailsSchema(f_DiscountsValue, catID));
@@ -308,7 +374,7 @@ var
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
-      for topDays:= Low(TTOPDays) to High(TTOPDays) do
+      for topDays:= Low(TTOPIntervalIndex) to High(TTOPIntervalIndex) do
       begin
         oJsonFile.A['f_TransactionsPerTOP'].add( transactionsPerTOPSchema(catID, topDays));
       end;
@@ -387,16 +453,47 @@ var
       end;
     end;
 
-    for actorID := Low(TActors) to High(TActors) do
+    for storeID := Low(TAllStores) to High(TAllStores) do
     begin
-      for period := Low(TTimeSpan) to High(TTimeSpan) do
+      for period := Low(TTimeSpan) to 6 do
       begin
           for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
           begin
-            oJsonFile.A['f_ShoppersShare'].add( ShopperShareinfoSchema(f_ShoppersShare, marketID, period, actorID) );
+            for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+            begin          
+              for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
+              oJsonFile.A['f_ShoppersShare'].add( ShopperShareinfoSchema(f_ShoppersShare, catID, marketID, period, storeID, Shopper) );
+            end;
           end;
       end;
     end;    
+
+    oJsonFile.O['ffs_SuppliersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_SuppliersStandarisedValues']    := SA([]);
+    oJsonFile.O['ffs_SuppliersFinalScore']           := SA([]); 
+
+    oJsonFile.O['ffs_RetailersAbsoluteValues']       := SA([]);
+    oJsonFile.O['ffs_RetailersStandarisedValues']    := SA([]); 
+    oJsonFile.O['ffs_RetailersFinalScore']           := SA([]);  
+    for supplierID := Low(TProducers) to High(TProducers) do
+    begin
+      oJsonFile.A['ffs_SuppliersFinalScore'].Add( supplierInfoSchema(ffs_SuppliersFinalScore, 0, supplierID));
+      for evaluationIdx := Low(TEvaluationScores) to High(TEvaluationScores) do
+      begin
+        oJsonFile.A['ffs_SuppliersAbsoluteValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersAbsoluteValues, supplierID, evaluationIdx) );
+        oJsonFile.A['ffs_SuppliersStandarisedValues'].Add( evaluationSupplierScoresSchema(ffs_SuppliersStandarisedValues, supplierID, evaluationIdx) );
+      end;
+    end;
+
+    for retailerID := Low(TModernRetailers) to High(TModernRetailers) do
+    begin
+      oJsonFile.A['ffs_RetailersFinalScore'].Add( retailerInfoSchema(ffs_RetailersFinalScore, 0, retailerID));
+      for evaluationIdx := Low(TEvaluationScores) to High(TEvaluationScores) do
+      begin
+        oJsonFile.A['ffs_RetailersAbsoluteValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersAbsoluteValues, retailerID, evaluationIdx) );
+        oJsonFile.A['ffs_RetailersStandarisedValues'].Add( evaluationRetailerScoresSchema(ffs_RetailersStandarisedValues, retailerID, evaluationIdx) );
+      end;      
+    end;
 
     //for debug used
     s_str := 'out' + '.json';

@@ -524,6 +524,7 @@ var
       jo : ISuperObject;
       cat : Integer;
       pers  : TStorePerceptions;
+      marketStudies : integer;
     begin
       jo := SO; //initialise JSON object
 
@@ -551,6 +552,13 @@ var
       jo.I['retailerID'] := currentRetailer;
       jo.D['nextBudgetExtension']  := currentDecision.dr_NextBudgetExtension;
       jo.D['approvedBudgetExtension']  := currentDecision.dr_ApprovedBudgetExtension;
+
+      //fill array for MarketResearchOrder
+      jo.O['marketResearchOrder'] := SA([]);
+      for marketStudies := Low(TMarketStudies) to High(TMarketStudies) do
+        jo.A['marketResearchOrder'].B[marketStudies - 1] := currentDecision.dr_MarketResearch[marketStudies];
+
+
       jo.O['onlineAdvertising'] := SA([]);
       cat := 0;
       for pers := Low(TStorePerceptions) to High(TStorePerceptions) do
@@ -679,12 +687,16 @@ var
 
     procedure translateJson(jo : ISuperObject; var curDec : TRetDecision);
     var
-      cat : Integer;
+      cat,marketStudies : Integer;
       pers  : TStorePerceptions;
     begin
       curDec.dr_RetailerID := currentRetailer;
       currentDecision.dr_NextBudgetExtension  := jo.D['nextBudgetExtension'];
       currentDecision.dr_ApprovedBudgetExtension  := jo.D['approvedBudgetExtension'];
+
+      for marketStudies := Low(TMarketStudies) to High(TMarketStudies) do
+       curDec.dr_MarketResearch[marketStudies] := jo.A['marketResearchOrder'].B[marketStudies-1];
+
       cat := 0;
       for pers := Low(TStorePerceptions) to High(TStorePerceptions) do
         begin

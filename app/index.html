@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="ng-app">
 	<head>
-		<title>Angular-RequireJS sample app</title>
+		<title>Etales - HCD Learning</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
@@ -20,6 +20,9 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/spinner.css" />
 		
 		<link rel="stylesheet" type="text/css" href="/bower_components/ng-slider/src/css/ng-slider.css">
+		<style type="text/css">
+			html{-webkit-text-size-adjust:none;}
+		</style>
 	</head>
 	<body class="bs-docs-home" ng-class="pageBody" ng-controller="NavbarCtrl" load-end>
 
@@ -41,21 +44,21 @@
 								</a>
 						        <ul class="dropdown-menu">
 
-									<li class="" access-level='{{accessLevels.playerView}}' active-nav>
+									<li class="" active-nav>
 										<a href="/#/overviewReport">{{Label.getContent('Overview')}}</a>
 									</li>		
 
-									<li class="" access-level='{{accessLevels.playerView}}' active-nav>
+									<li class="" active-nav>
 										<a href="/#/generalReport">{{Label.getContent('General Report')}}</a>
-									</li>									
+									</li>
 
-					          		<li access-level='{{accessLevels.playerView}}' active-nav>
-					          			<a href="/#/facilitatorConfidentialReport">{{Label.getContent('Confidential Report')}}</a>
+									<li class="" active-nav>
+					          			<a href="/#/confidentialReport">{{Label.getContent('Confidential Report')}}</a>
 					          		</li>
 
-					          		<li class=" " access-level='{{accessLevels.playerView}}' active-nav>
+					          		<li class="" active-nav>
 					          			<a href="/#/marketReport">
-					          				{{Label.getContent('Market Report')}}
+					          				{{Label.getContent('Market Research Report')}}
 					          			</a>
 					          		</li>					          		
 						        </ul>
@@ -104,6 +107,10 @@
 						        </ul>				        	
 					        </li>   
 					    </ul>
+
+					    <!-- <ul class="nav navbar-nav pull-right" data-access-level="{{ accessLevels.playerView }}">
+					    	<img src="img/clock.png" style="width:41px;margin-top:5px;">
+					    </ul> -->
 					</nav>
 				</div>
 			</header>
@@ -125,6 +132,7 @@
 	    	</div>
 	    </div>
 
+	    <script type="text/javascript" src='/bower_components/socket.io-client/socket.io.js'></script>
 	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
 	</body>
 </html>

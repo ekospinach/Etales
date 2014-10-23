@@ -13,27 +13,26 @@
                     <p>{{Label.getContent('Report')}}</p>
                 </th>
                 <th>
-                    <p class="text-center">{{Label.getContent('Cost')}}($mln)</p>
+                    <p class="text-center">{{Label.getContent('Cost')}}({{Label.getContent('$mln')}})</p>
                 </th>
                 <th>
-                    <p class="text-center">{{Label.getContent('Buy')}}</p>
+                    <p class="text-center">{{Label.getContent('Buy?')}}</p>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat='playData in playDatas'>
                 <td>
-                    <p class="padding-20">{{playData.name}}</p>
+                    <p class="padding-20">{{Label.getContent(playData.name)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{playData.reportPrice.toFixed(2)}}</p>
                 </td>
                 <td>
-
-                    <a href="#" editable-checkbox="playData.playerStatus" e-title="{{Label.getContent('Buy this Report')}}?" ng-show="!isReady" onbeforesave='checkBudget(playData.reportPrice,$data)' onaftersave="submitOrder(playData.realName,$data)">
+                    <a href="#" editable-checkbox="playData.playerStatus" e-title="{{Label.getContent('Buy this Report')}}?" ng-show="!isDecisionCommitted" onbeforesave='checkBudget(playData.reportPrice,$data)' onaftersave="submitOrder($index,$data)">
                         <p class="text-right"><span class="glyphicon glyphicon-shopping-cart" ng-show='playData.playerStatus'></span>{{ playData.playerStatus && Label.getContent('Buy') || Label.getContent('No') }}</p>
                     </a>
-                    <p ng-show="isReady" class="text-right text-muted">{{ playData.playerStatus && Label.getContent('Buy') || Label.getContent('No') }}</p>
+                    <p ng-show="isDecisionCommitted" class="text-right text-muted">{{ playData.playerStatus && Label.getContent('Buy') || Label.getContent('No') }}</p>
                 </td>
             </tr>
         </tbody>

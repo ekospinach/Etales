@@ -14,6 +14,11 @@ var MR_salesByChannelSchema = mongoose.Schema({
     absoluteVolume    : [variantDetailSchema],
     volumeChange      : [variantDetailSchema],
 
+    brand_absoluteValue     : [brandDetailSchema],
+    brand_valueChange       : [brandDetailSchema],
+    brand_absoluteVolume    : [brandDetailSchema],
+    brand_volumeChange      : [brandDetailSchema],
+
     owner_absoluteValue     : [ownerDetailSchema],
     owner_valueChange       : [ownerDetailSchema],
     owner_absoluteVolume    : [ownerDetailSchema],
@@ -21,7 +26,7 @@ var MR_salesByChannelSchema = mongoose.Schema({
 })
 
 var ownerDetailSchema = mongoose.Schema({
-    ownerID : Number, //1~6
+    ownerID : Number, //1~6, Prod_1_ID..Ret_2_ID
     // Prod_1_ID           = 1;
     // Prod_2_ID           = 2;
     // Prod_3_ID           = 3;
@@ -37,10 +42,19 @@ var variantDetailSchema = mongoose.Schema({
     variantName       : String,
     parentBrandName   : String,
     parentCategoryID  : Number,
-    parentCompanyID   : Number,
+    parentCompanyID   : Number, //Prod_1_ID..Ret_2_ID
     marketID : Number, //TMarkets : 1~2
     value : [Number] //1~5, 1-Retailer 1, 2-Retailer 2, 3-Traditional Trade, 4-Online, 5-Total 
 })
+
+var brandDetailSchema = mongoose.Schema({
+    brandName       : String,
+    parentCategoryID  : Number,
+    parentCompanyID   : Number, //Prod_1_ID..Ret_2_ID
+    marketID : Number, //TMarkets : 1~2
+    value : [Number] //1~5, 1-Retailer 1, 2-Retailer 2, 3-Traditional Trade, 4-Online, 5-Total 
+})
+
 
 var MR_salesByChannel=mongoose.model('MR_salesByChannel',MR_salesByChannelSchema);
 

@@ -44,8 +44,10 @@ define(['app','socketIO'], function(app) {
 					}).then(function(data){
 						SeminarInfo.setSelectedSeminar(data.data);
 						PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
+						PeriodInfo.setDecisionPeriod(data.data.currentPeriod);
 						PlayerInfo.setPlayer($rootScope.user.roleID);
 						RoleInfo.setRole($rootScope.user.role);
+						$rootScope.$broadcast('SeminarPeriodChangedFromRoute',data.data);
 						$location.path('/overviewReport');					
 					});
 				},function(res){

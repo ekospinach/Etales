@@ -6,7 +6,12 @@ define(['directives', 'services'], function(directives) {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
-                    isReady: '='
+                    selectedPlayer: '=',
+                    selectedPeriod: '=',
+                    isPortfolioDecisionCommitted:'=',
+                    isContractDeal:'=',
+                    isContractFinalized:'=',
+                    isDecisionCommitted:'='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/SD_generalMarketing.html',
@@ -18,10 +23,10 @@ define(['directives', 'services'], function(directives) {
                         scope.isResultShown = false;
                         scope.Label = Label;
 
-                        scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+                        scope.currentPeriod = scope.selectedPeriod;
                         ProducerDecisionBase.reload({
-                            producerID: parseInt(PlayerInfo.getPlayer()),
-                            period: PeriodInfo.getCurrentPeriod(),
+                            producerID: parseInt(scope.selectedPlayer),
+                            period: scope.selectedPeriod,
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
@@ -80,27 +85,27 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a number'));
                         }
-                        var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                        var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
+                            max = data.data.budgetAvailable;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/brandName/varName/ignoreItem/1';
                             return $http({
                                 method: 'GET',
                                 url: url
                             });
                         }).then(function(data) {
                             ContractExpend = data.data.result;
-                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + scope.selectedPlayer;
                             return $http({
                                 method: 'GET',
                                 url: url
                             });
                         }).then(function(data) {
                             reportExpend = data.data.result;
-                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + brandName + '/' + location + '/' + tep;
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/' + brandName + '/' + location + '/' + tep;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -110,7 +115,7 @@ define(['directives', 'services'], function(directives) {
                             availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
                             console.log(availableBudgetLeft);
                             if(value>availableBudgetLeft){
-                                d.resolve(Label.getContent('Input range') + ':0~' + availableBudgetLeft.toFixed(2));
+                                d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor(availableBudgetLeft * 100) / 100));
                             }else{
                                 d.resolve();
                             }
@@ -125,16 +130,16 @@ define(['directives', 'services'], function(directives) {
                         if (category == "Elecssories") {
                             categoryID = 1;
                             if (location == "supportTraditionalTrade" || location == "advertisingOffLine") {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location][tep]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location][tep],'supplierGeneralMarketing');
                             } else {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location],'supplierGeneralMarketing');
                             }
                         } else {
                             categoryID = 2;
                             if (location == "supportTraditionalTrade" || location == "advertisingOffLine") {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location][tep]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location][tep],'supplierGeneralMarketing');
                             } else {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location],'supplierGeneralMarketing');
                             }
                         }
                     }
@@ -155,8 +160,10 @@ define(['directives', 'services'], function(directives) {
                     });
                     scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {
                         //decision base had been updated, re-render the page with newBase
-                        scope.pageBase = newBase;
-                        showView();
+                        if(data.page=="supplierGeneralMarketing"){
+                            scope.pageBase = newBase;
+                            showView();
+                        }
                     });
 
                 }

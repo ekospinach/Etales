@@ -16,7 +16,7 @@ Type
   TFactoriesTotal          = 1..FactoriesMaxTotal;
   TForecastCoverage        = NearHistory..NearFuture;
   TBrands                  = 1..AllBrandsMax;
-  TBrandsFromPros          = 1..AllProBrandsMax;
+  TBrandsFromPros          = 1..AllProBrandsMax;  
   TCategories              = 1..CatsMax;
   TCategoriesSet           = set of TCategories;            { defines # of current categories }
   TCategoriesTotal         = 1..CatsMaxTotal;
@@ -38,6 +38,7 @@ Type
   TMarketsUniverse         = 1..MarketsUniverse;
   TModernRetailers         = 1..ModernRetsMax;
   TModernRetailersTotal    = 1..ModernRetsMaxTotal;
+  TNegotiationsGranularity = ( NONE, VARIANT_MARKET, VARIANT_TOTAL, BRAND_MARKET, BRAND_TOTAL, CATEGORY_MARKET, CATEGORY_TOTAL );
   TOneBrandVariants        = 1..VarsMax;
   TOperatingMode           = ( LOCAL, ONLINE );
   TPeriodNumber            = HistoryStart..FutureEnd;
@@ -58,7 +59,7 @@ Type
   TSpecsExtended           = 1..SpecsMax + 3;  { Composition + Perceived Price + alpha + beta }
   TSpecsIndices            = 1..MaxSpecsIndex;
   TStoreDimensions         = 1..StoresDimsMax;
-  TStorePerceptions        = ( PRICE, CONVENIENCE );
+  TStorePerceptions        = ( PRICE_APPEAL, CONVENIENCE );
   TTechnology              = 1..MaxTechnologyLevel;  
   TTimeSpan                = TimeStart..TimeEnd;
   TTOPIntervalIndex        = 0..IntervalsMax;  { this is used as multiplications of 15 days to cover - almost - the entire half a year }
@@ -72,9 +73,10 @@ Type
   TVariantPriority         = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
   TWebTrawlerDimensions    = ( SENTIMENT, STRENGTH );  
   TWeeksInPeriod           = 0..PeriodLastWeek;
-  TTOPDays                 = 1..DaysInPeriod;
+  TTOPDays                 = 0..DaysInPeriod;
   TMarketStudies           = 1..MarketStudiesMax;
 
+  TNegotiationsTopicsLevel           = array[nt_Consignement..nt_QuantityDiscounts] of TNegotiationsGranularity;
   TIngredientsDetails                = array[TIngredientsInput] of single;
   TProducersIngredientsDetails       = array[TAllProducers] of TIngredientsDetails;
   TAllIngredientsDetails             = array[TSpecs] of TIngredientsDetails;
@@ -115,7 +117,7 @@ Type
   TSegmentsShoppersData              = array[TSegmentsTotal] of TShoppersData;
   TSpecsToBasePerceptionDetails      = array[TVariantBasePerceptions, TSpecsExtended] of single;
   TStorePerceptionsData              = array[TStorePerceptions] of single;
-  TStoreAxisImportance               = array[TMarkets, TCategories, TSegments, TStorePerceptions] of single;
+  TStoreAxisImportance               = array[TMarkets, TCategories, TSegments, BMS..MIXED, TStorePerceptions] of single;
   TTechnologiesDetails               = array[TTechnology] of single;
   TVariantComposition                = array[TSpecs] of TSpecsIndices;
 
@@ -187,7 +189,7 @@ Type
                    dp_CatDecisions            : TProCatsDecisions;
                    dp_NextBudgetExtension     : single;
                    dp_ApprovedBudgetExtension : single;
-{                   dp_MarketResearch          : TMarketResearchOrders;  }
+                   dp_MarketResearch          : TMarketResearchOrders;  
                  end;
 
   TProsDecisions = array[TAllProducers] of TProDecision;
@@ -275,7 +277,7 @@ Type
                    dr_TraditionalAdvertising   : TStorePerceptionsData;
                    dr_NextBudgetExtension      : single; 
                    dr_ApprovedBudgetExtension  : single;                           { ### }
-{                   dr_MarketResearch           : TMarketResearchOrders;  }
+                   dr_MarketResearch           : TMarketResearchOrders;  
                  end;
 
   TRetsDecisions = array[TBMRetailers] of TRetDecision;
@@ -307,6 +309,8 @@ Type
   TRetsAssortmentsInitial = array[TModernRetailers, TMarkets, TCategories] of TRetQuarterAssortmentDecision;  
   
 {===============   Negotiations   ============================================================================================}
+
+  
 
   TVariantDetails = record
                           niv_VarID             : TVariantID;
@@ -363,7 +367,16 @@ Type
 
   TNegotiationsFile = file of TAllDeals;
 
-{------------------------- Configuration Record ------------------------------------------------------------------------------}
+  TEvaluationScores = 1..ScoresMax;   { 1 = Incremental Market }
+                                      { 2 = ROOB }
+                                      { 3 = Portfolio Strength ( Suppliers ) / Relative Profitability ( Retailers }
+                                      { 4 = Trade Strength ( Suppliers ) / Shoppers base ( Retailers ) }                    
+
+
+
+{------------------------- Configuration Record ----------------------------------------------------------------------------------------------------}
+
+TFinalScoresWeights = array[TEvaluationScores] of single;  
 
 TConfigurationRecord
     = record
@@ -381,6 +394,9 @@ TConfigurationRecord
         cr_VirtualSupplierActive        : boolean;
         cr_IndependentMarkets           : boolean; 
         cr_ForceNextDecisionsOverwrite  : boolean;
+        cr_Sup_FinalScoreWeigths        : TFinalScoresWeights;
+        cr_Ret_FinalScoreWeigths        : TFinalScoresWeights;
+
 {
         cr_OperatingMode              : TOperatingMode;
         cr_Language                   : THCD_Language;

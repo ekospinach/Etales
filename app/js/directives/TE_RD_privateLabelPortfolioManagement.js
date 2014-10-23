@@ -5,7 +5,11 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                isReady : '='
+                selectedPeriod : '=',
+                selectedPlayer : '=',
+                isContractDeal:'=',
+                isContractFinalized:'=',
+                isDecisionCommitted:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_privateLabelPortfolioManagement.html',            
@@ -16,7 +20,7 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();
+                    scope.currentPeriod=scope.selectedPeriod;
                     scope.packs = [{
                         value: 1, text: Label.getContent('ECONOMY')
                     },{
@@ -25,7 +29,7 @@ define(['directives', 'services'], function(directives){
                         value: 3, text: Label.getContent('PREMIUM')
                     }]; 
                     scope.parameter="NewBrand";/*default add new Brand*/                    
-					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+					RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 						scope.pageBase = base;
 					}).then(function(){
 						return showView();
@@ -80,13 +84,13 @@ define(['directives', 'services'], function(directives){
 		      		}
                     for(var i=0;i<products.length;i++){
                         postDatas[i]={
-                            period : PeriodInfo.getCurrentPeriod(),
+                            period : scope.selectedPeriod,
                             seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                             brandName : products[i].parentBrandName,
                             varName : products[i].varName,
                             catID : categoryID,
                             userRole :  4,
-                            userID : parseInt(PlayerInfo.getPlayer()),
+                            userID : parseInt(scope.selectedPlayer),
                         }
                     }
                     (function multipleRequestShooter(postDatas,idx){
@@ -177,7 +181,7 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a Integer'));
 					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/4';
+					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1)+'/P/4';
 					$http({
 						method:'GET',
 						url:url
@@ -189,7 +193,7 @@ define(['directives', 'services'], function(directives){
                         }
                         max=data.data.acquiredDesignLevel[categoryID-1]-3;
                         if(value<1||value>max){
-                            d.resolve(Label.getContent('Input range')+':1~'+max);
+                            d.resolve(Label.getContent('Input range')+':1~'+(Math.floor(max * 100) / 100));
                         }else{
                             d.resolve();
                         }	
@@ -206,7 +210,7 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a Integer'));
 					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1)+'/P/4';
 					$http({
 						method:'GET',
 						url:url
@@ -218,7 +222,7 @@ define(['directives', 'services'], function(directives){
                         }
                         max=data.data.acquiredTechnologyLevel[categoryID-1]-3;
                         if(value<1||value>max){
-                            d.resolve(Label.getContent('Input range')+':1~'+max);
+                            d.resolve(Label.getContent('Input range')+':1~'+(Math.floor(max * 100) / 100));
                         }else{
                             d.resolve();
                         }
@@ -236,14 +240,14 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a Integer'));
 					}
-					var url="/retailerCurrentDecision/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+					var url="/retailerCurrentDecision/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer)+'/'+brandName+'/'+varName;
                     $http({
                         method:'GET',
                         url:url
                     }).then(function(data){
 						max=data.data.composition[1]+2;
 						if(value<1||value>max){
-							d.resolve(Label.getContent('Input range')+':1~'+max);
+							d.resolve(Label.getContent('Input range')+':1~'+(Math.floor(max * 100) / 100));
 						}else{
 							d.resolve();
 						}
@@ -294,7 +298,7 @@ define(['directives', 'services'], function(directives){
                             category="HealthBeauty";
                             $scope.brandFirstName="H";
                         }
-                        $scope.brandLastName=parseInt(parseInt(PlayerInfo.getPlayer()))+4;/*need check*/
+                        $scope.brandLastName=parseInt(parseInt(scope.selectedPlayer))+4;/*need check*/
                     }
                     var loadByCategory=function(category){
                         return _.filter($scope.pageBase.retCatDecision,function(obj){
@@ -360,7 +364,7 @@ define(['directives', 'services'], function(directives){
 
                         var newretailerDecision=new RetailerDecision();
                         newretailerDecision.packFormat="ECONOMY";
-                        newretailerDecision.dateOfBirth=PeriodInfo.getCurrentPeriod();
+                        newretailerDecision.dateOfBirth=scope.selectedPeriod;
                         newretailerDecision.dateOfDeath=10;
                         newretailerDecision.composition=new Array(1,1,1);
                         newretailerDecision.discontinue=false;
@@ -369,23 +373,23 @@ define(['directives', 'services'], function(directives){
                             var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
                                 return (obj.categoryID==$scope.lauchNewCategory);
                             });
-                            newBrand.brandID=calculateBrandID(retVariantDecision,PlayerInfo.getPlayer());
-                            newBrand.brandName=$scope.brandFirstName+myForm[1].value+(parseInt(PlayerInfo.getPlayer())+4);
-                            newBrand.parentCompanyID=parseInt(PlayerInfo.getPlayer())+4;
+                            newBrand.brandID=calculateBrandID(retVariantDecision,scope.selectedPlayer);
+                            newBrand.brandName=$scope.brandFirstName+myForm[1].value+(parseInt(scope.selectedPlayer)+4);
+                            newBrand.parentCompanyID=parseInt(scope.selectedPlayer)+4;
                             newBrand.dateOfDeath=10;
-                            newBrand.dateOfBirth=PeriodInfo.getCurrentPeriod();
+                            newBrand.dateOfBirth=scope.selectedPeriod;
                             newBrand.privateLabelVarDecision=new Array();
                             newretailerDecision.parentBrandID=newBrand.brandID;
                             newretailerDecision.varName='_'+myForm[1].value;/*need check*/
                             newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
                             newBrand.privateLabelVarDecision.push(newretailerDecision,nullDecision,nullDecision);
                             
-                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
+                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer)+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
                             $http({
                                 method:'GET',
                                 url:url
                             }).then(function(data){
-                                RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
+                                RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory,'retailerPrivateLabelPortfolioManagement');
                                 showbubleMsg(Label.getContent('Add new brand successful'),2);
                                 cancel();
                             },function(data){
@@ -408,12 +412,12 @@ define(['directives', 'services'], function(directives){
                                     break;
                                 }
                             }
-                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.addNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
+                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer)+'/'+$scope.addNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
                             $http({
                                 method:'GET',
                                 url:url
                             }).then(function(data){
-                                RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName);
+                                RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName,'retailerPrivateLabelPortfolioManagement');
                                 showbubleMsg(Label.getContent('Add new variant successful'),2);
                                 cancel();
                             },function(data){
@@ -496,10 +500,10 @@ define(['directives', 'services'], function(directives){
 						categoryID=2;
 					}
 					if(location=="composition"){
-						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value);							
+						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value,'retailerPrivateLabelPortfolioManagement');							
 					}
 					else{
-						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value);													
+						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value,'retailerPrivateLabelPortfolioManagement');													
 					}
 					scope.$broadcast('retailerDecisionBaseChanged');
 				}
@@ -512,7 +516,7 @@ define(['directives', 'services'], function(directives){
 			    	}else{
 			    		category=2;
 			    	}
-			    	RetailerDecisionBase.deleteProduct(category,brandName,varName);	
+			    	RetailerDecisionBase.deleteProduct(category,brandName,varName,'retailerPrivateLabelPortfolioManagement');	
 			    }
 
                 var showView=function(){
@@ -529,10 +533,14 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 });
+
+                
                 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                            scope.pageBase = newBase;
-                            showView();
+                    if(data.page=="retailerPrivateLabelPortfolioManagement"){
+                        scope.pageBase = newBase;
+                        showView();
+                    }
                 });             
 
             }

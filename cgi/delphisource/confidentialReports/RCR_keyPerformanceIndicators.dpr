@@ -80,7 +80,7 @@ var
     begin
       for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
       begin
-          tempQuarterInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_keyPerformanceIndicators[catID, marketID];
+          tempQuarterInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_keyPerformanceIndicators[marketID, catID];
           jo.A['categoryInfo'].Add( quarterShopperInfoSchema(fieldIdx, catID, marketID, shopper, tempQuarterInfo ) );
       end;
     end;    
@@ -110,7 +110,7 @@ var
     begin
       for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
       begin
-          tempQuarterInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_keyPerformanceIndicators[catID, marketID];
+          tempQuarterInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_keyPerformanceIndicators[marketID,catID];
           oJsonFile.A['rcrkpi_VolumeRotationIndex'].Add( quarterInfoSchema(rcrkpi_VolumeRotationIndex, catID, marketID, tempQuarterInfo) );
           oJsonFile.A['rcrkpi_ValueRotationIndex'].Add( quarterInfoSchema(rcrkpi_ValueRotationIndex, catID, marketID, tempQuarterInfo) );
           oJsonFile.A['rcrkpi_ProfitabilityIndex'].Add( quarterInfoSchema(rcrkpi_ProfitabilityIndex, catID, marketID, tempQuarterInfo) );

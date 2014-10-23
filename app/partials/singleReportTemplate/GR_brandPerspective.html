@@ -1,0 +1,308 @@
+<p data-ng-repeat="log in logs">{{log}}</p>
+
+<div class="panel my-panel-warning panel-danger" ng-show="isResultShown">    
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Brand Perspective Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Performance Highlights')}} - {{Label.getContent('Brand Perspective')}}</h3>
+    </div>
+    
+    <table class="table table-condensed table-bordered table-primary">
+        <thead>
+            <tr>
+                <th colspan="2" rowspan="3"></th>
+                <th colspan="6">
+                    <p class="text-center">
+                        {{Label.getContent('Supplier')}}
+                    </p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Retailer')}}
+                    </p>
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Supplier')}} 1
+                    </p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Supplier')}} 2
+                    </p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Supplier')}} 3
+                    </p>
+                </td>
+                <td rowspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Retailer')}} 1 {{Label.getContent('(Private label)') }}
+                    </p>
+                </td>
+                <td rowspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Retailer')}} 2 {{Label.getContent('(Private label)') }}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-center">{{Label.getContent('B&M')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('B&M')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('B&M')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="10">{{Label.getContent('Sales')}}</td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <p class="padding-20">
+                        {{Label.getContent('Volume')}} ({{Label.getContent('units mln')}})
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('Elecssories')}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[0].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[0].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[2].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[2].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[4].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[4].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[8].value[2] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[10].value[2] | number : 1}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('HealthBeauties')}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[1].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[1].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[3].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[3].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[5].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[5].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[9].value[2] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[11].value[2] | number : 1}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <p class="padding-20">
+                        {{Label.getContent('Value')}} ({{Label.getContent('$mln')}})
+                    </p>
+                </td>
+            </tr>
+
+            <tr class="success">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('Elecssories')}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[0].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[0].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[2].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[2].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[4].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[4].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[8].value[2] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[10].value[2] | number : 1}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('HealthBeauties')}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[1].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[1].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[3].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[3].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[5].value[0] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[5].value[1] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[9].value[2] | number : 1}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[11].value[2] | number : 1}}</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="10">{{Label.getContent('Consumer Market Shares')}}</td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <p class="padding-20">
+                        {{Label.getContent('Value Market Shares')}} (%)
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('Elecssories')}}
+                    </p>
+                </td>
+                <td colspan="2" ng-repeat='num in [0,2,4]'>
+                    <p class="text-right">{{(valueShares[num].value*100) | number : 1}}</p>
+                </td>
+                <td ng-repeat='num in [8,10]'>
+                    <p class="text-right">{{(valueShares[num].value*100) | number : 1}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('HealthBeauties')}}
+                    </p>
+                </td>
+                <td colspan="2" ng-repeat='num in [1,3,5]'>
+                    <p class="text-right">{{(valueShares[num].value*100) | number : 1}}</p>
+                </td>
+                <td ng-repeat='num in [9,11]'>
+                    <p class="text-right">{{(valueShares[num].value*100) | number : 1}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <p class="padding-20">
+                        {{Label.getContent('Volume Market Shares')}} (%)
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('Elecssories')}}
+                    </p>
+                </td>
+                <td colspan="2" ng-repeat='num in [0,2,4]'>
+                    <p class="text-right">{{(volumeShares[num].value*100) | number : 1}}</p>
+                </td>
+                <td ng-repeat='num in [8,10]'>
+                    <p class="text-right">{{(volumeShares[num].value*100) | number : 1}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="2">
+                    <p class="padding-40">
+                        {{Label.getContent('HealthBeauties')}}
+                    </p>
+                </td>
+                <td colspan="2" ng-repeat='num in [1,3,5]'>
+                    <p class="text-right">{{(volumeShares[num].value*100) | number : 1}}</p>
+                </td>
+                <td ng-repeat='num in [9,11]'>
+                    <p class="text-right">{{(volumeShares[num].value*100) | number : 1}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {{Label.getContent('Operating Profit')}} ({{Label.getContent('$mln')}})
+                </td>
+                <td colspan="2" ng-repeat='num in [0,1,2]'>
+                    <p class="text-right">{{operatingProfits[num].value | number : 1}}</p>
+                </td>
+                <td ng-repeat='num in [4,5]'>
+                    <p class="text-right">{{operatingProfits[num].value | number : 1}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {{Label.getContent('Cumulative Investments')}} ({{Label.getContent('$mln')}})
+                </td>
+                <td colspan="2" ng-repeat='num in [0,1,2]'>
+                    <p class="text-right">{{cumulativeInvestments[num].value | number : 1}}</p>
+                </td>
+                <td ng-repeat='num in [4,5]'>
+                    <p class="text-right">{{cumulativeInvestments[num].value | number : 1}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

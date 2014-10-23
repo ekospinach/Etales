@@ -5,7 +5,12 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                isReady : '='
+                selectedPlayer: '=',
+                selectedPeriod: '=',
+                isPortfolioDecisionCommitted:'=',
+                isContractDeal:'=',
+                isContractFinalized:'=',
+                isDecisionCommitted:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_productionVolume.html',            
@@ -17,9 +22,9 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
 
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();
+                    scope.currentPeriod=scope.selectedPeriod;
                     
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                    ProducerDecisionBase.reload({producerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
                         return showView();
@@ -41,20 +46,20 @@ define(['directives', 'services'], function(directives){
                     }else{
                         categoryID=2;
                     }   
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1)+'/P/'+parseInt(scope.selectedPlayer);
                     $http({
                         method:'GET',
                         url:url
                     }).then(function(data){
                         max=data.data.productionCapacity[categoryID-1];
-                        url="/productionResult/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+                        url="/productionResult/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer)+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
                             url:url
                         });
                     }).then(function(data){
                         if(parseInt(data.data.result)+parseInt(value)>max){
-                            d.resolve(Label.getContent('Input range')+':0~'+(max-parseInt(data.data.result)));
+                            d.resolve(Label.getContent('Input range')+':0~'+(Math.floor((max-parseInt(data.data.result)) * 100) / 100));
                         }else{
                             d.resolve();
                         }
@@ -181,17 +186,17 @@ define(['directives', 'services'], function(directives){
                     if(category=="Elecssories"){
                         categoryID=1;
                         if(location=="channelPreference"){
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100,'supplierProductionVolume');                                                    
                         }else{
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value,'supplierProductionVolume');                                                    
                         }
                     }
                     else{
                         categoryID=2;
                         if(location=="channelPreference"){
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100,'supplierProductionVolume');                                                    
                         }else{
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value,'supplierProductionVolume');                                                    
                         }                                                 
                     }
                 }
@@ -213,8 +218,10 @@ define(['directives', 'services'], function(directives){
                 });
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                         //decision base had been updated, re-render the page with newBase                    
-                        scope.pageBase = newBase;
-                        showView();
+                    if(data.page=="supplierProductionVolume"){
+                            scope.pageBase = newBase;
+                            showView();
+                        }
                 });
 
             }
