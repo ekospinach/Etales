@@ -107,14 +107,27 @@
 						        </ul>				        	
 					        </li>   
 					    </ul>
+					    <ul class="nav navbar-nav pull-right" data-access-level="{{ accessLevels.producerView }}" ng-show='clock'>
+					    	<p popover-template="../../partials/toolTip/supplierClock.html" popover-trigger="mouseenter" popover-placement="bottom" popover-title="{{Label.getContent('Clock Info')}}">
+					    		<img src="img/clock.png" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted>5'>
+					    		<img src="img/timeup.gif" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted<=5'>
+
+					    	</p>
+					    </ul>
+					    <ul class="nav navbar-nav pull-right" data-access-level="{{ accessLevels.retailerView }}" ng-show='clock'>
+					    	<p popover-template="../../partials/toolTip/retailerClock.html" popover-trigger="mouseenter" popover-placement="bottom" popover-title="{{Label.getContent('Clock Info')}}">
+					    		<img src="img/clock.png" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted>5'>
+					    		<img src="img/timeup.gif" style="width:41px;margin-top:5px;" ng-show='clock.contractDecisionCommitted<=5'>
+
+					    	</p>
+					    </ul>
 					</nav>
 				</div>
 			</header>
 		</div>
 		<div ng-view></div>
 	    <footer role="contentinfo" id="pagefooter" style="text-align:center;margin:20px auto;" class="bs-footer hide" ng-class="pageFooter">
-<!-- 	    	<img src="img/eTalesLandingpageHCDLOGO.png">
- -->		</footer>
+		</footer>
 
 	    <div class="watpl-container" id="pageloader" ng-class="pageLoader">	    	
 	    	<div class="container-fluid">
