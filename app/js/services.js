@@ -397,10 +397,6 @@ define(['angular',
 							$rootScope.$broadcast('committeDecision',data);
 						}
 					});
-
-
-
-
 				}
 			}
 		}]
