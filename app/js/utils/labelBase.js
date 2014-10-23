@@ -1090,6 +1090,8 @@ var getLabelBase = function(){
 		{id:'Participants Manual',  ENG:'Participants Manual',  CHN:'学员手册',  RUS:''},		
 		{id:'all the rest decisions Locked',  ENG:'all the rest decisions Locked',  CHN:'all the rest decisions Locked',  RUS:''},		
 		{id:'Clock Info',  ENG:'Clock Info',  CHN:'Clock 介绍',  RUS:''},		
+		{id:'You are checking the decision of period',  ENG:'You are checking the decision of period',  CHN:'你正在查看决策 阶段:',  RUS:''},		
+		{id:'Clock Info',  ENG:'Clock Info',  CHN:'Clock 介绍',  RUS:''},		
 		
 
 		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		

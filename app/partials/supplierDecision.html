@@ -223,7 +223,7 @@
         <div class="col-md-9" ng-show='!isNegotiation' style="padding:0 0 0 15px">
 
             <div class="bs-docs-section">
-                <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Supplier {{selectedPlayer}}</p>
+                <p access-level='{{accessLevels.playerView}}'>{{Label.getContent('You are checking the decision of period')}}:<b>{{selectedPeriod}}</b>,{{Label.getContent('Supplier')}} {{selectedPlayer}}</p>
 
                 <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-product-portfolio-management>
                 
