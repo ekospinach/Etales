@@ -64,7 +64,7 @@ selectedPeriod : '='
                         scope.awarenessElecssories1Series=[{
                             name:Label.getContent('Drop'),data:scope.dropRural,color:PlayerColor.getColors()[1]
                         },{
-                            name:Label.getContent('Increase'),data:scope.increaseRural,color:PlayerColor.getColors()[3]
+                            name:Label.getContent('Increase'),data:scope.increaseRural,color:PlayerColor.getColors()[5]
                         },{
                             name:Label.getContent('Awareness Value'),data:scope.valueRural,color:PlayerColor.getColors()[0]
                         }];
@@ -89,7 +89,7 @@ selectedPeriod : '='
                         scope.awarenessElecssories2Series=[{
                             name:Label.getContent('Drop'),data:scope.dropUrban,color:PlayerColor.getColors()[1]
                         },{
-                            name:Label.getContent('Increase'),data:scope.increaseUrban,color:PlayerColor.getColors()[3]
+                            name:Label.getContent('Increase'),data:scope.increaseUrban,color:PlayerColor.getColors()[5]
                         },{
                             name:Label.getContent('Awareness Value'),data:scope.valueUrban,color:PlayerColor.getColors()[0]
                         }];

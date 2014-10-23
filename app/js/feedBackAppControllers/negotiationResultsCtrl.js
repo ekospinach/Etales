@@ -43,7 +43,7 @@ var negotiationResultsCtrl=function($scope,$http,$q){
                             distance:-100,
                             rotation:0,
                             color:'white',
-                            format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                             useHTML:true
                         },
                         showInLegend: true
@@ -95,7 +95,7 @@ var negotiationResultsCtrl=function($scope,$http,$q){
                             distance:-100,
                             rotation:0,
                             color:'white',
-                            format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                             useHTML:true
                         },
                         showInLegend: true
@@ -144,7 +144,7 @@ var negotiationResultsCtrl=function($scope,$http,$q){
                             distance:-100,
                             rotation:0,
                             color:'white',
-                            format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                             useHTML:true
                         },
                         showInLegend: true
@@ -196,7 +196,7 @@ var negotiationResultsCtrl=function($scope,$http,$q){
                             distance:-100,
                             rotation:0,
                             color:'white',
-                            format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                             useHTML:true
                         },
                         showInLegend: true
@@ -246,7 +246,7 @@ var negotiationResultsCtrl=function($scope,$http,$q){
                             distance:-100,
                             rotation:0,
                             color:'white',
-                            format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                             useHTML:true
                         },
                         showInLegend: true
@@ -299,7 +299,7 @@ var negotiationResultsCtrl=function($scope,$http,$q){
                             distance:-100,
                             rotation:0,
                             color:'white',
-                            format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                             useHTML:true
                         },
                         showInLegend: true

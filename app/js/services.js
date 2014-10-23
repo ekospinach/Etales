@@ -162,7 +162,7 @@ define(['angular',
 	})
 
 	services.factory('PlayerColor',function($rootScope){
-		var colors=['#3257A7','#B11E22','#F6B920','#329444','#8B288B','#F05422','#00AFEF'];
+		var colors=['#3257A7','#B11E22','#F6B920','#666666','#8B288B','#329444','#00AFEF'];
 		return {
 			getColors:function(){
 				return colors;
@@ -370,7 +370,8 @@ define(['angular',
 
 					socket.on('socketIO:committedPortfolio',function(data){
 						//result
-						if(data.seminarCode==SeminarInfo.getSelectedSeminar().seminarCode){
+						console.log(data);
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
 							 $rootScope.$broadcast('committedPortfolio',data);
 						}
 					});
@@ -404,10 +405,6 @@ define(['angular',
 							$rootScope.$broadcast('committeDecision',data);
 						}
 					});
-
-
-
-
 				}
 			}
 		}]

@@ -32,23 +32,23 @@ var retailerKPIsCtrl=function($scope,$http){
 
         var salesValueElecssories=new Array();
 
-        var rotationIndexSalesValueElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var rotationIndexSalesValueHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var rotationIndexSalesVolumeElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var rotationIndexSalesVolumeHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var rotationIndexSalesValueElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var rotationIndexSalesValueHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var rotationIndexSalesVolumeElecssories=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var rotationIndexSalesVolumeHealthBeauties=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
 
-        var previousUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var currentUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var previousRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var currentRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var previousUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var currentUrbanProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var previousRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var currentRuralProfitabilityIndex=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
         
-        var ruralStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var urbanStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var EStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var HStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var ruralStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var urbanStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var EStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var HStockCover=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
 
-        var ruralShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
-        var urbanShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+        var ruralShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
+        var urbanShareOfShoppers=new Array({name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#329444'});
 
         //rotationIndexSalesValue
         for(var j=0;j<testCategories.length;j++){

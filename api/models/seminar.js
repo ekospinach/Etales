@@ -1413,7 +1413,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
 			// });
 		}
-	}, 60000);
+	}, 1000);
 	newTimer.seminarCode = seminarCode;
 	return newTimer;
 }
