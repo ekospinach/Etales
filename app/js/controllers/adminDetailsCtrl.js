@@ -154,7 +154,9 @@ define(['app', 'socketIO'], function(app) {
 							data: queryCondition
 						})
 					}).then(function(data){
-						console.log('finish contract deal');
+						//console.log('finish contract deal');
+						data.period=period;
+						$rootScope.$broadcast('ContractDeal',data);
 					})
 				}else{
 					$http({
