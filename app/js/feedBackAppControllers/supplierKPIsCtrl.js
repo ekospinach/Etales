@@ -27,8 +27,8 @@ var supplierKPIsCtrl=function($scope,$http){
             }
         }
 
-        testCategories=[Request['period']-2,Request['period']-1];
-        myCategories=[Request['period']-2,Request['period']-1,'',Request['period']-2,Request['period']-1,'',Request['period']-2,Request['period']-1];
+        testCategories=[Request['period']-1,Request['period']];
+        myCategories=[Request['period']-1,Request['period'],'',Request['period']-1,Request['period'],'',Request['period']-1,Request['period']];
 
         var tradeSpendingElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
         var tradeSpendingHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
@@ -128,21 +128,21 @@ var supplierKPIsCtrl=function($scope,$http){
                 }
             }
         }
-        for(var i=0;i<3;i++){
-            bmChannelStrengthElecssories[i].data.push('');
-            bmChannelStrengthHealthBeauties[i].data.push('');
-        }
-        for(var j=0;j<testCategories.length;j++){
-            for(var i=0;i<$scope.feedBack.f_SuppliersBMShareOfShoppers.length;i++){
-                if($scope.feedBack.f_SuppliersBMShareOfShoppers[i].period==testCategories[j]){
-                    if($scope.feedBack.f_SuppliersBMShareOfShoppers[i].categoryID==1){
-                        bmChannelStrengthElecssories[$scope.feedBack.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersBMShareOfShoppers[i].value * 100);
-                    }else if($scope.feedBack.f_SuppliersBMShareOfShoppers[i].categoryID==2){
-                        bmChannelStrengthHealthBeauties[$scope.feedBack.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersBMShareOfShoppers[i].value * 100);
-                    }
-                }
-            }
-        }
+        // for(var i=0;i<3;i++){
+        //     bmChannelStrengthElecssories[i].data.push('');
+        //     bmChannelStrengthHealthBeauties[i].data.push('');
+        // }
+        // for(var j=0;j<testCategories.length;j++){
+        //     for(var i=0;i<$scope.feedBack.f_SuppliersBMShareOfShoppers.length;i++){
+        //         if($scope.feedBack.f_SuppliersBMShareOfShoppers[i].period==testCategories[j]){
+        //             if($scope.feedBack.f_SuppliersBMShareOfShoppers[i].categoryID==1){
+        //                 bmChannelStrengthElecssories[$scope.feedBack.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersBMShareOfShoppers[i].value * 100);
+        //             }else if($scope.feedBack.f_SuppliersBMShareOfShoppers[i].categoryID==2){
+        //                 bmChannelStrengthHealthBeauties[$scope.feedBack.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersBMShareOfShoppers[i].value * 100);
+        //             }
+        //         }
+        //     }
+        // }
         //onlineChannelStrength
         for(var j=0;j<testCategories.length;j++){
             for(var i=0;i<$scope.feedBack.f_SuppliersOnlineValueSalesShare.length;i++){
@@ -170,21 +170,21 @@ var supplierKPIsCtrl=function($scope,$http){
                 }
             }
         }
-        for(var i=0;i<3;i++){
-            onlineChannelStrengthElecssories[i].data.push('');
-            onlineChannelStrengthHealthBeauties[i].data.push('');
-        }
-        for(var j=0;j<testCategories.length;j++){
-            for(var i=0;i<$scope.feedBack.f_SuppliersOnlineShareOfShoppers.length;i++){
-                if($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].period==testCategories[j]){
-                    if($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){
-                        onlineChannelStrengthElecssories[$scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].value * 100);
-                    }else if($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].categoryID==2){
-                        onlineChannelStrengthHealthBeauties[$scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].value * 100);
-                    }
-                }
-            }
-        }
+        // for(var i=0;i<3;i++){
+        //     onlineChannelStrengthElecssories[i].data.push('');
+        //     onlineChannelStrengthHealthBeauties[i].data.push('');
+        // }
+        // for(var j=0;j<testCategories.length;j++){
+        //     for(var i=0;i<$scope.feedBack.f_SuppliersOnlineShareOfShoppers.length;i++){
+        //         if($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].period==testCategories[j]){
+        //             if($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){
+        //                 onlineChannelStrengthElecssories[$scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].value * 100);
+        //             }else if($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].categoryID==2){
+        //                 onlineChannelStrengthHealthBeauties[$scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push($scope.feedBack.f_SuppliersOnlineShareOfShoppers[i].value * 100);
+        //             }
+        //         }
+        //     }
+        // }
 
         
         $scope.tradeSpendingElecssories = {
@@ -511,7 +511,8 @@ var supplierKPIsCtrl=function($scope,$http){
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
+                text: '<p style="font-size:20px;width:50%;" class="text-left">Share of Value Sales</p><p style="font-size:20px;width:45%;" class="text-right">Share of Volume Sales</p>',
+                //<p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                 useHTML:true,
 
             },
@@ -574,7 +575,8 @@ var supplierKPIsCtrl=function($scope,$http){
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
+                text: '<p style="font-size:20px;width:50%" class="text-left">Share of Value Sales</p><p style="font-size:20px;width:45%" class="text-right">Share of Volume Sales</p>',
+                //<p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                 useHTML:true,
             },
             credits: {
@@ -636,7 +638,8 @@ var supplierKPIsCtrl=function($scope,$http){
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
+                text: '<p style="font-size:20px;width:50%;" class="text-left">Share of Value Sales</p><p style="font-size:20px;width:45%;" class="text-right">Share of Volume Sales</p>',
+                //<p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                 useHTML:true,
 
             },
@@ -699,7 +702,8 @@ var supplierKPIsCtrl=function($scope,$http){
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Volume Sales</p><p style="font-size:20px" class="text-right">Share of Shoppers</p>',
+                text: '<p style="font-size:20px;width:50%;" class="text-left">Share of Value Sales</p><p style="font-size:20px;width:45%;" class="text-right">Share of Volume Sales</p>',
+                //<p style="font-size:20px" class="text-right">Share of Shoppers</p>',
                 useHTML:true,
 
             },

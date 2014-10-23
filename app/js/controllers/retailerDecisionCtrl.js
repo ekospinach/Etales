@@ -33,7 +33,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 var abMax = 0,
                     expend = 0,
                     reportExpend = 0;
-                console.log(PlayerInfo.getPlayer());
+
                 var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getDecisionPeriod() - 1) + '/R/' + parseInt(PlayerInfo.getPlayer());
                 $http({
                     method: 'GET',
@@ -68,10 +68,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                         url: url
                     });
                 }).then(function(data) {
-                    $scope.budgetIncreaseDueToNegotiation = (Math.floor(data.data * 100) / 100);
-
-                    
-                    
+                    $scope.budgetIncreaseDueToNegotiation = (Math.floor(data.data.result * 100) / 100);                                    
                     $scope.estimatedSpending = (Math.floor((expend + reportExpend) * 100) / 100);
                     $scope.surplusExpend = (Math.floor(($scope.abMax + $scope.budgetIncreaseDueToNegotiation - expend - reportExpend) * 100) / 100);
 

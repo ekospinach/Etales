@@ -930,35 +930,44 @@ exports.removeContract = function(io) {
 //(2) volume discount 
 //:seminar/:period/:retailerID
 exports.getRetailerAdditionalBudget = function(req, res, next) {
-     // contractVariantDetails
-     //      .find()
-     //      .where('contractCode').in(['P1andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,
-     //           'P2andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,
-     //           'P3andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period
-     //      ])
-     //      .exec(function(err, docs) {
-     //           if (err) {
-     //                next(new Error(err));
-     //           } else {
-     //                if (docs.length != 0) {
+     var result = 0;
+     contractVariantDetails
+          .find()
+          .where('contractCode').in(['P1andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,
+               'P2andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,
+               'P3andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period
+          ])
+          .exec(function(err, docs) {
+               if (err) {
+                    next(new Error(err));
+               } else {
+                    if (docs.length != 0) {
+                         for (var i = 0; i < docs.length; i++) {
+                              result += docs[i].nc_OtherCompensation;
+                         };
 
-     //                } else {
-     //                     res.send(200, {
-     //                          'result': 0
-     //                     });
-     //                }
-     //           }
-     //      })
-     contract.findOne({
-          contractCode: req.params.contractCode
-     }, function(err, doc) {
-          if (err) {
-               next(new Error(err))
-          };
-          if (doc) {
-               res.send(200, '0');
-          } else {
-               res.send(200, '0');
-          }
-     })
+                         res.send(200, {
+                              'result': result
+                         });
+                    } else {
+                         res.send(200, {
+                              'result': 0
+                         });
+                    }
+               }
+          });
+
+
+     // contract.findOne({
+     //      contractCode: req.params.contractCode
+     // }, function(err, doc) {
+     //      if (err) {
+     //           next(new Error(err))
+     //      };
+     //      if (doc) {
+     //           res.send(200, '0');
+     //      } else {
+     //           res.send(200, '0');
+     //      }
+     // })
 }

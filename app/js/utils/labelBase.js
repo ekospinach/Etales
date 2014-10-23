@@ -208,7 +208,7 @@ var getLabelBase = function(){
 		{id:'Current List Price eMall',  ENG:'Current List Price eMall',  CHN:'当前网店的零售价',  RUS:''},
 		{id:'Next List Price eMall',  ENG:'Next List Price eMall',  CHN:'下阶段网店的零售价',  RUS:''},
 		{id:'Production',  ENG:'Production',  CHN:'产量',  RUS:''},
-		{id:'Sales',  ENG:'Sales',  CHN:'销售额',  RUS:''},
+		{id:'Sales',  ENG:'Sales',  CHN:'销售',  RUS:''},
 		{id:'Discontinued Goods',  ENG:'Discontinued Goods',  CHN:'停产产品',  RUS:''},
 		{id:'Order volume (mln. Units)',  ENG:'Order volume (mln. Units)',  CHN:'订货量',  RUS:''},
 		{id:'Sales volume (mln. Units)',  ENG:'Sales volume (mln. Units)',  CHN:'销量',  RUS:''},

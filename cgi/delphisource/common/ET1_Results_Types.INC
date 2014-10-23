@@ -62,7 +62,7 @@ TVariantCrossSegmentDetails = record
                               end;
 
 TBrandOwnerCrossSegmentDetails = record
-                                   bosd_VariantID         : TBrandOwners;
+                                   bosd_CompanyID         : TBrandOwners;
                                    bosd_AbsoluteValue     : array[TSegmentsTotal, TShoppersKind] of single;
                                    bosd_ValueChange       : array[TSegmentsTotal, TShoppersKind] of single;
                                    bosd_AbsoluteVolume    : array[TSegmentsTotal, TShoppersKind] of single;
