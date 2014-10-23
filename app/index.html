@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="ng-app">
 	<head>
-		<title>Etales - HCD Learning</title>
+		<title ng-bind="pageTitle">Etales - HCD Learning</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
@@ -24,7 +24,7 @@
 			html{-webkit-text-size-adjust:none;}
 		</style>
 	</head>
-	<body class="bs-docs-home" ng-class="pageBody" ng-controller="NavbarCtrl" load-end>
+	<body class="bs-docs-home" ng-class="pageBody"  ng-controller="NavbarCtrl" load-end>
 
 		<div access-level='{{accessLevels.playerView}}'>
 			<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav hide" id="pageheader" role="banner" ng-class="pageHeader">

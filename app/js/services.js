@@ -7,6 +7,14 @@ define(['angular',
 	var services=angular.module('myApp.services', ['ngResource']);
 
 	services.value('version', '0.1');
+
+	services.factory('Page', function(){
+	   var title = 'Etales - HCD Learning';
+	   return {
+	     title: function() { return title; },
+	     setTitle: function(newTitle) { title = newTitle }
+	   };		
+	})
 	//multiple language translate, you should use the Provider recipe only when you want to 
 	//expose an API for application-wide configuration that must be made before the application starts. 
 	//This is usually interesting only for reusable services whose behavior might need to vary slightly between applications.

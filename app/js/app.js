@@ -153,9 +153,7 @@
 
  				//when route change, keep authorizing user 
  				$rootScope.$on("$routeChangeStart", function(event, next, current) {
-
- 					console.log('next.access:'+next.access+',next.path:'+next.path+',value:'+Auth.authorize(next.access));
-
+ 					//console.log('next.access:'+next.access+',next.path:'+next.path+',value:'+Auth.authorize(next.access));
  					if (!Auth.authorize(next.access)) {
  						//console.log('authorize fail, jump to login page...');
  						if (!Auth.isLoggedIn()) $location.path('/login');
@@ -174,6 +172,11 @@
  						}
  					}
  				});
+
+			    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+			    	console.log('current:' + current);
+			        $rootScope.pageTitle = current.$$route.pageTitle;
+			    }); 				
  			}
  		])
  		.config(function(LabelProvider) {
