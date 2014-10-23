@@ -2,14 +2,11 @@ define(['angular',
 		'app',
 		'routingConfig',
 		'controllers/facilitatorDecisionCtrl',
-		'controllers/contractCtrl',
-		'controllers/contractDetailsCtrl',
 		'controllers/loginCtrl',
 		'controllers/adminCtrl',
 		'controllers/adminDetailsCtrl',
 		'controllers/homeCtrl',
 		'controllers/testCtrl',
-		'controllers/summaryReportCtrl',
 		'controllers/generalReportCtrl',
 		'controllers/marketReportCtrl',
 		'controllers/confidentialReportCtrl',
@@ -27,24 +24,12 @@ define(['angular',
 			pageTitle : 'Manual',
 			templateUrl:'partials/home.html',
 			controller:'homeCtrl',
-			access : access.playerView
-		// }).when('/contract',{
-		// 	templateUrl:'partials/contract.html',
-		// 	controller:'contractCtrl',
-		// 	access : access.playerView,	
-		// }).when('/contractDetails',{
-		// 	templateUrl:'partials/contractDetails.html',
-		// 	controller:'contractDetailsCtrl',
-		// 	access : access.playerView,		
+			access : access.playerView	
 		}).when('/login',{
 			pageTitle : 'Login',
 			templateUrl:'partials/login.html',
 			controller:'loginCtrl',
-			access : access.public
-		// }).when('/login/:reportLocateId',{
-		// 	templateUrl:'partials/login.html',
-		// 	controller:'loginCtrl',
-		// 	access : access.public			
+			access : access.public		
 		}).when('/admin',{
 			pageTitle : 'Admin',
 			templateUrl:'partials/admin.html',
@@ -69,10 +54,6 @@ define(['angular',
 			controller:'feedbackCtrl',
 			templateUrl:'partials/feedback.html',
 			access:access.facilitatorView
-		// }).when('/summaryReport',{
-		// 	controller:'summaryReportCtrl',
-		// 	templateUrl:'partials/summaryReport.html',
-		// 	access:access.playerView
 		}).when('/supplierDecision',{
 			pageTitle : 'Supplier Decision',
 			templateUrl:'partials/supplierDecision.html',
