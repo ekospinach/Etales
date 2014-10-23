@@ -106,7 +106,7 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[elecssory_urban][mixed], scope.valueForMoneies[elecssory_urban][mixed], scope.fashions[elecssory_urban][mixed], scope.freakses[elecssory_urban][mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[3]
+                            color: PlayerColor.getColors()[5]
                         } ];
 
                         scope.crossSegment1Config = {
@@ -159,7 +159,7 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[elecssory_rural][mixed], scope.valueForMoneies[elecssory_rural][mixed], scope.fashions[elecssory_rural][mixed], scope.freakses[elecssory_rural][mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[3]
+                            color: PlayerColor.getColors()[5]
                         }, ];
 
                         scope.crossSegment2Config = {
@@ -212,7 +212,7 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[healthBeauty_urban][mixed], scope.valueForMoneies[healthBeauty_urban][mixed], scope.fashions[healthBeauty_urban][mixed], scope.freakses[healthBeauty_urban][mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[3]
+                            color: PlayerColor.getColors()[5]
                         }, ];
 
                         scope.crossSegment3Config = {
@@ -265,7 +265,7 @@ define(['directives', 'services'], function(directives) {
                             "name": Label.getContent('Mixed'),
                             "data": [scope.priceSensitives[healthBeauty_rural][mixed], scope.valueForMoneies[healthBeauty_rural][mixed], scope.fashions[healthBeauty_rural][mixed], scope.freakses[healthBeauty_rural][mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[3]
+                            color: PlayerColor.getColors()[5]
                         }, ];
 
                         scope.crossSegment4Config = {
