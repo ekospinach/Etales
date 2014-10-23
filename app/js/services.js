@@ -162,7 +162,7 @@ define(['angular',
 	})
 
 	services.factory('PlayerColor',function($rootScope){
-		var colors=['#3257A7','#B11E22','#F6B920','#329444','#8B288B','#F05422','#00AFEF'];
+		var colors=['#3257A7','#B11E22','#F6B920','#ddd','#8B288B','#00AFEF','#00AFEF'];
 		return {
 			getColors:function(){
 				return colors;
