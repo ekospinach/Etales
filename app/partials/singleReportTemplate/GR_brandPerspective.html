@@ -75,7 +75,7 @@
             <tr>
                 <td colspan="10">
                     <p class="padding-20">
-                        {{Label.getContent('Volume')}} (units mln)
+                        {{Label.getContent('Volume')}} ({{Label.getContent('units mln')}})
                     </p>
                 </td>
             </tr>
@@ -144,7 +144,7 @@
             <tr>
                 <td colspan="10">
                     <p class="padding-20">
-                        {{Label.getContent('Value')}} ($mln)
+                        {{Label.getContent('Value')}} ({{Label.getContent('$mln')}})
                     </p>
                 </td>
             </tr>
@@ -283,7 +283,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    {{Label.getContent('Operating Profit')}} ($mln)
+                    {{Label.getContent('Operating Profit')}} ({{Label.getContent('$mln')}})
                 </td>
                 <td colspan="2" ng-repeat='num in [0,1,2]'>
                     <p class="text-right">{{operatingProfits[num].value | number : 1}}</p>
@@ -294,7 +294,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    {{Label.getContent('Cumulative Investments')}} ($mln)
+                    {{Label.getContent('Cumulative Investments')}} ({{Label.getContent('$mln')}})
                 </td>
                 <td colspan="2" ng-repeat='num in [0,1,2]'>
                     <p class="text-right">{{cumulativeInvestments[num].value | number : 1}}</p>

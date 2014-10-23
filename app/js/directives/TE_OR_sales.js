@@ -69,7 +69,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
+		                            text: Label.getContent('units mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
@@ -81,7 +81,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('units mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -105,7 +105,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
+		                            text: Label.getContent('units mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
@@ -117,7 +117,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('units mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -141,7 +141,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: '$mln'
+		                            text: Label.getContent('$mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
@@ -153,7 +153,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('$mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -177,7 +177,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: '$mln'
+		                            text: Label.getContent('$mln')
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
@@ -189,7 +189,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>'+Label.getContent('Period')+':'+this.key+'</p>'+'<p>'+Label.getContent('$mln')+':'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,

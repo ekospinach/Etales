@@ -1,6 +1,6 @@
 var getLabelBase = function(){
 	return [
-		{id:'Manual popInfo',  ENG:'Remark: If it is not specified otherwise in this simulation game, the monetary unit is Million dollar(mln$), the unit price is dollar($) and the volume unit is Million Package(mln packs).',  CHN:'备注：除非特别说明，本模拟游戏中使用的货币单位均为人民币（百万元），产品单价均为人民币（元），产品数量单位均为百万包。 ',  RUS:''},	
+		{id:'Manual popInfo',  ENG:'Remark: If it is not specified otherwise in this simulation game, the monetary unit is Million dollar(mln$), the unit price is dollar($) and the volume unit is Million Package(mln packs).',  CHN:'备注：除非特别说明，本模拟游戏中使用的货币单位均为人民币（百万元），产品单价均为人民币（元），产品数量单位均为百万件。 ',  RUS:''},	
 		/*retail report new label */
 		/*line chart page */
 		{id:'e-Mall',  ENG:'E-Mall',  CHN:'在线广告',  RUS:''},
@@ -695,8 +695,8 @@ var getLabelBase = function(){
 		{id:'Channel Strength',  ENG:'Channel Strength',  CHN:'渠道竞争力',  RUS:''},
 		{id:'B&M Channel',  ENG:'B&M Channel',  CHN:'实体店渠道',  RUS:''},
 		{id:'Online Channel',  ENG:'Online Channel',  CHN:'线上渠道',  RUS:''},
-		{id:'Share of Value Sales',  ENG:'Share of Value Sales',  CHN:'销售额占比（%）',  RUS:''},
-		{id:'Share of Shoppers',  ENG:'Share of Shoppers',  CHN:'购物者份额',  RUS:''},
+		{id:'Share of Value Sales',  ENG:'Share of Value Sales',  CHN:'销售额占比',  RUS:''},
+		{id:'Share of Shoppers',  ENG:'Share of Shoppers',  CHN:'购物者占比',  RUS:''},
 		{id:'Value Share in Category',  ENG:'Value Share in Category',  CHN:'销售额占该品类百分比',  RUS:''},
 		{id:'Trade Support',  ENG:'Trade Support',  CHN:'通路支持',  RUS:''},
 		{id:'eMall Support',  ENG:'eMall Support',  CHN:'网上商店支持',  RUS:''},
@@ -721,7 +721,7 @@ var getLabelBase = function(){
 		{id:'Gross Contribution Per 1% of Shelf Space',  ENG:'Gross Contribution Per 1% of Shelf Space',  CHN:'每1%货架空间的毛利润贡献',  RUS:''},
 		{id:'As % of Value Sales',  ENG:'As % of Value Sales',  CHN:'占销售额百分比',  RUS:''},
 		{id:'Share of Gross Contribution',  ENG:'Share of Gross Contribution',  CHN:'占毛利润贡献百分比',  RUS:''},
-		{id:'Terms of Payment',  ENG:'Terms of Payment',  CHN:'账期(天数)',  RUS:''},
+		{id:'Terms of Payment',  ENG:'Terms of Payment',  CHN:'账期',  RUS:''},
 		{id:'Value Share',  ENG:'Value Share',  CHN:'市场份额（销售额）',  RUS:''},
 		{id:'Ordered Volume',  ENG:'Ordered Volume',  CHN:'订货量',  RUS:''},
 		{id:'Rotation Index',  ENG:'Rotation Index',  CHN:'周转指数',  RUS:''},
@@ -1071,6 +1071,7 @@ var getLabelBase = function(){
 		{id:'Awareness Value',  ENG:'Value',  CHN:'数值',  RUS:''},		
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
 		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		
+		{id:'$mln',  ENG:'$mln',  CHN:'百万元',  RUS:''},
 		{id:'Retailer Marketing Advertising Online Info',  ENG:'Is a component of advertising that you spend online for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'Is a component of advertising that you spend online for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  RUS:''},		
 		{id:'Retailer Marketing Advertising Offline Info',  ENG:'Is a component of advertising that you spend through classic media channels such as television and newspaper for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'Is a component of advertising that you spend through classic media channels such as television and newspaper for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  RUS:''},		
 

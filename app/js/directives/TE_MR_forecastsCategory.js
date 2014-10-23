@@ -49,7 +49,7 @@ define(['directives', 'services'], function(directives){
 						'name':Label.getContent('HealthBeauties')+'/'+Label.getContent('Urban'),'color':PlayerColor.getColors()[0],
 						'data':[[1,data.minTotalVolume[1].periodInfo[0].value[0],data.maxTotalVolume[1].periodInfo[0].value[0]],[2,data.minTotalVolume[1].periodInfo[1].value[0],data.maxTotalVolume[1].periodInfo[1].value[0]],[3,data.minTotalVolume[1].periodInfo[2].value[0],data.maxTotalVolume[1].periodInfo[2].value[0]],[4,data.minTotalVolume[1].periodInfo[3].value[0],data.maxTotalVolume[1].periodInfo[3].value[0]],[5,data.minTotalVolume[1].periodInfo[4].value[0],data.maxTotalVolume[1].periodInfo[4].value[0]]]
 					}];
-					scope.segmentYTitle=Label.getContent('Sales Volume')+'(units mln)';
+					scope.segmentYTitle=Label.getContent('Sales Volume')+'('+Label.getContent("units mln")+')';
 					scope.segmentXTitle=Label.getContent('Period');
                     var curP = scope.selectedPeriod;
                     scope.categories = ['',curP-2, curP-1, curP, curP+1, curP+2];                    

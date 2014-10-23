@@ -40,6 +40,7 @@ define(['directives', 'services'], function(directives) {
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
+                            console.log(base);
                         }).then(function() {
                             return showView();
                         }),

@@ -295,25 +295,25 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					$scope.supplierModel=data;
 				});
 			}
-			$scope.$on('timerWork', function(event, data) {
-				drawChart(data);
-			});
-			$scope.$on('deadlinePortfolio', function(event, data) {
-				drawChart(data);
-			});
-			$scope.$on('deadlineContractDeal', function(event, data) {
-				drawChart(data);
-			});
-			$scope.$on('deadlineContractFinalized', function(event, data) {
-				drawChart(data);
-			});
-			$scope.$on('deadlineDecisionCommitted', function(event, data) {
-				drawChart(data);
-			});
+			// $scope.$on('timerWork', function(event, data) {
+			// 	drawChart(data);
+			// });
+			// $scope.$on('deadlinePortfolio', function(event, data) {
+			// 	drawChart(data);
+			// });
+			// $scope.$on('deadlineContractDeal', function(event, data) {
+			// 	drawChart(data);
+			// });
+			// $scope.$on('deadlineContractFinalized', function(event, data) {
+			// 	drawChart(data);
+			// });
+			// $scope.$on('deadlineDecisionCommitted', function(event, data) {
+			// 	drawChart(data);
+			// });
 
-			$scope.$on('timerChanged', function(event, data) {
-                $scope.isTimerActived=data.isTimerActived;
-            });
+			// $scope.$on('timerChanged', function(event, data) {
+   //              $scope.isTimerActived=data.isTimerActived;
+   //          });
 
 
 			$scope.selectedPlayer = PlayerInfo.getPlayer();
