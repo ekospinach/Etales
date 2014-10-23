@@ -206,7 +206,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "units mln"
+                                        text: Label.getContent('units mln')
                                     }
                                 },
                                 chart: {
@@ -220,7 +220,7 @@ define(['directives', 'services'], function(directives) {
                                         } else {
                                             index = this.series._i;
                                         }
-                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Volume Sales') + ':' + this.point.y.toFixed(2) + '(units mln)</p>' + '<p>' + scope.change1s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
+                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Volume Sales') + ':' + this.point.y.toFixed(2) + '('+Label.getContent("units mln")+')</p>' + '<p>' + scope.change1s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
                                         return s;
                                     },
                                     shared: false,
@@ -300,7 +300,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "$mln"
+                                        text: Label.getContent('$mln')
                                     }
                                 },
                                 chart: {
@@ -314,7 +314,7 @@ define(['directives', 'services'], function(directives) {
                                         } else {
                                             index = this.series._i;
                                         }
-                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Value Sales') + ':' + this.point.y.toFixed(2) + '($mln)</p>' + '<p>' + scope.change2s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
+                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Value Sales') + ':' + this.point.y.toFixed(2) + '('+Label.getContent('$mln')+')</p>' + '<p>' + scope.change2s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
                                         return s;
                                     },
                                     shared: false,
@@ -393,7 +393,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "units mln"
+                                        text: Label.getContent('units mln')
                                     }
                                 },
                                 chart: {
@@ -407,7 +407,7 @@ define(['directives', 'services'], function(directives) {
                                         } else {
                                             index = this.series._i;
                                         }
-                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Volume Sales') + ':' + this.point.y.toFixed(2) + '(units mln)</p>' + '<p>' + scope.change3s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
+                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Volume Sales') + ':' + this.point.y.toFixed(2) + '('+Label.getContent("units mln")+')</p>' + '<p>' + scope.change3s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
                                         return s;
                                     },
                                     shared: false,
@@ -485,7 +485,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "$mln"
+                                        text: Label.getContent('$mln')
                                     }
                                 },
                                 chart: {
@@ -499,7 +499,7 @@ define(['directives', 'services'], function(directives) {
                                         } else {
                                             index = this.series._i;
                                         }
-                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Value Sales') + ':' + this.point.y.toFixed(2) + '($mln)</p>' + '<p>' + scope.change4s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
+                                        var s = '<p><b>' + this.series.name + '</b></p>' + '<p>' + Label.getContent('Value Sales') + ':' + this.point.y.toFixed(2) + '('+Label.getContent('$mln')+')</p>' + '<p>' + scope.change4s[index][this.point.x].toFixed(2) + ' ' + Label.getContent('over previous period') + '</p>';
                                         return s;
                                     },
                                     shared: false,

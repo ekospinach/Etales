@@ -222,14 +222,15 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			});
 			
 			$scope.$on('producerContractDeal', function(event, data) {
+				console.log(data);
 				loadBackgroundDataAndCalculateDecisionInfo();
-				notify('Time is up, Contract Deal. Supplier ' + data.roleID + ' Period ' + data.period + '.');
+				notify('Time is up, Contract Deal. Supplier ' + data.producerID + ' Period ' + data.period + '.');
 
 			});
 
 			$scope.$on('producerContractFinalized', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();
-				notify('Time is up, ContractFinalized. Supplier ' + data.roleID + ' Period ' + data.period + '.');
+				notify('Time is up, ContractFinalized. Supplier ' + data.producerID + ' Period ' + data.period + '.');
 
 			});
 
@@ -242,7 +243,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				for(var i=0;i<data.result.length;i++){
 					if(data.result[i].producerID==PlayerInfo.getPlayer()){
 						loadBackgroundDataAndCalculateDecisionInfo();
-						notify('Commiting Portfolio Decision By Supplier ' + data.roleID + ' Period ' + data.period + '.');
+						notify('Commiting Portfolio Decision By Supplier ' + data.result[i].producerID + ' Period ' + data.period + '.');
 						break;
 					}
 				}

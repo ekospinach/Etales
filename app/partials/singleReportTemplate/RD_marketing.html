@@ -8,19 +8,19 @@
         <thead>
             <tr>
                 <th colspan="2">
-                    <p>{{Label.getContent('Advertising')}}($mln)</p>
+                    <p>{{Label.getContent('Advertising')}}({{Label.getContent('$mln')}})</p>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th colspan="2">
-                    <p class="padding-20">{{Label.getContent('Online')}}</p>
+                    <p class="padding-20" Popover-animation="true" popover="{{Label.getContent('Retailer Marketing Advertising Online Info')}}" popover-title="{{Label.getContent('Online Adv')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Online Adv')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </th>
             </tr>
             <tr>
                 <td>
-                    <p class="text-primary padding-40" Popover-animation="true" popover="{{Label.getContent('Price Appeal Info')}}" popover-title="{{Label.getContent('Price Appeal')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price Appeal')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="text-primary padding-40">{{Label.getContent('Price Appeal')}}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="pageBase.onlineAdvertising[0]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience Info')}}" popover-title="{{Label.getContent('Convenience')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="padding-40 text-primary">{{Label.getContent('Convenience')}}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="pageBase.onlineAdvertising[1]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
@@ -43,12 +43,13 @@
 
             <tr>
                 <th colspan="2">
-                    <p class="padding-20">{{Label.getContent('Offline')}}</p>
+                    <p class="padding-20" Popover-animation="true" popover="{{Label.getContent('Retailer Marketing Advertising Offline Info')}}" popover-title="{{Label.getContent('Offline Adv')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Offline Adv')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+
                 </th>
             </tr>
             <tr>
                 <td>
-                    <p class="text-primary padding-40" Popover-animation="true" popover="{{Label.getContent('Price Appeal Info')}}" popover-title="{{Label.getContent('Price Appeal')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price Appeal')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="text-primary padding-40">{{Label.getContent('Price Appeal')}}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="pageBase.tradtionalAdvertising[0]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">
@@ -59,7 +60,7 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience Info')}}" popover-title="{{Label.getContent('Convenience')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                    <p class="padding-40 text-primary">{{Label.getContent('Convenience')}}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="pageBase.tradtionalAdvertising[1]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">

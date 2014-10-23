@@ -85,18 +85,18 @@ define(['app'], function(app) {
 		$scope.$on('timerWork', function(event, data) {
 			$scope.clock=data;
 		});
-		$scope.$on('deadlinePortfolio', function(event, data) {
-			$scope.clock=data;
-		});
-		$scope.$on('deadlineContractDeal', function(event, data) {
-			$scope.clock=data;
-		});
-		$scope.$on('deadlineContractFinalized', function(event, data) {
-			$scope.clock=data;
-		});
-		$scope.$on('deadlineDecisionCommitted', function(event, data) {
-			$scope.clock=data;
-		});	
+		// $scope.$on('deadlinePortfolio', function(event, data) {
+		// 	$scope.clock=data;
+		// });
+		// $scope.$on('deadlineContractDeal', function(event, data) {
+		// 	$scope.clock=data;
+		// });
+		// $scope.$on('deadlineContractFinalized', function(event, data) {
+		// 	$scope.clock=data;
+		// });
+		// $scope.$on('deadlineDecisionCommitted', function(event, data) {
+		// 	$scope.clock=data;
+		// });	
 
 		//Register socketIO listeners in NavCtrl which will only be activated once in application
 		ProducerDecisionBase.startListenChangeFromServer(); 

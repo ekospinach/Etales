@@ -116,7 +116,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "units mln"
+                                        text: Label.getContent('units mln')
                                     }
                                 },
                                 chart: {
@@ -169,7 +169,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "units mln"
+                                        text: Label.getContent('units mln')
                                     }
                                 },
                                 chart: {
@@ -222,7 +222,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "units mln"
+                                        text: Label.getContent('units mln')
                                     }
                                 },
                                 chart: {
@@ -275,7 +275,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "units mln"
+                                        text: Label.getContent('units mln')
                                     }
                                 },
                                 chart: {

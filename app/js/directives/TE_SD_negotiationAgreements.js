@@ -503,7 +503,8 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var initializePage = function() {
-                        //if Portfolio deicison isReady                            
+                        //if Portfolio deicison isReady       
+                        console.log('message');                     
                         if(scope.isPortfolioDecisionCommitted){
                             scope.isPageLoading = true;
                             scope.isResultShown = false;

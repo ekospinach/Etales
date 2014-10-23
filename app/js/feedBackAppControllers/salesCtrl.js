@@ -95,7 +95,7 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units',
+                        text: 'units mln',
                         style: {
                             'font-size':'16px'
                         }
@@ -114,7 +114,7 @@ var salesCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">units mln:'+this.point.y.toFixed(2)+'</p>';
                         return s;
                     },
                     shared: false,
@@ -141,7 +141,7 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units',
+                        text: 'units mln',
                         style: {
                             'font-size':'16px'
                         }
@@ -159,7 +159,7 @@ var salesCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">units mln:'+this.point.y.toFixed(2)+'</p>';
                         return s;
                     },
                     shared: false,
@@ -277,7 +277,7 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units',
+                        text: 'units mln',
                         style: {
                             'font-size':'16px'
                         }
@@ -295,7 +295,7 @@ var salesCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">units mln:'+this.point.y.toFixed(2)+'</p>';
                         return s;
                     },
                     shared: false,
@@ -322,7 +322,7 @@ var salesCtrl=function($scope,$http){
                 },
                 yAxis: {
                     title: {
-                        text: 'mln units',
+                        text: 'units mln',
                         style: {
                             'font-size':'16px'
                         }
@@ -340,7 +340,7 @@ var salesCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">units mln:'+this.point.y.toFixed(2)+'</p>';
                         return s;
                     },
                     shared: false,
