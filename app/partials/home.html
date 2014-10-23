@@ -745,4 +745,568 @@
     </div>
 </div>
 <div class="container bs-docs-container" ng-show='Label.getCurrentLanguage()=="CHN"'>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="bs-docs-section">
+                <h2 class="text-center">欢迎信</h2>
+                <p class="lead">欢迎来到“eTales零售风暴”商战模拟世界！eTales是迄今为止全球唯一从纵横双向反映电子商务、实体零售与生产商三者之间互动竞争的商战模拟，也是培养提升互联网思维的最佳实践平台</p>
+                <p class="lead">在模拟中，竞争激烈、变幻莫测的市场环境正受到现代传播渠道的进化影响：社交媒体赋予消费者更强大的力量，品牌社群的浮现向渠道提出了更大的挑战。众多因素不仅导致渠道迁移，也对生产商、零售商的经营模式、产品组合、市场营销和利润分配产生了巨大的影响。而你，也迎来了崭新的职业机会！</p>
+
+                <h3>你的任务和角色</h3>
+                <p class="lead">你和小组内其他成员刚刚被一家大型的生产/零售公司录用，接替刚被解雇的前任管理团队，管理公司业务。</p>
+                <p class="lead">要击败同行业中的竞争者，唯有不断寻找竞争优势。管理员会在模拟开始前宣布获胜评判标准，你和其他管理团队成员将通过制定、实施相应的战略和战术，征服竞争对手，在互联网时代傲视群雄！</p>
+
+                <h3>模拟架构</h3>
+                <img src="./img/cn_manual_1.png">
+                <p class="lead">在模拟中，学员将被分为五组，作为五家公司的高管团队。其中有三家生产商和两家零售商（现代实体零售渠道）。它们将在两个截然不同的市场上管理两种品类商品的生产与销售工作。此外，模拟中还存在两组虚拟玩家，它们是一家生产商（可生产自有品牌）和一家传统零售商（经营夫妻店）。生产商可以直接通过网上商城或者通过零售商间接销售产品。</p>
+                <img src="./img/cn_manual_2.png">
+                <p class="lead">在模拟的初始阶段，所有小组都可以看到0阶段的财务信息以及前3个阶段的各种市场信息。学员需要在数据分析的基础上制定下一阶段的决策。模拟中的一个阶段相当于现实中的6个月（半年）。</p>
+
+                <h2 class="page-header">一、商业环境</h2>
+                <h3>1.1. 市场环境</h3>
+                <p class="lead">eTales世界采用“元”为流通货币，每年的通货膨胀率保持在8.5%左右。</p>
+                <p class="lead">这是一个经济高速增长的世界，平均每年的增长幅度约9%。消费者对价格非常敏感，如果价格上涨幅度大大超过通胀率，销量可能停滞甚至下降。消费者的成熟速度很快，在他们的推动下，生产商必须不断改进产品、提高效率。</p>
+                <h3>1.2. 地理/市场</h3>
+                <p class="lead">模拟中的市场可按地理位置划分为农村市场和城市市场，以下是两个市场的参数：</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><p class="lead">模拟初始阶段</p></th>
+                            <th><p class="lead text-right">城市市场</p></th>
+                            <th><p class="lead text-right">农村市场</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p class="lead">家庭户数</p></th>
+                            <td><p class="lead text-right">1600万</p></td>
+                            <td><p class="lead text-right">3800万</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead">品类渗透率（电子配件和美容保健两个品类）</p></th>
+                            <td><p class="lead text-right">100%</p></td>
+                            <td><p class="lead text-right">70%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead">互联网普及率</p></th>
+                            <td><p class="lead text-right">75%</p></td>
+                            <td><p class="lead text-right">30%</p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><p class="lead">市场构成：</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-right">现代零售连锁占整个市场的百分比</p></th>
+                            <td><p class="lead text-right">60%</p></td>
+                            <td><p class="lead text-right">35%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-right">传统零售占整个市场的百分比</p></th>
+                            <td><p class="lead text-right">30%</p></td>
+                            <td><p class="lead text-right">60%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-right">网络零售占整个市场的百分比</p></th>
+                            <td><p class="lead text-right">10%</p></td>
+                            <td><p class="lead text-right">5%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead">零售商1与零售商2拥有相同的门店数量</p></th>
+                            <td><p class="lead text-right">30</p></td>
+                            <td><p class="lead text-right">30</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="lead">城市市场的发展领先于农村市场且较为稳定；农村市场则更具活力，有朝一日它的发展或许会赶上城市市场。这两个市场之间还存在着相互关联：</p>
+                <ul>
+                    <li>
+                        <p class="lead">农村市场的品牌知名度/消费者的品牌偏好受该品牌在城市中的市场份额影响。</p>
+                    </li>
+                    <li>
+                        <p class="lead">农村市场消费者对门店的感知受城市市场消费者对门店感知的影响。</p>
+                    </li>
+                </ul>
+                <h3>1.3. 两个品类</h3>
+                <p class="lead">每家公司经营两个品类，分别是电子配件（如耳机、电池等）和美容保健产品。其中生产商负责产品的研发、设计、生产、营销，并通过零售商或网上商城销售产品。</p>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><p class="lead text-center">对比项</p></th>
+                            <th><p class="lead text-center">电子配件品类</p></th>
+                            <th><p class="lead text-center">美容保健品类</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p class="lead text-center">定义</p></td>
+                            <td><p class="lead text-center">电子配件</p></td>
+                            <td><p class="lead text-center">个人护理产品</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">起始阶段家庭购买频率</p></td>
+                            <td><p class="lead text-center">3次/月</p></td>
+                            <td><p class="lead text-center">1.5次/月</p></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"><p class="lead text-center">感知维度</p></td>
+                            <td><p class="lead text-center">- 使用便利性</p></td>
+                            <td><p class="lead text-center">- 效果</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 质量</p></td>
+                            <td><p class="lead text-center">- 亲柔度</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 价格</p></td>
+                            <td><p class="lead text-center">- 价格</p></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4"><p class="lead text-center">产品规格</p></td>
+                            <td><p class="lead text-center">- 设计</p></td>
+                            <td><p class="lead text-center">- 活力因子</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 技术</p></td>
+                            <td><p class="lead text-center">- 光滑因子</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 原材料质量</p></td>
+                            <td><p class="lead text-center">- 技术</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 包装</p></td>
+                            <td><p class="lead text-center">- 包装</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>1.4. 消费者</h3>
+                <p class="lead">消费者从2个维度感知零售商的门店：</p>
+                <p class="lead padding-40">a) 便利性</p>
+                <p class="lead padding-40">b) 价格吸引力</p>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><p class="lead text-center"></p></th>
+                            <th><p class="lead text-center">电子配件品类</p></th>
+                            <th><p class="lead text-center">美容保健品类</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="4"><p class="lead text-center">消费者细分市场</p></td>
+                            <td><p class="lead text-center">- 狂热型</p></td>
+                            <td><p class="lead text-center">- 焦躁型（希望立刻看到效果）</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 追求时尚/形象型</p></td>
+                            <td><p class="lead text-center">- 注重健康型</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 价值型</p></td>
+                            <td><p class="lead text-center">- 价值型</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead text-center">- 价格敏感型</p></td>
+                            <td><p class="lead text-center">- 价格敏感型</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="lead">&nbsp;</p>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><p class="lead">消费者细分市场 (两个品类)</p></th>
+                            <th><p class="lead">购物偏重点</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p class="lead">价格敏感型</p></td>
+                            <td><p class="lead">价格</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead">价值型</p></td>
+                            <td><p class="lead">价格和产品的权衡</p></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="lead">狂热型消费者（电子配件品类）</p>
+                                <p class="lead">焦躁型消费者（美容保健品类）</p>
+                            </td>
+                            <td><p class="lead">主要受产品组合影响</p></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="lead">追求时尚型消费者（电子配件品类）</p>
+                                <p class="lead">注重健康型消费者（美容保健品类）</p>
+                            </td>
+                            <td><p class="lead">便利性和产品组合</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>1.5. 购物者</h3>
+                <p class="lead">从购买渠道的角度可以将购物者划分为3类：</p>
+                <p class="lead padding-40">a) 仅网上购买</p>
+                <p class="lead padding-40">b) 仅实体店购买</p>
+                <p class="lead padding-40">c) 两者兼有</p>
+
+                <h3>1.6.竞争者<h3>
+                <p class="lead">3家生产商（生产商1、生产商2和生产商3）和2家零售商（零售商1和零售商2）同时在城市与农村两个市场上竞争。生产商可以直接通过网上商城或通过零售商销售产品。零售商只能通过自己的门店销自有品牌及厂商的产品。</p>
+                <p class="lead">虚拟生产商（生产商4）由电脑自动接管，主要起两个作用：</p>
+                <ul>
+                    <li>
+                        <p class="lead">为零售商1和零售商2生产自有品牌产品</p>
+                    </li>
+                    <li>
+                        <p class="lead">如果生产商1，2，3缺乏创新，无法满足消费者需求，生产商4将推出新产品，并通过网上商城进行分销。</p>
+                    </li>
+                </ul>
+                <p class="lead">零售商3是一家传统的实体店零售商，即我们所说的夫妻店。</p>
+                <img src="./img/cn_manual_3.png">
+
+                <h2 class="page-header">二、生产商决策</h2>
+                <h3>生产商决策主要包括七类：</h3>
+                <p class="lead padding-40">1. 产品组合管理</p>
+                <p class="lead padding-40">2. 谈判协议</p>
+                <p class="lead padding-40">3. 产量</p>
+                <p class="lead padding-40">4. 营销决策</p>
+                <p class="lead padding-40">5. 网店管理</p>
+                <p class="lead padding-40">6. 资产投资</p>
+                <p class="lead padding-40">7. 订购市场报告</p>
+
+                <h3>决策界面:</h3>
+                <img src="./img/cn_manual_4.png">
+
+                <h3>生产商决策</h3>
+                <img src="./img/cn_manual_5.png">
+                <ul>
+                    <li>
+                        <p class="lead">模拟开始阶段，每家生产商都拥有两个品类，每个品类包含3个品牌，两个品类共计6个品牌（每个品牌下有1-3个不同的单品，共计8个单品）。在每个品类下，生产商最多可以同时经营5个品牌，请注意：每个品牌最多包含3个单品。</p>
+                    </li>
+                    <li>
+                        <p class="lead">品牌命名：首字母代表产品的所属品类，首字母为E代表电子配件，H代表美容保健；数字代表生产商编号；字母后缀代表品牌下的单品。例如，HOLAY1-A和HOLAY1-B，H表示该产品的品类属于美容保健，品牌名称为OLAY，从生产商1生产，它们是HOLAY1旗下的2个单品。</p>
+                    </li>
+                    <li>
+                        <p class="lead">如品牌名以“5”和“6”结尾，则表示为零售商1和零售商2的自有品牌。</p>
+                    </li>
+                    <li>
+                        <p class="lead">你必须做出的产品组合决策包括品牌名、每个品牌旗下的单品及产品要素（如包装规格）等。包装规格共有三种选择：经济包、标准包和豪华包，它与包装质量相关。请注意：包装规格会同时影响产品的品牌感知和成本。</p>
+                    </li>
+                    <li>
+                        <p class="lead">你可以选择：</p>
+                        <p class="lead padding-40">➢ 更改现有的单品规格</p>
+                        <p class="lead padding-40">- 可以对技术、原料、设计等进行调整。请注意，现有产品的包装规格不能更改。</p>
+                        <p class="lead padding-40">➢ 在现有品牌下推出新单品</p>
+                        <p class="lead padding-40">- 如果要在现有品牌下添加新单品，可以点击品牌名的对话框，输入单品名称和规格。</p>
+                        <p class="lead padding-40">➢ 推出新品牌</p>
+                        <p class="lead padding-40">- 如果要推出一个新品牌，请点击“品牌”按钮，输入品牌名和规格。</p>
+                        <p class="lead padding-40">➢ 停产某个单品或品牌</p>
+                        <p class="lead padding-40">- 如果决定停产某个单品，可以直接点击单品名称。对于停产产品，需要从零售商等渠道处回收所有的库存，</p>
+                        <p class="lead padding-40">  生产商工厂中的库存也将一并退出市场。生产商将根据零售商和经销商的采购价，分别按75%和40%的比例对其进行补偿。</p>
+                        <p class="lead padding-40">➢ 设定向实体零售商的供货价。</p>
+                    </li>
+                </ul>
+                
+
+                <h3>2.2. 谈判协议</h3>
+                <ul>
+                    <li>
+                        <p class="lead">生产商需要同两家零售商就以下3项条款进行磋商：</p>
+                        <p class="lead padding-40">a) 折扣率及最低起订量</p>
+                        <p class="lead padding-40">b) 额外零售终端返利</p>
+                        <p class="lead padding-40">c) 账期（按天计）和其它补偿</p>
+                        <p class="padding-40"><img src="./img/cn_manual_6.png"></p>
+                    </li>
+                    <li>
+                        <p class="lead">模拟中双方需要对各品类下的单品进行协商并签署协议。双方可以看到上阶段的决策数据，以便在此基础上进行修改。当生产商和零售商就单品的各条款达成一致意见时，可以点击“同意”按钮。如果双方都已点击确认，则该单品将被锁定。当双方在所有单品上达成一致意见后，可以点击界面下方的“确认合同”按钮。双方点击后，合同将正式生效，任何一方无法再对其做出任何更改。</p>
+                    </li>
+                    <li>
+                        <p class="lead">谈判截止时，如果双方还未就某个单品达成一致意见，那么系统会自动显示上阶段的条款内容，双方可以选择继续维持上阶段的协议，或直接取消该单品的谈判协议。</p>
+                    </li>
+                </ul>
+                <h3>2.3. 产量决策</h3>
+                <p class="lead">在进行本阶段决策时，学员能够看到上一阶段的决策数据，并可在此基础上进行修改。</p>
+                <img src="./img/cn_manual_7.png">
+                <h3>2.4. 营销决策</h3>
+                <p class="lead">营销决策主要包括两方面支出：</p>
+                <p class="lead padding-20">a) 广告费用</p>
+                <p class="lead padding-40">- 线上（覆盖全国）</p>
+                <p class="lead padding-40">- 线下（按城市和农村市场划分）</p>
+                <p class="lead padding-20">b) 传统渠道支持</p>
+                <p class="lead padding-40">- 农村</p>
+                <p class="lead padding-40">- 城市</p>
+                <img src="./img/cn_manual_8.png">
+
+                <h3>2.5. 网店管理决策</h3>
+                <p class="lead">生产商在管理网店业务时可以制订以下决策：</p>
+                <p class="lead padding-40">a) 可见度</p>
+                <p class="lead padding-40">b) 网店规划销量</p>
+                <p class="lead padding-40">c) 线上零售价格</p>
+                <p class="lead padding-40">d) 促销</p>
+                <img src="./img/cn_manual_9.png">
+
+                <h3>2.6. 资产投资</h3>
+                <p class="lead">资产投资属于长期投资，不会占用预算。但是请注意，长期投资会增加你的固定资产，从而导致经营成本的上升。具体的决策包括：</p>
+                <p class="lead padding-40">a) 产能</p>
+                <p class="lead padding-40">b) 技术</p>
+                <p class="lead padding-40">c) 灵活性</p>
+                <p class="lead padding-40">d) 设计</p>
+                <img src="./img/cn_manual_10.png">
+
+                <h3>2.7.订购市场报告</h3>
+                <p class="lead">生产商可以在市场上购买获取市场研究报告，目前共有12个报告，如下图所示：</p>
+                <p class="lead">每阶段都可以购买调研报告，在下阶段可以进行参考研究</p>
+                <img src="./img/cn_manual_11.png">
+
+                <h2 class="page-header">三、零售商决策</h2>
+                <p class="lead">零售商决策主要包括五类：</p>
+                <p class="lead padding-20">1. 谈判协议</p>
+                <p class="lead padding-20">2. 市场决策</p>
+                <p class="lead padding-20">3. 自有品牌组合管理</p>
+                <p class="lead padding-20">4. 店铺管理</p>
+                <p class="lead padding-20">5. 订购市场报告</p>
+
+                <h3>3.1. 谈判协议</h3>
+                <img src="./img/cn_manual_12.png">
+                <p class="lead">零售商需要分别同模拟中三家生产商就以下条款进行谈判：</p>
+                <p class="lead padding-40">a) 折扣率及最低起订量</p>
+                <p class="lead padding-40">b) 额外零售终端返利</p>
+                <p class="lead padding-40">c) 账期（按天计）和其他补偿</p>
+
+                <h3>3.2. 市场决策</h3>
+                <p class="lead">零售商的营销决策主要包括广告开支与设定门店服务水平。其中针对网络广告的决策包括在宣传价格吸引力和便利性方面的支出，而针对本土广告的决策则包括在农村和城市市场的费用。</p>
+                <p class="lead padding-20">a) 网络广告</p>
+                <p class="lead padding-40">I. 价格吸引力</p>
+                <p class="lead padding-40">II. 便利性</p>
+                <p class="lead padding-20">b) 线下广告</p>
+                <p class="lead padding-40">I. 价格吸引力</p>
+                <p class="lead padding-40">II. 便利性</p>
+                <p class="lead padding-20">c) 地区广告划分：</p>
+                <p class="lead padding-40">I. 农村</p>
+                <p class="lead padding-40">II. 城市</p>
+                <img src="./img/cn_manual_13.png">
+
+                <h3>3.3. 自有品牌组合管理</h3>
+                <ul>
+                    <li>
+                        <p class="lead">初始阶段，零售商在每个品类下都拥有一个自有品牌。每个零售商在每个品类下最多可以拥有三个自有品牌。</p>
+                        <p class="lead">自有品牌由生产商 4 生产。生产商 4 可以生产任何商品，除非出现以下两种情况：1.供不应求；2.生产商 4 现有的生产技术达不到产品要求。一般情况下，生产商 4 无法生产比其现有产品更先进的产品。</p>
+                        <p class="lead">以“5”和“6”结尾的单品名分别表示零售商1和零售商2的自有品牌。</p>
+                        <p class="lead">你必须做出的产品组合决策包括品牌名、每个品牌旗下的单品及产品要素（如包装规格）等。包装规格共有三种选择：经济包、标准包和豪华包，它与包装质量相关。请注意：产品规格会同时影响产品的品牌感知和成本。</p>
+                    </li>
+                    <li>
+                        <p class="lead">你可以选择：</p>
+                        <p class="lead padding-40">➢ 更改现有的单品规格</p>
+                        <p class="lead padding-40">- 可以对技术、原料、设计等进行调整。请注意，现有产品的包装规格不能更改。</p>
+                        <p class="lead padding-40">➢ 在现有品牌下推出新单品</p>
+                        <p class="lead padding-40">-如果要在现有品牌下添加新单品，可以点击品牌名的对话框，输入单品名称和规格。</p>
+                        <p class="lead padding-40">➢ 推出新品牌</p>
+                        <p class="lead padding-40">- 如果要推出一个新品牌，请点击“品牌”按钮，输入品牌名和规格。</p>
+                        <p class="lead padding-40">➢ 停产某个单品或品牌</p>
+                        <p class="lead padding-40">- 如果决定停产某个单品，可以直接点击单品名称。</p>
+                    </li>
+                </ul>
+                <img src="./img/cn_manual_14.png">
+
+                <h3>3.4. 店铺管理</h3>
+                <p class="lead">店铺管理的决策主要包括订货量、零售价、货架空间和促销。</p>
+                <img src="./img/cn_manual_15.png">
+                <p class="lead">订货量：指每个单品按市场订货。</p>
+                <p class="lead">货架空间：每个单品最少分配 5%的货架，每个市场上各品类的货架空间加起来为 100%。</p>
+                <p class="lead">零售价：你在门店的实际零售价格。</p>
+                <p class="lead">频率：每一轮代表现实中半年（为 26 周），你需要决定进行促销的周数。</p>
+                <p class="lead">折扣率：以店内零售价为基准，如 20%折扣率是指价格在标签价格基础上下降 20%。</p>
+
+                <h3>3.5. 订购市场报告</h3>
+                <p class="lead">零售商可以在市场上购买获取市场研究报告，目前共有12个报告，如下图所示：</p>
+                <p class="lead">每阶段都可以购买调研报告，在下阶段可以进行参考研究</p>
+                <img src="./img/cn_manual_11.png">
+
+                <h2 class="page-header">四、报告</h2>
+                <p class="lead">模拟中提供三类报告，它们将为您制定决策提供巨大帮助，这三类报告包括：</p>
+                <p class="lead padding-20">a) 综合报告</p>
+                <p class="lead padding-20">b) 公司报告</p>
+                <p class="lead padding-20">c) 市场调研报告</p>
+
+                <h3>4.1. 综合报告：</h3>
+                <p class="lead"><B>➢ 主要业绩</B></p>
+                <p class="lead">报告汇总了生产商和零售商业绩的关键性指标。生产商的销量和销售额指在两家实体零售商的销售情况。</p>
+                <p class="lead"><B>➢ 市场份额（%，按销量或销售额计）</B></p>
+                <p class="lead">按三种不同的细分类型划分（即地区市场、消费者细分市场和购物者细分市场），反映了生产商及零售商在这些细分市场上的份额。</p>
+                <p class="lead"><B>➢ 市场销售（按销量或销售额计）</B></p>
+                <p class="lead">按三种不同的细分类型划分（即地区市场、消费者细分市场和购物者细分市场），反映了生产商及零售商在这些细分市场上的销售业绩。</p>
+                <p class="lead"><B>➢ 细分市场领导者</B></p>
+                <p class="lead">按产品品类、消费者细分市场、购物者细分市场划分，列出市场份额排名前两位的细分市场领导者。</p>
+                <p class="lead"><B>➢ 跨细分市场销量</B></p>
+                <p class="lead">按产品的品类及所在的地区市场划分，反映了购物者细分市场的销量。</p>
+                <p class="lead"><B>➢ 产品组合</B></p>
+                <p class="lead">列出市场上所有单品的技术设计和规格。</p>
+                <p class="lead"><B>➢ 网上商城价格和促销力度</B></p>
+                <p class="lead">显示线上零售净价和促销力度。</p>
+                <h4>报告样本请参考本手册附录。</h4>
+
+                <h3>4.2. 公司报告（生产商）</h3>
+                <p class="lead">➢ <b>财务报告</b></p>
+                <ul>
+                    <li>
+                        <p class="lead"><B>合并利润表（品类、渠道）</B></p>
+                        <p class="lead">电子配件品类报告</p>
+                    </li>
+                    <li>
+                        <p class="lead"><B>实体店业务损益表（品类、品牌）</B></p>
+                        <p class="lead">按产品的不同品类及各品类下的不同品牌划分。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><B>上一轮谈判</B></p>
+                        <p class="lead">报告汇总了生产商和两家零售商在上阶段达成的各项协议条款，以及双方最终是否履约的信息。</p>
+                    </li>
+                </ul>
+                <p class="lead">➢<b> 电子品类报告</b></p>
+                <ul>
+                    <li>
+                        <p class="lead"><b>按消费者细分的市场份额</b></p>
+                        <p class="lead">报告反映电子配件品类下的单品按消费者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>按购物者细分的市场份额</b></p>
+                        <p class="lead">报告反映电子配件品类下的单品按购物者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>库存报告</b></p>
+                        <p class="lead">本报告反映了电子配件品类下各单品的初期库存、生产成本、销量、停产的产品数量和期末库存。</p>
+                    </li>
+                </ul>
+                <p class="lead">➢<b> 美容保健品情况报告</b></p>
+                <ul>
+                    <li>
+                        <p class="lead"><b>按消费者细分的市场份额</b></p>
+                        <p class="lead">本报告反映了美容保健品类下的单品按消费者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>按购物者细分的市场份额</b></p>
+                        <p class="lead">本报告反映了美容保健品类下的单品按购物者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>库存报告</b></p>
+                        <p class="lead">本报告反映了美容保健品类下各单品的初期库存、生产成本、销量、停产的产品数量和期末库存。</p>
+                    </li>
+                </ul>
+                <p class="lead">➢<b> 关键业绩指标</b></p>
+                <p class="lead padding-20">本报告按品类展示生产商的KPI指标。KPI指标包括通路投资和营销投资的效益、产品组合竞争力和渠道的竞争力。</p>
+                <h3>公司报告（零售商）</h3>
+                <p class="lead">➢ <b>财务报告</b></p>
+                <ul>
+                    <li>
+                        <p class="lead"><B>合并利润表</B></p>
+                        <p class="lead">本报告反映了不同品类产品和市场的合并损益情况。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><B>农村损益表</B></p>
+                        <p class="lead">本报告反映了两种品类不同品牌产品在农村市场的损益情况。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><B>城市损益表</B></p>
+                        <p class="lead">本报告反映了两种品类不同品牌产品在城市市场的损益情况。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><B>生产商盈利能力</B></p>
+                        <p class="lead">按产品的品类、地区市场和生产商划分，反映了生产商的盈利变化。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><B>上一轮谈判</B></p>
+                        <p class="lead">报告汇总了生产商和两家零售商在上阶段达成的各项协议条款，以及双方最终是否履约的信息。</p>
+                    </li>
+                </ul>
+
+                <p class="lead">➢<b> 农村市场报告</b></p>
+                <ul>
+                    <li>
+                        <p class="lead"><b>按消费者细分的市场份额</b></p>
+                        <p class="lead">本报告反映了农村市场上各单品按消费者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>按购物者细分的市场份额</b></p>
+                        <p class="lead">本报告反映了农村市场上各单品按购物者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>销量</b></p>
+                        <p class="lead">本报告反映了农村市场上各单品的销量信息，包括期初库存、到货量、销量、停产的产品数量以及期末库存。</p>
+                    </li>
+                </ul>
+                <p class="lead">➢<b> 城市市场报告</b></p>
+                <ul>
+                    <li>
+                        <p class="lead"><b>按消费者细分的市场份额</b></p>
+                        <p class="lead">本报告反映了城市市场上各单品按消费者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>按购物者细分的市场份额</b></p>
+                        <p class="lead">本报告反映了城市市场上各单品按购物者细分的市场份额。</p>
+                    </li>
+                    <li>
+                        <p class="lead"><b>销量</b></p>
+                        <p class="lead">本报告反映了城市市场上各单品的销量信息，包括期初库存、到货量、销量、停产的产品数量以及期末库存。</p>
+                    </li>
+                </ul>
+                <p class="lead">➢<b> 关键业绩指标</b></p>
+                <p class="lead padding-20">本报告按市场展示零售商的KPI指标。KPI包括周转率、销量、获利能力、期末库存等指标。</p>
+
+                <h3>4.3. 市场研究报告：</h3>
+                <p class="lead">以下是供零售商和生产商参考的各种市场研究报告。每阶段，零售商和生产商都必须决定购买哪些报告。</p>
+                <p class="lead">➢<b>知名度</b>：按地区市场划分，反映品牌的知名度。</p>
+                <p class="lead">➢<b>品牌感知度</b>：本报告按产品的品类、所属的地区市场划分，反映对各单品的感知度。</p>
+                <p class="lead">➢</b>零售商感知度</b>：本报告按市场划分，反映对零售商的感知度。</p>
+                <p class="lead">➢<b>按消费者细分市场划分的市场份额</b></p>
+                <p class="lead">本报告反映电子配件和美容保健两种品类下各品牌在各消费者细分市场所占的市场份额（按销量及销售额计）。按产品品类、所属地区划分成 4 份子报告。</p>
+                <p class="lead">➢<b>按消费者细分划分的市场销售</b></p>
+                <p class="lead">本报告反映电子配件和美容保健两种品类下各品牌在消费者细分市场上的销售（按销量及销售额计）。按产品品类、所属地区划分成 4 份子报告。</p>
+                <p class="lead">➢<b>按购物者细分市场划分的市场份额</b></p>
+                <p class="lead">本报告反映电子配件和美容保健两种品类下各品牌在购物者细分市场所占的市场份额（按销量及销售额计）。按产品品类、所属地区划分成 4 份子报告。</p>
+                <p class="lead">➢<b>按购物者细分划分的市场销售</b></p>
+                <p class="lead">本报告反映电子配件和美容保健两种品类下各品牌在购物者细分市场上的销售（按销量及销售额计）。按产品品类、所属地区划分成 4 份子报告。</p>
+                <p class="lead">➢<b>实体店零售价</b></p>
+                <p class="lead">本报告列出了零售商对两种品类下所有单品在实体店的零售价。</p>
+                <p class="lead">➢<b>促销力度</b></p>
+                <p class="lead">本报告反映了零售商对两种品类下所有单品的促销力度。</p>
+                <p class="lead">➢<b>生产商情报</b></p>
+                <p class="lead">本报告反映了生产商用于两种品类产品的费用，包括广告、通路支持、网上商城和资产投资。</p>
+                <p class="lead">➢<b>零售商情报</b></p>
+                <p class="lead">本报告反映了零售商在两个地区市场上的经营策略，包括门店服务水平、货架空间分配。</p>
+                <p class="lead">➢<b>预测</b></p>
+                <p class="lead">本报告对消费者细分市场规模、购物者细分市场规模、按地区市场划分的产品品类数量、网络普及率等进行预测，同时显示过去2个阶段的历史数据，并列出对未来 2 个阶段的预测。</p>
+
+                <h2 class="page-header">五、经营预算和考核指标</h2>
+                <p class="lead">我们将依据以下指标，对各家公司的高管团队经营表现进行考核：</p>
+                <p class="lead">➢ <b>主要的关键绩效指标:</b></p>
+                <p class="lead padding-40">- 增加的市场份额（IMS）</p>
+                <p class="lead padding-40">- 经营预算回报率（ROOB）</p>
+                <p class="lead">➢ <b>次级衡量指标:</b></p>
+                <p class="lead padding-40">– 生产商:</p>
+                <ul>
+                    <li>
+                        <p class="lead">产品组合优势 (PS)</p>
+                    </li>
+                    <li>
+                        <p class="lead">渠道优势 (CS)</p>
+                    </li>
+                </ul>
+                <p class="lead padding-40">– 零售商:</p>
+                <ul>
+                    <li>
+                        <p class="lead">相对盈利能力（每平方米店铺面积的盈利 RP）</p>
+                    </li>
+                    <li>
+                        <p class="lead">顾客量（“口袋份额” SOP：指一家企业的产品或服务在一个顾客同类消费中所占的比重。）</p>
+                    </li>
+                </ul>
+                <p class="lead">➢ <b>最终得分:</b></p>
+                <p class="lead padding-40">生产商最终得分= 0.35 IMS + 0.35 ROOB + 0.15 PS + 0.15 CS</p>
+                <p class="lead padding-40">零售商最终得分= 0.35 IMS + 0.35 ROOB + 0.15 RP + 0.15 SOP(其中，IMS等是相关衡量指标的标准化值)</p>
+            </div>
+        </div>
+    </div>
 </div>
