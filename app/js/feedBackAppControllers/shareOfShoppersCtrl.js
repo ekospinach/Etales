@@ -19,7 +19,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                                         {name:'Suppler-1',data:new Array(),color:'#3257A7'},
                                         {name:'Suppler-2',data:new Array(),color:'#B11E22'},
                                         {name:'Suppler-3',data:new Array(),color:'#F6B920'},
-                                        {name:'Suppler-4',data:new Array(),color:'#dddddd'});
+                                        {name:'Suppler-4',data:new Array(),color:'#666666'});
 
         return {
             searchKeys : {shopperKind : searchKeys.shopperKind, marketID : searchKeys.marketID, categoryID : searchKeys.categoryID},
