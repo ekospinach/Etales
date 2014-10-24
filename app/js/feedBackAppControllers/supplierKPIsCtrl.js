@@ -45,14 +45,14 @@ var supplierKPIsCtrl=function($scope,$http){
             {name:'Supplier-3',data:new Array(),color:'#F6B920', ownerID : 3},
             //{name:'Supplier-4',data:new Array(),color:'#329444', ownerID : 4},
             {name:'Retailer-1',data:new Array(),color:'#8B288B', ownerID : 5},
-            {name:'Retailer-2',data:new Array(),color:'#F05422', ownerID : 6});
+            {name:'Retailer-2',data:new Array(),color:'#329444', ownerID : 6});
 
         var portfolioStrengthHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7', ownerID : 1},
             {name:'Supplier-2',data:new Array(),color:'#B11E22', ownerID : 2},
             {name:'Supplier-3',data:new Array(),color:'#F6B920', ownerID : 3},
             //{name:'Supplier-4',data:new Array(),color:'#329444', ownerID : 4},
             {name:'Retailer-1',data:new Array(),color:'#8B288B', ownerID : 5},
-            {name:'Retailer-2',data:new Array(),color:'#F05422', ownerID : 6});
+            {name:'Retailer-2',data:new Array(),color:'#329444', ownerID : 6});
 
         for(var j=0;j<currentCategories.length;j++){
             for(var i=0;i<$scope.feedBack.f_TradeSpendingEffectiveness.length;i++){
