@@ -833,7 +833,8 @@ exports.updateRetailerDecision = function(io) {
                                 retailerID: queryCondition.retailerID,
                                 seminar: queryCondition.seminar,
                                 period: queryCondition.period,
-                                categoryID: queryCondition.categoryID,
+                                //there is bug here...
+                                categoryID: 0,
                                 marketID: queryCondition.marketID,
                                 page:req.body.page
                             });
