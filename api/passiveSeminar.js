@@ -54,8 +54,7 @@ exports.passiveSeminar = function(io){
 		        return require('./models/seminar.js').passiveSeminar(options);
 			}).then(function(result){
 		        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
-
-			//if callback true, import P4 and R3	
+			//if callback true, import P4 and R3	    
 		        options.producerID = 4;
 		        options.cgiPath = conf.cgi.path_producerDecision;
 		        return require('./models/producerDecision.js').addProducerDecisions(options);        
