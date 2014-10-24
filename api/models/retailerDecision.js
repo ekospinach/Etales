@@ -742,9 +742,9 @@ exports.updateRetailerDecision = function(io) {
                         var count = 0,
                             result = 0;
                         for (var i = 0; i < doc.retMarketDecision.length; i++) {
-                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.value.categoryID != undefined) {
+                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.categoryID != undefined) {
                                 for (var j = 0; j < doc.retMarketDecision[i].retMarketAssortmentDecision.length; j++) {
-                                    if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID == queryCondition.value.categoryID) {
+                                    if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID == queryCondition.categoryID) {
                                         for (var k = 0; k < doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length; k++) {
                                             if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName != "" && doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName != "") {
                                                 count++;
@@ -824,7 +824,7 @@ exports.updateRetailerDecision = function(io) {
                                 retailerID: queryCondition.retailerID,
                                 seminar: queryCondition.seminar,
                                 period: queryCondition.period,
-                                categoryID: queryCondition.value.categoryID,
+                                categoryID: queryCondition.categoryID,
                                 marketID: queryCondition.marketID,
                                 page:req.body.page
                             });
