@@ -824,7 +824,7 @@ exports.updateRetailerDecision = function(io) {
                                 retailerID: queryCondition.retailerID,
                                 seminar: queryCondition.seminar,
                                 period: queryCondition.period,
-                                categoryID: queryCondition.value.categoryID,
+                                categoryID: queryCondition.categoryID,
                                 marketID: queryCondition.marketID,
                                 page:req.body.page
                             });
