@@ -793,6 +793,9 @@ exports.updateSeminar = function(io) {
 					case 'updateCurrentPeriod':
 						doc.currentPeriod = queryCondition.value;
 						break;
+					case 'updateSimulationSpan':
+						doc.simulationSpan = queryCondition.value;
+						break;
 					case 'switchTimer':
 						doc.isTimerActived = queryCondition.value;
 						break;
@@ -817,7 +820,7 @@ exports.updateSeminar = function(io) {
 						if (err) {
 							next(new Error(err));
 						}
-						if (queryCondition.behaviour == "updateCurrentPeriod") {
+						if (queryCondition.behaviour == "updateCurrentPeriod" || queryCondition.behaviour == "updateSimulationSpan") {
 							io.sockets.emit('socketIO:seminarPeriodChanged', {
 								currentPeriod: doc.currentPeriod,
 								seminarCode: doc.seminarCode,

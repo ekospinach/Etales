@@ -422,7 +422,6 @@ define(['angular',
 						//Only deal with current seminar push notifications					
 						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
 							//Depends on different userRole, broadcast different info
-							console.log(RoleInfo.getRole());
 							switch(parseInt(RoleInfo.getRole())){
 								case userRoles.producer:
 									if((data.userType == 'P') && (data.producerID == PlayerInfo.getPlayer())){										
@@ -447,8 +446,7 @@ define(['angular',
 					
 					socket.on('socketIO:seminarPeriodChanged', function(data){	
 						//Only deal with current seminar push notifications					
-						console.log('message');
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
+						if(data.seminarCode == SeminarInfo.getSelectedSeminar().seminarCode){
 							PeriodInfo.setCurrentPeriod(data.period);	
 							$rootScope.$broadcast('SeminarPeriodChanged',data);						
 						}							

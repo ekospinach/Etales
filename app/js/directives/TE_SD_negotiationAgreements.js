@@ -503,6 +503,7 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var initializePage = function() {
+                        console.log('message');
                         //if Portfolio deicison isReady                         
                         if(scope.isPortfolioDecisionCommitted){
                             scope.isPageLoading = true;
@@ -652,10 +653,12 @@ define(['directives', 'services'], function(directives) {
                     });
 
                     scope.$on('ContractDeal',function(event,data){
-                        getResult(1);
-                        getResult(2);
+                        initializePage();
                         notify('Time is up, Contract Deal,Period ' + data.period + '.');
                     });
+                    scope.$on('producerContractDeal',function(event,data){
+                        initializePage();
+                    })
 
                     scope.$on('committedPortfolio',function(event,data){
                         for(var i=0;i<data.result.length;i++){

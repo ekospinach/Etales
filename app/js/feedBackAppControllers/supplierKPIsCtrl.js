@@ -399,7 +399,7 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Average Brand Awareness:'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Strength Index:'+this.point.y.toFixed(2)+'</p>';
                         return s;
                     },
                     shared: false,
@@ -444,7 +444,7 @@ var supplierKPIsCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Average Brand Awareness:'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Strength Index:'+this.point.y.toFixed(2)+'</p>';
                         return s;
                     },
                     shared: false,

@@ -151,7 +151,7 @@ define(['directives', 'services'], function(directives) {
 								},
 								tooltip: {
 									formatter: function() {
-										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>'+Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
 										return s;
 									},
 									shared: false,
@@ -187,7 +187,7 @@ define(['directives', 'services'], function(directives) {
 								},
 								tooltip: {
 									formatter: function() {
-										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
+										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>' +Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
 										return s;
 									},
 									shared: false,

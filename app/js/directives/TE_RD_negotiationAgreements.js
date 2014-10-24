@@ -648,6 +648,10 @@ define(['directives', 'services'], function(directives) {
                         }
                         //notify('Time is up, Contract Deal,Period ' + data.period + '.');
                     })
+                    scope.$on('producerContractDeal',function(event,data){
+                        notify('Time is up, Contract Deal,Period ' + data.period + '.');
+                        getResult(data.producerID);
+                    })
 
 
                     scope.$on('committedPortfolio',function(event,data){

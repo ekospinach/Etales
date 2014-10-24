@@ -222,10 +222,8 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			});
 			
 			$scope.$on('producerContractDeal', function(event, data) {
-				console.log(data);
 				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Time is up, Contract Deal. Supplier ' + data.producerID + ' Period ' + data.period + '.');
-
 			});
 
 			$scope.$on('producerContractFinalized', function(event, data) {

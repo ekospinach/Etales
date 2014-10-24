@@ -416,6 +416,8 @@ var getLabelBase = function(){
 		{id:'SL_PREMIUM',  ENG:'PREMIUM',  CHN:'优质',  RUS:''},
 		{id:'Check Error',  ENG:"Check fail. This decision has been locked",  CHN:'验证失败。决策已经被锁定。',  RUS:''},
 		{id:'Warning! Commit confirmation',  ENG:'Warning! Commit confirmation',  CHN:'注意！提交确认',  RUS:''},
+		{id:'Error! set your BM List Price please',  ENG:'Error! set your BM List Price please',  CHN:'错误！请修改针对实体零售商的出厂报价',  RUS:''},
+		
 		{id:'Producer portfolio confirm info',  ENG:'You and your team member will not be able to modify portfolio decision this period after submitting the decision.',  CHN:'选择提交之后，你和你所在小组的其他成员本阶段将无法再次修改产品组合决策。',  RUS:''},
 		{id:'Take this action',  ENG:'Take this action',  CHN:'确认提交',  RUS:''},
 		{id:'Cancel',  ENG:'Cancel',  CHN:'取消',  RUS:''},
@@ -644,7 +646,7 @@ var getLabelBase = function(){
 		{id:'B&M Only',  ENG:'B&M Only',  CHN:'仅实体店购买',  RUS:''},
 		{id:'Online Only',  ENG:'Online Only',  CHN:'仅网上购买',  RUS:''},
 		{id:'Mixed',  ENG:'Mixed',  CHN:'两者兼有',  RUS:''},
-		{id:'over previous period',  ENG:'over previous period',  CHN:'对比上一轮',  RUS:''},
+		{id:'change over previous period',  ENG:'change over previous period',  CHN:'对比上一轮变化',  RUS:''},
 		{id:'Number 1',  ENG:'Number 1',  CHN:'第一名',  RUS:''},
 		{id:'Number 2',  ENG:'Number 2',  CHN:'第二名',  RUS:''},
 		{id:'SKU name',  ENG:'SKU name',  CHN:'商品名称',  RUS:''},
