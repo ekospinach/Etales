@@ -225,7 +225,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketShare1Series,
                             title: {
-                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Volume Market Shares')
+                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Volume Market Shares'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',
@@ -312,7 +315,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketShare2Series,
                             title: {
-                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Value Market Shares')
+                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Value Market Shares'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',
@@ -398,7 +404,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketShare3Series,
                             title: {
-                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Volume Market Shares')
+                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Volume Market Shares'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',
@@ -485,7 +494,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketShare4Series,
                             title: {
-                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Value Market Shares')
+                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Value Market Shares'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',

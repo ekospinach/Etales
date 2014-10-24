@@ -234,7 +234,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketSales1Series,
                             title: {
-                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Volume Sales')
+                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Volume Sales'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',
@@ -328,7 +331,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketSales2Series,
                             title: {
-                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Value Sales')
+                                text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Value Sales'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',
@@ -421,7 +427,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketSales3Series,
                             title: {
-                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Volume Sales')
+                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Volume Sales'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',
@@ -513,7 +522,10 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.marketSales4Series,
                             title: {
-                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Value Sales')
+                                text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Value Sales'),
+                                style: {
+                                    'font-size':'20px'
+                                }
                             },
                             subtitle: {
                                 text: '<p class="my-text-left">' + Label.getContent('Total') + '</p><p class="my-text-center-left">' + Label.getContent('by Market') + '</p><p class="my-text-center-right">' + Label.getContent('by Consumer Segment') + '</p><p class="my-text-right">' + Label.getContent('by Shopper Segment') + '</p>',
