@@ -727,7 +727,7 @@ var getLabelBase = function(){
 		{id:'Value Share',  ENG:'Value Share',  CHN:'市场份额（销售额）',  RUS:''},
 		{id:'Ordered Volume',  ENG:'Ordered Volume',  CHN:'订货量',  RUS:''},
 		{id:'Rotation Index',  ENG:'Rotation Index',  CHN:'周转指数',  RUS:''},
-		{id:'Profitability Index',  ENG:'Profitability Index',  CHN:'利润率',  RUS:''},
+		{id:'Profitability Index',  ENG:'Profitability Index',  CHN:'平效',  RUS:''},
 		{id:'Stock Cover',  ENG:'Stock Cover',  CHN:'库存周转',  RUS:''},
 		{id:'B&M Shoppers',  ENG:'B&M Shoppers',  CHN:'实体店购物者份额',  RUS:''},
 		{id:'All Shoppers',  ENG:'All Shoppers',  CHN:'所有零售店',  RUS:''},
