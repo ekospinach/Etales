@@ -55,7 +55,6 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
 
                             url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName;
-                            console.log(url);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -124,7 +123,6 @@ define(['directives', 'services'], function(directives) {
                             max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
-                            console.log(url);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -290,7 +288,6 @@ define(['directives', 'services'], function(directives) {
                             max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
-                            console.log(url);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -410,7 +407,6 @@ define(['directives', 'services'], function(directives) {
                             max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName + '/otherCompensation/' + retailerID;
-                            console.log(url);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -503,7 +499,6 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var initializePage = function() {
-                        console.log('message');
                         //if Portfolio deicison isReady                         
                         if(scope.isPortfolioDecisionCommitted){
                             scope.isPageLoading = true;
@@ -632,7 +627,7 @@ define(['directives', 'services'], function(directives) {
                             url:'/dealContractDetails',
                             data:postData
                         }).then(function(data){
-                            console.log(data.data);
+                            console.log('success');
                         })
                     }
 
@@ -662,7 +657,6 @@ define(['directives', 'services'], function(directives) {
 
                     scope.$on('committedPortfolio',function(event,data){
                         for(var i=0;i<data.result.length;i++){
-                            console.log(data.result[i].producerID);
                             if(data.result[i].producerID==scope.selectedPlayer){
                                 // loadAllContract=function(){
                                 //     scope.Label = Label; 

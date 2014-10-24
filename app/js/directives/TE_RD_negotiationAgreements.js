@@ -47,7 +47,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
 
                             url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName;
-                            console.log(url);
+                            
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -112,7 +112,7 @@ define(['directives', 'services'], function(directives) {
                             max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
-                            console.log(url);
+                            
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -273,7 +273,7 @@ define(['directives', 'services'], function(directives) {
                             max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
-                            console.log(url);
+                            
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -384,7 +384,7 @@ define(['directives', 'services'], function(directives) {
                             max = data.data.budgetAvailable;  
 
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + producerID + '/' + brandName + '/' + varName + '/otherCompensation/' + retailerID;
-                            console.log(url);
+                            
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -456,7 +456,6 @@ define(['directives', 'services'], function(directives) {
                             }
                             switch(producerID){
                                 case 1:
-                                    console.log(category);
                                     if (category == 1) {
                                         scope.product1es[index] = data.data; 
                                     } else {
@@ -486,9 +485,11 @@ define(['directives', 'services'], function(directives) {
                         scope.isResultShown = false;
                         scope.Label = Label;
                         scope.retailerID = scope.selectedPlayer;
-                        getResult(1);
-                        getResult(2);
-                        getResult(3);
+                        if(scope.selectedPlayer&&scope.selectedPeriod){
+                            getResult(1);
+                            getResult(2);
+                            getResult(3);
+                        }
                     }
 
                     var getResult = function(producerID){

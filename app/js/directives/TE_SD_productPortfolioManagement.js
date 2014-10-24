@@ -34,21 +34,23 @@ define(['directives', 'services'], function(directives) {
                             text: Label.getContent('PREMIUM')
                         }];
                         scope.parameter = "NewBrand"; /*default add new Brand*/
-                        ProducerDecisionBase.reload({
-                            producerID: parseInt(scope.selectedPlayer),
-                            period: scope.selectedPeriod,
-                            seminar: SeminarInfo.getSelectedSeminar().seminarCode
-                        }).then(function(base) {
-                            scope.pageBase = base;
-                        }).then(function() {
-                            return showView();
-                        }),
-                        function(reason) {
-                            console.log('from ctr: ' + reason);
-                        },
-                        function(update) {
-                            console.log('from ctr: ' + update);
-                        };
+                        if(scope.selectedPeriod&&scope.selectedPlayer){
+                            ProducerDecisionBase.reload({
+                                producerID: parseInt(scope.selectedPlayer),
+                                period: scope.selectedPeriod,
+                                seminar: SeminarInfo.getSelectedSeminar().seminarCode
+                            }).then(function(base) {
+                                scope.pageBase = base;
+                            }).then(function() {
+                                return showView();
+                            }),
+                            function(reason) {
+                                console.log('from ctr: ' + reason);
+                            },
+                            function(update) {
+                                console.log('from ctr: ' + update);
+                            };
+                        }
                     }
 
                     var loadSelectCategory = function(category) {
@@ -693,7 +695,7 @@ define(['directives', 'services'], function(directives) {
                             }
                         }
                         //make sure none of bm price is 0, otherwise show error information 
-                        if(pmPriceSample ! =0){
+                        if(pmPriceSample != 0){
                             scope.errorInfo=false;
                             scope.isPortfolioDecisionCommitted = true;
                             //step 0: Delete all the related contract schema and contractDetails schema 
