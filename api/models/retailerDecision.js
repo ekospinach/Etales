@@ -819,26 +819,26 @@ exports.updateRetailerDecision = function(io) {
                     doc.save(function(err, doc, numberAffected) {
                         if (err) next(new Error(err));
                         console.log('save updated, number affected:' + numberAffected);
-                        if (queryCondition.behaviour == "addOrder"||queryCondition.behaviour == "updateMarketResearchOrders") {
-                            io.sockets.emit('socketIO:retailerBaseChanged', {
-                                retailerID: queryCondition.retailerID,
-                                seminar: queryCondition.seminar,
-                                period: queryCondition.period,
-                                categoryID: queryCondition.categoryID,
-                                marketID: queryCondition.marketID,
-                                page:req.body.page
-                            });
-                        } else {
-                            io.sockets.emit('socketIO:retailerBaseChanged', {
-                                retailerID: queryCondition.retailerID,
-                                seminar: queryCondition.seminar,
-                                period: queryCondition.period,
-                                //there is bug here...
-                                categoryID: 0,
-                                marketID: queryCondition.marketID,
-                                page:req.body.page
-                            });
-                        }
+                        // if (queryCondition.behaviour == "addOrder"||queryCondition.behaviour == "updateMarketResearchOrders") {
+                        //     io.sockets.emit('socketIO:retailerBaseChanged', {
+                        //         retailerID: queryCondition.retailerID,
+                        //         seminar: queryCondition.seminar,
+                        //         period: queryCondition.period,
+                        //         categoryID: queryCondition.categoryID,
+                        //         marketID: queryCondition.marketID,
+                        //         page:req.body.page
+                        //     });
+                        // } else {
+                        //     io.sockets.emit('socketIO:retailerBaseChanged', {
+                        //         retailerID: queryCondition.retailerID,
+                        //         seminar: queryCondition.seminar,
+                        //         period: queryCondition.period,
+                        //         //there is bug here...
+                        //         categoryID: 0,
+                        //         marketID: queryCondition.marketID,
+                        //         page:req.body.page
+                        //     });
+                        // }
                         res.send(200, 'mission complete!');
                     });
                 }
