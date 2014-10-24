@@ -111,6 +111,7 @@ module.exports = function(app, io){
     app.get('/producerTradeSupportSpending/:seminar/:period/:producerID', require('./../api/models/producerDecision.js').getTradeSupportSpending);
 
     app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx', require('./../api/models/producerDecision.js').getProducerExpend);
+
     app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx', require('./../api/models/retailerDecision.js').getRetailerExpend);
 
     app.get('/getPlayerReportOrderExpend/:seminar/:period/:userType/:playerID', require('./../api/models/BG_oneQuarterExogenousData.js').getPlayerReportOrderExpend);    

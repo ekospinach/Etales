@@ -51,7 +51,7 @@ var seminarSchema            = mongoose.Schema({
 	timeslotContractDeal               : {type:Number, default: 20},
 	timeslotContractFinalized          : {type:Number, default: 20},
 	timeslotDecisionCommitted          : {type:Number, default: 20},	
-})
+});
 
 var producerSchema = mongoose.Schema({
 	producerID : Number, //1,2,3 

@@ -437,6 +437,12 @@ exports.checkRetailerProduct = function(req, res, next) {
     })
 }
 
+//:seminar
+//:period
+//:retailerID
+//:marketID
+//:location
+//:additionalIdx
 exports.getRetailerExpend = function(req, res, next) {
     retDecision.findOne({
         seminar: req.params.seminar,
@@ -462,7 +468,26 @@ exports.getRetailerExpend = function(req, res, next) {
                 } else {
                     result -= (doc.retMarketDecision[req.params.marketID - 1][req.params.location][req.params.additionalIdx]);
                 }
+
             }
+
+            //TODO: calculate cost of promotions 
+            //= (weeks/26) * rate * retailer price * (order + initial inventory volume)
+            // for (var i = 0; i < doc.retMarketDecision.length; i++) {
+            //     for (var j = 0; j < doc.retMarketDecision[i].retMarketAssortmentDecision.length; j++) {
+            //         for (var k = 0; k < doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length; k++) {
+            //             if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName != "" 
+            //                 && doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName != "") {
+                            
+            //                 result += 
+            //             }
+            //         }
+            //         break;
+            //     }
+            //     break;
+            // }
+
+
             res.send(200, {
                 result: result
             });
@@ -717,7 +742,7 @@ exports.updateRetailerDecision = function(io) {
                         var count = 0,
                             result = 0;
                         for (var i = 0; i < doc.retMarketDecision.length; i++) {
-                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.value.categoryID != undefined) {
+                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.value != undefined) {
                                 for (var j = 0; j < doc.retMarketDecision[i].retMarketAssortmentDecision.length; j++) {
                                     if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID == queryCondition.value.categoryID) {
                                         for (var k = 0; k < doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length; k++) {
@@ -794,25 +819,26 @@ exports.updateRetailerDecision = function(io) {
                     doc.save(function(err, doc, numberAffected) {
                         if (err) next(new Error(err));
                         console.log('save updated, number affected:' + numberAffected);
-                        if (queryCondition.behaviour == "addOrder"||queryCondition.behaviour == "updateMarketResearchOrders") {
-                            io.sockets.emit('socketIO:retailerBaseChanged', {
-                                retailerID: queryCondition.retailerID,
-                                seminar: queryCondition.seminar,
-                                period: queryCondition.period,
-                                categoryID: queryCondition.value.categoryID,
-                                marketID: queryCondition.marketID,
-                                page:req.body.page
-                            });
-                        } else {
-                            io.sockets.emit('socketIO:retailerBaseChanged', {
-                                retailerID: queryCondition.retailerID,
-                                seminar: queryCondition.seminar,
-                                period: queryCondition.period,
-                                categoryID: queryCondition.categoryID,
-                                marketID: queryCondition.marketID,
-                                page:req.body.page
-                            });
-                        }
+                        // if (queryCondition.behaviour == "addOrder"||queryCondition.behaviour == "updateMarketResearchOrders") {
+                        //     io.sockets.emit('socketIO:retailerBaseChanged', {
+                        //         retailerID: queryCondition.retailerID,
+                        //         seminar: queryCondition.seminar,
+                        //         period: queryCondition.period,
+                        //         categoryID: queryCondition.categoryID,
+                        //         marketID: queryCondition.marketID,
+                        //         page:req.body.page
+                        //     });
+                        // } else {
+                        //     io.sockets.emit('socketIO:retailerBaseChanged', {
+                        //         retailerID: queryCondition.retailerID,
+                        //         seminar: queryCondition.seminar,
+                        //         period: queryCondition.period,
+                        //         //there is bug here...
+                        //         categoryID: 0,
+                        //         marketID: queryCondition.marketID,
+                        //         page:req.body.page
+                        //     });
+                        // }
                         res.send(200, 'mission complete!');
                     });
                 }

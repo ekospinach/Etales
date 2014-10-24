@@ -149,20 +149,20 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 loadBackgroundDataAndCalculateDecisionInfo();
             });
 
-            $scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {
-                loadBackgroundDataAndCalculateDecisionInfo();
-                notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
-            });
+            // $scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {
+            //     loadBackgroundDataAndCalculateDecisionInfo();
+            //     notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
+            // });
 
-            $scope.$on('retailerDecisionReloadError', function(event, data, newBase) {
-                loadBackgroundDataAndCalculateDecisionInfo();
-                notify('Decision reload Error occur, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
-            });
+            // $scope.$on('retailerDecisionReloadError', function(event, data, newBase) {
+            //     loadBackgroundDataAndCalculateDecisionInfo();
+            //     notify('Decision reload Error occur, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
+            // });
 
-            $scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {
-                loadBackgroundDataAndCalculateDecisionInfo();
-                notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
-            });
+            // $scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {
+            //     loadBackgroundDataAndCalculateDecisionInfo();
+            //     notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period +' page '+data.page +'.');
+            // });
 
             $scope.$on('retailerContractDeal', function(event, data) {
                 loadBackgroundDataAndCalculateDecisionInfo();

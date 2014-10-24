@@ -17,6 +17,7 @@ define(['directives', 'services'], function(directives){
                     getResult();                    
                 }
 
+
                 var loadAwareness=function(data,category,market){
                     scope.brandNames=new Array();
                     var count=0;
