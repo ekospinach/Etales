@@ -3,7 +3,7 @@ define(['app', 'socketIO'], function(app) {
 	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q','Label','$timeout','PeriodInfo',
 		function($scope, $http, $rootScope, EditSeminarInfo,$q,Label,$timeout, PeriodInfo) {
 
-			var socket = io.connect('http://localhost');
+			var socket = io.connect();
 			socket.on('AdminProcessLog', function(data) {
 				$scope.isInitializeMessageShown = true;
 				if (data.msg != '') {
