@@ -62,7 +62,6 @@ define(['directives', 'services'], function(directives) {
                         		}
                     			players.push({'category':categories});
                         	}
-                        	console.log(players);
                         	scope.players=players;
 
 

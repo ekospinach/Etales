@@ -174,7 +174,6 @@
  				});
 
 			    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-			    	console.log('current:' + current);
 			        $rootScope.pageTitle = current.$$route.pageTitle;
 			    }); 				
  			}
