@@ -437,6 +437,12 @@ exports.checkRetailerProduct = function(req, res, next) {
     })
 }
 
+//:seminar
+//:period
+//:retailerID
+//:marketID
+//:location
+//:additionalIdx
 exports.getRetailerExpend = function(req, res, next) {
     retDecision.findOne({
         seminar: req.params.seminar,
@@ -462,7 +468,26 @@ exports.getRetailerExpend = function(req, res, next) {
                 } else {
                     result -= (doc.retMarketDecision[req.params.marketID - 1][req.params.location][req.params.additionalIdx]);
                 }
+
             }
+
+            //TODO: calculate cost of promotions 
+            //= (weeks/26) * rate * retailer price * (order + initial inventory volume)
+            // for (var i = 0; i < doc.retMarketDecision.length; i++) {
+            //     for (var j = 0; j < doc.retMarketDecision[i].retMarketAssortmentDecision.length; j++) {
+            //         for (var k = 0; k < doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length; k++) {
+            //             if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName != "" 
+            //                 && doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName != "") {
+                            
+            //                 result += 
+            //             }
+            //         }
+            //         break;
+            //     }
+            //     break;
+            // }
+
+
             res.send(200, {
                 result: result
             });
