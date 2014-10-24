@@ -776,20 +776,27 @@ exports.checkContractDetailsLockStatus = function(req, res, next) {
           if (err) {
                next(new Error(err));
           }
+          if(doc){
+               if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && doc.isProducerApproved)) {
+                    res.send(200, {
+                         'result': true,
+                         doc: doc
+                    });
+               } else {
+                    res.send(200, {
+                         'result': false,
+                         doc: doc
+                    });
+               }
+          } else {
+                    res.send(200, {
+                         'result': false,
+                         doc: doc
+                    });
+          }
           // console.log(doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
           // console.log(doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
           // console.log(doc.isRetailerApproved && doc.isProducerApproved);
-          if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && doc.isProducerApproved)) {
-               res.send(200, {
-                    'result': true,
-                    doc: doc
-               });
-          } else {
-               res.send(200, {
-                    'result': false,
-                    doc: doc
-               });
-          }
      });
 }
 
