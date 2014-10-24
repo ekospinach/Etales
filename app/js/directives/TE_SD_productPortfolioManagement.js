@@ -692,7 +692,6 @@ define(['directives', 'services'], function(directives) {
                                 break;
                             }
                         }
-                        console.log(result);
                         if(result!=0){
                             scope.errorInfo=false;
                             scope.isPortfolioDecisionCommitted = true;
