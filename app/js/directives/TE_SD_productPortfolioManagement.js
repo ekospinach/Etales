@@ -679,20 +679,21 @@ define(['directives', 'services'], function(directives) {
 
                     scope.submitDecision = function() {
                         var postData;
-                        var result=1;
+                        var pmPriceSample = 1;
                         for(var i=0;i<scope.productes.length;i++){
                             if(scope.productes[i].currentPriceBM=="0"||scope.productes[i].currentPriceBM=="0.00"){
-                                result=0;
+                                pmPriceSample = 0;
                                 break;
                             }
                         }
                         for(var i=0;i<scope.producths.length;i++){
                             if(scope.producths[i].currentPriceBM=="0"||scope.producths[i].currentPriceBM=="0.00"){
-                                result=0;
+                                pmPriceSample = 0;
                                 break;
                             }
                         }
-                        if(result!=0){
+                        //make sure none of bm price is 0, otherwise show error information 
+                        if(pmPriceSample ! =0){
                             scope.errorInfo=false;
                             scope.isPortfolioDecisionCommitted = true;
                             //step 0: Delete all the related contract schema and contractDetails schema 
@@ -805,7 +806,7 @@ define(['directives', 'services'], function(directives) {
                                 } else console.log('Error: ' + data.data);
                             });
                         }else{
-                            scope.errorInfo=true;
+                            scope.errorInfo=true;   
                         }
 
                         //lock button 
