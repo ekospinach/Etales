@@ -59,7 +59,7 @@
 		<strong>{{bubleTitle}}</strong>{{bubleMsg}}
 	</div>	
 
-	<p>Simulation span : <a href="#" editable-text="seminar.simulationSpan" onaftersave="parameterChanged())">
+	<p>Simulation span : <a href="#" editable-text="seminar.simulationSpan" onaftersave="updateSimulationSpan(seminar.seminarCode,$data)">
 			{{ seminar.simulationSpan}}
 		</a></p>
 

@@ -66,6 +66,7 @@ define(['app'], function(app) {
 		});
 
 		$scope.$on('SeminarPeriodChanged', function(event, data) {  
+			console.log('currentPeriod');
 			if(data.seminarCode == SeminarInfo.getSelectedSeminar().seminarCode ){
 				notify('Period has been changed to ' + data.currentPeriod + ' / ' + data.simulationSpan);
 				$scope.currentPeriod = data.currentPeriod;

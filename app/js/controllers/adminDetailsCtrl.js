@@ -33,7 +33,6 @@ define(['app', 'socketIO'], function(app) {
 			});
 
 			$scope.seminar = EditSeminarInfo.getSelectedSeminar();
-			console.log($scope.seminar);
 			$scope.isMessageShown = false;
 
 
@@ -380,6 +379,23 @@ define(['app', 'socketIO'], function(app) {
 
 			$scope.openRunModal = function() {
 				$scope.isRunConfirmInfoShown = true;
+			}
+
+			$scope.updateSimulationSpan = function(seminar,value){
+				var postData={
+					behaviour:'updateSimulationSpan',
+					seminarCode:seminar,
+					value:value
+				};
+				$http({
+					url:'/updateSeminar',
+					method:'POST',
+					data:postData
+				}).then(function(data){
+					console.log('update success');	
+				},function(){
+					console.log('update fail');
+				})
 			}
 
 			var showbubleMsg = function(content, status) {
