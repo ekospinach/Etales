@@ -620,7 +620,9 @@ exports.addContractDetails = function(io) {
 
      }
 }
+//
 
+// 
 exports.dealContractDetail = function(io) {
      return function(req, res, next) {
 
@@ -642,8 +644,7 @@ exports.dealContractDetail = function(io) {
                     if (err) {
                          next(new Error(err));
                     }
-
-                    //check previous period input first, if anything, copy original ones.
+ 
                     if (previousDoc) {
                          var update = {
                               $set: {
@@ -728,7 +729,7 @@ exports.getContractUnApprovedDetails = function(req, res, next) {
           };
           if (docs) {
                for (var i = 0; i < docs.length; i++) {
-                    if (docs[i].isProducerApproved && docs[i].isRetailerApproved) {
+                    if (docs[i].isProducerApproved || docs[i].isRetailerApproved) {
                          docs.splice(i, 1);
                     }
                }
@@ -775,9 +776,9 @@ exports.checkContractDetailsLockStatus = function(req, res, next) {
           if (err) {
                next(new Error(err));
           }
-          console.log(doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
-          console.log(doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
-          console.log(doc.isRetailerApproved && doc.isProducerApproved);
+          // console.log(doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
+          // console.log(doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
+          // console.log(doc.isRetailerApproved && doc.isProducerApproved);
           if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && doc.isProducerApproved)) {
                res.send(200, {
                     'result': true,
@@ -832,6 +833,7 @@ exports.getAgreedProductionVolume = function(req, res, next) {
                }
           });
 }
+
 
 exports.updateContractDetails = function(io) {
      return function(req, res, next) {
