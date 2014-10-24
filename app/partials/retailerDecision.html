@@ -204,7 +204,7 @@
         </div>
         <div class="col-md-9" style="padding:0 0 0 15px" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
-            <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Retailer {{selectedPlayer}}</p>              
+            <p access-level='{{accessLevels.facilitatorView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Retailer {{selectedPlayer}}</p>              
                 <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-marketing>
 
                 <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-private-label-portfolio-management>

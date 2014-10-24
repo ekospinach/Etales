@@ -680,6 +680,24 @@ define(['directives', 'services'], function(directives) {
 
                     scope.submitDecision = function() {
                         var postData;
+                        var result=1;
+                        for(var i=0;i<scope.productes.length;i++){
+                            if(scope.productes[i].currentPriceBM=="0"||scope.productes[i].currentPriceBM=="0.00"){
+                                result=0;
+                                break;
+                            }
+                        }
+                        for(var i=0;i<scope.producths.length;i++){
+                            if(scope.producths[i].currentPriceBM=="0"||scope.producths[i].currentPriceBM=="0.00"){
+                                result=0;
+                                break;
+                            }
+                        }
+                        if(result!=0){
+                            scope.errorInfo=false;
+                        }else{
+                            scope.errorInfo=true;
+                        }
 
                         //lock button 
                         scope.isPortfolioDecisionCommitted = true;
