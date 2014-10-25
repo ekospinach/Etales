@@ -839,8 +839,6 @@ exports.getTradeSupportSpending = function(req, res, next) {
                     }
                 }
             }
-            console.log('TradeSupport 1:' +result);
-            console.log('TradeSupport 2:' +producerNegotiationCost.result);
 
             result += producerNegotiationCost.result;
             res.send(200, {
