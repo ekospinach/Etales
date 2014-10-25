@@ -559,8 +559,7 @@ exports.updateRetailerDecision = function(io) {
             value         : (req.body.value?req.body.value:'requestNull')
         }
 
-
-        console.log(queryCondition.value);
+        console.log(queryCondition);
 
         if(queryCondition.value != 'requestNull'){
             for (var prop in queryCondition.value) {
@@ -569,7 +568,6 @@ exports.updateRetailerDecision = function(io) {
                 }
             };
         }
-        console.log(queryCondition.value);
 
         retDecision.findOne({
             seminar: queryCondition.seminar,
@@ -589,6 +587,7 @@ exports.updateRetailerDecision = function(io) {
                 var decision = "retMarketDecision";
                 switch (queryCondition.behaviour) {
                     case 'updateGeneralDecision':
+                        console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
                         doc[queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;
                         //console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
                         break;
