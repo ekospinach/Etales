@@ -818,7 +818,7 @@ define(['angular',
 
 					socket.on('socketIO:retailerReportPurchaseDecisionChanged', function(data) {
 						//if changed base is modified by current supplier & seminar, reload Report Purchase decision base and broadcast message...
-						if ((data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)) {
+						if ((data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)&&(data.period == PeriodInfo.getDecisionPeriod())) {
 							var url = '/seminarInfo/' + SeminarInfo.getSelectedSeminar().seminarCode;
 							$http({
 								method: 'GET',

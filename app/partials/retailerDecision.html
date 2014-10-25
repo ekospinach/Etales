@@ -217,6 +217,7 @@
         </div>
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
+                <p access-level='{{accessLevels.playerView}}'>{{Label.getContent('You are checking the decision of period')}} <b>{{selectedPeriod}}</b>, {{Label.getContent('Retailer')}} {{selectedPlayer}}</p> 
                 <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-negotiation-change='isNegotiationChange' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-negotiation-agreements>
             </div>
         </div>

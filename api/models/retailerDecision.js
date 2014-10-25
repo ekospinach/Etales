@@ -558,6 +558,8 @@ exports.updateRetailerDecision = function(io) {
             additionalIdx: req.body.additionalIdx,
             value: req.body.value
         }
+        'error'
+
         retDecision.findOne({
             seminar: queryCondition.seminar,
             period: queryCondition.period,
@@ -742,7 +744,7 @@ exports.updateRetailerDecision = function(io) {
                         var count = 0,
                             result = 0;
                         for (var i = 0; i < doc.retMarketDecision.length; i++) {
-                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.value != undefined) {
+                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.value != undefined && queryCondition.value.categoryID != undefined) {
                                 for (var j = 0; j < doc.retMarketDecision[i].retMarketAssortmentDecision.length; j++) {
                                     if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID == queryCondition.value.categoryID) {
                                         for (var k = 0; k < doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length; k++) {
@@ -770,7 +772,6 @@ exports.updateRetailerDecision = function(io) {
                         break;
                     case 'updateMarketResearchOrders':
                         doc.marketResearchOrder[queryCondition.additionalIdx] = queryCondition.value;
-                        break;
                         break;
                     case 'deleteOrder':
                         var nullOrder = {
@@ -819,30 +820,44 @@ exports.updateRetailerDecision = function(io) {
                     doc.save(function(err, doc, numberAffected) {
                         if (err) next(new Error(err));
                         console.log('save updated, number affected:' + numberAffected);
-                        if (queryCondition.behaviour == "addOrder"||queryCondition.behaviour == "updateMarketResearchOrders") {
-                            io.sockets.emit('socketIO:retailerBaseChanged', {
-                                retailerID: queryCondition.retailerID,
-                                seminar: queryCondition.seminar,
-                                period: queryCondition.period,
-                                categoryID: queryCondition.value.categoryID,
-                                marketID: queryCondition.marketID,
-                                page:req.body.page
-                            });
-                        } else {
-                            io.sockets.emit('socketIO:retailerBaseChanged', {
-                                retailerID: queryCondition.retailerID,
-                                seminar: queryCondition.seminar,
-                                period: queryCondition.period,
-                                //there is bug here...
-                                categoryID: queryCondition.categoryID,
-                                marketID: queryCondition.marketID,
-                                page:req.body.page
-                            });
+
+                        if(numberAffected){
+                            if (queryCondition.behaviour == "addOrder" && req.body.page=="retailerStoreManagement"){
+                                io.sockets.emit('socketIO:retailerBaseChanged', {
+                                    retailerID: queryCondition.retailerID,
+                                    seminar: queryCondition.seminar,
+                                    period: queryCondition.period,
+                                    categoryID: queryCondition.value.categoryID,
+                                    marketID: queryCondition.marketID,
+                                    page:req.body.page
+                                });
+                            }else if (queryCondition.behaviour == "addOrder" && req.body.page==undefined){
+
+                            }else if(queryCondition.behaviour == "updateMarketResearchOrders"){
+                                io.sockets.emit('socketIO:retailerBaseChanged', {
+                                    retailerID: queryCondition.retailerID,
+                                    seminar: queryCondition.seminar,
+                                    period: queryCondition.period,
+                                    page:req.body.page
+                                });
+                            } else {
+                                io.sockets.emit('socketIO:retailerBaseChanged', {
+                                    retailerID: queryCondition.retailerID,
+                                    seminar: queryCondition.seminar,
+                                    period: queryCondition.period,
+                                    //there is bug here...
+                                    categoryID: queryCondition.categoryID,
+                                    marketID: queryCondition.marketID,
+                                    page:req.body.page
+                                });
+                            }
+                            res.send(200, 'mission complete!');
+                        }else{
+                            res.send(400,'fail');
                         }
-                        res.send(200, 'mission complete!');
+                        
                     });
                 }
-
             }
         });
     }
@@ -937,7 +952,6 @@ exports.deleteOrderData = function(io) {
                             if (docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].categoryID == queryCondition.categoryID) {
                                 for (var l = 0; l < docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision.length; l++) {
                                     if (docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision[l].varName == queryCondition.varName && docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision[l].brandName == queryCondition.brandName) {
-                                        console.log(i + '' + j + '' + k + '' + l);
                                         docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision.splice(l, 1, nullOrder);
                                         //docs[i].save();
                                         break;
