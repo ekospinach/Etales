@@ -876,6 +876,9 @@ exports.updateRetailerDecision = function(io) {
                             }
                             res.send(200, 'mission complete!');
                         }else{
+                            console.log('queryCondition.behaviour:' + queryCondition.behaviour);
+                            console.log('numberAffected:' + numberAffected);
+                            console.log('queryCondition:' + util.inspect(queryCondition));
                             res.send(400,'fail');
                         }
                         
