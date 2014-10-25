@@ -248,7 +248,7 @@ exports.getReportPurchaseStatus = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         } else {
             if (!doc) {
                 res.send(404, 'Cannot find matched producer decision doc.');
@@ -267,7 +267,7 @@ exports.getRetailerShelfSpace = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -319,7 +319,7 @@ exports.getRetailerCurrentDecision = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -366,7 +366,7 @@ exports.checkRetailerProduct = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -450,7 +450,7 @@ exports.getRetailerExpend = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -558,7 +558,6 @@ exports.updateRetailerDecision = function(io) {
             additionalIdx : (req.body.additionalIdx),
             value         : (req.body.value)
         }
-
 
         retDecision.findOne({
             seminar: queryCondition.seminar,
@@ -887,7 +886,7 @@ exports.getRetailerProductList = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             console.log('cannot find matched doc...');
@@ -996,7 +995,7 @@ exports.retailerGetRetailerDecision = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             console.log('cannot find the doc');
@@ -1041,7 +1040,7 @@ exports.getAllRetailerDecision = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             console.log('cannot find matched doc...');

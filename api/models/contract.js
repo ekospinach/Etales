@@ -381,7 +381,7 @@ exports.addContract = function(io) {
                               });
                               /*need add Contract Detail*/
                               newContract.save(function(err) {
-                                   if (err) next(new Error(err));
+                                   if (err) return next(new Error(err));
                                    io.sockets.emit('contarctListChanged', {
                                         producerID: req.body.producerID,
                                         retailerID: req.body.retailerID
@@ -479,7 +479,7 @@ exports.checkVolume = function(req, res, next) {
           variantName: req.params.variantName
      }, function(err, doc) {
           if (err) {
-               next(new Error(err));
+               return next(new Error(err));
           }
           if (!doc) {
                res.send(400, 'fail');
@@ -497,7 +497,7 @@ exports.checkSalesTargetVolume = function(req, res, next) {
           variantName: req.params.variantName
      }, function(err, doc) {
           if (err) {
-               next(new Error(err));
+               return next(new Error(err));
           }
           if (!doc) {
                res.send(400, 'fail');
@@ -513,7 +513,7 @@ exports.checkContract = function(req, res, next) {
           contractCode: req.params.contractCode
      }, function(err, doc) {
           if (err) {
-               next(new Error(err))
+               return next(new Error(err))
           };
           if (doc) {
                res.send(200, 'isReady');
@@ -541,7 +541,7 @@ exports.addContractDetails = function(io) {
                },
                function(err, previousDoc) {
                     if (err) {
-                         next(new Error(err));
+                         return next(new Error(err));
                     }
 
                     //check previous period input first, if anything, copy original ones.(without discountRate/bonusRate/OtherCompensation just in case out of budget in the last period)
@@ -609,7 +609,7 @@ exports.addContractDetails = function(io) {
                     }
 
                     newContractVariantDetails.save(function(err) {
-                         if (err) next(new Error(err));
+                         if (err) return next(new Error(err));
                          io.sockets.emit('contarctListChanged', {
                               producerID: req.body.producerID,
                               retailerID: req.body.retailerID
@@ -642,7 +642,7 @@ exports.dealContractDetail = function(io) {
                },
                function(err, previousDoc) {
                     if (err) {
-                         next(new Error(err));
+                         return next(new Error(err));
                     }
  
                     if (previousDoc) {
@@ -660,7 +660,7 @@ exports.dealContractDetail = function(io) {
                          contractVariantDetails.findOneAndUpdate({
                               _id: detail._id
                          }, update, function(err, doc) {
-                              if (err) next(new Error(err));
+                              if (err) return next(new Error(err));
                               res.send(200, {
                                    'result': true,
                                    'detail': doc
@@ -685,7 +685,7 @@ exports.finalizedContractDetail = function(io) {
                variantName: detail.variantName
           }, function(err, doc) {
                if (err) {
-                    next(new Error(err));
+                    return next(new Error(err));
                }
                if (doc) {
                     doc.isProducerApproved = req.body.value;
@@ -707,7 +707,7 @@ exports.getContractDetails = function(req, res, next) {
           contractCode: req.params.contractCode
      }, function(err, doc) {
           if (err) {
-               next(new Error(err))
+               return next(new Error(err))
           };
           if (doc) {
                doc.sort(function(x, y) {
@@ -725,7 +725,7 @@ exports.getContractUnApprovedDetails = function(req, res, next) {
           contractCode: req.params.contractCode
      }, function(err, docs) {
           if (err) {
-               next(new Error(err))
+               return next(new Error(err))
           };
           if (docs) {
                for (var i = 0; i < docs.length; i++) {
@@ -750,7 +750,7 @@ exports.getContractDetail = function(req, res, next) {
           variantName: req.params.varName
      }, function(err, doc) {
           if (err) {
-               next(new Error(err));
+               return next(new Error(err));
           } else {
                if (doc) {
                     res.send(200, doc);
@@ -774,7 +774,7 @@ exports.checkContractDetailsLockStatus = function(req, res, next) {
           variantName: req.params.variantName
      }, function(err, doc) {
           if (err) {
-               next(new Error(err));
+               return next(new Error(err));
           }
           if(doc){
                if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && doc.isProducerApproved)) {
@@ -812,7 +812,7 @@ exports.getAgreedProductionVolume = function(req, res, next) {
           ])
           .exec(function(err, docs) {
                if (err) {
-                    next(new Error(err));
+                    return next(new Error(err));
                } else {
                     if (req.params.parentBrandName.substr(0, 1) == "E") {
                          brandName = "H";
@@ -865,7 +865,7 @@ exports.updateContractDetails = function(io) {
                variantName: queryCondition.variantName
           }, function(err, doc) {
                if (err) {
-                    next(new Error(err));
+                    return next(new Error(err));
                }
 
                if (queryCondition.location == "nc_VolumeDiscountRate" || queryCondition.location == "nc_PerformanceBonusRate") {
@@ -891,7 +891,7 @@ exports.updateContractDetails = function(io) {
 
                doc.save(function(err, doc, numberAffected) {
                     if (err) {
-                         next(new Error(err));
+                         return next(new Error(err));
                     }
                     io.sockets.emit('socketIO:contractDetailsUpdated', {
                          userType: queryCondition.userType,
@@ -913,7 +913,7 @@ exports.removeContractDetailsByContractcode = function(io) {
                contractCode: req.body.contractCode
           }, function(err, numberAffected) {
                if (err) {
-                    next(new Error(err))
+                    return next(new Error(err))
                };
                res.send('Related contractDetails("' + req.body.contractCode + '") have been removed,  number affected : ' + numberAffected);
           });
@@ -926,7 +926,7 @@ exports.removeContract = function(io) {
                contractCode: req.body.contractCode
           }, function(err, numberAffected) {
                if (err) {
-                    next(new Error(err))
+                    return next(new Error(err))
                };
                res.send('Related contract("' + req.body.contractCode + '") have been removed,  number affected : ' + numberAffected);
           });
@@ -948,7 +948,7 @@ exports.getRetailerAdditionalBudget = function(req, res, next) {
           ])
           .exec(function(err, docs) {
                if (err) {
-                    next(new Error(err));
+                    return next(new Error(err));
                } else {
                     if (docs.length != 0) {
                          for (var i = 0; i < docs.length; i++) {
@@ -971,7 +971,7 @@ exports.getRetailerAdditionalBudget = function(req, res, next) {
      //      contractCode: req.params.contractCode
      // }, function(err, doc) {
      //      if (err) {
-     //           next(new Error(err))
+     //           return next(new Error(err))
      //      };
      //      if (doc) {
      //           res.send(200, '0');
