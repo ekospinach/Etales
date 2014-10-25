@@ -248,7 +248,7 @@ exports.getReportPurchaseStatus = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         } else {
             if (!doc) {
                 res.send(404, 'Cannot find matched producer decision doc.');
@@ -267,7 +267,7 @@ exports.getRetailerShelfSpace = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -319,7 +319,7 @@ exports.getRetailerCurrentDecision = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -366,7 +366,7 @@ exports.checkRetailerProduct = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -450,7 +450,7 @@ exports.getRetailerExpend = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -559,14 +559,13 @@ exports.updateRetailerDecision = function(io) {
             value         : (req.body.value)
         }
 
-
         retDecision.findOne({
             seminar: queryCondition.seminar,
             period: queryCondition.period,
             retailerID: queryCondition.retailerID
         }, function(err, doc) {
             if (err) {
-                next(new Error(err));
+                return next(new Error(err));
             }
             if (!doc) {
                 console.log('cannot find matched doc...');
@@ -819,7 +818,8 @@ exports.updateRetailerDecision = function(io) {
                     doc.markModified('marketResearchOrder');
                     doc.markModified('retCatDecision');
                     doc.save(function(err, doc, numberAffected) {
-                        if (err) next(new Error(err));
+                        if (err) return next(new Error(err));
+                        
                         console.log('save updated, number affected:' + numberAffected);
 
                         if(numberAffected){
@@ -866,6 +866,9 @@ exports.updateRetailerDecision = function(io) {
                             }
                             res.send(200, 'mission complete!');
                         }else{
+                            console.log('queryCondition.behaviour:' + queryCondition.behaviour);
+                            console.log('numberAffected:' + numberAffected);
+                            console.log('queryCondition:' + util.inspect(queryCondition));
                             res.send(400,'fail');
                         }
                         
@@ -883,7 +886,7 @@ exports.getRetailerProductList = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             console.log('cannot find matched doc...');
@@ -992,7 +995,7 @@ exports.retailerGetRetailerDecision = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             console.log('cannot find the doc');
@@ -1037,7 +1040,7 @@ exports.getAllRetailerDecision = function(req, res, next) {
         retailerID: req.params.retailerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             console.log('cannot find matched doc...');

@@ -260,7 +260,7 @@ exports.getReportPurchaseStatus = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         } else {
             if (!doc) {
                 res.send(404, 'Cannot find matched producer decision doc.');
@@ -312,7 +312,7 @@ exports.updateProducerDecision = function(io) {
             },
             function(err, doc) {
                 if (err) {
-                    next(new Error(err));
+                    return next(new Error(err));
                 }
                 if (!doc) {
                     console.log('cannot find matched doc...');
@@ -511,7 +511,7 @@ exports.updateProducerDecision = function(io) {
                         doc.markModified('marketResearchOrder');
                         doc.markModified('proBrandsDecision');
                         doc.save(function(err, doc, numberAffected) {
-                            if (err) next(new Error(err));
+                            if (err) return next(new Error(err));
                             console.log('save updated, number affected:' + numberAffected);
                             // if (queryCondition.behaviour == "updateMarketResearchOrders") {
                             //     io.sockets.emit('socketIO:supplierMarketResearchOrdersChanged', {
@@ -557,7 +557,7 @@ exports.getAllProducerDecision = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         } else {
             if (!doc) {
                 res.send(404, 'Cannot find matched producer decision doc.');
@@ -579,7 +579,7 @@ exports.retailerGetProducerDecision = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, 'cannot find the decision');
@@ -620,7 +620,7 @@ exports.getProducerProductList = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             console.log('cannot find matched doc...');
@@ -672,7 +672,7 @@ exports.getProductionResult = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -727,7 +727,7 @@ exports.getProducerExpend = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -814,7 +814,7 @@ exports.getMarketingSpending = function(req, res, next) {
             });     
 
     }).fail(function(err){
-        next(new Error(err));
+        return next(new Error(err));
     }).done();
 }
 
@@ -839,8 +839,6 @@ exports.getTradeSupportSpending = function(req, res, next) {
                     }
                 }
             }
-            console.log('TradeSupport 1:' +result);
-            console.log('TradeSupport 2:' +producerNegotiationCost.result);
 
             result += producerNegotiationCost.result;
             res.send(200, {
@@ -848,7 +846,7 @@ exports.getTradeSupportSpending = function(req, res, next) {
             });     
 
     }).fail(function(err){
-        next(new Error(err));
+        return next(new Error(err));
     }).done();
 
 }
@@ -860,7 +858,7 @@ exports.getProducerCurrentDecision = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -907,7 +905,7 @@ exports.getProducerVariantBM = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -952,7 +950,7 @@ exports.getProductInfo = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -994,7 +992,7 @@ exports.checkProducerProduct = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -1074,7 +1072,7 @@ exports.getBrandHistory = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -1116,7 +1114,7 @@ exports.getCompanyHistory = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
         if (!doc) {
             res.send(404, {
@@ -1142,7 +1140,7 @@ exports.getProducerBrandList = function(req, res, next) {
         producerID: req.params.producerID
     }, function(err, doc) {
         if (err) {
-            next(new Error(err));
+            return next(new Error(err));
         }
 
         if (!doc) {
