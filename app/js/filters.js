@@ -7,27 +7,21 @@ define(['angular', 'services'], function (angular, services) {
 				return String(text).replace(/\%VERSION\%/mg, version);
 			};
 		}])
-
-		.filter('number2',function(){
-		    return function(item){
-		        return Math.round(item*10)/10;
-		    }
-		})
-		.filter('NulltoMinOrNumber1',function(){
+		.filter('NulltoMinOr1Number',function(){
 			return function(item){
 				if(item==0||item==-100){
 					return '-';
 				}else{
-					return Math.round(item*10)/10;
+					return item.toFixed(1);
 				}
 			}
-		});
-		.filter('NulltoMinOrNumber2',function(num){
+		})
+		.filter('NulltoMinOr2Number',function(){
 			return function(item){
 				if(item==0||item==-100){
 					return '-';
 				}else{
-					return Math.round(item*100)/100;
+					return item.toFixed(2);
 				}
 			}
 		})
