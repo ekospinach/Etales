@@ -546,19 +546,27 @@ exports.checkOrder = function(req, res, next) {
 exports.updateRetailerDecision = function(io) {
     return function(req, res, next) {
         var queryCondition = {
-            seminar: (req.body.seminar?req.body.seminar:'requestNull'),
-            period: (req.body.period?req.body.period:'requestNull'),
-            retailerID: (req.body.retailerID?req.body.retailerID:'requestNull'),
-            behaviour: (req.body.behaviour?req.body.behaviour:'requestNull'),
-            brandName: (req.body.brandName?req.body.brandName:'requestNull'),
-            varName: (req.body.varName?req.body.varName:'requestNull'),
-            categoryID: (req.body.categoryID?req.body.categoryID:'requestNull'),
-            marketID: (req.body.marketID?req.body.marketID:'requestNull'),
-            location: (req.body.location?req.body.location:'requestNull'),
-            additionalIdx: (req.body.additionalIdx?req.body.additionalIdx:'requestNull'),
-            value: (req.body.value?req.body.value:'requestNull')
+            seminar       : (req.body.seminar?req.body.seminar:'requestNull'),
+            period        : (req.body.period?req.body.period:'requestNull'),
+            retailerID    : (req.body.retailerID?req.body.retailerID:'requestNull'),
+            behaviour     : (req.body.behaviour?req.body.behaviour:'requestNull'),
+            brandName     : (req.body.brandName?req.body.brandName:'requestNull'),
+            varName       : (req.body.varName?req.body.varName:'requestNull'),
+            categoryID    : (req.body.categoryID?req.body.categoryID:'requestNull'),
+            marketID      : (req.body.marketID?req.body.marketID:'requestNull'),
+            location      : (req.body.location?req.body.location:'requestNull'),
+            additionalIdx : (req.body.additionalIdx?req.body.additionalIdx:'requestNull'),
+            value         : (req.body.value?req.body.value:'requestNull')
         }
-        if(queryCondition.value.categoryID?queryCondition.value.categoryID:'requestNull')
+
+
+        if(queryCondition.value != 'requestNull'){
+            for (var prop in queryCondition.value) {
+                if(!queryCondition.value[prop]){
+                    queryCondition.value[prop] = 'requestNull';
+                }
+            };
+        }
 
         retDecision.findOne({
             seminar: queryCondition.seminar,
@@ -820,6 +828,7 @@ exports.updateRetailerDecision = function(io) {
                     doc.save(function(err, doc, numberAffected) {
                         if (err) next(new Error(err));
                         console.log('save updated, number affected:' + numberAffected);
+
                         if(numberAffected){
 
                             switch(queryCondition.behaviour){
@@ -869,7 +878,6 @@ exports.updateRetailerDecision = function(io) {
                         
                     });
                 }
-
             }
         });
     }
