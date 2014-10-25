@@ -560,13 +560,16 @@ exports.updateRetailerDecision = function(io) {
         }
 
 
+        console.log(queryCondition.value);
+
         if(queryCondition.value != 'requestNull'){
             for (var prop in queryCondition.value) {
-                if(!queryCondition.value[prop]){
+                if(queryCondition.value[prop]==undefined){
                     queryCondition.value[prop] = 'requestNull';
                 }
             };
         }
+        console.log(queryCondition.value);
 
         retDecision.findOne({
             seminar: queryCondition.seminar,
