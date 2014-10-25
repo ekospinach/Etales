@@ -3,10 +3,10 @@
 cd ~/eTalesDecBackup
 cd EJT3
 
-mongoexport -h 115.29.35.224 -d Etales -c prodecisions -q "{'seminar':'PRECOMMERCIAL'}" -o ./prodecisions.data
-mongoexport -h 115.29.35.224 -d Etales -c retailerdecisions -q "{'seminar':'PRECOMMERCIAL'}" -o ./retailerdecisions.data
-mongoexport -h 115.29.35.224 -d Etales -c contractvariantdetails -q "{'seminar':'PRECOMMERCIAL'}" -o ./contractvariantdetails.data
-mongoexport -h 115.29.35.224 -d Etales -c contracts -q "{'seminar':'PRECOMMERCIAL'}" -o ./contracts.data
+mongoexport -h 115.29.35.224 -d Etales -c prodecisions -q "{'seminar':'ETALES01'}" -o ./prodecisions.data
+mongoexport -h 115.29.35.224 -d Etales -c retailerdecisions -q "{'seminar':'ETALES01'}" -o ./retailerdecisions.data
+mongoexport -h 115.29.35.224 -d Etales -c contractvariantdetails -q "{'seminar':'ETALES01'}" -o ./contractvariantdetails.data
+mongoexport -h 115.29.35.224 -d Etales -c contracts -q "{'seminar':'ETALES01'}" -o ./contracts.data
 
 
 db.prodecisions.remove({seminar:'PRECOMMERCIAL'})
