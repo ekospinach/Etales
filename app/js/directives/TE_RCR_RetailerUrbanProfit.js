@@ -35,6 +35,7 @@ define(['directives', 'services'], function(directives){
                     var array=_.find(data,function(obj){
                         return (obj.brandName==name&&obj.marketID==num);
                     });
+
                     if(array!=undefined){
                         return (array.value*100);
                     }else{
@@ -50,8 +51,8 @@ define(['directives', 'services'], function(directives){
                         });
                         if(array!=undefined){
                             return array.value;
-                        }else{
-                            return 0;
+                        // }else{
+                        //     return 0;
                         }
                     }
 
@@ -61,8 +62,8 @@ define(['directives', 'services'], function(directives){
                         });
                         if(array!=undefined){
                             return (array.value*100);
-                        }else{
-                            return 0;
+                        // }else{
+                        //     return 0;
                         }
                     }
 
@@ -101,7 +102,7 @@ define(['directives', 'services'], function(directives){
                                 var OperatingProfit=loadVariantValue(data.data[0].rcrv_OperatingProfit,brandName,variantName,marketID);
                                 var OperatingProfitChange=loadVariantPercentageValue(data.data[0].rcrv_OperatingProfitChange,brandName,variantName,marketID);
                                 var OperatingProfitMargin=loadVariantPercentageValue(data.data[0].rcrv_OperatingProfitMargin,brandName,variantName,marketID);
-                                var OperatingProfitMarginShareInCategory=loadVariantPercentageValue(data.data[0].rcrv_OperatingProfitMarginShareInCategory,brandName,variantName,marketID);
+                                var OperatingProfitShareInCategory=loadVariantPercentageValue(data.data[0].rcrv_OperatingProfitShareInCategory,brandName,variantName,marketID);
                                 var Interest=loadVariantValue(data.data[0].rcrv_Interest,brandName,variantName,marketID);
                                 var Taxes=loadVariantValue(data.data[0].rcrv_Taxes,brandName,variantName,marketID);
                                 var ExceptionalItems=loadVariantValue(data.data[0].rcrv_ExceptionalItems,brandName,variantName,marketID);
@@ -112,7 +113,7 @@ define(['directives', 'services'], function(directives){
                                 scope.variants.push({'variantName':variantName,'Sales':Sales,'PromotionsCost':PromotionsCost,'OtherCompensation':OtherCompensation,'NetSales':NetSales,'NetSalesChange':NetSalesChange,'NetSalesShareInCategory':NetSalesShareInCategory,
                                     'CostOfGoodsSold':CostOfGoodsSold,'ValueOfQuantityDiscounts':ValueOfQuantityDiscounts,'ValueOfPerformanceBonus':ValueOfPerformanceBonus,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
                                     'GrossProfitChange':GrossProfitChange,'GrossProfitMargin':GrossProfitMargin,'GrossProfitShareInCategory':GrossProfitShareInCategory,'GeneralExpenses':GeneralExpenses,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,
-                                    'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitMarginShareInCategory':OperatingProfitMarginShareInCategory});
+                                    'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitShareInCategory':OperatingProfitShareInCategory});
                             }
                         }
                         var modalInstance=$modal.open({
@@ -220,7 +221,7 @@ define(['directives', 'services'], function(directives){
                             var OperatingProfit=loadValue(data.data[0].rcrb_OperatingProfit,brandName,marketID);
                             var OperatingProfitChange=loadPercentageValue(data.data[0].rcrb_OperatingProfitChange,brandName,marketID);
                             var OperatingProfitMargin=loadPercentageValue(data.data[0].rcrb_OperatingProfitMargin,brandName,marketID);
-                            var OperatingProfitMarginShareInCategory=loadPercentageValue(data.data[0].rcrb_OperatingProfitMarginShareInCategory,brandName,marketID);
+                            var OperatingProfitShareInCategory=loadPercentageValue(data.data[0].rcrb_OperatingProfitShareInCategory,brandName,marketID);
                             var Interest=loadValue(data.data[0].rcrb_Interest,brandName,marketID);
                             var Taxes=loadValue(data.data[0].rcrb_Taxes,brandName,marketID);
                             var ExceptionalItems=loadValue(data.data[0].rcrb_ExceptionalItems,brandName,marketID);
@@ -232,12 +233,12 @@ define(['directives', 'services'], function(directives){
                                 scope.brand1s.push({'brandName':brandName,'Sales':Sales,'PromotionsCost':PromotionsCost,'OtherCompensation':OtherCompensation,'NetSales':NetSales,'NetSalesChange':NetSalesChange,'NetSalesShareInCategory':NetSalesShareInCategory,
                                     'CostOfGoodsSold':CostOfGoodsSold,'ValueOfQuantityDiscounts':ValueOfQuantityDiscounts,'ValueOfPerformanceBonus':ValueOfPerformanceBonus,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
                                     'GrossProfitChange':GrossProfitChange,'GrossProfitMargin':GrossProfitMargin,'GrossProfitShareInCategory':GrossProfitShareInCategory,'GeneralExpenses':GeneralExpenses,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,
-                                    'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitMarginShareInCategory':OperatingProfitMarginShareInCategory});
+                                    'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitShareInCategory':OperatingProfitShareInCategory});
                             }else{
                                 scope.brand2s.push({'brandName':brandName,'Sales':Sales,'PromotionsCost':PromotionsCost,'OtherCompensation':OtherCompensation,'NetSales':NetSales,'NetSalesChange':NetSalesChange,'NetSalesShareInCategory':NetSalesShareInCategory,
                                     'CostOfGoodsSold':CostOfGoodsSold,'ValueOfQuantityDiscounts':ValueOfQuantityDiscounts,'ValueOfPerformanceBonus':ValueOfPerformanceBonus,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
                                     'GrossProfitChange':GrossProfitChange,'GrossProfitMargin':GrossProfitMargin,'GrossProfitShareInCategory':GrossProfitShareInCategory,'GeneralExpenses':GeneralExpenses,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,
-                                    'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitMarginShareInCategory':OperatingProfitMarginShareInCategory});                      
+                                    'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitShareInCategory':OperatingProfitShareInCategory});                      
                             }
                         }
                     }
