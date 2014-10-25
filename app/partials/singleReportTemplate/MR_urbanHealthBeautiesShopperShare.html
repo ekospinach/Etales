@@ -52,22 +52,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player1s'>
@@ -75,22 +75,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
@@ -103,22 +103,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player2s'>
@@ -126,22 +126,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -154,22 +154,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player3s'>
@@ -177,22 +177,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -205,22 +205,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player5s'>
@@ -228,22 +228,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -256,22 +256,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player6s'>
@@ -279,22 +279,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolume | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolume | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedVolumeChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedVolumeChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr>
@@ -340,22 +340,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[0].mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[0].mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player1s'>
@@ -363,22 +363,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
@@ -391,22 +391,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[1].mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[1].mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player2s'>
@@ -414,22 +414,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
@@ -442,22 +442,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[2].mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[2].mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player3s'>
@@ -465,22 +465,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
@@ -493,22 +493,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[4].mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[4].mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player5s'>
@@ -516,22 +516,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
@@ -544,22 +544,22 @@
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{playerTotals[5].mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{playerTotals[5].mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
             <tr ng-repeat='player in player6s'>
@@ -567,22 +567,22 @@
                     <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValue | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.bmValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.bmValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValue | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.onlineValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.onlineValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValue | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValue | NulltoMinOr1Number }}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player.mixedValueChange | number : 1 }}</p>
+                    <p class="text-right">{{player.mixedValueChange | NulltoMinOr1Number }}</p>
                 </td>
             </tr>
         </tbody>
