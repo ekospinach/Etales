@@ -15,11 +15,12 @@ define(['angular', 'services'], function (angular, services) {
 		})
 		.filter('isNull',function(){
 			return function(item){
-				if(item==0||item=="0.00"){
-					return '/';
+				if(item==0||item==-100){
+					return '-';
 				}else{
 					return Math.round(item*10)/10;
 				}
+				return item;
 			}
 		});
 
