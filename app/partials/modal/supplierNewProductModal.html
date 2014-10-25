@@ -20,7 +20,7 @@
                         <label for="lauchNewBrandName">{{Label.getContent('Enter New Brand Name')}}:</label>
                         <div class="input-group">
                           <span class="input-group-addon">{{brandFirstName}}</span>
-                          <input type="text"  class="form-control" ng-model="lauchNewBrandName" name="newBrandName" ng-maxlength="4" required>
+                          <input type="text"  class="form-control" ng-model="lauchNewBrandName" name="newBrandName" ng-maxlength="4" ng-pattern="/^[A-Za-z0-9]+$/" required>
                           <span class="input-group-addon">{{brandLastName}}</span>
                         </div>
                       </div>
@@ -28,7 +28,7 @@
                         <label for="lauchNewVarName">{{Label.getContent('Enter New Variant Name')}}:</label>
                         <div class="input-group">
                           <span class="input-group-addon">_</span>
-                          <input type="text" name="lauchVarName" class="form-control" ng-model="lauchNewVarName" ng-maxlength="4" required>
+                          <input type="text" name="lauchVarName" class="form-control" ng-model="lauchNewVarName" ng-pattern="/^[A-Za-z0-9]+$/" ng-maxlength="4" required>
                         </div>
                       </div>
                   </div>
@@ -52,7 +52,7 @@
                     <label for="addNewVarName">{{Label.getContent('Enter New Variant Name')}}:</label>
                     <div class="input-group">
                       <span class="input-group-addon">_</span>
-                      <input type="text" name="addVarName" class="form-control" ng-model="addNewVarName" ng-maxlength="4" required>
+                      <input type="text" name="addVarName" class="form-control" ng-model="addNewVarName" ng-pattern="/^[A-Za-z0-9]+$/" ng-maxlength="4" required>
                     </div>
                   </div>
                 </div>
