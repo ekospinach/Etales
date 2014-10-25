@@ -336,6 +336,7 @@ var
             oJsonFile.A['rcrb_PromotionsCost'].Add( brandMarketInfoSchema(rcrb_PromotionsCost, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_OtherCompensation'].Add( brandMarketInfoSchema(rcrb_OtherCompensation, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_NetSales'].Add( brandMarketInfoSchema(rcrb_NetSales, catID, marketID, tempBrandMarketInfo) );
+            oJsonFile.A['rcrb_NetSalesChange'].Add( brandMarketInfoSchema(rcrb_NetSalesChange, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_NetProfitChange'].Add( brandMarketInfoSchema(rcrb_NetProfitChange, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_NetSalesShareInCategory'].Add( brandMarketInfoSchema(rcrb_NetSalesShareInCategory, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_CostOfGoodsSold'].Add( brandMarketInfoSchema(rcrb_CostOfGoodsSold, catID, marketID, tempBrandMarketInfo) );
@@ -411,6 +412,7 @@ var
                   oJsonFile.A['rcrv_PromotionsCost'].Add( variantMarketInfoSchema(rcrv_PromotionsCost, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_OtherCompensation'].Add( variantMarketInfoSchema(rcrv_OtherCompensation, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_NetSales'].Add( variantMarketInfoSchema(rcrv_NetSales, catID, marketID, tempVariantMarketInfo) );
+                  oJsonFile.A['rcrv_NetSalesChange'].Add( variantMarketInfoSchema(rcrv_NetSalesChange, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_NetProfitChange'].Add( variantMarketInfoSchema(rcrv_NetProfitChange, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_NetSalesShareInCategory'].Add( variantMarketInfoSchema(rcrv_NetSalesShareInCategory, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_CostOfGoodsSold'].Add( variantMarketInfoSchema(rcrv_CostOfGoodsSold, catID, marketID, tempVariantMarketInfo) );
@@ -433,7 +435,8 @@ var
                   oJsonFile.A['rcrv_NetProfit'].Add( variantMarketInfoSchema(rcrv_NetProfit, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_NetProfitChange'].Add( variantMarketInfoSchema(rcrv_NetProfitChange, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_NetProfitMargin'].Add( variantMarketInfoSchema(rcrv_NetProfitMargin, catID, marketID, tempVariantMarketInfo) );
-                  oJsonFile.A['rcrv_NetSalesShareInCategory'].Add( variantMarketInfoSchema(rcrv_NetSalesShareInCategory, catID, marketID, tempVariantMarketInfo) );                 
+                  oJsonFile.A['rcrv_NetProfitShareInCategory'].Add( variantMarketInfoSchema(rcrv_NetProfitShareInCategory, catID, marketID, tempVariantMarketInfo) );                 
+
                end;               
              end;
            end;
