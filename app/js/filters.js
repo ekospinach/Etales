@@ -12,7 +12,7 @@ define(['angular', 'services'], function (angular, services) {
 				if(item==0||item==-100){
 					return '-';
 				}else{
-					return item.toFixed(1);
+					return Math.round(item*10)/10;
 				}
 			}
 		})
@@ -21,7 +21,7 @@ define(['angular', 'services'], function (angular, services) {
 				if(item==0||item==-100){
 					return '-';
 				}else{
-					return item.toFixed(2);
+					return Math.round(item*100)/100;
 				}
 			}
 		})
