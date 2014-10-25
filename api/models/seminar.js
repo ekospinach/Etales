@@ -39,7 +39,7 @@ var seminarSchema            = mongoose.Schema({
 	EMallActive                  : {type:Boolean,default:false},
 	virtualSupplierActive        : {type:Boolean,default:false},
 	independentMarkets           : {type:Boolean,default:false},
-	forceNextDecisionsOverwrite  : {type:Boolean,default:false},
+	forceNextDecisionsOverwrite  : {type:Boolean,default:true},
 	market1ID                    : {type:Number,default:1},
 	market2ID                    : {type:Number,default:2},
 	category1ID                  : {type:Number,default:1},

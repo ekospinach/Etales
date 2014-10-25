@@ -67,7 +67,10 @@
 		<input
 	    ng-model="seminar.traceActive"
 	    type="checkbox"> Trace active</p>
-
+	<p>
+		<input
+	    ng-model="seminar.forceNextDecisionsOverwrite"
+	    type="checkbox"> Force next decisions overwrite in Binary(Files for kernel)</p>
 	<p>
 		<input
 	    ng-model="seminar.traditionalTradeActive"
@@ -86,13 +89,9 @@
 	    type="checkbox"> Independent markets</p>
 	<p>
 		<input
-	    ng-model="seminar.forceNextDecisionsOverwrite"
-	    type="checkbox"> Force next decisions overwrite</p>
-	<b>
-		<input
-	    ng-model="isKeepExistedPeriod1Decision"
-	    type="checkbox"> Keep existed period 1 deicison in DB?</p>		
-	</b>
+	    ng-model="overwriteNextDecision"
+	    type="checkbox"> Force next decisions <b style='color:red'>OVERWRITE</b> in DataBase(Interface)</p>		
+	</p>
 	<pre ng-show="isInitializeMessageShown">{{initializeMessage}}</pre>
 <!-- 	<pre ng-show="isInitializeMessageShown"><p data-ng-repeat="message in initializeMessage">{{message}}</p></pre>
  -->
@@ -103,7 +102,7 @@
 	  <h4>Warning! Initialise confirmation</h4>
 	  <p>Data(result and decision) from period -3 to period 0 will be covered</p>
 	  <p>
-	    <button type="button" class="btn btn-danger" ng-click='Initialize(seminar, isKeepExistedPeriod1Decision)' ng-disabled="!isActive">Take this action</button>
+	    <button type="button" class="btn btn-danger" ng-click='Initialize(seminar, overwriteNextDecision)' ng-disabled="!isActive">Take this action</button>
 	    <button type="button" ng-click="isInitializeConfirmInfoShown=false" class="btn btn-default">Cancel</button>
 	  </p>
 	</div>		            
@@ -118,16 +117,14 @@
 			</h3>
 		</div>        		
 		<p>
-			<input
-		    ng-model="keepExistedNextPeriodDecision"
-		    type="checkbox"> Keep existed decision in DB for <b>SelectedPeriod + 1 ?</b></p>		
+			<input ng-model="overwriteNextDecisionForRunKernel" type="checkbox">Force next decisions <b style='color:red'>OVERWRITE</b> in DataBase?</p>		
 		</p>		
 	    <div class="alert alert-danger fade in" ng-show="isRunConfirmInfoShown">
 	      <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
 	      <h4>Warning! Run simulation confirmation</h4>
 	      <p>Data(result and decision) of selected period will be covered</p>
 	      <p>
-	        <button type="button" class="btn btn-danger" ng-click='Run(seminar, selectedPeriod, keepExistedNextPeriodDecision)'>Take this action</button>
+	        <button type="button" class="btn btn-danger" ng-click='Run(seminar, selectedPeriod, overwriteNextDecisionForRunKernel)'>Take this action</button>
 	        <button type="button" ng-click="isRunConfirmInfoShown=false" class="btn btn-default">Cancel</button>
 	      </p>
 	    </div>		
