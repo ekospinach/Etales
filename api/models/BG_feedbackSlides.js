@@ -256,7 +256,7 @@ exports.getFeedBack = function(req,res,next){
     period:req.params.period
   },function(err,doc){
     if(err){
-      next(new Error(err));
+      return next(new Error(err));
     }
     if(doc){
       res.send(200,doc);
