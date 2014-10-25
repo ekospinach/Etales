@@ -830,6 +830,7 @@ exports.updateRetailerDecision = function(io) {
                     doc.markModified('retCatDecision');
                     doc.save(function(err, doc, numberAffected) {
                         if (err) next(new Error(err));
+                        
                         console.log('save updated, number affected:' + numberAffected);
 
                         if(numberAffected){
