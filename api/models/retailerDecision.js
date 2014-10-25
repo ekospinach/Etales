@@ -546,28 +546,19 @@ exports.checkOrder = function(req, res, next) {
 exports.updateRetailerDecision = function(io) {
     return function(req, res, next) {
         var queryCondition = {
-            seminar       : (req.body.seminar?req.body.seminar:'requestNull'),
-            period        : (req.body.period?req.body.period:'requestNull'),
-            retailerID    : (req.body.retailerID?req.body.retailerID:'requestNull'),
-            behaviour     : (req.body.behaviour?req.body.behaviour:'requestNull'),
-            brandName     : (req.body.brandName?req.body.brandName:'requestNull'),
-            varName       : (req.body.varName?req.body.varName:'requestNull'),
-            categoryID    : (req.body.categoryID?req.body.categoryID:'requestNull'),
-            marketID      : (req.body.marketID?req.body.marketID:'requestNull'),
-            location      : (req.body.location?req.body.location:'requestNull'),
-            additionalIdx : (req.body.additionalIdx?req.body.additionalIdx:'requestNull'),
-            value         : (req.body.value?req.body.value:'requestNull')
+            seminar       : (req.body.seminar),
+            period        : (req.body.period),
+            retailerID    : (req.body.retailerID),
+            behaviour     : (req.body.behaviour),
+            brandName     : (req.body.brandName),
+            varName       : (req.body.varName),
+            categoryID    : (req.body.categoryID),
+            marketID      : (req.body.marketID),
+            location      : (req.body.location),
+            additionalIdx : (req.body.additionalIdx),
+            value         : (req.body.value)
         }
 
-        console.log(queryCondition);
-
-        if(queryCondition.value != 'requestNull'){
-            for (var prop in queryCondition.value) {
-                if(queryCondition.value[prop]==undefined){
-                    queryCondition.value[prop] = 'requestNull';
-                }
-            };
-        }
 
         retDecision.findOne({
             seminar: queryCondition.seminar,
@@ -754,7 +745,7 @@ exports.updateRetailerDecision = function(io) {
                         var count = 0,
                             result = 0;
                         for (var i = 0; i < doc.retMarketDecision.length; i++) {
-                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.value != 'requestNull' && queryCondition.value.categoryID != 'requestNull') {
+                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID && queryCondition.value != undefined && queryCondition.value.categoryID != undefined) {
                                 for (var j = 0; j < doc.retMarketDecision[i].retMarketAssortmentDecision.length; j++) {
                                     if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID == queryCondition.value.categoryID) {
                                         for (var k = 0; k < doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length; k++) {
