@@ -26,7 +26,7 @@ exports.getQuarterHistory=function(req,res,next){
 		period:req.params.period
 	},function(err,doc){
 		if(err){
-			next(new Error(err));
+			return next(new Error(err));
 		}
 		if(!doc){
 			res.send(404,'cannot find the doc');

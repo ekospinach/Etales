@@ -129,7 +129,7 @@ exports.getReportPrice=function(req,res,next){
         marketID:1
     },function(err,doc){
         if(err){
-            next(new Error(err));
+            return next(new Error(err));
         }
         if(doc){
             res.send(200,doc.MarketStudiesPrices);
@@ -146,7 +146,7 @@ exports.getPlayerReportOrderExpend=function(req,res,next){
         marketID:1
   },function(err,doc){
       if(err){
-          next(new Error(err));
+          return next(new Error(err));
       }
       if(doc){
           var result = 0;
@@ -183,7 +183,7 @@ exports.getOneQuarterExogenousData=function(req,res,next){
         marketID:req.params.marketID
     },function(err,doc){
         if(err){
-            next(new Error(err));
+            return next(new Error(err));
         }
         if(doc){
             res.send(200,doc);

@@ -256,7 +256,7 @@ exports.getSeminarReportPurchaseStatus = function(req, res, next) {
 		seminarCode: req.params.seminar
 	}, function(err, doc) {
 		if (err) {
-			next(new Error(err));
+			return next(new Error(err));
 		}
 		if (!doc) {
 			console.log('cannot find matched doc');
@@ -287,7 +287,7 @@ exports.getSeminarInfo = function(req, res, next) {
 		seminarCode: req.params.seminar
 	}, function(err, doc) {
 		if (err) {
-			next(new Error(err));
+			return next(new Error(err));
 		}
 		if (!doc) {
 			console.log('cannot find matched doc');
@@ -306,7 +306,7 @@ exports.checkProducerDecisionStatus = function(req, res, next) {
 		seminarCode: req.params.seminar
 	}, function(err, doc) {
 		if (err) {
-			next(new Error(err))
+			return next(new Error(err))
 		};
 		if (doc) {
 			var result = {
@@ -335,7 +335,7 @@ exports.checkRetailerDecisionStatus = function(req, res, next) {
 		seminarCode: req.params.seminar
 	}, function(err, doc) {
 		if (err) {
-			next(new Error(err))
+			return next(new Error(err))
 		};
 		if (doc) {
 			var result = {
@@ -371,7 +371,7 @@ exports.submitPortfolioDecision = function(io) {
 			seminarCode: queryCondition.seminar
 		}, function(err, doc) {
 			if (err) {
-				next(new Error(err))
+				return next(new Error(err))
 			};
 			if (doc) {
 				for (var i = 0; i < doc.producers[queryCondition.producerID - 1].decisionCommitStatus.length; i++) {
@@ -421,7 +421,7 @@ exports.submitContractDeal = function(io) {
 			seminarCode: queryCondition.seminar
 		}, function(err, doc) {
 			if (err) {
-				next(new Error(err));
+				return next(new Error(err));
 			}
 			if (doc) {
 				switch (queryCondition.role) {
@@ -481,7 +481,7 @@ exports.submitContractFinalized = function(io) {
 			seminarCode: queryCondition.seminar
 		}, function(err, doc) {
 			if (err) {
-				next(new Error(err));
+				return next(new Error(err));
 			}
 			if (doc) {
 				switch (queryCondition.role) {
@@ -540,7 +540,7 @@ exports.submitFinalDecision = function(io) {
 			seminarCode: queryCondition.seminar
 		}, function(err, doc) {
 			if (err) {
-				next(new Error(err));
+				return next(new Error(err));
 			}
 			if (doc) {
 				switch (queryCondition.role) {
@@ -595,7 +595,7 @@ exports.setCurrentPeriod = function(io) {
 			seminarCode: queryCondition.seminar
 		}, function(err, doc) {
 			if (err) {
-				next(new Error(err))
+				return next(new Error(err))
 			};
 			if (doc) {
 				doc.currentPeriod = queryCondition.period;
@@ -628,7 +628,7 @@ exports.deleteSeminar = function(req, res, next) {
 		seminarCode: req.body.seminarCode
 	}, function(err, doc) {
 		if (err) {
-			next(new Error(err));
+			return next(new Error(err));
 		}
 		if (!doc) {
 			res.send(404, 'cannot find matched doc to remove....');
@@ -780,7 +780,7 @@ exports.updateSeminar = function(io) {
 			seminarCode: queryCondition.seminarCode
 		}, function(err, doc) {
 			if (err) {
-				next(new Error(err));
+				return next(new Error(err));
 			}
 			if (!doc) {
 				res.send(404, 'cannot find matched doc....');
@@ -818,7 +818,7 @@ exports.updateSeminar = function(io) {
 					doc.markModified('producers');
 					doc.save(function(err, doc, numberAffected) {
 						if (err) {
-							next(new Error(err));
+							return next(new Error(err));
 						}
 						if (queryCondition.behaviour == "updateCurrentPeriod" || queryCondition.behaviour == "updateSimulationSpan") {
 							io.sockets.emit('socketIO:seminarPeriodChanged', {
@@ -861,7 +861,7 @@ exports.submitOrder = function(io) {
 			seminarCode: queryCondition.seminarCode
 		}, function(err, doc) {
 			if (err) {
-				next(new Error(err));
+				return next(new Error(err));
 			}
 			if (!doc) {
 				res.send(404, 'cannot find matched doc....');
@@ -897,7 +897,7 @@ exports.submitOrder = function(io) {
 					doc.markModified('producers');
 					doc.save(function(err, doc, numberAffected) {
 						if (err) {
-							next(new Error(err));
+							return next(new Error(err));
 						}
 						if (queryCondition.player == "Producer") {
 							io.sockets.emit('socketIO:producerMarketResearchOrdersChanged', {
@@ -928,7 +928,7 @@ exports.getPlayerReportOrder = function(req, res, next) {
 		seminarCode: req.params.seminar
 	}, function(err, doc) {
 		if (err) {
-			next(new Error(err));
+			return next(new Error(err));
 		}
 		if (doc) {
 			if (req.params.userType == "P") {
@@ -957,7 +957,7 @@ exports.getPlayerReportOrder = function(req, res, next) {
 // 		seminarCode: req.params.seminar
 // 	}, function(err, doc) {
 // 		if (err) {
-// 			next(new Error(err));
+// 			return next(new Error(err));
 // 		}
 // 		if (doc) {
 // 			var result = 0;
@@ -1116,7 +1116,7 @@ exports.getTimerActiveInfo = function(req, res, next) {
 		seminarCode: req.params.seminar
 	}, function(err, doc) {
 		if (err) {
-			next(new Error(err));
+			return next(new Error(err));
 		}
 		if (doc) {
 			var result = {

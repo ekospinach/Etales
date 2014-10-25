@@ -96,7 +96,7 @@ exports.getOneQuarterParameterData=function(req,res,next){
         marketID:req.params.marketID
     },function(err,doc){
         if(err){
-            next(new Error(err));
+            return next(new Error(err));
         }
         if(doc){
             res.send(200,doc);

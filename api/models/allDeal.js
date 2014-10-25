@@ -399,7 +399,7 @@ function fillAllDeal(seminar, period){
         } else {
           console.log('loop contract done');
           allDeal.findOne({seminar:seminar, period:period},function(err,doc){
-            if(err){ next(new Error(err));}
+            if(err){ return next(new Error(err));}
             if(!doc){
               tempDeal.save(function(err){
                 if(!err){deferred.resolve({msg:'save doc complete.',result:tempDeal})}

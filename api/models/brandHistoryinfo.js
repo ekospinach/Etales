@@ -47,7 +47,7 @@ exports.getBrandHistory=function(req,res,next){
         brandName:req.params.brandName
     },function(err,doc){
         if(err){
-            next(new Error(err));
+            return next(new Error(err));
         }
         if(!doc){
             res.send(404,'cannot find the doc');
@@ -65,7 +65,7 @@ exports.getPeriodBrandHistory=function(req,res,next){
     period:req.params.period
   },function(err,docs){
     if(err){
-      next(new Error(err));
+      return next(new Error(err));
     }
     if(!docs){
       res.send(404,'cannot find the doc');

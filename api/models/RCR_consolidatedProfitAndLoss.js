@@ -268,7 +268,7 @@ exports.getRcrplSales=function(req,res,next){
         retailerID:req.params.retailerID
     },function(err,doc){
         if(err){
-            next(new Error(err));
+            return next(new Error(err));
         }
         if(!doc){
            res.send(404,{err:'cannot find the doc'}); 
@@ -292,7 +292,7 @@ exports.getSalesVolume=function(req,res,next){
         retailerID:req.params.retailerID
     },function(err,doc){
         if(err){
-            next(new Error(err));
+            return next(new Error(err));
         }
         if(!doc){
             res.send(404,{err:'cannot find the doc'}); 

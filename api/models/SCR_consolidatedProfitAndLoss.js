@@ -1196,7 +1196,7 @@ exports.getScrplSales=function(req,res,next){
         producerID:req.params.producerID
     },function(err,doc){
         if(err){
-            next(new Error(err));
+            return next(new Error(err));
         }
         if(!doc){
             res.send(404,{err:'cannot find the doc'}); 
