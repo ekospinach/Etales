@@ -550,7 +550,7 @@ exports.updateRetailerDecision = function(io) {
             period: (req.body.period?req.body.period:'requestNull'),
             retailerID: (req.body.retailerID?req.body.retailerID:'requestNull'),
             behaviour: (req.body.behaviour?req.body.behaviour:'requestNull'),
-            brandName: (req.body.brandName?req.body.behaviour:'requestNull'),
+            brandName: (req.body.brandName?req.body.brandName:'requestNull'),
             varName: (req.body.varName?req.body.varName:'requestNull'),
             categoryID: (req.body.categoryID?req.body.categoryID:'requestNull'),
             marketID: (req.body.marketID?req.body.marketID:'requestNull'),
@@ -559,9 +559,6 @@ exports.updateRetailerDecision = function(io) {
             value: (req.body.value?req.body.value:'requestNull')
         }
         if(queryCondition.value.categoryID?queryCondition.value.categoryID:'requestNull')
-        console.log(queryCondition);
-
-
 
         retDecision.findOne({
             seminar: queryCondition.seminar,
