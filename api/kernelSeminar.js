@@ -52,37 +52,30 @@ function runPromiseChain(io, options, res){
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
 
 		//import Decisions(P1/P2/P3, R1/R2) of next Period(++) (NEW blank decision)
-		// 	options.producerID = '1';
-		// 	options.cgiPath = conf.cgi.path_producerDecision;
-		// 	options.startFrom = +options.startFrom + 1;
-		// 	options.endWith = +options.endWith + 1;							
-		// 	return require('./models/producerDecision.js').addProducerDecisions(options);
-		// }).then(function(result){
-	 //        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
-
+			options.producerID = '1';
 			options.cgiPath = conf.cgi.path_producerDecision;
 			options.startFrom = +options.startFrom + 1;
-			options.endWith = +options.endWith + 1;		
+			options.endWith = +options.endWith + 1;							
+			return require('./models/producerDecision.js').addProducerDecisions(options);
+		}).then(function(result){
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
 			options.producerID = '2';			
 			return require('./models/producerDecision.js').addProducerDecisions(options);
 		}).then(function(result){
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
-
-		// 	options.producerID = '3';			
-		// 	return require('./models/producerDecision.js').addProducerDecisions(options);			
-		// }).then(function(result){
-	 //        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
-
+			options.producerID = '3';			
+			return require('./models/producerDecision.js').addProducerDecisions(options);			
+		}).then(function(result){
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '1';	
 			options.cgiPath = conf.cgi.path_retailerDecision;
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
 		}).then(function(result){
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
-
-		// 	options.retailerID = '2';			
-		// 	return require('./models/retailerDecision.js').addRetailerDecisions(options);			
-		// }).then(function(result){
-	 //        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
+			options.retailerID = '2';			
+			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
+		}).then(function(result){
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });			
 
 		//Import History Info of selected period(--)
 	        options.startFrom = +options.startFrom -1;
