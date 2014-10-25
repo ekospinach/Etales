@@ -566,7 +566,7 @@ exports.updateRetailerDecision = function(io) {
             retailerID: queryCondition.retailerID
         }, function(err, doc) {
             if (err) {
-                next(new Error(err));
+                return next(new Error(err));
             }
             if (!doc) {
                 console.log('cannot find matched doc...');
@@ -819,7 +819,7 @@ exports.updateRetailerDecision = function(io) {
                     doc.markModified('marketResearchOrder');
                     doc.markModified('retCatDecision');
                     doc.save(function(err, doc, numberAffected) {
-                        if (err) next(new Error(err));
+                        if (err) return next(new Error(err));
                         
                         console.log('save updated, number affected:' + numberAffected);
 
