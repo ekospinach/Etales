@@ -59,7 +59,7 @@ define(['directives'], function(directives) {
                                 text: ''
                             },
                             xAxis: {
-                                categories: ['', '']
+                                categories: ['','','','','','']
                             },
                             yAxis: {
                                 title: {
@@ -150,7 +150,7 @@ define(['directives'], function(directives) {
                                 text: ''
                             },
                             xAxis: {
-                                categories: ['', '']
+                                categories: ['','','','','','']
                             },
                             yAxis: {
                                 title: {
@@ -240,7 +240,7 @@ define(['directives'], function(directives) {
                                 text: ''
                             },
                             xAxis: {
-                                categories: ['', '']
+                                categories: ['','','','','','']
                             },
                             yAxis: {
                                 title: {
@@ -330,7 +330,7 @@ define(['directives'], function(directives) {
                                 text: ''
                             },
                             xAxis: {
-                                categories: ['', '']
+                                categories: ['','','','','','']
                             },
                             yAxis: {
                                 title: {
