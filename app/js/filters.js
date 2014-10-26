@@ -9,19 +9,19 @@ define(['angular', 'services'], function (angular, services) {
 		}])
 		.filter('NulltoMinOr1Number',function(){
 			return function(item){
-				if(item==0||item==-100){
+				if(item==0||item==-100||item==undefined){
 					return '-';
 				}else{
-					return Math.round(item*10)/10;
+					return item.toFixed(1);
 				}
 			}
 		})
 		.filter('NulltoMinOr2Number',function(){
 			return function(item){
-				if(item==0||item==-100){
+				if(item==0||item==-100||item==undefined){
 					return '-';
 				}else{
-					return Math.round(item*100)/100;
+					return item.toFixed(2);
 				}
 			}
 		})
