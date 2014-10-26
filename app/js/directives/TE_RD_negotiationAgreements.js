@@ -146,20 +146,20 @@ define(['directives', 'services'], function(directives) {
                             var availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
                             
                             if(value == 0){
-                                d.resolve();
+                                return d.resolve();
                             } else if (contractDetails.currentPriceBM == 0){
                                 d.resolve(Label.getContent('BM list price is 0'))
                             } else {
-                                benchMark = 1 - (availableBudgetLeft / (contractDetails.currentPriceBM * contractDetails.nc_MinimumOrder));
+                                benchMark = availableBudgetLeft / (contractDetails.currentPriceBM * contractDetails.nc_MinimumOrder);
                             }
 
-                            if((value < 100) && (value > (benchMark * 100))){
+                            if( (value < (benchMark * 100)) && (value > 0) ){
                                 d.resolve();
-                            } else if(benchMark > 1) {
+                            } else if(benchMark < 0) {
                                 d.resolve(Label.getContent('Supplier does not have enough budget.'));                                
                             } else {                                
-                                d.resolve(Label.getContent('Input range') + ':' + (Math.floor(benchMark * 100 * 100) / 100) + '% ~ 100%');                                
-                            }
+                                d.resolve(Label.getContent('Input range') + ':0% ~ ' + (Math.floor(benchMark * 100 * 100) / 100) + '%');                                
+                            }                            
 
                         }, function() {
                             d.resolve(Label.getContent('Check Error'));
