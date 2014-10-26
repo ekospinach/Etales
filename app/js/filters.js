@@ -11,6 +11,8 @@ define(['angular', 'services'], function (angular, services) {
 			return function(item){
 				if(item==0||item==-100||item==undefined){
 					return '-';
+				}else if(item<0.1&&item>0){
+					return '< 0.1';
 				}else{
 					return item.toFixed(1);
 				}
