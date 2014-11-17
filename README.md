@@ -1,7 +1,7 @@
 # Etales
 Business Simulation Game
 
-##Patch List, 2014 JUNE, before testing phase 2
+###Patch List, 2014 JUNE, before testing phase 2
 
 ###### Reports
 + New report : additional situation report for two different categories
