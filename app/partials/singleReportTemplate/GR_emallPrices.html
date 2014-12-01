@@ -19,7 +19,7 @@
                 <td></td>
                 <td>
                     <p class="text-center">
-                        {{Label.getContent('Net Online Retail Price')}} ($)
+                        {{Label.getContent('Net Online Retail Price')}} ({{Label.getContent('$')}})
                     </p>
                 </td>
                 <td>
@@ -42,143 +42,52 @@
             <tr class="success">
                 <th colspan="5">{{Label.getContent('Elecssories')}}</th>
             </tr>
-            <tr class="success">
+            <tr class="success" ng-repeat-start='producer in producerses'>
                 <td colspan="5">
-                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                    <p class="padding-20">{{Label.getContent('Producer')}} {{$index+1}}</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='producer in producer1es'>
+            <tr class="success" ng-repeat='product in producer' ng-repeat-end>
                 <td>
-                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
+                    <p class="padding-40">{{product.parentBrandName+product.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer.vemp_NetOnlinePrice | number : 1}}</p>
+                    <p class="text-right">{{product.vemp_NetOnlinePrice | number : 1}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer.vemp_PriceChange*100) | number : 1}}</p>
+                    <p class="text-right">{{(product.vemp_PriceChange*100) | number : 1}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency | number : 1}}</p>
+                    <p class="text-right">{{product.vemp_Promotions.promo_Frequency | number : 1}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
+                    <p class="text-right">{{(product.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
                 </td>
             </tr>
-            <tr class="success">
-                <td colspan="5">
-                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
-                </td>
-            </tr>
-            <tr class="success" ng-repeat='producer in producer2es'>
-                <td>
-                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_NetOnlinePrice | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_PriceChange*100) | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
-                </td>
-
-            </tr>
-            <tr class="success">
-                <td colspan="5">
-                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
-                </td>
-            </tr>
-            <tr class="success" ng-repeat='producer in producer3es'>
-                <td>
-                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_NetOnlinePrice | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_PriceChange*100) | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
-                </td>
-            </tr>
-
             <!--H-->
             <tr class="danger">
                 <th colspan="5">{{Label.getContent('HealthBeauties')}}</th>
             </tr>
-            <tr class="danger">
+            <tr class="danger" ng-repeat-start='producer in producershs'>
                 <td colspan="5">
-                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                    <p class="padding-20">{{Label.getContent('Producer')}} {{$index+1}}</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='producer in producer1hs'>
+            <tr class="danger" ng-repeat='product in producer' ng-repeat-end>
                 <td>
-                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_NetOnlinePrice | number : 1}}</p>
+                    <p class="padding-40">{{product.parentBrandName+product.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer.vemp_PriceChange*100) | number : 1}}</p>
+                    <p class="text-right">{{product.vemp_NetOnlinePrice | number : 1}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency | number : 1}}</p>
+                    <p class="text-right">{{(product.vemp_PriceChange*100) | number : 1}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
-                </td>
-
-            </tr>
-            <tr class="danger">
-                <td colspan="5">
-                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
-                </td>
-            </tr>
-            <tr class="danger" ng-repeat='producer in producer2hs'>
-                <td>
-                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
+                    <p class="text-right">{{product.vemp_Promotions.promo_Frequency | number : 1}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer.vemp_NetOnlinePrice | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_PriceChange*100) | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
-                </td>
-            </tr>
-            <tr class="danger">
-                <td colspan="5">
-                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
-                </td>
-            </tr>
-            <tr class="danger" ng-repeat='producer in producer3hs'>
-                <td>
-                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_NetOnlinePrice | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_PriceChange*100) | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency | number : 1}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
+                    <p class="text-right">{{(product.vemp_Promotions.promo_Rate*100) | number : 1}}</p>
                 </td>
             </tr>
         </tbody>

@@ -43,6 +43,7 @@
 			'angularRoute': ['angular'],
 			'angularResource':['angular'],
 			'angularCookies': ['angular'],
+			'angularAnimate': ['angular'],
 			'angularMocks': {
 				deps:['angular'],
 				'exports':'angular.mock'

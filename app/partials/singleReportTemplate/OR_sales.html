@@ -2,15 +2,15 @@
     <div class="panel-heading">
         <h3 class="panel-title text-center">{{Label.getContent('Sales')}} - {{Label.getContent('Elecssories')}}</h3>
     </div>
-    <highchart id="currentSalesVolumeElecssories" config="currentSalesVolumeElecssories" style="width:500px;margin:0 20px;"class="pull-left"></highchart>
-    <highchart id="currentSalesValueElecssories" config="currentSalesValueElecssories" style="width:500px;margin:0 20px;"class="pull-left"></highchart>
+    <div current-sales-volume-elecssories id="currentSalesVolumeElecssories" ng-model="currentSalesVolumeElecssories" style="width:48%;"class="pull-left"></div>
+    <div current-sales-value-elecssories id="currentSalesValueElecssories" ng-model="currentSalesValueElecssories" style="width:48%;"class="pull-right"></div>
     <div style="clear:both"></div>
 </div>
 <div class="panel panel-success my-panel-overview" ng-show="isResultShown">
     <div class="panel-heading">
         <h3 class="panel-title text-center">{{Label.getContent('Sales')}} - {{Label.getContent('HealthBeauties')}}</h3>
     </div>
-    <highchart id="currentSalesVolumeHealthBeauties" config="currentSalesVolumeHealthBeauties" style="width:500px;margin:0 20px;"class="pull-left"></highchart>
-    <highchart id="currentSalesValueHealthBeauties" config="currentSalesValueHealthBeauties" style="width:500px;margin:0 20px;"class="pull-left"></highchart>
+    <div current-sales-volume-health-beauties id="currentSalesVolumeHealthBeauties" ng-model="currentSalesVolumeHealthBeauties" style="width:48%;"class="pull-left"></div>
+    <div current-sales-value-health-beauties id="currentSalesValueHealthBeauties" ng-model="currentSalesValueHealthBeauties" style="width:48%;"class="pull-right"></div>
     <div style="clear:both"></div>
 </div>
