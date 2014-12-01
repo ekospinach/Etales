@@ -1088,7 +1088,7 @@ var getLabelBase = function(){
 		{id:'Negotiation decisions had been made with Retailers',  ENG:'Negotiation decisions had been made with Retailers',  CHN:'Negotiation decisions had been made with Retailers',  RUS:''},		
 		{id:'Negotiation decisions had been made with Suppliers',  ENG:'Negotiation decisions had been made with Suppliers',  CHN:'Negotiation decisions had been made with Suppliers',  RUS:''},		
 		{id:'Negotiation decisions had been Locked',  ENG:'Negotiation decisions had been Locked',  CHN:'Negotiation decisions had been Locked',  RUS:''},		
-		{id:'all the rest decisions',  ENG:'all the rest decisions',  CHN:'剩余所有决策',  RUS:''},		
+		{id:'all the rest decisi$ons',  ENG:'all the rest decisions',  CHN:'剩余所有决策',  RUS:''},		
 		{id:'Participants Manual',  ENG:'Participants Manual',  CHN:'学员手册',  RUS:''},		
 		{id:'all the rest decisions Locked',  ENG:'all the rest decisions Locked',  CHN:'all the rest decisions Locked',  RUS:''},		
 		{id:'Clock Info',  ENG:'Clock Info',  CHN:'Clock 介绍',  RUS:''},		
@@ -1098,8 +1098,25 @@ var getLabelBase = function(){
 
 		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		
 		{id:'$mln',  ENG:'$mln',  CHN:'百万元',  RUS:''},
+		{id:'$',  ENG:'$',  CHN:'元',  RUS:''},
 		{id:'Retailer Marketing Advertising Online Info',  ENG:'Is a component of advertising that you spend online for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'网络广告指你在网络上针对两个市场消费者所做的广告, 它可以帮助你在两个维度上改善: 价格吸引力和便利性.',  RUS:''},		
 		{id:'Retailer Marketing Advertising Offline Info',  ENG:'Is a component of advertising that you spend through classic media channels such as television and newspaper for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'传统广告指通过传统媒体面对两个市场消费者所做的广告，包括电视、报纸，它可以帮助你在两个维度上改善：价格吸引力和便利性。',  RUS:''},		
+
+		{id:'Breakdown of Volume Discounts given by Suppliers',  ENG:'Breakdown of Volume Discounts given by Suppliers',  CHN:'Breakdown of Volume Discounts given by Suppliers中文',  RUS:''},
+		{id:'Breakdown of Performance Bonuses given by Suppliers',  ENG:'Breakdown of Performance Bonuses given by Suppliers',  CHN:'Breakdown of Performance Bonuses given by Suppliers中文',  RUS:''},
+		{id:'Breakdown of Other Compensation given by Suppliers',  ENG:'Breakdown of Other Compensation given by Suppliers',  CHN:'Breakdown of Other Compensation given by Suppliers中文',  RUS:''},
+		{id:'Breakdown of Volume Discounts given by Retailers',  ENG:'Breakdown of Volume Discounts given by Retailers',  CHN:'Breakdown of Volume Discounts given by Retailers中文',  RUS:''},
+		{id:'Breakdown of Performance Bonuses received by Retailers',  ENG:'Breakdown of Performance Bonuses received by Retailers',  CHN:'Breakdown of Performance Bonuses received by Retailers中文',  RUS:''},
+		{id:'Breakdown of Other Compensation received by Retailers',  ENG:'Breakdown of Other Compensation received by Retailers',  CHN:'Breakdown of Other Compensation received by Retailers中文',  RUS:''},
+		{id:'Transaction Values by Terms of Payment',  ENG:'Transaction Values by Terms of Payment',  CHN:'Transaction Values by Terms of Payment中文',  RUS:''},
+		{id:'COD',  ENG:'COD',  CHN:'立即支付',  RUS:''},
+		{id:'Days',  ENG:'Days',  CHN:'天',  RUS:''},
+		{id:'in Weeks',  ENG:'in Weeks',  CHN:'周',  RUS:''},
+		{id:'Urban Market',  ENG:'Urban Market',  CHN:'城市市场',  RUS:''},
+		{id:'Rural Market',  ENG:'Rural Market',  CHN:'农村市场',  RUS:''},
+		{id:'Return on Investment',  ENG:'Return on Investment',  CHN:'投资回报',  RUS:''},
+		{id:'Strength Index',  ENG:'Strength Index',  CHN:'强度指数',  RUS:''},
+
 
 
 	]

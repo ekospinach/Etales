@@ -1,91 +1,178 @@
-var shareOfShoppersCtrl=function($scope,$http){
+var shareOfShoppersCtrl = function($scope, $http, PlayerColor) {
     function GetRequest() {
-       var url = document.location.search; //获取url中"?"符后的字串
-       var theRequest = new Object();
-       if (url.indexOf("?") != -1) {
-          var str = url.substr(1);
-          strs = str.split("&");
-          for(var i = 0; i < strs.length; i ++) {
-             theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
-          }
-       }
-       return theRequest;
+        var url = document.location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
     }
 
-    function newChartData(searchKeys){
-        var chartSeries = new Array({name:'Retailer-1',data:new Array(),color:'#8B288B',},
-                                        {name:'Retailer-2',data:new Array(),color:'#329444'},
-                                        {name:'Traditional Trade',data:new Array(),color:'#00AFEF'},
-                                        {name:'Suppler-1',data:new Array(),color:'#3257A7'},
-                                        {name:'Suppler-2',data:new Array(),color:'#B11E22'},
-                                        {name:'Suppler-3',data:new Array(),color:'#F6B920'},
-                                        {name:'Suppler-4',data:new Array(),color:'#666666'});
+    function newChartData(searchKeys) {
+        var chartSeries = new Array({
+            name: $scope.newLabel.getContent('Retailer')+'-1',
+            data: [],
+            color: PlayerColor.r1,
+        }, {
+            name: $scope.newLabel.getContent('Retailer')+'-2',
+            data: [],
+            color: PlayerColor.r2
+        }, {
+            name: $scope.newLabel.getContent('Traditional Trade'),
+            data: [],
+            color: PlayerColor.r3
+        }, {
+            name: $scope.newLabel.getContent('Supplier')+'-1',
+            data: [],
+            color: PlayerColor.s1
+        }, {
+            name: $scope.newLabel.getContent('Supplier')+'-2',
+            data: [],
+            color: PlayerColor.s2
+        }, {
+            name: $scope.newLabel.getContent('Supplier')+'-3',
+            data: [],
+            color: PlayerColor.s3
+        }, {
+            name: $scope.newLabel.getContent('Supplier')+'-4',
+            data: [],
+            color: PlayerColor.s4
+        });
 
         return {
-            searchKeys : {shopperKind : searchKeys.shopperKind, marketID : searchKeys.marketID, categoryID : searchKeys.categoryID},
-            chartSeries : chartSeries
+            searchKeys: {
+                shopperKind: searchKeys.shopperKind,
+                marketID: searchKeys.marketID,
+                categoryID: searchKeys.categoryID
+            },
+            chartSeries: chartSeries
         }
     }
-    var initPage=function(){
+    var initPage = function() {
         var Request = GetRequest();
-        var url='/getFeedBack/'+Request['seminar']+'/'+Request['period'];
-        var periodsShown=new Array();
+        var periodsShown = [];
 
-        for(var i=-3;i<=Request['period'];i++){
+        for (var i = -3; i <= Request['period']; i++) {
             periodsShown.push(i);
         }
-        var E_urbanOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 1, categoryID : 1});
-        var E_urbanBM     = newChartData({ shopperKind : 'BMS', marketID : 1, categoryID : 1});
-        var E_urbanMixed  = newChartData({ shopperKind : 'MIXED', marketID : 1, categoryID : 1});
-        var E_urbanTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 1, categoryID : 1});
+        var E_urbanOnline = newChartData({
+            shopperKind: 'NETIZENS',
+            marketID: 1,
+            categoryID: 1
+        });
+        var E_urbanBM = newChartData({
+            shopperKind: 'BMS',
+            marketID: 1,
+            categoryID: 1
+        });
+        var E_urbanMixed = newChartData({
+            shopperKind: 'MIXED',
+            marketID: 1,
+            categoryID: 1
+        });
+        var E_urbanTotal = newChartData({
+            shopperKind: 'ALLSHOPPERS',
+            marketID: 1,
+            categoryID: 1
+        });
 
-        var E_ruralOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 2, categoryID : 1});
-        var E_ruralBM     = newChartData({ shopperKind : 'BMS', marketID : 2, categoryID : 1});
-        var E_ruralMixed  = newChartData({ shopperKind : 'MIXED', marketID : 2, categoryID : 1});
-        var E_ruralTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 2, categoryID : 1});
-        
-        var H_urbanOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 1, categoryID : 2});
-        var H_urbanBM     = newChartData({ shopperKind : 'BMS', marketID : 1, categoryID : 2});
-        var H_urbanMixed  = newChartData({ shopperKind : 'MIXED', marketID : 1, categoryID : 2});
-        var H_urbanTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 1, categoryID : 2});
+        var E_ruralOnline = newChartData({
+            shopperKind: 'NETIZENS',
+            marketID: 2,
+            categoryID: 1
+        });
+        var E_ruralBM = newChartData({
+            shopperKind: 'BMS',
+            marketID: 2,
+            categoryID: 1
+        });
+        var E_ruralMixed = newChartData({
+            shopperKind: 'MIXED',
+            marketID: 2,
+            categoryID: 1
+        });
+        var E_ruralTotal = newChartData({
+            shopperKind: 'ALLSHOPPERS',
+            marketID: 2,
+            categoryID: 1
+        });
 
-        var H_ruralOnline = newChartData({ shopperKind : 'NETIZENS', marketID : 2, categoryID : 2});
-        var H_ruralBM     = newChartData({ shopperKind : 'BMS', marketID : 2, categoryID : 2});
-        var H_ruralMixed  = newChartData({ shopperKind : 'MIXED', marketID : 2, categoryID : 2});
-        var H_ruralTotal  = newChartData({ shopperKind : 'ALLSHOPPERS', marketID : 2, categoryID : 2});
+        var H_urbanOnline = newChartData({
+            shopperKind: 'NETIZENS',
+            marketID: 1,
+            categoryID: 2
+        });
+        var H_urbanBM = newChartData({
+            shopperKind: 'BMS',
+            marketID: 1,
+            categoryID: 2
+        });
+        var H_urbanMixed = newChartData({
+            shopperKind: 'MIXED',
+            marketID: 1,
+            categoryID: 2
+        });
+        var H_urbanTotal = newChartData({
+            shopperKind: 'ALLSHOPPERS',
+            marketID: 1,
+            categoryID: 2
+        });
+
+        var H_ruralOnline = newChartData({
+            shopperKind: 'NETIZENS',
+            marketID: 2,
+            categoryID: 2
+        });
+        var H_ruralBM = newChartData({
+            shopperKind: 'BMS',
+            marketID: 2,
+            categoryID: 2
+        });
+        var H_ruralMixed = newChartData({
+            shopperKind: 'MIXED',
+            marketID: 2,
+            categoryID: 2
+        });
+        var H_ruralTotal = newChartData({
+            shopperKind: 'ALLSHOPPERS',
+            marketID: 2,
+            categoryID: 2
+        });
 
         var allChartsData = [];
         allChartsData.push(E_urbanOnline, E_urbanBM, E_urbanMixed, E_urbanTotal, E_ruralOnline, E_ruralBM, E_ruralMixed, E_ruralTotal,
-                      H_urbanOnline, H_urbanBM, H_urbanMixed, H_urbanTotal, H_ruralOnline, H_ruralBM, H_ruralMixed, H_ruralTotal);
-    
-        for(var j=0;j<periodsShown.length;j++){
-            for(var i=0;i<$scope.feedBack.f_ShoppersShare.length;i++){
-                if($scope.feedBack.f_ShoppersShare[i].period==periodsShown[j]){
+            H_urbanOnline, H_urbanBM, H_urbanMixed, H_urbanTotal, H_ruralOnline, H_ruralBM, H_ruralMixed, H_ruralTotal);
 
-                    allChartsData.forEach(function(singleChartData){
-                        if ((singleChartData.searchKeys.shopperKind == $scope.feedBack.f_ShoppersShare[i].shopperKind) 
-                            && (singleChartData.searchKeys.marketID == $scope.feedBack.f_ShoppersShare[i].marketID)
-                            && (singleChartData.searchKeys.categoryID == $scope.feedBack.f_ShoppersShare[i].categoryID)){
+        periodsShown.forEach(function(single){
+            $scope.feedBack.f_ShoppersShare.forEach(function(singleData){
+                if (singleData.period == single) {
 
-                            singleChartData.chartSeries[$scope.feedBack.f_ShoppersShare[i].storeID - 1].data.push($scope.feedBack.f_ShoppersShare[i].value * 100);
+                    allChartsData.forEach(function(singleChartData) {
+                        if ((singleChartData.searchKeys.shopperKind == singleData.shopperKind) && (singleChartData.searchKeys.marketID == singleData.marketID) && (singleChartData.searchKeys.categoryID == singleData.categoryID)) {
+
+                            singleChartData.chartSeries[singleData.storeID - 1].data.push(singleData.value * 100);
                         }
                     });
                 }
-            }
-        }
+            })
+        })
 
         // $scope.E_urbanOnline=E_urbanOnline;
-    
+
         //Category E:
-        $scope.E_urbanOnlineShareOfShoppers={
+        $scope.E_urbanOnlineShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -97,7 +184,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -112,22 +199,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanOnline.chartSeries,
             title: {
-                text: 'Online Only',
+                text: $scope.newLabel.getContent('Online Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.E_urbanBMShareOfShoppers={
+        $scope.E_urbanBMShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -139,7 +226,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -154,22 +241,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanBM.chartSeries,
             title: {
-                text: 'B&M Only',
+                text: $scope.newLabel.getContent('B&M Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.E_urbanMixedShareOfShoppers={
+        $scope.E_urbanMixedShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -181,7 +268,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -193,22 +280,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanMixed.chartSeries,
             title: {
-                text: 'Mixed',
+                text: $scope.newLabel.getContent('Mixed'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.E_urbanTotalShareOfShoppers={
+        $scope.E_urbanTotalShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -220,7 +307,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -232,22 +319,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_urbanTotal.chartSeries,
             title: {
-                text: 'Total',
+                text: $scope.newLabel.getContent('Total'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.E_ruralOnlineShareOfShoppers={
+        $scope.E_ruralOnlineShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -259,7 +346,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -271,22 +358,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralOnline.chartSeries,
             title: {
-                text: 'Online Only',
+                text: $scope.newLabel.getContent('Online Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.E_ruralBMShareOfShoppers={
+        $scope.E_ruralBMShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -298,7 +385,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -310,22 +397,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralBM.chartSeries,
             title: {
-                text: 'B&M Only',
+                text: $scope.newLabel.getContent('B&M Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.E_ruralMixedShareOfShoppers={
+        $scope.E_ruralMixedShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -337,7 +424,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -349,23 +436,23 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralMixed.chartSeries,
             title: {
-                text: 'Mixed',
+                text: $scope.newLabel.getContent('Mixed'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
 
-        $scope.E_ruralTotalShareOfShoppers={
+        $scope.E_ruralTotalShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -377,7 +464,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -389,9 +476,9 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: E_ruralTotal.chartSeries,
             title: {
-                text: 'Total',
+                text: $scope.newLabel.getContent('Total'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
@@ -399,15 +486,15 @@ var shareOfShoppersCtrl=function($scope,$http){
 
 
         //Category H:
-        $scope.H_urbanOnlineShareOfShoppers={
+        $scope.H_urbanOnlineShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -419,7 +506,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -431,22 +518,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanOnline.chartSeries,
             title: {
-                text: 'Online Only',
+                text: $scope.newLabel.getContent('Online Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.H_urbanBMShareOfShoppers={
+        $scope.H_urbanBMShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -458,7 +545,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -470,22 +557,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanBM.chartSeries,
             title: {
-                text: 'B&M Only',
+                text: $scope.newLabel.getContent('B&M Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.H_urbanMixedShareOfShoppers={
+        $scope.H_urbanMixedShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -497,7 +584,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -509,22 +596,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanMixed.chartSeries,
             title: {
-                text: 'Mixed',
+                text: $scope.newLabel.getContent('Mixed'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.H_urbanTotalShareOfShoppers={
+        $scope.H_urbanTotalShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -536,7 +623,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -548,22 +635,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_urbanTotal.chartSeries,
             title: {
-                text: 'Total',
+                text: $scope.newLabel.getContent('Total'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.H_ruralOnlineShareOfShoppers={
+        $scope.H_ruralOnlineShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -575,7 +662,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -587,22 +674,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralOnline.chartSeries,
             title: {
-                text: 'Online Only',
+                text: $scope.newLabel.getContent('Online Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.H_ruralBMShareOfShoppers={
+        $scope.H_ruralBMShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -614,7 +701,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -626,22 +713,22 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralBM.chartSeries,
             title: {
-                text: 'B&M Only',
+                text: $scope.newLabel.getContent('B&M Only'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.H_ruralMixedShareOfShoppers={
+        $scope.H_ruralMixedShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -653,7 +740,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -665,23 +752,23 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralMixed.chartSeries,
             title: {
-                text: 'Mixed',
+                text: $scope.newLabel.getContent('Mixed'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
 
-        $scope.H_ruralTotalShareOfShoppers={
+        $scope.H_ruralTotalShareOfShoppers = {
             options: {
                 xAxis: {
                     categories: periodsShown,
                     title: {
-                        text: 'Period',
+                        text: $scope.newLabel.getContent('Period'),
                     }
                 },
-                yAxis:{
+                yAxis: {
                     title: {
                         text: '%',
                     },
@@ -693,7 +780,7 @@ var shareOfShoppersCtrl=function($scope,$http){
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -705,21 +792,20 @@ var shareOfShoppersCtrl=function($scope,$http){
             },
             series: H_ruralTotal.chartSeries,
             title: {
-                text: 'Total',
+                text: $scope.newLabel.getContent('Total'),
                 style: {
-                    'font-size':'16px'
+                    'font-size': '16px'
                 }
             },
             loading: false
         }
-        $scope.myModel=$scope.H_ruralTotalShareOfShoppers;
+        $scope.myModel = $scope.H_ruralTotalShareOfShoppers;
     }
-    
 
-    $scope.$watch('feedBack', function(newValue, oldValue){
-        if(newValue!=undefined) {
+
+    $scope.$watch('feedBack', function(newValue, oldValue) {
+        if (newValue != undefined) {
             initPage();
         }
     });
 }
-

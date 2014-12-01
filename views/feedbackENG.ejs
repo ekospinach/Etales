@@ -1,588 +1,612 @@
 <!doctype html>
 <html lang="en" ng-app="feedback">
 
-  <head>
-    <meta charset="utf-8">
+    <head>
 
-    <title>eTales feedback session</title>
+        <meta charset="utf-8">
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <title>eTales feedback session</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
-    <link rel="stylesheet" href="bower_components/reveal.js/css/theme/beige.css" id="theme">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="bower_components/reveal.js/css/theme/beige.css" id="theme">
 
-    <style>
-    .greenLetter { color  : #39b54a;}
-    .orangeLetter { color : #ff983d;}
-    .blueLetter { color   : #0087f0;}
-    .purpleLetter { color : #8781bd;}    
-    .redLetter { color    : #f26c4f;}
-    .roseLetter { color   : #bd8cbf;}
-    .highcharts-title{
-      width: 100%;
-      text-align: center;
-      font-size: 20px;
-    }
-    .p-font{
-      font-family: "League Gothic",Impact,sans-serif;
-      text-shadow: none;
-      text-transform: uppercase; 
-      font-size: 20px;
-      line-height: 20px;
-    }
-    .line-font p{
-      font-family: "League Gothic",Impact,sans-serif;
-      font-size: 20px;
-      line-height: 20px;
-    }
-    .highcharts-subtitle{
-      width: 75%;
-    }
-    .text-left {
-      width: 33%;
-      font-size: 20px;
-      float: left;
-      margin-bottom:0px;
-      text-align: left;
-    }
-    .text-right {
-      width: 33%;
-      font-size: 20px;
-      float: left;
-      margin-bottom:0px;
-      text-align: right;
-    }
-    .text-center {
-      width: 33%;
-      font-size: 20px;
-      float: left;
-      margin-bottom:0px;
-      text-align: center;
-    }
-    table{
-      font-size: 16px;
-    }
-    .p-center{
-      text-align: center;
-      margin: 0;
-    }
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
 
-    .normal-left{
-      width: 500px;
-      height: 500px;
-      float: left;
-    }
-    .normal-sp-left{
-      width: 500px;
-      height: 450px;
-      float: left;
-    }
-    .normal-sp-right{
-      width: 500px;
-      height: 450px;
-      float: right;
-    }
-    .normal-right{
-      width: 500px;
-      height: 500px;
-      float: right;
-    }
-    .large-small{
-      width: 1024px;
-      height: 250px;
-    }
-    .large-normal{
-      width: 1024px;
-      height: 500px;
-    }
-    .small-small-left{
-      width: 500px;
-      height: 300px;
-      float: left;
-    }
-    .small-small-right{
-      width: 500px;
-      height: 300px;
-      float: right;
-    }
-    .clear-both{
-      clear: both;
-    }
-    .paddingtop-20{
-      padding-top: 20px;
-    }
-    .padding-0{
-      padding: 0;
-    }
-    .table-bordered .supplier1{
-       background-color: #D4DCE6;
-    }
-    .table-bordered .supplier2{
-       background-color: #D69492;
-    }
-    .table-bordered .supplier3{
-       background-color: #FFF2CC;
-    }
-    .table-bordered .retailer1{
-       background-color: #DFDAE4;
-    }
-    .table-bordered .retailer2{
-       background-color: #FCD5B5;
-    }
-    .table-title{
-      font-size: 26px;
-      padding: 8px;
-      text-align: center;
-      margin: 0;
-    }
+        <style>
+            .greenLetter { color  : #39b54a;}
+            .orangeLetter { color : #ff983d;}
+            .blueLetter { color   : #0087f0;}
+            .purpleLetter { color : #8781bd;}    
+            .redLetter { color    : #f26c4f;}
+            .roseLetter { color   : #bd8cbf;}
+            .highcharts-title{
+                width: 100%;
+                text-align: center;
+                font-size: 20px;
+            }
+            .p-font{
+                font-family: "League Gothic",Impact,sans-serif;
+                text-shadow: none;
+                text-transform: uppercase; 
+                font-size: 20px;
+                line-height: 20px;
+            }
+            .line-font p{
+                font-family: "League Gothic",Impact,sans-serif;
+                font-size: 20px;
+                line-height: 20px;
+            }
+            .highcharts-subtitle{
+                width: 75%;
+            }
+            .text-left {
+                width: 33%;
+                font-size: 20px;
+                float: left;
+                margin-bottom:0px;
+                text-align: left;
+            }
+            .text-right {
+                width: 33%;
+                font-size: 20px;
+                float: left;
+                margin-bottom:0px;
+                text-align: right;
+            }
+            .text-center {
+                width: 33%;
+                font-size: 20px;
+                float: left;
+                margin-bottom:0px;
+                text-align: center;
+            }
+            table{
+                font-size: 16px;
+            }
+            .p-center{
+                text-align: center;
+                margin: 0;
+            }
 
-    .table-bordered {
-      border-collapse:collapse;
-      font-size: 16px;
-    }
-    .table-bordered span{
-      display: inline-block;
-      height: 19px;
-      width: 19px;
-    }
-    .table-bordered p{
-      padding: 8px;
-      margin: 0;
-      line-height: 18px;
-    }
-    .table-bordered h4{
-      font-size: 26px;
-      font-family: "League Gothic",Impact,sans-serif;
-      font-variant: 
-    }
-    .table-bordered > thead > tr > th,
-    .table-bordered > tbody > tr > th,
-    .table-bordered > tfoot > tr > th,
-    .table-bordered > thead > tr > td,
-    .table-bordered > tbody > tr > td,
-    .table-bordered > tfoot > tr > td {
-      border: 2px solid #000;
-    }
-    .table-bordered > thead > tr > th,
-    .table-bordered > thead > tr > td {
-      border-bottom-width: 2px;
-    }
-    .legend li {
-        cursor: pointer;
-        display: inline-block;
-        font-size: 16px;
-        line-height: 16px;
-        margin: 0 10px;
-    }
-    li.hidden {
-        color: #ddd !important;    
-    }
-    .circle {
-      width: 16px;
-      height: 16px;
-      -moz-border-radius: 8px;
-      -webkit-border-radius: 8px;
-      border-radius: 8px;
-      display: inherit;
-    }
+            .normal-left{
+                width: 500px;
+                height: 500px;
+                float: left;
+            }
+            .normal-sp-left{
+                width: 500px;
+                height: 450px;
+                float: left;
+            }
+            .normal-sp-right{
+                width: 500px;
+                height: 450px;
+                float: right;
+            }
+            .normal-right{
+                width: 500px;
+                height: 500px;
+                float: right;
+            }
+            .large-small{
+                width: 1024px;
+                height: 250px;
+            }
+            .large-normal{
+                width: 1024px;
+                height: 500px;
+            }
+            .small-small-left{
+                width: 500px;
+                height: 300px;
+                float: left;
+            }
+            .small-small-right{
+                width: 500px;
+                height: 300px;
+                float: right;
+            }
+            .clear-both{
+                clear: both;
+            }
+            .paddingtop-20{
+                padding-top: 20px;
+            }
+            .padding-0{
+                padding: 0;
+            }
+            .table-bordered .supplier1{
+                background-color: #D4DCE6;
+            }
+            .table-bordered .supplier2{
+                background-color: #D69492;
+            }
+            .table-bordered .supplier3{
+                background-color: #FFF2CC;
+            }
+            .table-bordered .retailer1{
+                background-color: #DFDAE4;
+            }
+            .table-bordered .retailer2{
+                background-color: #FCD5B5;
+            }
+            .table-title{
+                font-size: 26px;
+                padding: 8px;
+                text-align: center;
+                margin: 0;
+            }
 
+            .table-bordered {
+                border-collapse:collapse;
+                font-size: 16px;
+            }
+            .table-bordered span{
+                display: inline-block;
+                height: 19px;
+                width: 19px;
+            }
+            .table-bordered p{
+                padding: 8px;
+                margin: 0;
+                line-height: 18px;
+            }
+            .table-bordered h4{
+                font-size: 26px;
+                font-family: "League Gothic",Impact,sans-serif;
+                font-variant: 
+            }
+            .table-bordered > thead > tr > th,
+            .table-bordered > tbody > tr > th,
+            .table-bordered > tfoot > tr > th,
+            .table-bordered > thead > tr > td,
+            .table-bordered > tbody > tr > td,
+            .table-bordered > tfoot > tr > td {
+                border: 2px solid #000;
+            }
+            .table-bordered > thead > tr > th,
+            .table-bordered > thead > tr > td {
+                border-bottom-width: 2px;
+            }
+            .legend li {
+                cursor: pointer;
+                display: inline-block;
+                font-size: 16px;
+                line-height: 16px;
+                margin: 0 10px;
+            }
+            li.hidden {
+                color: #ddd !important;    
+            }
+            .circle {
+                width: 16px;
+                height: 16px;
+                -moz-border-radius: 8px;
+                -webkit-border-radius: 8px;
+                border-radius: 8px;
+                display: inherit;
+            }
+        </style>
+        <!--[if lt IE 9]>
+            <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides" ng-controller='feedBackCtrl'>
+                <section>
+                    <h1>Feedback session</h1>
+                    <h3>Seminar : <%=  seminar %></h3>
+                    <h3>Period : <%= period %></h3>
+                    <small>Designed by <a href="http://www.hcdglobal.com">HCD Learning</a></small>
+                </section>
 
-    </style>
-    <!--[if lt IE 9]>
-    <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
-    <![endif]-->
-  </head>
+                <section ng-controller="negotiationResultsCtrl">
+                    <section>
+                        <h3>{{message}}<a>Negotiation Results</a> - Volume Discounts</h3>
+                        <hr>
+                        <highchart id="chart1" config="supplierNegotiationResults" class="normal-sp-left"></highchart>
+                        <highchart id="chart2" config="retailerNegotiationResults" class="normal-sp-right"></highchart>
+                        <div class="clear-both paddingtop-20"></div>
+                        <h5>Total Volume Discounts : {{supplierNegotiationResultsTotal}} ($mln)</h5>
+                    </section>
+                    <section>
+                        <h3><a>Negotiation Results</a> - Performance Bonus</h3>
+                        <hr>
+                        <highchart id="chart3" config="supplierPerformanceBonuses" class="normal-sp-left"></highchart>
+                        <highchart id="chart4" config="retailerPerformanceBonuses" class="normal-sp-right"></highchart>
+                        <div class="clear-both paddingtop-20"></div>
+                        <h4>Total Performance Bonuses : {{supplierPerformanceBonusesTotal}} ($mln)</h4>
+                    </section>
+                    <section>
+                        <h3><a>Negotiation Results</a> - Other Compensation</h3>
+                        <hr>
+                        <highchart id="chart5" config="supplierOtherCompensation" class="normal-left"></highchart>
+                        <highchart id="chart6" config="retailerOtherCompensation" class="normal-right"></highchart>
+                        <div class="clear-both paddingtop-20"></div>
+                        <h4>Total Transaction Value of Other Compensation : {{supplierOtherCompensationTotal}} ($mln)</h4>
+                    </section>
+                    <section>
+                        <h3><a>Negotiation Results</a> - Terms of Payment</h3>
+                        <hr>
+                        <highchart id="chart7" config="termsofPayment" class="large-normal"></highchart>
+                    </section>
+                </section>
 
-  <body>
+                <section ng-controller="salesCtrl">
+                    <section>
+                        <h3><span class="roseLetter">Sales</span> - Elecssories - previous</h3>
+                        <hr>
+                        <highchart id="chart8" config="previousSalesVolumeElecssories" class="normal-left"></highchart>
+                        <highchart id="chart9" config="previousSalesValueElecssories" class="normal-right"></highchart>
+                    </section>          
+                    <section>
+                        <h3><span class="roseLetter">Sales</span> - Elecssories - current</h3>
+                        <hr>
+                        <highchart id="chart10" config="currentSalesVolumeElecssories" class="normal-left"></highchart>
+                        <highchart id="chart11" config="currentSalesValueElecssories" class="normal-right"></highchart>
+                    </section>          
+                    <section>
+                        <h3><span class="roseLetter">Sales</span> - HealthBeauties - Previous</h3>
+                        <hr>
+                        <highchart id="chart12" config="previousSalesVolumeHealthBeauties" class="normal-left"></highchart>
+                        <highchart id="chart13" config="previousSalesValueHealthBeauties" class="normal-right"></highchart>
+                    </section>     
+                    <section>
+                        <h3><span class="roseLetter">Sales</span> - HealthBeauties - Current</h3>
+                        <hr>
+                        <highchart id="chart14" config="currentSalesVolumeHealthBeauties" class="normal-left"></highchart>
+                        <highchart id="chart15" config="currentSalesValueHealthBeauties" class="normal-right"></highchart>
+                    </section>     
+                </section>
 
-    <div class="reveal">
-      <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides" ng-controller='feedBackCtrl'>
-        <section>
-          <h1>Feedback session</h1>
-          <h3>Seminar : <%=  seminar %></h3>
-          <h3>Period : <%= period %></h3>           
-          <small>Designed by <a href="http://www.hcdglobal.com">HCD Learning</a></small>        
-        </section>
+                <section ng-controller="marketSharesCtrl">
+                    <section>
+                        <h3><span class="greenLetter">Market Shares</span> - Elecssories - Previous</h3>
+                        <hr>
+                        <highchart id="chart16" config="previousSharesVolumeElecssories" class="normal-left"></highchart>
+                        <highchart id="chart17" config="previousSharesValueElecssories" class="normal-right"></highchart>
+                    </section>          
+                    <section>
+                        <h3><span class="greenLetter">Market Shares</span> - Elecssories - Current</h3>
+                        <hr>
+                        <highchart id="chart18" config="currentSharesVolumeElecssories" class="normal-left"></highchart>
+                        <highchart id="chart19" config="currentSharesValueElecssories" class="normal-right"></highchart>
+                    </section>
+                    <section>
+                        <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Previous</h3>
+                        <hr>
+                        <highchart id="chart20" config="previousSharesVolumeHealthBeauties" class="normal-left"></highchart>
+                        <highchart id="chart21" config="previousSharesValueHealthBeauties" class="normal-right"></highchart>
+                    </section>     
+                    <section>
+                        <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Current</h3>
+                        <hr>
+                        <highchart id="chart22" config="currentSharesVolumeHealthBeauties" class="normal-left"></highchart>
+                        <highchart id="chart23" config="currentSharesValueHealthBeauties" class="normal-right"></highchart>
+                    </section>     
+                </section>
 
-        <section ng-controller="negotiationResultsCtrl">
-          <section>
-            <h3>{{message}}<a>Negotiation Results</a> - Volume Discounts</h3>
-            <hr>
-            <highchart id="chart1" config="supplierNegotiationResults" class="normal-sp-left"></highchart>
-            <highchart id="chart2" config="retailerNegotiationResults" class="normal-sp-right"></highchart>
-            <div class="clear-both paddingtop-20"></div>
-            <h5>Total Volume Discounts : {{supplierNegotiationResultsTotal}} ($mln)</h5>
-          </section>
-          <section>
-            <h3><a>Negotiation Results</a> - Performance Bonus</h3>
-            <hr>
-            <highchart id="chart3" config="supplierPerformanceBonuses" class="normal-sp-left"></highchart>
-            <highchart id="chart4" config="retailerPerformanceBonuses" class="normal-sp-right"></highchart>
-            <div class="clear-both paddingtop-20"></div>
-            <h4>Total Performance Bonuses : {{supplierPerformanceBonusesTotal}} ($mln)</h4>
-          </section>
-          <section>
-            <h3><a>Negotiation Results</a> - Other Compensation</h3>
-            <hr>
-            <highchart id="chart5" config="supplierOtherCompensation" class="normal-left"></highchart>
-            <highchart id="chart6" config="retailerOtherCompensation" class="normal-right"></highchart>
-            <div class="clear-both paddingtop-20"></div>
-            <h4>Total Transaction Value of Other Compensation : {{supplierOtherCompensationTotal}} ($mln)</h4>
-          </section>
-          <section>
-            <h3><a>Negotiation Results</a> - Terms of Payment</h3>
-            <hr>
-            <highchart id="chart7" config="termsofPayment" class="large-normal"></highchart>
-          </section>
-        </section>
+                <section ng-controller="profitsCtrl">
+                    <section>
+                        <h3><span class="purpleLetter">Operating Profits</span> - Previous</h3>
+                        <hr>
+                        <highchart id="chart240" config="previousOperatingProfits" class="normal-left"></highchart>
+                        <highchart id="chart250" config="previousOperatingProfitMargins" class="normal-right"></highchart>
+                    </section>
+                    <section>
+                        <h3><span class="purpleLetter">Net Profits</span> - Previous</h3>
+                        <hr>
+                        <highchart id="chart241" config="previousNetProfits" class="normal-left"></highchart>
+                        <highchart id="chart251" config="previousNetProfitMargins" class="normal-right"></highchart>
+                    </section>
+                    <section>
+                        <h3><span class="purpleLetter">Operating Profits</span> - Current</h3>
+                        <hr>
+                        <highchart id="chart260" config="currentOperatingProfits" class="normal-left"></highchart>
+                        <highchart id="chart270" config="currentOperatingProfitMargins" class="normal-right"></highchart>
+                    </section> 
+                    <section>
+                        <h3><span class="purpleLetter">Net Profits</span> - Current</h3>
+                        <hr>
+                        <highchart id="chart261" config="currentNetProfits" class="normal-left"></highchart>
+                        <highchart id="chart271" config="currentNetProfitMargins" class="normal-right"></highchart>
+                    </section>           
+                </section>
 
-        <section ng-controller="salesCtrl">
-          <section>
-            <h3><span class="roseLetter">Sales</span> - Elecssories - previous</h3>
-            <hr>
-            <highchart id="chart8" config="previousSalesVolumeElecssories" class="normal-left"></highchart>
-            <highchart id="chart9" config="previousSalesValueElecssories" class="normal-right"></highchart>
-          </section>          
-          <section>
-            <h3><span class="roseLetter">Sales</span> - Elecssories - current</h3>
-            <hr>
-            <highchart id="chart10" config="currentSalesVolumeElecssories" class="normal-left"></highchart>
-            <highchart id="chart11" config="currentSalesValueElecssories" class="normal-right"></highchart>
-          </section>          
-          <section>
-            <h3><span class="roseLetter">Sales</span> - HealthBeauties - Previous</h3>
-            <hr>
-            <highchart id="chart12" config="previousSalesVolumeHealthBeauties" class="normal-left"></highchart>
-            <highchart id="chart13" config="previousSalesValueHealthBeauties" class="normal-right"></highchart>
-          </section>     
-          <section>
-            <h3><span class="roseLetter">Sales</span> - HealthBeauties - Current</h3>
-            <hr>
-            <highchart id="chart14" config="currentSalesVolumeHealthBeauties" class="normal-left"></highchart>
-            <highchart id="chart15" config="currentSalesValueHealthBeauties" class="normal-right"></highchart>
-          </section>     
-        </section>
+                <section ng-controller="shelfSpaceCtrl">
+                    <h3><span class="redLetter">Shelf Space Allocation</h3>
+                    <hr>
+                    <highchart id="chart28" config="currentShelfSpaceElecssories" class="normal-left"></highchart>
+                    <highchart id="chart29" config="currentShelfSpaceHealthBeauties" class="normal-right"></highchart>
+                </section>
 
-        <section ng-controller="marketSharesCtrl">
-          <section>
-            <h3><span class="greenLetter">Market Shares</span> - Elecssories - Previous</h3>
-            <hr>
-            <highchart id="chart16" config="previousSharesVolumeElecssories" class="normal-left"></highchart>
-            <highchart id="chart17" config="previousSharesValueElecssories" class="normal-right"></highchart>
-          </section>          
-          <section>
-            <h3><span class="greenLetter">Market Shares</span> - Elecssories - Current</h3>
-            <hr>
-            <highchart id="chart18" config="currentSharesVolumeElecssories" class="normal-left"></highchart>
-            <highchart id="chart19" config="currentSharesValueElecssories" class="normal-right"></highchart>
-          </section>          
-          <section>
-            <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Previous</h3>
-            <hr>
-            <highchart id="chart20" config="previousSharesVolumeHealthBeauties" class="normal-left"></highchart>
-            <highchart id="chart21" config="previousSharesValueHealthBeauties" class="normal-right"></highchart>
-          </section>     
-          <section>
-            <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Current</h3>
-            <hr>
-            <highchart id="chart22" config="currentSharesVolumeHealthBeauties" class="normal-left"></highchart>
-            <highchart id="chart23" config="currentSharesValueHealthBeauties" class="normal-right"></highchart>
-          </section>     
-        </section>
+                <section ng-controller="supplierKPIsCtrl">
+                    <section>
+                        <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Trade Spending</h3>
+                        <hr>
+                        <highchart id="chart30" config="tradeSpendingElecssories" class="normal-left"></highchart>
+                        <highchart id="chart31" config="tradeSpendingHealthBeauties" class="normal-right"></highchart>
+                    </section>
+                    <section>
+                        <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Marketing Spending</h3>
+                        <hr>
+                        <highchart id="chart32" config="marketingSpendingElecssories" class="normal-left"></highchart>
+                        <highchart id="chart33" config="marketingSpendingHealthBeauties" class="normal-right"></highchart>
+                    </section>     
+                    <section>
+                        <h3><span class="blueLetter">Supplier KPIs</span> - Portfolio Strength</h3>
+                        <hr>
+                        <highchart id="chart34" config="portfolioStrengthElecssories" class="normal-left"></highchart>
+                        <highchart id="chart35" config="portfolioStrengthHealthBeauties" class="normal-right"></highchart>
+                    </section>     
+                    <section>
+                        <h3><span class="blueLetter">Supplier KPIs</span> - B&M Channel Strength</h3>
+                        <hr>
+                        <highchart id="chart36" config="bmChannelStrengthElecssories" class="large-small"></highchart>
+                        <highchart id="chart37" config="bmChannelStrengthHealthBeauties" class="large-small"></highchart>
+                    </section>
+                    <section>
+                        <h3><span class="blueLetter">Supplier KPIs</span> - Online Channel Strength</h3>
+                        <hr>
+                        <highchart id="chart38" config="onlineChannelStrengthElecssories" class="large-small"></highchart>
+                        <highchart id="chart39" config="onlineChannelStrengthHealthBeauties" class="large-small"></highchart>
+                    </section>                  
+                </section>
 
-        <section ng-controller="profitsCtrl">
-          <section>
-            <h3><span class="purpleLetter">Operating Profits</span> - Previous</h3>
-            <hr>
-            <highchart id="chart240" config="previousOperatingProfits" class="normal-left"></highchart>
-            <highchart id="chart250" config="previousOperatingProfitMargins" class="normal-right"></highchart>
-          </section>
-          <section>
-            <h3><span class="purpleLetter">Net Profits</span> - Previous</h3>
-            <hr>
-            <highchart id="chart241" config="previousNetProfits" class="normal-left"></highchart>
-            <highchart id="chart251" config="previousNetProfitMargins" class="normal-right"></highchart>
-          </section>          
-          <section>
-            <h3><span class="purpleLetter">Operating Profits</span> - Current</h3>
-            <hr>
-            <highchart id="chart260" config="currentOperatingProfits" class="normal-left"></highchart>
-            <highchart id="chart270" config="currentOperatingProfitMargins" class="normal-right"></highchart>
-          </section> 
-          <section>
-            <h3><span class="purpleLetter">Net Profits</span> - Current</h3>
-            <hr>
-            <highchart id="chart261" config="currentNetProfits" class="normal-left"></highchart>
-            <highchart id="chart271" config="currentNetProfitMargins" class="normal-right"></highchart>
-          </section>           
-        </section>
+                <section ng-controller="retailerKPIsCtrl">
+                    <section>
+                        <h3><span class="orangeLetter">Retailer KPIs</span> - Rotation Index</h3>
+                        <hr>
+                        <highchart id="chart40" config="rotationIndexSalesValueElecssories" class="small-small-left"></highchart>
+                        <highchart id="chart41" config="rotationIndexSalesVolumeElecssories" class="small-small-right"></highchart>
+                        <highchart id="chart42" config="rotationIndexSalesValueHealthBeauties" class="small-small-left"></highchart>
+                        <highchart id="chart43" config="rotationIndexSalesVolumeHealthBeauties" class="small-small-right"></highchart>
+                    </section>          
+                    <section>
+                        <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Previous</h3>
+                        <hr>
+                        <highchart id="chart45" config="previousUrbanProfitabilityIndex" class="normal-left"></highchart>
+                        <highchart id="chart44" config="previousRuralProfitabilityIndex" class="normal-right"></highchart>
+                    </section>     
+                    <section>
+                        <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Current</h3>
+                        <hr>
+                        <highchart id="chart47" config="currentUrbanProfitabilityIndex" class="normal-left"></highchart>
+                        <highchart id="chart46" config="currentRuralProfitabilityIndex" class="normal-right"></highchart>
+                    </section>     
+                    <section>
+                        <h3><span class="orangeLetter">Retailer KPIs</span> - Stock Cover</h3>
+                        <hr>
+                        <highchart id="chart49" config="EStockCover" class="normal-left"></highchart>
+                        <highchart id="chart48" config="HStockCover" class="normal-right"></highchart>
+                        <!--<highchart id="chart49" config="urbanStockCover" class="normal-left"></highchart>
+                        <highchart id="chart48" config="ruralStockCover" class="normal-right"></highchart>-->
+                    </section>                                           
+                </section>
 
-        <section ng-controller="shelfSpaceCtrl">
-          <h3><span class="redLetter">Shelf Space Allocation</h3>
-          <hr>
-          <highchart id="chart28" config="currentShelfSpaceElecssories" class="normal-left"></highchart>
-            <highchart id="chart29" config="currentShelfSpaceHealthBeauties" class="normal-right"></highchart>
-        </section>
+                <section ng-controller="shareOfShoppersCtrl">
+                    <section>
+                        <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Urban Market</h3>
+                        <hr>
+                        <div feedback-ele-urban ng-model='myModel'>
+                            <div id="shareChart50" class="small-small-left"></div>
+                            <div id="shareChart51" class="small-small-right"></div>
+                            <div id="shareChart52" class="small-small-left"></div>
+                            <div id="shareChart53" class="small-small-right"></div>
+                        </div>
+                        <ul id="feedBackEleUrbanLegend" class="legend"></ul>
+                    </section>
+                    <section>
+                        <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Rural Market</h3>
+                        <hr>
+                        <div feedback-ele-rural ng-model='myModel'>
+                            <div id="shareChart54" class="small-small-left"></div>
+                            <div id="shareChart55" class="small-small-right"></div>
+                            <div id="shareChart56" class="small-small-left"></div>
+                            <div id="shareChart57" class="small-small-right"></div>
+                        </div>
+                        <ul id="feedBackEleRuralLegend" class="legend"></ul>
+                    </section>
 
-        <section ng-controller="supplierKPIsCtrl">
-          <section>
-            <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Trade Spending</h3>
-            <hr>
-            <highchart id="chart30" config="tradeSpendingElecssories" class="normal-left"></highchart>
-            <highchart id="chart31" config="tradeSpendingHealthBeauties" class="normal-right"></highchart>
-          </section>          
-          <section>
-            <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Marketing Spending</h3>
-            <hr>
-            <highchart id="chart32" config="marketingSpendingElecssories" class="normal-left"></highchart>
-            <highchart id="chart33" config="marketingSpendingHealthBeauties" class="normal-right"></highchart>
-          </section>     
-          <section>
-            <h3><span class="blueLetter">Supplier KPIs</span> - Portfolio Strength</h3>
-            <hr>
-            <highchart id="chart34" config="portfolioStrengthElecssories" class="normal-left"></highchart>
-            <highchart id="chart35" config="portfolioStrengthHealthBeauties" class="normal-right"></highchart>
-          </section>     
-          <section>
-            <h3><span class="blueLetter">Supplier KPIs</span> - B&M Channel Strength</h3>
-            <hr>
-            <highchart id="chart36" config="bmChannelStrengthElecssories" class="large-small"></highchart>
-            <highchart id="chart37" config="bmChannelStrengthHealthBeauties" class="large-small"></highchart>
-          </section>                                           
-          <section>
-            <h3><span class="blueLetter">Supplier KPIs</span> - Online Channel Strength</h3>
-            <hr>
-            <highchart id="chart38" config="onlineChannelStrengthElecssories" class="large-small"></highchart>
-            <highchart id="chart39" config="onlineChannelStrengthHealthBeauties" class="large-small"></highchart>
-          </section>                  
-        </section>
+                    <section>
+                        <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Urban Market</h3>
+                        <hr>
+                        <div feedback-hea-urban ng-model='myModel'>
+                            <div id="shareChart58" class="small-small-left"></div>
+                            <div id="shareChart59" class="small-small-right"></div>
+                            <div id="shareChart60" class="small-small-left"></div>
+                            <div id="shareChart61" class="small-small-right"></div>
+                        </div>
+                        <ul id="feedBackHeaUrbanLegend" class="legend"></ul>
+                    </section>
+                    <section>
+                        <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Rural Market</h3>
+                        <hr>
+                        <div feedback-hea-rural ng-model='myModel'>
+                            <div id="shareChart62" class="small-small-left"></div>
+                            <div id="shareChart63" class="small-small-right"></div>
+                            <div id="shareChart64" class="small-small-left"></div>
+                            <div id="shareChart65" class="small-small-right"></div>
+                        </div>
+                        <ul id="feedBackHeaRuralLegend" class="legend"></ul>
+                    </section>          
+                </section>   
 
-        <section ng-controller="retailerKPIsCtrl">
-          <section>
-            <h3><span class="orangeLetter">Retailer KPIs</span> - Rotation Index</h3>
-            <hr>
-            <highchart id="chart40" config="rotationIndexSalesValueElecssories" class="small-small-left"></highchart>
-            <highchart id="chart41" config="rotationIndexSalesVolumeElecssories" class="small-small-right"></highchart>
-            <highchart id="chart42" config="rotationIndexSalesValueHealthBeauties" class="small-small-left"></highchart>
-            <highchart id="chart43" config="rotationIndexSalesVolumeHealthBeauties" class="small-small-right"></highchart>
-          </section>          
-          <section>
-            <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Previous</h3>
-            <hr>
-            <highchart id="chart45" config="previousUrbanProfitabilityIndex" class="normal-left"></highchart>
-            <highchart id="chart44" config="previousRuralProfitabilityIndex" class="normal-right"></highchart>
-          </section>     
-          <section>
-            <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Current</h3>
-            <hr>
-            <highchart id="chart47" config="currentUrbanProfitabilityIndex" class="normal-left"></highchart>
-            <highchart id="chart46" config="currentRuralProfitabilityIndex" class="normal-right"></highchart>
-          </section>     
-          <section>
-            <h3><span class="orangeLetter">Retailer KPIs</span> - Stock Cover</h3>
-            <hr>
+                <section ng-controller="finalScoreCtrl">
+                    <h3><span class="orangeLetter">Final Score</h3>
+                    <hr>
+                    <table class="table-bordered" style="font-size:16px;margin-bottom:20px">
+                        <thead>
+                            <tr>
+                                <th colspan="6"><p style="font-size:26px" class="p-center">Supplier Scores</p></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th style="width:14%"></th>
+                                <th style="width:19%"><p class="p-center">Incremental market Share (IMS)</p></th>
+                                <th style="width:19%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
+                                <th style="width:19%"><p class="p-center">Portfolio Strength (PS)</p></th>
+                                <th style="width:19%"><p class="p-center">Channel Strength (CS)</p></th>
+                                <th style="width:10%"><p class="p-center">Final Score</p></th>
+                            </tr>
+                            <tr>
+                                <th><p class="p-center">Weightage</p></th>
+                                <td><p class="p-center">35%</p></td>
+                                <td><p class="p-center">35%</p></td>
+                                <td><p class="p-center">15%</p></td>
+                                <td><p class="p-center">15%</p></td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat='supplier in suppliers' class="{{'supplier'+supplier.supplierID}}">
+                                <td>
+                                    <p class="p-center"><span style="background-color:{{supplier.color}};">&nbsp;</span>Supplier {{supplier.supplierID}}</p>
+                                </td>
+                                <td ng-repeat='d in supplier.data'>
+                                    <p class="p-center" ng-show='$index!=2'>{{d.value | number : 1}} %</p>
+                                    <p class="p-center" ng-show='$index==2'>{{d.value | number : 1}}</p>
+                                </td>
+                                <td>
+                                    <p class="fragment p-center" data-fragment-index="{{$index}}">{{supplier.score | number : 2}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table-bordered" style="font-size:16px;margin-bottom:100px">
+                        <thead>
+                            <tr>
+                                <th colspan="6"><p style="font-size:26px" class="p-center">Retailer Scores</p></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th style="width:14%"></th>
+                                <th style="width:19%"><p class="p-center">Incremental market Share (IMS)</p></th>
+                                <th style="width:19%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
+                                <th style="width:19%"><p class="p-center">Relative Profitability (RP)</p></th>
+                                <th style="width:19%"><p class="p-center">Shopper Base (Share of Pocket SOP)</p></th>
+                                <th style="width:10%"><p class="p-center">Final Score</p></th>
+                            </tr>
+                            <tr>
+                                <th><p class="p-center">Weightage</p></th>
+                                <td><p class="p-center">35%</p></td>
+                                <td><p class="p-center">35%</p></td>
+                                <td><p class="p-center">15%</p></td>
+                                <td><p class="p-center">15%</p></td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat='retailer in retailers' class="{{'retailer'+retailer.retailerID}}">
+                                <td>
+                                    <p class="p-center"><span style="background-color:{{retailer.color}};">&nbsp;</span>Retailer {{retailer.retailerID}}</p>
+                                </td>
+                                <td ng-repeat='d in retailer.data'>
+                                    <p class="p-center" ng-show='$index!=2'>{{d.value | number : 1}} %</p>
+                                    <p class="p-center" ng-show='$index==2'>{{d.value | number : 1}}</p>
+                                </td>
+                                <td>
+                                    <p class="fragment p-center" data-fragment-index="{{3+$index}}">{{retailer.score | number : 2}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-            <highchart id="chart49" config="EStockCover" class="normal-left"></highchart>
-            <highchart id="chart48" config="HStockCover" class="normal-right"></highchart>
-
-
-<!--             <highchart id="chart49" config="urbanStockCover" class="normal-left"></highchart>
-            <highchart id="chart48" config="ruralStockCover" class="normal-right"></highchart>
- -->          </section>                                           
-                         
-        </section>
-
-        <section ng-controller="shareOfShoppersCtrl">
-          <section>
-            <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Urban Market</h3>
-            <hr>
-            <div feedback-ele-urban ng-model='myModel'>
-                <div id="shareChart50" class="small-small-left"></div>
-                <div id="shareChart51" class="small-small-right"></div>
-                <div id="shareChart52" class="small-small-left"></div>
-                <div id="shareChart53" class="small-small-right"></div>
+                <section>
+                    <h1>THE END</h1>
+                    <small>Designed by <a href="http://www.hcdglobal.com">HCD Learning</a></small>
+                </section>
             </div>
-            <ul id="feedBackEleUrbanLegend" class="legend"></ul>
-          </section>
-          <section>
-            <h3><span class="orangeLetter">Share of Shoppers</span> - Elecssories - Rural Market</h3>
-            <hr>
-            <div feedback-ele-rural ng-model='myModel'>
-                <div id="shareChart54" class="small-small-left"></div>
-                <div id="shareChart55" class="small-small-right"></div>
-                <div id="shareChart56" class="small-small-left"></div>
-                <div id="shareChart57" class="small-small-right"></div>
-            </div>
-            <ul id="feedBackEleRuralLegend" class="legend"></ul>
-          </section>
 
-          <section>
-            <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Urban Market</h3>
-            <hr>
-            <div feedback-hea-urban ng-model='myModel'>
-                <div id="shareChart58" class="small-small-left"></div>
-                <div id="shareChart59" class="small-small-right"></div>
-                <div id="shareChart60" class="small-small-left"></div>
-                <div id="shareChart61" class="small-small-right"></div>
-            </div>
-            <ul id="feedBackHeaUrbanLegend" class="legend"></ul>
-          </section>
-          <section>
-            <h3><span class="orangeLetter">Share of Shoppers</span> - HealthBeauties - Rural Market</h3>
-            <hr>
-            <div feedback-hea-rural ng-model='myModel'>
-                <div id="shareChart62" class="small-small-left"></div>
-                <div id="shareChart63" class="small-small-right"></div>
-                <div id="shareChart64" class="small-small-left"></div>
-                <div id="shareChart65" class="small-small-right"></div>
-            </div>
-            <ul id="feedBackHeaRuralLegend" class="legend"></ul>
-          </section>          
-        </section>   
+        </div>
 
-        <section ng-controller="finalScoreCtrl">
-          <h3><span class="orangeLetter">Final Score</h3>
-          <hr>
-          <table class="table-bordered" style="font-size:16px;margin-bottom:20px">
-            <thead>
-              <tr>
-                <th colspan="6"><p style="font-size:26px" class="p-center">Supplier Scores</p></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th style="width:14%"></th>
-                <th style="width:19%"><p class="p-center">Incremental market Share (IMS)</p></th>
-                <th style="width:19%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
-                <th style="width:19%"><p class="p-center">Portfolio Strength (PS)</p></th>
-                <th style="width:19%"><p class="p-center">Channel Strength (CS)</p></th>
-                <th style="width:10%"><p class="p-center">Final Score</p></th>
-              </tr>
-              <tr>
-                <th><p class="p-center">Weightage</p></th>
-                <td><p class="p-center">35%</p></td>
-                <td><p class="p-center">35%</p></td>
-                <td><p class="p-center">15%</p></td>
-                <td><p class="p-center">15%</p></td>
-                <td></td>
-              </tr>
-              <tr ng-repeat='supplier in suppliers' class="{{'supplier'+supplier.supplierID}}">
-                <td><p class="p-center">
-                  <span style="background-color:{{supplier.color}};">&nbsp;</span>Supplier {{supplier.supplierID}}</p></td>
-                <td ng-repeat='d in supplier.data'>
-                  <p class="p-center">{{d.value}}</p>
-                </td>
-                <td><p class="fragment p-center" data-fragment-index="{{$index}}">{{supplier.score}}</p></td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table-bordered" style="font-size:16px;margin-bottom:100px">
-            <thead>
-              <tr>
-                <th colspan="6"><p style="font-size:26px" class="p-center">Retailer Scores</p></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th style="width:14%"></th>
-                <th style="width:19%"><p class="p-center">Incremental market Share (IMS)</p></th>
-                <th style="width:19%"><p class="p-center">Return on Operational Budget (ROOB)</p></th>
-                <th style="width:19%"><p class="p-center">Relative Profitability (RP)</p></th>
-                <th style="width:19%"><p class="p-center">Shopper Base (Share of Pocket SOP)</p></th>
-                <th style="width:10%"><p class="p-center">Final Score</p></th>
-              </tr>
-              <tr>
-                <th><p class="p-center">Weightage</p></th>
-                <td><p class="p-center">35%</p></td>
-                <td><p class="p-center">35%</p></td>
-                <td><p class="p-center">15%</p></td>
-                <td><p class="p-center">15%</p></td>
-                <td></td>
-              </tr>
-              <tr ng-repeat='retailer in retailers' class="{{'retailer'+retailer.retailerID}}">
-                <td><p class="p-center"><span style="background-color:{{retailer.color}};">&nbsp;</span>Retailer {{retailer.retailerID}}</p></td>
-                <td ng-repeat='d in retailer.data'>
-                  <p class="p-center">{{d.value}}</p>
-                </td>
-                <td><p class="fragment p-center" data-fragment-index="{{3+$index}}">{{retailer.score}}</p></td>
-              </tr>
-            </tbody>
-          </table>
+        <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+        <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/highcharts/highcharts.js"></script>
+        <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+        <script src="bower_components/requirejs/require.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="js/utils/labelBase.js"></script>
 
-        </section>
+        <script src="js/feedBackAppControllers/directives.js"></script>
 
-
-        <section>
-          <h1>THE END</h1>
-          <small>Designed by <a href="http://www.hcdglobal.com">HCD Learning</a></small>
-        </section>
-
-      </div>
-
-    </div>
-
-    <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
-    <script src="bower_components/reveal.js/js/reveal.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/highcharts/highcharts.js"></script>
-    <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
-
-    
-    <script src="js/feedBackAppControllers/directives.js"></script>
-
-    <script src="js/feedBackAppControllers/feedBackCtrl.js"></script>
-    <script src="js/feedBackAppControllers/negotiationResultsCtrl.js"></script>
-    <script src="js/feedBackAppControllers/salesCtrl.js"></script>
-    <script src="js/feedBackAppControllers/marketSharesCtrl.js"></script>
-    <script src="js/feedBackAppControllers/profitsCtrl.js"></script>
-    <script src="js/feedBackAppControllers/shelfSpaceCtrl.js"></script>
-    <script src="js/feedBackAppControllers/supplierKPIsCtrl.js"></script>
-    <script src="js/feedBackAppControllers/retailerKPIsCtrl.js"></script>
-    <script src="js/feedBackAppControllers/finalScoreCtrl.js"></script>
-    <script src="js/feedBackAppControllers/shareOfShoppersCtrl.js"></script>
+        <script src="js/feedBackAppControllers/feedBackCtrl.js"></script>
+        <script src="js/feedBackAppControllers/negotiationResultsCtrl.js"></script>
+        <script src="js/feedBackAppControllers/salesCtrl.js"></script>
+        <script src="js/feedBackAppControllers/marketSharesCtrl.js"></script>
+        <script src="js/feedBackAppControllers/profitsCtrl.js"></script>
+        <script src="js/feedBackAppControllers/shelfSpaceCtrl.js"></script>
+        <script src="js/feedBackAppControllers/supplierKPIsCtrl.js"></script>
+        <script src="js/feedBackAppControllers/retailerKPIsCtrl.js"></script>
+        <script src="js/feedBackAppControllers/finalScoreCtrl.js"></script>
+        <script src="js/feedBackAppControllers/shareOfShoppersCtrl.js"></script>
 
 
 
-    <script>
+        <script >
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                width: 1024,
+                height: 768,
+                minScale: 1.0,
 
-      // Full list of configuration options available here:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
-        width: 1024,
-        height: 768,
-        minScale:1.0,
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
 
-        // Parallax scrolling
-        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-        // parallaxBackgroundSize: '2100px 900px',
-
-        // Optional libraries used to extend on reveal.js
-        dependencies: [
-          { src: 'bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
-      });
-
-    </script>
-
-  </body>
+                // Optional libraries used to extend on reveal.js
+                dependencies: [{
+                    src: 'bower_components/reveal.js/lib/js/classList.js',
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                }, {
+                    src: 'bower_components/reveal.js/plugin/markdown/marked.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src: 'bower_components/reveal.js/plugin/markdown/markdown.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }, {
+                    src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js',
+                    async: true,
+                    condition: function() {
+                        return !!document.body.classList;
+                    }
+                }, {
+                    src: 'bower_components/reveal.js/plugin/notes/notes.js',
+                    async: true,
+                    condition: function() {
+                        return !!document.body.classList;
+                    }
+                }]
+            });
+        </script>
+    </body>
 </html>
