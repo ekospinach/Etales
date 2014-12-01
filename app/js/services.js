@@ -161,15 +161,46 @@ define(['angular',
 		}
 	})
 
-	services.factory('PlayerColor',function($rootScope){
-		var colors=['#3257A7','#B11E22','#F6B920','#666666','#8B288B','#329444','#00AFEF'];
+	services.factory('PlayerColor', function($rootScope) {
 		return {
-			getColors:function(){
-				return colors;
-			}
+			's1':'#3257A7',
+			's2':'#B11E22',
+			's3':'#F6B920',
+			's4':'#666666',
+			'r1':'#8B288B',
+			'r2':'#329444',
+			'r3':'#00AFEF',
+			'bm':'#B11E22',
+			'online':'#3257A7',
+			'mixed':'#329444',
+			'drop':'#B11E22',
+			'increase':'#329444',
+			'awareness':'#3257A7',
+			'price':'#B11E22',
+			'value':'#F6B920',
+			'fashion':'#3257A7',
+			'freaks':'#329444',
 		}
 	})
 
+	services.factory('StaticValues', function($rootScope) {
+		return {
+			'player': {'s1': 0,'s2': 1,'s3': 2,'s4': 3,'r1': 0,'r2': 1,'r3': 2,'r4': 3},
+			'playerID': {'s1': 1,'s2': 2,'s3': 3,'s4': 4,'r1': 5,'r2': 6,'r3': 7,'r4': 8},
+			'retailerID': {'r1': 1,'r2': 2,'r3': 3,'r4': 4},
+			'chartOwner': {'s1': 0,'s2': 1,'s3': 2,'s4': 3,'r1': 4,'r2': 5,'r3': 6,'r4': 7},
+			'store': {'r1': 0,'r2': 1,'tt': 2,'s1': 3,'s2': 4,'s3': 5,'s4': 6},
+			'shopper': {'bm': 0,'online': 1,'mixed': 2,'all': 3},
+			'segment': {'price': 0,'value': 1,'fashion': 2,'freaks': 3,'total': 4},
+			'market': {'urban': 0,'rural': 1,'total': 2},
+			'marketID': {'urban': 1,'rural': 2,'total': 2},
+			'category': {'ele': 0,'hea': 1,'total': 2},
+			'categoryID': {'ele': 1,'hea': 2,'total': 3},
+			'CandV': {'eleVolume': 0,'eleValue': 1,'heaVolume': 2,'heaValue': 3}, //category and volume or value
+			'CandM': {'eleUrban': 0,'eleRural': 1,'heaUrban': 2,'heaRural': 3}, //category and Market
+			'perception': {'easy': 0,'quality': 1,'appeal': 2}
+		}
+	})
 
 	services.factory('Auth', function($http, $rootScope, $cookieStore, SeminarInfo, RoleInfo, PeriodInfo, PlayerInfo, $location){
 	    var accessLevels = routingConfig.accessLevels
