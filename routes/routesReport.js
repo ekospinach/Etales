@@ -1,12 +1,7 @@
 module.exports = function(app, io){
-	//add generalReport record
-	app.get('/addCrossSegmentSales',                                      require('./../api/models/GR_crossSegmentSales.js').addCrossSegmentSales);
-	app.get('/addEmallPrices',                                            require('./../api/models/GR_emallPrices.js').addEmallPrices);
-	app.get('/addMarketSales',                                            require('./../api/models/GR_marketSales.js').addMarketSales);
-	app.get('/addMarketShare',                                            require('./../api/models/GR_marketShare.js').addMarketShare);
-	app.get('/addPerformanceHighlights',                                  require('./../api/models/GR_performanceHighlights.js').addPerformanceHighlights);
-	app.get('/addProductPortfolio',                                       require('./../api/models/GR_productPortfolio.js').addProductPortfolio);
-	app.get('/addSegmentLeadership',                                      require('./../api/models/GR_segmentLeadership.js').addSegmentLeadership);
+
+	app.get('/grBrandPerspective/:seminar/:period',						  require('./../api/models/GR_performanceHighlights.js').getBrandPerspective);
+	app.get('/grChannelPerspective/:seminar/:period',					  require('./../api/models/GR_performanceHighlights.js').getChannelPerspective);
 	
 	//get generalReport record
 	app.get('/crossSegmentSales/:seminar/:period',                        require('./../api/models/GR_crossSegmentSales.js').getCrossSegmentSales);

@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalEmallPrices', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q) {
+    directives.directive('generalEmallPrices', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'StaticValues',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, StaticValues) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -14,7 +14,7 @@ define(['directives', 'services'], function(directives) {
                     var initializePage = function() {
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
-                        scope.Label         = Label;
+                        scope.Label = Label;
                         getResult();
                     }
 
@@ -37,12 +37,16 @@ define(['directives', 'services'], function(directives) {
                     var organiseArray = function(data) {
                         var deferred = $q.defer();
 
-                        scope.producer1es = new Array();
-                        scope.producer1hs = new Array();
-                        scope.producer2es = new Array();
-                        scope.producer2hs = new Array();
-                        scope.producer3es = new Array();
-                        scope.producer3hs = new Array();
+                        scope.producerses = [
+                            [],
+                            [],
+                            []
+                        ];
+                        scope.producershs = [
+                            [],
+                            [],
+                            []
+                        ];
 
                         /*
                     
@@ -50,43 +54,22 @@ define(['directives', 'services'], function(directives) {
                         the first letter of the variant parentBrandName decide the category e.g 'E' categoryID=1;
                         the last letter of the varinat parentBrandName decide the player  e.g '1' supplier 1
 
-                    */
-
-                        for (var i = 0; i < data.categoryInfo[0].variantInfo.length; i++) {
-                            if (data.categoryInfo[0].variantInfo[i].parentBrandName.substring(0, 1) == "E") {
-                                switch (data.categoryInfo[0].variantInfo[i].parentBrandName.substring(data.categoryInfo[0].variantInfo[i].parentBrandName.length - 1)) {
-                                    case '1':
-                                        scope.producer1es.push(data.categoryInfo[0].variantInfo[i]);
-                                        break;
-                                    case '2':
-                                        scope.producer2es.push(data.categoryInfo[0].variantInfo[i]);
-                                        break;
-                                    case '3':
-                                        scope.producer3es.push(data.categoryInfo[0].variantInfo[i]);
-                                        break;
-                                    case '4':
-                                        break;
+                        */
+                        data.categoryInfo[StaticValues.category.ele].variantInfo.forEach(function(singleData) {
+                            if (singleData.parentBrandName.substring(0, 1) == "E") {
+                                if (singleData.parentBrandName.substring(singleData.parentBrandName.length - 1) < 4) {
+                                    scope.producerses[singleData.parentBrandName.substring(singleData.parentBrandName.length - 1) - 1].push(singleData);
                                 }
                             }
-                        }
-                        for (var i = 0; i < data.categoryInfo[1].variantInfo.length; i++) {
-                            if (data.categoryInfo[1].variantInfo[i].parentBrandName.substring(0, 1) == "H") {
+                        })
 
-                                switch (data.categoryInfo[1].variantInfo[i].parentBrandName.substring(data.categoryInfo[1].variantInfo[i].parentBrandName.length - 1)) {
-                                    case '1':
-                                        scope.producer1hs.push(data.categoryInfo[1].variantInfo[i]);
-                                        break;
-                                    case '2':
-                                        scope.producer2hs.push(data.categoryInfo[1].variantInfo[i]);
-                                        break;
-                                    case '3':
-                                        scope.producer3hs.push(data.categoryInfo[1].variantInfo[i]);
-                                        break;
-                                    case '4':
-                                        break;
+                        data.categoryInfo[StaticValues.category.hea].variantInfo.forEach(function(singleData) {
+                            if (singleData.parentBrandName.substring(0, 1) == "H") {
+                                if (singleData.parentBrandName.substring(singleData.parentBrandName.length - 1) < 4) {
+                                    scope.producershs[singleData.parentBrandName.substring(singleData.parentBrandName.length - 1) - 1].push(singleData);
                                 }
                             }
-                        }
+                        })
 
 
                         deferred.resolve({

@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalMarketSales', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q','PlayerColor',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerColor) {
+    directives.directive('generalMarketSales', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerColor', 'StaticValues',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor, StaticValues) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -11,17 +11,12 @@ define(['directives', 'services'], function(directives) {
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/GR_marketSales.html',
                 link: function(scope, element, attrs) {
-                    
-                    var elecssory_Volume = 0, elecssory_Value = 1, healthBeauty_Volume = 2, healthBeauty_Value = 3;
-                    var urban = 0, rural = 1, marketTotal = 2;
-                    var segmentTotal = 4 , price = 0 , value = 1 , fashion = 2 , freaks =3; 
-                    var shopperTotal = 3 , bm = 0 , online = 1 , mixed = 2;
-                    var producer1 = 0, producer2 = 1, producer3 = 2, producer4 = 3, retailer1 = 4, retailer2 = 5;
+
 
                     var initializePage = function() {
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
-                        scope.Label         = Label;
+                        scope.Label = Label;
                         getResult();
                     }
 
@@ -32,7 +27,7 @@ define(['directives', 'services'], function(directives) {
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            return organiseArray(data);
+                            return organiseArray(data.data[0]);
                         }).then(function(data) {
                             scope.isResultShown = true;
                             scope.isPageLoading = false;
@@ -43,160 +38,135 @@ define(['directives', 'services'], function(directives) {
 
                     var organiseArray = function(data) {
                         var deferred = $q.defer();
-                        scope.totals         = new Array();
-                        scope.totalChanges   = new Array();
-                        scope.rurals         = new Array();
-                        scope.ruralChanges   = new Array();
-                        scope.urbans         = new Array();
-                        scope.urbanChanges   = new Array();
-                        scope.prices         = new Array();
-                        scope.priceChanges   = new Array();
-                        scope.values         = new Array();
-                        scope.valueChanges   = new Array();
-                        scope.fashions       = new Array();
-                        scope.fashionChanges = new Array();
-                        scope.freakss        = new Array();
-                        scope.freaksChanges  = new Array();
-                        scope.bms            = new Array();
-                        scope.bmChanges      = new Array();
-                        scope.onlines        = new Array();
-                        scope.onlineChanges  = new Array();
-                        scope.mixeds         = new Array();
-                        scope.mixedChanges   = new Array();
-                        for (var i = 0; i < 4; i++) {
-                            scope.totals[i]         = new Array();
-                            scope.totalChanges[i]   = new Array();
-                            scope.rurals[i]         = new Array();
-                            scope.ruralChanges[i]   = new Array();
-                            scope.urbans[i]         = new Array();
-                            scope.urbanChanges[i]   = new Array();
-                            scope.prices[i]         = new Array();
-                            scope.priceChanges[i]   = new Array();
-                            scope.values[i]         = new Array();
-                            scope.valueChanges[i]   = new Array();
-                            scope.fashions[i]       = new Array();
-                            scope.fashionChanges[i] = new Array();
-                            scope.freakss[i]        = new Array();
-                            scope.freaksChanges[i]  = new Array();
-                            scope.bms[i]            = new Array();
-                            scope.bmChanges[i]      = new Array();
-                            scope.onlines[i]        = new Array();
-                            scope.onlineChanges[i]  = new Array();
-                            scope.mixeds[i]         = new Array();
-                            scope.mixedChanges[i]   = new Array();
-                        }
+                        scope.totals         = [[],[],[],[]];
+                        scope.totalChanges   = [[],[],[],[]];
+                        scope.rurals         = [[],[],[],[]];
+                        scope.ruralChanges   = [[],[],[],[]];
+                        scope.urbans         = [[],[],[],[]];
+                        scope.urbanChanges   = [[],[],[],[]];
+                        scope.prices         = [[],[],[],[]];
+                        scope.priceChanges   = [[],[],[],[]];
+                        scope.values         = [[],[],[],[]];
+                        scope.valueChanges   = [[],[],[],[]];
+                        scope.fashions       = [[],[],[],[]];
+                        scope.fashionChanges = [[],[],[],[]];
+                        scope.freakss        = [[],[],[],[]];
+                        scope.freaksChanges  = [[],[],[],[]];
+                        scope.bms            = [[],[],[],[]];
+                        scope.bmChanges      = [[],[],[],[]];
+                        scope.onlines        = [[],[],[],[]];
+                        scope.onlineChanges  = [[],[],[],[]];
+                        scope.mixeds         = [[],[],[],[]];
+                        scope.mixedChanges   = [[],[],[],[]];
 
-                        for (i = 0; i < data.data[0].actorInfo.length; i++) {
+                        data.actorInfo.forEach(function(singleData) {
                             for (j = 0; j < 4; j += 2) {
                                 var k = 0;
                                 if (j >= 2) {
                                     k = 1;
                                 };
-                                //total actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].xxxx
-                                scope.totals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
-                                scope.totalChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
-                                scope.totals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
-                                scope.totalChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
-                                //rural actorMarketInfo[1].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal]
-                                scope.rurals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
-                                scope.ruralChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
-                                scope.rurals[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
-                                scope.ruralChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[rural].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
+                                //total actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].xxxx
+                                scope.totals[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolume);
+                                scope.totalChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolumeChange * 100);
+                                scope.totals[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValue);
+                                scope.totalChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValueChange * 100);
+                                //rural actorMarketInfo[1].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all]
+                                scope.rurals[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.rural].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolume);
+                                scope.ruralChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.rural].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolumeChange * 100);
+                                scope.rurals[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.rural].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValue);
+                                scope.ruralChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.rural].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValueChange * 100);
 
-                                //urban actorMarketInfo[0].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal]
-                                scope.urbans[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
-                                scope.urbanChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
-                                scope.urbans[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
-                                scope.urbanChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[urban].actorSegmentInfo[segmentTotal].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
+                                //urban actorMarketInfo[0].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all]
+                                scope.urbans[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.urban].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolume);
+                                scope.urbanChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.urban].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolumeChange * 100);
+                                scope.urbans[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.urban].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValue);
+                                scope.urbanChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.urban].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValueChange * 100);
 
-                                //prices actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal]
-                                scope.prices[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
-                                scope.priceChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
-                                scope.prices[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
-                                scope.priceChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[price].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
+                                //prices actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.price].actorShopperInfo[StaticValues.shopper.all]
+                                scope.prices[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.price].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolume);
+                                scope.priceChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.price].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolumeChange * 100);
+                                scope.prices[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.price].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValue);
+                                scope.priceChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.price].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValueChange * 100);
 
-                                //values actorMarketInfo[marketTotal].actorSegmentInfo[1].actorShopperInfo[shopperTotal]
-                                scope.values[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
-                                scope.valueChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
-                                scope.values[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
-                                scope.valueChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[value].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
+                                //values actorMarketInfo[StaticValues.market.total].actorSegmentInfo[1].actorShopperInfo[StaticValues.shopper.all]
+                                scope.values[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.value].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolume);
+                                scope.valueChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.value].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolumeChange * 100);
+                                scope.values[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.value].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValue);
+                                scope.valueChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.value].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValueChange * 100);
 
-                                //fashions actorMarketInfo[marketTotal].actorSegmentInfo[2].actorShopperInfo[shopperTotal]
-                                scope.fashions[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
-                                scope.fashionChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
-                                scope.fashions[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
-                                scope.fashionChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[fashion].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
+                                //fashions actorMarketInfo[StaticValues.market.total].actorSegmentInfo[2].actorShopperInfo[StaticValues.shopper.all]
+                                scope.fashions[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.fashion].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolume);
+                                scope.fashionChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.fashion].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolumeChange * 100);
+                                scope.fashions[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.fashion].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValue);
+                                scope.fashionChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.fashion].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValueChange * 100);
 
-                                //freakss actorMarketInfo[marketTotal].actorSegmentInfo[3].actorShopperInfo[shopperTotal]
-                                scope.freakss[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketSalesVolume);
-                                scope.freaksChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketSalesVolumeChange * 100);
-                                scope.freakss[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketNetSalesValue);
-                                scope.freaksChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[freaks].actorShopperInfo[shopperTotal].grms_MarketNetSalesValueChange * 100);
+                                //freakss actorMarketInfo[StaticValues.market.total].actorSegmentInfo[3].actorShopperInfo[StaticValues.shopper.all]
+                                scope.freakss[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.freaks].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolume);
+                                scope.freaksChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.freaks].actorShopperInfo[StaticValues.shopper.all].grms_MarketSalesVolumeChange * 100);
+                                scope.freakss[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.freaks].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValue);
+                                scope.freaksChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.freaks].actorShopperInfo[StaticValues.shopper.all].grms_MarketNetSalesValueChange * 100);
 
-                                //bms actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[0]
-                                scope.bms[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketSalesVolume);
-                                scope.bmChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketSalesVolumeChange * 100);
-                                scope.bms[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketNetSalesValue);
-                                scope.bmChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[bm].grms_MarketNetSalesValueChange * 100);
+                                //bms actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[0]
+                                scope.bms[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.bm].grms_MarketSalesVolume);
+                                scope.bmChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.bm].grms_MarketSalesVolumeChange * 100);
+                                scope.bms[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.bm].grms_MarketNetSalesValue);
+                                scope.bmChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.bm].grms_MarketNetSalesValueChange * 100);
 
-                                //onlines actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[1]
-                                scope.onlines[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketSalesVolume);
-                                scope.onlineChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketSalesVolumeChange * 100);
-                                scope.onlines[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketNetSalesValue);
-                                scope.onlineChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[online].grms_MarketNetSalesValueChange * 100);
+                                //onlines actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[1]
+                                scope.onlines[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.online].grms_MarketSalesVolume);
+                                scope.onlineChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.online].grms_MarketSalesVolumeChange * 100);
+                                scope.onlines[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.online].grms_MarketNetSalesValue);
+                                scope.onlineChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.online].grms_MarketNetSalesValueChange * 100);
 
-                                //mixed  actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[2]
-                                scope.mixeds[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketSalesVolume);
-                                scope.mixedChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketSalesVolumeChange * 100);
-                                scope.mixeds[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketNetSalesValue);
-                                scope.mixedChanges[j + 1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[marketTotal].actorSegmentInfo[segmentTotal].actorShopperInfo[mixed].grms_MarketNetSalesValueChange * 100);
+                                //mixed  actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[2]
+                                scope.mixeds[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.mixed].grms_MarketSalesVolume);
+                                scope.mixedChanges[j].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.mixed].grms_MarketSalesVolumeChange * 100);
+                                scope.mixeds[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.mixed].grms_MarketNetSalesValue);
+                                scope.mixedChanges[j + 1].push(singleData.actorCategoryInfo[k].actorMarketInfo[StaticValues.market.total].actorSegmentInfo[StaticValues.segment.total].actorShopperInfo[StaticValues.shopper.mixed].grms_MarketNetSalesValueChange * 100);
                             }
-                        }
+                        });
 
                         scope.marketSales1Series = [{
                             "name": Label.getContent('Producer') + ' 1',
-                            "data": [scope.totals[elecssory_Volume][producer1], 0, scope.urbans[elecssory_Volume][producer1], scope.rurals[elecssory_Volume][producer1], 0, scope.prices[elecssory_Volume][producer1], scope.values[elecssory_Volume][producer1], scope.fashions[elecssory_Volume][producer1], scope.freakss[elecssory_Volume][producer1], 0, scope.bms[elecssory_Volume][producer1], scope.onlines[elecssory_Volume][producer1], scope.mixeds[elecssory_Volume][producer1]],
+                            "data": [scope.totals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], 0, scope.urbans[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.rurals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], 0, scope.prices[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.values[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.fashions[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.freakss[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], 0, scope.bms[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.onlines[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.mixeds[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer1]
+                            color: PlayerColor.s1
                         }, {
                             "name": Label.getContent('Producer') + ' 2',
-                            "data": [scope.totals[elecssory_Volume][producer2], 0, scope.urbans[elecssory_Volume][producer2], scope.rurals[elecssory_Volume][producer2], 0, scope.prices[elecssory_Volume][producer2], scope.values[elecssory_Volume][producer2], scope.fashions[elecssory_Volume][producer2], scope.freakss[elecssory_Volume][producer2], 0, scope.bms[elecssory_Volume][producer2], scope.onlines[elecssory_Volume][producer2], scope.mixeds[elecssory_Volume][producer2]],
+                            "data": [scope.totals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], 0, scope.urbans[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.rurals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], 0, scope.prices[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.values[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.fashions[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.freakss[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], 0, scope.bms[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.onlines[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.mixeds[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer2]
+                            color: PlayerColor.s2
                         }, {
                             "name": Label.getContent('Producer') + ' 3',
-                            "data": [scope.totals[elecssory_Volume][producer3], 0, scope.urbans[elecssory_Volume][producer3], scope.rurals[elecssory_Volume][producer3], 0, scope.prices[elecssory_Volume][producer3], scope.values[elecssory_Volume][producer3], scope.fashions[elecssory_Volume][producer3], scope.freakss[elecssory_Volume][producer3], 0, scope.bms[elecssory_Volume][producer3], scope.onlines[elecssory_Volume][producer3], scope.mixeds[elecssory_Volume][producer3]],
+                            "data": [scope.totals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], 0, scope.urbans[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.rurals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], 0, scope.prices[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.values[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.fashions[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.freakss[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], 0, scope.bms[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.onlines[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.mixeds[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer3]
+                            color: PlayerColor.s3
                         }, {
                             "name": Label.getContent('Producer') + ' 4',
-                            "data": [scope.totals[elecssory_Volume][producer4], 0, scope.urbans[elecssory_Volume][producer4], scope.rurals[elecssory_Volume][producer4], 0, scope.prices[elecssory_Volume][producer4], scope.values[elecssory_Volume][producer4], scope.fashions[elecssory_Volume][producer4], scope.freakss[elecssory_Volume][producer4], 0, scope.bms[elecssory_Volume][producer4], scope.onlines[elecssory_Volume][producer4], scope.mixeds[elecssory_Volume][producer4]],
+                            "data": [scope.totals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], 0, scope.urbans[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.rurals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], 0, scope.prices[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.values[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.fashions[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.freakss[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], 0, scope.bms[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.onlines[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.mixeds[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer4]
+                            color: PlayerColor.s4
                         }, {
                             "name": Label.getContent('Retailer') + ' 1',
-                            "data": [scope.totals[elecssory_Volume][retailer1], 0, scope.urbans[elecssory_Volume][retailer1], scope.rurals[elecssory_Volume][retailer1], 0, scope.prices[elecssory_Volume][retailer1], scope.values[elecssory_Volume][retailer1], scope.fashions[elecssory_Volume][retailer1], scope.freakss[elecssory_Volume][retailer1], 0, scope.bms[elecssory_Volume][retailer1], scope.onlines[elecssory_Volume][retailer1], scope.mixeds[elecssory_Volume][retailer1]],
+                            "data": [scope.totals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], 0, scope.urbans[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.rurals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], 0, scope.prices[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.values[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.fashions[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.freakss[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], 0, scope.bms[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.onlines[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.mixeds[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer1]
+                            color: PlayerColor.r1
                         }, {
                             "name": Label.getContent('Retailer') + ' 2',
-                            "data": [scope.totals[elecssory_Volume][retailer2], 0, scope.urbans[elecssory_Volume][retailer2], scope.rurals[elecssory_Volume][retailer2], 0, scope.prices[elecssory_Volume][retailer2], scope.values[elecssory_Volume][retailer2], scope.fashions[elecssory_Volume][retailer2], scope.freakss[elecssory_Volume][retailer2], 0, scope.bms[elecssory_Volume][retailer2], scope.onlines[elecssory_Volume][retailer2], scope.mixeds[elecssory_Volume][retailer2]],
+                            "data": [scope.totals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], 0, scope.urbans[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.rurals[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], 0, scope.prices[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.values[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.fashions[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.freakss[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], 0, scope.bms[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.onlines[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.mixeds[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer2]
+                            color: PlayerColor.r2
                         }, ];
 
-                        scope.change1s = scope.change2s = scope.change3s = scope.change4s = new Array();
-                        for (var i = 0; i < 6; i++) {
-                            scope.change1s[i] = scope.change2s[i] = scope.change3s[i] = scope.change4s[i] = new Array();
-                        }
+                        scope.change1s = scope.change2s = scope.change3s = scope.change4s = [[],[],[],[],[],[]];
 
                         scope.change1s = [
-                            [scope.totalChanges[elecssory_Volume][producer1], 0, scope.urbanChanges[elecssory_Volume][producer1], scope.ruralChanges[elecssory_Volume][producer1], 0, scope.priceChanges[elecssory_Volume][producer1], scope.valueChanges[elecssory_Volume][producer1], scope.fashionChanges[elecssory_Volume][producer1], scope.freaksChanges[elecssory_Volume][producer1], 0, scope.bmChanges[elecssory_Volume][producer1], scope.onlineChanges[elecssory_Volume][producer1], scope.mixedChanges[elecssory_Volume][producer1]],
-                            [scope.totalChanges[elecssory_Volume][producer2], 0, scope.urbanChanges[elecssory_Volume][producer2], scope.ruralChanges[elecssory_Volume][producer2], 0, scope.priceChanges[elecssory_Volume][producer2], scope.valueChanges[elecssory_Volume][producer2], scope.fashionChanges[elecssory_Volume][producer2], scope.freaksChanges[elecssory_Volume][producer2], 0, scope.bmChanges[elecssory_Volume][producer2], scope.onlineChanges[elecssory_Volume][producer2], scope.mixedChanges[elecssory_Volume][producer2]],
-                            [scope.totalChanges[elecssory_Volume][producer3], 0, scope.urbanChanges[elecssory_Volume][producer3], scope.ruralChanges[elecssory_Volume][producer3], 0, scope.priceChanges[elecssory_Volume][producer3], scope.valueChanges[elecssory_Volume][producer3], scope.fashionChanges[elecssory_Volume][producer3], scope.freaksChanges[elecssory_Volume][producer3], 0, scope.bmChanges[elecssory_Volume][producer3], scope.onlineChanges[elecssory_Volume][producer3], scope.mixedChanges[elecssory_Volume][producer3]],
-                            [scope.totalChanges[elecssory_Volume][producer4], 0, scope.urbanChanges[elecssory_Volume][producer4], scope.ruralChanges[elecssory_Volume][producer4], 0, scope.priceChanges[elecssory_Volume][producer4], scope.valueChanges[elecssory_Volume][producer4], scope.fashionChanges[elecssory_Volume][producer4], scope.freaksChanges[elecssory_Volume][producer4], 0, scope.bmChanges[elecssory_Volume][producer4], scope.onlineChanges[elecssory_Volume][producer4], scope.mixedChanges[elecssory_Volume][producer4]],
-                            [scope.totalChanges[elecssory_Volume][retailer1], 0, scope.urbanChanges[elecssory_Volume][retailer1], scope.ruralChanges[elecssory_Volume][retailer1], 0, scope.priceChanges[elecssory_Volume][retailer1], scope.valueChanges[elecssory_Volume][retailer1], scope.fashionChanges[elecssory_Volume][retailer1], scope.freaksChanges[elecssory_Volume][retailer1], 0, scope.bmChanges[elecssory_Volume][retailer1], scope.onlineChanges[elecssory_Volume][retailer1], scope.mixedChanges[elecssory_Volume][retailer1]],
-                            [scope.totalChanges[elecssory_Volume][retailer2], 0, scope.urbanChanges[elecssory_Volume][retailer2], scope.ruralChanges[elecssory_Volume][retailer2], 0, scope.priceChanges[elecssory_Volume][retailer2], scope.valueChanges[elecssory_Volume][retailer2], scope.fashionChanges[elecssory_Volume][retailer2], scope.freaksChanges[elecssory_Volume][retailer2], 0, scope.bmChanges[elecssory_Volume][retailer2], scope.onlineChanges[elecssory_Volume][retailer2], scope.mixedChanges[elecssory_Volume][retailer2]]
+                            [scope.totalChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], 0, scope.urbanChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.ruralChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], 0, scope.priceChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.valueChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.fashionChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.freaksChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], 0, scope.bmChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.onlineChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1], scope.mixedChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s1]],
+                            [scope.totalChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], 0, scope.urbanChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.ruralChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], 0, scope.priceChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.valueChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.fashionChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.freaksChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], 0, scope.bmChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.onlineChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2], scope.mixedChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s2]],
+                            [scope.totalChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], 0, scope.urbanChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.ruralChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], 0, scope.priceChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.valueChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.fashionChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.freaksChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], 0, scope.bmChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.onlineChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3], scope.mixedChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s3]],
+                            [scope.totalChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], 0, scope.urbanChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.ruralChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], 0, scope.priceChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.valueChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.fashionChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.freaksChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], 0, scope.bmChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.onlineChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4], scope.mixedChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.s4]],
+                            [scope.totalChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], 0, scope.urbanChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.ruralChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], 0, scope.priceChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.valueChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.fashionChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.freaksChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], 0, scope.bmChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.onlineChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1], scope.mixedChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r1]],
+                            [scope.totalChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], 0, scope.urbanChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.ruralChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], 0, scope.priceChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.valueChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.fashionChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.freaksChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], 0, scope.bmChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.onlineChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2], scope.mixedChanges[StaticValues.CandV.eleVolume][StaticValues.chartOwner.r2]]
                         ];
 
                         scope.marketSales1Config = {
@@ -236,7 +206,7 @@ define(['directives', 'services'], function(directives) {
                             title: {
                                 text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Volume Sales'),
                                 style: {
-                                    'font-size':'20px'
+                                    'font-size': '20px'
                                 }
                             },
                             subtitle: {
@@ -251,48 +221,48 @@ define(['directives', 'services'], function(directives) {
 
                         scope.marketSales2Series = [{
                             "name": Label.getContent('Producer') + ' 1',
-                            "data": [scope.totals[elecssory_Value][producer1], 0, scope.urbans[elecssory_Value][producer1], scope.rurals[elecssory_Value][producer1], 0, scope.prices[elecssory_Value][producer1], scope.values[elecssory_Value][producer1], scope.fashions[elecssory_Value][producer1], scope.freakss[elecssory_Value][producer1], 0, scope.bms[elecssory_Value][producer1], scope.onlines[elecssory_Value][producer1], scope.mixeds[elecssory_Value][producer1]],
+                            "data": [scope.totals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], 0, scope.urbans[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.rurals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], 0, scope.prices[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.values[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.fashions[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.freakss[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], 0, scope.bms[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.onlines[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.mixeds[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer1]
+                            color: PlayerColor.s1
                         }, {
                             "name": Label.getContent('Producer') + ' 2',
-                            "data": [scope.totals[elecssory_Value][producer2], 0, scope.urbans[elecssory_Value][producer2], scope.rurals[elecssory_Value][producer2], 0, scope.prices[elecssory_Value][producer2], scope.values[elecssory_Value][producer2], scope.fashions[elecssory_Value][producer2], scope.freakss[elecssory_Value][producer2], 0, scope.bms[elecssory_Value][producer2], scope.onlines[elecssory_Value][producer2], scope.mixeds[elecssory_Value][producer2]],
+                            "data": [scope.totals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], 0, scope.urbans[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.rurals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], 0, scope.prices[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.values[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.fashions[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.freakss[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], 0, scope.bms[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.onlines[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.mixeds[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer2]
+                            color: PlayerColor.s2
                         }, {
                             "name": Label.getContent('Producer') + ' 3',
-                            "data": [scope.totals[elecssory_Value][producer3], 0, scope.urbans[elecssory_Value][producer3], scope.rurals[elecssory_Value][producer3], 0, scope.prices[elecssory_Value][producer3], scope.values[elecssory_Value][producer3], scope.fashions[elecssory_Value][producer3], scope.freakss[elecssory_Value][producer3], 0, scope.bms[elecssory_Value][producer3], scope.onlines[elecssory_Value][producer3], scope.mixeds[elecssory_Value][producer3]],
+                            "data": [scope.totals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], 0, scope.urbans[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.rurals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], 0, scope.prices[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.values[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.fashions[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.freakss[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], 0, scope.bms[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.onlines[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.mixeds[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer3]
+                            color: PlayerColor.s3
                         }, {
                             "name": Label.getContent('Producer') + ' 4',
-                            "data": [scope.totals[elecssory_Value][producer4], 0, scope.urbans[elecssory_Value][producer4], scope.rurals[elecssory_Value][producer4], 0, scope.prices[elecssory_Value][producer4], scope.values[elecssory_Value][producer4], scope.fashions[elecssory_Value][producer4], scope.freakss[elecssory_Value][producer4], 0, scope.bms[elecssory_Value][producer4], scope.onlines[elecssory_Value][producer4], scope.mixeds[elecssory_Value][producer4]],
+                            "data": [scope.totals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], 0, scope.urbans[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.rurals[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], 0, scope.prices[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.values[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.fashions[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.freakss[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], 0, scope.bms[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.onlines[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.mixeds[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer4]
+                            color: PlayerColor.s4
                         }, {
                             "name": Label.getContent('Retailer') + ' 1',
-                            "data": [scope.totals[elecssory_Value][retailer1], 0, scope.urbans[elecssory_Value][retailer1], scope.rurals[elecssory_Value][retailer1], 0, scope.prices[elecssory_Value][retailer1], scope.values[elecssory_Value][retailer1], scope.fashions[elecssory_Value][retailer1], scope.freakss[elecssory_Value][retailer1], 0, scope.bms[elecssory_Value][retailer1], scope.onlines[elecssory_Value][retailer1], scope.mixeds[elecssory_Value][retailer1]],
+                            "data": [scope.totals[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], 0, scope.urbans[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.rurals[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], 0, scope.prices[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.values[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.fashions[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.freakss[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], 0, scope.bms[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.onlines[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.mixeds[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer1]
+                            color: PlayerColor.r1
                         }, {
                             "name": Label.getContent('Retailer') + ' 2',
-                            "data": [scope.totals[elecssory_Value][retailer2], 0, scope.urbans[elecssory_Value][retailer2], scope.rurals[elecssory_Value][retailer2], 0, scope.prices[elecssory_Value][retailer2], scope.values[elecssory_Value][retailer2], scope.fashions[elecssory_Value][retailer2], scope.freakss[elecssory_Value][retailer2], 0, scope.bms[elecssory_Value][retailer2], scope.onlines[elecssory_Value][retailer2], scope.mixeds[elecssory_Value][retailer2]],
+                            "data": [scope.totals[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], 0, scope.urbans[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.rurals[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], 0, scope.prices[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.values[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.fashions[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.freakss[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], 0, scope.bms[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.onlines[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.mixeds[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer2]
+                            color: PlayerColor.r2
                         }, ];
 
-                        scope.change2s = new Array();
-                        for (i = 0; i < 6; i++) {
-                            scope.change2s[i] = new Array();
-                        }
+                        // scope.change2s = new Array();
+                        // for (i = 0; i < 6; i++) {
+                        //     scope.change2s[i] = new Array();
+                        // }
 
                         scope.change2s = [
-                            [scope.totalChanges[elecssory_Value][producer1], 0, scope.urbanChanges[elecssory_Value][producer1], scope.ruralChanges[elecssory_Value][producer1], 0, scope.priceChanges[elecssory_Value][producer1], scope.valueChanges[elecssory_Value][producer1], scope.fashionChanges[elecssory_Value][producer1], scope.freaksChanges[elecssory_Value][producer1], 0, scope.bmChanges[elecssory_Value][producer1], scope.onlineChanges[elecssory_Value][producer1], scope.mixedChanges[elecssory_Value][producer1]],
-                            [scope.totalChanges[elecssory_Value][producer2], 0, scope.urbanChanges[elecssory_Value][producer2], scope.ruralChanges[elecssory_Value][producer2], 0, scope.priceChanges[elecssory_Value][producer2], scope.valueChanges[elecssory_Value][producer2], scope.fashionChanges[elecssory_Value][producer2], scope.freaksChanges[elecssory_Value][producer2], 0, scope.bmChanges[elecssory_Value][producer2], scope.onlineChanges[elecssory_Value][producer2], scope.mixedChanges[elecssory_Value][producer2]],
-                            [scope.totalChanges[elecssory_Value][producer3], 0, scope.urbanChanges[elecssory_Value][producer3], scope.ruralChanges[elecssory_Value][producer3], 0, scope.priceChanges[elecssory_Value][producer3], scope.valueChanges[elecssory_Value][producer3], scope.fashionChanges[elecssory_Value][producer3], scope.freaksChanges[elecssory_Value][producer3], 0, scope.bmChanges[elecssory_Value][producer3], scope.onlineChanges[elecssory_Value][producer3], scope.mixedChanges[elecssory_Value][producer3]],
-                            [scope.totalChanges[elecssory_Value][producer4], 0, scope.urbanChanges[elecssory_Value][producer4], scope.ruralChanges[elecssory_Value][producer4], 0, scope.priceChanges[elecssory_Value][producer4], scope.valueChanges[elecssory_Value][producer4], scope.fashionChanges[elecssory_Value][producer4], scope.freaksChanges[elecssory_Value][producer4], 0, scope.bmChanges[elecssory_Value][producer4], scope.onlineChanges[elecssory_Value][producer4], scope.mixedChanges[elecssory_Value][producer4]],
-                            [scope.totalChanges[elecssory_Value][retailer1], 0, scope.urbanChanges[elecssory_Value][retailer1], scope.ruralChanges[elecssory_Value][retailer1], 0, scope.priceChanges[elecssory_Value][retailer1], scope.valueChanges[elecssory_Value][retailer1], scope.fashionChanges[elecssory_Value][retailer1], scope.freaksChanges[elecssory_Value][retailer1], 0, scope.bmChanges[elecssory_Value][retailer1], scope.onlineChanges[elecssory_Value][retailer1], scope.mixedChanges[elecssory_Value][retailer1]],
-                            [scope.totalChanges[elecssory_Value][retailer2], 0, scope.urbanChanges[elecssory_Value][retailer2], scope.ruralChanges[elecssory_Value][retailer2], 0, scope.priceChanges[elecssory_Value][retailer2], scope.valueChanges[elecssory_Value][retailer2], scope.fashionChanges[elecssory_Value][retailer2], scope.freaksChanges[elecssory_Value][retailer2], 0, scope.bmChanges[elecssory_Value][retailer2], scope.onlineChanges[elecssory_Value][retailer2], scope.mixedChanges[elecssory_Value][retailer2]]
+                            [scope.totalChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], 0, scope.urbanChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.ruralChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], 0, scope.priceChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.valueChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.fashionChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.freaksChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], 0, scope.bmChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.onlineChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1], scope.mixedChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s1]],
+                            [scope.totalChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], 0, scope.urbanChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.ruralChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], 0, scope.priceChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.valueChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.fashionChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.freaksChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], 0, scope.bmChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.onlineChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2], scope.mixedChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s2]],
+                            [scope.totalChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], 0, scope.urbanChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.ruralChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], 0, scope.priceChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.valueChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.fashionChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.freaksChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], 0, scope.bmChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.onlineChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3], scope.mixedChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s3]],
+                            [scope.totalChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], 0, scope.urbanChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.ruralChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], 0, scope.priceChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.valueChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.fashionChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.freaksChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], 0, scope.bmChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.onlineChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4], scope.mixedChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.s4]],
+                            [scope.totalChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], 0, scope.urbanChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.ruralChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], 0, scope.priceChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.valueChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.fashionChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.freaksChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], 0, scope.bmChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.onlineChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1], scope.mixedChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r1]],
+                            [scope.totalChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], 0, scope.urbanChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.ruralChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], 0, scope.priceChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.valueChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.fashionChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.freaksChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], 0, scope.bmChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.onlineChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2], scope.mixedChanges[StaticValues.CandV.eleValue][StaticValues.chartOwner.r2]]
                         ];
 
 
@@ -333,7 +303,7 @@ define(['directives', 'services'], function(directives) {
                             title: {
                                 text: Label.getContent('Elecssories') + ' - ' + Label.getContent('Value Sales'),
                                 style: {
-                                    'font-size':'20px'
+                                    'font-size': '20px'
                                 }
                             },
                             subtitle: {
@@ -348,48 +318,48 @@ define(['directives', 'services'], function(directives) {
 
                         scope.marketSales3Series = [{
                             "name": Label.getContent('Producer') + ' 1',
-                            "data": [scope.totals[healthBeauty_Volume][producer1], 0, scope.urbans[healthBeauty_Volume][producer1], scope.rurals[healthBeauty_Volume][producer1], 0, scope.prices[healthBeauty_Volume][producer1], scope.values[healthBeauty_Volume][producer1], scope.fashions[healthBeauty_Volume][producer1], scope.freakss[healthBeauty_Volume][producer1], 0, scope.bms[healthBeauty_Volume][producer1], scope.onlines[healthBeauty_Volume][producer1], scope.mixeds[healthBeauty_Volume][producer1]],
+                            "data": [scope.totals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], 0, scope.urbans[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.rurals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], 0, scope.prices[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.values[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.fashions[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.freakss[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], 0, scope.bms[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.onlines[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.mixeds[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer1]
+                            color: PlayerColor.s1
                         }, {
                             "name": Label.getContent('Producer') + ' 2',
-                            "data": [scope.totals[healthBeauty_Volume][producer2], 0, scope.urbans[healthBeauty_Volume][producer2], scope.rurals[healthBeauty_Volume][producer2], 0, scope.prices[healthBeauty_Volume][producer2], scope.values[healthBeauty_Volume][producer2], scope.fashions[healthBeauty_Volume][producer2], scope.freakss[healthBeauty_Volume][producer2], 0, scope.bms[healthBeauty_Volume][producer2], scope.onlines[healthBeauty_Volume][producer2], scope.mixeds[healthBeauty_Volume][producer2]],
+                            "data": [scope.totals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], 0, scope.urbans[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.rurals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], 0, scope.prices[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.values[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.fashions[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.freakss[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], 0, scope.bms[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.onlines[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.mixeds[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer2]
+                            color: PlayerColor.s2
                         }, {
                             "name": Label.getContent('Producer') + ' 3',
-                            "data": [scope.totals[healthBeauty_Volume][producer3], 0, scope.urbans[healthBeauty_Volume][producer3], scope.rurals[healthBeauty_Volume][producer3], 0, scope.prices[healthBeauty_Volume][producer3], scope.values[healthBeauty_Volume][producer3], scope.fashions[healthBeauty_Volume][producer3], scope.freakss[healthBeauty_Volume][producer3], 0, scope.bms[healthBeauty_Volume][producer3], scope.onlines[healthBeauty_Volume][producer3], scope.mixeds[healthBeauty_Volume][producer3]],
+                            "data": [scope.totals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], 0, scope.urbans[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.rurals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], 0, scope.prices[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.values[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.fashions[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.freakss[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], 0, scope.bms[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.onlines[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.mixeds[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer3]
+                            color: PlayerColor.s3
                         }, {
                             "name": Label.getContent('Producer') + ' 4',
-                            "data": [scope.totals[healthBeauty_Volume][producer4], 0, scope.urbans[healthBeauty_Volume][producer4], scope.rurals[healthBeauty_Volume][producer4], 0, scope.prices[healthBeauty_Volume][producer4], scope.values[healthBeauty_Volume][producer4], scope.fashions[healthBeauty_Volume][producer4], scope.freakss[healthBeauty_Volume][producer4], 0, scope.bms[healthBeauty_Volume][producer4], scope.onlines[healthBeauty_Volume][producer4], scope.mixeds[healthBeauty_Volume][producer4]],
+                            "data": [scope.totals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], 0, scope.urbans[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.rurals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], 0, scope.prices[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.values[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.fashions[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.freakss[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], 0, scope.bms[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.onlines[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.mixeds[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer4]
+                            color: PlayerColor.s4
                         }, {
                             "name": Label.getContent('Retailer') + ' 1',
-                            "data": [scope.totals[healthBeauty_Volume][retailer1], 0, scope.urbans[healthBeauty_Volume][retailer1], scope.rurals[healthBeauty_Volume][retailer1], 0, scope.prices[healthBeauty_Volume][retailer1], scope.values[healthBeauty_Volume][retailer1], scope.fashions[healthBeauty_Volume][retailer1], scope.freakss[healthBeauty_Volume][retailer1], 0, scope.bms[healthBeauty_Volume][retailer1], scope.onlines[healthBeauty_Volume][retailer1], scope.mixeds[healthBeauty_Volume][retailer1]],
+                            "data": [scope.totals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], 0, scope.urbans[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.rurals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], 0, scope.prices[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.values[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.fashions[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.freakss[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], 0, scope.bms[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.onlines[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.mixeds[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer1]
+                            color: PlayerColor.r1
                         }, {
                             "name": Label.getContent('Retailer') + ' 2',
-                            "data": [scope.totals[healthBeauty_Volume][retailer2], 0, scope.urbans[healthBeauty_Volume][retailer2], scope.rurals[healthBeauty_Volume][retailer2], 0, scope.prices[healthBeauty_Volume][retailer2], scope.values[healthBeauty_Volume][retailer2], scope.fashions[healthBeauty_Volume][retailer2], scope.freakss[healthBeauty_Volume][retailer2], 0, scope.bms[healthBeauty_Volume][retailer2], scope.onlines[healthBeauty_Volume][retailer2], scope.mixeds[healthBeauty_Volume][retailer2]],
+                            "data": [scope.totals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], 0, scope.urbans[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.rurals[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], 0, scope.prices[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.values[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.fashions[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.freakss[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], 0, scope.bms[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.onlines[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.mixeds[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer2]
+                            color: PlayerColor.r2
                         }, ];
 
-                        scope.change3s = new Array();
-                        for (i = 0; i < 6; i++) {
-                            scope.change3s[i] = new Array();
-                        }
+                        // scope.change3s = new Array();
+                        // for (i = 0; i < 6; i++) {
+                        //     scope.change3s[i] = new Array();
+                        // }
 
                         scope.change3s = [
-                            [scope.totalChanges[healthBeauty_Volume][producer1], 0, scope.urbanChanges[healthBeauty_Volume][producer1], scope.ruralChanges[healthBeauty_Volume][producer1], 0, scope.priceChanges[healthBeauty_Volume][producer1], scope.valueChanges[healthBeauty_Volume][producer1], scope.fashionChanges[healthBeauty_Volume][producer1], scope.freaksChanges[healthBeauty_Volume][producer1], 0, scope.bmChanges[healthBeauty_Volume][producer1], scope.onlineChanges[healthBeauty_Volume][producer1], scope.mixedChanges[healthBeauty_Volume][producer1]],
-                            [scope.totalChanges[healthBeauty_Volume][producer2], 0, scope.urbanChanges[healthBeauty_Volume][producer2], scope.ruralChanges[healthBeauty_Volume][producer2], 0, scope.priceChanges[healthBeauty_Volume][producer2], scope.valueChanges[healthBeauty_Volume][producer2], scope.fashionChanges[healthBeauty_Volume][producer2], scope.freaksChanges[healthBeauty_Volume][producer2], 0, scope.bmChanges[healthBeauty_Volume][producer2], scope.onlineChanges[healthBeauty_Volume][producer2], scope.mixedChanges[healthBeauty_Volume][producer2]],
-                            [scope.totalChanges[healthBeauty_Volume][producer3], 0, scope.urbanChanges[healthBeauty_Volume][producer3], scope.ruralChanges[healthBeauty_Volume][producer3], 0, scope.priceChanges[healthBeauty_Volume][producer3], scope.valueChanges[healthBeauty_Volume][producer3], scope.fashionChanges[healthBeauty_Volume][producer3], scope.freaksChanges[healthBeauty_Volume][producer3], 0, scope.bmChanges[healthBeauty_Volume][producer3], scope.onlineChanges[healthBeauty_Volume][producer3], scope.mixedChanges[healthBeauty_Volume][producer3]],
-                            [scope.totalChanges[healthBeauty_Volume][producer4], 0, scope.urbanChanges[healthBeauty_Volume][producer4], scope.ruralChanges[healthBeauty_Volume][producer4], 0, scope.priceChanges[healthBeauty_Volume][producer4], scope.valueChanges[healthBeauty_Volume][producer4], scope.fashionChanges[healthBeauty_Volume][producer4], scope.freaksChanges[healthBeauty_Volume][producer4], 0, scope.bmChanges[healthBeauty_Volume][producer4], scope.onlineChanges[healthBeauty_Volume][producer4], scope.mixedChanges[healthBeauty_Volume][producer4]],
-                            [scope.totalChanges[healthBeauty_Volume][retailer1], 0, scope.urbanChanges[healthBeauty_Volume][retailer1], scope.ruralChanges[healthBeauty_Volume][retailer1], 0, scope.priceChanges[healthBeauty_Volume][retailer1], scope.valueChanges[healthBeauty_Volume][retailer1], scope.fashionChanges[healthBeauty_Volume][retailer1], scope.freaksChanges[healthBeauty_Volume][retailer1], 0, scope.bmChanges[healthBeauty_Volume][retailer1], scope.onlineChanges[healthBeauty_Volume][retailer1], scope.mixedChanges[healthBeauty_Volume][retailer1]],
-                            [scope.totalChanges[healthBeauty_Volume][retailer2], 0, scope.urbanChanges[healthBeauty_Volume][retailer2], scope.ruralChanges[healthBeauty_Volume][retailer2], 0, scope.priceChanges[healthBeauty_Volume][retailer2], scope.valueChanges[healthBeauty_Volume][retailer2], scope.fashionChanges[healthBeauty_Volume][retailer2], scope.freaksChanges[healthBeauty_Volume][retailer2], 0, scope.bmChanges[healthBeauty_Volume][retailer2], scope.onlineChanges[healthBeauty_Volume][retailer2], scope.mixedChanges[healthBeauty_Volume][retailer2]]
+                            [scope.totalChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], 0, scope.urbanChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.ruralChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], 0, scope.priceChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.valueChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.fashionChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.freaksChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], 0, scope.bmChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.onlineChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1], scope.mixedChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s1]],
+                            [scope.totalChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], 0, scope.urbanChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.ruralChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], 0, scope.priceChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.valueChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.fashionChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.freaksChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], 0, scope.bmChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.onlineChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2], scope.mixedChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s2]],
+                            [scope.totalChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], 0, scope.urbanChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.ruralChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], 0, scope.priceChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.valueChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.fashionChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.freaksChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], 0, scope.bmChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.onlineChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3], scope.mixedChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s3]],
+                            [scope.totalChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], 0, scope.urbanChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.ruralChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], 0, scope.priceChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.valueChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.fashionChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.freaksChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], 0, scope.bmChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.onlineChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4], scope.mixedChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.s4]],
+                            [scope.totalChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], 0, scope.urbanChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.ruralChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], 0, scope.priceChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.valueChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.fashionChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.freaksChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], 0, scope.bmChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.onlineChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1], scope.mixedChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r1]],
+                            [scope.totalChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], 0, scope.urbanChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.ruralChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], 0, scope.priceChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.valueChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.fashionChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.freaksChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], 0, scope.bmChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.onlineChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2], scope.mixedChanges[StaticValues.CandV.heaVolume][StaticValues.chartOwner.r2]]
                         ];
 
                         scope.marketSales3Config = {
@@ -429,7 +399,7 @@ define(['directives', 'services'], function(directives) {
                             title: {
                                 text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Volume Sales'),
                                 style: {
-                                    'font-size':'20px'
+                                    'font-size': '20px'
                                 }
                             },
                             subtitle: {
@@ -444,47 +414,47 @@ define(['directives', 'services'], function(directives) {
 
                         scope.marketSales4Series = [{
                             "name": Label.getContent('Producer') + ' 1',
-                            "data": [scope.totals[healthBeauty_Value][producer1], 0, scope.urbans[healthBeauty_Value][producer1], scope.rurals[healthBeauty_Value][producer1], 0, scope.prices[healthBeauty_Value][producer1], scope.values[healthBeauty_Value][producer1], scope.fashions[healthBeauty_Value][producer1], scope.freakss[healthBeauty_Value][producer1], 0, scope.bms[healthBeauty_Value][producer1], scope.onlines[healthBeauty_Value][producer1], scope.mixeds[healthBeauty_Value][producer1]],
+                            "data": [scope.totals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], 0, scope.urbans[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.rurals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], 0, scope.prices[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.values[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.fashions[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.freakss[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], 0, scope.bms[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.onlines[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.mixeds[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer1]
+                            color: PlayerColor.s1
                         }, {
                             "name": Label.getContent('Producer') + ' 2',
-                            "data": [scope.totals[healthBeauty_Value][producer2], 0, scope.urbans[healthBeauty_Value][producer2], scope.rurals[healthBeauty_Value][producer2], 0, scope.prices[healthBeauty_Value][producer2], scope.values[healthBeauty_Value][producer2], scope.fashions[healthBeauty_Value][producer2], scope.freakss[healthBeauty_Value][producer2], 0, scope.bms[healthBeauty_Value][producer2], scope.onlines[healthBeauty_Value][producer2], scope.mixeds[healthBeauty_Value][producer2]],
+                            "data": [scope.totals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], 0, scope.urbans[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.rurals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], 0, scope.prices[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.values[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.fashions[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.freakss[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], 0, scope.bms[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.onlines[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.mixeds[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer2]
+                            color: PlayerColor.s2
                         }, {
                             "name": Label.getContent('Producer') + ' 3',
-                            "data": [scope.totals[healthBeauty_Value][producer3], 0, scope.urbans[healthBeauty_Value][producer3], scope.rurals[healthBeauty_Value][producer3], 0, scope.prices[healthBeauty_Value][producer3], scope.values[healthBeauty_Value][producer3], scope.fashions[healthBeauty_Value][producer3], scope.freakss[healthBeauty_Value][producer3], 0, scope.bms[healthBeauty_Value][producer3], scope.onlines[healthBeauty_Value][producer3], scope.mixeds[healthBeauty_Value][producer3]],
+                            "data": [scope.totals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], 0, scope.urbans[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.rurals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], 0, scope.prices[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.values[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.fashions[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.freakss[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], 0, scope.bms[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.onlines[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.mixeds[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer3]
+                            color: PlayerColor.s3
                         }, {
                             "name": Label.getContent('Producer') + ' 4',
-                            "data": [scope.totals[healthBeauty_Value][producer4], 0, scope.urbans[healthBeauty_Value][producer4], scope.rurals[healthBeauty_Value][producer4], 0, scope.prices[healthBeauty_Value][producer4], scope.values[healthBeauty_Value][producer4], scope.fashions[healthBeauty_Value][producer4], scope.freakss[healthBeauty_Value][producer4], 0, scope.bms[healthBeauty_Value][producer4], scope.onlines[healthBeauty_Value][producer4], scope.mixeds[healthBeauty_Value][producer4]],
+                            "data": [scope.totals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], 0, scope.urbans[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.rurals[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], 0, scope.prices[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.values[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.fashions[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.freakss[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], 0, scope.bms[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.onlines[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.mixeds[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4]],
                             type: "column",
-                            color: PlayerColor.getColors()[producer4]
+                            color: PlayerColor.s4
                         }, {
                             "name": Label.getContent('Retailer') + ' 1',
-                            "data": [scope.totals[healthBeauty_Value][retailer1], 0, scope.urbans[healthBeauty_Value][retailer1], scope.rurals[healthBeauty_Value][retailer1], 0, scope.prices[healthBeauty_Value][retailer1], scope.values[healthBeauty_Value][retailer1], scope.fashions[healthBeauty_Value][retailer1], scope.freakss[healthBeauty_Value][retailer1], 0, scope.bms[healthBeauty_Value][retailer1], scope.onlines[healthBeauty_Value][retailer1], scope.mixeds[healthBeauty_Value][retailer1]],
+                            "data": [scope.totals[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], 0, scope.urbans[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.rurals[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], 0, scope.prices[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.values[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.fashions[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.freakss[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], 0, scope.bms[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.onlines[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.mixeds[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer1]
+                            color: PlayerColor.r1
                         }, {
                             "name": Label.getContent('Retailer') + ' 2',
-                            "data": [scope.totals[healthBeauty_Value][retailer2], 0, scope.urbans[healthBeauty_Value][retailer2], scope.rurals[healthBeauty_Value][retailer2], 0, scope.prices[healthBeauty_Value][retailer2], scope.values[healthBeauty_Value][retailer2], scope.fashions[healthBeauty_Value][retailer2], scope.freakss[healthBeauty_Value][retailer2], 0, scope.bms[healthBeauty_Value][retailer2], scope.onlines[healthBeauty_Value][retailer2], scope.mixeds[healthBeauty_Value][retailer2]],
+                            "data": [scope.totals[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], 0, scope.urbans[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.rurals[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], 0, scope.prices[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.values[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.fashions[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.freakss[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], 0, scope.bms[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.onlines[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.mixeds[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2]],
                             type: "column",
-                            color: PlayerColor.getColors()[retailer2]
+                            color: PlayerColor.r2
                         }, ];
-                        scope.change4s = new Array();
-                        for (i = 0; i < 6; i++) {
-                            scope.change4s[i] = new Array();
-                        }
+                        // scope.change4s = new Array();
+                        // for (i = 0; i < 6; i++) {
+                        //     scope.change4s[i] = new Array();
+                        // }
 
                         scope.change4s = [
-                            [scope.totalChanges[healthBeauty_Value][producer1], 0, scope.urbanChanges[healthBeauty_Value][producer1], scope.ruralChanges[healthBeauty_Value][producer1], 0, scope.priceChanges[healthBeauty_Value][producer1], scope.valueChanges[healthBeauty_Value][producer1], scope.fashionChanges[healthBeauty_Value][producer1], scope.freaksChanges[healthBeauty_Value][producer1], 0, scope.bmChanges[healthBeauty_Value][producer1], scope.onlineChanges[healthBeauty_Value][producer1], scope.mixedChanges[healthBeauty_Value][producer1]],
-                            [scope.totalChanges[healthBeauty_Value][producer2], 0, scope.urbanChanges[healthBeauty_Value][producer2], scope.ruralChanges[healthBeauty_Value][producer2], 0, scope.priceChanges[healthBeauty_Value][producer2], scope.valueChanges[healthBeauty_Value][producer2], scope.fashionChanges[healthBeauty_Value][producer2], scope.freaksChanges[healthBeauty_Value][producer2], 0, scope.bmChanges[healthBeauty_Value][producer2], scope.onlineChanges[healthBeauty_Value][producer2], scope.mixedChanges[healthBeauty_Value][producer2]],
-                            [scope.totalChanges[healthBeauty_Value][producer3], 0, scope.urbanChanges[healthBeauty_Value][producer3], scope.ruralChanges[healthBeauty_Value][producer3], 0, scope.priceChanges[healthBeauty_Value][producer3], scope.valueChanges[healthBeauty_Value][producer3], scope.fashionChanges[healthBeauty_Value][producer3], scope.freaksChanges[healthBeauty_Value][producer3], 0, scope.bmChanges[healthBeauty_Value][producer3], scope.onlineChanges[healthBeauty_Value][producer3], scope.mixedChanges[healthBeauty_Value][producer3]],
-                            [scope.totalChanges[healthBeauty_Value][producer4], 0, scope.urbanChanges[healthBeauty_Value][producer4], scope.ruralChanges[healthBeauty_Value][producer4], 0, scope.priceChanges[healthBeauty_Value][producer4], scope.valueChanges[healthBeauty_Value][producer4], scope.fashionChanges[healthBeauty_Value][producer4], scope.freaksChanges[healthBeauty_Value][producer4], 0, scope.bmChanges[healthBeauty_Value][producer4], scope.onlineChanges[healthBeauty_Value][producer4], scope.mixedChanges[healthBeauty_Value][producer4]],
-                            [scope.totalChanges[healthBeauty_Value][retailer1], 0, scope.urbanChanges[healthBeauty_Value][retailer1], scope.ruralChanges[healthBeauty_Value][retailer1], 0, scope.priceChanges[healthBeauty_Value][retailer1], scope.valueChanges[healthBeauty_Value][retailer1], scope.fashionChanges[healthBeauty_Value][retailer1], scope.freaksChanges[healthBeauty_Value][retailer1], 0, scope.bmChanges[healthBeauty_Value][retailer1], scope.onlineChanges[healthBeauty_Value][retailer1], scope.mixedChanges[healthBeauty_Value][retailer1]],
-                            [scope.totalChanges[healthBeauty_Value][retailer2], 0, scope.urbanChanges[healthBeauty_Value][retailer2], scope.ruralChanges[healthBeauty_Value][retailer2], 0, scope.priceChanges[healthBeauty_Value][retailer2], scope.valueChanges[healthBeauty_Value][retailer2], scope.fashionChanges[healthBeauty_Value][retailer2], scope.freaksChanges[healthBeauty_Value][retailer2], 0, scope.bmChanges[healthBeauty_Value][retailer2], scope.onlineChanges[healthBeauty_Value][retailer2], scope.mixedChanges[healthBeauty_Value][retailer2]]
+                            [scope.totalChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], 0, scope.urbanChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.ruralChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], 0, scope.priceChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.valueChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.fashionChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.freaksChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], 0, scope.bmChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.onlineChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1], scope.mixedChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s1]],
+                            [scope.totalChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], 0, scope.urbanChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.ruralChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], 0, scope.priceChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.valueChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.fashionChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.freaksChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], 0, scope.bmChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.onlineChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2], scope.mixedChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s2]],
+                            [scope.totalChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], 0, scope.urbanChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.ruralChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], 0, scope.priceChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.valueChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.fashionChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.freaksChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], 0, scope.bmChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.onlineChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3], scope.mixedChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s3]],
+                            [scope.totalChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], 0, scope.urbanChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.ruralChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], 0, scope.priceChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.valueChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.fashionChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.freaksChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], 0, scope.bmChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.onlineChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4], scope.mixedChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.s4]],
+                            [scope.totalChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], 0, scope.urbanChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.ruralChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], 0, scope.priceChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.valueChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.fashionChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.freaksChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], 0, scope.bmChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.onlineChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1], scope.mixedChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r1]],
+                            [scope.totalChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], 0, scope.urbanChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.ruralChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], 0, scope.priceChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.valueChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.fashionChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.freaksChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], 0, scope.bmChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.onlineChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2], scope.mixedChanges[StaticValues.CandV.heaValue][StaticValues.chartOwner.r2]]
                         ];
 
                         scope.marketSales4Config = {
@@ -524,7 +494,7 @@ define(['directives', 'services'], function(directives) {
                             title: {
                                 text: Label.getContent('HealthBeauties') + ' - ' + Label.getContent('Value Sales'),
                                 style: {
-                                    'font-size':'20px'
+                                    'font-size': '20px'
                                 }
                             },
                             subtitle: {
