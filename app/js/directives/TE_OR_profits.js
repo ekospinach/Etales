@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-	directives.directive('overviewProfits', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerColor',
-		function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor) {
+	directives.directive('overviewProfits', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerColor', 'StaticValues',
+		function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor, StaticValues) {
 			return {
 				scope: {
 					isPageShown: '=',
@@ -13,12 +13,12 @@ define(['directives', 'services'], function(directives) {
 				templateUrl: '../../partials/singleReportTemplate/OR_profits.html',
 				link: function(scope, element, attrs) {
 					var initializePage = function() {
-						console.log('initializePage some small...');
+						console.log('initializePage OR_profits small...');
 						scope.isPageLoading = true;
 						scope.isResultShown = false;
 						scope.Label = Label;
-						if (scope.feedBack != undefined)
-							getResult();
+						//if (scope.feedBack != undefined && scope.shareReady)
+						getResult();
 					}
 
 					var getResult = function() {
@@ -27,68 +27,145 @@ define(['directives', 'services'], function(directives) {
 							currentCategories.push(i);
 						}
 						/*highchart data init start*/
-						var currentOperatingProfits = new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]});
-						var currentOperatingProfitMargins = new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]});
-						var currentNetProfits = new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]});
-						var currentNetProfitMargins = new Array({name:Label.getContent('Supplier')+'-'+1,data:new Array(),color:PlayerColor.getColors()[0]},{name:Label.getContent('Supplier')+'-'+2,data:new Array(),color:PlayerColor.getColors()[1]},{name:Label.getContent('Supplier')+'-'+3,data:new Array(),color:PlayerColor.getColors()[2]},{name:Label.getContent('Retailer')+'-'+1,data:new Array(),color:PlayerColor.getColors()[4]},{name:Label.getContent('Retailer')+'-'+2,data:new Array(),color:PlayerColor.getColors()[5]});
+						var currentOperatingProfits = new Array({
+							name: Label.getContent('Supplier') + '-1',
+							data: [],
+							color: PlayerColor.s1
+						}, {
+							name: Label.getContent('Supplier') + '-2',
+							data: [],
+							color: PlayerColor.s2
+						}, {
+							name: Label.getContent('Supplier') + '-3',
+							data: [],
+							color: PlayerColor.s3
+						}, {
+							name: Label.getContent('Retailer') + '-1',
+							data: [],
+							color: PlayerColor.r1
+						}, {
+							name: Label.getContent('Retailer') + '-2',
+							data: [],
+							color: PlayerColor.r2
+						});
+						var currentOperatingProfitMargins = new Array({
+							name: Label.getContent('Supplier') + '-1',
+							data: [],
+							color: PlayerColor.s1
+						}, {
+							name: Label.getContent('Supplier') + '-2',
+							data: [],
+							color: PlayerColor.s2
+						}, {
+							name: Label.getContent('Supplier') + '-3',
+							data: [],
+							color: PlayerColor.s3
+						}, {
+							name: Label.getContent('Retailer') + '-1',
+							data: [],
+							color: PlayerColor.r1
+						}, {
+							name: Label.getContent('Retailer') + '-2',
+							data: [],
+							color: PlayerColor.r2
+						});
+						var currentNetProfits = new Array({
+							name: Label.getContent('Supplier') + '-1',
+							data: [],
+							color: PlayerColor.s1
+						}, {
+							name: Label.getContent('Supplier') + '-2',
+							data: [],
+							color: PlayerColor.s2
+						}, {
+							name: Label.getContent('Supplier') + '-3',
+							data: [],
+							color: PlayerColor.s3
+						}, {
+							name: Label.getContent('Retailer') + '-1',
+							data: [],
+							color: PlayerColor.r1
+						}, {
+							name: Label.getContent('Retailer') + '-2',
+							data: [],
+							color: PlayerColor.r2
+						});
+						var currentNetProfitMargins = new Array({
+							name: Label.getContent('Supplier') + '-1',
+							data: [],
+							color: PlayerColor.s1
+						}, {
+							name: Label.getContent('Supplier') + '-2',
+							data: [],
+							color: PlayerColor.s2
+						}, {
+							name: Label.getContent('Supplier') + '-3',
+							data: [],
+							color: PlayerColor.s3
+						}, {
+							name: Label.getContent('Retailer') + '-1',
+							data: [],
+							color: PlayerColor.r1
+						}, {
+							name: Label.getContent('Retailer') + '-2',
+							data: [],
+							color: PlayerColor.r2
+						});
 						/*highchart data init end*/
 						/*highchart set data  start*/
 						//OperatingProfits
-						for (var j = 0; j < currentCategories.length; j++) {
-							for (var i = 0; i < scope.feedBack.f_OperatingProfit.length; i++) {
-								if (scope.feedBack.f_OperatingProfit[i].period == currentCategories[j]) {
-									if (scope.feedBack.f_OperatingProfit[i].categoryID == 3) {
-										if (scope.feedBack.f_OperatingProfit[i].actorID < 4) {
-											currentOperatingProfits[scope.feedBack.f_OperatingProfit[i].actorID - 1].data.push(scope.feedBack.f_OperatingProfit[i].value);
-										} else if (scope.feedBack.f_OperatingProfit[i].actorID > 4 && scope.feedBack.f_OperatingProfit[i].actorID < 7) {
-											currentOperatingProfits[scope.feedBack.f_OperatingProfit[i].actorID - 2].data.push(scope.feedBack.f_OperatingProfit[i].value);
+
+						currentCategories.forEach(function(data) {
+							scope.feedBack.f_OperatingProfit.forEach(function(singleData) {
+								if (singleData.period == data) {
+									if (singleData.categoryID == 3) {
+										if (singleData.actorID < 4) {
+											currentOperatingProfits[singleData.actorID - 1].data.push(singleData.value);
+										} else if (singleData.actorID > 4 && singleData.actorID < 7) {
+											currentOperatingProfits[singleData.actorID - 2].data.push(singleData.value);
 										}
 									}
 								}
-							}
-						}
-						//OperatingProfitMargins
-						for (var j = 0; j < currentCategories.length; j++) {
-							for (var i = 0; i < scope.feedBack.f_OperatingProfitMargin.length; i++) {
-								if (scope.feedBack.f_OperatingProfitMargin[i].period == currentCategories[j]) {
-									if (scope.feedBack.f_OperatingProfitMargin[i].categoryID == 3) {
-										if (scope.feedBack.f_OperatingProfitMargin[i].actorID < 4) {
-											currentOperatingProfitMargins[scope.feedBack.f_OperatingProfitMargin[i].actorID - 1].data.push(scope.feedBack.f_OperatingProfitMargin[i].value * 100);
-										} else if (scope.feedBack.f_OperatingProfitMargin[i].actorID > 4 && scope.feedBack.f_OperatingProfitMargin[i].actorID < 7) {
-											currentOperatingProfitMargins[scope.feedBack.f_OperatingProfitMargin[i].actorID - 2].data.push(scope.feedBack.f_OperatingProfitMargin[i].value * 100);
+							})
+
+							scope.feedBack.f_OperatingProfitMargin.forEach(function(singleData) {
+								if (singleData.period == data) {
+									if (singleData.categoryID == 3) {
+										if (singleData.actorID < 4) {
+											currentOperatingProfitMargins[singleData.actorID - 1].data.push(singleData.value * 100);
+										} else if (singleData.actorID > 4 && singleData.actorID < 7) {
+											currentOperatingProfitMargins[singleData.actorID - 2].data.push(singleData.value * 100);
 										}
 									}
 								}
-							}
-						}
-						//NetProfits
-						for (var j = 0; j < currentCategories.length; j++) {
-							for (var i = 0; i < scope.feedBack.f_NetProfit.length; i++) {
-								if (scope.feedBack.f_NetProfit[i].period == currentCategories[j]) {
-									if (scope.feedBack.f_NetProfit[i].categoryID == 3) {
-										if (scope.feedBack.f_NetProfit[i].actorID < 4) {
-											currentNetProfits[scope.feedBack.f_NetProfit[i].actorID - 1].data.push(scope.feedBack.f_NetProfit[i].value);
-										} else if (scope.feedBack.f_NetProfit[i].actorID > 4 && scope.feedBack.f_NetProfit[i].actorID < 7) {
-											currentNetProfits[scope.feedBack.f_NetProfit[i].actorID - 2].data.push(scope.feedBack.f_NetProfit[i].value);
+							})
+
+							scope.feedBack.f_NetProfit.forEach(function(singleData) {
+								if (singleData.period == data) {
+									if (singleData.categoryID == 3) {
+										if (singleData.actorID < 4) {
+											currentNetProfits[singleData.actorID - 1].data.push(singleData.value * 100);
+										} else if (singleData.actorID > 4 && singleData.actorID < 7) {
+											currentNetProfits[singleData.actorID - 2].data.push(singleData.value * 100);
 										}
 									}
 								}
-							}
-						}
-						//NetProfitMargins
-						for (var j = 0; j < currentCategories.length; j++) {
-							for (var i = 0; i < scope.feedBack.f_NetProfitMargin.length; i++) {
-								if (scope.feedBack.f_NetProfitMargin[i].period == currentCategories[j]) {
-									if (scope.feedBack.f_NetProfitMargin[i].categoryID == 3) {
-										if (scope.feedBack.f_NetProfitMargin[i].actorID < 4) {
-											currentNetProfitMargins[scope.feedBack.f_NetProfitMargin[i].actorID - 1].data.push(scope.feedBack.f_NetProfitMargin[i].value * 100);
-										} else if (scope.feedBack.f_NetProfitMargin[i].actorID > 4 && scope.feedBack.f_NetProfitMargin[i].actorID < 7) {
-											currentNetProfitMargins[scope.feedBack.f_NetProfitMargin[i].actorID - 2].data.push(scope.feedBack.f_NetProfitMargin[i].value * 100);
+							})
+
+							scope.feedBack.f_NetProfitMargin.forEach(function(singleData) {
+								if (singleData.period == data) {
+									if (singleData.categoryID == 3) {
+										if (singleData.actorID < 4) {
+											currentNetProfitMargins[singleData.actorID - 1].data.push(singleData.value * 100);
+										} else if (singleData.actorID > 4 && singleData.actorID < 7) {
+											currentNetProfitMargins[singleData.actorID - 2].data.push(singleData.value * 100);
 										}
 									}
 								}
-							}
-						}
+							})
+
+						})
+
 
 						/*highchart set data end*/
 						/*set highchart function start*/
@@ -98,7 +175,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Operating Profits'),
 								},
 								chart: {
-									
+
 									type: 'line',
 									backgroundColor: 'transparent',
 								},
@@ -113,9 +190,12 @@ define(['directives', 'services'], function(directives) {
 										text: Label.getContent('Period')
 									}
 								},
+								series: {
+									animation: false
+								},
 								tooltip: {
 									formatter: function() {
-										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>'+Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+										var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
 										return s;
 									},
 									shared: false,
@@ -134,7 +214,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Operating Profit Margins'),
 								},
 								chart: {
-									
+
 									type: 'line',
 									backgroundColor: 'transparent',
 								},
@@ -149,9 +229,12 @@ define(['directives', 'services'], function(directives) {
 										text: Label.getContent('Period')
 									}
 								},
+								series: {
+									animation: false
+								},
 								tooltip: {
 									formatter: function() {
-										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
+										var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
 										return s;
 									},
 									shared: false,
@@ -170,7 +253,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Net Profits'),
 								},
 								chart: {
-									
+
 									type: 'line',
 									backgroundColor: 'transparent',
 								},
@@ -185,9 +268,12 @@ define(['directives', 'services'], function(directives) {
 										text: Label.getContent('Period')
 									}
 								},
+								series: {
+									animation: false
+								},
 								tooltip: {
 									formatter: function() {
-										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>' +Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+										var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
 										return s;
 									},
 									shared: false,
@@ -206,7 +292,7 @@ define(['directives', 'services'], function(directives) {
 									text: Label.getContent('Net Profit Margins'),
 								},
 								chart: {
-									
+
 									type: 'line',
 									backgroundColor: 'transparent',
 								},
@@ -221,9 +307,12 @@ define(['directives', 'services'], function(directives) {
 										text: Label.getContent('Period')
 									}
 								},
+								series: {
+									animation: false
+								},
 								tooltip: {
 									formatter: function() {
-										var s = '<p>' + this.series.name + '</p>' + '<p>'+Label.getContent("Period")+':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
+										var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
 										return s;
 									},
 									shared: false,
@@ -238,12 +327,12 @@ define(['directives', 'services'], function(directives) {
 						}
 						scope.isPageLoading = false;
 						scope.isResultShown = true;
+						console.log('profitReady');
 						/*set highchart function end*/
 
 					}
 
 					scope.$watch('isPageShown', function(newValue, oldValue) {
-						console.log('watch is actived');
 						if (newValue == true) {
 							initializePage();
 						}

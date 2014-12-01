@@ -75,7 +75,6 @@
  	'directives/TE_MR_urbanHealthBeautiesSalesByChannel',
  	'directives/TE_MR_ruralHealthBeautiesSalesByChannel',
  	'directives/TE_SD_productPortfolioManagement',
- 	'directives/TE_SD_bMListPrices',
  	'directives/TE_SD_negotiationAgreements',
  	'directives/TE_SD_productionVolume',
  	'directives/TE_SD_generalMarketing',
@@ -180,8 +179,8 @@
  		])
  		.config(function(LabelProvider) {
  			//config default language
- 			LabelProvider.initialiseLanguage('CHN');
+ 			LabelProvider.initialiseLanguage('ENG');
  		}).config(function(cfpLoadingBarProvider) {
  			cfpLoadingBarProvider.includeSpinner = true;
  		});
- });
+});

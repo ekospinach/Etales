@@ -2,39 +2,39 @@
     <div class="panel-heading">
         <h3 class="panel-title text-center">{{Label.getContent('Share of Shoppers')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}} {{Label.getContent('Market')}}</h3>
     </div>
-    <highchart id="E_urbanOnlineShareOfShoppers" config="E_urbanOnlineShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="E_urbanBMShareOfShoppers" config="E_urbanBMShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="E_urbanMixedShareOfShoppers" config="E_urbanMixedShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="E_urbanTotalShareOfShoppers" config="E_urbanTotalShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
+    <div shopper-chart1 id="E_urbanOnlineShareOfShoppers" ng-model="E_urbanOnlineShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart2 id="E_urbanBMShareOfShoppers" ng-model="E_urbanBMShareOfShoppers" style="width:48%" class="pull-right"></div>
+    <div shopper-chart3 id="E_urbanMixedShareOfShoppers" ng-model="E_urbanMixedShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart4 id="E_urbanTotalShareOfShoppers" ng-model="E_urbanTotalShareOfShoppers" style="width:48%" class="pull-right"></div>
     <div style="clear:both"></div>
 </div>
 <div class="panel panel-success my-panel-overview" ng-show="isResultShown">
     <div class="panel-heading">
         <h3 class="panel-title text-center">{{Label.getContent('Share of Shoppers')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Rural')}} {{Label.getContent('Market')}}</h3>
     </div>
-    <highchart id="E_ruralOnlineShareOfShoppers" config="E_ruralOnlineShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="E_ruralBMShareOfShoppers" config="E_ruralBMShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="E_ruralMixedShareOfShoppers" config="E_ruralMixedShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="E_ruralTotalShareOfShoppers" config="E_ruralTotalShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
+    <div shopper-chart5 id="E_ruralOnlineShareOfShoppers" ng-model="E_ruralOnlineShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart6 id="E_ruralBMShareOfShoppers" ng-model="E_ruralBMShareOfShoppers" style="width:48%" class="pull-right"></div>
+    <div shopper-chart7 id="E_ruralMixedShareOfShoppers" ng-model="E_ruralMixedShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart8 id="E_ruralTotalShareOfShoppers" ng-model="E_ruralTotalShareOfShoppers" style="width:48%" class="pull-right"></div>
     <div style="clear:both"></div>
 </div>
 <div class="panel panel-success my-panel-overview" ng-show="isResultShown">
     <div class="panel-heading">
         <h3 class="panel-title text-center">{{Label.getContent('Share of Shoppers')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban')}} {{Label.getContent('Market')}}</h3>
     </div>
-    <highchart id="H_urbanOnlineShareOfShoppers" config="H_urbanOnlineShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="H_urbanBMShareOfShoppers" config="H_urbanBMShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="H_urbanMixedShareOfShoppers" config="H_urbanMixedShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="H_urbanTotalShareOfShoppers" config="H_urbanTotalShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
+    <div shopper-chart9 id="H_urbanOnlineShareOfShoppers" ng-model="H_urbanOnlineShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart10 id="H_urbanBMShareOfShoppers" ng-model="H_urbanBMShareOfShoppers" style="width:48%" class="pull-right"></div>
+    <div shopper-chart11 id="H_urbanMixedShareOfShoppers" ng-model="H_urbanMixedShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart12 id="H_urbanTotalShareOfShoppers" ng-model="H_urbanTotalShareOfShoppers" style="width:48%" class="pull-right"></div>
     <div style="clear:both"></div>
 </div>
 <div class="panel panel-success my-panel-overview" ng-show="isResultShown">
     <div class="panel-heading">
         <h3 class="panel-title text-center">{{Label.getContent('Share of Shoppers')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Rural')}} {{Label.getContent('Market')}}</h3>
     </div>
-    <highchart id="H_ruralOnlineShareOfShoppers" config="H_ruralOnlineShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="H_ruralBMShareOfShoppers" config="H_ruralBMShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="H_ruralMixedShareOfShoppers" config="H_ruralMixedShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
-    <highchart id="H_ruralTotalShareOfShoppers" config="H_ruralTotalShareOfShoppers" style="width:500px;margin:0 20px;" class="pull-left"></highchart>
+    <div shopper-chart13 id="H_ruralOnlineShareOfShoppers" ng-model="H_ruralOnlineShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart14 id="H_ruralBMShareOfShoppers" ng-model="H_ruralBMShareOfShoppers" style="width:48%" class="pull-right"></div>
+    <div shopper-chart15 id="H_ruralMixedShareOfShoppers" ng-model="H_ruralMixedShareOfShoppers" style="width:48%" class="pull-left"></div>
+    <div shopper-chart16 id="H_ruralTotalShareOfShoppers" ng-model="H_ruralTotalShareOfShoppers" style="width:48%" class="pull-right"></div>
     <div style="clear:both"></div>
 </div>
