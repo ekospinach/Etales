@@ -1116,6 +1116,11 @@ var getLabelBase = function(){
 		{id:'Rural Market',  ENG:'Rural Market',  CHN:'农村市场',  RUS:''},
 		{id:'Return on Investment',  ENG:'Return on Investment',  CHN:'投资回报',  RUS:''},
 		{id:'Strength Index',  ENG:'Strength Index',  CHN:'强度指数',  RUS:''},
+		
+		{id:'Choose Language',  ENG:'Choose Language',  CHN:'选择语言',  RUS:''},
+		{id:'English',  ENG:'English',  CHN:'英文',  RUS:''},
+		{id:'Chinese',  ENG:'Chinese',  CHN:'中文',  RUS:''},
+
 
 
 

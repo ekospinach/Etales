@@ -18,6 +18,14 @@
 							</select>
 					   	</div>
 				  	</div>
+				  	<div class="form-group">
+				  		<label for="selectLanguage" class="col-sm-3 control-label">{{Label.getContent('Choose Language')}}:</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="selectLanguage" ng-model="selectLanguage">
+								<option  ng-repeat='language in ["English","Chinese"]' value="{{language}}">{{Label.getContent(language)}}</option>
+							</select>
+					   	</div>
+				  	</div>
 				  	<div  class="form-group">
 				  		<div class="col-sm-3"></div>
 				  		<div class="col-sm-4">
