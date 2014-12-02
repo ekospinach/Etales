@@ -75,6 +75,12 @@ app.factory('PlayerColor', function($rootScope) {
         'value':'#F6B920',//黄
         'fashion':'#3257A7',//蓝
         'freaks':'#329444',//绿
+        'final_s1':'#D4DCE6',
+        'final_s2':'#D69492',
+        'final_s3':'#FFF2CC',
+        'final_r1':'#DFDAE4',
+        'final_r1':'#FCD5B5',
+
     }
 });
 app.factory('StaticValues', function($rootScope) {

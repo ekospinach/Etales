@@ -24,8 +24,7 @@ define(['app'], function(app) {
 			$scope.setPeriod = function(period){
 				if($scope.selectedPeriod){					
 					var url='feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + ($scope.selectedPeriod - 1)+'&language='+$scope.selectLanguage;
-					console.log(url);
-					//$window.open(url);									
+					$window.open(url);									
 				} else {
 					$scope.msg = $scope.msg = 'Please choose period.';
 				}
