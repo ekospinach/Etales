@@ -1,16 +1,32 @@
-<div class="panel my-panel-success panel-danger" ng-show='isResultShown'>
+<style type="text/css">
+    .double-scroll-table {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+<div class="panel my-panel-success panel-danger" ng-show='isResultShown' scroll-bind>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Online Business Profit Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Online Business Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})</h3>
     </div>
+    <div style="height:1px">
+        <table fixed-header>
+            <thead><tr><th>&nbsp;</th><th>&nbsp;</th></tr></thead>
+            <tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody>
+        </table>
+    </div>
 
     <div>
-        <table class="table table-condensed table-bordered table-success" style="float:left;width:43%;">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left;width:43%;" fixed-header>
             <thead>
                 <tr>
-                    <th style="height:33px;">&nbsp;&nbsp;&nbsp;</th>
+                    <th>
+                        <p class="text-center">
+                            <a class="btn btn-transparent btn-xs">{{Label.getContent('More')}}</a>
+                        </p>
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="firstTbody">
                 <tr class="tr-info">
                     <td>
                         <p>{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
@@ -175,7 +191,7 @@
         </table>
     </div>
     <div style="overflow-X:scroll">
-        <table class="table table-condensed table-bordered table-success" style="float:left">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left" fixed-header>
             <thead>
                 <tr>
                     <th>
@@ -188,7 +204,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="secondTbody">
                 <tr class="tr-info">
                     <td>
                         <p class="text-right">{{sales[0].value[1] | number : 1 }}</p>
@@ -451,18 +467,22 @@
     <div style="clear:both"></div>
 </div>
 
-<div class="panel my-panel-success panel-danger" ng-show='isResultShown'>
+<div class="panel my-panel-success panel-danger" ng-show='isResultShown' scroll-bind>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Online Business Profit Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}- {{Label.getContent('Online Business Profit & Loss Statement')}} ({{Label.getContent('HealthBeauties')}})</h3>
     </div>
     <div>
-        <table class="table table-condensed table-bordered table-success" style="float:left;width:43%;">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left;width:43%;" fixed-header>
             <thead>
                 <tr>
-                    <th style="height:33px">&nbsp;&nbsp;&nbsp;</th>
+                    <th>
+                        <p class="text-center">
+                            <a class="btn btn-transparent btn-xs">{{Label.getContent('More')}}</a>
+                        </p>
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="thirdTbody">
                 <tr class="tr-info">
                     <td>
                         <p>{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
@@ -627,7 +647,7 @@
         </table>
     </div>
     <div style="overflow-X:scroll">
-        <table class="table table-condensed table-bordered table-success" style="float:left">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left" fixed-header>
             <thead>
                 <tr>
                     <th>
@@ -640,7 +660,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="fourthTbody">
                 <tr class="tr-info">
                     <td>
                         <p class="text-right">{{sales[1].value[1] | number : 1 }}</p>
