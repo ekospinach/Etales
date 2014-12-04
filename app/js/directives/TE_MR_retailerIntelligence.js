@@ -1,128 +1,160 @@
-define(['directives', 'services'], function(directives){
+define(['directives', 'services'], function(directives) {
 
-    directives.directive('marketRetailerIntelligence', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
-        return {
-            scope : {
-                isPageShown : '=',
-                isPageLoading : '=',
-                selectedPeriod : '='
-            },
-            restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/MR_retailerIntelligence.html',            
-            link : function(scope, element, attrs){                                                                
-                var initializePage = function(){
-                    scope.isPageLoading = true;
-                    scope.isResultShown = false;                    
-                    scope.Label = Label;
-                    getResult();                    
-                }
-
-                var getResult =function(){
-                    scope.data=new Array();scope.variants=new Array();scope.player1es=new Array();scope.player2es=new Array();scope.player3es=new Array();scope.player5es=new Array();scope.player6es=new Array();scope.player1hs=new Array();scope.player2hs=new Array();scope.player3hs=new Array();scope.player5hs=new Array();scope.player6hs=new Array();
-                    var url='/getMR-retailersIntelligence/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
-                    $http({
-                        method:'GET',
-                        url:url,
-                        //tracker: scope.loadingTracker
-                    }).then(function(data){   
-                        return organiseArray(data.data[0]);
-                    }).then(function(data){
-                        scope.isResultShown = true;
-                        scope.isPageLoading = false;                                                                         
-                    },function(){
-                        console.log('fail');
-                    });
-                }
-
-                var organiseArray = function(data){
-                    var deferred = $q.defer();
-                    //put retailerInfo[1]'s values into retailerInfo[0] 
-                    data.retailerInfo[0].storeServiceLevel[2]=data.retailerInfo[1].storeServiceLevel[0];
-                    data.retailerInfo[0].storeServiceLevel[3]=data.retailerInfo[1].storeServiceLevel[1];
-                    data.retailerInfo[0].onlineAdvertising[2]=data.retailerInfo[1].onlineAdvertising[0];
-                    data.retailerInfo[0].onlineAdvertising[3]=data.retailerInfo[1].onlineAdvertising[1];
-                    data.retailerInfo[0].offlineAdvertising[2]=data.retailerInfo[1].offlineAdvertising[0];
-                    data.retailerInfo[0].offlineAdvertising[3]=data.retailerInfo[1].offlineAdvertising[1];
-                    data.retailerInfo[0].localAdvertising[2]=data.retailerInfo[1].localAdvertising[0];
-                    data.retailerInfo[0].localAdvertising[3]=data.retailerInfo[1].localAdvertising[1];
-                    scope.data.push({'storeServiceLevel':data.retailerInfo[0].storeServiceLevel,'onlineAdvertising':data.retailerInfo[0].onlineAdvertising,'offlineAdvertising':data.retailerInfo[0].offlineAdvertising,'localAdvertising':data.retailerInfo[0].localAdvertising});
-                    
-                    for(var i=0;i<data.retailerInfo[0].variantInfo.length;i++){
-                        var variant=_.find(data.retailerInfo[1].variantInfo,function(obj){
-                            return (obj.variantName==data.retailerInfo[0].variantInfo[i].variantName&&obj.parentBrandName==data.retailerInfo[0].variantInfo[i].parentBrandName);
-                        })
-                        //if retailer buy the variant  put retailerInfo[1]'s values into retailerInfo[0] 
-                        if(variant!=undefined){
-                            data.retailerInfo[0].variantInfo[i].shelfSpace[2]=variant.shelfSpace[0];
-                            data.retailerInfo[0].variantInfo[i].shelfSpace[3]=variant.shelfSpace[1];
-                        }else{
-                        //else set retailer2's value = 0
-                            data.retailerInfo[0].variantInfo[i].shelfSpace[2]=0;
-                            data.retailerInfo[0].variantInfo[i].shelfSpace[3]=0;
-                        }
-                        scope.variants.push(data.retailerInfo[0].variantInfo[i]);
+    directives.directive('marketRetailerIntelligence', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'StaticValues',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, StaticValues) {
+            return {
+                scope: {
+                    isPageShown: '=',
+                    isPageLoading: '=',
+                    selectedPeriod: '='
+                },
+                restrict: 'E',
+                templateUrl: '../../partials/singleReportTemplate/MR_retailerIntelligence.html',
+                link: function(scope, element, attrs) {
+                    var initializePage = function() {
+                        scope.isPageLoading = true;
+                        scope.isResultShown = false;
+                        scope.Label = Label;
+                        getResult();
                     }
-                    //foreach retailer2's variant
-                    for(var i=0;i<data.retailerInfo[1].variantInfo.length;i++){
-                        var variant=_.find(scope.variants,function(obj){
-                            return (obj.variantName==data.retailerInfo[1].variantInfo[i].variantName&&obj.parentBrandName==data.retailerInfo[1].variantInfo[i].parentBrandName);
+
+                    var getResult = function() {
+                        scope.data      = [];
+                        scope.variants  = [];
+                        scope.player1es = [];
+                        scope.player2es = [];
+                        scope.player3es = [];
+                        scope.player5es = [];
+                        scope.player6es = [];
+                        scope.player1hs = [];
+                        scope.player2hs = [];
+                        scope.player3hs = [];
+                        scope.player5hs = [];
+                        scope.player6hs = [];
+                        var url = '/getMR-retailersIntelligence/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod;
+                        $http({
+                            method: 'GET',
+                            url: url,
+                            //tracker: scope.loadingTracker
+                        }).then(function(data) {
+                            return organiseArray(data.data[0]);
+                        }).then(function(data) {
+                            scope.isResultShown = true;
+                            scope.isPageLoading = false;
+                        }, function() {
+                            console.log('fail');
                         });
-                        //if scope.variants haven't the variant set retailer1's values =0  
-                        if(variant==undefined){
-                            data.retailerInfo[1].variantInfo[i].shelfSpace[2]=data.retailerInfo[1].variantInfo[i].shelfSpace[0];
-                            data.retailerInfo[1].variantInfo[i].shelfSpace[3]=data.retailerInfo[1].variantInfo[i].shelfSpace[1];
-                            data.retailerInfo[1].variantInfo[i].shelfSpace[0]=0;
-                            data.retailerInfo[1].variantInfo[i].shelfSpace[1]=0;
-                            scope.variants.push(data.retailerInfo[1].variantInfo[i]);
-                        }
-                    }
-                    for(var i=0;i<scope.variants.length;i++){
-                        switch(scope.variants[i].parentCompanyID){
-                            case 1:if(scope.variants[i].parentCategoryID==1){
-                                scope.player1es.push(scope.variants[i]);
-                            }else{
-                                scope.player1hs.push(scope.variants[i]);
-                            }break;
-                            case 2:if(scope.variants[i].parentCategoryID==1){
-                                scope.player2es.push(scope.variants[i]);
-                            }else{
-                                scope.player2hs.push(scope.variants[i]);
-                            }break;
-                            case 3:if(scope.variants[i].parentCategoryID==1){
-                                scope.player3es.push(scope.variants[i]);
-                            }else{
-                                scope.player3hs.push(scope.variants[i]);
-                            }break;
-                            case 5:if(scope.variants[i].parentCategoryID==1){
-                                scope.player5es.push(scope.variants[i]);
-                            }else{
-                                scope.player5hs.push(scope.variants[i]);
-                            }break;
-                            case 6:if(scope.variants[i].parentCategoryID==1){
-                                scope.player6es.push(scope.variants[i]);
-                            }else{
-                                scope.player6hs.push(scope.variants[i]);
-                            }break;
-                        }
                     }
 
-                    deferred.resolve({msg:'Array is ready.'});                    
-                    return deferred.promise;
+                    var organiseArray = function(data) {
+                        var deferred = $q.defer();
+                        //urban/rural + 2 is for ng-repeat ,means retailer2's urban / rural 
+                        //put retailerInfo[StaticValues.player.r2]'s values into retailerInfo[StaticValues.player.r1] 
+                        data.retailerInfo[StaticValues.player.r1].storeServiceLevel[StaticValues.market.urban + 2] = data.retailerInfo[StaticValues.player.r2].storeServiceLevel[StaticValues.market.urban];
+                        data.retailerInfo[StaticValues.player.r1].storeServiceLevel[StaticValues.market.rural + 2] = data.retailerInfo[StaticValues.player.r2].storeServiceLevel[StaticValues.market.rural];
+                        data.retailerInfo[StaticValues.player.r1].onlineAdvertising[StaticValues.market.urban + 2] = data.retailerInfo[StaticValues.player.r2].onlineAdvertising[StaticValues.market.urban];
+                        data.retailerInfo[StaticValues.player.r1].onlineAdvertising[StaticValues.market.rural + 2] = data.retailerInfo[StaticValues.player.r2].onlineAdvertising[StaticValues.market.rural];
+                        data.retailerInfo[StaticValues.player.r1].offlineAdvertising[StaticValues.market.urban + 2] = data.retailerInfo[StaticValues.player.r2].offlineAdvertising[StaticValues.market.urban];
+                        data.retailerInfo[StaticValues.player.r1].offlineAdvertising[StaticValues.market.rural + 2] = data.retailerInfo[StaticValues.player.r2].offlineAdvertising[StaticValues.market.rural];
+                        data.retailerInfo[StaticValues.player.r1].localAdvertising[StaticValues.market.urban + 2] = data.retailerInfo[StaticValues.player.r2].localAdvertising[StaticValues.market.urban];
+                        data.retailerInfo[StaticValues.player.r1].localAdvertising[StaticValues.market.rural + 2] = data.retailerInfo[StaticValues.player.r2].localAdvertising[StaticValues.market.rural];
+                        scope.data.push({
+                            'storeServiceLevel': data.retailerInfo[StaticValues.player.r1].storeServiceLevel,
+                            'onlineAdvertising': data.retailerInfo[StaticValues.player.r1].onlineAdvertising,
+                            'offlineAdvertising': data.retailerInfo[StaticValues.player.r1].offlineAdvertising,
+                            'localAdvertising': data.retailerInfo[StaticValues.player.r1].localAdvertising
+                        });
+
+                        data.retailerInfo[StaticValues.player.r1].variantInfo.forEach(function(singleData) {
+                            var variant = _.find(data.retailerInfo[StaticValues.player.r2].variantInfo, function(obj) {
+                                    return (obj.variantName == singleData.variantName && obj.parentBrandName == singleData.parentBrandName);
+                                })
+                                //if retailer buy the variant  put retailerInfo[StaticValues.player.r2]'s values into retailerInfo[StaticValues.player.r1] 
+                            if (variant != undefined) {
+                                singleData.shelfSpace[StaticValues.market.urban + 2] = variant.shelfSpace[StaticValues.market.urban];
+                                singleData.shelfSpace[StaticValues.market.rural + 2] = variant.shelfSpace[StaticValues.market.rural];
+                            } else {
+                                //else set retailer2's value = 0
+                                singleData.shelfSpace[StaticValues.market.urban + 2] = 0;
+                                singleData.shelfSpace[StaticValues.market.rural + 2] = 0;
+                            }
+                            scope.variants.push(singleData);
+                        })
+
+                        data.retailerInfo[StaticValues.player.r2].variantInfo.forEach(function(singleData) {
+                            var variant = _.find(scope.variants, function(obj) {
+                                return (obj.variantName == singleData.variantName && obj.parentBrandName == singleData.parentBrandName);
+                            });
+                            //if scope.variants haven't the variant set retailer1's values =0  
+                            if (variant == undefined) {
+                                singleData.shelfSpace[StaticValues.market.urban + 2] = singleData.shelfSpace[StaticValues.market.urban];
+                                singleData.shelfSpace[StaticValues.market.rural + 2] = singleData.shelfSpace[StaticValues.market.rural];
+                                singleData.shelfSpace[StaticValues.market.urban] = 0;
+                                singleData.shelfSpace[StaticValues.market.rural] = 0;
+                                scope.variants.push(singleData);
+                            }
+                        })
+
+                        scope.variants.forEach(function(singleData) {
+                            switch (singleData.parentCompanyID) {
+                                case 1:
+                                    if (singleData.parentCategoryID == 1) {
+                                        scope.player1es.push(singleData);
+                                    } else {
+                                        scope.player1hs.push(singleData);
+                                    }
+                                    break;
+                                case 2:
+                                    if (singleData.parentCategoryID == 1) {
+                                        scope.player2es.push(singleData);
+                                    } else {
+                                        scope.player2hs.push(singleData);
+                                    }
+                                    break;
+                                case 3:
+                                    if (singleData.parentCategoryID == 1) {
+                                        scope.player3es.push(singleData);
+                                    } else {
+                                        scope.player3hs.push(singleData);
+                                    }
+                                    break;
+                                case 5:
+                                    if (singleData.parentCategoryID == 1) {
+                                        scope.player5es.push(singleData);
+                                    } else {
+                                        scope.player5hs.push(singleData);
+                                    }
+                                    break;
+                                case 6:
+                                    if (singleData.parentCategoryID == 1) {
+                                        scope.player6es.push(singleData);
+                                    } else {
+                                        scope.player6hs.push(singleData);
+                                    }
+                                    break;
+                            }
+                        })
+
+                        deferred.resolve({
+                            msg: 'Array is ready.'
+                        });
+                        return deferred.promise;
+                    }
+
+
+                    scope.$watch('isPageShown', function(newValue, oldValue) {
+                        if (newValue == true) {
+                            initializePage();
+                        }
+                    })
+                    scope.$watch('selectedPeriod', function(newValue, oldValue) {
+                        if (newValue != oldValue && scope.isPageShown) {
+                            initializePage();
+                        }
+                    })
+
                 }
-
-
-                scope.$watch('isPageShown', function(newValue, oldValue){
-                    if(newValue==true) {
-                        initializePage();
-                    }
-                })
-                scope.$watch('selectedPeriod', function(newValue, oldValue){
-                    if(newValue!=oldValue&&scope.isPageShown) {
-                        initializePage();
-                    }
-                })
-
             }
         }
-    }])
+    ])
 })

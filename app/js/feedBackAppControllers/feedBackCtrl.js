@@ -21,12 +21,16 @@ app.controller('feedBackCtrl', ['$scope', '$http', '$q', 'Label', 'StaticValues'
                 url: url
             }).then(function(data) {
                 $scope.feedBack = data.data;
+                var language = 'ENG';
+                if (Request['language'] != 'English')
+                    language = 'CHN';
+                Label.changeLanguage(language);
+                $scope.newLabel = Label;
             });
         }
-        $scope.newLabel=Label;
         initPage();
     }
 ]).config(function(LabelProvider) {
-            //config default language
-    LabelProvider.initialiseLanguage('CHN');
+    //config default language
+    LabelProvider.initialiseLanguage('ENG');
 });

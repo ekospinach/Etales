@@ -127,347 +127,112 @@ exports.addReports = function(options){
     return deferred.promise;
 }
 
-exports.addPerformanceHighlights=function(req,res,next){
-    var newPerformanceHighlights=new performanceHighlights({
-        period:0,
-        seminar:'MAY',
-        actorInfo:[{
-            actorID:1,
-            grph_OperatingProfit         : 10,
-            grph_OperatingProfitChange   : 11,
-            grph_CumulativeInvestment    : 12,
-            actorCategoryInfo : [{
-                categoryID : 1,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 13, //CategoryID : 1~2
-                grph_NetSalesValue           : 14, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 15, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 16, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 17, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 18, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 19, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 20 //CategoryID : 1~3
-            },{
-                categoryID : 2,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 23, //CategoryID : 1~2
-                grph_NetSalesValue           : 24, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 25, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 26, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 27, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 28, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 29, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 30 //CategoryID : 1~3
-            },{
-                categoryID : 3,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 33, //CategoryID : 1~2
-                grph_NetSalesValue           : 34, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 35, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 36, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 37, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 38, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 39, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 40 //CategoryID : 1~3
-            }]
-        },{
-            actorID:2,
-            grph_OperatingProfit         : 10,
-            grph_OperatingProfitChange   : 11,
-            grph_CumulativeInvestment    : 12,
-            actorCategoryInfo : [{
-                categoryID : 1,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 13, //CategoryID : 1~2
-                grph_NetSalesValue           : 14, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 15, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 16, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 17, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 18, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 19, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 20 //CategoryID : 1~3
-            },{
-                categoryID : 2,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 23, //CategoryID : 1~2
-                grph_NetSalesValue           : 24, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 25, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 26, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 27, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 28, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 29, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 30 //CategoryID : 1~3
-            },{
-                categoryID : 3,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 33, //CategoryID : 1~2
-                grph_NetSalesValue           : 34, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 35, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 36, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 37, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 38, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 39, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 40 //CategoryID : 1~3
-            }]
-        },{
-            actorID:3,
-            grph_OperatingProfit         : 10,
-            grph_OperatingProfitChange   : 11,
-            grph_CumulativeInvestment    : 12,
-            actorCategoryInfo : [{
-                categoryID : 1,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 13, //CategoryID : 1~2
-                grph_NetSalesValue           : 14, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 15, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 16, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 17, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 18, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 19, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 20 //CategoryID : 1~3
-            },{
-                categoryID : 2,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 23, //CategoryID : 1~2
-                grph_NetSalesValue           : 24, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 25, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 26, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 27, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 28, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 29, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 30 //CategoryID : 1~3
-            },{
-                categoryID : 3,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 33, //CategoryID : 1~2
-                grph_NetSalesValue           : 34, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 35, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 36, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 37, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 38, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 39, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 40 //CategoryID : 1~3
-            }]
-        },{
-            actorID:4,
-            grph_OperatingProfit         : 10,
-            grph_OperatingProfitChange   : 11,
-            grph_CumulativeInvestment    : 12,
-            actorCategoryInfo : [{
-                categoryID : 1,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 13, //CategoryID : 1~2
-                grph_NetSalesValue           : 14, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 15, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 16, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 17, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 18, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 19, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 20 //CategoryID : 1~3
-            },{
-                categoryID : 2,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 23, //CategoryID : 1~2
-                grph_NetSalesValue           : 24, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 25, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 26, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 27, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 28, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 29, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 30 //CategoryID : 1~3
-            },{
-                categoryID : 3,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 33, //CategoryID : 1~2
-                grph_NetSalesValue           : 34, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 35, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 36, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 37, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 38, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 39, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 40 //CategoryID : 1~3
-            }]
-        },{
-            actorID:5,
-            grph_OperatingProfit         : 10,
-            grph_OperatingProfitChange   : 11,
-            grph_CumulativeInvestment    : 12,
-            actorCategoryInfo : [{
-                categoryID : 1,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 13, //CategoryID : 1~2
-                grph_NetSalesValue           : 14, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 15, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 16, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 17, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 18, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 19, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 20 //CategoryID : 1~3
-            },{
-                categoryID : 2,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 23, //CategoryID : 1~2
-                grph_NetSalesValue           : 24, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 25, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 26, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 27, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 28, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 29, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 30 //CategoryID : 1~3
-            },{
-                categoryID : 3,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 33, //CategoryID : 1~2
-                grph_NetSalesValue           : 34, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 35, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 36, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 37, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 38, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 39, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 40 //CategoryID : 1~3
-            }]
-        },{
-            actorID:6,
-            grph_OperatingProfit         : 10,
-            grph_OperatingProfitChange   : 11,
-            grph_CumulativeInvestment    : 12,
-            actorCategoryInfo : [{
-                categoryID : 1,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 13, //CategoryID : 1~2
-                grph_NetSalesValue           : 14, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 15, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 16, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 17, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 18, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 19, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 20 //CategoryID : 1~3
-            },{
-                categoryID : 2,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 23, //CategoryID : 1~2
-                grph_NetSalesValue           : 24, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 25, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 26, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 27, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 28, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 29, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 30 //CategoryID : 1~3
-            },{
-                categoryID : 3,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 33, //CategoryID : 1~2
-                grph_NetSalesValue           : 34, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 35, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 36, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 37, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 38, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 39, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 40 //CategoryID : 1~3
-            }]
-        },{
-            actorID:7,
-            grph_OperatingProfit         : 10,
-            grph_OperatingProfitChange   : 11,
-            grph_CumulativeInvestment    : 12,
-            actorCategoryInfo : [{
-                categoryID : 1,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 13, //CategoryID : 1~2
-                grph_NetSalesValue           : 14, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 15, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 16, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 17, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 18, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 19, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 20 //CategoryID : 1~3
-            },{
-                categoryID : 2,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 23, //CategoryID : 1~2
-                grph_NetSalesValue           : 24, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 25, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 26, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 27, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 28, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 29, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 30 //CategoryID : 1~3
-            },{
-                categoryID : 3,                   //TCategoriesTotal : 1~(2+1)
-                //Performance Highlights 
-                grph_SalesVolume             : 33, //CategoryID : 1~2
-                grph_NetSalesValue           : 34, //CategoryID : 1~3
-                
-                grph_ValueMarketShare        : 35, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 36, //CategoryID : 1~3
-
-                grph_NetSalesValueChange     : 37, //CategoryID : 1~2
-                grph_ValueMarketShareChange  : 38, //CategoryID : 1~2
-                grph_VolumeMarketShareChange : 39, //CategoryID : 1~3
-                grph_SalesVolumeChange       : 40 //CategoryID : 1~3
-            }]
-        }]
-    });
-    newPerformanceHighlights.save(function(err) {
-        if(!err){
-            res.send(200,newPerformanceHighlights);
-            console.log("created new GeneralReport:"+newPerformanceHighlights);
-        } else {
-            res.send(400,"failed.");
+exports.getPerformanceHighlights = function(req, res, next) {
+    var data = {
+        'seminar': req.params.seminar,
+        'period': req.params.period
+    };
+    performanceHighlights.find(data, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
         }
-    });
+        if (docs) {
+            res.send(200, docs);
+        } else {
+            res.send(404, 'failed');
+        }
+    })
 }
 
-exports.getPerformanceHighlights=function(req,res,next){
-    var data={
-        'seminar':req.params.seminar,
-        'period':req.params.period
+exports.getBrandPerspective = function(req, res, next) {
+    var data = {
+        'seminar': req.params.seminar,
+        'period': req.params.period
     };
-    performanceHighlights.find(data,function(err,docs){
-        if(docs){
-            res.send(200,docs);
-        }else{
-            res.send(404,'failed');
+    performanceHighlights.find(data, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
+        }
+        if (docs) {
+            var result = {
+                operatingProfits: [],
+                cumulativeInvestments: [],
+                salesVolumes: [],
+                salesValues: [],
+                volumeShares: [],
+                valueShares: []
+            };
+            docs[0].actorInfo.forEach(function(singleData) {
+                result.operatingProfits.push({
+                    'value': singleData.grph_OperatingProfit
+                });
+                result.cumulativeInvestments.push({
+                    'value': singleData.grph_CumulativeInvestment
+                });
+
+                for (j = 0; j < 2; j++) {
+                    result.salesVolumes.push({
+                        'categoryID': singleData.actorCategoryInfo[j].categoryID,
+                        'value': singleData.actorCategoryInfo[j].grph_SalesVolume
+                    });
+                    result.salesValues.push({
+                        'categoryID': singleData.actorCategoryInfo[j].categoryID,
+                        'value': singleData.actorCategoryInfo[j].grph_NetSalesValue
+                    });
+
+                    result.valueShares.push({
+                        'value': singleData.actorCategoryInfo[j].grph_ValueMarketShare
+                    });
+                    result.volumeShares.push({
+                        'value': singleData.actorCategoryInfo[j].grph_VolumeMarketShare
+                    });
+                }
+            });
+            res.send(200, {
+                result: result
+            });
+
+        } else {
+            res.send(404, 'failed');
+        }
+    })
+}
+
+exports.getChannelPerspective = function(req, res, next) {
+    var data = {
+        'seminar': req.params.seminar,
+        'period': req.params.period
+    };
+    performanceHighlights.find(data, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
+        }
+        if (docs) {
+            var result = {
+                players: []
+            };
+            var categories = [];
+            for (var i = 0; i < 6; i++) {
+                docs[0].storeInfo[i].storeCategoryInfo.forEach(function(singleData) {
+                    categories.push({
+                        'storeID': docs[0].storeInfo[i].storeID,
+                        'categoryID': singleData.categoryID,
+                        'salesVolume': singleData.grph_ConsumersOffTakeVolume,
+                        'salesValue': singleData.grph_ConsumersOffTakeValue,
+                        'shareVolume': singleData.grph_ConsumersOffTakeVolumeShare,
+                        'shareValue': singleData.grph_ConsumersOffTakeValueShare
+                    });
+                });
+                result.players.push({
+                    'category': categories
+                });
+            }
+
+            res.send(200, {
+                result: result
+            });
+        } else {
+            res.send(404, 'failed');
         }
     })
 }

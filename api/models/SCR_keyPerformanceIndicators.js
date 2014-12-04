@@ -90,95 +90,21 @@ exports.addReports = function(options){
     return deferred.promise;
 }
 
-
-exports.addSCR_keyPerformanceIndicators=function(req,res,next){
-    var newSCR_keyPerformanceIndicators=SCR_keyPerformanceIndicators({
-        period : 0,
-        seminar : 'MAY',
-        producerID  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
-        scrkpi_TradeSpendingEffectiveness : [{
-            categoryID:1,
-            value:[10,20,30]
-        },{
-            categoryID:2,
-            value:[40,50,60]
-        },{
-            categoryID:3,
-            value:[70,80,90]
-        }],
-        scrkpi_MarketingEffectiveness     : [{
-            categoryID:1,
-            value:[10,20,30]
-        },{
-            categoryID:2,
-            value:[40,50,60]
-        },{
-            categoryID:3,
-            value:[70,80,90]
-        }],
-        scrkpi_ChannelSalesValueShare     : [{
-            categoryID:1,
-            value:[10,20,30]
-        },{
-            categoryID:2,
-            value:[40,50,60]
-        },{
-            categoryID:3,
-            value:[70,80,90]
-        }],
-        scrkpi_ChannelSalesVolumeShare    : [{
-            categoryID:1,
-            value:[10,20,30]
-        },{
-            categoryID:2,
-            value:[40,50,60]
-        },{
-            categoryID:3,
-            value:[70,80,90]
-        }],
-        scrkpi_ShoppersShare              : [{
-            categoryID:1,
-            value:[10,20,30]
-        },{
-            categoryID:2,
-            value:[40,50,60]
-        },{
-            categoryID:3,
-            value:[70,80,90]
-        }],
-        scrkpi_PortfolioStrength          : [{
-            categoryID:1,
-            value:[10,20,30]
-        },{
-            categoryID:2,
-            value:[40,50,60]
-        },{
-            categoryID:3,
-            value:[70,80,90]
-        }]
-    });
-    newSCR_keyPerformanceIndicators.save(function(err) {
-        if(!err){
-            res.send(200,newSCR_keyPerformanceIndicators);
-            console.log("created new GeneralReport:"+newSCR_keyPerformanceIndicators);
-        } else {
-            res.send(400,"failed.");
-        }
-    });  
-}
-
-exports.getSCR_keyPerformanceIndicators=function(req,res,next){
-    var data={
-        'seminar':req.params.seminar,
-        'period':req.params.period,
-        'producerID':req.params.producerID
+exports.getSCR_keyPerformanceIndicators = function(req, res, next) {
+    var data = {
+        'seminar': req.params.seminar,
+        'period': req.params.period,
+        'producerID': req.params.producerID
     };
-    SCR_keyPerformanceIndicators.find(data,function(err,docs){
-        if(docs){
-            res.send(200,docs);
-        }else{
-            res.send(404,'failed');
+    SCR_keyPerformanceIndicators.find(data, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
         }
-    })  
+        if (docs) {
+            res.send(200, docs);
+        } else {
+            res.send(404, 'failed');
+        }
+    })
 }
 

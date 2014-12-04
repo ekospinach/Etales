@@ -15,6 +15,7 @@ define(['app'], function(app) {
 					$scope.periods.push(i);
 				}
 				$scope.selectedPeriod = data.data.currentPeriod;
+				$scope.selectLanguage = 'English';
 			},function(){
 				console.log('fail');
 			})
@@ -22,7 +23,8 @@ define(['app'], function(app) {
 			$scope.msg = '';		
 			$scope.setPeriod = function(period){
 				if($scope.selectedPeriod){					
-					$window.open('feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + ($scope.selectedPeriod - 1));									
+					var url='feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + ($scope.selectedPeriod - 1)+'&language='+$scope.selectLanguage;
+					$window.open(url);									
 				} else {
 					$scope.msg = $scope.msg = 'Please choose period.';
 				}

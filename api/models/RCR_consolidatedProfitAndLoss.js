@@ -257,81 +257,88 @@ exports.addReports = function(options){
     return deferred.promise;
 }
 
-exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
-}
-
-exports.getRcrplSales=function(req,res,next){
-    var result=0;
+exports.getRcrplSales = function(req, res, next) {
+    var result = 0;
     RCR_consolidatedProfitAndLoss.findOne({
-        seminar:req.params.seminar,
-        period:req.params.period,
-        retailerID:req.params.retailerID
-    },function(err,doc){
-        if(err){
+        seminar: req.params.seminar,
+        period: req.params.period,
+        retailerID: req.params.retailerID
+    }, function(err, doc) {
+        if (err) {
             return next(new Error(err));
         }
-        if(!doc){
-           res.send(404,{err:'cannot find the doc'}); 
-        }else{
-            for(var i=0;i<doc.rcrpl_Sales.length;i++){
-                if(doc.rcrpl_Sales[i].categoryID==req.params.categoryID&&doc.rcrpl_Sales[i].marketID==req.params.marketID){
-                    result=doc.rcrpl_Sales[i].value;
+        if (!doc) {
+            res.send(404, {
+                err: 'cannot find the doc'
+            });
+        } else {
+            for (var i = 0; i < doc.rcrpl_Sales.length; i++) {
+                if (doc.rcrpl_Sales[i].categoryID == req.params.categoryID && doc.rcrpl_Sales[i].marketID == req.params.marketID) {
+                    result = doc.rcrpl_Sales[i].value;
                     break;
                 }
             }
-            res.send(200,{'result':result});
+            res.send(200, {
+                'result': result
+            });
             //res.send(200,doc.scrpl_Sales[req.params.categoryID-1][0]);
         }
     })
 }
 
-exports.getSalesVolume=function(req,res,next){
+exports.getSalesVolume = function(req, res, next) {
     RCR_consolidatedProfitAndLoss.findOne({
-        seminar:req.params.seminar,
-        period:req.params.period,
-        retailerID:req.params.retailerID
-    },function(err,doc){
-        if(err){
+        seminar: req.params.seminar,
+        period: req.params.period,
+        retailerID: req.params.retailerID
+    }, function(err, doc) {
+        if (err) {
             return next(new Error(err));
         }
-        if(!doc){
-            res.send(404,{err:'cannot find the doc'}); 
-        }else{
-            res.send(200,'2000');
+        if (!doc) {
+            res.send(404, {
+                err: 'cannot find the doc'
+            });
+        } else {
+            res.send(200, '2000');
         }
     })
 }
 
-exports.getMarketSize=function(req,res,next){
+exports.getMarketSize = function(req, res, next) {
     console.log(req.params.seminar);
     RCR_consolidatedProfitAndLoss.findOne({
-        seminar:req.params.seminar,
-        period:req.params.period,
-        retailerID:req.params.retailerID
-    },function(err,doc){
-        if(err){
+        seminar: req.params.seminar,
+        period: req.params.period,
+        retailerID: req.params.retailerID
+    }, function(err, doc) {
+        if (err) {
             next(new Error(err));
         }
-        if(!doc){
-           res.send(404,{err:'cannot find the doc'}); 
-        }else{
-            res.send(200,'2000');
+        if (!doc) {
+            res.send(404, {
+                err: 'cannot find the doc'
+            });
+        } else {
+            res.send(200, '2000');
         }
     })
 }
 
-exports.getRCR_consolidatedProfitAndLoss=function(req,res,next){
-    var data={
-        'seminar':req.params.seminar,
-        'period':req.params.period,
-        'retailerID':req.params.retailerID
+exports.getRCR_consolidatedProfitAndLoss = function(req, res, next) {
+    var data = {
+        'seminar': req.params.seminar,
+        'period': req.params.period,
+        'retailerID': req.params.retailerID
     };
-    RCR_consolidatedProfitAndLoss.find(data,function(err,docs){
-        if(docs){
-            res.send(200,docs);
-        }else{
-            res.send(404,'failed');
+    RCR_consolidatedProfitAndLoss.find(data, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
         }
-    })    
+        if (docs) {
+            res.send(200, docs);
+        } else {
+            res.send(404, 'failed');
+        }
+    })
 }
-

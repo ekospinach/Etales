@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalProductPortfolio', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q) {
+    directives.directive('generalProductPortfolio', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'StaticValues',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, StaticValues) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -38,16 +38,56 @@ define(['directives', 'services'], function(directives) {
                     var organiseArray = function(data) {
                         var deferred = $q.defer();
 
-                        scope.producer1es = new Array();
-                        scope.producer1hs = new Array();
-                        scope.producer2es = new Array();
-                        scope.producer2hs = new Array();
-                        scope.producer3es = new Array();
-                        scope.producer3hs = new Array();
-                        scope.retailer1es = new Array();
-                        scope.retailer1hs = new Array();
-                        scope.retailer2es = new Array();
-                        scope.retailer2hs = new Array();
+                        scope.playerses = [[],[],[],[],[]];
+                        scope.playershs = [[],[],[],[],[]];
+
+                        data.categoryInfo[StaticValues.category.ele].variantInfo.forEach(function(singleData) {
+                            switch (singleData.parentBrandName.substring(singleData.parentBrandName.length - 1)) {
+                                case '1':
+                                    scope.playerses[0].push(singleData);
+                                    break;
+                                case '2':
+                                    scope.playerses[1].push(singleData);
+                                    break;
+                                case '3':
+                                    scope.playerses[2].push(singleData);
+                                    break;
+                                case '4':
+                                    break;
+                                case '5':
+                                    scope.playerses[3].push(singleData);
+                                    break;
+                                case '6':
+                                    scope.playerses[4].push(singleData);
+                                    break;
+                                case '7':
+                                    break;
+                            }
+                        })
+
+                        data.categoryInfo[StaticValues.category.hea].variantInfo.forEach(function(singleData) {
+                            switch (singleData.parentBrandName.substring(singleData.parentBrandName.length - 1)) {
+                                case '1':
+                                    scope.playershs[0].push(singleData);
+                                    break;
+                                case '2':
+                                    scope.playershs[1].push(singleData);
+                                    break;
+                                case '3':
+                                    scope.playershs[2].push(singleData);
+                                    break;
+                                case '4':
+                                    break;
+                                case '5':
+                                    scope.playershs[3].push(singleData);
+                                    break;
+                                case '6':
+                                    scope.playershs[4].push(singleData);
+                                    break;
+                                case '7':
+                                    break;
+                            }
+                        })
 
                         /*
                     
@@ -58,53 +98,7 @@ define(['directives', 'services'], function(directives) {
                         player 5 retailer 1
                         player 6 retailer 2
 
-                    */
-                        for (var i = 0; i < data.categoryInfo[0].variantInfo.length; i++) {
-                            switch (data.categoryInfo[0].variantInfo[i].parentBrandName.substring(data.categoryInfo[0].variantInfo[i].parentBrandName.length - 1)) {
-                                case '1':
-                                    scope.producer1es.push(data.categoryInfo[0].variantInfo[i]);
-                                    break;
-                                case '2':
-                                    scope.producer2es.push(data.categoryInfo[0].variantInfo[i]);
-                                    break;
-                                case '3':
-                                    scope.producer3es.push(data.categoryInfo[0].variantInfo[i]);
-                                    break;
-                                case '4':
-                                    break;
-                                case '5':
-                                    scope.retailer1es.push(data.categoryInfo[0].variantInfo[i]);
-                                    break;
-                                case '6':
-                                    scope.retailer2es.push(data.categoryInfo[0].variantInfo[i]);
-                                    break;
-                                case '7':
-                                    break;
-                            }
-                        }
-                        for (var i = 0; i < data.categoryInfo[1].variantInfo.length; i++) {
-                            switch (data.categoryInfo[1].variantInfo[i].parentBrandName.substring(data.categoryInfo[1].variantInfo[i].parentBrandName.length - 1)) {
-                                case '1':
-                                    scope.producer1hs.push(data.categoryInfo[1].variantInfo[i]);
-                                    break;
-                                case '2':
-                                    scope.producer2hs.push(data.categoryInfo[1].variantInfo[i]);
-                                    break;
-                                case '3':
-                                    scope.producer3hs.push(data.categoryInfo[1].variantInfo[i]);
-                                    break;
-                                case '4':
-                                    break;
-                                case '5':
-                                    scope.retailer1hs.push(data.categoryInfo[1].variantInfo[i]);
-                                    break;
-                                case '6':
-                                    scope.retailer2hs.push(data.categoryInfo[1].variantInfo[i]);
-                                    break;
-                                case '7':
-                                    break;
-                            }
-                        }
+                        */
                         deferred.resolve({
                             msg: 'Array is ready.'
                         });

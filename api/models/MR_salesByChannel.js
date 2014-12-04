@@ -122,16 +122,19 @@ exports.addReports = function(options){
 }
 
 
-exports.getMR_salesByChannel=function(req,res,next){
-    var data={
-        'seminar':req.params.seminar,
-        'period':req.params.period
+exports.getMR_salesByChannel = function(req, res, next) {
+    var data = {
+        'seminar': req.params.seminar,
+        'period': req.params.period
     };
-    MR_salesByChannel.find(data,function(err,docs){
-        if(docs){
-            res.send(200,docs);
-        }else{
-            res.send(404,'failed');
+    MR_salesByChannel.find(data, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
         }
-    })    
+        if (docs) {
+            res.send(200, docs);
+        } else {
+            res.send(404, 'failed');
+        }
+    })
 }

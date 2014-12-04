@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalCrossSegmentSales', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q','PlayerColor',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerColor) {
+    directives.directive('generalCrossSegmentSales', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerColor', 'StaticValues',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerColor, StaticValues) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -14,7 +14,7 @@ define(['directives', 'services'], function(directives) {
                     var initializePage = function() {
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
-                        scope.Label         = Label;
+                        scope.Label = Label;
                         getResult();
                     }
 
@@ -39,16 +39,10 @@ define(['directives', 'services'], function(directives) {
                     var organiseArray = function(data) {
                         var deferred = $q.defer();
 
-                        scope.priceSensitives = new Array();
-                        scope.valueForMoneies = new Array();
-                        scope.fashions        = new Array();
-                        scope.freakses        = new Array();
-                        for (var i = 0; i < 4; i++) {
-                            scope.priceSensitives[i] = new Array();
-                            scope.valueForMoneies[i] = new Array();
-                            scope.fashions[i]        = new Array();
-                            scope.freakses[i]        = new Array();
-                        }
+                        scope.priceSensitives = [[],[],[],[]];
+                        scope.valueForMoneies = [[],[],[],[]];
+                        scope.fashions = [[],[],[],[]];
+                        scope.freakses = [[],[],[],[]];
 
                         for (var i = 0; i < 4; i++) {
                             /*
@@ -65,49 +59,44 @@ define(['directives', 'services'], function(directives) {
                             data[x][3] ALLSHOPPERS
 
                         */
-                            var elecssory = 0, healthBeauty = 1;
-                            var urban = 0 ,rural =1;
-                            var price = 0, value = 1, fashion = 2, freakse = 3;
-                            var bm = 0 , online = 1 , mixed = 2;
-                            var elecssory_urban = 0, elecssory_rural =1, healthBeauty_urban =2, healthBeauty_rural =3;
                             //priceSensitives
-                            scope.priceSensitives[elecssory_urban].push(data.categoryInfo[elecssory].marketInfo[urban].segmentInfo[price].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.priceSensitives[elecssory_rural].push(data.categoryInfo[elecssory].marketInfo[rural].segmentInfo[price].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.priceSensitives[healthBeauty_urban].push(data.categoryInfo[healthBeauty].marketInfo[urban].segmentInfo[price].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.priceSensitives[healthBeauty_rural].push(data.categoryInfo[healthBeauty].marketInfo[rural].segmentInfo[price].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.priceSensitives[StaticValues.CandM.eleUrban].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.price].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.priceSensitives[StaticValues.CandM.eleRural].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.price].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.priceSensitives[StaticValues.CandM.heaUrban].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.price].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.priceSensitives[StaticValues.CandM.heaRural].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.price].shopperInfo[i].grcss_CrossSegmentsVolumes);
                             //valueForMoneies
-                            scope.valueForMoneies[elecssory_urban].push(data.categoryInfo[elecssory].marketInfo[urban].segmentInfo[value].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.valueForMoneies[elecssory_rural].push(data.categoryInfo[elecssory].marketInfo[rural].segmentInfo[value].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.valueForMoneies[healthBeauty_urban].push(data.categoryInfo[healthBeauty].marketInfo[urban].segmentInfo[value].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.valueForMoneies[healthBeauty_rural].push(data.categoryInfo[healthBeauty].marketInfo[rural].segmentInfo[value].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.valueForMoneies[StaticValues.CandM.eleUrban].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.value].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.valueForMoneies[StaticValues.CandM.eleRural].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.value].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.valueForMoneies[StaticValues.CandM.heaUrban].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.value].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.valueForMoneies[StaticValues.CandM.heaRural].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.value].shopperInfo[i].grcss_CrossSegmentsVolumes);
                             //fashions
-                            scope.fashions[elecssory_urban].push(data.categoryInfo[elecssory].marketInfo[urban].segmentInfo[fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.fashions[elecssory_rural].push(data.categoryInfo[elecssory].marketInfo[rural].segmentInfo[fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.fashions[healthBeauty_urban].push(data.categoryInfo[healthBeauty].marketInfo[urban].segmentInfo[fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.fashions[healthBeauty_rural].push(data.categoryInfo[healthBeauty].marketInfo[rural].segmentInfo[fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.fashions[StaticValues.CandM.eleUrban].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.fashions[StaticValues.CandM.eleRural].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.fashions[StaticValues.CandM.heaUrban].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.fashions[StaticValues.CandM.heaRural].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.fashion].shopperInfo[i].grcss_CrossSegmentsVolumes);
                             //freakses
-                            scope.freakses[elecssory_urban].push(data.categoryInfo[elecssory].marketInfo[urban].segmentInfo[freakse].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.freakses[elecssory_rural].push(data.categoryInfo[elecssory].marketInfo[rural].segmentInfo[freakse].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.freakses[healthBeauty_urban].push(data.categoryInfo[healthBeauty].marketInfo[urban].segmentInfo[freakse].shopperInfo[i].grcss_CrossSegmentsVolumes);
-                            scope.freakses[healthBeauty_rural].push(data.categoryInfo[healthBeauty].marketInfo[rural].segmentInfo[freakse].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.freakses[StaticValues.CandM.eleUrban].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.freaks].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.freakses[StaticValues.CandM.eleRural].push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.freaks].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.freakses[StaticValues.CandM.heaUrban].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.urban].segmentInfo[StaticValues.segment.freaks].shopperInfo[i].grcss_CrossSegmentsVolumes);
+                            scope.freakses[StaticValues.CandM.heaRural].push(data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.rural].segmentInfo[StaticValues.segment.freaks].shopperInfo[i].grcss_CrossSegmentsVolumes);
                         }
 
                         scope.crossSegment1Series = [{
                             "name": Label.getContent('B&M Only'),
-                            "data": [scope.priceSensitives[elecssory_urban][bm], scope.valueForMoneies[elecssory_urban][bm], scope.fashions[elecssory_urban][bm], scope.freakses[elecssory_urban][bm]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.eleUrban][StaticValues.shopper.bm], scope.valueForMoneies[StaticValues.CandM.eleUrban][StaticValues.shopper.bm], scope.fashions[StaticValues.CandM.eleUrban][StaticValues.shopper.bm], scope.freakses[StaticValues.CandM.eleUrban][StaticValues.shopper.bm]],
                             type: "column",
-                            color: PlayerColor.getColors()[1]
+                            color: PlayerColor.bm
                         }, {
                             "name": Label.getContent('Online Only'),
-                            "data": [scope.priceSensitives[elecssory_urban][online], scope.valueForMoneies[elecssory_urban][online], scope.fashions[elecssory_urban][online], scope.freakses[elecssory_urban][online]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.eleUrban][StaticValues.shopper.online], scope.valueForMoneies[StaticValues.CandM.eleUrban][StaticValues.shopper.online], scope.fashions[StaticValues.CandM.eleUrban][StaticValues.shopper.online], scope.freakses[StaticValues.CandM.eleUrban][StaticValues.shopper.online]],
                             type: "column",
-                            color: PlayerColor.getColors()[0]
+                            color: PlayerColor.online
                         }, {
                             "name": Label.getContent('Mixed'),
-                            "data": [scope.priceSensitives[elecssory_urban][mixed], scope.valueForMoneies[elecssory_urban][mixed], scope.fashions[elecssory_urban][mixed], scope.freakses[elecssory_urban][mixed]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.eleUrban][StaticValues.shopper.mixed], scope.valueForMoneies[StaticValues.CandM.eleUrban][StaticValues.shopper.mixed], scope.fashions[StaticValues.CandM.eleUrban][StaticValues.shopper.mixed], scope.freakses[StaticValues.CandM.eleUrban][StaticValues.shopper.mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[5]
-                        } ];
+                            color: PlayerColor.mixed
+                        }];
 
                         scope.crossSegment1Config = {
                             options: {
@@ -147,19 +136,19 @@ define(['directives', 'services'], function(directives) {
 
                         scope.crossSegment2Series = [{
                             "name": Label.getContent('B&M Only'),
-                            "data": [scope.priceSensitives[elecssory_rural][bm], scope.valueForMoneies[elecssory_rural][bm], scope.fashions[elecssory_rural][bm], scope.freakses[elecssory_rural][bm]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.eleRural][StaticValues.shopper.bm], scope.valueForMoneies[StaticValues.CandM.eleRural][StaticValues.shopper.bm], scope.fashions[StaticValues.CandM.eleRural][StaticValues.shopper.bm], scope.freakses[StaticValues.CandM.eleRural][StaticValues.shopper.bm]],
                             type: "column",
-                            color: PlayerColor.getColors()[1]
+                            color: PlayerColor.bm
                         }, {
                             "name": Label.getContent('Online Only'),
-                            "data": [scope.priceSensitives[elecssory_rural][online], scope.valueForMoneies[elecssory_rural][online], scope.fashions[elecssory_rural][online], scope.freakses[elecssory_rural][online]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.eleRural][StaticValues.shopper.online], scope.valueForMoneies[StaticValues.CandM.eleRural][StaticValues.shopper.online], scope.fashions[StaticValues.CandM.eleRural][StaticValues.shopper.online], scope.freakses[StaticValues.CandM.eleRural][StaticValues.shopper.online]],
                             type: "column",
-                            color: PlayerColor.getColors()[0]
+                            color: PlayerColor.online
                         }, {
                             "name": Label.getContent('Mixed'),
-                            "data": [scope.priceSensitives[elecssory_rural][mixed], scope.valueForMoneies[elecssory_rural][mixed], scope.fashions[elecssory_rural][mixed], scope.freakses[elecssory_rural][mixed]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.eleRural][StaticValues.shopper.mixed], scope.valueForMoneies[StaticValues.CandM.eleRural][StaticValues.shopper.mixed], scope.fashions[StaticValues.CandM.eleRural][StaticValues.shopper.mixed], scope.freakses[StaticValues.CandM.eleRural][StaticValues.shopper.mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[5]
+                            color: PlayerColor.mixed
                         }, ];
 
                         scope.crossSegment2Config = {
@@ -200,19 +189,19 @@ define(['directives', 'services'], function(directives) {
 
                         scope.crossSegment3Series = [{
                             "name": Label.getContent('B&M Only'),
-                            "data": [scope.priceSensitives[healthBeauty_urban][bm], scope.valueForMoneies[healthBeauty_urban][bm], scope.fashions[healthBeauty_urban][bm], scope.freakses[healthBeauty_urban][bm]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.heaUrban][StaticValues.shopper.bm], scope.valueForMoneies[StaticValues.CandM.heaUrban][StaticValues.shopper.bm], scope.fashions[StaticValues.CandM.heaUrban][StaticValues.shopper.bm], scope.freakses[StaticValues.CandM.heaUrban][StaticValues.shopper.bm]],
                             type: "column",
-                            color: PlayerColor.getColors()[1]
+                            color: PlayerColor.bm
                         }, {
                             "name": Label.getContent('Online Only'),
-                            "data": [scope.priceSensitives[healthBeauty_urban][online], scope.valueForMoneies[healthBeauty_urban][online], scope.fashions[healthBeauty_urban][online], scope.freakses[healthBeauty_urban][online]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.heaUrban][StaticValues.shopper.online], scope.valueForMoneies[StaticValues.CandM.heaUrban][StaticValues.shopper.online], scope.fashions[StaticValues.CandM.heaUrban][StaticValues.shopper.online], scope.freakses[StaticValues.CandM.heaUrban][StaticValues.shopper.online]],
                             type: "column",
-                            color: PlayerColor.getColors()[0]
+                            color: PlayerColor.online
                         }, {
                             "name": Label.getContent('Mixed'),
-                            "data": [scope.priceSensitives[healthBeauty_urban][mixed], scope.valueForMoneies[healthBeauty_urban][mixed], scope.fashions[healthBeauty_urban][mixed], scope.freakses[healthBeauty_urban][mixed]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.heaUrban][StaticValues.shopper.mixed], scope.valueForMoneies[StaticValues.CandM.heaUrban][StaticValues.shopper.mixed], scope.fashions[StaticValues.CandM.heaUrban][StaticValues.shopper.mixed], scope.freakses[StaticValues.CandM.heaUrban][StaticValues.shopper.mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[5]
+                            color: PlayerColor.mixed
                         }, ];
 
                         scope.crossSegment3Config = {
@@ -253,19 +242,19 @@ define(['directives', 'services'], function(directives) {
 
                         scope.crossSegment4Series = [{
                             "name": Label.getContent('B&M Only'),
-                            "data": [scope.priceSensitives[healthBeauty_rural][bm], scope.valueForMoneies[healthBeauty_rural][bm], scope.fashions[healthBeauty_rural][bm], scope.freakses[healthBeauty_rural][bm]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.heaRural][StaticValues.shopper.bm], scope.valueForMoneies[StaticValues.CandM.heaRural][StaticValues.shopper.bm], scope.fashions[StaticValues.CandM.heaRural][StaticValues.shopper.bm], scope.freakses[StaticValues.CandM.heaRural][StaticValues.shopper.bm]],
                             type: "column",
-                            color: PlayerColor.getColors()[1]
+                            color: PlayerColor.bm
                         }, {
                             "name": Label.getContent('Online Only'),
-                            "data": [scope.priceSensitives[healthBeauty_rural][online], scope.valueForMoneies[healthBeauty_rural][online], scope.fashions[healthBeauty_rural][online], scope.freakses[healthBeauty_rural][online]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.heaRural][StaticValues.shopper.online], scope.valueForMoneies[StaticValues.CandM.heaRural][StaticValues.shopper.online], scope.fashions[StaticValues.CandM.heaRural][StaticValues.shopper.online], scope.freakses[StaticValues.CandM.heaRural][StaticValues.shopper.online]],
                             type: "column",
-                            color: PlayerColor.getColors()[0]
+                            color: PlayerColor.online
                         }, {
                             "name": Label.getContent('Mixed'),
-                            "data": [scope.priceSensitives[healthBeauty_rural][mixed], scope.valueForMoneies[healthBeauty_rural][mixed], scope.fashions[healthBeauty_rural][mixed], scope.freakses[healthBeauty_rural][mixed]],
+                            "data": [scope.priceSensitives[StaticValues.CandM.heaRural][StaticValues.shopper.mixed], scope.valueForMoneies[StaticValues.CandM.heaRural][StaticValues.shopper.mixed], scope.fashions[StaticValues.CandM.heaRural][StaticValues.shopper.mixed], scope.freakses[StaticValues.CandM.heaRural][StaticValues.shopper.mixed]],
                             type: "column",
-                            color: PlayerColor.getColors()[5]
+                            color: PlayerColor.mixed
                         }, ];
 
                         scope.crossSegment4Config = {

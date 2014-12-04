@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('generalSegmentLeadership', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q) {
+    directives.directive('generalSegmentLeadership', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'StaticValues',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, StaticValues) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -38,21 +38,21 @@ define(['directives', 'services'], function(directives) {
                     var organiseArray = function(data) {
                         var deferred = $q.defer();
 
-                        scope.priceSensitives = new Array();
-                        scope.valueForMoneies = new Array();
-                        scope.fashions        = new Array();
-                        scope.freakses        = new Array();
-                        scope.bms             = new Array();
-                        scope.onlines         = new Array();
-                        scope.mixeds          = new Array();
-                        //data.categoryInfo[2].marketInfo[2].segmentInfo[0].shopperInfo[3].grsl_ValueLeaders
-                        scope.priceSensitives.push(data.categoryInfo[0].marketInfo[2].segmentInfo[0].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[0].shopperInfo[3]);
-                        scope.valueForMoneies.push(data.categoryInfo[0].marketInfo[2].segmentInfo[1].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[1].shopperInfo[3]);
-                        scope.fashions.push(data.categoryInfo[0].marketInfo[2].segmentInfo[2].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[2].shopperInfo[3]);
-                        scope.freakses.push(data.categoryInfo[0].marketInfo[2].segmentInfo[3].shopperInfo[3], data.categoryInfo[1].marketInfo[2].segmentInfo[3].shopperInfo[3]);
-                        scope.bms.push(data.categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[0], data.categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[0]);
-                        scope.onlines.push(data.categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[1], data.categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[1]);
-                        scope.mixeds.push(data.categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[2], data.categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[2]);
+                        scope.priceSensitives = [];
+                        scope.valueForMoneies = [];
+                        scope.fashions        = [];
+                        scope.freakses        = [];
+                        scope.bms             = [];
+                        scope.onlines         = [];
+                        scope.mixeds          = [];
+                        //data.categoryInfo[2].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.price].shopperInfo[StaticValues.shopper.all].grsl_ValueLeaders
+                        scope.priceSensitives.push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.price].shopperInfo[StaticValues.shopper.all], data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.price].shopperInfo[StaticValues.shopper.all]);
+                        scope.valueForMoneies.push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.value].shopperInfo[StaticValues.shopper.all], data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.value].shopperInfo[StaticValues.shopper.all]);
+                        scope.fashions.push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.fashion].shopperInfo[StaticValues.shopper.all], data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.fashion].shopperInfo[StaticValues.shopper.all]);
+                        scope.freakses.push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.freaks].shopperInfo[StaticValues.shopper.all], data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.freaks].shopperInfo[StaticValues.shopper.all]);
+                        scope.bms.push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.total].shopperInfo[StaticValues.shopper.bm], data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.total].shopperInfo[StaticValues.shopper.bm]);
+                        scope.onlines.push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.total].shopperInfo[StaticValues.shopper.online], data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.total].shopperInfo[StaticValues.shopper.online]);
+                        scope.mixeds.push(data.categoryInfo[StaticValues.category.ele].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.total].shopperInfo[StaticValues.shopper.mixed], data.categoryInfo[StaticValues.category.hea].marketInfo[StaticValues.market.total].segmentInfo[StaticValues.segment.total].shopperInfo[StaticValues.shopper.mixed]);
 
                         deferred.resolve({
                             msg: 'Array is ready.'

@@ -1,12 +1,7 @@
 module.exports = function(app, io){
-	//add generalReport record
-	app.get('/addCrossSegmentSales',                                      require('./../api/models/GR_crossSegmentSales.js').addCrossSegmentSales);
-	app.get('/addEmallPrices',                                            require('./../api/models/GR_emallPrices.js').addEmallPrices);
-	app.get('/addMarketSales',                                            require('./../api/models/GR_marketSales.js').addMarketSales);
-	app.get('/addMarketShare',                                            require('./../api/models/GR_marketShare.js').addMarketShare);
-	app.get('/addPerformanceHighlights',                                  require('./../api/models/GR_performanceHighlights.js').addPerformanceHighlights);
-	app.get('/addProductPortfolio',                                       require('./../api/models/GR_productPortfolio.js').addProductPortfolio);
-	app.get('/addSegmentLeadership',                                      require('./../api/models/GR_segmentLeadership.js').addSegmentLeadership);
+
+	app.get('/grBrandPerspective/:seminar/:period',						  require('./../api/models/GR_performanceHighlights.js').getBrandPerspective);
+	app.get('/grChannelPerspective/:seminar/:period',					  require('./../api/models/GR_performanceHighlights.js').getChannelPerspective);
 	
 	//get generalReport record
 	app.get('/crossSegmentSales/:seminar/:period',                        require('./../api/models/GR_crossSegmentSales.js').getCrossSegmentSales);
@@ -17,13 +12,6 @@ module.exports = function(app, io){
 	app.get('/productPortfolio/:seminar/:period',                         require('./../api/models/GR_productPortfolio.js').getProductPortfolio);
 	app.get('/segmentLeadership/:seminar/:period',                        require('./../api/models/GR_segmentLeadership.js').getSegmentLeadership);
 	
-	//add producer report record
-	app.get('/addSCR-consolidatedProfitAndLoss',                          require('./../api/models/SCR_consolidatedProfitAndLoss.js').addSCR_consolidatedProfitAndLoss);
-	app.get('/addSCR-channelsProfitability',                              require('./../api/models/SCR_channelsProfitability.js').addSCR_channelsProfitability);
-	app.get('/addSCR-inventoryVolumes',                                   require('./../api/models/SCR_inventoryVolumes.js').addSCR_inventoryVolumes);
-	app.get('/addSCR-keyPerformanceIndicators',                           require('./../api/models/SCR_keyPerformanceIndicators.js').addSCR_keyPerformanceIndicators);
-	app.get('/addSCR-negotiations',                                       require('./../api/models/SCR_negotiations.js').addSCR_negotiations);
-	app.get('/addSCR-sharesCrossSegment',                                 require('./../api/models/SCR_sharesCrossSegment.js').addSCR_sharesCrossSegment);
 	
 	//get producer report record 
 	app.get('/SCR-consolidatedProfitAndLoss/:seminar/:period/:producerID',require('./../api/models/SCR_consolidatedProfitAndLoss.js').getSCR_consolidatedProfitAndLoss);
@@ -35,13 +23,6 @@ module.exports = function(app, io){
 	app.get('/SCR-negotiations/:seminar/:period/:producerID',             require('./../api/models/SCR_negotiations.js').getSCR_negotiations);
 	app.get('/SCR-sharesCrossSegment/:seminar/:period/:producerID',       require('./../api/models/SCR_sharesCrossSegment.js').getSCR_sharesCrossSegment);
 	
-	//add retailer report record
-	app.get('/addRCR-consolidatedProfitAndLoss',                          require('./../api/models/RCR_consolidatedProfitAndLoss.js').addRCR_consolidatedProfitAndLoss);
-	app.get('/addRCR-inventoryVolumes',                                   require('./../api/models/RCR_inventoryVolumes.js').addRCR_inventoryVolumes);
-	app.get('/addRCR-keyPerformanceIndicators',                           require('./../api/models/RCR_keyPerformanceIndicators.js').addRCR_keyPerformanceIndicators);
-	app.get('/addRCR-negotiations',                                       require('./../api/models/RCR_negotiations.js').addRCR_negotiations);
-	app.get('/addRCR-profitabilityBySupplier',                            require('./../api/models/RCR_profitabilityBySupplier.js').addRCR_profitabilityBySupplier);
-	app.get('/addRCR-sharesCrossSegment',                                 require('./../api/models/RCR_sharesCrossSegment.js').addRCR_sharesCrossSegment);
 	
 	//get retailer report record
 	app.get('/RCR-consolidatedProfitAndLoss/:seminar/:period/:retailerID',require('./../api/models/RCR_consolidatedProfitAndLoss.js').getRCR_consolidatedProfitAndLoss);
@@ -51,15 +32,6 @@ module.exports = function(app, io){
 	app.get('/RCR-profitabilityBySupplier/:seminar/:period/:retailerID',  require('./../api/models/RCR_profitabilityBySupplier.js').getRCR_profitabilityBySupplier);
 	app.get('/RCR-sharesCrossSegment/:seminar/:period/:retailerID',       require('./../api/models/RCR_sharesCrossSegment.js').getRCR_sharesCrossSegment);
 	
-	//add market report
-	// app.get('/addMR-awarenessEvolution',                                  require('./../api/models/MR_awarenessEvolution.js').addMR_awarenessEvolution);
-	// app.get('/addMR-sharesCrossSegment',                                  require('./../api/models/MR_sharesCrossSegment.js').addMR_sharesCrossSegment);
-	// app.get('/addMR-netMarketPrices',                                     require('./../api/models/MR_netMarketPrices.js').addMR_netMarketPrices);
-	// app.get('/addMR-pricePromotions',                                     require('./../api/models/MR_pricePromotions.js').addMR_pricePromotions);
-	// app.get('/addMR-suppliersIntelligence',                               require('./../api/models/MR_suppliersIntelligence.js').addMR_suppliersIntelligence);
-	// app.get('/addMR-variantPerceptionEvolution',                          require('./../api/models/MR_variantPerceptionEvolution.js').addMR_variantPerceptionEvolution);
-	// app.get('/addMR-retailerPerceptionEvolution',                         require('./../api/models/MR_retailerPerceptionEvolution.js').addMR_retailerPerceptionEvolution);
-	// app.get('/addMR-retailersIntelligence',                               require('./../api/models/MR_retailersIntelligence.js').addMR_retailersIntelligence);
 	//get market report
     app.get('/getSupplierReportPurchaseStatus/:seminar/:period/:producerID',                             require('./../api/models/producerDecision.js').getReportPurchaseStatus);
     app.get('/getRetailerReportPurchaseStatus/:seminar/:period/:retailerID',                             require('./../api/models/retailerDecision.js').getReportPurchaseStatus);

@@ -1,16 +1,32 @@
-<div class="panel my-panel-success panel-danger" ng-show='isResultShown' double-scroll>
+<style type="text/css">
+    .double-scroll-table{
+        height: 600px;
+    }
+</style>
+<div class="panel my-panel-success panel-danger" ng-show='isResultShown' scroll="no" scroll-bind>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Urban Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Urban Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})</h3>
     </div>
 
+    <div style="height:1px">
+        <table fixed-header>
+            <thead><tr><th>&nbsp;</th><th>&nbsp;</th></tr></thead>
+            <tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody>
+        </table>
+    </div>
+
     <div> 
-        <table class="table table-condensed table-bordered table-success" style="float:left;width:33%;">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left;width:33%;" fixed-header>
             <thead>
                 <tr>
-                    <th style="height:33px">&nbsp;&nbsp;&nbsp;</th>
+                    <th>
+                        <p class="text-center">
+                            <a class="btn btn-transparent btn-xs">{{Label.getContent('More')}}</a>
+                        </p>
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="firstTbody" style="overflow:hidden">
                 <tr class="tr-info">
                     <td style="white-space: nowrap">
                         <p>{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
@@ -150,7 +166,7 @@
         </table>
     </div>
     <div style="overflow-X:scroll">
-        <table class="table table-condensed table-bordered table-success" style="float:left">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left" fixed-header>
             <thead>
                 <tr>
                     <th style="white-space: nowrap">
@@ -163,7 +179,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="secondTbody" style='overflow:auto'>
                 <tr class="tr-info">
                     <td>
                         <p class="text-right">{{Sales[0][0] | number : 1 }}</p>
@@ -385,19 +401,23 @@
     </div>
     <div style="clear:both"></div>
 </div>
-<div class="panel my-panel-success panel-danger" ng-show='isResultShown'>
+<div class="panel my-panel-success panel-danger" ng-show='isResultShown' scroll-bind>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Urban Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Urban Profit & Loss Statement')}} ({{Label.getContent('HealthBeauties')}})</h3>
     </div>
 
     <div> 
-        <table class="table table-condensed table-bordered table-success" style="float:left;width:33%;">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left;width:33%;" fixed-header>
             <thead>
                 <tr>
-                    <th style="height:33px">&nbsp;&nbsp;&nbsp;</th>
+                    <th>
+                        <p class="text-center">
+                            <a class="btn btn-transparent btn-xs">{{Label.getContent('More')}}</a>
+                        </p>
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="thirdTbody" style='overflow:hidden'>
                 <tr class="tr-info">
                     <td style="white-space: nowrap">
                         <p>{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
@@ -537,7 +557,7 @@
         </table>
     </div>
     <div style="overflow-X:scroll">
-        <table class="table table-condensed table-bordered table-success" style="float:left">
+        <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left" fixed-header>
             <thead>
                 <tr>
                     <th style="white-space: nowrap">
@@ -550,7 +570,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="fourthTbody" style='overflow:auto'>
                 <tr class="tr-info">
                     <td>
                         <p class="text-right">{{Sales[1][0] | number : 1 }}</p>
