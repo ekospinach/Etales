@@ -983,7 +983,7 @@ var getLabelBase = function(){
 		{id:'Shelf Space',  ENG:'Shelf Space',  CHN:'货架空间',  RUS:''},
 		{id:'Shelf Space Info',  ENG:'you may give a brand 5% of shelf space minimum.',  CHN:'每个品牌最低分配的货架份额不能低于5%',  RUS:''},
 		{id:'Retail Price',  ENG:'Retail Price',  CHN:'零售价',  RUS:''},
-		{id:'Retail Price Info',  ENG:'your normal retail price which is the basis for promotional discounts.',  CHN:'这是做促销时的正常基础价格。',  RUS:''},
+		{id:'Retail Price Info',  ENG:'your normal retail price which is the basis for promotional discounts.',  CHN:'基于正常价格的促销折扣率。',  RUS:''},
 		{id:'Retailer Promotions Depth Info',  ENG:'is the discount percent off normal retail price effective during promotions.',  CHN:'这是做促销时的正常折扣价。',  RUS:''},
 		{id:'Retailer Technology Level Info',  ENG:'an Elecsorries and Health/Beauty product attribute; an index from 1 to 20 defining quality level of a product; in Elecsorries influences quality and ease of use perceptions; in Health/Beauty allows successful merging of active agent with smoothener; affects production cost.',  CHN:'两个品类共有的属性特征，用指数1-20代表技术水平。在电子配件品类，技术水平影响质量和易用性感知，在美容健康品类，技术水平影响活力因子和光滑因子的融合程度。技术水平会影响生产成本。',  RUS:''},
 		{id:'Net Retailer Price',  ENG:'Net Retailer Price',  CHN:'净零售价',  RUS:''},
@@ -1098,6 +1098,7 @@ var getLabelBase = function(){
 
 		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		
 		{id:'$mln',  ENG:'$mln',  CHN:'百万元',  RUS:''},
+		{id:'mln$',  ENG:'mln$',  CHN:'百万元',  RUS:''},
 		{id:'$',  ENG:'$',  CHN:'元',  RUS:''},
 		{id:'Retailer Marketing Advertising Online Info',  ENG:'Is a component of advertising that you spend online for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'网络广告指你在网络上针对两个市场消费者所做的广告, 它可以帮助你在两个维度上改善: 价格吸引力和便利性.',  RUS:''},		
 		{id:'Retailer Marketing Advertising Offline Info',  ENG:'Is a component of advertising that you spend through classic media channels such as television and newspaper for a national wide audience. The spending is done over two dimensions: Price Appeal and Convenience',  CHN:'传统广告指通过传统媒体面对两个市场消费者所做的广告，包括电视、报纸，它可以帮助你在两个维度上改善：价格吸引力和便利性。',  RUS:''},		
