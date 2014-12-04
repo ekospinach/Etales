@@ -273,7 +273,7 @@ define(['directives'], function(directives) {
                                     angular.element(elem.querySelectorAll('tbody')).css({
                                         'display': 'block',
                                         'height': $scope.tableHeight || 'inherit',
-                                        'overflow': 'auto'
+                                        //'overflow': 'auto'
                                     });
 
                                     // reduce width of last column by width of scrollbar

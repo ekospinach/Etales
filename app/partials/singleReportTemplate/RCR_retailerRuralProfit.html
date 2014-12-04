@@ -24,7 +24,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="firstTbody">
+            <tbody class="firstTbody" style='overflow:hidden'>
                 <tr class="tr-info">
                     <td style="white-space: nowrap">
                         <p>{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
@@ -177,7 +177,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="secondTbody">
+            <tbody class="secondTbody" style='overflow:auto'>
                 <tr class="tr-info">
                     <td>
                         <p class="text-right">{{Sales[0][1] | number : 1 }}</p>
@@ -414,7 +414,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="thirdTbody">
+            <tbody class="thirdTbody" style='overflow:hidden'>
                 <tr class="tr-info">
                     <td style="white-space: nowrap">
                         <p>{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
@@ -567,7 +567,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="fourthTbody">
+            <tbody class="fourthTbody" style='overflow:auto'>
                 <tr class="tr-info">
                     <td>
                         <p class="text-right">{{Sales[1][1] | number : 1 }}</p>
