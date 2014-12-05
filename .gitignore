@@ -1,0 +1,41 @@
+# OS generated files #
+######################
+*.textClipping
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+#ignore these files for nodejs project
+node_modules/*
+*.sublime-project
+*.sublime-workspace
+upload/*
+*.log
+
+#ignore these files for Delphi project 
+__history
+*.identcache
+*.res
+*.dcu
+*.local
+*.dproj
+/cgi/delphisource/lineChart/__history/
+/cgi/delphisource/perceptionMap/__history/
+/cgi/delphisource/finReport/__history/
+/cgi/delphisource/marketReport/__history/
+/**/__history/*
+/**/__history
+
+#ignore there files for bower project
+app/bower_components/*
+bower_components/*
+
+#ignore there files for WebStorm project 
+/.idea/*
+
+
