@@ -52,7 +52,7 @@ var getLabelBase = function(){
 		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以通过选择，查看其它行业（零售或生产）标杆。可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息。把光标放在趋势线上，可以看到相应的数字。',  RUS:''},
 		{id:'Total',  ENG:'Total',  CHN:'合计',  RUS:''},
 		{id:'TOTAL',  ENG:'TOTAL',  CHN:'合计',  RUS:''},
-		{id:'Amount Info',  ENG:'Amount Info',  CHN:'Amount输入提示',  RUS:''},
+		{id:'Amount Info',  ENG:'',  CHN:'',  RUS:''},
 
 		{id:'Net Sales Value Info',  ENG:'Net Sales Value Info',  CHN:'净销售额信息',  RUS:''},	
 		{id:'Gross Profit Info',  ENG:'Gross Profit Info',  CHN:'毛利润信息',  RUS:''},	
@@ -63,7 +63,7 @@ var getLabelBase = function(){
 		{id:'Net Profit Margin Info',  ENG:'Net Profit Margin Info',  CHN:'净利润率信息',  RUS:''},	
 		{id:'Total Material Cost Info',  ENG:'Total Material Cost Info',  CHN:'总原料成本信息',  RUS:''},	
 		{id:'Total Advertising Info',  ENG:'Total Advertising Info',  CHN:'总的广告信息',  RUS:''},	
-		{id:'Total Trade (Producer) Support Info',  ENG:'Total Trade (Sup总计plier) Support Info',  CHN:'总的终端支持信息（供应商）',  RUS:''},	
+		{id:'Total Trade (Producer) Support Info',  ENG:'Total Trade (Supplier) Support Info',  CHN:'总的终端支持信息（供应商）',  RUS:''},	
 		{id:'Total General Expenses Info',  ENG:'Total General Expenses Info',  CHN:'总的一般性开支信息',  RUS:''},	
 		{id:'Wholesale Sales Value Info',  ENG:'Wholesale Sales Value Info',  CHN:'批发商销售额信息',  RUS:''},	
 		{id:'Wholesale Sales Volume Info',  ENG:'Wholesale Sales Volume Info',  CHN:'批发商销量信息',  RUS:''},	
@@ -73,7 +73,7 @@ var getLabelBase = function(){
 		{id:'Wholesale Market Share (Volume) Info',  ENG:'Wholesale Market Share (Volume) Info',  CHN:'经销商市场份额（以销量计）信息',  RUS:''},	
 		{id:'Retail Market Sales (Value) Info',  ENG:'Retail Market Sales (Value) Info',  CHN:'零售商市场份额（以销售额计）信息',  RUS:''},	
 		{id:'Retail Market Sales (Volume) Info',  ENG:'Retail Market Sales (Volume) Info',  CHN:'零售商市场份额（以销量计）信息',  RUS:''},
-		{id:'Retail Market Share (Value) Info',  ENG:'Retail Market Share (Value) Info',  CHN:'Retail Market Share (Value) Info零售商市场份额（以销售额计）信息',  RUS:''},
+		{id:'Retail Market Share (Value) Info',  ENG:'Retail Market Share (Value) Info',  CHN:'零售商市场份额（以销售额计）信息',  RUS:''},
 		{id:'Retail Market Share (Volume) Info',  ENG:'Retail Market Share (Volume) Info',  CHN:'零售商市场份额（以销量计）信息',  RUS:''},
 		{id:'Volume Info',  ENG:'Volume Info',  CHN:'销量信息',  RUS:''},
 		{id:'Buy this Report',  ENG:'Buy this Report',  CHN:'购买此报告',  RUS:''},
@@ -588,25 +588,34 @@ var getLabelBase = function(){
 
 		/*summaryReport*/
 		{id:'Summary Report',  ENG:'Summary Report',  CHN:'总结报告',  RUS:''},	
-		{id:'Summary Report Info',  ENG:'Summary Report Info',  CHN:'总结报告介绍',  RUS:''},	
+		//需要翻译
 		{id:'Summary Report popInfo',  ENG:'This table is the consolidated profit/loss statement of both categories at SKU level.',  CHN:'总结报告介绍',  RUS:''},	
 		{id:'Performance Highlights',  ENG:'Performance Highlights',  CHN:'主要业绩',  RUS:''},	
+		//需要翻译
 		{id:'Performance Highlights Info',  ENG:'This table summarizes key performance indicators for suppliers and retailers. For suppliers, the sales figures refer to sales to the retailers. All market share figures are consumer market shares.',  CHN:'业绩突出信息介绍',  RUS:''},	
 		{id:'Brand Perspective',  ENG:'Brand Perspective',  CHN:'品牌角度',  RUS:''},
 		{id:'Channel Perspective',  ENG:'Channel Perspective',  CHN:'渠道角度',  RUS:''},
+		//需要翻译
 		{id:'Brand Perspective Info',  ENG:'This table summarizes key performance highlights for suppliers and retailers from a brand perspective. For suppliers, the B&M sales figures refer to sales to all the three the retailers. For Retailers, the sales represent the sale of their private labels. Consumer sales for each supplier and retailer represent the sales of the products from their product portfolios.',  CHN:'品牌角度介绍',  RUS:''},
+		//需要翻译
 		{id:'Channel Perspective Info',  ENG:'This table summarizes key performance highlights for suppliers and retailers from channel perspective. For Retailers, the sales represent the market sales, including private labels. ',  CHN:'渠道角度介绍',  RUS:''},
 		{id:'Market Shares',  ENG:'Market Shares',  CHN:'市场份额',  RUS:''},	
+		//需要翻译
 		{id:'Market Shares Info',  ENG:'These graphs show the consumer market shares for suppliers and retailers (private label) by market, consumer segment and shopper segment. More detailed information can be obtained by moving the cursor over the colors in the bar charts.',  CHN:'市场份额介绍',  RUS:''},	
 		{id:'Market Sales',  ENG:'Market Sales.',  CHN:'市场销售',  RUS:''},	
+		//需要翻译
 		{id:'Market Sales Info',  ENG:'These graphs show the consumer sales figures for suppliers and retailers (private label) by market, consumer segment and shopper segment. More detailed information can be obtained by moving the cursor over the colors in the bar charts.',  CHN:'市场销售介绍',  RUS:''},	
 		{id:'Segment Leadership',  ENG:'Segment Leadership',  CHN:'细分市场领导者',  RUS:''},	
+		//需要翻译
 		{id:'Segment Leadership Info',  ENG:'This table shows the top two consumer share leaders by category, consumer segment and shopper segment.',  CHN:'领导力介绍',  RUS:''},			
 		{id:'Cross-Segment Sales Volumes',  ENG:'Cross-Segment Sales Volumes',  CHN:'细分市场销量',  RUS:''},	
+		//需要翻译
 		{id:'Cross-Segment Sales Volumes Info',  ENG:'These graphs show, by category and by market, the sales volume bought by each shopper segment.',  CHN:'细分市场销量',  RUS:''},	
 		{id:'Product Portfolio',  ENG:'Product Portfolio',  CHN:'产品组合',  RUS:''},	
+		//需要翻译
 		{id:'Product Portfolio Info',  ENG:'This table shows the technical design specifications of all SKUs in the market.',  CHN:'产品组合介绍',  RUS:''},	
 		{id:'eMall Prices and Promotion Intensity',  ENG:'eMall Prices & Promotion Intensity',  CHN:'网上价格和促销强度',  RUS:''},	
+		//需要翻译
 		{id:'eMall Prices and Promotion Intensity Info',  ENG:'This table shows the net online retail prices and promotion intensity.',  CHN:'网上价格和促销强度介绍',  RUS:''},	
 		{id:'Financial Results',  ENG:'Financial Results',  CHN:'财务报告',  RUS:''},	
 		{id:'Consolidated Profit & Loss Statement',  ENG:'Consolidated Profit & Loss Statement',  CHN:'合并利润表',  RUS:''},	
@@ -614,6 +623,7 @@ var getLabelBase = function(){
 		{id:'Online Business Profit & Loss Statement',  ENG:'Online Business Profit & Loss Statement',  CHN:'线上商城业务损益表',  RUS:''},	
 		{id:'Profitability by Channel',  ENG:'Profitability by Channel',  CHN:'渠道盈利能力',  RUS:''},	
 		{id:'Last Period Negotiations',  ENG:'Last Period Negotiations',  CHN:'上阶段谈判',  RUS:''},	
+		//需要翻译
 		{id:'Last Period Negotiations Info',  ENG:'This table summarizes the negotiation agreements made during the last period and whether or not those agreements were honored.',  CHN:'上阶段谈判介绍',  RUS:''},	
 		{id:'Situation Report',  ENG:'Situation Report',  CHN:'报告',  RUS:''},
 		{id:'Key Performance Indicators',  ENG:'Key Performance Indicators',  CHN:'关键业绩指标',  RUS:''},
@@ -622,8 +632,8 @@ var getLabelBase = function(){
 		{id:'Behavior',  ENG:'Behavior',  CHN:'行为',  RUS:''},
 		{id:'Retailer Prices and Promotion Intensity',  ENG:'Retailer Prices & Promotion Intensity',  CHN:'零售商的价格和促销强度',  RUS:''},
 		{id:'Supplier Intelligence',  ENG:'Supplier Intelligence',  CHN:'供应商情报',  RUS:''},
-		{id:'Supplier Intelligence Info',  ENG:'Supplier Intelligence Info',  CHN:'供应商情报介绍',  RUS:''},
 		{id:'Retailer Intelligence',  ENG:'Retailer Intelligence',  CHN:'零售商情报',  RUS:''},
+		//需要翻译
 		{id:'Retailer Intelligence Info',  ENG:'This table summarizes retailer intelligence information. Online and Offline advertising are national expenditures (ie, not broken down my market) and we repeat the national figures under both markets. Shelf space allocations are shown by brand but moving the cursor on any brand name will reveal the shelf space allocations for all the variants of that brand (SKU level).',  CHN:'零售商情报介绍',  RUS:''},
 		{id:'Forecasts',  ENG:'Forecasts',  CHN:'预测',  RUS:''},
 
@@ -636,7 +646,6 @@ var getLabelBase = function(){
 		{id:'Volume Market Shares',  ENG:'Volume Market Shares',  CHN:'市场份额(以销量计)',  RUS:''},
 		{id:'Cumulative Investments',  ENG:'Cumulative Investments',  CHN:'累计投资',  RUS:''},
 		{id:'Promotion Intensity',  ENG:'Promotion Intensity',  CHN:'促销强度',  RUS:''},
-		{id:'Promotion Intensity Info',  ENG:'Promotion Intensity Info',  CHN:'促销强度介绍',  RUS:''},
 		{id:'Net Online Retail Price',  ENG:'Net Online Retail Price',  CHN:'网上售价',  RUS:''},
 		{id:'Change over the Previous Period',  ENG:'Change over the Previous Period',  CHN:'相比上一轮变化',  RUS:''},
 		{id:'Change from Previous Period',  ENG:'Change over the Previous Period',  CHN:'相比上一轮变化',  RUS:''},
@@ -657,6 +666,7 @@ var getLabelBase = function(){
 		{id:'Value Sales',  ENG:'Value Sales',  CHN:'销售额',  RUS:''},
 		{id:'Market Shares by Consumer Segment',  ENG:'Market Shares by Consumer Segment',  CHN:'市场份额（按消费者细分）',  RUS:''},
 		{id:'Market Shares by Shopper Segment',  ENG:'Market Shares by Shopper Segment',  CHN:'市场份额（按购物者细分）',  RUS:''},
+		//需要翻译
 		{id:'Consolidated Profit & Loss Statement Info',  ENG:'This table gives a consolidated Profit & Loss statement by category in each channel.',  CHN:'Consolidated Profit & Loss Statement介绍',  RUS:''},
 		{id:'B&M Business',  ENG:'B&M Business',  CHN:'实体店业务',  RUS:''},
 		{id:'Online Business',  ENG:'Online Business',  CHN:'线上业务',  RUS:''},
@@ -671,7 +681,9 @@ var getLabelBase = function(){
 		{id:'Taxes',  ENG:'Taxes',  CHN:'所得税',  RUS:''},
 		{id:'Exceptional Costs/Profits',  ENG:'Exceptional Costs/Profits',  CHN:'营业外支出/收入',  RUS:''},
 		{id:'as % of sales',  ENG:'as % of sales',  CHN:'占销售额百分比（%）',  RUS:''},
+		//需要翻译
 		{id:'B&M Business Profit Info',  ENG:'These two tables give the B&M business Profit & Loss statements for both categories by brand. When moving the cursor on the brand name, the Profit & Loss statement of that brand and all its variants will appear.',  CHN:'实体店业务利润介绍',  RUS:''},
+		//需要翻译
 		{id:'Online Business Profit Info',  ENG:'These two tables give the online business Profit & Loss statements for both categories by brand. When moving the cursor on the brand name, the Profit & Loss statement of that brand and all its variants will appear.',  CHN:'线上业务利润介绍',  RUS:''},
 		{id:'Online Store',  ENG:'Online Store',  CHN:'线上商城',  RUS:''},
 		{id:'Share of Trade Profit',  ENG:'Share of Trade Profit',  CHN:'通路利润份额',  RUS:''},
@@ -690,7 +702,6 @@ var getLabelBase = function(){
 		{id:'Online',  ENG:'Online',  CHN:'线上',  RUS:''},
 		{id:'Offline Adv',  ENG:'OffLine',  CHN:'传统广告',  RUS:''},
 		{id:'Online Adv',  ENG:'Online',  CHN:'网络广告',  RUS:''},
-		{id:'Key Performance Indicators Info',  ENG:'Key Performance Indicators Info',  CHN:'关键性能指标介绍',  RUS:''},
 		{id:'Effectiveness of Trade Spending',  ENG:'Effectiveness of Trade Spending',  CHN:'通路投资的有效性',  RUS:''},
 		{id:'Effectiveness of Marketing Spending',  ENG:'Effectiveness of Marketing Spending',  CHN:'营销投资的有效性',  RUS:''},
 		{id:'Portfolio Strength',  ENG:'Portfolio Strength',  CHN:'产品组合的竞争力',  RUS:''},
@@ -714,7 +725,9 @@ var getLabelBase = function(){
 		{id:'Cost of Price Promotions',  ENG:'Cost of Price Promotions',  CHN:'促销成本',  RUS:''},
 		{id:'Rural Profit & Loss Statement',  ENG:'Rural Profit & Loss Statement',  CHN:'农村损益表',  RUS:''},
 		{id:'Urban Profit & Loss Statement',  ENG:'Urban Profit & Loss Statement',  CHN:'城市损益表',  RUS:''},
+		//需要翻译
 		{id:'Rural Profit & Loss Statement Info',  ENG:'This table gives the Profit & Loss statement for both categories by brand level in the rural market. When moving the cursor on the brand name, the Profit & Loss statement of that brand and all its variants will appear.',  CHN:'城市盈利和亏损的声明介绍',  RUS:''},
+		//需要翻译
 		{id:'Urban Profit & Loss Statement Info',  ENG:'This table gives the Profit & Loss statement for both categories by brand level in the urban market. When moving the cursor on the brand name, the Profit & Loss statement of that brand and all its variants will appear.',  CHN:'乡村盈利和亏损的声明介绍',  RUS:''},
 		{id:'Suppliers',  ENG:'Suppliers',  CHN:'供应商',  RUS:''},
 		{id:'Supplier',  ENG:'Supplier',  CHN:'供应商',  RUS:''},
@@ -736,17 +749,16 @@ var getLabelBase = function(){
 		{id:'Segment Size',  ENG:'Segment Size',  CHN:'细分市场规模',  RUS:''},
 		{id:'Category Volume s by Market',  ENG:'Category Volume s by Market',  CHN:'品类销量（按市场）',  RUS:''},
 		{id:'Internet Penetration Rates',  ENG:'Internet Penetration Rates',  CHN:'互联网普及率',  RUS:''},
+		//需要翻译
 		{id:'Awareness Info',  ENG:'The bar charts show the levels of awareness for each SKU in each market. The red section of the bar shows the drop in awareness over the last two periods; hence, the grey section is the level of awareness in the last period. The green section of the bar shows the increase in awareness over the last two periods; hence, the grey section plus the green section is the level of awareness in the last period. Moving the cursor on the bar segments gives the exact values.',  CHN:'awareness 介绍',  RUS:''},
+		//需要翻译
 		{id:'Brand Perceptions Info',  ENG:'These graphs show the perceptual positions of the SKUs by category and market. The positions are color-coded by supplier and retailer (for private label SKUs). Moving the cursor on any of the circles will identify the SKU and the exact perceptual coordinates of that SKU.',  CHN:'Brand Perceptions介绍',  RUS:''},
+		//需要翻译
 		{id:'Retailer Perceptions Info',  ENG:'These graphs show the perceptual positions of the retailers by market. Moving the cursor on the positions shows the exact coordinates of the position.',  CHN:'Retailer Perceptions介绍',  RUS:''},
 		{id:'Sales by Consumer Segment',  ENG:'Sales by Consumer Segment',  CHN:'销售（按消费者细分）',  RUS:''},
-		{id:'Sales by Consumer Segment Info',  ENG:'Sales by Consumer Segment Info',  CHN:'销售的消费市场介绍',  RUS:''},
 		{id:'Sales by Shopper Segment',  ENG:'Sales by Shopper Segment',  CHN:'销售（按购物者细分）',  RUS:''},
-		{id:'Sales by Shopper Segment Info',  ENG:'Sales by Shopper Segment Info',  CHN:'销售顾客细分介绍',  RUS:''},
 		{id:'Brand Perceptions',  ENG:'Brand Perceptions',  CHN:'品牌感知',  RUS:''},
-		{id:'Online Only',  ENG:'',  CHN:'',  RUS:''},
 		{id:'B&M Retailer Prices',  ENG:'B&M Retailer Prices',  CHN:'实体店零售价格',  RUS:''},
-		{id:'B&M Retailer Prices Info',  ENG:'B&M Retailer Prices Info',  CHN:'零售价格介绍',  RUS:''},
 		{id:'Net Retail Price',  ENG:'Net Retail Price',  CHN:'净零售价',  RUS:''},
 		{id:'Length',  ENG:'Length',  CHN:'促销周数 (0-26周)',  RUS:''},
 		{id:'Depth',  ENG:'Depth',  CHN:'折扣率',  RUS:''},
@@ -765,18 +777,23 @@ var getLabelBase = function(){
 		{id:'Supplier 3 Online',  ENG:'Supplier 3 Online',  CHN:'生产商3在线',  RUS:''},
 		{id:'Shelf Space Allocation',  ENG:'Shelf Space Allocation',  CHN:'货架空间分配',  RUS:''},
 		{id:'Local',  ENG:'Local',  CHN:'当地',  RUS:''},
+		//需要翻译
 		{id:'Consumer Segment Size Info',  ENG:'These graphs show the historical values and the two-period ahead forecasts of the consumer segment sizes by category and market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'Consumer Segment Size介绍',  RUS:''},
-		{id:'Shopper Segment Size Info',  ENG:'These graphs show the historical values and the two-period ahead forecasts of the shopper segment sizes by category and market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'Shopper segment Size介绍',  RUS:''},
+		//需要翻译
+		{id:'Shopper Segment Size Info',  ENG:'These graphs show the historical values and the two-period ahead forecasts of the shopper segment sizes by category and market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'Shopper segment Size介绍',  RUS:''},		
 		{id:'Two-Period Ahead Forecasts',  ENG:'Two-Period Ahead Forecasts',  CHN:'未来一年的预测',  RUS:''},
+		//需要翻译
 		{id:'Category Volumes by Market Info',  ENG:'This graph shows the historical values and the two-period ahead forecasts of category volumes by market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'该表显示了历史数据和对未来两个阶段销售的预测。将光标置于预测区域，将会显示未来两阶段的预测数据',  RUS:''},
+		//需要翻译
 		{id:'Internet Penetration Rates Info',  ENG:'These graphs show the historical values and the two-period ahead forecasts of the internet penetration rates by market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'Internet Penetration Rates介绍',  RUS:''},
 		{id:'Penetration Level',  ENG:'Penetration Level',  CHN:'普及率',  RUS:''},
 		{id:'Easy of Use',  ENG:'Easy of Use',  CHN:'易用性',  RUS:''},
 		{id:'Ease of Use',  ENG:'Ease of Use',  CHN:'易用性',  RUS:''},
 		{id:'Category Volumes by Market',  ENG:'Category Volumes by Market',  CHN:'市场类别',  RUS:''},
+		//需要翻译
 		{id:'Product Portfolio Management Info',  ENG:'This decision form allows supplier to manage their product portfolio. More specifically, supplier can decide to discontinue specific SKUs, add new brands/variants, add new variants under existing brands and modify the specifications of variants in supplier’s Elecssories portfolio. The product portfolio from the last period appears by default.',  CHN:'',  RUS:''},
 		{id:'Product Portfolio Management',  ENG:'Product Portfolio Management',  CHN:'产品组合管理',  RUS:''},
-
+		//需要翻译
 		{id:'B&M List Prices Info',  ENG:'This decision form allows supplier to decide the B&M List prices for the SKUs in supplier’s Elecssories portfolio. The list prices from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are entered with the old list prices adjusted for inflation.',  CHN:'介绍',  RUS:''},
 		{id:'Negotiation Agreements',  ENG:'Negotiation Agreements',  CHN:'谈判协议',  RUS:''},
 		{id:'General Report',  ENG:'General Report',  CHN:'综合报告',  RUS:''},
@@ -785,21 +802,26 @@ var getLabelBase = function(){
 		{id:'Facilitator Confidential Report',  ENG:'Confidential Report',  CHN:'讲师公司报告',  RUS:''},
 		{id:'Facilitator General Report',  ENG:'General Report',  CHN:'讲师公司报告',  RUS:''},
 		{id:'Facilitator Market Report',  ENG:'Market Report',  CHN:'讲师公司报告',  RUS:''},
-		{id:'Facilitator Confidential Report Info',  ENG:'Facilitator Confidential Report Info',  CHN:'讲师公司报告介绍',  RUS:''},
 		{id:'General Marketing',  ENG:'General Marketing',  CHN:'营销决策',  RUS:''},
+		//需要翻译
 		{id:'General Marketing Info',  ENG:'This decision form allows supplier to decide the General Marketing spending for each SKU in the supplier’s Elecssories portfolio. The values from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted.',  CHN:'综合市场介绍',  RUS:''},
 		{id:'Online Store Management',  ENG:'Online Store Management',  CHN:'网店管理',  RUS:''},
 		{id:'Store Management',  ENG:'Store Management',  CHN:'店铺管理',  RUS:''},
+		//需要翻译
 		{id:'Online Store Management Info',  ENG:'This decision form allows supplier to decide the online store spending for each SKU in the supplier’s Elecssories portfolio. The values from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted.',  CHN:'在线销售介绍',  RUS:''},
 		{id:'Asset Investments',  ENG:'Asset Investments',  CHN:'资产投资',  RUS:''},
+		//需要翻译
 		{id:'Asset Investments Info',  ENG:'This decision form allows supplier to decide the investments in assets at category level. When the cursor hover over these items, a pop-up showing the feasible range of values appears. The values from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated by the deadline, those from the previous period are submitted.',  CHN:'Asset Investments介绍',  RUS:''},
 		{id:'Market Research Orders',  ENG:'Market Research Orders',  CHN:'订购市场报告',  RUS:''},
+		//需要翻译
 		{id:'Market Research Orders Info',  ENG:'This decision form allows supplier to order market reports for the next period. By hovering the cursor on each study title, an a pop-up will appear which explaining the contents of that study',  CHN:'市场研究订单介绍',  RUS:''},
 		{id:'Online planned volume',  ENG:'Online planned volume',  CHN:'在线供货量',  RUS:''},		
 		{id:'Online Planned Volume',  ENG:'Online Planned Volume',  CHN:'在线计划产量',  RUS:''},
 		{id:'Marketing',  ENG:'Marketing',  CHN:'市场',  RUS:''},
+		//需要翻译
 		{id:'Marketing Info',  ENG:'This decision form allows retailers to decide the spending for advertising and the In-Store service levels. The values from previous period are shown by default and the retailer can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted. The range of values for In-Store levels is displayed when cursor hovers over the \“In-Store Service Level\” label.',  CHN:'市场介绍',  RUS:''},
 		{id:'Private Label Portfolio Management',  ENG:'Private Label Portfolio Management',  CHN:'自有品牌组合管理',  RUS:''},
+		//需要翻译
 		{id:'Private Label Portfolio Management Info',  ENG:'This decision form allows retailers to manage their private label product portfolio. More specifically, retailer can decide to discontinue specific SKUs, add new brands/variants, add new variants under existing brands and modify the specifications of variants in retailer’s private label portfolio. The product portfolio from the last period appears by default.',  CHN:'自有品牌组合管理介绍',  RUS:''},
 		{id:'Buy?',  ENG:'Buy?',  CHN:'是否购买？',  RUS:''},
 		{id:'Buy',  ENG:'Buy',  CHN:'是',  RUS:''},
@@ -810,10 +832,11 @@ var getLabelBase = function(){
 		{id:'Available Period Capacity',  ENG:'Available Period Capacity',  CHN:'阶段可用产能',  RUS:''},
 		{id:'Time Left',  ENG:'Time Left',  CHN:'剩余时间',  RUS:''},
 		{id:'mins',  ENG:'mins',  CHN:'分钟',  RUS:''},
-		{id:'Decision Info',  ENG:'Decision Info',  CHN:'决策介绍',  RUS:''},
+		{id:'Decision Info',  ENG:'Decision Info',  CHN:'决策信息',  RUS:''},
 		{id:'Shelf Space Left',  ENG:'Shelf Space Left',  CHN:'货架剩余空间',  RUS:''},
 		{id:'Store Management Info',  ENG:'Store Management Info',  CHN:'门店管理信息',  RUS:''},
 		{id:'Please Commit',  ENG:'Please commit your portfolio decisions',  CHN:'请提交你的投资组合决策',  RUS:''},
+		//需要翻译
 		{id:'Negotiation Agreements Info',  ENG:'This decision form allows supplier to decide the negotiation terms with the retailer1 at SKU level for Elecssories. When the negotiation round starts, the agreed-to contract terms from previous period are displayed. Thereafter, supplier or retailer can initiate proposals by changing the terms, which are highlighted in red (items proposed by supplier) and blue (items proposed by retailer). Once the contract terms are agreed for an SKU, either supplier or retailer or both can click on agree button. If both click on the agree button, the negotiation agreement for that SKU is frozen. Once all the SKU agreements are reached, each party clicks on \“Validate Contract\” button on the bottom of the screen. If both click it, the contract between both the parties is frozen.',  CHN:'谈判介绍',  RUS:''},
 		{id:'Negotiation Agreements',  ENG:'Negotiation Agreements',  CHN:'谈判条款',  RUS:''},
 
@@ -838,7 +861,6 @@ var getLabelBase = function(){
 		{id:'set Minimum Order first',  ENG:'please set minimum order first',  CHN:'请先输入最小订量',  RUS:''},
 		{id:'set Target Volume first',  ENG:'please set salesTargetVolume first',  CHN:'请先输入目标量',  RUS:''},
 		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'单位成本',  RUS:''},
-		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'',  RUS:''},
 
 		{id:'Feedback',  ENG:'Feedback',  CHN:'阶段总结',  RUS:''},
 		{id:'Feedback session',  ENG:'Feedback session',  CHN:'课程总结',  RUS:''},
@@ -904,7 +926,6 @@ var getLabelBase = function(){
 		{id:'B&M List Prices Pop Info',  ENG:'list price for bricks&mortar trade in current period',  CHN:'供应商向实体零售商提供的出厂报价',  RUS:''},
 		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'单位成本',  RUS:''},
 		{id:'Unit Production cost',  ENG:'Unit Production cost',  CHN:'单位生产成本',  RUS:''},
-		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'生成成本介绍',  RUS:''},
 		/*supplier Product Portfolio Management end*/
 		/*supplier Negotiation start*/
 		{id:'Minimum Order Quantity',  ENG:'Minimum Order Quantity',  CHN:'最低起订量',  RUS:''},		
@@ -1073,6 +1094,10 @@ var getLabelBase = function(){
 		{id:'Awareness Value',  ENG:'Value',  CHN:'数值',  RUS:''},		
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
 		//new clock
+		/*！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+		！！！！！！！！！！下面所有的都需要验证 翻译 ！！！！！！！！！！！
+		！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+		*/
 		{id:'System will',  ENG:'System will',  CHN:'系统将',  RUS:''},		
 		{id:'your',  ENG:'your',  CHN:'你的',  RUS:''},		
 		{id:'Portfolio & List Price',  ENG:'Portfolio & List Price',  CHN:'产品组合&定价',  RUS:''},		
@@ -1092,8 +1117,7 @@ var getLabelBase = function(){
 		{id:'Participants Manual',  ENG:'Participants Manual',  CHN:'学员手册',  RUS:''},		
 		{id:'all the rest decisions Locked',  ENG:'all the rest decisions Locked',  CHN:'all the rest decisions Locked',  RUS:''},		
 		{id:'Clock Info',  ENG:'Clock Info',  CHN:'Clock 介绍',  RUS:''},		
-		{id:'You are checking the decision of period',  ENG:'You are checking the decision of period',  CHN:'你正在查看决策 阶段',  RUS:''},		
-		{id:'Clock Info',  ENG:'Clock Info',  CHN:'Clock 介绍',  RUS:''},		
+		{id:'You are checking the decision of period',  ENG:'You are checking the decision of period',  CHN:'你正在查看决策 阶段',  RUS:''},				
 		
 
 		{id:'units mln',  ENG:'units mln',  CHN:'百万件',  RUS:''},		
@@ -1145,10 +1169,6 @@ var getLabelBase = function(){
 		{id:'Weightage',  ENG:'Weightage',  CHN:'比重',  RUS:''},
 		{id:'Relative Profitability',  ENG:'Relative Profitability (RP)',  CHN:'相对盈利能力',  RUS:''},
 		{id:'Shopper Base',  ENG:'Shopper Base (Share of Pocket SOP)',  CHN:'Shopper Base 中文',  RUS:''},
-		{id:'Final ',  ENG:'',  CHN:'',  RUS:''},
-		{id:'Final ',  ENG:'',  CHN:'',  RUS:''},
-		{id:'Final ',  ENG:'',  CHN:'',  RUS:''},
-		{id:'Final ',  ENG:'',  CHN:'',  RUS:''},
 
 
 

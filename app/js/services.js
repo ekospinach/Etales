@@ -38,7 +38,9 @@ define(['angular',
 						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value});
 						    if(item){ return item.ENG;}
 						    else{
-						    	items.push(value);
+						    	//items.push(value);
+						    	//add this for debug
+						    	console.log(value);
 						    	return '**NotFound**';
 						    }
 						    break;
