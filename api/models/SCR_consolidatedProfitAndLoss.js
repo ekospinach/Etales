@@ -40,7 +40,7 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrpl_TradeSupport                         : [categoryInfoSchema], 
 
     scrpl_eMallCommission                      : [categoryInfoSchema],
-    scrpl_ShippingCost                         : [categoryInfoSchema],    
+    scrpl_ServiceCost                         : [categoryInfoSchema],    
 
 
     //P&L per brand in B&M and onLine
@@ -78,7 +78,7 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrb_NetProfitShareInCategory             : [brandInfoSchema],
 
     scrb_eMallCommission                      : [brandInfoSchema],
-    scrb_ShippingCost                         : [brandInfoSchema],    
+    scrb_ServiceCost                         : [brandInfoSchema],    
 
     ////P&L per variant in B&M and onLine
     scrv_Sales                                : [variantInfoSchema],
@@ -115,7 +115,7 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrv_NetProfitShareInCategory             : [variantInfoSchema],
 
     scrv_eMallCommission                      : [variantInfoSchema],
-    scrv_ShippingCost                         : [variantInfoSchema],    
+    scrv_ServiceCost                         : [variantInfoSchema],    
 })
 
 var categoryInfoSchema = mongoose.Schema({
@@ -201,7 +201,7 @@ exports.addReports = function(options){
                                 scrpl_TradeSupport                         : singleReport.scrpl_TradeSupport,                         
 
                                 scrpl_eMallCommission                      : singleReport.scrpl_eMallCommission,
-                                scrpl_ShippingCost                         : singleReport.scrpl_ShippingCost,                                  
+                                scrpl_ServiceCost                         : singleReport.scrpl_ServiceCost,                                  
 
                                 scrb_Sales                                : singleReport.scrb_Sales,                              
                                 scrb_SalesChange                          : singleReport.scrb_SalesChange,                        
@@ -235,7 +235,7 @@ exports.addReports = function(options){
                                 scrb_NetProfitShareInCategory             : singleReport.scrb_NetProfitShareInCategory,            
 
                                 scrb_eMallCommission                      : singleReport.scrb_eMallCommission,
-                                scrb_ShippingCost                         : singleReport.scrb_ShippingCost,                                 
+                                scrb_ServiceCost                         : singleReport.scrb_ServiceCost,                                 
 
                                 scrv_Sales                                : singleReport.scrv_Sales,                               
                                 scrv_SalesChange                          : singleReport.scrv_SalesChange,                         
@@ -269,7 +269,7 @@ exports.addReports = function(options){
                                 scrv_NetProfitShareInCategory             : singleReport.scrv_NetProfitShareInCategory,            
 
                                 scrv_eMallCommission                      : singleReport.scrv_eMallCommission,
-                                scrv_ShippingCost                         : singleReport.scrv_ShippingCost,                                  
+                                scrv_ServiceCost                         : singleReport.scrv_ServiceCost,                                  
                                 },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

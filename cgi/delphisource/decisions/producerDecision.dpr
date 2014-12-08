@@ -415,6 +415,7 @@ var
       jo.S['seminar'] := currentSeminar;
       jo.I['period'] := currentPeriod;
       jo.I['producerID'] := currentProducer;
+      jo.S['serviceLevel']  := GetEnumName(TypeInfo(TServiceLevel),Integer(currentDecision.dp_ServiceLevel));
       jo.D['nextBudgetExtension']  := currentDecision.dp_NextBudgetExtension;
       jo.D['approvedBudgetExtension']  := currentDecision.dp_ApprovedBudgetExtension;
 
@@ -516,6 +517,8 @@ var
       marketStudies : integer;
     begin
       curDec.dp_ProducerID := currentProducer;
+      curDec.dp_ServiceLevel := TServiceLevel(GetEnumValue(TypeInfo(TServiceLevel), jo.S['serviceLevel']));
+
       curDec.dp_NextBudgetExtension  := jo.D['nextBudgetExtension'];
       curDec.dp_ApprovedBudgetExtension  := jo.D['approvedBudgetExtension'];
       

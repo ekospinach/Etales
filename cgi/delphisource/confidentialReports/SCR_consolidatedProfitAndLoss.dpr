@@ -34,7 +34,7 @@ const
     scrpl_TradeSupport                         = 124;
 
     scrpl_eMallCommission                      = 125;
-    scrpl_ShippingCost                         = 126;
+    scrpl_ServiceCost                         = 126;
 
 
     scrv_Sales                                 = 200;
@@ -70,7 +70,7 @@ const
     scrv_NetProfitShareInCategory              = 230;
 
     scrv_eMallCommission                       = 231;
-    scrv_ShippingCost                          = 232; 
+    scrv_ServiceCost                          = 232; 
 
     scrb_Sales                                 = 300;
     scrb_SalesChange                           = 301;
@@ -105,7 +105,7 @@ const
     scrb_NetProfitShareInCategory              = 330;
 
     scrb_eMallCommission                       = 331;
-    scrb_ShippingCost                          = 332;  
+    scrb_ServiceCost                          = 332;  
 
 
 type
@@ -167,7 +167,7 @@ var
        scrb_NetProfitShareInCategory:       begin jo.A['value'].D[0] := brand.scrb_NetProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfitShareInCategory[CORPORATE]; end;
 
        scrb_eMallCommission:       begin jo.A['value'].D[0] := brand.scrb_eMallCommission[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_eMallCommission[INTERNET];    jo.A['value'].D[2] := brand.scrb_eMallCommission[CORPORATE]; end;
-       scrb_ShippingCost:       begin jo.A['value'].D[0] := brand.scrb_ShippingCost[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_ShippingCost[INTERNET];    jo.A['value'].D[2] := brand.scrb_ShippingCost[CORPORATE]; end;
+       scrb_ServiceCost:       begin jo.A['value'].D[0] := brand.scrb_ServiceCost[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_ServiceCost[INTERNET];    jo.A['value'].D[2] := brand.scrb_ServiceCost[CORPORATE]; end;
 
      end;
      result := jo;
@@ -217,7 +217,7 @@ var
        scrv_NetProfitShareInCategory:       begin jo.A['value'].D[0] := variant.scrv_NetProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfitShareInCategory[CORPORATE]; end;
 
        scrv_eMallCommission:       begin jo.A['value'].D[0] := variant.scrv_eMallCommission[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_eMallCommission[INTERNET];    jo.A['value'].D[2] := variant.scrv_eMallCommission[CORPORATE]; end;
-       scrv_ShippingCost:       begin jo.A['value'].D[0] := variant.scrv_ShippingCost[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_ShippingCost[INTERNET];    jo.A['value'].D[2] := variant.scrv_ShippingCost[CORPORATE]; end;
+       scrv_ServiceCost:       begin jo.A['value'].D[0] := variant.scrv_ServiceCost[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_ServiceCost[INTERNET];    jo.A['value'].D[2] := variant.scrv_ServiceCost[CORPORATE]; end;
 
      end;
 
@@ -263,7 +263,7 @@ var
       scrpl_TradeSupport : begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_TradeSupport;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_TradeSupport;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_TradeSupport;    end;
 
       scrpl_eMallCommission : begin        jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_eMallCommission;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_eMallCommission;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_eMallCommission;    end;
-      scrpl_ShippingCost : begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_ShippingCost;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_ShippingCost;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_ShippingCost;    end;
+      scrpl_ServiceCost : begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_ServiceCost;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_ServiceCost;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_ServiceCost;    end;
 
     end;
          
@@ -309,7 +309,7 @@ var
     oJsonFile.O['scrpl_TradeSupport'] := SA([]);
 
     oJsonFile.O['scrpl_eMallCommission'] := SA([]);
-    oJsonFile.O['scrpl_ShippingCost'] := SA([]);
+    oJsonFile.O['scrpl_ServiceCost'] := SA([]);
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
@@ -340,7 +340,7 @@ var
       oJsonFile.A['scrpl_TradeSupport'].Add(categoryDivisionsInfoSchema(scrpl_TradeSupport, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
 
       oJsonFile.A['scrpl_eMallCommission'].Add(categoryDivisionsInfoSchema(scrpl_eMallCommission, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
-      oJsonFile.A['scrpl_ShippingCost'].Add(categoryDivisionsInfoSchema(scrpl_ShippingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_ServiceCost'].Add(categoryDivisionsInfoSchema(scrpl_ServiceCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
 
     end;
 
@@ -381,7 +381,7 @@ var
     oJsonFile.O['scrb_TradeSupport'] := SA([]);
 
     oJsonFile.O['scrb_eMallCommission'] := SA([]);
-    oJsonFile.O['scrb_ShippingCost'] := SA([]);
+    oJsonFile.O['scrb_ServiceCost'] := SA([]);
 
     for catID := Low(TCategories) to High(TCategories) do
     begin
@@ -424,7 +424,7 @@ var
 
 
             oJsonFile.A['scrb_eMallCommission'].Add( brandInfoSchema(scrb_eMallCommission, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
-            oJsonFile.A['scrb_ShippingCost'].Add( brandInfoSchema(scrb_ShippingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_ServiceCost'].Add( brandInfoSchema(scrb_ServiceCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
 
           end;
         end;
@@ -464,7 +464,7 @@ var
     oJsonFile.O['scrv_TradeSupport'] := SA([]);
 
     oJsonFile.O['scrv_eMallCommission'] := SA([]);
-    oJsonFile.O['scrv_ShippingCost'] := SA([]);
+    oJsonFile.O['scrv_ServiceCost'] := SA([]);
 
 
     for catID := Low(TCategories) to High(TCategories) do
@@ -509,7 +509,7 @@ var
               oJsonFile.A['scrv_TradeSupport'].Add( variantInfoSchema(scrv_TradeSupport, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
 
               oJsonFile.A['scrv_eMallCommission'].Add( variantInfoSchema(scrv_eMallCommission, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
-              oJsonFile.A['scrv_ShippingCost'].Add( variantInfoSchema(scrv_ShippingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_ServiceCost'].Add( variantInfoSchema(scrv_ServiceCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
 
             end;
           end;

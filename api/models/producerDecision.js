@@ -76,6 +76,7 @@ var proDecisionSchema = mongoose.Schema({
     seminar : String,
     period : Number,
     producerID : Number, //1~4
+    serviceLevel : String, //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
     proCatDecision : [proCatDecisionSchema], //Length: TCategories(1~2)    
