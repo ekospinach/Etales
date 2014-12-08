@@ -223,7 +223,8 @@ exports.addProducerDecisions = function(options) {
                         nextBudgetExtension: singleDecision.nextBudgetExtension,
                         approvedBudgetExtension: singleDecision.approvedBudgetExtension,
                         marketResearchOrder : singleDecision.marketResearchOrder,
-                        proCatDecision: singleDecision.proCatDecision
+                        proCatDecision: singleDecision.proCatDecision,
+                        serviceLevel : singleDecision.serviceLevel
                     }, {
                         upsert: true
                     },
