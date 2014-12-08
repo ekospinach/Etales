@@ -19,7 +19,8 @@ var SCR_inventoryVolumesSchema = mongoose.Schema({
     scrviv_Closing          : [variantInfoSchema],
     scrviv_UnitProductionCost   : [variantInfoSchema],
     scrviv_Orders           : [variantMarketInfoSchema],
-    scrviv_Shipments        : [variantMarketInfoSchema],    
+    scrviv_Shipments        : [variantMarketInfoSchema], 
+    scrviv_Available        : [variantInfoSchema],
 })
 
 var variantInfoSchema = mongoose.Schema({
@@ -83,6 +84,7 @@ exports.addReports = function(options){
                                 scrviv_Closing          : singleReport.scrviv_Closing,     
                                 scrviv_Orders           : singleReport.scrviv_Orders,
                                 scrviv_Shipments           : singleReport.scrviv_Shipments,                                  
+                                scrviv_Available          : singleReport.scrviv_Available,
 
                                 scrviv_UnitProductionCost   : singleReport.scrviv_UnitProductionCost,
                                 },
