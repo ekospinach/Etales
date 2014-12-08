@@ -14,6 +14,7 @@ const
   scrviv_Orders           = 105;
   scrviv_Shipments        = 106; 
   scrviv_UnitProductionCost = 107;
+  scrviv_Available        = 108;
 
 var
   DataDirectory : string;
@@ -91,6 +92,8 @@ var
     oJsonFile.O['scrviv_Initial'] := SA([]);
     oJsonFile.O['scrviv_Production'] := SA([]);
     oJsonFile.O['scrviv_Sales'] := SA([]);
+    oJsonFile.O['scrviv_Available'] := SA([]);
+
     oJsonFile.O['scrviv_Discontinued'] := SA([]);
     oJsonFile.O['scrviv_Closing'] := SA([]);
 
@@ -109,6 +112,8 @@ var
               oJsonFile.A['scrviv_Initial'].Add( variantInfoSchema(scrviv_Initial, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Production'].Add( variantInfoSchema(scrviv_Production, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Sales'].Add( variantInfoSchema(scrviv_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
+              oJsonFile.A['scrviv_Available'].Add( variantInfoSchema(scrviv_Available, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
+
               oJsonFile.A['scrviv_Discontinued'].Add( variantInfoSchema(scrviv_Discontinued, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Closing'].Add( variantInfoSchema(scrviv_Closing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_UnitProductionCost'].Add( variantInfoSchema(scrviv_UnitProductionCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );

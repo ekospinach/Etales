@@ -189,7 +189,7 @@ TSCR_DivisionProfitAndLoss =
     scrpl_DiscontinuedGoodsCost                : single;
     scrpl_InventoryHoldingCost                 : single;
     scrpl_eMallCommission                      : single;
-    scrpl_ShippingCost                         : single;
+    scrpl_ServiceCost                          : single;   { modified on Dec-1, 2014 }
     scrpl_GrossProfit                          : single;
     scrpl_GrossProfitChange                    : single;
     scrpl_GrossProfitMargin                    : single;
@@ -235,7 +235,7 @@ TSCR_OneVariant =
     scrv_DiscontinuedGoodsCost                : array[TProducerDivisions] of single;
     scrv_InventoryHoldingCost                 : array[TProducerDivisions] of single;
     scrv_eMallCommission                      : array[TProducerDivisions] of single;
-    scrv_ShippingCost                         : array[TProducerDivisions] of single;
+    scrv_ServiceCost                          : array[TProducerDivisions] of single;   { modified on Dec 1, 2014 }
     scrv_GrossProfit                          : array[TProducerDivisions] of single;
     scrv_GrossProfitChange                    : array[TProducerDivisions] of single;
     scrv_GrossProfitMargin                    : array[TProducerDivisions] of single;
@@ -288,7 +288,7 @@ TSCR_OneBrand =
     scrb_DiscontinuedGoodsCost                : array[TProducerDivisions] of single;
     scrb_InventoryHoldingCost                 : array[TProducerDivisions] of single;
     scrb_eMallCommission                      : array[TProducerDivisions] of single;
-    scrb_ShippingCost                         : array[TProducerDivisions] of single;
+    scrb_ServiceCost                          : array[TProducerDivisions] of single;   { modified on Dec-1, 2014 }
     scrb_GrossProfit                          : array[TProducerDivisions] of single;
     scrb_GrossProfitChange                    : array[TProducerDivisions] of single;
     scrb_GrossProfitMargin                    : array[TProducerDivisions] of single;
@@ -352,6 +352,7 @@ TSCR_VariantInventoryVolume =
     scrviv_ParentBrandName    : TBrandName;
     scrviv_Initial            : array[TProducerDivisions] of single;
     scrviv_Production         : single;
+    scrviv_Available          : array[TProducerDivisions] of single;                { added on 1-Dec-2014 }
     scrviv_Sales              : array[TProducerDivisions] of single;
     scrviv_Orders             : array[TMarketsTotal, TAccountsTotal] of single;
     scrviv_Shipments          : array[TMarketsTotal, TAccountsTotal] of single;

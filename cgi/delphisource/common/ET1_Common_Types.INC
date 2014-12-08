@@ -187,6 +187,7 @@ Type
   TProDecision = record
                    dp_ProducerID              : TProducers;
                    dp_CatDecisions            : TProCatsDecisions;
+                   dp_ServiceLevel            : TServiceLevel;    { modified on Dec-4, 2014 }
                    dp_NextBudgetExtension     : single;
                    dp_ApprovedBudgetExtension : single;
                    dp_MarketResearch          : TMarketResearchOrders;  
