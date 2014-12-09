@@ -20,6 +20,17 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
+                    scope.packs = [{
+                        value: 1, text: Label.getContent('SL_BASE')
+                    },{
+                        value: 2, text: Label.getContent('SL_FAIR')
+                    },{
+                        value: 3, text: Label.getContent('SL_MEDIUM')
+                    },{
+                        value: 4, text: Label.getContent('SL_ENHANCED')
+                    },{
+                        value: 5, text: Label.getContent('SL_PREMIUM')
+                    }]; 
 
                     scope.currentPeriod=scope.selectedPeriod;                    
 					RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
@@ -96,17 +107,7 @@ define(['directives', 'services'], function(directives){
 				}
 
 				var selectPacks = function(marketID) {
-					scope.packs = [{
-						value: 1, text: Label.getContent('SL_BASE')
-					},{
-						value: 2, text: Label.getContent('SL_FAIR')
-					},{
-						value: 3, text: Label.getContent('SL_MEDIUM')
-					},{
-						value: 4, text: Label.getContent('SL_ENHANCED')
-					},{
-						value: 5, text: Label.getContent('SL_PREMIUM')
-					}]; 
+					
 					var selected,postion=-1;
 					for(var i=0;i<scope.markets.length;i++){
 						if(scope.markets[i].marketID==marketID){
