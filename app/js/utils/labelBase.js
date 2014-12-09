@@ -1170,7 +1170,13 @@ var getLabelBase = function(){
 		{id:'Relative Profitability',  ENG:'Relative Profitability (RP)',  CHN:'相对盈利能力',  RUS:''},
 		{id:'Shopper Base',  ENG:'Shopper Base (Share of Pocket SOP)',  CHN:'Shopper Base 中文',  RUS:''},
 
-
+		//add for Confidential report
+		{id:'Available Inventory(including production +/- internal transfers)',  ENG:'Available Inventory(including production +/- internal transfers)',  CHN:'Available Inventory(including production +/- internal transfers)中文',  RUS:''},
+		{id:'Shipped to Retailers',  ENG:'Shipped to Retailers',  CHN:'Shipped to Retailers翻译',  RUS:''},
+		{id:'Sold Online',  ENG:'Sold Online',  CHN:'Sold Online翻译',  RUS:''},
+		{id:'Service Cost',  ENG:'Service Cost',  CHN:'Service Cost翻译',  RUS:''},
+		{id:'Service Level',  ENG:'Service Level',  CHN:'店内服务水平',  RUS:''},
+		{id:'Service Level Info',  ENG:'is a synthetic variable encompassing such aspects of store functioning like: opening hours, accessibility, number of open check-outs, friendliness and competence of the stuff, overall store layout, etc. The value ranges from 1 to 5, 1 being the lowest or basic and 5 being the highest or premium in-store service level',  CHN:'店内服务水平是综合变量，提供\“基础\”、\“一般\”、\“中等\”、\“好\”和\“优质\”五种选择，直接影响购物者对你门店的便利性和产品组合感知，对价格感知起反作用。',  RUS:''},
 
 
 	]
