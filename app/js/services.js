@@ -658,6 +658,23 @@ define(['angular',
 						console.log('Failed:' + res);
 					});
 				},
+				//setProducerServiceLevel
+				setServiceLevel:function(producerID,value,page){
+					console.log('in');
+					var queryCondition = {
+						producerID:producerID,
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'updateServiceLevel', 
+						value : value,
+						page:page
+					}
+					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
+				},
 				//setMarketResearchOrders
 				setMarketResearchOrders:function(playerID,additionalIdx,value,page){
 					var queryCondition = {

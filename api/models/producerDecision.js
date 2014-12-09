@@ -293,6 +293,9 @@ exports.updateProducerDecision = function(io) {
         - step 4
         updateCategory : category,location,value
 
+        -updateServiceLevel
+        updateServiceLevel : value
+
         - MarketResearchOrders
         updateMarketResearchOrders : additionalIdx value
         */
@@ -493,6 +496,26 @@ exports.updateProducerDecision = function(io) {
                                     doc.proCatDecision[i][queryCondition.location] = queryCondition.value;
                                 }
                             };
+                            break;
+                        case 'updateServiceLevel':
+                            switch (queryCondition.value) {
+                                case 1:
+                                    queryCondition.value = "SL_BASE";
+                                    break;
+                                case 2:
+                                    queryCondition.value = "SL_FAIR";
+                                    break;
+                                case 3:
+                                    queryCondition.value = "SL_MEDIUM";
+                                    break;
+                                case 3:
+                                    queryCondition.value = "SL_ENHANCED";
+                                    break;
+                                case 3:
+                                    queryCondition.value = "SL_PREMIUM";
+                                    break;
+                            }
+                            doc.serviceLevel = queryCondition.value;
                             break;
                         case 'updateMarketResearchOrders':
                             doc.marketResearchOrder[queryCondition.additionalIdx] = queryCondition.value;
