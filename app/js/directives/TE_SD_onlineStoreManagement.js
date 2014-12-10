@@ -17,11 +17,28 @@ define(['directives', 'services'], function(directives) {
                 templateUrl: '../../partials/singleReportTemplate/SD_onlineStoreManagement.html',
                 link: function(scope, element, attrs) {
 
+                    var selectPacks = function() {
+                        
+                        var selected = $filter('filter')(scope.packs, {value: scope.serviceLevel});
+                        return (scope.serviceLevel && selected.length) ? selected[0].text : 'Not set';
+                    };
+
                     var initializePage = function() {
                         console.log('initializePage some small...');
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
                         scope.Label = Label;
+                        scope.packs = [{
+                            value: 1, text: Label.getContent('SL_BASE')
+                        },{
+                            value: 2, text: Label.getContent('SL_FAIR')
+                        },{
+                            value: 3, text: Label.getContent('SL_MEDIUM')
+                        },{
+                            value: 4, text: Label.getContent('SL_ENHANCED')
+                        },{
+                            value: 5, text: Label.getContent('SL_PREMIUM')
+                        }]; 
 
                         scope.currentPeriod = scope.selectedPeriod;
                         ProducerDecisionBase.reload({
@@ -30,6 +47,19 @@ define(['directives', 'services'], function(directives) {
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
+                            scope.serviceLevel=scope.pageBase.serviceLevel;
+                            if(scope.serviceLevel=="SL_BASE"){
+                                scope.serviceLevel=1;
+                            }else if(scope.serviceLevel=="SL_FAIR"){
+                                scope.serviceLevel=2;
+                            }else if(scope.serviceLevel=="SL_MEDIUM"){
+                                scope.serviceLevel=3;
+                            }else if(scope.serviceLevel=="SL_ENHANCED"){
+                                scope.serviceLevel=4;
+                            }else if(scope.serviceLevel=="SL_PREMIUM"){
+                                scope.serviceLevel=5;
+                            }
+                            scope.selectPacks = selectPacks;
                         }).then(function() {
                             return showView();
                         }),
@@ -40,6 +70,7 @@ define(['directives', 'services'], function(directives) {
                             console.log('from ctr: ' + update);
                         };
                     }
+
 
                     var loadSelectCategory = function(category) {
                         var d = $q.defer();
@@ -249,6 +280,10 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
+                    scope.updateServiceLevel = function(value){
+                        ProducerDecisionBase.setServiceLevel(scope.selectedPlayer,value,'supplierOnlineStoreManagement');
+
+                    }
 
                     scope.updateBrandDecision = function(category, brandName, location, tep, index) {
                         var categoryID;

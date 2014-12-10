@@ -69,7 +69,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p class="padding-40">(5) {{Label.getContent('Shipping Cost')}} ({{Label.getContent('$mln')}})
+                        <p class="padding-40">(5) {{Label.getContent('Service Cost')}} ({{Label.getContent('$mln')}})
                     </td>
                 </tr>
                 <tr class="tr-info">
@@ -271,10 +271,10 @@
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{ShippingCosts[0].value[1] | number : 1 }}</p>
+                        <p class="text-right">{{ServiceCosts[0].value[1] | number : 1 }}</p>
                     </td>
                     <td ng-repeat='brand in brand1s'>
-                        <p class="text-right">{{brand.ShippingCost | number : 1 }}</p>
+                        <p class="text-right">{{brand.ServiceCost | number : 1 }}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
@@ -525,7 +525,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p class="padding-40">(5) {{Label.getContent('Shipping Cost')}} ({{Label.getContent('$mln')}})
+                        <p class="padding-40">(5) {{Label.getContent('Service Cost')}} ({{Label.getContent('$mln')}})
                     </td>
                 </tr>
                 <tr class="tr-info">
@@ -727,10 +727,10 @@
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{ShippingCosts[1].value[1] | number : 1 }}</p>
+                        <p class="text-right">{{ServiceCosts[1].value[1] | number : 1 }}</p>
                     </td>
                     <td ng-repeat='brand in brand2s'>
-                        <p class="text-right">{{brand.ShippingCost | number : 1 }}</p>
+                        <p class="text-right">{{brand.ServiceCost | number : 1 }}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">

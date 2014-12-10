@@ -6,6 +6,21 @@
     </div>
     <table class="table table-condensed table-bordered table-success">
     	<thead>
+            <tr>
+                <th>
+                    <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Service Level Info')}}" popover-title="{{Label.getContent('Service Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Service Level')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </th>
+                <td>
+
+                    <a href="#" editable-select="serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateServiceLevel($data)">
+                        <p class="text-right">{{ selectPacks() }}
+                        </p>
+                    </a>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ selectPacks() }}</p>
+                </td>
+                <td colspan="4"></td>
+            </tr>
+
     		<tr>
     			<!-- <th colspan="5">{{Label.getContent('Elecssories')}}</th> -->
                 <th colspan="4"></th>

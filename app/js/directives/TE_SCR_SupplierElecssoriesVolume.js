@@ -33,6 +33,9 @@ define(['directives', 'services'], function(directives) {
                                 production = _.find(data.scrviv_Production, function(obj) {
                                     return (obj.variantName == varName && obj.parentBrandName == brandName);
                                 });
+                                available = _.find(data.scrviv_Available,function(obj){
+                                    return (obj.variantName == varName && obj.parentBrandName == brandName);
+                                })
                                 sales = _.find(data.scrviv_Sales, function(obj) {
                                     return (obj.variantName == varName && obj.parentBrandName == brandName);
                                 });
@@ -49,6 +52,7 @@ define(['directives', 'services'], function(directives) {
                                     'fullName': brandName + varName,
                                     'initial': initial,
                                     'production': production,
+                                    'available': available,
                                     'sales': sales,
                                     'discontinued': discontinued,
                                     'closing': closing,

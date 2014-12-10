@@ -47,7 +47,7 @@ define(['directives', 'services'], function(directives) {
                         scope.discontinuedGoodsCosts = data.scrpl_DiscontinuedGoodsCost;
                         scope.holdingCosts           = data.scrpl_InventoryHoldingCost;
                         scope.eMallCommissions       = data.scrpl_eMallCommission;
-                        scope.ShippingCosts          = data.scrpl_ShippingCost;
+                        scope.ServiceCosts           = data.scrpl_ServiceCost;
                         scope.grossProfits           = data.scrpl_GrossProfit;
                         scope.grossProfitChanges     = data.scrpl_GrossProfitChange;
                         scope.grossProfitMargins     = data.scrpl_GrossProfitMargin;
@@ -72,6 +72,7 @@ define(['directives', 'services'], function(directives) {
                         deferred.resolve({
                             msg: 'Array is ready.'
                         });
+                        console.log(scope.ServiceCosts);
                         return deferred.promise;
                     }
 

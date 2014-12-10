@@ -38,7 +38,9 @@ define(['angular',
 						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value});
 						    if(item){ return item.ENG;}
 						    else{
-						    	items.push(value);
+						    	//items.push(value);
+						    	//add this for debug
+						    	console.log(value);
 						    	return '**NotFound**';
 						    }
 						    break;
@@ -655,6 +657,23 @@ define(['angular',
 					},function(res){
 						console.log('Failed:' + res);
 					});
+				},
+				//setProducerServiceLevel
+				setServiceLevel:function(producerID,value,page){
+					console.log('in');
+					var queryCondition = {
+						producerID:producerID,
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'updateServiceLevel', 
+						value : value,
+						page:page
+					}
+					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
 				},
 				//setMarketResearchOrders
 				setMarketResearchOrders:function(playerID,additionalIdx,value,page){
