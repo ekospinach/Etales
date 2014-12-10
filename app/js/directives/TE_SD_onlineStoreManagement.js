@@ -20,7 +20,7 @@ define(['directives', 'services'], function(directives) {
                     var selectPacks = function() {
                         
                         var selected = $filter('filter')(scope.packs, {value: scope.serviceLevel});
-                        return (scope.serviceLevel && selected.length) ? selected[0].text : 'Not set';
+                        return (scope.serviceLevel && selected.length) ? Label.getContent(selected[0].text) : Label.getContent('Not set');
                     };
 
                     var initializePage = function() {
@@ -29,15 +29,15 @@ define(['directives', 'services'], function(directives) {
                         scope.isResultShown = false;
                         scope.Label = Label;
                         scope.packs = [{
-                            value: 1, text: Label.getContent('SL_BASE')
+                            value: 1, text: 'SL_BASE'
                         },{
-                            value: 2, text: Label.getContent('SL_FAIR')
+                            value: 2, text: 'SL_FAIR'
                         },{
-                            value: 3, text: Label.getContent('SL_MEDIUM')
+                            value: 3, text: 'SL_MEDIUM'
                         },{
-                            value: 4, text: Label.getContent('SL_ENHANCED')
+                            value: 4, text: 'SL_ENHANCED'
                         },{
-                            value: 5, text: Label.getContent('SL_PREMIUM')
+                            value: 5, text: 'SL_PREMIUM'
                         }]; 
 
                         scope.currentPeriod = scope.selectedPeriod;

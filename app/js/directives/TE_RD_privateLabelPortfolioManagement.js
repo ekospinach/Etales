@@ -22,11 +22,11 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
                     scope.currentPeriod=scope.selectedPeriod;
                     scope.packs = [{
-                        value: 1, text: Label.getContent('ECONOMY')
+                        value: 1, text: 'ECONOMY'
                     },{
-                        value: 2, text: Label.getContent('STANDARD')
+                        value: 2, text: 'STANDARD'
                     },{
-                        value: 3, text: Label.getContent('PREMIUM')
+                        value: 3, text: 'PREMIUM'
                     }]; 
                     scope.parameter="NewBrand";/*default add new Brand*/                    
 					RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
@@ -132,7 +132,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                             if(postion!=-1&&selected!=undefined){
-                                return (scope.productes[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
+                                return (scope.productes[postion].packFormat && selected.length) ? Label.getContent(selected[0].text) : Label.getContent('Not set'); 
                             }
                             else{
                                 return Label.getContent('Not set'); 
@@ -146,7 +146,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                             if(postion!=-1&&selected!=undefined){
-                                return (scope.producths[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
+                                return (scope.producths[postion].packFormat && selected.length) ? Label.getContent(selected[0].text) : Label.getContent('Not set'); 
                             }
                             else{
                                 return Label.getContent('Not set'); 

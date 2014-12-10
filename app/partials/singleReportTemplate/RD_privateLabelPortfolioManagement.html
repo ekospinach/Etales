@@ -45,7 +45,7 @@
     				<p>{{producte.parentBrandName}}{{producte.varName}}</p>
     			</td>
     			<td>
-    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producte.dateOfBirth==currentPeriod&&(!isDecisionCommitted))' onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index,$data)">
+    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as Label.getContent(p.text) for p in packs" ng-show='(producte.dateOfBirth==currentPeriod&&(!isDecisionCommitted))' onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index,$data)">
     					<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
     				</a>
                     <p ng-show='producte.dateOfBirth<currentPeriod||isDecisionCommitted' class="text-right text-muted">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
@@ -115,7 +115,7 @@
     				<div style="clear:both"></div>
     			</td>
     			<td>
-    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producth.dateOfBirth==currentPeriod&&(!isDecisionCommitted))' onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index,$data)">
+    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as Label.getContent(p.text) for p in packs" ng-show='(producth.dateOfBirth==currentPeriod&&(!isDecisionCommitted))' onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index,$data)">
     					<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
     				</a>
                     <p class="text-right text-muted" ng-show='producth.dateOfBirth<currentPeriod||isDecisionCommitted'>{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>

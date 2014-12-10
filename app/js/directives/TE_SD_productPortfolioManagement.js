@@ -25,13 +25,13 @@ define(['directives', 'services'], function(directives) {
                         scope.currentPeriod = scope.selectedPeriod;
                         scope.packs = [{
                             value: 1,
-                            text: Label.getContent('ECONOMY')
+                            text: 'ECONOMY'
                         }, {
                             value: 2,
-                            text: Label.getContent('STANDARD')
+                            text: 'STANDARD'
                         }, {
                             value: 3,
-                            text: Label.getContent('PREMIUM')
+                            text: 'PREMIUM'
                         }];
                         scope.parameter = "NewBrand"; /*default add new Brand*/
                         if(scope.selectedPeriod&&scope.selectedPlayer){
@@ -147,7 +147,7 @@ define(['directives', 'services'], function(directives) {
                                     }
                                 }
                                 if (postion != -1 && selected != undefined) {
-                                    return (scope.productes[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set');
+                                    return (scope.productes[postion].packFormat && selected.length) ? Label.getContent(selected[0].text) : Label.getContent('Not set');
                                 } else {
                                     return Label.getContent('Not set');
                                 }
@@ -162,7 +162,7 @@ define(['directives', 'services'], function(directives) {
                                     }
                                 }
                                 if (postion != -1 && selected != undefined) {
-                                    return (scope.producths[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set');
+                                    return (scope.producths[postion].packFormat && selected.length) ? Label.getContent(selected[0].text) : Label.getContent('Not set');
                                 } else {
                                     return Label.getContent('Not set');
                                 }
