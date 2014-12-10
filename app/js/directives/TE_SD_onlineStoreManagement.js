@@ -18,19 +18,9 @@ define(['directives', 'services'], function(directives) {
                 link: function(scope, element, attrs) {
 
                     var selectPacks = function() {
-                        if(scope.pageBase.serviceLevel=="SL_BASE"){
-                            scope.pageBase.serviceLevel=1;
-                        }else if(scope.pageBase.serviceLevel=="SL_FAIR"){
-                            scope.pageBase.serviceLevel=2;
-                        }else if(scope.pageBase.serviceLevel=="SL_MEDIUM"){
-                            scope.pageBase.serviceLevel=3;
-                        }else if(scope.pageBase.serviceLevel=="SL_ENHANCED"){
-                            scope.pageBase.serviceLevel=4;
-                        }else if(scope.pageBase.serviceLevel=="SL_PREMIUM"){
-                            scope.pageBase.serviceLevel=5;
-                        }
-                        var selected = $filter('filter')(scope.packs, {value: scope.pageBase.serviceLevel});
-                        return (scope.pageBase.serviceLevel && selected.length) ? selected[0].text : 'Not set';
+                        
+                        var selected = $filter('filter')(scope.packs, {value: scope.serviceLevel});
+                        return (scope.serviceLevel && selected.length) ? selected[0].text : 'Not set';
                     };
 
                     var initializePage = function() {
@@ -57,6 +47,18 @@ define(['directives', 'services'], function(directives) {
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
+                            scope.serviceLevel=scope.pageBase.serviceLevel;
+                            if(scope.serviceLevel=="SL_BASE"){
+                                scope.serviceLevel=1;
+                            }else if(scope.serviceLevel=="SL_FAIR"){
+                                scope.serviceLevel=2;
+                            }else if(scope.serviceLevel=="SL_MEDIUM"){
+                                scope.serviceLevel=3;
+                            }else if(scope.serviceLevel=="SL_ENHANCED"){
+                                scope.serviceLevel=4;
+                            }else if(scope.serviceLevel=="SL_PREMIUM"){
+                                scope.serviceLevel=5;
+                            }
                             scope.selectPacks = selectPacks;
                         }).then(function() {
                             return showView();

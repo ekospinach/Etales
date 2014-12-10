@@ -149,11 +149,11 @@ exports.getBrandPerspective = function(req, res, next) {
         'seminar': req.params.seminar,
         'period': req.params.period
     };
-    performanceHighlights.find(data, function(err, docs) {
+    performanceHighlights.findOne(data, function(err, doc) {
         if (err) {
             return next(new Error(err));
         }
-        if (docs) {
+        if (doc) {
             var result = {
                 operatingProfits: [],
                 cumulativeInvestments: [],
@@ -162,7 +162,7 @@ exports.getBrandPerspective = function(req, res, next) {
                 volumeShares: [],
                 valueShares: []
             };
-            docs[0].actorInfo.forEach(function(singleData) {
+            doc.actorInfo.forEach(function(singleData) {
                 result.operatingProfits.push({
                     'value': singleData.grph_OperatingProfit
                 });
@@ -203,19 +203,19 @@ exports.getChannelPerspective = function(req, res, next) {
         'seminar': req.params.seminar,
         'period': req.params.period
     };
-    performanceHighlights.find(data, function(err, docs) {
+    performanceHighlights.findOne(data, function(err, doc) {
         if (err) {
             return next(new Error(err));
         }
-        if (docs) {
+        if (doc) {
             var result = {
                 players: []
             };
             var categories = [];
             for (var i = 0; i < 6; i++) {
-                docs[0].storeInfo[i].storeCategoryInfo.forEach(function(singleData) {
+                doc.storeInfo[i].storeCategoryInfo.forEach(function(singleData) {
                     categories.push({
-                        'storeID': docs[0].storeInfo[i].storeID,
+                        'storeID': doc.storeInfo[i].storeID,
                         'categoryID': singleData.categoryID,
                         'salesVolume': singleData.grph_ConsumersOffTakeVolume,
                         'salesValue': singleData.grph_ConsumersOffTakeValue,
