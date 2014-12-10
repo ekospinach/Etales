@@ -12,7 +12,7 @@
                 </th>
                 <td>
 
-                    <a href="#" editable-select="serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateServiceLevel($data)">
+                    <a href="#" editable-select="serviceLevel" e-ng-options="p.value as Label.getContent(p.text) for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateServiceLevel($data)">
                         <p class="text-right">{{ selectPacks() }}
                         </p>
                     </a>

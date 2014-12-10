@@ -109,7 +109,7 @@
                     <p class="padding-40">{{Label.getContent('Urban')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-select="markets[0].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateMarketingDecision(markets[0].marketID,'serviceLevel','postion','addtionalIdx',0)">
+                    <a href="#" editable-select="markets[0].serviceLevel" e-ng-options="p.value as  Label.getContent(p.text) for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateMarketingDecision(markets[0].marketID,'serviceLevel','postion','addtionalIdx',0)">
                         <p class="text-right">{{ selectPacks(markets[0].marketID) }}
                         </p>
                     </a>
@@ -121,7 +121,7 @@
                     <p class="padding-40">{{Label.getContent('Rural')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
+                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as Label.getContent(p.text) for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
                         <p class="text-right">{{ selectPacks(markets[1].marketID) }}
                         </p>
                     </a>

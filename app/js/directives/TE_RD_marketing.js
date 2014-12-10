@@ -21,15 +21,15 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
                     scope.packs = [{
-                        value: 1, text: Label.getContent('SL_BASE')
+                        value: 1, text: 'SL_BASE'
                     },{
-                        value: 2, text: Label.getContent('SL_FAIR')
+                        value: 2, text: 'SL_FAIR'
                     },{
-                        value: 3, text: Label.getContent('SL_MEDIUM')
+                        value: 3, text: 'SL_MEDIUM'
                     },{
-                        value: 4, text: Label.getContent('SL_ENHANCED')
+                        value: 4, text: 'SL_ENHANCED'
                     },{
-                        value: 5, text: Label.getContent('SL_PREMIUM')
+                        value: 5, text: 'SL_PREMIUM'
                     }]; 
 
                     scope.currentPeriod=scope.selectedPeriod;                    
@@ -117,7 +117,7 @@ define(['directives', 'services'], function(directives){
 						}
 					}
 					if(postion!=-1){
-						return (scope.markets[postion].serviceLevel && selected.length) ? selected[0].text : Label.getContent('Not set'); 
+						return (scope.markets[postion].serviceLevel && selected.length) ? Label.getContent(selected[0].text) : Label.getContent('Not set'); 
 					}
 					else{
 						return Label.getContent('Not set');	
