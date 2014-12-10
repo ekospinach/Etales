@@ -1095,7 +1095,7 @@ var getLabelBase = function(){
 		{id:'(Private label)',  ENG:'(Private label)',  CHN:'(自有品牌)',  RUS:''},		
 		//new clock
 		/*！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-		！！！！！！！！！！下面所有的都需要验证 翻译 ！！！！！！！！！！！
+		！！！！！！！！！！下面所有的都需要翻译 ！！！！！！！！！！！
 		！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 		*/
 		{id:'System will',  ENG:'System will',  CHN:'系统将',  RUS:''},		
@@ -1171,11 +1171,11 @@ var getLabelBase = function(){
 		{id:'Shopper Base',  ENG:'Shopper Base (Share of Pocket SOP)',  CHN:'Shopper Base 中文',  RUS:''},
 
 		//add for Confidential report
-		{id:'Available Inventory(including production +/- internal transfers)',  ENG:'Available Inventory(including production +/- internal transfers)',  CHN:'Available Inventory(including production +/- internal transfers)中文',  RUS:''},
-		{id:'Shipped to Retailers',  ENG:'Shipped to Retailers',  CHN:'Shipped to Retailers翻译',  RUS:''},
-		{id:'Sold Online',  ENG:'Sold Online',  CHN:'Sold Online翻译',  RUS:''},
-		{id:'Service Cost',  ENG:'Service Cost',  CHN:'Service Cost翻译',  RUS:''},
-		{id:'Service Level',  ENG:'Service Level',  CHN:'店内服务水平',  RUS:''},
+		{id:'Available Inventory(including production +/- internal transfers)',  ENG:'Available Inventory(including production +/- internal transfers)',  CHN:'根据设定的\"渠道偏好\"以及当期产量重新调整后的库存',  RUS:''},
+		{id:'Shipped to Retailers',  ENG:'Shipped to Retailers',  CHN:'线下销量（到零售商）',  RUS:''},
+		{id:'Sold Online',  ENG:'Sold Online',  CHN:'线上销量',  RUS:''},
+		{id:'Service Cost',  ENG:'Service Cost',  CHN:'服务成本',  RUS:''},
+		{id:'Service Level',  ENG:'Service Level',  CHN:'服务水平',  RUS:''},
 		{id:'Service Level Info',  ENG:'Encompasses such aspects of online store operations such as days for shipment, return policy and after sales service. The value ranges from 1 to 5 (LOW to PREMIUM) with 1 being the lowest or basic service level and 5 being the highest or premium online store operation service level.',  CHN:'服务水平是综合变量，提供\“基础\”、\“一般\”、\“中等\”、\“好\”和\“优质\”五种选择，直接影响一些在线购物体验如物流速度和质量，退换货政策，售后服务等。',  RUS:''},
 
 

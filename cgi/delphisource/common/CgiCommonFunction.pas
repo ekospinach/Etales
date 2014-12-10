@@ -14,6 +14,7 @@ uses
 {$I 'ET1_Common_Constants.INC'}
 {$I 'ET1_Runtime_Codes.INC'}
 {$I 'ET1_Common_Types.INC'}
+{$I 'ET1_Decisional_Types.INC'}
 {$I 'ET1_Exogenous_Type.INC'}
 {$I 'ET1_Parameters_Type.INC'}
 {$I 'ET1_Universe_Declarations.INC'}
