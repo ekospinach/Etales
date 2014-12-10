@@ -509,12 +509,14 @@ exports.updateProducerDecision = function(io) {
                                 case 3:
                                     queryCondition.value = "SL_MEDIUM";
                                     break;
-                                case 3:
+                                case 4:
                                     queryCondition.value = "SL_ENHANCED";
                                     break;
-                                case 3:
+                                case 5:
                                     queryCondition.value = "SL_PREMIUM";
                                     break;
+                                default:
+                                    queryCondition.value = "SL_BASE";                                
                             }
                             doc.serviceLevel = queryCondition.value;
                             break;
