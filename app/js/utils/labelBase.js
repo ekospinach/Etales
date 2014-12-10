@@ -1176,7 +1176,7 @@ var getLabelBase = function(){
 		{id:'Sold Online',  ENG:'Sold Online',  CHN:'Sold Online翻译',  RUS:''},
 		{id:'Service Cost',  ENG:'Service Cost',  CHN:'Service Cost翻译',  RUS:''},
 		{id:'Service Level',  ENG:'Service Level',  CHN:'店内服务水平',  RUS:''},
-		{id:'Service Level Info',  ENG:'is a synthetic variable encompassing such aspects of store functioning like: opening hours, accessibility, number of open check-outs, friendliness and competence of the stuff, overall store layout, etc. The value ranges from 1 to 5, 1 being the lowest or basic and 5 being the highest or premium in-store service level',  CHN:'店内服务水平是综合变量，提供\“基础\”、\“一般\”、\“中等\”、\“好\”和\“优质\”五种选择，直接影响购物者对你门店的便利性和产品组合感知，对价格感知起反作用。',  RUS:''},
+		{id:'Service Level Info',  ENG:'Encompasses such aspects of online store operations such as days for shipment, return policy and after sales service. The value ranges from 1 to 5 (LOW to PREMIUM) with 1 being the lowest or basic service level and 5 being the highest or premium online store operation service level.',  CHN:'服务水平是综合变量，提供\“基础\”、\“一般\”、\“中等\”、\“好\”和\“优质\”五种选择，直接影响一些在线购物体验如物流速度和质量，退换货政策，售后服务等。',  RUS:''},
 
 
 	]
