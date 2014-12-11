@@ -165,7 +165,7 @@
                         {{Label.getContent('Order Volume')}}
                     </p>
                 </th>
-                <th colspan="4">
+                <th colspan="3">
                     <p class="text-center">
                         {{Label.getContent('Delivered Volume')}}
                     </p>
@@ -190,7 +190,7 @@
                 </td>
                 <td>
                     <p class="text-center">
-                        {{Label.getContent('Online')}}
+                        {{Label.getContent('Online Planned Volume')}}
                     </p>
                 </td>
                 <td>
@@ -206,11 +206,6 @@
                 <td>
                     <p class="text-center">
                         {{Label.getContent('Retailer')}} 3
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Online')}}
                     </p>
                 </td>
             </tr>
@@ -246,9 +241,6 @@
                 <td>
                     <p class="text-right">{{product.r3Sales | number : 1 }}</p>
                 </td>
-                <td>
-                    <p class="text-right">{{product.onlineSales | number : 1 }}</p>
-                </td>
             </tr>
             <tr ng-show='ruralProducts.length!=0'>
                 <td colspan="9">
@@ -279,9 +271,6 @@
                 </td>
                 <td>
                     <p class="text-right">{{product.r3Sales | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.onlineSales | number : 1 }}</p>
                 </td>
             </tr>
         </tbody>

@@ -1,6 +1,7 @@
 {
   "name": "Etales",
   "version": "0.0.1",
+  "private": true,
   "description": "Online Business Simulation Game",
   "repository": {
     "type": "git",
