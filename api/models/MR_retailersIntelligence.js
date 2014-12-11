@@ -16,8 +16,9 @@ var retailerInfoSchema = mongoose.Schema({
     storeServiceLevel : [String], //0-Urban, 1-Rural,//SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
 //    storePerceptionInfo : [storePerceptionInfoSchema],
     onlineAdvertising : [Number], //0-Urban, 1-Rural
-    offlineAdvertising : [Number], //0-Urban, 1-Rural
+    offlineAdvertising : [Number], //0-Urban, 1-Rural    
     localAdvertising : [Number],
+    sellingSpace : [Number], //0-Urban, 1-Rural
     variantInfo : [variantInfoSchema],
 })
 

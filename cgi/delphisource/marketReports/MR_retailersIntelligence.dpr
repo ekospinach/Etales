@@ -35,7 +35,7 @@ var
     begin
       jo.A['shelfSpace'].D[marketID-1] := variant.mrssv_LatestShelfSpace[marketID];
       jo.A['previousShelfSpace'].D[marketID-1] := variant.mrssv_PreviousShelfSpace[marketID];
-      jo.A['shelfSpaceChange'].D[marketID-1] := variant.mrssv_ShelfSpaceChange[marketID];      
+      jo.A['shelfSpaceChange'].D[marketID-1] := variant.mrssv_ShelfSpaceChange[marketID];
     end;
     
     result:= jo;
@@ -53,6 +53,7 @@ var
     jo.O['onlineAdvertising'] := SA([]);
     jo.O['offlineAdvertising'] := SA([]);
     jo.O['localAdvertising'] := SA([]);
+    jo.O['sellingSpace'] := SA([]);
 
 
     for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
@@ -67,6 +68,7 @@ var
       jo.A['onlineAdvertising'].D[marketID-1] := retailerInfo.mrri_onlineAdvertising[marketID];
       jo.A['offlineAdvertising'].D[marketID-1] := retailerInfo.mrri_offlineAdvertising[marketID];
       jo.A['localAdvertising'].D[marketID-1] := retailerInfo.mrri_localAdvertising[marketID];
+      jo.A['sellingSpace'].D[marketID - 1] := retailerInfo.mrri_SellingSpace[marketID];
     end;
 
 

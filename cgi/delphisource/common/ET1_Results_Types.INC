@@ -748,6 +748,7 @@ TMR_RetailerInvestments =
     mrri_OnLineAdvertising    : array[TMarketsTotal] of single;
     mrri_OffLineAdvertising   : array[TMarketsTotal] of single;
     mrri_LocalAdvertising     : array[TMarketsTotal] of single;
+    mrri_SellingSpace         : array[TMarketsTotal] of single;  { added on 11/12/2014 }
     mrri_StoreServiceLevel    : array[TMarketsTotal] of TServiceLevel;
     mrri_ShelfSpaceAllocation : array[TCategories, TVariants] of TMR_VariantShelfSpace;
   end;
