@@ -75,6 +75,7 @@ var
        scrviv_Discontinued:   begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_Discontinued; end;
        scrviv_Closing:   begin jo.A['value'].D[0] := variant.scrviv_Closing[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Closing[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Closing[CORPORATE]; end;
        scrviv_UnitProductionCost : begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_UnitProductionCost; end;
+       scrviv_Available:   begin jo.A['value'].D[0] := variant.scrviv_Available[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Available[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Available[CORPORATE]; end;
      end;
      result := jo;
   end;

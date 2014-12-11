@@ -35,6 +35,7 @@ uses
 {$I 'ET1_Common_Types.INC'}
 {$I 'ET1_Results_Types.INC'}
 {$I 'ET1_FILES_NAMES.INC'}
+{$I 'ET1_Decisional_Types.INC'}
 
 const
   DecisionFileName = ' Decisions.';

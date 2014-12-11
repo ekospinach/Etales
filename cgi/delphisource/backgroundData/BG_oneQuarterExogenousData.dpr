@@ -65,12 +65,29 @@ var
    Markets_IDs                 : TMarketsBytes;
    Categories_IDs              : TCategoriesBytes;
 
+  function serviceLevelSchema(serviceLevel : TServiceLevel; binaryData : TOneQuarterExogenous) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    case (serviceLevel) of
+      SL_BASE: begin jo.S['serviceLevel'] := 'SL_BASE'; end;
+      SL_FAIR:begin jo.S['serviceLevel'] := 'SL_FAIR'; end;
+      SL_MEDIUM:begin jo.S['serviceLevel'] := 'SL_MEDIUM'; end;
+      SL_ENHANCED:begin jo.S['serviceLevel'] := 'SL_ENHANCED'; end;
+      SL_PREMIUM:begin jo.S['serviceLevel'] := 'SL_PREMIUM'; end;
+    end;
+
+    jo.D['value'] := binaryData.x_Sup_OnlineServiceLevel_Intercept[serviceLevel];
+    result := jo;
+  end;
   function oneQuarterExogenousDataSchema(marketID : Integer; catID : Integer): ISuperObject;
   var
     jo: ISuperObject;
     prd, ret, spec, input: Integer;
     marketStudiesID : integer;
     ingredientPirces : ISuperObject;
+    serviceLevel : TServiceLevel;
   begin
     jo  := SO;
     jo.I['period']  := currentPeriod;
@@ -92,8 +109,18 @@ var
     jo.D['MaxPLPriceVsCost']                := XNOW[marketID, catID].x_MaxPLPriceVsCost;
     jo.D['MinRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].x_MinRetailPriceVsNetBMPrice;
     jo.D['MaxRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].x_MaxRetailPriceVsNetBMPrice;    
-    jo.O['MarketStudiesPrices']             := SA([]);
 
+    jo.D['x_Sup_OnlineServiceLevel_Power_2'] := XNOW[marketID, catID].x_Sup_OnlineServiceLevel_Power_2;
+    jo.D['x_Sup_OnlineServiceLevel_Power_1'] := XNOW[marketID, catID].x_Sup_OnlineServiceLevel_Power_1;
+    jo.D['x_EMallCommisionPercentage']       := XNOW[marketID, catID].x_EMallCommisionPercentage;
+    jo.O['x_Sup_OnlineServiceLevel_Intercept'] := SA([]);
+
+     for serviceLevel := Low(TServiceLevelsData) to High(TServiceLevelsData) do
+     begin
+       jo.A['x_Sup_OnlineServiceLevel_Intercept'].Add( serviceLevelSchema(serviceLevel,XNOW[marketID, catID] ) );
+     end;
+
+    jo.O['MarketStudiesPrices']             := SA([]);
     for marketStudiesID := Low(TMarketStudies) to High(TMarketStudies) do
     begin
         jo.A['MarketStudiesPrices'].D[marketStudiesID-1] := XNOW[marketID, catID].x_MarketStudiesPrices[marketStudiesID];

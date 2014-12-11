@@ -22,10 +22,10 @@ module.exports = function(app, io){
     app.get('/retailerProducts/:retailerID/:period/:seminar/:categoryID',                                   require('./../api/models/retailerDecision.js').getRetailerProductList);
     app.post('/deleteOrderData',                                                                            require('./../api/models/retailerDecision.js').deleteOrderData(io));    
     
-    app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',                               require('./../api/models/variantHistoryInfo').getVariantHistory);
+    //app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',                               require('./../api/models/variantHistoryInfo').getVariantHistory);
     //get brandHistory getPeriodBrandHistory
-    app.get('/brandHistoryInfo/:seminar/:period/:brandName',                                                require('./../api/models/brandHistoryInfo.js').getBrandHistory);
-    app.get('/brandHistoryInfo/:seminar/:period',                                                           require('./../api/models/brandHistoryInfo.js').getPeriodBrandHistory);
+    // app.get('/brandHistoryInfo/:seminar/:period/:brandName',                                                require('./../api/models/brandHistoryInfo.js').getBrandHistory);
+    // app.get('/brandHistoryInfo/:seminar/:period',                                                           require('./../api/models/brandHistoryInfo.js').getPeriodBrandHistory);
     
     app.get('/companyHistoryInfo/:seminar/:period/:userType/:userID',                                       require('./../api/models/companyHistoryInfo.js').getCompanyHistory);
     //get companyHistory

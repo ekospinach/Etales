@@ -30,6 +30,16 @@ var oneQuarterExogenousDataSchema = mongoose.Schema({
     ProdCost_IngredientPrices                : [],
     ProdCost_LogisticsCost                   : Number,
     ProdCost_LabourCost                      : Number,
+
+    x_Sup_OnlineServiceLevel_Power_2    : Number,
+    x_Sup_OnlineServiceLevel_Power_1    : Number,
+    x_EMallCommisionPercentage          : Number,
+    x_Sup_OnlineServiceLevel_Intercept  : [serviceLevelDataSchema],
+})
+
+var serviceLevelDataSchema = mongoose.Schema({
+    serviceLevel : String,
+    value : Number,
 })
 
 var oneQuarterExogenousData = mongoose.model('bg_oneQuarterExogenousData',oneQuarterExogenousDataSchema);
