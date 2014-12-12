@@ -33,6 +33,10 @@ uses
 
 
 const
+  x_StaffCostPerSqMeter = 1;
+  x_Sup_OnLineServiceLevel_Intercept = 2;
+  x_InStoreCostPerSqMeter = 3;
+
   DecisionFileName = 'Negotiations.';
   dummyNo = 0;
 
@@ -65,7 +69,7 @@ var
    Markets_IDs                 : TMarketsBytes;
    Categories_IDs              : TCategoriesBytes;
 
-  function serviceLevelSchema(serviceLevel : TServiceLevel; binaryData : TOneQuarterExogenous) : ISuperObject;
+  function serviceLevelSchema(idx : integer; serviceLevel : TServiceLevel; binaryData : TOneQuarterExogenous) : ISuperObject;
   var
     jo : ISuperObject;
   begin
@@ -78,7 +82,12 @@ var
       SL_PREMIUM:begin jo.S['serviceLevel'] := 'SL_PREMIUM'; end;
     end;
 
-    jo.D['value'] := binaryData.x_Sup_OnlineServiceLevel_Intercept[serviceLevel];
+    case (idx) of
+      x_StaffCostPerSqMeter              : begin jo.D['value'] := binaryData.x_StaffCostPerSqMeter[serviceLevel]; end;
+      x_InStoreCostPerSqMeter            : begin jo.D['value'] := binaryData.x_InStoreCostPerSqMeter[serviceLevel]; end;
+      x_Sup_OnLineServiceLevel_Intercept : begin jo.D['value'] := binaryData.x_Sup_OnlineServiceLevel_Intercept[serviceLevel]; end; 
+    end;
+
     result := jo;
   end;
   function oneQuarterExogenousDataSchema(marketID : Integer; catID : Integer): ISuperObject;
@@ -114,10 +123,14 @@ var
     jo.D['x_Sup_OnlineServiceLevel_Power_1'] := XNOW[marketID, catID].x_Sup_OnlineServiceLevel_Power_1;
     jo.D['x_EMallCommisionPercentage']       := XNOW[marketID, catID].x_EMallCommisionPercentage;
     jo.O['x_Sup_OnlineServiceLevel_Intercept'] := SA([]);
+    jo.O['x_StaffCostPerSqMeter'] := SA([]);
+    jo.O['x_InStoreCostPerSqMeter'] := SA([]);
 
      for serviceLevel := Low(TServiceLevelsData) to High(TServiceLevelsData) do
      begin
-       jo.A['x_Sup_OnlineServiceLevel_Intercept'].Add( serviceLevelSchema(serviceLevel,XNOW[marketID, catID] ) );
+       jo.A['x_Sup_OnlineServiceLevel_Intercept'].Add( serviceLevelSchema(x_Sup_OnlineServiceLevel_Intercept,serviceLevel, XNOW[marketID, catID] ) );
+       jo.A['x_StaffCostPerSqMeter'].Add( serviceLevelSchema(x_StaffCostPerSqMeter, serviceLevel, XNOW[marketID, catID] ) );
+       jo.A['x_InStoreCostPerSqMeter'].Add( serviceLevelSchema(x_InStoreCostPerSqMeter, serviceLevel, XNOW[marketID, catID] ) );
      end;
 
     jo.O['MarketStudiesPrices']             := SA([]);

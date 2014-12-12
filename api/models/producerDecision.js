@@ -748,45 +748,76 @@ exports.getProductionResult = function(req, res, next) {
 }
 
 exports.getProducerExpend = function(req, res, next) {
-    proDecision.findOne({
-        seminar: req.params.seminar,
-        period: req.params.period,
-        producerID: req.params.producerID
-    }, function(err, doc) {
-        if (err) {
-            return next(new Error(err));
-        }
-        if (!doc) {
-            res.send(404, {
-                err: 'cannot find the doc'
-            });
-        } else {
+    q.all([
+        proDecision.findOne({seminar: req.params.seminar, period: req.params.period, producerID: req.params.producerID}).exec(),
+        require('./BG_oneQuarterExogenousData.js').oneQuarterExogenousData.findOne({seminar:req.params.seminar, period:req.params.period, categoryID:1,marketID:1}).exec(),              
+        require('./BG_oneQuarterExogenousData.js').oneQuarterExogenousData.findOne({seminar:req.params.seminar, period:req.params.period, categoryID:2,marketID:1}).exec(),                      
+    ]).spread(function(decisionDoc, EExogenousDoc, HExogenousDoc){
+        if(decisionDoc && EExogenousDoc && HExogenousDoc){
             var result = 0;
-            for (var i = 0; i < doc.proCatDecision.length; i++) {
-                for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                    if (doc.proCatDecision[i].proBrandsDecision[j].brandID != 0 && doc.proCatDecision[i].proBrandsDecision[j].brandName != "") {
+            var totalOnlinePlannedVolume  = 0;
+            var ESalesValue = 0;
+            var HSalesValue = 0;
+            var serviceLevelCost = 0;
+
+
+            for (var i = 0; i < decisionDoc.proCatDecision.length; i++) {
+                for (var j = 0; j < decisionDoc.proCatDecision[i].proBrandsDecision.length; j++) {
+                    if (decisionDoc.proCatDecision[i].proBrandsDecision[j].brandID != 0 && decisionDoc.proCatDecision[i].proBrandsDecision[j].brandName != "") {
                         result += (
-                            doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[0] +
-                            doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[1] +
-                            doc.proCatDecision[i].proBrandsDecision[j].advertisingOnLine +
-                            doc.proCatDecision[i].proBrandsDecision[j].supportEmall +
-                            doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0] +
-                            doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[0] +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[1] +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].advertisingOnLine +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].supportEmall +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0] +
+                            decisionDoc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]                            
                         );
+                        for (var k = 0; k < decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                            if(decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID != 0 
+                            && decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != ""){
+                                totalOnlinePlannedVolume += decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume;
+                                if(i == 0){
+                                    ESalesValue += decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume * decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePrice;
+                                } else if(i == 1){
+                                    HSalesValue += decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume * decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePrice;
+                                }                         
+                            }
+                        };                        
                     }
                 }
             }
+
+            if(totalOnlinePlannedVolume > 0 && decisionDoc.serviceLevel != 'SL_BASE'){               
+                var EDecidedIntercept = _.find(EExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == decisionDoc.serviceLevel; });
+                var HDecidedIntercept = _.find(HExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == decisionDoc.serviceLevel; });
+
+                var EBaseIntercept = _.find(EExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == 'SL_BASE'; });
+                var HBaseIntercept = _.find(HExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == 'SL_BASE'; });
+
+                var a = (ESalesValue / (ESalesValue + HSalesValue)) * EDecidedIntercept.value + (HSalesValue / (ESalesValue + HSalesValue)) * HDecidedIntercept.value;
+                var b = (ESalesValue / (ESalesValue + HSalesValue)) * EBaseIntercept.value + (HSalesValue / (ESalesValue + HSalesValue)) * HBaseIntercept.value;                
+                serviceLevelCost = a - b;
+            } 
+
+            result += serviceLevelCost;
+
+            //For ignoring specific item when posing validation data
             if (req.params.brandName == "brandName") {
-                res.send(200, {
+                return res.send(200, {
                     result: result
                 });
+            } else if(req.params.location == "serviceLevel") {
+                result -= serviceLevelCost;                
+                return res.send(200, {
+                    result: result
+                });                
             } else {
                 if (req.params.brandName.substring(0, 1) == "E") {
                     categoryID = 1;
                 } else {
                     categoryID = 2;
                 }
-                var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
+                var allProCatDecisions = _.filter(decisionDoc.proCatDecision, function(obj) {
                     return (obj.categoryID == categoryID);
                 });
                 for (var i = 0; i < allProCatDecisions.length; i++) {
@@ -801,12 +832,19 @@ exports.getProducerExpend = function(req, res, next) {
                         }
                     }
                 }
-                res.send(200, {
+                return res.send(200, {
                     result: result
                 });
             }
+
+
+        } else {
+            return res.send(404, {err : "cannot find related EExogenousDoc/HExogenousDoc."});
         }
-    })
+    }).fail(function(err){
+        return next(new Error(err));
+    }).done();
+
 }
 
 
@@ -849,12 +887,21 @@ exports.getMarketingSpending = function(req, res, next) {
 //1 - General Marketing - Traditional Trade Support 
 //TODO: 2 - All the cost happen in page "Online Store management" AKA Visibility + Promotion Cost
 //3 - All the Negotiation Cost
+//4 - Service Cost
 exports.getTradeSupportSpending = function(req, res, next) {
     q.all([
         proDecision.findOne({seminar: req.params.seminar, period: req.params.period, producerID: req.params.producerID}).exec(),
-        require('./contract.js').calculateProducerNegotiationCost(req.params.seminar, req.params.producerID, req.params.period,'brandName','varName','ingoreItemNull',0)
-    ]).spread(function(decisionDoc, producerNegotiationCost){
+        require('./contract.js').calculateProducerNegotiationCost(req.params.seminar, req.params.producerID, req.params.period,'brandName','varName','ingoreItemNull',0),
+        require('./BG_oneQuarterExogenousData.js').oneQuarterExogenousData.findOne({seminar:req.params.seminar, period:req.params.period, categoryID:1,marketID:1}).exec(),              
+        require('./BG_oneQuarterExogenousData.js').oneQuarterExogenousData.findOne({seminar:req.params.seminar, period:req.params.period, categoryID:2,marketID:1}).exec(),                      
+    ]).spread(function(decisionDoc, producerNegotiationCost, EExogenousDoc, HExogenousDoc){
             var result = 0;
+
+            var totalOnlinePlannedVolume  = 0;
+            var ESalesValue = 0;
+            var HSalesValue = 0;
+            var serviceLevelCost = 0;
+
             for (var i = 0; i < decisionDoc.proCatDecision.length; i++) {
                 for (var j = 0; j < decisionDoc.proCatDecision[i].proBrandsDecision.length; j++) {
                     if (decisionDoc.proCatDecision[i].proBrandsDecision[j].brandID != 0 && decisionDoc.proCatDecision[i].proBrandsDecision[j].brandName != "") {
@@ -863,11 +910,37 @@ exports.getTradeSupportSpending = function(req, res, next) {
                             decisionDoc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0] +
                             decisionDoc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]
                         );
+
+                        for (var k = 0; k < decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                            if(decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID != 0 
+                            && decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != ""){
+                                totalOnlinePlannedVolume += decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume;
+                                if(i == 0){
+                                    ESalesValue += decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume * decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePrice;
+                                } else if(i == 1){
+                                    HSalesValue += decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume * decisionDoc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePrice;
+                                }                         
+                            }
+                        };
                     }
                 }
             }
 
+            if(totalOnlinePlannedVolume > 0 && decisionDoc.serviceLevel != 'SL_BASE'){               
+                var EDecidedIntercept = _.find(EExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == decisionDoc.serviceLevel; });
+                var HDecidedIntercept = _.find(HExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == decisionDoc.serviceLevel; });
+
+                var EBaseIntercept = _.find(EExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == 'SL_BASE'; });
+                var HBaseIntercept = _.find(HExogenousDoc.x_Sup_OnlineServiceLevel_Intercept, function(data){  return data.serviceLevel == 'SL_BASE'; });
+
+                var a = (ESalesValue / (ESalesValue + HSalesValue)) * EDecidedIntercept.value + (HSalesValue / (ESalesValue + HSalesValue)) * HDecidedIntercept.value;
+                var b = (ESalesValue / (ESalesValue + HSalesValue)) * EBaseIntercept.value + (HSalesValue / (ESalesValue + HSalesValue)) * HBaseIntercept.value;                
+                serviceLevelCost = a - b;
+            } 
+
             result += producerNegotiationCost.result;
+            result += serviceLevelCost;
+            
             res.send(200, {
                 result: result
             });     

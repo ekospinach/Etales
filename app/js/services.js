@@ -660,7 +660,6 @@ define(['angular',
 				},
 				//setProducerServiceLevel
 				setServiceLevel:function(producerID,value,page){
-					console.log('in');
 					var queryCondition = {
 						producerID:producerID,
 						period:PeriodInfo.getDecisionPeriod(),
