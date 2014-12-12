@@ -952,7 +952,9 @@ exports.getRetailerAdditionalBudget = function(req, res, next) {
                } else {
                     if (docs.length != 0) {
                          for (var i = 0; i < docs.length; i++) {
-                              result += docs[i].nc_OtherCompensation;
+                              if(docs[i].isProducerApproved && docs[i].isRetailerApproved){                                   
+                                   result += docs[i].nc_OtherCompensation;
+                              }
                          };
 
                          res.send(200, {

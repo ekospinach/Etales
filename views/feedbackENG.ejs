@@ -509,7 +509,7 @@
                                 </td>
                                 <td ng-repeat='d in retailer.data'>
                                     <p class="fragment p-center" ng-show='$index!=2' data-fragment-index="{{6+$index}}">{{d.value *100 | number : 1}} %</p>
-                                    <p class="fragment p-center" ng-show='$index==2' data-fragment-index="{{6+$index}}">{{d.value | number : 2}}</p>
+                                    <p class="fragment p-center" ng-show='$index==2' data-fragment-index="{{6+$index}}">{{d.value | number : 1}}</p>
                                 </td>
                                 <td>
                                     <p class="fragment p-center" data-fragment-index="{{10+0*$index}}">{{retailer.score | number : 2}}</p>
