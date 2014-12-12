@@ -471,8 +471,8 @@
                                     <p class="p-center"><span style="background-color:{{supplier.color}};">&nbsp;</span>{{newLabel.getContent('Supplier')}} {{supplier.supplierID}}</p>
                                 </td>
                                 <td ng-repeat='d in supplier.data'>
-                                    <p class="fragment p-center" ng-show='$index!=2' data-fragment-index="{{$index}}">{{d.value | number : 1}} %</p>
-                                    <p class="fragment p-center" ng-show='$index==2' data-fragment-index="{{$index}}">{{d.value | number : 1}}</p>
+                                    <p class="fragment p-center" ng-show='$index!=2' data-fragment-index="{{$index}}">{{d.value *100| number : 1}} %</p>
+                                    <p class="fragment p-center" ng-show='$index==2' data-fragment-index="{{$index}}">{{d.value | number : 2}}</p>
                                 </td>
                                 <td>
                                     <p class="fragment p-center" data-fragment-index="{{$index*0+5}}">{{supplier.score | number : 2}}</p>
@@ -508,8 +508,8 @@
                                     <p class="p-center"><span style="background-color:{{retailer.color}};">&nbsp;</span>{{newLabel.getContent('Retailer')}} {{retailer.retailerID}}</p>
                                 </td>
                                 <td ng-repeat='d in retailer.data'>
-                                    <p class="fragment p-center" ng-show='$index!=2' data-fragment-index="{{6+$index}}">{{d.value | number : 1}} %</p>
-                                    <p class="fragment p-center" ng-show='$index==2' data-fragment-index="{{6+$index}}">{{d.value | number : 1}}</p>
+                                    <p class="fragment p-center" ng-show='$index!=2' data-fragment-index="{{6+$index}}">{{d.value *100 | number : 1}} %</p>
+                                    <p class="fragment p-center" ng-show='$index==2' data-fragment-index="{{6+$index}}">{{d.value | number : 2}}</p>
                                 </td>
                                 <td>
                                     <p class="fragment p-center" data-fragment-index="{{10+0*$index}}">{{retailer.score | number : 2}}</p>
