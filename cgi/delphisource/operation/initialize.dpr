@@ -252,6 +252,15 @@ var
       if sListData.IndexOfName('category1ID') <> -1 then cr_Category_1_ID  := StrToInt(sListData.Values['category1ID']);
       if sListData.IndexOfName('category2ID') <> -1 then cr_Category_2_ID  := StrToInt(sListData.Values['category2ID']);
 //        // WinningCriteriaWeights : ?
+     cr_Sup_FinalScoreWeigths[1]    := 0.35;
+    cr_Sup_FinalScoreWeigths[2]    := 0.35;
+    cr_Sup_FinalScoreWeigths[3]    := 0.15;
+    cr_Sup_FinalScoreWeigths[4]    := 0.15;
+
+    cr_Ret_FinalScoreWeigths[1]    := 0.35;
+    cr_Ret_FinalScoreWeigths[2]    := 0.35;
+    cr_Ret_FinalScoreWeigths[3]    := 0.15;
+    cr_Ret_FinalScoreWeigths[4]    := 0.15;
 
       vTempStr                       := getDataDirectoryForSeminar(vSeminar);
       Log('data folder: ' + vTempStr);
