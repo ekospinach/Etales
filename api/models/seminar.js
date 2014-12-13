@@ -139,14 +139,12 @@ exports.localStrategy = new LocalStrategy(function(username, password, done) {
 		if (err) {
 			return done(err);
 		}
-		if (!doc) {
-			console.log('incorrestseminar');
+		if (!doc) {		
 			return done(null, false, {
 				message: 'Incorrect seminar code.'
 			});
 		}
 		if (!doc.isInitialise) {
-			console.log('notIni');
 			return done(null, false, {
 				message: 'Seminar has not opened.'
 			})
@@ -216,7 +214,6 @@ exports.deserializeUser = function(username, done) {
 			return done(err);
 		}
 		if (!doc) {
-			console.log('incorrestseminar');
 			return done(null, false, {
 				message: 'Incorrect seminar code.'
 			});
