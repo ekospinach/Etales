@@ -44,7 +44,8 @@ var seminarSchema            = mongoose.Schema({
 	market2ID                    : {type:Number,default:2},
 	category1ID                  : {type:Number,default:1},
 	category2ID                  : {type:Number,default:2},
-
+    // cr_Sup_FinalScoreWeigths     : {type:Array, default: [0.35, 0.35, 0.15, 0.15]},
+    // cr_Ret_FinalScoreWeigths     : {type:Array, default: [0.35, 0.35, 0.15, 0.15]},
 	//useTimeSlot                  : {type:Boolean, default:true},
 	isTimerActived			     : {type:Boolean, default:false},
 	timeslotPortfolioDecisionCommitted : {type:Number, default: 20},
