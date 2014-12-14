@@ -194,10 +194,10 @@
         <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left" fixed-header>
             <thead>
                 <tr>
-                    <th>
+                    <th style="white-space: nowrap">
                         <p class="text-center">{{Label.getContent('Total')}}</p>
                     </th>
-                    <th ng-repeat='brand in brand1s'>
+                    <th style="white-space: nowrap" ng-repeat='brand in brand1s'>
                         <p class="text-center">{{brand.brandName}}
                             <a class="btn btn-success btn-xs" ng-click="openProductModal(brand.brandName,'OL')">{{Label.getContent('More')}}</a>
                         </p>
@@ -650,10 +650,10 @@
         <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left" fixed-header>
             <thead>
                 <tr>
-                    <th>
+                    <th style="white-space: nowrap">
                         <p class="text-center">{{Label.getContent('Total')}}</p>
                     </th>
-                    <th ng-repeat='brand in brand2s'>
+                    <th style="white-space: nowrap" ng-repeat='brand in brand2s'>
                         <p class="text-center">{{brand.brandName}}
                             <a class="btn btn-success btn-xs" ng-click="openProductModal(brand.brandName,'OL')">{{Label.getContent('More')}}</a>
                         </p>
