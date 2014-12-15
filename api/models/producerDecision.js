@@ -30,7 +30,11 @@ var proVarDecisionSchema = mongoose.Schema({
     //update by Hao, 2014-July-14
     // 0.0 means full preference for off-line shipments (B&M retailers) and 1.0 is for full preference for on-line sales
     // Anything between, will make a proportional effect. 
-    channelPreference : Number //0~1
+    channelPreference : Number, //0~1
+
+    //if true, means channelPreference had been set as 100 before negotiation
+    //else set false as default 
+    isOnlineProduct : Boolean,
 })
 
 var proBrandDecisionSchema = mongoose.Schema({

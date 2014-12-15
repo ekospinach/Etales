@@ -51,6 +51,9 @@ module.exports = function(app, io){
     app.get('/getMarketSize/:seminar/:period/:retailerID/:categoryID',                                      require('./../api/models/RCR_consolidatedProfitAndLoss.js').getMarketSize);
     
     //Negotiation 
+    //TODO:Add one more route to combine all the front end request chain together on back end
+    //app.post('/supplierContractDetails');
+
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
     app.post('/dealContractDetail',                                                                         require('./../api/models/contract.js').dealContractDetail(io));
