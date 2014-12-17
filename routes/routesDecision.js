@@ -51,6 +51,9 @@ module.exports = function(app, io){
     app.get('/getMarketSize/:seminar/:period/:retailerID/:categoryID',                                      require('./../api/models/RCR_consolidatedProfitAndLoss.js').getMarketSize);
     
     //Negotiation 
+    //TODO:Add one more route to combine all the front end request chain together on back end
+    //app.post('/supplierContractDetails');
+
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
     app.post('/dealContractDetail',                                                                         require('./../api/models/contract.js').dealContractDetail(io));
@@ -59,7 +62,6 @@ module.exports = function(app, io){
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
     app.get('/getContractUnApprovedDetails/:contractCode',                                                  require('./../api/models/contract.js').getContractUnApprovedDetails);
     app.get('/getContractDetail/:contractCode/:brandName/:varName',                                         require('./../api/models/contract.js').getContractDetail);
-    
     
     //Check if selected contract details has been lock(both side choose agree)    
     //return { "result" : true, "doc" : contractDetails} : Locked
@@ -89,7 +91,14 @@ module.exports = function(app, io){
     app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder(io));
 
     
+    //step 1 check bm price if true contine if false break
+    app.get('/checkSupplierBMPrice/:seminar/:period/:producerID',                require('./../api/models/producerDecision.js').checkSupplierBMPrice);
+    //step 2  commitPortfolio
+    app.post('/commitPortfolio',                                                 require('./../api/models/seminar.js').commitPortfolio(io));
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
+
+
+
     app.post('/submitContractDeal',                                              require('./../api/models/seminar.js').submitContractDeal(io));
     app.post('/submitContractFinalized',                                         require('./../api/models/seminar.js').submitContractFinalized(io));
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));

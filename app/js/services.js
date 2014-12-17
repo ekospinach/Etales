@@ -403,7 +403,6 @@ define(['angular',
 
 					socket.on('socketIO:committedPortfolio',function(data){
 						//result
-						console.log(data);
 						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
 							 $rootScope.$broadcast('committedPortfolio',data);
 						}
@@ -660,7 +659,6 @@ define(['angular',
 				},
 				//setProducerServiceLevel
 				setServiceLevel:function(producerID,value,page){
-					console.log('in');
 					var queryCondition = {
 						producerID:producerID,
 						period:PeriodInfo.getDecisionPeriod(),

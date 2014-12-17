@@ -77,7 +77,7 @@ define(['directives', 'services'], function(directives){
                         d.resolve(Label.getContent('Input a number'));
                     }
                     if(value>100||value<0){
-                        d.resolve(Label.getContent('Input range'+':0~100'));
+                        d.resolve(Label.getContent('Input range')+':0~100');
                     }else{
                         d.resolve();
                     }
@@ -181,7 +181,7 @@ define(['directives', 'services'], function(directives){
                     });
                 }
 
-                scope.updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index,value){
+                scope.updateProducerDecision = function(category, brandName, varName, location, additionalIdx, index, value) {
                     var categoryID;
                     if(category=="Elecssories"){
                         categoryID=1;

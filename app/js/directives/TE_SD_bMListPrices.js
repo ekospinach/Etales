@@ -324,8 +324,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
 
-                        //step 3: Add related contract details for two contact schema
-                        //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
+                        //step 3: Add related contract details for two contact schema                        
                             var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return contractDetailsCreateShooter(contractCode, scope.productes);
 
@@ -367,7 +366,8 @@ define(['directives', 'services'], function(directives) {
                             } else console.log('Error: ' + data.data);
                         });
                     }
-
+                    
+                    //TODO:Don't insert negotiation variant details for product where channel preference is 100
                     function contractDetailsCreateShooter(contractCode, productList, producerID, retailerID) {
                         var deferred = $q.defer();
 

@@ -8,7 +8,7 @@
     <table class="table table-condensed table-bordered table-success">
     	<thead>
     		<tr>
-    			<th style="width:160px">
+    			<th style="width:125px">
                     <p>{{Label.getContent('Elecssories')}}</p>
                 </th>
     			<th>
@@ -32,9 +32,12 @@
                 <th>
                     <p class="text-primary text-center">{{Label.getContent('Unit Cost')}} ({{Label.getContent('$')}})</p>
                 </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Channel Preference Info')}}" popover-title="{{Label.getContent('Channel Preference')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Channel Preference')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </th>
     		</tr>
     		<tr class="success">
-    			<td colspan="8">
+    			<td colspan="9">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -43,7 +46,7 @@
     		<tr class="success" ng-repeat='producte in productes'>
     			<td>
     				<div style="clear:both"></div>
-    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">&times;</button>
     				<p>{{producte.parentBrandName}}{{producte.varName}}</p>
                     <div style="clear:both"></div>
     			</td>
@@ -87,9 +90,17 @@
                 <td>
                     <p class="text-right">{{producte.unitCost}}<p>
                 </td>
+                <td>
+                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index)">
+                        <p class="text-right">{{ producte.channelPreference || 0 }}</p>
+                    </a>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">
+                        {{ producte.channelPreference || 0 }}
+                    </p>
+                </td>
     		</tr>
     		<tr>
-    			<th style="width:160px">
+    			<th style="width:125px">
                     <p>{{Label.getContent('HealthBeauties')}}</p>
                 </th>
     			<th>
@@ -112,17 +123,20 @@
                 </th>
                 <th>
                     <p class="text-primary text-center">{{Label.getContent('Unit Cost')}} ({{Label.getContent('$')}})</p>
-                </th>                
+                </th> 
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Channel Preference Info')}}" popover-title="{{Label.getContent('Channel Preference')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Channel Preference')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </th>               
     		</tr>
     		<tr class="danger">
-    			<td colspan="8">
+    			<td colspan="9">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
     		<tr class="danger" ng-repeat='producth in producths'>
     			<td>
     				<div style="clear:both"></div>
-    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod&&(!isPortfolioDecisionCommitted))" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">&times;</button>
     				<p>{{producth.parentBrandName}}{{producth.varName}}</p>
     				<div style="clear:both"></div>
     			</td>
@@ -164,6 +178,12 @@
                 </td>
                 <td>
                     <p class="text-right">{{producth.unitCost}}<p>
+                </td>
+                <td>
+                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index)">
+                        <p class="text-right">{{ producth.channelPreference || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show='isDecisionCommitted'>{{ producth.channelPreference || 0 }}</p>
                 </td>                
     		</tr>
     	</tbody>

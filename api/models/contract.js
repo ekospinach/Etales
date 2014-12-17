@@ -1,9 +1,9 @@
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose-q')(require('mongoose')),
      http = require('http'),
      util = require('util'),
-     _ = require('underscore');
-uniqueValidator = require('mongoose-unique-validator'),
-q = require('q');
+     _ = require('underscore'),
+     uniqueValidator = require('mongoose-unique-validator'),
+     q = require('q');
 
 var contractSchema = mongoose.Schema({
      contractCode: {
@@ -63,19 +63,85 @@ contractSchema.plugin(uniqueValidator);
 exports.contract = mongoose.model('contract', contractSchema);
 exports.contractVariantDetails = mongoose.model('contractVariantDetails', contractVariantDetailsSchema);
 
+;
 var contract = mongoose.model('contract', contractSchema);
 var contractVariantDetails = mongoose.model('contractVariantDetails', contractVariantDetailsSchema);
 
 
-exports.addContractByAdmin = function(seminar, period, producers) {
+exports.removeContractDetailsByAdmin = function(seminar, period, producers) {
      var deferred = q.defer();
-     (function addContract(seminar, period, producers, idx) {
+     console.log('removeContractDetailsByAdmin');
+     (function removeContractDetails(seminar, period, producers, idx) {
+          var d = q.defer();
           if (idx < producers.length) {
-               //add contract
+               var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               contractVariantDetails.removeQ({
+                    contractCode: contractCode1
+               }).then(function(result) {
+                    console.log('remove contract details:' + result);
+                    return contractVariantDetails.removeQ({
+                         contractCode: contractCode2
+                    });
+               }).then(function(result) {
+                    console.log('remove contract details:' + result);
+                    idx++;
+                    return removeContractDetails(seminar, period, producers, idx);
+               });
+          } else {
+               deferred.resolve({
+                    msg: 'removeContractDetails done'
+               });
+          }
+          return d.promise;
+     })(seminar, period, producers, 0);
+     return deferred.promise;
+}
+
+exports.removeContractByAdmin = function(seminar, period, producers) {
+     var deferred = q.defer();
+     console.log('removeContractByAdmin');
+     (function removeContract(seminar, period, producers, idx) {
+          var d = q.defer();
+          if (idx < producers.length) {
                var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
                var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period; //sth + period + seminar, must be
 
-               var newContract1 = new contract({
+               contract.removeQ({
+                    contractCode: contractCode1
+               }).then(function(result) {
+                    console.log('remove contract:' + result);
+                    return contract.removeQ({
+                         contractCode: contractCode2
+                    });
+               }).then(function(result) {
+                    console.log('remove contract:' + result);
+                    idx++;
+                    return removeContract(seminar, period, producers, idx);
+               });
+          } else {
+               deferred.resolve({
+                    msg: 'removeContract done'
+               });
+          }
+          return d.promise;
+     })(seminar, period, producers, 0);
+     return deferred.promise;
+}
+
+exports.addContractByAdmin = function(seminar, period, producers) {
+     var deferred = q.defer();
+     console.log('addContractByAdmin');  
+     var contractCode1,newContract1,contractCode2,newContract2;
+
+     (function addContract(seminar, period, producers,idx) {
+          var d = q.defer();
+          if (idx < producers.length) {
+               //add contract
+               contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+
+               newContract1 = new contract({
                     contractCode: contractCode1,
                     period: period,
                     seminar: seminar,
@@ -91,43 +157,42 @@ exports.addContractByAdmin = function(seminar, period, producers) {
                     seminar: seminar,
                     draftedByCompanyID: producers[idx].producerID,
                     producerID: producers[idx].producerID,
-                    retailerID: 1,
+                    retailerID: 2,
                     isDraftFinished: false,
                     isLocked: false
                });
 
-               var allContracts = [];
-               allContracts.push(newContract1.save());
-               allContracts.push(newContract2.save());
-
-
-               q.all(allContracts).then(function(results) {
-                    console.log(results);
-               }, function(err) {
-                    console.log(err);
+               newContract1.saveQ().then(function(result) {
+                    console.log('add contract:' + result);
+                    return newContract2.saveQ();
+               }).then(function(result) {
+                    console.log('add contract:' + result);
+                    idx++;
+                    return addContract(seminar, period, producers, idx);
                });
-               idx++;
-               addContract(seminar, period, producers, idx);
           } else {
                deferred.resolve({
-                    msg: 'addContract done'
+                    msg: 'removeContract done'
                });
           }
-
+          return d.promise;
      })(seminar, period, producers, 0);
      return deferred.promise;
 }
 
 exports.addContractDetailsByAdmin = function(seminar, period, producers) {
      var deferred = q.defer();
+     console.log('addContractDetailsByAdmin');
 
      (function addContractDetail(seminar, period, producers, idx) {
+          var d = q.defer();
           if (idx < producers.length) {
                //add contract
                var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period;
                var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period;
                var previousPeriodCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + (period - 1);
                var previousPeriodCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + (period - 1);
+
 
                var products = new Array();
                var promise = require('./producerDecision.js').proDecision.findOne({
@@ -136,23 +201,27 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
                     producerID: producers[idx].producerID
                }).exec();
                promise.then(function(doc) {
-                    for (var i = 0; i < doc.proCatDecision.length; i++) {
-                         for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                              for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
-                                   if (doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != "") {
-                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].parentBrandName = doc.proCatDecision[i].proBrandsDecision[j].brandName;
-                                        products.push(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]);
+
+                    doc.proCatDecision.forEach(function(singleCategroy) {
+                         singleCategroy.proBrandsDecision.forEach(function(singeBrand) {
+                              singeBrand.proVarDecision.forEach(function(singeVar) {
+                                   if (singeVar.varName != "" && singeVar.channelPreference != 1) {
+                                        singeVar.parentBrandName = singeBrand.brandName;
+                                        products.push(singeVar);
                                    }
-                              }
-                         }
-                    }
+                                   if(singeVar.channelPreference == 1){
+                                        singeVar.saledOnline = true;
+                                   }
+                              })
+                         })
+                    });
                }).then(function(data) {
                     return createContractDetails(contractCode1, previousPeriodCode1, producers[idx].producerID, 1, seminar, period, products);
                }).then(function(data) {
                     return createContractDetails(contractCode2, previousPeriodCode2, producers[idx].producerID, 2, seminar, period, products);
                }).then(function(data) {
                     idx++;
-                    addContractDetail(seminar, period, producers, idx);
+                    return addContractDetail(seminar, period, producers, idx);
                }, function(data) {
                     console.log(data);
                });
@@ -163,13 +232,16 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
                     msg: 'addContractDetail done'
                });
           }
+          return d.promise;
      })(seminar, period, producers, 0);
      return deferred.promise;
 }
 
 function createContractDetails(contractCode, previousPeriodCode, producerID, retailerID, seminar, period, productList) {
      var deferred = q.defer();
+     console.log('createContractDetails');
      (function createContractDetail(products, producerID, retailerID, seminar, period, idx) {
+          var d = q.defer();
           if (idx < products.length) {
                var details = [];
                var promise = contractVariantDetails.findOne({
@@ -179,7 +251,7 @@ function createContractDetails(contractCode, previousPeriodCode, producerID, ret
                }).exec();
                promise.then(function(doc) {
                     if (doc) {
-                         //console.log('found previous input, copy...');
+                         console.log('found previous input, copy...');
                          var newContractVariantDetail = new contractVariantDetails({
                               contractCode: contractCode,
                               producerID: producerID,
@@ -209,9 +281,9 @@ function createContractDetails(contractCode, previousPeriodCode, producerID, ret
                               packFormat: products[idx].packFormat,
                               seminar: seminar
                          });
-                         newContractVariantDetail.save();
+                         return newContractVariantDetail.saveQ();
                     } else {
-                         //console.log('not found from previous, creat new...');
+                         console.log('not found from previous, creat new...');
                          var newContractVariantDetail = new contractVariantDetails({
                               contractCode: contractCode,
                               producerID: producerID,
@@ -241,21 +313,21 @@ function createContractDetails(contractCode, previousPeriodCode, producerID, ret
                               packFormat: products[idx].packFormat,
                               seminar: seminar
                          });
+                         return newContractVariantDetail.saveQ();
                     }
-                    newContractVariantDetail.save();
-               }).then(function() {
+
+               }).then(function(result) {
+                    console.log('add detail :'+result);
                     idx++;
-                    createContractDetail(productList, producerID, retailerID, seminar, period, idx);
+                    return createContractDetail(productList, producerID, retailerID, seminar, period, idx);
                });
           } else {
                deferred.resolve({
                     msg: 'done'
                });
           }
-
+          return d.promise;
      })(productList, producerID, retailerID, seminar, period, 0);
-
-
      return deferred.promise;
 }
 
