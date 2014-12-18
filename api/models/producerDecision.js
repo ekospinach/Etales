@@ -677,7 +677,7 @@ exports.getProducerProductList = function(req, res, next) {
                     if (allProCatDecisions[i].proBrandsDecision[j] != undefined && allProCatDecisions[i].proBrandsDecision[j].brandID != undefined && allProCatDecisions[i].proBrandsDecision[j].brandID != 0) {
                         for (var k = 0; k < allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length; k++) {
                             //edit for contract maybe have a bug
-                            if (allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k] != undefined && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID != undefined) {
+                            if (allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k] != undefined && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID != undefined &&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].isOnlineProduct != true) {
                                 //if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
                                 products.push({
                                     'categoryID': req.params.categoryID,
@@ -722,7 +722,7 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                 singleCat.proBrandsDecision.forEach(function(singleBrand) {
                     if (singleBrand.brandName != "") {
                         singleBrand.proVarDecision.forEach(function(singleVar) {
-                            if (singleVar.varName != "") {
+                            if (singleVar.varName != "" && !singleVar.isOnlineProduct) {
                                 products.push({
                                     'categoryID': category,
                                     'brandName': singleBrand.brandName,
