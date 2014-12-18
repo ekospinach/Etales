@@ -317,7 +317,21 @@ define(['angular',
 	}]);
 	services.factory('quarterHistoryInfo', ['$resource', function($resource){
 		return $resource('/quarterHistoryInfo/:seminar/:period',{});
-	}])
+	}]);
+
+	services.factory('StoreManagement',['$resource','$rootScope',function($resource,$rootScope){
+		return $resource('storeManagement/:retailerID/:period/:seminar',{},
+		{
+			save:{
+				method:"POST",
+				params:{
+						retailerID: "@retailerID",
+						period:"@period",
+						seminar:"@seminar"					
+				}
+			}
+		})
+	}]);
 
 	services.factory('RetailerDecision',['$resource','$rootScope',function($resource,$rootScope){
 		return $resource('retailerDecision/:retailerID/:period/:seminar',{},
@@ -830,7 +844,7 @@ define(['angular',
 			}, base;			
 
 		this.setDefaultPara = function(p) { requestPara = p };
-		this.$get = ['RetailerDecision', '$q','$rootScope','$http','PlayerInfo','SeminarInfo','PeriodInfo', function(RetailerDecision, $q, $rootScope,$http,PlayerInfo,SeminarInfo,PeriodInfo){
+		this.$get = ['RetailerDecision', 'StoreManagement','$q','$rootScope','$http','PlayerInfo','SeminarInfo','PeriodInfo', function(RetailerDecision, StoreManagement, $q, $rootScope,$http,PlayerInfo,SeminarInfo,PeriodInfo){
 			return {
 				reload : function(p){ 
 					requestPara = p;
@@ -840,10 +854,23 @@ define(['angular',
 					}, function(reason){
 						delay.reject(reason);
 					}, function(update){
-						delay.notify('notify...')
+						delay.notify('notify...');
 					});
 					return delay.promise;
 				},
+				getStore : function(p){
+					requestPara = p;
+					var delay = $q.defer();
+					getStoreManagementPromise(StoreManagement, $q).then(function(){
+						delay.resolve(base);
+					}, function(reason){
+						delay.reject(reason);
+					}, function(update){
+						delay.notify('notify...');
+					});
+					return delay.promise;
+				},
+
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
 					socket.on('socketIO:retailerBaseChanged', function(data){	
@@ -1125,22 +1152,58 @@ define(['angular',
 								value:myProducts[idx]
 							}
 						}
-						$http({
-							method:'POST',
-							url:'/retailerDecision',
-							data:queryCondition
-						}).then(function(data){
-							console.log("success");
-						},function(data){
-							console.log('fail');
-						}).finally(function(){
-							if(idx!=myProducts.length-1){
-								idx++;
-								multipleRequestShooter(myProducts,idx);
-							}else{
-								console.log('finish');
-							}
-						})
+
+						if(queryCondition.value.retailerPrice==-1){
+							var postData={
+	                            period : PeriodInfo.getDecisionPeriod(),
+	                            seminar : SeminarInfo.getSelectedSeminar().seminarCode,
+	                            brandName : queryCondition.value.brandName,
+	                            varName : queryCondition.value.varName,
+	                            catID : parseInt(queryCondition.value.categoryID),
+	                            userRole :  4,
+	                            userID : PlayerInfo.getPlayer(),
+	                        }
+	                        $http({
+	                            method:'POST',
+	                            url:'/getCurrentUnitCost',
+	                            data:postData
+	                        }).then(function(data){
+	                        	queryCondition.value.retailerPrice=data.data.result;
+	                        	return $http({
+	                        		method:'POST',
+	                        		url:'/retailerDecision',
+	                        		data:queryCondition
+	                        	})
+	                        }).then(function(data){
+	                        	console.log("success");
+							},function(data){
+								console.log('fail');
+							}).finally(function(){
+								if(idx!=myProducts.length-1){
+									idx++;
+									multipleRequestShooter(myProducts,idx);
+								}else{
+									console.log('finish');
+								}
+							});
+						}else{
+							$http({
+								method:'POST',
+								url:'/retailerDecision',
+								data:queryCondition
+							}).then(function(data){
+								console.log("success");
+							},function(data){
+								console.log('fail');
+							}).finally(function(){
+								if(idx!=myProducts.length-1){
+									idx++;
+									multipleRequestShooter(myProducts,idx);
+								}else{
+									console.log('finish');
+								}
+							})
+						}
 					})(products, 0);
 				},
 				deleteOrder:function(marketID,categoryID,brandName,varName,page){
@@ -1181,6 +1244,20 @@ define(['angular',
 								},function(){
 									delay.reject('Unable to fetch retailerDecision of seminar:' + requestPara.seminar + ', period:' + requestPara.period + ', retailer:' + requestPara.retailerID);
 								});
+			return delay.promise;
+		};
+		var getStoreManagementPromise=function(StoreManagement,q){
+			var delay = q.defer();
+			StoreManagement.get({
+				retailerID: requestPara.retailerID,
+				period: requestPara.period,
+				seminar: requestPara.seminar
+			}, function(retailerDecision) {
+				base = retailerDecision;
+				delay.resolve(base);
+			}, function() {
+				delay.reject('Unable to fetch retailerDecision of seminar:' + requestPara.seminar + ', period:' + requestPara.period + ', retailer:' + requestPara.retailerID);
+			});
 			return delay.promise;
 		}
 	});

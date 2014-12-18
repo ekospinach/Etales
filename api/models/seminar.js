@@ -1715,3 +1715,34 @@ exports.setTimer = function(io) {
 
 	}
 }
+
+exports.checkProducerDecisionStatusByAdmin = function(seminar, period, producer) {
+	var d = q.defer();
+	var result = {
+		'isPortfolioDecisionCommitted': false,
+		'isContractDeal': false,
+		'isContractFinalized': false,
+		'isDecisionCommitted': false
+	};
+	seminar.findOne({
+		seminarCode: seminar
+	}).exec()
+		.then(function(doc) {
+			if (doc) {
+
+				doc.producers[producerID - 1].decisionCommitStatus.forEach(function(singleProducer) {
+					if (singleProducer.period == period) {
+						result.isPortfolioDecisionCommitted = singleProducer.isPortfolioDecisionCommitted;
+						result.isContractDeal = singleProducer.isContractDeal;
+						result.isContractFinalized = singleProducer.isContractFinalized;
+						result.isDecisionCommitted = singleProducer.isDecisionCommitted;
+					}
+				})
+				d.resolve(result);
+			} else {
+				d.reject('fail');
+			}
+
+		});
+	return d.promise;
+}

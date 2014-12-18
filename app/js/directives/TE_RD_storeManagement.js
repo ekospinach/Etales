@@ -454,7 +454,7 @@ define(['directives', 'services'], function(directives){
                         }
                         for(i=0;i<ordersProducts.length;i++){
                             ordersProducts[i].order=0,
-                            ordersProducts[i].retailerPrice=0,
+                            ordersProducts[i].retailerPrice=(ordersProducts[i].currentPriceBM==undefined ? -1 : ordersProducts[i].currentPriceBM),
                             ordersProducts[i].shelfSpace=0,
                             ordersProducts[i].pricePromotions={
                                 promo_Frequency:0,

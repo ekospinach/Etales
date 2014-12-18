@@ -75,11 +75,12 @@
                     <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producte.currentPriceBM" onbeforesave="checkCurrentBM('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index)" ng-show='!isPortfolioDecisionCommitted'>
+                    <a href="#" editable-text="producte.currentPriceBM" onbeforesave="checkCurrentBM('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index)" ng-show='!isPortfolioDecisionCommitted&&producte.channelPreference!=100'>
                         <p class="text-right">{{ producte.currentPriceBM || 0 }}</p>
                         <p ng-show='producte.showInfo'>{{Label.getContent('Less than current cost')}}</p>
                     </a>
-                    <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted'>{{ producte.currentPriceBM || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted&&producte.channelPreference!=100'>{{ producte.currentPriceBM || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='producte.channelPreference==100'>-</p>
                 </td>
                 <td>
                     <a href="#" editable-checkbox="producte.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isPortfolioDecisionCommitted" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'discontinue','0',$index)">
@@ -91,10 +92,10 @@
                     <p class="text-right">{{producte.unitCost}}<p>
                 </td>
                 <td>
-                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index)">
+                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index)">
                         <p class="text-right">{{ producte.channelPreference || 0 }}</p>
                     </a>
-                    <p ng-show='isDecisionCommitted' class="text-right text-muted">
+                    <p ng-show='isPortfolioDecisionCommitted' class="text-right text-muted">
                         {{ producte.channelPreference || 0 }}
                     </p>
                 </td>
@@ -180,10 +181,10 @@
                     <p class="text-right">{{producth.unitCost}}<p>
                 </td>
                 <td>
-                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index)">
+                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isPortfolioDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index)">
                         <p class="text-right">{{ producth.channelPreference || 0 }}</p>
                     </a>
-                    <p class="text-right text-muted" ng-show='isDecisionCommitted'>{{ producth.channelPreference || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted'>{{ producth.channelPreference || 0 }}</p>
                 </td>                
     		</tr>
     	</tbody>

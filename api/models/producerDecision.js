@@ -687,7 +687,8 @@ exports.getProducerProductList = function(req, res, next) {
                                     'varID': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID,
                                     'parentName': 'Producer ' + req.params.producerID,
                                     'dateOfBirth': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfBirth,
-                                    'dateOfDeath': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfDeath
+                                    'dateOfDeath': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfDeath,
+                                    'currentPriceBM':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].currentPriceBM
                                 });
                                 count++;
                             }
@@ -702,6 +703,54 @@ exports.getProducerProductList = function(req, res, next) {
             }
         }
     });
+}
+
+exports.getProducerProductListByAdmin = function(seminar, period, category, producer) {
+    var d = q.defer();
+    proDecision.findOne({
+        seminar: req.params.seminar,
+        period: req.params.period,
+        producerID: req.params.producerID
+    }).exec().then(function(doc) {
+        if (doc) {
+            var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
+                return (obj.categoryID == category);
+            });
+            var products = new Array();
+            var count = 0;
+            allProCatDecisions.forEach(function(singleCat) {
+                singleCat.proBrandsDecision.forEach(function(singleBrand) {
+                    if (singleBrand.brandName != "") {
+                        singleBrand.proVarDecision.forEach(function(singleVar) {
+                            if (singleVar.varName != "") {
+                                products.push({
+                                    'categoryID': category,
+                                    'brandName': singleBrand.brandName,
+                                    'varName': singleVar.varName,
+                                    'brandID': singleVar.parentBrandID,
+                                    'varID': singleVar.varID,
+                                    'parentName': 'Producer ' + producer,
+                                    'dateOfBirth': singleVar.dateOfBirth,
+                                    'dateOfDeath': singleVar.dateOfDeath,
+                                    'currentPriceBM': singleVar.currentPriceBM
+                                });
+                            }
+                        })
+                    }
+                })
+            });
+            d.resolve({
+                msg: 'success',
+                result: products
+            });
+        } else {
+            d.reject({
+                msg: 'fail',
+                result: {}
+            })
+        }
+    });
+    return d.promise;
 }
 
 exports.getProductionResult = function(req, res, next) {
