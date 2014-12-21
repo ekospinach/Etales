@@ -280,6 +280,49 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
+                    scope.checkServiceLevel = function(){
+                        var d = $q.defer();
+                        var categoryID, max, result, ContractExpend, reportExpend, producerExpend, availableBudgetLeft, location='serviceLevel',tep=0;
+                        var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            max = data.data.budgetAvailable;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/brandName/varName/ignoreItem/1';
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            ContractExpend = data.data.result;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + scope.selectedPlayer;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            reportExpend = data.data.result;
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/' + 'brandName' + '/' + location + '/' + tep;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            producerExpend = data.data.result;
+                            availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
+                            console.log(availableBudgetLeft);
+                            if(availableBudgetLeft<0){
+                                d.resolve(Label.getContent('Service Level Error'));
+                            }else{
+                                d.resolve();
+                            }
+                        }, function(data) {
+                            d.resolve(Label.getContent('fail'));
+                        });
+                        return d.promise;
+                    }
+
                     scope.updateServiceLevel = function(value){
                         ProducerDecisionBase.setServiceLevel(scope.selectedPlayer,value,'supplierOnlineStoreManagement');
 
