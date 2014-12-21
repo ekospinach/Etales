@@ -707,11 +707,14 @@ exports.getProducerProductList = function(req, res, next) {
 
 exports.getProducerProductListByAdmin = function(seminar, period, category, producer) {
     var d = q.defer();
-    proDecision.findOne({
-        seminar: req.params.seminar,
-        period: req.params.period,
-        producerID: req.params.producerID
-    }).exec().then(function(doc) {
+    q.all([
+        require('./seminar.js').checkProducerDecisionStatusByAdmin(seminar, period, producer),
+        proDecision.findOne({
+            seminar: seminar,
+            period: period,
+            producerID: producer
+        }).exec()
+    ]).spread(function(checkResult, doc) {
         if (doc) {
             var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
                 return (obj.categoryID == category);
@@ -722,7 +725,7 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                 singleCat.proBrandsDecision.forEach(function(singleBrand) {
                     if (singleBrand.brandName != "") {
                         singleBrand.proVarDecision.forEach(function(singleVar) {
-                            if (singleVar.varName != "" && !singleVar.isOnlineProduct) {
+                            if (singleVar.varName != "") {
                                 products.push({
                                     'categoryID': category,
                                     'brandName': singleBrand.brandName,
@@ -732,7 +735,8 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                                     'parentName': 'Producer ' + producer,
                                     'dateOfBirth': singleVar.dateOfBirth,
                                     'dateOfDeath': singleVar.dateOfDeath,
-                                    'currentPriceBM': singleVar.currentPriceBM
+                                    'currentPriceBM': singleVar.currentPriceBM,
+                                    'isReady': checkResult.isPortfolioDecisionCommitted
                                 });
                             }
                         })
@@ -749,7 +753,8 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                 result: {}
             })
         }
-    });
+    }).done();
+
     return d.promise;
 }
 

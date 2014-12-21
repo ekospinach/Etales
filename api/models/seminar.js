@@ -1466,16 +1466,16 @@ exports.commitPortfolio = function(io){
 		queryCondition.result.push({
 			'producerID': req.body.producerID
 		});
+		console.log(queryCondition)
 
 		seminar.findOne({
 			seminarCode: queryCondition.seminar
 		}, function(err, doc) {
 
-			doc.producers[req.body.producerID].decisionCommitStatus[queryCondition.period].isPortfolioDecisionCommitted = true;
+			doc.producers[req.body.producerID-1].decisionCommitStatus[queryCondition.period].isPortfolioDecisionCommitted = true;
 
 			commitPortfolioDecision(queryCondition.seminar, queryCondition.period, queryCondition.result).then(function(result) {
 				doc.markModified('producers');
-				console.log('edit committedPortfolio');
 				io.sockets.emit('socketIO:committedPortfolio', {
 					result: result,
 					seminarCode: doc.seminarCode,
@@ -1484,7 +1484,7 @@ exports.commitPortfolio = function(io){
 				return doc.saveQ();
 			}).then(function(result) {
 				if (result) {
-					res.send(200, 'success');
+					res.send(200, result);
 				} else {
 					res.send(200, 'fail');
 				}
@@ -1716,7 +1716,7 @@ exports.setTimer = function(io) {
 	}
 }
 
-exports.checkProducerDecisionStatusByAdmin = function(seminar, period, producer) {
+exports.checkProducerDecisionStatusByAdmin = function(seminarCode, period, producer) {
 	var d = q.defer();
 	var result = {
 		'isPortfolioDecisionCommitted': false,
@@ -1725,12 +1725,12 @@ exports.checkProducerDecisionStatusByAdmin = function(seminar, period, producer)
 		'isDecisionCommitted': false
 	};
 	seminar.findOne({
-		seminarCode: seminar
+		seminarCode: seminarCode
 	}).exec()
 		.then(function(doc) {
 			if (doc) {
 
-				doc.producers[producerID - 1].decisionCommitStatus.forEach(function(singleProducer) {
+				doc.producers[producer - 1].decisionCommitStatus.forEach(function(singleProducer) {
 					if (singleProducer.period == period) {
 						result.isPortfolioDecisionCommitted = singleProducer.isPortfolioDecisionCommitted;
 						result.isContractDeal = singleProducer.isContractDeal;

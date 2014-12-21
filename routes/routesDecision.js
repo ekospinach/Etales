@@ -20,6 +20,8 @@ module.exports = function(app, io){
     app.get('/getRetailerDecisionByVar/:retailerID/:period/:seminar/:brandName/:varName',                   require('./../api/models/retailerDecision.js').retailerGetRetailerDecision);
     app.get('/retailerDecision/:retailerID/:period/:seminar',                                               require('./../api/models/retailerDecision.js').getAllRetailerDecision);
     app.get('/retailerProducts/:retailerID/:period/:seminar/:categoryID',                                   require('./../api/models/retailerDecision.js').getRetailerProductList);
+    //new get storeManagement
+    app.get('/storeManagement/:retailerID/:period/:seminar',                                               require('./../api/models/retailerDecision.js').getStoreManagement);
     app.post('/deleteOrderData',                                                                            require('./../api/models/retailerDecision.js').deleteOrderData(io));    
     
     //app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',                               require('./../api/models/variantHistoryInfo').getVariantHistory);
