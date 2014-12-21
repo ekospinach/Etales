@@ -880,6 +880,7 @@ exports.updateRetailerDecision = function(io) {
 }
 
 exports.getRetailerProductList = function(req, res, next) {
+
     retDecision.findOne({
         seminar: req.params.seminar,
         period: req.params.period,
@@ -901,9 +902,9 @@ exports.getRetailerProductList = function(req, res, next) {
             var count = 0;
             for (var i = 0; i < allRetCatDecisions.length; i++) {
                 for (var j = 0; j < allRetCatDecisions[i].privateLabelDecision.length; j++) {
-                    if (allRetCatDecisions[i].privateLabelDecision[j] != undefined) {
+                    if (allRetCatDecisions[i].privateLabelDecision[j].brandName != "") {
                         for (var k = 0; k < allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length; k++) {
-                            if (allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k] != undefined) {
+                            if (allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName != "") {
                                 products.push({
                                     'categoryID': req.params.categoryID,
                                     'brandName': allRetCatDecisions[i].privateLabelDecision[j].brandName,
@@ -912,7 +913,7 @@ exports.getRetailerProductList = function(req, res, next) {
                                     'varID': allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID,
                                     'parentName': 'Retailer ' + req.params.retailerID,
                                     'dateOfBirth': allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].dateOfBirth,
-                                    'dateOfDeath': allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].dateOfDeath,
+                                    'dateOfDeath': allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].dateOfDeath
                                 });
                                 count++;
                             }
@@ -1054,4 +1055,98 @@ exports.getAllRetailerDecision = function(req, res, next) {
             res.send(doc);
         }
     });
+}
+
+var loadSelectCategory=function(data,category,market){
+    var retMarketDecisions = _.filter(data.retMarketDecision, function(obj) {
+        return (obj.marketID == market);
+    });
+    return _.filter(retMarketDecisions[0].retMarketAssortmentDecision, function(obj) {
+        return (obj.categoryID == category);
+    });
+}
+
+var getOrderedProducts=function(data,category,market){
+    var allRetCatDecisions = loadSelectCategory(data,category,market);
+    var products = new Array();
+    allRetCatDecisions.forEach(function(singleCat){
+        singleCat.retVariantDecision.forEach(function(singeVar){
+            if (singeVar.brandID != 0 && singeVar.variantID != 0) {
+                singeVar.netRetailerPrice = (singeVar.retailerPrice * (1 - singeVar.pricePromotions.promo_Frequency * singeVar.pricePromotions.promo_Rate / 26)).toFixed(2);
+                if (singeVar.pricePromotions.promo_Rate >= 0 && singeVar.pricePromotions.promo_Rate <= 1) {
+                    singeVar.pricePromotions.promo_Rate = (parseFloat(singeVar.pricePromotions.promo_Rate) * 100).toFixed(2);
+                }
+                if (singeVar.shelfSpace >= 0 && singeVar.shelfSpace <= 1) {
+                    singeVar.shelfSpace = (parseFloat(singeVar.shelfSpace) * 100).toFixed(2);
+                }
+                singeVar.order = parseFloat(singeVar.order).toFixed(2);
+                singeVar.retailerPrice = parseFloat(singeVar.retailerPrice).toFixed(2);
+                products.push(singeVar);
+            }
+        })
+    });
+    return products;
+}
+
+var getPrivateLabelProducts=function(data,retailer,category){
+    var orderProducts=new Array();
+    var allRetCatDecisions = _.filter(data.retCatDecision, function(obj) {
+        return (obj.categoryID == category);
+    });
+    var products = new Array();
+    allRetCatDecisions.forEach(function(singleCat){
+        allRetCatDecisions[i].privateLabelDecision.forEach(function(singlePrivateLabel){
+            if(singlePrivateLabel.brandName!=""){
+                singlePrivateLabel.privateLabelVarDecision.forEach(function(singlePriVar){
+                    if(singlePriVar.varName!=""){
+                        products.push({
+                            'categoryID': category,
+                            'brandName': singlePrivateLabel.brandName,
+                            'varName': singlePriVar.varName,
+                            'brandID': singlePriVar.parentBrandID,
+                            'variantID': singlePriVar.varID,
+                            'parentName': 'Retailer ' + retailer,
+                            'dateOfBirth': singlePriVar.dateOfBirth,
+                            'dateOfDeath': singlePriVar.dateOfDeath
+                        });
+                        count++;
+                    }
+                })
+            }
+            
+        })
+    });
+    return products;
+}
+
+var getProducerProducts=function(producer){
+    var d=q.defer();
+    return d.promise;
+}
+
+
+exports.getStoreManagement = function(req,res,next){
+    var result={
+        'UrbanElecssoriesProducts':{},
+        'RuralElecssoriesProducts':{},
+        'UrbanHelthBeautiesProducts':{},
+        'RuralHelthBeautiesProducts':{},
+        'UrbanElecssoriesOrderProducts':{},
+        'RuralElecssoriesOrderProducts':{},
+        'UrbanHelthBeautiesOrderProducts':{},
+        'RuralHelthBeautiesOrderProducts':{},
+    }
+    var promise = retDecision.findOne({
+        seminar: req.params.seminar,
+        period: req.params.period,
+        retailerID: req.params.retailerID
+    }).exec();
+    promise.then(function(doc){
+        if(doc){
+            res.send(200,result);
+        }else{
+            res.send(404,'fail');
+        }
+    })
+
 }

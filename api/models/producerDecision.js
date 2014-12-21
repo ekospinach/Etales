@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose-q')(require('mongoose')),
     http = require('http'),
     util = require('util'),
     _ = require('underscore');
@@ -34,7 +34,11 @@ var proVarDecisionSchema = mongoose.Schema({
 
     //if true, means channelPreference had been set as 100 before negotiation
     //else set false as default 
+<<<<<<< HEAD
     isOnlineProduct : Boolean,
+=======
+    isOnlineProduct : {type:Boolean,default:false}
+>>>>>>> chart
 })
 
 var proBrandDecisionSchema = mongoose.Schema({
@@ -93,26 +97,48 @@ var proVarDecision=mongoose.model('proVarDecision',proVarDecisionSchema);
 var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
 
 
-// exports.getProductsByAdmin =function(seminar,period,producerID){
-//     console.log('seminar:'+seminar+'period:'+period+'producerID:'+producerID);
-//     var products=new Array();
-//     proDecision.findOne({
-//         seminar: seminar,
-//         period: period,
-//         producerID: producerID
-//     }, function(err, doc) {
-//         //console.log(doc);
-//         for(var i=0;i<doc.proCatDecision.length;i++){
-//             for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
-//                 for(var k=0;k<doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length;k++){
-//                     if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
-//                         products.push(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]);
-//                     }
-//                 }
-//             }
-//         }
-//     })
-// }
+//set isOnlineProduct = true if ChannelPreference = 1
+exports.UpdateIsOnlineProducts = function(seminar, period, producers) {
+    var deferred = q.defer();
+
+    console.log('UpdateIsOnlineProduct');
+
+    (function updateIsOnlineProduct(seminar, period, producers, idx) {
+        var d = q.defer();
+        if (idx < producers.length) {
+            var promise = proDecision.findOne({
+                seminar: seminar,
+                period: period,
+                producerID: producers[idx].producerID
+            }).exec();
+            promise.then(function(doc) {
+                if (doc) {
+                    doc.proCatDecision.forEach(function(singleCategroy) {
+                        singleCategroy.proBrandsDecision.forEach(function(singeBrand) {
+                            singeBrand.proVarDecision.forEach(function(singeVar) {
+                                if (singeVar.channelPreference == 1) {
+                                    singeVar.isOnlineProduct = true;
+                                }
+                            })
+                        })
+                    });
+                    doc.markModified('proVarDecision');
+                    return doc.saveQ();
+                }else{
+                    d.resolve('cannot find the doc');
+                }
+            }).then(function(result) {
+                console.log('updateIsOnlineProduct:' + result);
+                idx++;
+                return updateIsOnlineProduct(seminar, period, producers, idx);
+            })
+        } else {
+            deferred.resolve('updateIsOnlineProduct done');
+        }
+        return d.promise;
+    })(seminar, period, producers, 0);
+    return deferred.promise;
+}
 
 
 exports.getProducerReportOrder = function(seminar,period,producerID){
@@ -544,20 +570,6 @@ exports.updateProducerDecision = function(io) {
                         doc.save(function(err, doc, numberAffected) {
                             if (err) return next(new Error(err));
                             console.log('save updated, number affected:' + numberAffected);
-                            // if (queryCondition.behaviour == "updateMarketResearchOrders") {
-                            //     io.sockets.emit('socketIO:supplierMarketResearchOrdersChanged', {
-                            //         period: queryCondition.period,
-                            //         seminar: queryCondition.seminar,
-                            //         producerID: queryCondition.producerID
-                            //     });
-                            // } else {
-                            //     io.sockets.emit('socketIO:producerBaseChanged', {
-                            //         period: queryCondition.period,
-                            //         producerID: queryCondition.producerID,
-                            //         seminar: queryCondition.seminar,
-                            //         behaviour:queryCondition.behaviour
-                            //     });
-                            // }
                             io.sockets.emit('socketIO:producerBaseChanged', {
                                 period: queryCondition.period,
                                 producerID: queryCondition.producerID,
@@ -669,7 +681,7 @@ exports.getProducerProductList = function(req, res, next) {
                     if (allProCatDecisions[i].proBrandsDecision[j] != undefined && allProCatDecisions[i].proBrandsDecision[j].brandID != undefined && allProCatDecisions[i].proBrandsDecision[j].brandID != 0) {
                         for (var k = 0; k < allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length; k++) {
                             //edit for contract maybe have a bug
-                            if (allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k] != undefined && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID != undefined) {
+                            if (allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k] != undefined && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID != undefined &&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].isOnlineProduct != true) {
                                 //if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
                                 products.push({
                                     'categoryID': req.params.categoryID,
@@ -679,7 +691,8 @@ exports.getProducerProductList = function(req, res, next) {
                                     'varID': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID,
                                     'parentName': 'Producer ' + req.params.producerID,
                                     'dateOfBirth': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfBirth,
-                                    'dateOfDeath': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfDeath
+                                    'dateOfDeath': allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfDeath,
+                                    'currentPriceBM':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].currentPriceBM
                                 });
                                 count++;
                             }
@@ -694,6 +707,54 @@ exports.getProducerProductList = function(req, res, next) {
             }
         }
     });
+}
+
+exports.getProducerProductListByAdmin = function(seminar, period, category, producer) {
+    var d = q.defer();
+    proDecision.findOne({
+        seminar: req.params.seminar,
+        period: req.params.period,
+        producerID: req.params.producerID
+    }).exec().then(function(doc) {
+        if (doc) {
+            var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
+                return (obj.categoryID == category);
+            });
+            var products = new Array();
+            var count = 0;
+            allProCatDecisions.forEach(function(singleCat) {
+                singleCat.proBrandsDecision.forEach(function(singleBrand) {
+                    if (singleBrand.brandName != "") {
+                        singleBrand.proVarDecision.forEach(function(singleVar) {
+                            if (singleVar.varName != "" && !singleVar.isOnlineProduct) {
+                                products.push({
+                                    'categoryID': category,
+                                    'brandName': singleBrand.brandName,
+                                    'varName': singleVar.varName,
+                                    'brandID': singleVar.parentBrandID,
+                                    'varID': singleVar.varID,
+                                    'parentName': 'Producer ' + producer,
+                                    'dateOfBirth': singleVar.dateOfBirth,
+                                    'dateOfDeath': singleVar.dateOfDeath,
+                                    'currentPriceBM': singleVar.currentPriceBM
+                                });
+                            }
+                        })
+                    }
+                })
+            });
+            d.resolve({
+                msg: 'success',
+                result: products
+            });
+        } else {
+            d.reject({
+                msg: 'fail',
+                result: {}
+            })
+        }
+    });
+    return d.promise;
 }
 
 exports.getProductionResult = function(req, res, next) {
@@ -1091,6 +1152,56 @@ exports.checkProducerProduct = function(req, res, next) {
                     });
                 }
             }
+        }
+    })
+}
+//checkSupplierBMPrice
+exports.checkSupplierBMPrice = function(req, res, next) {
+    proDecision.findOne({
+        seminar: req.params.seminar,
+        period: req.params.period,
+        producerID: req.params.producerID
+    }, function(err, doc) {
+        if (err) {
+            return next(new Error(err));
+        }
+        if (doc) {
+            var result = true;
+            var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
+                return (obj.categoryID == 1);
+            });
+            allProCatDecisions.forEach(function(singleCategory) {
+                singleCategory.proBrandsDecision.forEach(function(singleBrand) {
+                    
+                    singleBrand.proVarDecision.forEach(function(singleVar){
+                        if (singleVar.currentPriceBM == 0 && singleVar.varID != 0) {
+                            result = false;
+                        }
+                    });
+                });
+            });
+            if (result) {
+                allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
+                    return (obj.categoryID == 2);
+                });
+
+                allProCatDecisions.forEach(function(singleCategory) {
+                    singleCategory.proBrandsDecision.forEach(function(singleBrand) {
+                        
+                        singleBrand.proVarDecision.forEach(function(singleVar){
+
+                            if (singleVar.currentPriceBM == 0 && singleVar.varID != 0) {
+                                result = false;
+                            }
+                        });
+                    });
+                });
+            }
+            res.send(200, result);
+        } else {
+            res.send(404, {
+                err: 'cannot find the doc'
+            });
         }
     })
 }

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose-q')(require('mongoose')),
     http = require('http'),
     util = require('util'),
     _ = require('underscore'),
@@ -7,7 +7,8 @@ var mongoose = require('mongoose'),
 	LocalStrategy = require('passport-local').Strategy,
 	userRoles = require('../../app/js/routingConfig').userRoles,
 	check = require('validator'),
-	events = require('events');
+	events = require('events'),
+	q = require('q');
 
 var seminarSchema            = mongoose.Schema({
 	seminarCode                  : {type:String, require:true, unique:true},
@@ -1419,6 +1420,81 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 	return newTimer;
 }
 
+/*
+	第一步删除所有本轮相关的谈判
+	删除所有本轮相关谈判细节
+	重新生成本轮相关谈判
+	重新生成本轮相关谈判细节
+		--- 如果上一阶段有 相关细节 拷贝
+		--- 否则 重新生成
+	修改生产商决策
+		--- 如果产品channel为1 修改IsOnlineProduct
+ */
+var commitPortfolioDecision = function(seminar, period, producers) {
+	var d = q.defer();
+
+	require('./contract.js').removeContractByAdmin(seminar, period, producers)
+		.then(function(data) {
+			//step 0: Delete all the related contractDetails schema 
+			return require('./contract.js').removeContractDetailsByAdmin(seminar, period, producers);
+		}).then(function(data) {
+			//step 1 2: Add contract schema between current suppliers and retailers 
+			return require('./contract.js').addContractByAdmin(seminar, period, producers);
+		}).then(function(data) {
+			//step 3: Add related contract details for two contact schema
+			return require('./contract.js').addContractDetailsByAdmin(seminar, period, producers);
+		}).then(function(data) {
+			//step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
+			return require('./producerDecision.js').UpdateIsOnlineProducts(seminar, period, producers);
+		}).then(function(data) {
+			d.resolve('commitPortfolioDecision Dond');
+		}).fail(function(data) {
+			d.reject(data);
+		}).done();
+	return d.promise;
+}
+
+exports.commitPortfolio = function(io){
+	return function(req, res, next) {
+		var queryCondition = {
+			seminar: '',
+			period: 0,
+			result: []
+		};
+		queryCondition.seminar = req.body.seminar;
+		queryCondition.period = req.body.period;
+		queryCondition.result.push({
+			'producerID': req.body.producerID
+		});
+
+		seminar.findOne({
+			seminarCode: queryCondition.seminar
+		}, function(err, doc) {
+
+			doc.producers[req.body.producerID].decisionCommitStatus[queryCondition.period].isPortfolioDecisionCommitted = true;
+
+			commitPortfolioDecision(queryCondition.seminar, queryCondition.period, queryCondition.result).then(function(result) {
+				doc.markModified('producers');
+				console.log('edit committedPortfolio');
+				io.sockets.emit('socketIO:committedPortfolio', {
+					result: result,
+					seminarCode: doc.seminarCode,
+					period: doc.currentPeriod
+				});
+				return doc.saveQ();
+			}).then(function(result) {
+				if (result) {
+					res.send(200, 'success');
+				} else {
+					res.send(200, 'fail');
+				}
+			}).fail(function(err) {
+				res.send(400, 'fail');
+			}).done();
+		});
+	}
+}
+
 exports.setTimer = function(io) {
 	var timers = [];
 	var timersEvents = new events.EventEmitter();
@@ -1428,6 +1504,7 @@ exports.setTimer = function(io) {
 		//set isPortfolioDecisionCommitted = true for all the suppliers 
 		//then do all the related io.sockets.emit()...
 		console.log('deadlinePortfolio');
+		var d = q.defer();
 
 		seminar.findOne({
 			seminarCode: seminarCode
@@ -1443,22 +1520,30 @@ exports.setTimer = function(io) {
 					}
 				}
 			}
-			require('./contract.js').addContractByAdmin(doc.seminarCode, doc.currentPeriod, result);
-			require('./contract.js').addContractDetailsByAdmin(doc.seminarCode, doc.currentPeriod, result);
 
-			doc.markModified('producers');
-			io.sockets.emit('socketIO:committedPortfolio', {
-				result: result,
-				seminarCode: doc.seminarCode,
-				period: doc.currentPeriod
+			commitPortfolioDecision(doc.seminarCode, doc.currentPeriod, result).then(function(result){
+				doc.markModified('producers');
+				console.log('edit committedPortfolio');
+				io.sockets.emit('socketIO:committedPortfolio', {
+					result: result,
+					seminarCode: doc.seminarCode,
+					period: doc.currentPeriod
+				});
+				return doc.saveQ();
+			}).then(function(result){
+				console.log('save:'+result);
+			}).fail(function(err){
+				return d.reject(err);
+			}).done(function(){
+				console.log('finish');
 			});
-			doc.save();
 		});
-
+		return d.promise;
 
 
 	}).on('deadlineContractDeal', function(seminarCode) {
 		//....
+		var d = q.defer();
 		console.log('deadlineContractDeal');
 		seminar.findOne({
 			seminarCode: seminarCode
@@ -1474,23 +1559,30 @@ exports.setTimer = function(io) {
 				doc.retailers[3].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
 			}
 			//
-			require('./contract.js').dealContractsByAdmin(doc.seminarCode, doc.currentPeriod);
-
-			doc.markModified('producers');
-			doc.markModified('retailers');
-			io.sockets.emit('socketIO:dealContract', {
-				reult: [{
-					producerID: 1
-				}, {
-					producerID: 2
-				}, {
-					producerID: 3
-				}],
-				seminar: doc.seminar,
-				period: doc.period
-			});
-			doc.save();
-		})
+			require('./contract.js').dealContractsByAdmin(doc.seminarCode, doc.currentPeriod)
+			.then(function(){
+				console.log('dealSuccess');
+				doc.markModified('producers');
+				doc.markModified('retailers');
+				io.sockets.emit('socketIO:dealContract', {
+					reult: [{
+						producerID: 1
+					}, {
+						producerID: 2
+					}, {
+						producerID: 3
+					}],
+					seminar: doc.seminar,
+					period: doc.period
+				});
+				doc.save(function(err,doc,num){
+					console.log('deal finish');
+				});
+			}).fail(function(err){
+				return d.reject(err);
+			}).done();
+		});
+		return d.promise;
 
 	}).on('deadlineContractFinalized', function(seminarCode) {
 		//....
@@ -1622,4 +1714,35 @@ exports.setTimer = function(io) {
 		}
 
 	}
+}
+
+exports.checkProducerDecisionStatusByAdmin = function(seminar, period, producer) {
+	var d = q.defer();
+	var result = {
+		'isPortfolioDecisionCommitted': false,
+		'isContractDeal': false,
+		'isContractFinalized': false,
+		'isDecisionCommitted': false
+	};
+	seminar.findOne({
+		seminarCode: seminar
+	}).exec()
+		.then(function(doc) {
+			if (doc) {
+
+				doc.producers[producerID - 1].decisionCommitStatus.forEach(function(singleProducer) {
+					if (singleProducer.period == period) {
+						result.isPortfolioDecisionCommitted = singleProducer.isPortfolioDecisionCommitted;
+						result.isContractDeal = singleProducer.isContractDeal;
+						result.isContractFinalized = singleProducer.isContractFinalized;
+						result.isDecisionCommitted = singleProducer.isDecisionCommitted;
+					}
+				})
+				d.resolve(result);
+			} else {
+				d.reject('fail');
+			}
+
+		});
+	return d.promise;
 }

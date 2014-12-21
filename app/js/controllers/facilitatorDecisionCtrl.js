@@ -48,7 +48,7 @@ define(['app'], function(app) {
 					PeriodInfo.setDecisionPeriod($scope.selectedPeriod);					
 					$location.path('/supplierDecision');
 				} else {
-					$$scope.msg = 'Please choose period.';
+					$scope.msg = 'Please choose period.';
 				}
 			}
 

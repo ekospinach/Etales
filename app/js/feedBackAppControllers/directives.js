@@ -202,6 +202,16 @@ app.directive('feedbackEleUrban', function() {
                     }
                 });
 
+                $('.feedbackEleUrbanChart').bind('mousedown', function() {
+
+                    $($(this).siblings()).toggle();
+
+                    $(this).toggleClass('modal-chart');
+
+                    $(this).highcharts().reflow();
+                });
+
+
             }
 
         });
@@ -308,6 +318,14 @@ app.directive('feedbackEleRural', function() {
                     }
                 });
 
+                $('.feedbackEleRuralChart').bind('mousedown', function() {
+
+                    $($(this).siblings()).toggle();
+
+                    $(this).toggleClass('modal-chart');
+
+                    $(this).highcharts().reflow();
+                });
             }
 
         });
@@ -414,6 +432,14 @@ app.directive('feedbackHeaUrban', function() {
                     }
                 });
 
+                $('.feedbackHeaUrbanChart').bind('mousedown', function() {
+
+                    $($(this).siblings()).toggle();
+
+                    $(this).toggleClass('modal-chart');
+
+                    $(this).highcharts().reflow();
+                });
             }
 
         });
@@ -520,6 +546,14 @@ app.directive('feedbackHeaRural', function() {
                     }
                 });
 
+                $('.feedbackHeaRuralChart').bind('mousedown', function() {
+
+                    $($(this).siblings()).toggle();
+
+                    $(this).toggleClass('modal-chart');
+
+                    $(this).highcharts().reflow();
+                });
             }
 
         });

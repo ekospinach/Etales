@@ -87,6 +87,11 @@ define(['directives', 'services'], function(directives) {
                                                 products[count].packFormat = 3;
                                             }
                                             products[count].currentPriceBM = parseFloat(products[count].currentPriceBM).toFixed(2);
+                                            if (products[count].channelPreference == undefined) {
+                                                products[count].channelPreference = 0;
+                                            } else {
+                                                products[count].channelPreference = parseFloat(products[count].channelPreference * 100).toFixed(2);
+                                            }
                                             count++;
                                         }
                                     }
@@ -360,6 +365,23 @@ define(['directives', 'services'], function(directives) {
                         })
                         return d.promise;
                     }
+
+                    scope.checkchannelPreference=function(value){
+                        var d = $q.defer(); 
+                        var categoryID,max,result;
+                        var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                        if(!filter.test(value)){
+                            d.resolve(Label.getContent('Input a number'));
+                        }
+                        if(value>100||value<0){
+                            d.resolve(Label.getContent('Input range')+':0~100');
+                        }else{
+                            d.resolve();
+                        }
+                        
+                        return d.promise;
+                    }
+
 
                     scope.openProductModal = function() {
                         var modalInstance = $modal.open({
@@ -639,24 +661,32 @@ define(['directives', 'services'], function(directives) {
                     }
 
 
-
                     scope.updateProducerDecision = function(category, brandName, varName, location, additionalIdx, index) {
                         var categoryID;
                         if (location == "composition") {
                             if (category == "Elecssories") {
                                 categoryID = 1;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location][additionalIdx],'supplierProductPortfolioManagement');
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location][additionalIdx], 'supplierProductPortfolioManagement');
                             } else {
                                 categoryID = 2;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location][additionalIdx],'supplierProductPortfolioManagement');
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location][additionalIdx], 'supplierProductPortfolioManagement');
+                            }
+                        }
+                        if (location == "channelPreference") {
+                            if (category == "Elecssories") {
+                                categoryID = 1;
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location] / 100, 'supplierProductPortfolioManagement');
+                            } else {
+                                categoryID = 2;
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location] / 100, 'supplierProductPortfolioManagement');
                             }
                         } else {
                             if (category == "Elecssories") {
                                 categoryID = 1;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location],'supplierProductPortfolioManagement');
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location], 'supplierProductPortfolioManagement');
                             } else {
                                 categoryID = 2;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location],'supplierProductPortfolioManagement');
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location], 'supplierProductPortfolioManagement');
                             }
                         }
                     }
@@ -680,138 +710,35 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     scope.submitDecision = function() {
-                        var postData;
-                        var bmPriceSample = 1;
-                        for(var i=0;i<scope.productes.length;i++){
-                            if(scope.productes[i].currentPriceBM=="0"||scope.productes[i].currentPriceBM=="0.00"){
-                                bmPriceSample = 0;
-                                break;
-                            }
-                        }
-                        for(var i=0;i<scope.producths.length;i++){
-                            if(scope.producths[i].currentPriceBM=="0"||scope.producths[i].currentPriceBM=="0.00"){
-                                bmPriceSample = 0;
-                                break;
-                            }
-                        }
+                        scope.errorInfo=false;
+                        scope.isPortfolioDecisionCommitted = true;
                         //make sure none of bm price is 0, otherwise show error information 
-                        if(bmPriceSample !=0){
-                            scope.errorInfo=false;
-                            scope.isPortfolioDecisionCommitted = true;
-                            //step 0: Delete all the related contract schema and contractDetails schema 
-                            var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                            $http({
-                                method: 'POST',
-                                url: '/removeContract',
-                                data: {
-                                    contractCode: contractCode
-                                }
-                            }).then(function(data) {
-
-                                var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                                return $http({
-                                    method: 'POST',
-                                    url: '/removeContract',
-                                    data: {
-                                        contractCode: contractCode
-                                    }
-                                });
-
-                            }).then(function(data) {
-
-                                var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                                return $http({
-                                    method: 'POST',
-                                    url: '/removeContractDetailsByContractCode',
-                                    data: {
-                                        contractCode: contractCode
-                                    }
-                                });
-
-                            }).then(function(data) {
-
-                                var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                                return $http({
-                                    method: 'POST',
-                                    url: '/removeContractDetailsByContractCode',
-                                    data: {
-                                        contractCode: contractCode
-                                    }
-                                });
-                            }).then(function(data) {
-
-                                //step 1: Add contract schema between current supplier and retailer 1 
-                                postData = {
-                                    period: scope.selectedPeriod,
-                                    seminar: SeminarInfo.getSelectedSeminar().seminarCode,
-                                    draftedByCompanyID: scope.selectedPlayer,
-                                    producerID: scope.selectedPlayer,
-                                    retailerID: 1
-                                }
-                                return $http({
-                                    method: 'POST',
-                                    url: '/addContract',
-                                    data: postData
-                                });
-
-                            }).then(function(data) {
-
-                                console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
-
-                                //step 2: Add contract schema between current supplier and retailer 2
-                                postData.retailerID = 2;
-                                return $http({
-                                    method: 'POST',
-                                    url: '/addContract',
-                                    data: postData
-                                });
-                            }).then(function(data) {
-                                console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
-
-                                //step 3: Add related contract details for two contact schema
-                                //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
-                                var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                                return contractDetailsCreateShooter(contractCode, scope.productes);
-
-                            }).then(function(data) {
-
-                                var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                                return contractDetailsCreateShooter(contractCode, scope.producths);
-                            }).then(function(data) {
-
-                                var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                                return contractDetailsCreateShooter(contractCode, scope.productes);
-                            }).then(function(data) {
-
-                                var contractCode = 'P' + scope.selectedPlayer + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
-                                return contractDetailsCreateShooter(contractCode, scope.producths);
-                            }).then(function(data) {
-
-                                //step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
-                                var queryCondition = {
-                                    producerID: parseInt(scope.selectedPlayer),
-                                    seminar: SeminarInfo.getSelectedSeminar().seminarCode,
-                                    period: scope.selectedPeriod,
-                                    value: true
-                                }
-                                return $http({
-                                    method: 'POST',
-                                    url: '/submitPortfolioDecision',
-                                    data: queryCondition
-                                });
-                            }).then(function(data) {
-                                scope.isCommitConfirmInfoShown = false;
-                                console.log('Submitted decision complete, lock input.');
-                            }, function(data) {
-                                if (data.msg != undefined) {
-                                    console.log('Error: ' + data.msg);
-                                } else console.log('Error: ' + data.data);
-                            });
-                        }else{
-                            scope.errorInfo=true;   
+                        var url='/checkSupplierBMPrice/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+scope.selectedPlayer;
+                        var postData = {
+                            seminar: SeminarInfo.getSelectedSeminar().seminarCode,
+                            period: scope.selectedPeriod,
+                            producerID: scope.selectedPlayer
                         }
 
-                        //lock button 
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            console.log('checkSupplierBMPriceResult:' + data.data);
+                            if (data.data == "true") {
+                                return $http({
+                                    method: 'POST',
+                                    url: '/commitPortfolio',
+                                    data: postData
+                                }).then(function(data) {
+                                    scope.isDecisionCommitted = true;
+                                    scope.isCommitConfirmInfoShown = false;
+                                });
+                            } else {
+                                scope.isPortfolioDecisionCommitted = false;
+                                scope.errorInfo = true;
+                            }
+                        });
                     }
 
                     function contractDetailsCreateShooter(contractCode, productList) {

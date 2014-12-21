@@ -63,7 +63,6 @@ module.exports = function(app, io){
     app.get('/getContractUnApprovedDetails/:contractCode',                                                  require('./../api/models/contract.js').getContractUnApprovedDetails);
     app.get('/getContractDetail/:contractCode/:brandName/:varName',                                         require('./../api/models/contract.js').getContractDetail);
     
-    
     //Check if selected contract details has been lock(both side choose agree)    
     //return { "result" : true, "doc" : contractDetails} : Locked
     //return { "result" : false, "doc" : contractDetails}  : not Locked
@@ -92,7 +91,14 @@ module.exports = function(app, io){
     app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder(io));
 
     
+    //step 1 check bm price if true contine if false break
+    app.get('/checkSupplierBMPrice/:seminar/:period/:producerID',                require('./../api/models/producerDecision.js').checkSupplierBMPrice);
+    //step 2  commitPortfolio
+    app.post('/commitPortfolio',                                                 require('./../api/models/seminar.js').commitPortfolio(io));
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
+
+
+
     app.post('/submitContractDeal',                                              require('./../api/models/seminar.js').submitContractDeal(io));
     app.post('/submitContractFinalized',                                         require('./../api/models/seminar.js').submitContractFinalized(io));
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
