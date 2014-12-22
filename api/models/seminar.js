@@ -1475,10 +1475,9 @@ exports.commitPortfolio = function(io){
 
 			commitPortfolioDecision(queryCondition.seminar, queryCondition.period, queryCondition.result).then(function(result) {
 				doc.markModified('producers');
-				console.log('edit committedPortfolio');
 				io.sockets.emit('socketIO:committedPortfolio', {
-					result: result,
-					seminarCode: doc.seminarCode,
+					result: queryCondition.result,
+					seminar: doc.seminarCode,
 					period: doc.currentPeriod
 				});
 				return doc.saveQ();
@@ -1526,7 +1525,7 @@ exports.setTimer = function(io) {
 				console.log('edit committedPortfolio');
 				io.sockets.emit('socketIO:committedPortfolio', {
 					result: result,
-					seminarCode: doc.seminarCode,
+					seminar: doc.seminarCode,
 					period: doc.currentPeriod
 				});
 				return doc.saveQ();

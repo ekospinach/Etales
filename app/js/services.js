@@ -417,8 +417,14 @@ define(['angular',
 
 					socket.on('socketIO:committedPortfolio',function(data){
 						//result
-						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-							 $rootScope.$broadcast('committedPortfolio',data);
+						console.log(data);
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.period==PeriodInfo.getCurrentPeriod()){
+							for(var i=0;i<data.result.length;i++){
+								if(data.result[i].producerID==PlayerInfo.getPlayer()){
+									$rootScope.$broadcast('committedPortfolio',data);
+									break;
+								}
+							}
 						}
 					});
 
