@@ -1242,7 +1242,7 @@ exports.getStoreManagement = function(req, res, next) {
         require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryH, producer2),
         require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryH, producer3),
     ]).spread(function(doc, producer1EList, producer2EList, producer3EList, producer1HList, producer2HList, producer3HList) {
-        if (doc) {
+        if (doc&& producer1EList&& producer2EList&& producer3EList&& producer1HList&& producer2HList&& producer3HList) {
             //getOrderedProducts 获取当前decision 已经order的 产品 根据 market category 区分
             result.UrbanElecssoriesProducts = getOrderedProducts(doc, categoryE, marketU);
             result.RuralElecssoriesProducts = getOrderedProducts(doc, categoryE, marketR);
