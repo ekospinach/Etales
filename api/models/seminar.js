@@ -1471,7 +1471,7 @@ exports.commitPortfolio = function(io){
 			seminarCode: queryCondition.seminar
 		}, function(err, doc) {
 
-			doc.producers[req.body.producerID].decisionCommitStatus[queryCondition.period].isPortfolioDecisionCommitted = true;
+			doc.producers[req.body.producerID-1].decisionCommitStatus[queryCondition.period].isPortfolioDecisionCommitted = true;
 
 			commitPortfolioDecision(queryCondition.seminar, queryCondition.period, queryCondition.result).then(function(result) {
 				doc.markModified('producers');
