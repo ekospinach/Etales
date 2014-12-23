@@ -14,7 +14,7 @@ define(['directives', 'services'], function(directives) {
                     isDecisionCommitted:'='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/SD_onlineStoreManagement.html',
+                templateUrl: 'singleReportTemplate/SD_onlineStoreManagement.html',
                 link: function(scope, element, attrs) {
 
                     var selectPacks = function() {

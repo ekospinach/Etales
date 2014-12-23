@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives) {
                     retailerShow: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/RCR_retailerRuralShopper.html',
+                templateUrl: 'singleReportTemplate/RCR_retailerRuralShopper.html',
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {

@@ -10,7 +10,7 @@ define(['directives', 'services'], function(directives) {
                     selectedPeriod: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/MR_awarenessElecssories.html',
+                templateUrl: 'singleReportTemplate/MR_awarenessElecssories.html',
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
                         scope.isPageLoading = true;

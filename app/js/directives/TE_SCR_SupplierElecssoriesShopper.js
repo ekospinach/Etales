@@ -10,7 +10,7 @@ define(['directives', 'services'], function(directives) {
                     producerShow: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/SCR_supplierElecssoriesShopper.html',
+                templateUrl: 'singleReportTemplate/SCR_supplierElecssoriesShopper.html',
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {

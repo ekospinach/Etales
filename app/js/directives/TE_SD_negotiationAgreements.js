@@ -14,7 +14,7 @@ define(['directives', 'services'], function(directives) {
                     isDecisionCommitted:'='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/SD_negotiationAgreements.html',
+                templateUrl: 'singleReportTemplate/SD_negotiationAgreements.html',
                 link: function(scope, element, attrs) {
                     var userRoles = routingConfig.userRoles;
                     /* 

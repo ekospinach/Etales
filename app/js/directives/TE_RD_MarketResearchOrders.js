@@ -13,7 +13,7 @@ define(['directives', 'services'], function(directives) {
                     isDecisionCommitted: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/RD_marketResearchOrders.html',
+                templateUrl: 'singleReportTemplate/RD_marketResearchOrders.html',
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
                         scope.isPageLoading = true;

@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives) {
                     producerShow: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/SCR_supplierOnlineBusiness.html',
+                templateUrl: 'singleReportTemplate/SCR_supplierOnlineBusiness.html',
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {
@@ -281,7 +281,7 @@ define(['directives', 'services'], function(directives) {
                             })
 
                             var modalInstance = $modal.open({
-                                templateUrl: '../../partials/modal/supplierOnlineProduct.html',
+                                templateUrl: 'modal/supplierOnlineProduct.html',
                                 controller: supplierOnlineProductModalCtrl
                             });
                             modalInstance.result.then(function() {

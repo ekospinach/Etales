@@ -36,6 +36,7 @@
 			//angular notification 
 			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min',
 			//Period slider for reports module 
+			template: 				'templates',
 		},
 		baseUrl: 'js',
 		shim: {
@@ -61,7 +62,8 @@
 			'highchartMore':['jquery','highchart'],
 			'angularHighcharts' :['angular','highchart'],
 			'highchart' :['jquery'],
-			'ngNotify' :['jquery','angular']
+			'ngNotify' :['jquery','angular'],
+			'template':['angular']
 		},
 		priority: [
 			"angular"

@@ -10,7 +10,7 @@ define(['directives', 'services'], function(directives) {
 					selectedPeriod: '='
 				},
 				restrict: 'E',
-				templateUrl: '../../partials/singleReportTemplate/OR_marketShares.html',
+				templateUrl: 'singleReportTemplate/OR_marketShares.html',
 				link: function(scope, element, attrs) {
 					var initializePage = function() {
 						console.log('initializePage OR_marketShares small...');

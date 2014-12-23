@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives) {
                     retailerShow: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/RCR_retailerRuralProfit.html',
+                templateUrl: 'singleReportTemplate/RCR_retailerRuralProfit.html',
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {
@@ -113,7 +113,7 @@ define(['directives', 'services'], function(directives) {
                                 }
                             })
                             var modalInstance = $modal.open({
-                                templateUrl: '../../partials/modal/retailerProfitProduct.html',
+                                templateUrl: 'modal/retailerProfitProduct.html',
                                 controller: retailerProfitProductModalCtrl
                             });
                             modalInstance.result.then(function() {

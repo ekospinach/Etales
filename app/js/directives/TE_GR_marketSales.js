@@ -9,7 +9,7 @@ define(['directives', 'services'], function(directives) {
                     selectedPeriod: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/GR_marketSales.html',
+                templateUrl: 'singleReportTemplate/GR_marketSales.html',
                 link: function(scope, element, attrs) {
 
 

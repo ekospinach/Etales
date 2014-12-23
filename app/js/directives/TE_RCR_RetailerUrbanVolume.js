@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives) {
                     retailerShow: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/RCR_retailerUrbanVolume.html',
+                templateUrl: 'singleReportTemplate/RCR_retailerUrbanVolume.html',
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {

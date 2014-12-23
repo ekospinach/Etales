@@ -12,7 +12,7 @@ define(['directives', 'services'], function(directives){
                 isDecisionCommitted:'='
             },
             restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/RD_storeManagement.html',            
+            templateUrl : 'singleReportTemplate/RD_storeManagement.html',            
             link : function(scope, element, attrs){                   
 
                 var initializePage = function() {
@@ -280,7 +280,7 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     var modalInstance = $modal.open({
-                        templateUrl: '../../partials/modal/retailerOrderModal.html',
+                        templateUrl: 'modal/retailerOrderModal.html',
                         controller: retailerOrderModalCtrl
                     });
 

@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives) {
                     isReady: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/SD_bMListPrices.html',
+                templateUrl: 'singleReportTemplate/SD_bMListPrices.html',
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {

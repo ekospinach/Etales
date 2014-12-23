@@ -10,7 +10,7 @@ define(['directives', 'services'], function(directives) {
                     data: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/GR_brandPerspective.html',
+                templateUrl: 'singleReportTemplate/GR_brandPerspective.html',
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
                         scope.isPageLoading = true;

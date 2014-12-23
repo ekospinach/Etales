@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives) {
 
 				},
 				restrict: 'E',
-				templateUrl: '../../partials/singleReportTemplate/OR_sales.html',
+				templateUrl: 'singleReportTemplate/OR_sales.html',
 				link: function(scope, element, attrs) {
 					var initializePage = function() {
 						console.log('initializePage OR_sales small...');

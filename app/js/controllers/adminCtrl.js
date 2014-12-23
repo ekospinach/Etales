@@ -72,7 +72,7 @@ define(['app','socketIO'], function(app) {
 
 		$scope.openNewSeminarModal=function(){
 			var modalInstance = $modal.open({
-				templateUrl: '../../partials/modal/newSeminarModal.html',
+				templateUrl: 'modal/newSeminarModal.html',
 				controller: newSeminarModalCtrl
 		    });
 		    modalInstance.result.then(function(){

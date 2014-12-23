@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives) {
                     producerShow: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/SCR_supplierConsolidate.html',
+                templateUrl: 'singleReportTemplate/SCR_supplierConsolidate.html',
                 link: function(scope, element, attrs) {
 
                     var initializePage = function() {

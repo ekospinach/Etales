@@ -9,8 +9,8 @@ define(['directives', 'services'], function(directives) {
                     selectedPeriod: '='
                 },
                 restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/MR_urbanElecssoriesConsumerShare.html',
-                //templateUrl : '../../partials/singleReportTemplate/MR_brand.html',            
+                templateUrl: 'singleReportTemplate/MR_urbanElecssoriesConsumerShare.html',
+                //templateUrl : 'singleReportTemplate/MR_brand.html',            
                 link: function(scope, element, attrs) {
                     var initializePage = function() {
                         scope.isPageLoading = true;
