@@ -621,6 +621,26 @@ define(['angular',
 						console.log('Failed:' + res);
 					});
 				},
+				//step3 var decision
+				setOnlineVariant:function(categoryID,brandName,varName,variant,page){
+					var queryCondition = {
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'setOnlineVariant', 
+						categoryID : categoryID,
+						brandName : brandName,
+						varName : varName,
+						value:variant,
+						page:page
+					}
+					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+						
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					});
+				},
 				//step3
 				setProducerDecisionBrand:function(categoryID,brandName,location,additionalIdx,value,page){
 					var queryCondition = {

@@ -501,6 +501,26 @@ exports.updateProducerDecision = function(io) {
                                 }
                             }
                             break;
+                        case 'setOnlineVariant':{
+                            for(var i=0;i<doc.proCatDecision.length;i++){
+                                if (doc.proCatDecision[i].categoryID == queryCondition.categoryID) {
+                                    for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                                        if (doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName) {
+                                            for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                                                if (doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName) {
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePrice=queryCondition.value.onlinePrice;
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume=queryCondition.value.onlinePlannedVolume;
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency=queryCondition.value.pricePromotions.promo_Frequency;
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=queryCondition.value.pricePromotions.promo_Rate/100;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
                         case 'updateBrand':
                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                 if (doc.proCatDecision[i].categoryID == queryCondition.categoryID) {
