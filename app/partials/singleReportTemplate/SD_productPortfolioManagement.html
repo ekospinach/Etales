@@ -77,7 +77,6 @@
                 <td>
                     <a href="#" editable-text="producte.currentPriceBM" onbeforesave="checkCurrentBM('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index)" ng-show='!isPortfolioDecisionCommitted&&producte.channelPreference!=100'>
                         <p class="text-right">{{ producte.currentPriceBM || 0 }}</p>
-                        <p ng-show='producte.showInfo'>{{Label.getContent('Less than current cost')}}</p>
                     </a>
                     <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted&&producte.channelPreference!=100'>{{ producte.currentPriceBM || 0 }}</p>
                     <p class="text-right text-muted" ng-show='producte.channelPreference==100'>-</p>
@@ -166,10 +165,11 @@
                     <p ng-show="isPortfolioDecisionCommitted" class="text-right text-muted">{{ producth.composition[2] || 0 }}</p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producth.currentPriceBM" onbeforesave="checkCurrentBM('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index)" ng-show='!isPortfolioDecisionCommitted'>
-                        <p class="text-right">{{ producth.currentPriceBM || 0 }}</p>                  
+                    <a href="#" editable-text="producth.currentPriceBM" onbeforesave="checkCurrentBM('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index)" ng-show='!isPortfolioDecisionCommitted&&producth.channelPreference!=100'>
+                        <p class="text-right">{{ producth.currentPriceBM || 0 }}</p>         
                     </a>
-                    <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted'>{{ producth.currentPriceBM || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isPortfolioDecisionCommitted&&producth.channelPreference!=100'>{{ producth.currentPriceBM || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='producth.channelPreference==100'>-</p>
                 </td>
                 <td>
                     <a href="#" editable-checkbox="producth.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isPortfolioDecisionCommitted" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'discontinue','0',$index)">

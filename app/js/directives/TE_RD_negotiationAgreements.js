@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives) {
-    directives.directive('retailerNegotiationAgreements', ['RetailerDecisionBase', 'RetailerDecision', 'Label', 'SeminarInfo', '$http', '$location', '$filter', 'PeriodInfo', '$q', 'PlayerInfo','notify',
-        function(RetailerDecisionBase, RetailerDecision, Label, SeminarInfo, $http, $location, $filter, PeriodInfo, $q, PlayerInfo, notify) {
+    directives.directive('retailerNegotiationAgreements', ['RetailerDecisionBase', 'RetailerDecision', 'Label', 'SeminarInfo', '$http', '$location', '$filter', 'PeriodInfo', '$q', 'PlayerInfo','notify', 'RoleInfo',
+        function(RetailerDecisionBase, RetailerDecision, Label, SeminarInfo, $http, $location, $filter, PeriodInfo, $q, PlayerInfo, notify, RoleInfo) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -15,6 +15,7 @@ define(['directives', 'services'], function(directives) {
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/RD_negotiationAgreements.html',
                 link: function(scope, element, attrs) {
+                    var userRoles = routingConfig.userRoles;
                     /* 
 
                         Input Validation 
@@ -32,7 +33,7 @@ define(['directives', 'services'], function(directives) {
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result) {
+                            if (data.data.result && RoleInfo.getRole() != userRoles.facilitator) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
 
@@ -86,7 +87,7 @@ define(['directives', 'services'], function(directives) {
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result) {
+                            if (data.data.result && RoleInfo.getRole() != userRoles.facilitator) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
 
@@ -180,7 +181,7 @@ define(['directives', 'services'], function(directives) {
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result) {
+                            if (data.data.result && RoleInfo.getRole() != userRoles.facilitator) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
                             url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + category + '/1'+ '/' + scope.selectedPeriod;
@@ -247,7 +248,7 @@ define(['directives', 'services'], function(directives) {
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result) {
+                            if (data.data.result && RoleInfo.getRole() != userRoles.facilitator) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
                             url = '/checkSalesTargetVolume/' + contractCode + '/' + brandName + '/' + varName;
@@ -343,7 +344,7 @@ define(['directives', 'services'], function(directives) {
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result) {
+                            if (data.data.result && RoleInfo.getRole() != userRoles.facilitator) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             } else {
                                 d.resolve();
@@ -368,7 +369,7 @@ define(['directives', 'services'], function(directives) {
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result) {
+                            if (data.data.result && RoleInfo.getRole() != userRoles.facilitator) {
                                 d.resolve(Label.getContent('This item has been locked.'));
                             }
 
@@ -484,6 +485,8 @@ define(['directives', 'services'], function(directives) {
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
                         scope.Label = Label;
+                        scope.userRoles = userRoles;
+                        scope.RoleInfo = RoleInfo;
                         scope.retailerID = scope.selectedPlayer;
                         if(scope.selectedPlayer&&scope.selectedPeriod){
                             getResult(1);
@@ -616,7 +619,7 @@ define(['directives', 'services'], function(directives) {
                                 }
                             }
 
-                            if (data.data.result) {
+                            if (data.data.result && RoleInfo.getRole() != userRoles.facilitator) {
                                 d.resolve(Label.getContent('This item has been locked'));
                             } else {
                                 d.resolve();
