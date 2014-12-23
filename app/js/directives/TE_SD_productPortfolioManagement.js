@@ -741,45 +741,6 @@ define(['directives', 'services'], function(directives) {
                         });
                     }
 
-                    function contractDetailsCreateShooter(contractCode, productList) {
-                        var deferred = $q.defer();
-
-                        (function multipleRequestShooter(products, idx) {
-                            var shooterData = {
-                                contractCode: contractCode,
-                                brandName: products[idx].parentBrandName,
-                                brandID: products[idx].parentBrandID,
-                                varName: products[idx].varName,
-                                varID: products[idx].varID,
-                                composition: products[idx].composition,
-                                currentPriceBM: products[idx].currentPriceBM,
-                                packFormat: products[idx].realPackFormat,
-                                seminar: SeminarInfo.getSelectedSeminar().seminarCode
-                            }
-                            $http({
-                                method: 'POST',
-                                url: '/addContractDetails',
-                                data: shooterData
-                            }).then(function(data) {
-                                if (idx < products.length - 1) {
-                                    idx++;
-                                    multipleRequestShooter(products, idx);
-                                } else {
-                                    deferred.resolve({
-                                        msg: 'contract details shooter done, contractCode : ' + contractCode
-                                    });
-                                }
-                            }, function(data) {
-                                deferred.reject({
-                                    msg: 'Error from contract details shooter, contractCode : ' + contractCode
-                                });
-                            });
-
-                        })(productList, 0);
-
-                        return deferred.promise;
-                    }
-
                     scope.$watch('isPageShown', function(newValue, oldValue) {
                         if (newValue == true) {
                             initializePage();

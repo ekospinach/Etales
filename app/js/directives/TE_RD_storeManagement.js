@@ -148,7 +148,7 @@ define(['directives', 'services'], function(directives){
                     var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
-                    }
+                    }                    
                     if(brandName.substring(brandName.length-1)<4){
                         //producer product
                         var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
@@ -156,7 +156,7 @@ define(['directives', 'services'], function(directives){
                             method:'GET',
                             url:url
                         }).then(function(data){
-                            max=data.data.result;
+                            max=data.data.result;                            
                             url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + scope.selectedPeriod;
                             return $http({
                                 method:'GET',

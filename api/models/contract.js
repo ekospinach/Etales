@@ -63,14 +63,12 @@ contractSchema.plugin(uniqueValidator);
 exports.contract = mongoose.model('contract', contractSchema);
 exports.contractVariantDetails = mongoose.model('contractVariantDetails', contractVariantDetailsSchema);
 
-;
 var contract = mongoose.model('contract', contractSchema);
 var contractVariantDetails = mongoose.model('contractVariantDetails', contractVariantDetailsSchema);
 
 
 exports.removeContractDetailsByAdmin = function(seminar, period, producers) {
      var deferred = q.defer();
-     console.log('removeContractDetailsByAdmin');
      (function removeContractDetails(seminar, period, producers, idx) {
           var d = q.defer();
           if (idx < producers.length) {
@@ -1039,18 +1037,4 @@ exports.getRetailerAdditionalBudget = function(req, res, next) {
                     }
                }
           });
-
-
-     // contract.findOne({
-     //      contractCode: req.params.contractCode
-     // }, function(err, doc) {
-     //      if (err) {
-     //           return next(new Error(err))
-     //      };
-     //      if (doc) {
-     //           res.send(200, '0');
-     //      } else {
-     //           res.send(200, '0');
-     //      }
-     // })
 }

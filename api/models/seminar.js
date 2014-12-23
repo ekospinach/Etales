@@ -951,165 +951,6 @@ exports.getPlayerReportOrder = function(req, res, next) {
 	});
 }
 
-// exports.getPlayerReportOrderExpend = function(req, res, next) {
-// 	seminar.findOne({
-// 		seminarCode: req.params.seminar
-// 	}, function(err, doc) {
-// 		if (err) {
-// 			return next(new Error(err));
-// 		}
-// 		if (doc) {
-// 			var result = 0;
-// 			if (req.params.userType == "P") {
-// 				for (var i = 0; i < doc.producers[req.params.playerID - 1].reportPurchaseStatus.length; i++) {
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].awareness) {
-// 						result += doc.reportPrice.awareness;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].brandPerceptions) {
-// 						result += doc.reportPrice.brandPerceptions;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].retailerPerceptions) {
-// 						result += doc.reportPrice.retailerPerceptions;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].marketShareByConsumerSegment) {
-// 						result += doc.reportPrice.marketShareByConsumerSegment;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].salesByConsumerSegment) {
-// 						result += doc.reportPrice.salesByConsumerSegment;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].marketShareByShopperSegment) {
-// 						result += doc.reportPrice.marketShareByShopperSegment;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].salesByShopperSegment) {
-// 						result += doc.reportPrice.salesByShopperSegment;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].BMRetailerPrices) {
-// 						result += doc.reportPrice.BMRetailerPrices;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].promotionIntensity) {
-// 						result += doc.reportPrice.promotionIntensity;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].supplierIntelligence) {
-// 						result += doc.reportPrice.supplierIntelligence;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].retailerIntelligence) {
-// 						result += doc.reportPrice.retailerIntelligence;
-// 					}
-// 					if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].forecasts) {
-// 						result += doc.reportPrice.forecasts;
-// 					}
-// 					res.send(200, {
-// 						'result': result
-// 					});
-// 					break;
-// 				}
-// 				require('./producerDecision.js').getProducerReportOrder(req.params.seminar,req.params.period,req.params.playerID)
-// 				.then(function(data){
-// 					console.log('doc:'+doc+',data:'+data);
-// 					// for(var i = 0; i < data.length; i++){
-// 					// 	if(data[i]){
-// 					// 		result+=doc.
-// 					// 	}
-// 					// }
-// 					// for (var i = 0; i < doc.producers[req.params.playerID - 1].reportPurchaseStatus.length; i++) {
-// 					// 	//if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].period == req.params.period) {
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].) {
-// 					// 		result += doc.reportPrice.awareness;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i]) {
-// 					// 		result += doc.reportPrice.brandPerceptions;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i]) {
-// 					// 		result += doc.reportPrice.retailerPerceptions;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i]) {
-// 					// 		result += doc.reportPrice.marketShareByConsumerSegment;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i]) {
-// 					// 		result += doc.reportPrice.salesByConsumerSegment;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].marketShareByShopperSegment) {
-// 					// 		result += doc.reportPrice.marketShareByShopperSegment;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].salesByShopperSegment) {
-// 					// 		result += doc.reportPrice.salesByShopperSegment;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].BMRetailerPrices) {
-// 					// 		result += doc.reportPrice.BMRetailerPrices;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].promotionIntensity) {
-// 					// 		result += doc.reportPrice.promotionIntensity;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].supplierIntelligence) {
-// 					// 		result += doc.reportPrice.supplierIntelligence;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].retailerIntelligence) {
-// 					// 		result += doc.reportPrice.retailerIntelligence;
-// 					// 	}
-// 					// 	if (doc.producers[req.params.playerID - 1].reportPurchaseStatus[i].forecasts) {
-// 					// 		result += doc.reportPrice.forecasts;
-// 					// 	}
-// 					// 	res.send(200, {
-// 					// 		'result': result
-// 					// 	});
-// 					// 	break;
-// 					// }
-// 				},function(){
-
-// 				})
-// 			} else {
-// 				for (var i = 0; i < doc.retailers[req.params.playerID - 1].reportPurchaseStatus.length; i++) {
-// 					if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].period == req.params.period) {
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].awareness) {
-// 							result += doc.reportPrice.awareness;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].brandPerceptions) {
-// 							result += doc.reportPrice.brandPerceptions;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].retailerPerceptions) {
-// 							result += doc.reportPrice.retailerPerceptions;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].marketShareByConsumerSegment) {
-// 							result += doc.reportPrice.marketShareByConsumerSegment;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].salesByConsumerSegment) {
-// 							result += doc.reportPrice.salesByConsumerSegment;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].marketShareByShopperSegment) {
-// 							result += doc.reportPrice.marketShareByShopperSegment;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].salesByShopperSegment) {
-// 							result += doc.reportPrice.salesByShopperSegment;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].BMRetailerPrices) {
-// 							result += doc.reportPrice.BMRetailerPrices;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].promotionIntensity) {
-// 							result += doc.reportPrice.promotionIntensity;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].supplierIntelligence) {
-// 							result += doc.reportPrice.supplierIntelligence;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].retailerIntelligence) {
-// 							result += doc.reportPrice.retailerIntelligence;
-// 						}
-// 						if (doc.retailers[req.params.playerID - 1].reportPurchaseStatus[i].forecasts) {
-// 							result += doc.reportPrice.forecasts;
-// 						}
-// 						res.send(200, {
-// 							'result': result
-// 						});
-// 						break;
-// 					}
-// 				}
-// 			}
-// 		} else {
-// 			res.send(404, 'cannot find matched doc....');
-// 		}
-// 	})
-
-// }
-
 exports.getTimerActiveInfo = function(req, res, next) {
 	seminar.findOne({
 		seminarCode: req.params.seminar
@@ -1373,47 +1214,15 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 		});
 		if (countDown.pass == countDown.timersEvent[0]) {
 			timersEvents.emit('deadlinePortfolio', seminarCode, io);
-			// io.sockets.emit('socketIO:deadlinePortfolio', {
-			// 	'seminar': seminarCode,
-			// 	'pass': countDown.pass,
-			// 	'portfolio': countDown.portfolio,
-			// 	'contractDeal': countDown.contractDeal,
-			// 	'contractFinalized': countDown.contractFinalized,
-			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
-			// });
 
 		} else if (countDown.pass == countDown.timersEvent[1]) {
 			timersEvents.emit('deadlineContractDeal', seminarCode, io);
-			// io.sockets.emit('socketIO:deadlineContractDeal', {
-			// 	'seminar': seminarCode,
-			// 	'pass': countDown.pass,
-			// 	'portfolio': countDown.portfolio,
-			// 	'contractDeal': countDown.contractDeal,
-			// 	'contractFinalized': countDown.contractFinalized,
-			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
-			// });
 
 		} else if (countDown.pass == countDown.timersEvent[2]) {
 			timersEvents.emit('deadlineContractFinalized', seminarCode, io);
-			// io.sockets.emit('socketIO:deadlineContractFinalized', {
-			// 	'seminar': seminarCode,
-			// 	'pass': countDown.pass,
-			// 	'portfolio': countDown.portfolio,
-			// 	'contractDeal': countDown.contractDeal,
-			// 	'contractFinalized': countDown.contractFinalized,
-			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
-			// });
 
 		} else if (countDown.pass == countDown.timersEvent[3]) {
 			timersEvents.emit('deadlineDecisionCommitted', seminarCode, io);
-			// io.sockets.emit('socketIO:deadlineDecisionCommitted', {
-			// 	'seminar': seminarCode,
-			// 	'pass': countDown.pass,
-			// 	'portfolio': countDown.portfolio,
-			// 	'contractDeal': countDown.contractDeal,
-			// 	'contractFinalized': countDown.contractFinalized,
-			// 	'contractDecisionCommitted': countDown.contractDecisionCommitted
-			// });
 		}
 	}, 1000);
 	newTimer.seminarCode = seminarCode;
