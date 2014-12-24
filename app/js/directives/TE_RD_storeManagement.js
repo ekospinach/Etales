@@ -495,7 +495,7 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.page="retailerStoreManagement"){
+                    if(data.page=="retailerStoreManagement"){
                         scope.pageBase = newBase;
                         if (data.categoryID == 1 && data.marketID == 1) {
                             showView('Elecssories', 'Urban');

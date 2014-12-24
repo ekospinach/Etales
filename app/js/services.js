@@ -710,6 +710,20 @@ define(['angular',
 						console.log('Failed:' + res);
 					})
 				},
+				buyAllMarketResearchOrders:function(page){
+					var queryCondition = {
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'buyAllMarketResearchOrders', 
+						page:page
+					}
+					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					});
+				},
 				addProductNewBrand:function(newproducerDecision,categoryID,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
@@ -883,6 +897,7 @@ define(['angular',
 						console.log('socketIO:retailerBaseChanged:' + JSON.stringify(data));
 						//if changed base is modified by current retailer & seminar, reload decision base and broadcast message...
 						if(data.page){
+							console.log(data.page);
 							if( (data.retailerID ==  PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode) ){
 								requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
 								requestPara.period = PeriodInfo.getDecisionPeriod();
@@ -1057,6 +1072,21 @@ define(['angular',
 						console.log('Failed:' + res);
 					})
 				},
+				buyAllMarketResearchOrders:function(page){
+					var queryCondition = {
+						retailerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'buyAllMarketResearchOrders', 
+						page:page
+					}
+					$http({method:'POST',url:'/retailerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
+				},
+
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;

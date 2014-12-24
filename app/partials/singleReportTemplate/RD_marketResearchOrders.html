@@ -14,7 +14,12 @@
                     <p class="text-center">{{Label.getContent('Cost')}}({{Label.getContent('$mln')}})</p>
                 </th>
                 <th>
-                    <p class="text-center">{{Label.getContent('Buy?')}}</p>
+                    <p class="text-right" ng-show="!isDecisionCommitted&&!buyAll">{{Label.getContent('All')}}?
+                        <a href="#" editable-checkbox="buyAll" onbeforesave='checkAll()' onaftersave="buyAllReports()">
+                            {{ buyAll && Label.getContent('All') || Label.getContent('No') }}
+                        </a>
+                    </p>
+                    <p ng-show="isDecisionCommitted||buyAll" class="text-right text-muted">{{Label.getContent('All')}}?{{ buyAll && Label.getContent('All') || Label.getContent('No') }}</p>
                 </th>
             </tr>
         </thead>

@@ -24,7 +24,7 @@ define(['directives', 'services'], function(directives) {
 
                     var showView = function() {
                         RetailerDecisionBase.reload({
-                            retailerID: parseInt(PlayerInfo.getPlayer()),
+                            retailerID: scope.selectedPlayer,
                             period: scope.selectedPeriod,
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
@@ -139,6 +139,15 @@ define(['directives', 'services'], function(directives) {
                             'reportPrice': prices[12],
                             'playerStatus': scope.pageBase.marketResearchOrder[12]
                         });
+                        scope.buyAll = true;
+                        for (var i = 0; i < 13; i++) {
+                            if (!scope.pageBase.marketResearchOrder[i]) {
+                                scope.buyAll = false;
+                                break;
+                            }
+                        }
+                        console.log(scope.buyAll);
+
                         scope.playDatas = playDatas;
 
                         deferred.resolve({
@@ -151,7 +160,8 @@ define(['directives', 'services'], function(directives) {
                         var d = $q.defer();
                         var abMax = 0,
                             expend = 0,
-                            reportExpend = 0;
+                            reportExpend = 0,
+                            additionalBudget = 0;
                         if (value) {
                             var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/R/' + parseInt(scope.selectedPlayer);
                             $http({
@@ -174,13 +184,13 @@ define(['directives', 'services'], function(directives) {
                             }).then(function(data) {
                                 reportExpend = data.data.result;
 
-                                url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + PlayerInfo.getPlayer();
+                                url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer;
                                 return $http({
                                     method: 'GET',
                                     url: url
                                 });
                             }).then(function(data) {
-                                additionalBudget = data.data;
+                                additionalBudget = data.data.result;
 
                                 if (abMax + additionalBudget - expend - reportExpend < price) {
                                     d.resolve(Label.getContent('Not enough budget'));
@@ -196,10 +206,83 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
+                    scope.checkAll = function() {
+                        //第一步 检查已购买
+                        var d = $q.defer();
+                        var budget = 0,
+                            abMax = 0,
+                            expend = 0,
+                            reportExpend = 0,
+                            additionalBudget = 0;
+                        var orders = {},
+                            prices = {};
+                        var url = '/getRetailerMarketResearchOrders/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer;
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            orders = data.data;
+                            url = '/getReportPrice/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            prices = data.data;
+                            orders.forEach(function(singleOrder, index) {
+                                if (!singleOrder) {
+                                    budget += prices[index];
+                                }
+                            });
+                            //第二步 检查预算是否充足
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/R/' + parseInt(scope.selectedPlayer);
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            abMax = data.data.budgetAvailable;
+                            url = "/retailerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/-1/location/1';
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            expend = data.data.result;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/R/' + scope.selectedPlayer;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            reportExpend = data.data.result;
+
+                            url = '/getRetailerAdditionalBudget/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            additionalBudget = data.data.result;
+
+                            if (abMax + additionalBudget - expend - reportExpend < budget) {
+                                d.resolve(Label.getContent('Not enough budget'));
+                            } else {
+                                d.resolve();
+                            }
+                        }, function(data) {
+                            d.resolve(Label.getContent('Check Error'));
+                        });
+                        return d.promise;
+                    }
+
+                    scope.buyAllReports = function(){
+                        RetailerDecisionBase.buyAllMarketResearchOrders('retailerMarketResearchOrders');
+                    }
+
 
                     scope.submitOrder = function(additionalIdx, value) {
                         RetailerDecisionBase.setMarketResearchOrders(scope.selectedPlayer, additionalIdx, value,'retailerMarketResearchOrders');
-
                     }
 
 
@@ -208,7 +291,7 @@ define(['directives', 'services'], function(directives) {
                             initializePage();
                         }
                     })
-                    scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
+                    scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                         //decision base had been updated, re-render the page with newBase
                         if(data.page=="retailerMarketResearchOrders"){
                             scope.pageBase = newBase;

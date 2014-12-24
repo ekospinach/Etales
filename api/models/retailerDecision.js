@@ -773,6 +773,11 @@ exports.updateRetailerDecision = function(io) {
                     case 'updateMarketResearchOrders':
                         doc.marketResearchOrder[queryCondition.additionalIdx] = queryCondition.value;
                         break;
+                    case 'buyAllMarketResearchOrders':
+                        for (var i = 0; i < 13; i++) {
+                            doc.marketResearchOrder[i] = true;
+                        }
+                        break;
                     case 'deleteOrder':
                         var nullOrder = {
                             brandName: "",
@@ -837,6 +842,7 @@ exports.updateRetailerDecision = function(io) {
                                     });
                                 }
                                 break;
+                                case 'buyAllMarketResearchOrders':
                                 case 'updateMarketResearchOrders':
                                 io.sockets.emit('socketIO:retailerBaseChanged', {
                                     retailerID: queryCondition.retailerID,
@@ -1149,4 +1155,21 @@ exports.getStoreManagement = function(req,res,next){
         }
     })
 
+}
+
+exports.getRetailerMarketResearchOrders = function(req,res,next){
+    retDecision.findOne({
+        seminar: req.params.seminar,
+        period: req.params.period,
+        retailerID: req.params.retailerID
+    }, function(err, doc) {
+        if (err) {
+            return next(new Error(err));
+        }
+        if(doc){
+            res.send(200,doc.marketResearchOrder);
+        }else{
+            res.send(404,'fail');
+        }
+    });
 }

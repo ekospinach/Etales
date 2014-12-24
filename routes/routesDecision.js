@@ -15,6 +15,9 @@ module.exports = function(app, io){
     app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',              require('./../api/models/producerDecision.js').getProducerVariantBM);
     
 
+    app.get('/getSupplierMarketResearchOrders/:seminar/:period/:producerID',                                require('./../api/models/producerDecision.js').getSupplierMarketResearchOrders);
+    app.get('/getRetailerMarketResearchOrders/:seminar/:period/:retailerID',                                require('./../api/models/retailerDecision.js').getRetailerMarketResearchOrders);
+
     app.post('/retailerDecision',                                                                           require('./../api/models/retailerDecision.js').updateRetailerDecision(io));
     //retailer get retailerDecision
     app.get('/getRetailerDecisionByVar/:retailerID/:period/:seminar/:brandName/:varName',                   require('./../api/models/retailerDecision.js').retailerGetRetailerDecision);
