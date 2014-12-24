@@ -710,12 +710,13 @@ define(['angular',
 						console.log('Failed:' + res);
 					})
 				},
-				buyAllMarketResearchOrders:function(page){
+				buyAllMarketResearchOrders:function(value,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'buyAllMarketResearchOrders', 
+						value:value,
 						page:page
 					}
 					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
@@ -1072,12 +1073,13 @@ define(['angular',
 						console.log('Failed:' + res);
 					})
 				},
-				buyAllMarketResearchOrders:function(page){
+				buyAllMarketResearchOrders:function(value,page){
 					var queryCondition = {
 						retailerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getDecisionPeriod(),
 						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
-						behaviour : 'buyAllMarketResearchOrders', 
+						behaviour : 'buyAllMarketResearchOrders',
+						value:value, 
 						page:page
 					}
 					$http({method:'POST',url:'/retailerDecision',data:queryCondition}).then(function(res){

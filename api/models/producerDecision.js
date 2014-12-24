@@ -551,7 +551,7 @@ exports.updateProducerDecision = function(io) {
                             break;
                         case 'buyAllMarketResearchOrders':
                             for (var i = 0; i < 13; i++) {
-                                doc.marketResearchOrder[i] = true;
+                                doc.marketResearchOrder[i] = queryCondition.value;
                             }
                             break;
                         default:
