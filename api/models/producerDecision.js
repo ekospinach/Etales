@@ -751,7 +751,7 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                                     'brandName': singleBrand.brandName,
                                     'varName': singleVar.varName,
                                     'brandID': singleVar.parentBrandID,
-                                    'varID': singleVar.varID,
+                                    'variantID': singleVar.varID,
                                     'parentName': 'Producer ' + producer,
                                     'dateOfBirth': singleVar.dateOfBirth,
                                     'dateOfDeath': singleVar.dateOfDeath,
