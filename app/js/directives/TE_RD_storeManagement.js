@@ -356,7 +356,7 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.page="retailerStoreManagement"){
+                    if(data.page=="retailerStoreManagement"){
                         showView(newBase);
                     }
                 });

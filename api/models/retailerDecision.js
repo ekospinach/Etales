@@ -1180,15 +1180,6 @@ var getPrivateLabelProducts = function(data, category, retailer) {
     return products;
 }
 
-var getProducerProducts = function(seminar, period, category, producer) {
-    var d = q.defer();
-    require('./producerDecision.js').getProducerProductListByAdmin(seminar, period, category, producer)
-        .then(function() {
-
-        })
-    return d.promise;
-}
-
 var spliceProducts = function(ListA, ListB) {
     var indexs = [];
     for (i = 0; i < ListA.length; i++) {

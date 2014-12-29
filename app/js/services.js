@@ -1211,7 +1211,7 @@ define(['angular',
 							}
 						}
 
-						if(queryCondition.value.retailerPrice==-1){
+						if(queryCondition.value.retailerPrice==-1||queryCondition.value.retailerPrice==0){
 							var postData={
 	                            period : PeriodInfo.getDecisionPeriod(),
 	                            seminar : SeminarInfo.getSelectedSeminar().seminarCode,
