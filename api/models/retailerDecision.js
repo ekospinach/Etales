@@ -867,7 +867,8 @@ exports.updateRetailerDecision = function(io) {
                                         retailerID: queryCondition.retailerID,
                                         seminar: queryCondition.seminar,
                                         period: queryCondition.period,
-                                        page:req.body.page
+                                        page:req.body.page,
+                                        action:'saveOrder'
                                     });
                                 }
                                 break;

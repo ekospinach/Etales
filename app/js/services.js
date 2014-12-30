@@ -1050,6 +1050,8 @@ define(['angular',
 				},
 				//saveOrder
 				saveOrder:function(categoryID,marketID,product,page){
+					var d=$q.defer();
+
 					var queryCondition={
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getDecisionPeriod(),
@@ -1060,12 +1062,21 @@ define(['angular',
 						value : product,
 						page:page
 					}
-					$http({method:'POST',url:'/retailerDecision',data:queryCondition}).then(function(data){
-						console.log('Success:' + data);
-					},
-					function(data) {
-						console.log('Failed:' + data);
+					$http({
+						method:'POST',
+						url:'/retailerDecision',
+						data:queryCondition
+					}).then(function(data){
+						requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
+						requestPara.period = PeriodInfo.getDecisionPeriod();
+						requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	
+						return getStoreManagementPromise(StoreManagement, $q);
+					}).then(function(data){
+						d.resolve(data);
+					},function(data){
+						d.reject(data);
 					});
+					return d.promise;
 				},
 
 				//step4

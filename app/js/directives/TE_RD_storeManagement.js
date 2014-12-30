@@ -249,7 +249,9 @@ define(['directives', 'services'], function(directives){
                     }else {
                         category=2;
                     }
-                    RetailerDecisionBase.saveOrder(category,market,product,'retailerStoreManagement');
+                    RetailerDecisionBase.saveOrder(category,market,product,'retailerStoreManagement').then(function(data){
+                        showView(data);
+                    });
                 }
 
                 var showView = function(data){
@@ -355,8 +357,8 @@ define(['directives', 'services'], function(directives){
                     }
                 });
 
-                scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.page=="retailerStoreManagement"){
+                scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) { 
+                    if(data.page=="retailerStoreManagement"&&data.action==undefined){
                         showView(newBase);
                     }
                 });
