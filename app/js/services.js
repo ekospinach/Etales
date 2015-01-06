@@ -730,6 +730,21 @@ define(['angular',
 						console.log('Failed:' + res);
 					})
 				},
+				buyAllMarketResearchOrders:function(value,page){
+					var queryCondition = {
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'buyAllMarketResearchOrders', 
+						value:value,
+						page:page
+					}
+					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					});
+				},
 				addProductNewBrand:function(newproducerDecision,categoryID,page){
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
@@ -1120,6 +1135,22 @@ define(['angular',
 						console.log('Failed:' + res);
 					})
 				},
+				buyAllMarketResearchOrders:function(value,page){
+					var queryCondition = {
+						retailerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'buyAllMarketResearchOrders',
+						value:value, 
+						page:page
+					}
+					$http({method:'POST',url:'/retailerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
+				},
+
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;

@@ -1181,6 +1181,8 @@ var getLabelBase = function(){
 		//check PromototionFrequency and checkReductionRate
 		{id:'check PromototionFrequency Error',  ENG:'check PromototionFrequency Error',  CHN:'check PromototionFrequency Error',  RUS:''},
 		{id:'check ReductionRate Error',  ENG:'check ReductionRate Error',  CHN:'check ReductionRate Error',  RUS:''},
+		{id:'Buy All Reports',  ENG:'Buy All Reports',  CHN:'购买所有报告',  RUS:''},
+		{id:'All',  ENG:'All',  CHN:'全选',  RUS:''},
 
 
 	]

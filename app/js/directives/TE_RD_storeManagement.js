@@ -357,9 +357,18 @@ define(['directives', 'services'], function(directives){
                     }
                 });
 
-                scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) { 
-                    if(data.page=="retailerStoreManagement"&&data.action==undefined){
-                        showView(newBase);
+                scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
+                    if(data.page=="retailerStoreManagement"){
+                        scope.pageBase = newBase;
+                        if (data.categoryID == 1 && data.marketID == 1) {
+                            showView('Elecssories', 'Urban');
+                        } else if (data.categoryID == 1 && data.marketID == 2) {
+                            showView('Elecssories', 'Rural');
+                        } else if (data.categoryID == 2 && data.marketID == 1) {
+                            showView('HealthBeauties', 'Urban');
+                        } else if (data.categoryID == 2 && data.marketID == 2) {
+                            showView('HealthBeauties', 'Rural');
+                        }
                     }
                 });
             }

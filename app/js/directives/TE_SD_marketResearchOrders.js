@@ -25,7 +25,7 @@ define(['directives', 'services'], function(directives) {
 
                     var showView = function() {
                         ProducerDecisionBase.reload({
-                            producerID: parseInt(PlayerInfo.getPlayer()),
+                            producerID: scope.selectedPlayer,
                             period: scope.selectedPeriod,
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
@@ -143,6 +143,13 @@ define(['directives', 'services'], function(directives) {
                             'reportPrice': prices[12],
                             'playerStatus': scope.pageBase.marketResearchOrder[12]
                         });
+                        scope.buyAll = true;
+                        for (var i = 0; i < 13; i++) {
+                            if (!scope.pageBase.marketResearchOrder[i]) {
+                                scope.buyAll = false;
+                                break;
+                            }
+                        }
 
                         scope.playDatas = playDatas;
 
@@ -150,6 +157,85 @@ define(['directives', 'services'], function(directives) {
                             msg: 'Array is ready.'
                         });
                         return deferred.promise;
+                    }
+
+                    scope.checkAll = function(value) {
+                        //第一步 检查已购买
+                        var d = $q.defer();
+                        if (value) {
+                            var categoryID = 0,
+                                max = 0,
+                                producerExpend = 0,
+                                ContractExpend = 0,
+                                availableBudgetLeft = 0,
+                                reportExpend = 0,
+                                budget = 0;
+                            var orders = {},
+                                prices = {};
+                            var url = '/getSupplierMarketResearchOrders/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer;
+                            $http({
+                                method: 'GET',
+                                url: url
+                            }).then(function(data) {
+                                orders = data.data;
+                                url = '/getReportPrice/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod;
+                                return $http({
+                                    method: 'GET',
+                                    url: url
+                                });
+                            }).then(function(data) {
+                                prices = data.data;
+                                orders.forEach(function(singleOrder, index) {
+                                    if (!singleOrder) {
+                                        budget += prices[index];
+                                    }
+                                });
+                                //第二步 检查预算是否充足
+                                url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
+                                return $http({
+                                    method: 'GET',
+                                    url: url
+                                });
+                            }).then(function(data) {
+                                max = data.data.budgetAvailable;
+                                url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/brandName/location/1';
+                                return $http({
+                                    method: 'GET',
+                                    url: url,
+                                });
+                            }).then(function(data) {
+                                producerExpend = data.data.result;
+                                url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/brandName/varName/ignoreItem/1';
+                                return $http({
+                                    method: 'GET',
+                                    url: url
+                                });
+                            }).then(function(data) {
+                                ContractExpend = data.data.result;
+                                url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + scope.selectedPlayer;
+                                return $http({
+                                    method: 'GET',
+                                    url: url
+                                });
+                            }).then(function(data) {
+                                reportExpend = data.data.result;
+                                availableBudgetLeft = max - ContractExpend - reportExpend - producerExpend;
+                                if (availableBudgetLeft < budget) {
+                                    d.resolve(Label.getContent('Not enough budget'));
+                                } else {
+                                    d.resolve();
+                                }
+                            }, function(data) {
+                                d.resolve(Label.getContent('Check Error'));
+                            });
+                        } else {
+                            d.resolve();
+                        }
+                        return d.promise;
+                    }
+
+                    scope.buyAllReports = function(value){
+                        ProducerDecisionBase.buyAllMarketResearchOrders(value,'supplierMarketResearchOrders');
                     }
 
 

@@ -569,6 +569,11 @@ exports.updateProducerDecision = function(io) {
                         case 'updateMarketResearchOrders':
                             doc.marketResearchOrder[queryCondition.additionalIdx] = queryCondition.value;
                             break;
+                        case 'buyAllMarketResearchOrders':
+                            for (var i = 0; i < 13; i++) {
+                                doc.marketResearchOrder[i] = queryCondition.value;
+                            }
+                            break;
                         default:
                             isUpdated = false;
                             res.send(404, 'cannot find matched query behaviour:' + queryCondition.behaviour);
@@ -1475,4 +1480,21 @@ exports.getVariant = function(categoryCount, brandCount, varCount, producerID, s
         }
     })
     return deferred.promise;
+}
+
+exports.getSupplierMarketResearchOrders = function(req,res,next){
+    proDecision.findOne({
+        seminar: req.params.seminar,
+        period: req.params.period,
+        producerID: req.params.producerID
+    }, function(err, doc) {
+        if (err) {
+            return next(new Error(err));
+        }
+        if(doc){
+            res.send(200,doc.marketResearchOrder);
+        }else{
+            res.send(404,'fail');
+        }
+    });
 }
