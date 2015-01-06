@@ -205,28 +205,36 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
-                    scope.checkFrequency = function(category, brandName, varName, location, additionalIdx, index, value) {
+                    scope.checkFrequency = function(category, brandName, varName, location, additionalIdx, index, pointer) {
                         var d = $q.defer();
-                        var filter = /^[0-9]*[1-9][0-9]*$/;
+                        var filter=/^\d+$/;
+                        var value=pointer.$data;
+                        var rate=pointer.$$nextSibling.$data;
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
                         if (value > 26 || value < 0) {
                             d.resolve(Label.getContent('Input range') + ':0~26');
+                        } else if (value == 0 && rate != 0) {
+                            d.resolve(Label.getContent('check PromototionFrequency Error'));
                         } else {
                             d.resolve();
                         }
                         return d.promise;
                     }
 
-                    scope.checkDepth = function(category, brandName, varName, location, additionalIdx, index, value) {
+                    scope.checkDepth = function(category, brandName, varName, location, additionalIdx, index, pointer) {
                         var d = $q.defer();
                         var filter = /^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                        var value=pointer.$data;
+                        var frequency=pointer.$$prevSibling.$data;
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a number'));
                         }
                         if (value > 100 || value < 0) {
                             d.resolve(Label.getContent('Input range') + ':0~100');
+                        } else if (value == 0 && frequency != 0) {
+                            d.resolve(Label.getContent('check ReductionRate Error'));
                         } else {
                             d.resolve();
                         }
@@ -347,18 +355,14 @@ define(['directives', 'services'], function(directives) {
                         }
                     }
 
-                    scope.updateVariantDecision = function(category, brandName, varName, location, additionalIdx, index, value) {
-                        console.log(value);
+                    scope.setOnlineVariant = function(category, brandName, varName, variant) {
                         var categoryID;
                         if (category == "Elecssories") {
                             categoryID = 1;
                         } else {
                             categoryID = 2;
                         }
-                        if (location == "pricePromotions" && additionalIdx == "1") {
-                            value = parseFloat(value) / 100;
-                        }
-                        ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, value,'supplierOnlineStoreManagement');
+                        ProducerDecisionBase.setOnlineVariant(categoryID, brandName, varName, variant, 'supplierOnlineStoreManagement');
                     }
 
                     var showView = function() {

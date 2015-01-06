@@ -77,12 +77,10 @@ exports.removeContractDetailsByAdmin = function(seminar, period, producers) {
                contractVariantDetails.removeQ({
                     contractCode: contractCode1
                }).then(function(result) {
-                    console.log('remove contract details:' + result);
                     return contractVariantDetails.removeQ({
                          contractCode: contractCode2
                     });
                }).then(function(result) {
-                    console.log('remove contract details:' + result);
                     idx++;
                     return removeContractDetails(seminar, period, producers, idx);
                });
@@ -108,12 +106,10 @@ exports.removeContractByAdmin = function(seminar, period, producers) {
                contract.removeQ({
                     contractCode: contractCode1
                }).then(function(result) {
-                    console.log('remove contract:' + result);
                     return contract.removeQ({
                          contractCode: contractCode2
                     });
                }).then(function(result) {
-                    console.log('remove contract:' + result);
                     idx++;
                     return removeContract(seminar, period, producers, idx);
                });
@@ -161,10 +157,8 @@ exports.addContractByAdmin = function(seminar, period, producers) {
                });
 
                newContract1.saveQ().then(function(result) {
-                    console.log('add contract:' + result);
                     return newContract2.saveQ();
                }).then(function(result) {
-                    console.log('add contract:' + result);
                     idx++;
                     return addContract(seminar, period, producers, idx);
                });
@@ -315,7 +309,6 @@ function createContractDetails(contractCode, previousPeriodCode, producerID, ret
                     }
 
                }).then(function(result) {
-                    console.log('add detail :'+result);
                     idx++;
                     return createContractDetail(productList, producerID, retailerID, seminar, period, idx);
                });

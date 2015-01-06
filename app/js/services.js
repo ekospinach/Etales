@@ -627,6 +627,26 @@ define(['angular',
 						console.log('Failed:' + res);
 					});
 				},
+				//step3 var decision
+				setOnlineVariant:function(categoryID,brandName,varName,variant,page){
+					var queryCondition = {
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'setOnlineVariant', 
+						categoryID : categoryID,
+						brandName : brandName,
+						varName : varName,
+						value:variant,
+						page:page
+					}
+					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+						
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					});
+				},
 				//step3
 				setProducerDecisionBrand:function(categoryID,brandName,location,additionalIdx,value,page){
 					var queryCondition = {
@@ -882,13 +902,25 @@ define(['angular',
 					socket.on('socketIO:retailerBaseChanged', function(data){	
 						console.log('socketIO:retailerBaseChanged:' + JSON.stringify(data));
 						//if changed base is modified by current retailer & seminar, reload decision base and broadcast message...
-						if(data.page){
+						if(data.page&&data.page!='retailerStoreManagement'){
 							if( (data.retailerID ==  PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode) ){
 								requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
 								requestPara.period = PeriodInfo.getDecisionPeriod();
 								requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;							
 
 								getRetailerPromise(RetailerDecision, $q).then(function(newBase){
+									$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', data, newBase);							
+								}, function(reason){
+									$rootScope.$broadcast('retailerDecisionReloadError', data, newBase);							
+								});							
+							}
+						}else if(data.page=='retailerStoreManagement'){
+							if( (data.retailerID ==  PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode) ){
+								requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
+								requestPara.period = PeriodInfo.getDecisionPeriod();
+								requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;							
+
+								getStoreManagementPromise(StoreManagement, $q).then(function(newBase){
 									$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', data, newBase);							
 								}, function(reason){
 									$rootScope.$broadcast('retailerDecisionReloadError', data, newBase);							
@@ -1016,6 +1048,37 @@ define(['angular',
 					});
 					//
 				},
+				//saveOrder
+				saveOrder:function(categoryID,marketID,product,page){
+					var d=$q.defer();
+
+					var queryCondition={
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getDecisionPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'saveOrder', 
+						categoryID : categoryID,
+						marketID : marketID,
+						value : product,
+						page:page
+					}
+					$http({
+						method:'POST',
+						url:'/retailerDecision',
+						data:queryCondition
+					}).then(function(data){
+						requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
+						requestPara.period = PeriodInfo.getDecisionPeriod();
+						requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	
+						return getStoreManagementPromise(StoreManagement, $q);
+					}).then(function(data){
+						d.resolve(data);
+					},function(data){
+						d.reject(data);
+					});
+					return d.promise;
+				},
+
 				//step4
 				setRetailerDecision:function(categoryID,marketID,brandName,varName,location,additionalIdx,value,page){
 					var queryCondition = {
@@ -1159,7 +1222,7 @@ define(['angular',
 							}
 						}
 
-						if(queryCondition.value.retailerPrice==-1){
+						if(queryCondition.value.retailerPrice==-1||queryCondition.value.retailerPrice==0){
 							var postData={
 	                            period : PeriodInfo.getDecisionPeriod(),
 	                            seminar : SeminarInfo.getSelectedSeminar().seminarCode,

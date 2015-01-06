@@ -731,6 +731,7 @@ define(['directives', 'services'], function(directives) {
                                     url: '/commitPortfolio',
                                     data: postData
                                 }).then(function(data) {
+                                    console.log(data);
                                     scope.isDecisionCommitted = true;
                                     scope.isCommitConfirmInfoShown = false;
                                 });

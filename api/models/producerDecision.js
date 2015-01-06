@@ -501,6 +501,26 @@ exports.updateProducerDecision = function(io) {
                                 }
                             }
                             break;
+                        case 'setOnlineVariant':{
+                            for(var i=0;i<doc.proCatDecision.length;i++){
+                                if (doc.proCatDecision[i].categoryID == queryCondition.categoryID) {
+                                    for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                                        if (doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName) {
+                                            for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                                                if (doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName) {
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePrice=queryCondition.value.onlinePrice;
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume=queryCondition.value.onlinePlannedVolume;
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency=queryCondition.value.pricePromotions.promo_Frequency;
+                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=queryCondition.value.pricePromotions.promo_Rate/100;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
                         case 'updateBrand':
                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                 if (doc.proCatDecision[i].categoryID == queryCondition.categoryID) {
@@ -707,11 +727,14 @@ exports.getProducerProductList = function(req, res, next) {
 
 exports.getProducerProductListByAdmin = function(seminar, period, category, producer) {
     var d = q.defer();
-    proDecision.findOne({
-        seminar: req.params.seminar,
-        period: req.params.period,
-        producerID: req.params.producerID
-    }).exec().then(function(doc) {
+    q.all([
+        require('./seminar.js').checkProducerDecisionStatusByAdmin(seminar, period, producer),
+        proDecision.findOne({
+            seminar: seminar,
+            period: period,
+            producerID: producer
+        }).exec()
+    ]).spread(function(checkResult, doc) {
         if (doc) {
             var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
                 return (obj.categoryID == category);
@@ -722,17 +745,18 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                 singleCat.proBrandsDecision.forEach(function(singleBrand) {
                     if (singleBrand.brandName != "") {
                         singleBrand.proVarDecision.forEach(function(singleVar) {
-                            if (singleVar.varName != "" && !singleVar.isOnlineProduct) {
+                            if (singleVar.varName != "") {
                                 products.push({
                                     'categoryID': category,
                                     'brandName': singleBrand.brandName,
                                     'varName': singleVar.varName,
                                     'brandID': singleVar.parentBrandID,
-                                    'varID': singleVar.varID,
+                                    'variantID': singleVar.varID,
                                     'parentName': 'Producer ' + producer,
                                     'dateOfBirth': singleVar.dateOfBirth,
                                     'dateOfDeath': singleVar.dateOfDeath,
-                                    'currentPriceBM': singleVar.currentPriceBM
+                                    'currentPriceBM': singleVar.currentPriceBM,
+                                    'isReady': checkResult.isPortfolioDecisionCommitted
                                 });
                             }
                         })
@@ -749,7 +773,8 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                 result: {}
             })
         }
-    });
+    }).done();
+
     return d.promise;
 }
 

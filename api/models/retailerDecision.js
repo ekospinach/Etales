@@ -740,6 +740,30 @@ exports.updateRetailerDecision = function(io) {
                             }
                         }
                         break;
+                    case 'saveOrder':
+                         for (var i = 0; i < doc.retMarketDecision.length; i++) {
+                            if (doc.retMarketDecision[i].marketID == queryCondition.marketID) {
+                                for (var j = 0; j < doc.retMarketDecision[i].retMarketAssortmentDecision.length; j++) {
+                                    if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID == queryCondition.categoryID) {
+                                        for (var k = 0; k < doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length; k++) {
+                                            if (doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k] != undefined && doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName == queryCondition.value.brandName && doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName == queryCondition.value.varName) {
+
+                                                doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].order=queryCondition.value.order;
+                                                doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].pricePromotions.promo_Frequency=queryCondition.value.pricePromotions.promo_Frequency;
+                                                doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].pricePromotions.promo_Rate=queryCondition.value.pricePromotions.promo_Rate/100;
+                                                doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].retailerPrice=queryCondition.value.retailerPrice;
+                                                doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].shelfSpace=queryCondition.value.shelfSpace/100;
+
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    break;
                     case 'addOrder':
                         var count = 0,
                             result = 0;
@@ -834,6 +858,17 @@ exports.updateRetailerDecision = function(io) {
                                         categoryID: queryCondition.value.categoryID,
                                         marketID: queryCondition.marketID,
                                         page:req.body.page
+                                    });
+                                }
+                                break;
+                                case 'saveOrder':
+                                if(req.body.page=="retailerStoreManagement"){
+                                    io.sockets.emit('socketIO:retailerBaseChanged', {
+                                        retailerID: queryCondition.retailerID,
+                                        seminar: queryCondition.seminar,
+                                        period: queryCondition.period,
+                                        page:req.body.page,
+                                        action:'saveOrder'
                                     });
                                 }
                                 break;
@@ -1057,48 +1092,75 @@ exports.getAllRetailerDecision = function(req, res, next) {
     });
 }
 
-var loadSelectCategory=function(data,category,market){
+var loadSelectCategory = function(data, category, market) {
     var retMarketDecisions = _.filter(data.retMarketDecision, function(obj) {
         return (obj.marketID == market);
     });
-    return _.filter(retMarketDecisions[0].retMarketAssortmentDecision, function(obj) {
+    var result = _.filter(retMarketDecisions[0].retMarketAssortmentDecision, function(obj) {
         return (obj.categoryID == category);
     });
+    return result;
 }
 
-var getOrderedProducts=function(data,category,market){
-    var allRetCatDecisions = loadSelectCategory(data,category,market);
-    var products = new Array();
-    allRetCatDecisions.forEach(function(singleCat){
-        singleCat.retVariantDecision.forEach(function(singeVar){
+var getOrderedProducts = function(data, category, market) {
+    var products = [];
+    var netRetailerPrice = 0;
+    var allRetCatDecisions = loadSelectCategory(data, category, market);
+    allRetCatDecisions.forEach(function(singleCat) {
+        singleCat.retVariantDecision.forEach(function(singeVar) {
             if (singeVar.brandID != 0 && singeVar.variantID != 0) {
-                singeVar.netRetailerPrice = (singeVar.retailerPrice * (1 - singeVar.pricePromotions.promo_Frequency * singeVar.pricePromotions.promo_Rate / 26)).toFixed(2);
-                if (singeVar.pricePromotions.promo_Rate >= 0 && singeVar.pricePromotions.promo_Rate <= 1) {
-                    singeVar.pricePromotions.promo_Rate = (parseFloat(singeVar.pricePromotions.promo_Rate) * 100).toFixed(2);
-                }
+                var product = {
+                    "order": 0,
+                    "shelfSpace": 0,
+                    "retailerPrice": 0,
+                    "dateOfDeath": 0,
+                    "dateOfBirth": 0,
+                    "brandID": 0,
+                    "brandName": "",
+                    "variantID": 0,
+                    "varName": "",
+                    "_id": "",
+                    "netRetailerPrice": 0,
+                    'isReady': true,
+                    "pricePromotions": {
+                        "promo_Rate": 0,
+                        "promo_Frequency": 0
+                    }
+                };
+                product.order = parseFloat(singeVar.order).toFixed(2);
                 if (singeVar.shelfSpace >= 0 && singeVar.shelfSpace <= 1) {
-                    singeVar.shelfSpace = (parseFloat(singeVar.shelfSpace) * 100).toFixed(2);
+                    product.shelfSpace = (parseFloat(singeVar.shelfSpace) * 100).toFixed(2);
                 }
-                singeVar.order = parseFloat(singeVar.order).toFixed(2);
-                singeVar.retailerPrice = parseFloat(singeVar.retailerPrice).toFixed(2);
-                products.push(singeVar);
+                product.retailerPrice = parseFloat(singeVar.retailerPrice).toFixed(2);
+                product.dateOfBirth = singeVar.dateOfBirth;
+                product.dateOfDeath = singeVar.dateOfDeath;
+                product.brandID = singeVar.brandID;
+                product.brandName = singeVar.brandName;
+                product.variantID = singeVar.variantID;
+                product.varName = singeVar.varName;
+                product._id = singeVar._id;
+                product.netRetailerPrice = (singeVar.retailerPrice * (1 - singeVar.pricePromotions.promo_Frequency * singeVar.pricePromotions.promo_Rate / 26)).toFixed(2);
+                if (singeVar.pricePromotions.promo_Rate >= 0 && singeVar.pricePromotions.promo_Rate <= 1) {
+                    product.pricePromotions.promo_Rate = (parseFloat(singeVar.pricePromotions.promo_Rate) * 100).toFixed(2);
+                }
+                product.pricePromotions.promo_Frequency = singeVar.pricePromotions.promo_Frequency;
+                products.push(product);
             }
         })
     });
     return products;
 }
 
-var getPrivateLabelProducts=function(data,retailer,category){
-    var orderProducts=new Array();
+var getPrivateLabelProducts = function(data, category, retailer) {
+    var products = [];
     var allRetCatDecisions = _.filter(data.retCatDecision, function(obj) {
         return (obj.categoryID == category);
     });
-    var products = new Array();
-    allRetCatDecisions.forEach(function(singleCat){
-        allRetCatDecisions[i].privateLabelDecision.forEach(function(singlePrivateLabel){
-            if(singlePrivateLabel.brandName!=""){
-                singlePrivateLabel.privateLabelVarDecision.forEach(function(singlePriVar){
-                    if(singlePriVar.varName!=""){
+    allRetCatDecisions.forEach(function(singleCat) {
+        singleCat.privateLabelDecision.forEach(function(singlePrivateLabel) {
+            if (singlePrivateLabel.brandName != "") {
+                singlePrivateLabel.privateLabelVarDecision.forEach(function(singlePriVar) {
+                    if (singlePriVar.varName != "") {
                         products.push({
                             'categoryID': category,
                             'brandName': singlePrivateLabel.brandName,
@@ -1107,46 +1169,91 @@ var getPrivateLabelProducts=function(data,retailer,category){
                             'variantID': singlePriVar.varID,
                             'parentName': 'Retailer ' + retailer,
                             'dateOfBirth': singlePriVar.dateOfBirth,
-                            'dateOfDeath': singlePriVar.dateOfDeath
+                            'dateOfDeath': singlePriVar.dateOfDeath,
+                            'isReady': true
                         });
-                        count++;
                     }
                 })
             }
-            
+
         })
     });
     return products;
 }
 
-var getProducerProducts=function(producer){
-    var d=q.defer();
-    return d.promise;
+var spliceProducts = function(ListA, ListB) {
+    var indexs = [];
+    for (i = 0; i < ListA.length; i++) {
+        for (j = 0; j < ListB.length; j++) {
+            if (ListA[i].brandName == ListB[j].brandName && ListA[i].varName == ListB[j].varName) {
+                indexs.push(i);
+            }
+        }
+    }
+    for (i = indexs.length - 1; i >= 0; i--) {
+        ListA.splice(indexs[i], 1);
+    }
+    return ListA;
 }
 
+exports.getStoreManagement = function(req, res, next) {
+    var marketU = 1,
+        marketR = 2,
+        categoryE = 1,
+        categoryH = 2,
+        producer1 = 1,
+        producer2 = 2,
+        producer3 = 3;
 
-exports.getStoreManagement = function(req,res,next){
-    var result={
-        'UrbanElecssoriesProducts':{},
-        'RuralElecssoriesProducts':{},
-        'UrbanHelthBeautiesProducts':{},
-        'RuralHelthBeautiesProducts':{},
-        'UrbanElecssoriesOrderProducts':{},
-        'RuralElecssoriesOrderProducts':{},
-        'UrbanHelthBeautiesOrderProducts':{},
-        'RuralHelthBeautiesOrderProducts':{},
+    var result = {
+        'UrbanElecssoriesProducts': [],
+        'RuralElecssoriesProducts': [],
+        'UrbanHelthBeautiesProducts': [],
+        'RuralHelthBeautiesProducts': [],
+        'UrbanElecssoriesOrderProducts': [],
+        'RuralElecssoriesOrderProducts': [],
+        'UrbanHelthBeautiesOrderProducts': [],
+        'RuralHelthBeautiesOrderProducts': [],
     }
-    var promise = retDecision.findOne({
-        seminar: req.params.seminar,
-        period: req.params.period,
-        retailerID: req.params.retailerID
-    }).exec();
-    promise.then(function(doc){
-        if(doc){
-            res.send(200,result);
-        }else{
-            res.send(404,'fail');
-        }
-    })
+    var tempUrbanE_OrderPrdocusts = [],
+        tempUrbanH_OrderPrdocusts = [],
+        tempRuralE_OrderPrdocusts = [],
+        tempRuralH_OrderPrdocusts = [];
 
+    q.all([
+        retDecision.findOne({
+            seminar: req.params.seminar,
+            period: req.params.period,
+            retailerID: req.params.retailerID
+        }).exec(),
+        //getProducerProductListByAdmin 获取producer的所有产品 根据 producerID 和category 区分
+        require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryE, producer1),
+        require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryE, producer2),
+        require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryE, producer3),
+        require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryH, producer1),
+        require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryH, producer2),
+        require('./producerDecision.js').getProducerProductListByAdmin(req.params.seminar, req.params.period, categoryH, producer3),
+    ]).spread(function(doc, producer1EList, producer2EList, producer3EList, producer1HList, producer2HList, producer3HList) {
+        if (doc&& producer1EList&& producer2EList&& producer3EList&& producer1HList&& producer2HList&& producer3HList) {
+            //getOrderedProducts 获取当前decision 已经order的 产品 根据 market category 区分
+            result.UrbanElecssoriesProducts = getOrderedProducts(doc, categoryE, marketU);
+            result.RuralElecssoriesProducts = getOrderedProducts(doc, categoryE, marketR);
+            result.UrbanHelthBeautiesProducts = getOrderedProducts(doc, categoryH, marketU);
+            result.RuralHelthBeautiesProducts = getOrderedProducts(doc, categoryH, marketR);
+            //getPrivateLabelProducts 获取当前retaier的自主 品牌 
+            //concat函数 将产品合并到一个数组
+            result.UrbanElecssoriesOrderProducts = getPrivateLabelProducts(doc, categoryE, req.params.retailerID).concat(producer1EList.result, producer2EList.result, producer3EList.result);
+            result.RuralElecssoriesOrderProducts = getPrivateLabelProducts(doc, categoryE, req.params.retailerID).concat(producer1EList.result, producer2EList.result, producer3EList.result);
+            result.UrbanHelthBeautiesOrderProducts = getPrivateLabelProducts(doc, categoryH, req.params.retailerID).concat(producer1HList.result, producer2HList.result, producer3HList.result);
+            result.RuralHelthBeautiesOrderProducts = getPrivateLabelProducts(doc, categoryH, req.params.retailerID).concat(producer1HList.result, producer2HList.result, producer3HList.result);
+            //spliceProducts 排除所有的能上架的产品中(包括producer未提交的) 已经order过的部分
+            result.UrbanElecssoriesOrderProducts = spliceProducts(result.UrbanElecssoriesOrderProducts, result.UrbanElecssoriesProducts);
+            result.RuralElecssoriesOrderProducts = spliceProducts(result.RuralElecssoriesOrderProducts, result.RuralElecssoriesProducts);
+            result.UrbanHelthBeautiesOrderProducts = spliceProducts(result.UrbanHelthBeautiesOrderProducts, result.UrbanHelthBeautiesProducts);
+            result.RuralHelthBeautiesOrderProducts = spliceProducts(result.RuralHelthBeautiesOrderProducts, result.RuralHelthBeautiesProducts);
+            res.send(200, result);
+        }
+    }).fail(function(err) {
+        res.send(400, err);
+    }).done();
 }
