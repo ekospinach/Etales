@@ -1277,7 +1277,6 @@ exports.commitPortfolio = function(io){
 		queryCondition.result.push({
 			'producerID': req.body.producerID
 		});
-		console.log(queryCondition)
 
 		seminar.findOne({
 			seminarCode: queryCondition.seminar

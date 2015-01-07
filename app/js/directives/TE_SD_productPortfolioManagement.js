@@ -672,7 +672,7 @@ define(['directives', 'services'], function(directives) {
                                 ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location][additionalIdx], 'supplierProductPortfolioManagement');
                             }
                         }
-                        if (location == "channelPreference") {
+                        else if (location == "channelPreference") {
                             if (category == "Elecssories") {
                                 categoryID = 1;
                                 ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location] / 100, 'supplierProductPortfolioManagement');
