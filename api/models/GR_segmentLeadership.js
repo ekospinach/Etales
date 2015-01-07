@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 //TBrandOwener : 1~6 (Prod_1_ID...Ret_2_ID)
 //TAllProducer : 1~4 (ProsMaxPlus)
 var segmentLeadershipSchema = mongoose.Schema({
-	period : Number,
+	  period : Number,
     seminar : String,
     categoryInfo : [categoryInfoSchema]
 })

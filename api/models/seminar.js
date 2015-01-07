@@ -121,6 +121,7 @@ seminarSchema.plugin(uniqueValidator);
 var seminar = mongoose.model('seminar', seminarSchema);
 
 exports.localStrategy = new LocalStrategy(function(username, password, done) {
+	console.log('username:' + username + ', pw:' + password);
 	var parameters = ['', '', ''],
 		j = 0;
 	var tempSeminar = {};
@@ -140,6 +141,7 @@ exports.localStrategy = new LocalStrategy(function(username, password, done) {
 		if (err) {
 			return done(err);
 		}
+		console.log(doc);
 		if (!doc) {		
 			return done(null, false, {
 				message: 'Incorrect seminar code.'
