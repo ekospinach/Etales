@@ -114,6 +114,8 @@ exports.UpdateIsOnlineProducts = function(seminar, period, producers) {
                             singeBrand.proVarDecision.forEach(function(singeVar) {
                                 if (singeVar.channelPreference == 1) {
                                     singeVar.isOnlineProduct = true;
+                                }else{
+                                    singeVar.isOnlineProduct = false;
                                 }
                             })
                         })
@@ -1274,7 +1276,7 @@ exports.checkSupplierBMPrice = function(req, res, next) {
                 singleCategory.proBrandsDecision.forEach(function(singleBrand) {
                     
                     singleBrand.proVarDecision.forEach(function(singleVar){
-                        if (singleVar.currentPriceBM == 0 && singleVar.varID != 0) {
+                        if (singleVar.currentPriceBM == 0 && singleVar.varID != 0 && singleVar.channelPreference != 1) {
                             result = false;
                         }
                     });
@@ -1290,7 +1292,7 @@ exports.checkSupplierBMPrice = function(req, res, next) {
                         
                         singleBrand.proVarDecision.forEach(function(singleVar){
 
-                            if (singleVar.currentPriceBM == 0 && singleVar.varID != 0) {
+                            if (singleVar.currentPriceBM == 0 && singleVar.varID != 0 && singleVar.channelPreference != 1) {
                                 result = false;
                             }
                         });

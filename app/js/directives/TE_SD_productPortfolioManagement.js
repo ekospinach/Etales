@@ -88,7 +88,7 @@ define(['directives', 'services'], function(directives) {
                                             }
                                             products[count].currentPriceBM = parseFloat(products[count].currentPriceBM).toFixed(2);
                                             if (products[count].channelPreference == undefined) {
-                                                products[count].channelPreference = 0;
+                                                products[count].channelPreference = 0.00;
                                             } else {
                                                 products[count].channelPreference = parseFloat(products[count].channelPreference * 100).toFixed(2);
                                             }
