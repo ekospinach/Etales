@@ -27,7 +27,14 @@ define(['directives', 'services'], function(directives){
                         period: scope.selectedPeriod,
                         seminar: SeminarInfo.getSelectedSeminar().seminarCode
                     }).then(function(base) {
-                        showView(base);
+                        scope.RuralHelthBeautiesProducts = base.RuralHelthBeautiesProducts;
+                        scope.UrbanHelthBeautiesProducts = base.UrbanHelthBeautiesProducts;
+                        scope.RuralElecssoriesProducts = base.RuralElecssoriesProducts;
+                        scope.UrbanElecssoriesProducts = base.UrbanElecssoriesProducts;
+                        scope.RuralHelthBeautiesOrderProducts = base.RuralHelthBeautiesOrderProducts;
+                        scope.UrbanHelthBeautiesOrderProducts = base.UrbanHelthBeautiesOrderProducts;
+                        scope.RuralElecssoriesOrderProducts = base.RuralElecssoriesOrderProducts;
+                        scope.UrbanElecssoriesOrderProducts = base.UrbanElecssoriesOrderProducts;
                         scope.isResultShown = true;
                         scope.isPageLoading = false;
                     }),
@@ -254,15 +261,44 @@ define(['directives', 'services'], function(directives){
                     });
                 }
 
+                var setData = function(oldData,newData){
+                    oldData.length=newData.length;
+                    //for(var i=0;i<oldData.length)
+                    for(var i=0;i<newData.length;i++){
+                        oldData[i].order=newData[i].order;
+                        oldData[i].shelfSpace=newData[i].shelfSpace;
+                        oldData[i].retailerPrice=newData[i].retailerPrice;
+                        oldData[i].dateOfDeath=newData[i].dateOfDeath;
+                        oldData[i].dateOfBirth=newData[i].dateOfBirth;
+                        oldData[i].brandID=newData[i].brandID;
+                        oldData[i].brandName=newData[i].brandName;
+                        oldData[i].variantID=newData[i].variantID;
+                        oldData[i].varName=newData[i].varName;
+                        oldData[i]._id=newData[i]._id;
+                        oldData[i].netRetailerPrice=newData[i].netRetailerPrice;
+                        oldData[i].isReady=newData[i].isReady;
+                        oldData[i].pricePromotions.promo_Rate=newData[i].pricePromotions.promo_Rate;
+                        oldData[i].pricePromotions.promo_Frequency=newData[i].pricePromotions.promo_Frequency;
+                    }
+                }
+
                 var showView = function(data){
-                    scope.RuralHelthBeautiesProducts = data.RuralHelthBeautiesProducts;
-                    scope.UrbanHelthBeautiesProducts = data.UrbanHelthBeautiesProducts;
-                    scope.RuralElecssoriesProducts = data.RuralElecssoriesProducts;
-                    scope.UrbanElecssoriesProducts = data.UrbanElecssoriesProducts;
+                    setData(scope.RuralHelthBeautiesProducts,data.RuralHelthBeautiesProducts);
+                    setData(scope.UrbanHelthBeautiesProducts,data.UrbanHelthBeautiesProducts);
+                    setData(scope.RuralElecssoriesProducts,data.RuralElecssoriesProducts);
+                    setData(scope.UrbanElecssoriesProducts,data.UrbanElecssoriesProducts);
+                    // scope.RuralHelthBeautiesProducts.length=data.RuralHelthBeautiesProducts.length;
+
+
+                    // scope.RuralHelthBeautiesProducts = data.RuralHelthBeautiesProducts;
+                    // scope.UrbanHelthBeautiesProducts = data.UrbanHelthBeautiesProducts;
+                    // scope.RuralElecssoriesProducts = data.RuralElecssoriesProducts;
+                    // scope.UrbanElecssoriesProducts = data.UrbanElecssoriesProducts;
                     scope.RuralHelthBeautiesOrderProducts = data.RuralHelthBeautiesOrderProducts;
                     scope.UrbanHelthBeautiesOrderProducts = data.UrbanHelthBeautiesOrderProducts;
                     scope.RuralElecssoriesOrderProducts = data.RuralElecssoriesOrderProducts;
                     scope.UrbanElecssoriesOrderProducts = data.UrbanElecssoriesOrderProducts;
+                    console.log('done');
                 }
 
                 scope.open = function(category, market) {
@@ -358,7 +394,7 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.page=="retailerStoreManagement"&&data.action==undefined){
+                    if(data.page=="retailerStoreManagement"){
                         showView(newBase);
                     }
                 });
