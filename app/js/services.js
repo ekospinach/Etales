@@ -1082,11 +1082,11 @@ define(['angular',
 						url:'/retailerDecision',
 						data:queryCondition
 					}).then(function(data){
-						requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
-						requestPara.period = PeriodInfo.getDecisionPeriod();
-						requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	
-						return getStoreManagementPromise(StoreManagement, $q);
-					}).then(function(data){
+					// 	requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
+					// 	requestPara.period = PeriodInfo.getDecisionPeriod();
+					// 	requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	
+					// 	return getStoreManagementPromise(StoreManagement, $q);
+					// }).then(function(data){
 						d.resolve(data);
 					},function(data){
 						d.reject(data);

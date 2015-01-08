@@ -20,7 +20,7 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;
                     scope.Label = Label;
-                    scope.showView = showView;
+                    scope.showNormalView = showNormalView;
                     scope.currentPeriod = scope.selectedPeriod;
                     RetailerDecisionBase.getStore({
                         retailerID: parseInt(scope.selectedPlayer),
@@ -256,9 +256,7 @@ define(['directives', 'services'], function(directives){
                     }else {
                         category=2;
                     }
-                    RetailerDecisionBase.saveOrder(category,market,product,'retailerStoreManagement').then(function(data){
-                        showView(data);
-                    });
+                    RetailerDecisionBase.saveOrder(category,market,product,'retailerStoreManagement');
                 }
 
                 var setData = function(oldData,newData){
@@ -282,23 +280,26 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                var showView = function(data){
-                    setData(scope.RuralHelthBeautiesProducts,data.RuralHelthBeautiesProducts);
-                    setData(scope.UrbanHelthBeautiesProducts,data.UrbanHelthBeautiesProducts);
-                    setData(scope.RuralElecssoriesProducts,data.RuralElecssoriesProducts);
-                    setData(scope.UrbanElecssoriesProducts,data.UrbanElecssoriesProducts);
-                    // scope.RuralHelthBeautiesProducts.length=data.RuralHelthBeautiesProducts.length;
-
-
-                    // scope.RuralHelthBeautiesProducts = data.RuralHelthBeautiesProducts;
-                    // scope.UrbanHelthBeautiesProducts = data.UrbanHelthBeautiesProducts;
-                    // scope.RuralElecssoriesProducts = data.RuralElecssoriesProducts;
-                    // scope.UrbanElecssoriesProducts = data.UrbanElecssoriesProducts;
+                var showNormalView = function(data){
+                    scope.RuralHelthBeautiesProducts = data.RuralHelthBeautiesProducts;
+                    scope.UrbanHelthBeautiesProducts = data.UrbanHelthBeautiesProducts;
+                    scope.RuralElecssoriesProducts = data.RuralElecssoriesProducts;
+                    scope.UrbanElecssoriesProducts = data.UrbanElecssoriesProducts;
                     scope.RuralHelthBeautiesOrderProducts = data.RuralHelthBeautiesOrderProducts;
                     scope.UrbanHelthBeautiesOrderProducts = data.UrbanHelthBeautiesOrderProducts;
                     scope.RuralElecssoriesOrderProducts = data.RuralElecssoriesOrderProducts;
                     scope.UrbanElecssoriesOrderProducts = data.UrbanElecssoriesOrderProducts;
-                    console.log('done');
+                }
+
+                var showEditView = function(data){
+                    setData(scope.RuralHelthBeautiesProducts,data.RuralHelthBeautiesProducts);
+                    setData(scope.UrbanHelthBeautiesProducts,data.UrbanHelthBeautiesProducts);
+                    setData(scope.RuralElecssoriesProducts,data.RuralElecssoriesProducts);
+                    setData(scope.UrbanElecssoriesProducts,data.UrbanElecssoriesProducts);
+                    scope.RuralHelthBeautiesOrderProducts = data.RuralHelthBeautiesOrderProducts;
+                    scope.UrbanHelthBeautiesOrderProducts = data.UrbanHelthBeautiesOrderProducts;
+                    scope.RuralElecssoriesOrderProducts = data.RuralElecssoriesOrderProducts;
+                    scope.UrbanElecssoriesOrderProducts = data.UrbanElecssoriesOrderProducts;
                 }
 
                 scope.open = function(category, market) {
@@ -337,7 +338,7 @@ define(['directives', 'services'], function(directives){
                     var close = function () {
                         $modalInstance.dismiss('cancel');
                         RetailerDecisionBase.getStore({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
-                            showView(base);
+                            showNormalView(base);
                         }), function(reason){
                             console.log('from ctr: ' + reason);
                         }, function(update){
@@ -394,8 +395,10 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.page=="retailerStoreManagement"){
-                        showView(newBase);
+                    if(data.page=="retailerStoreManagement"&&data.action==undefined){
+                        showNormalView(newBase);
+                    }else if(data.page=="retailerStoreManagement"&&data.action=="saveOrder"){
+                        showEditView(newBase);
                     }
                 });
             }
