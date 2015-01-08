@@ -47,19 +47,6 @@ define(['directives', 'services'], function(directives) {
                             seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
-                            scope.serviceLevel=scope.pageBase.serviceLevel;
-                            if(scope.serviceLevel=="SL_BASE"){
-                                scope.serviceLevel=1;
-                            }else if(scope.serviceLevel=="SL_FAIR"){
-                                scope.serviceLevel=2;
-                            }else if(scope.serviceLevel=="SL_MEDIUM"){
-                                scope.serviceLevel=3;
-                            }else if(scope.serviceLevel=="SL_ENHANCED"){
-                                scope.serviceLevel=4;
-                            }else if(scope.serviceLevel=="SL_PREMIUM"){
-                                scope.serviceLevel=5;
-                            }
-                            scope.selectPacks = selectPacks;
                         }).then(function() {
                             return showView();
                         }),
@@ -367,10 +354,24 @@ define(['directives', 'services'], function(directives) {
 
                     var showView = function() {
                         var d = $q.defer();
+                        scope.serviceLevel = scope.pageBase.serviceLevel;
+                        if (scope.serviceLevel == "SL_BASE") {
+                            scope.serviceLevel = 1;
+                        } else if (scope.serviceLevel == "SL_FAIR") {
+                            scope.serviceLevel = 2;
+                        } else if (scope.serviceLevel == "SL_MEDIUM") {
+                            scope.serviceLevel = 3;
+                        } else if (scope.serviceLevel == "SL_ENHANCED") {
+                            scope.serviceLevel = 4;
+                        } else if (scope.serviceLevel == "SL_PREMIUM") {
+                            scope.serviceLevel = 5;
+                        }
                         loadSelectCategory('Elecssories');
                         loadSelectCategory('HealthBeauty');
                         scope.isResultShown = true;
                         scope.isPageLoading = false;
+                        scope.selectPacks = selectPacks;
+
                         return d.promise;
                     }
 
