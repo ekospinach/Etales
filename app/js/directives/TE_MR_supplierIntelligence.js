@@ -67,7 +67,9 @@ define(['directives', 'services'], function(directives) {
                             'OnLineOther_2h'        : data.supplierInfo[StaticValues.player.s2].categoryInfo[StaticValues.category.hea].onLineOther,
                             'OnLineOther_3h'        : data.supplierInfo[StaticValues.player.s3].categoryInfo[StaticValues.category.hea].onLineOther,
                             //add online store level need to edit
-                            'OnlineStoreLevel'      : 'SL_MEDIUM',
+                            'OnlineStoreLevel_1'    : data.supplierInfo[StaticValues.player.s1].serviceLevel,
+                            'OnlineStoreLevel_2'    : data.supplierInfo[StaticValues.player.s2].serviceLevel,
+                            'OnlineStoreLevel_3'    : data.supplierInfo[StaticValues.player.s3].serviceLevel,
                             'TechnologyLevel_1e'    : data.supplierInfo[StaticValues.player.s1].categoryInfo[StaticValues.category.ele].acquiredTechnologyLevel,
                             'TechnologyLevel_2e'    : data.supplierInfo[StaticValues.player.s2].categoryInfo[StaticValues.category.ele].acquiredTechnologyLevel,
                             'TechnologyLevel_3e'    : data.supplierInfo[StaticValues.player.s3].categoryInfo[StaticValues.category.ele].acquiredTechnologyLevel,
