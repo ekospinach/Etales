@@ -29,13 +29,7 @@ uses
   {$ELSE}
     Windows,
   {$ENDIF}
-  Classes, superobject, HCD_SystemDefinitions, System.TypInfo, iniFiles;
-
-{$I 'ET1_Common_Constants.INC'}
-{$I 'ET1_Common_Types.INC'}
-{$I 'ET1_Results_Types.INC'}
-{$I 'ET1_FILES_NAMES.INC'}
-{$I 'ET1_Decisional_Types.INC'}
+  Classes, superobject, HCD_SystemDefinitions, System.TypInfo, iniFiles,CgiCommonFunction;
 
 const
   DecisionFileName = ' Decisions.';

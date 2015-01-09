@@ -13,6 +13,7 @@ var MR_suppliersIntelligenceSchema = mongoose.Schema({
 
 var supplierInfoSchema = mongoose.Schema({
     supplierID : Number,
+    serviceLevel  : String,    
     categoryInfo : [categoryInfoSchema]
 })
 
@@ -28,7 +29,7 @@ var categoryInfoSchema = mongoose.Schema({
     productionplanningFlexibility : Number,    
     advertisingOffLine            : [Number], //0-Urban, 1-Rural, 2-Total
     actualTradeSupport            : [BMretailerInfoSchema], //BMRetsMax = 3
-    negotiatedTradeSupport        : [BMretailerInfoSchema]
+    negotiatedTradeSupport        : [BMretailerInfoSchema],
 })
 
 var BMretailerInfoSchema = mongoose.Schema({

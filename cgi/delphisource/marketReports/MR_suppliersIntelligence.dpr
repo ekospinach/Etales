@@ -81,6 +81,15 @@ var
     jo := SO;
     jo.I['supplierID'] := supplierID;
     jo.O['categoryInfo'] := SA([]);
+
+    case (suppliersInfo[3,supplierID].mrsi_ServiceLevel) of
+      SL_BASE: begin jo.S['serviceLevel'] :='SL_BASE'; end;
+      SL_FAIR: begin  jo.S['serviceLevel'] :='SL_FAIR'; end;
+      SL_MEDIUM: begin  jo.S['serviceLevel'] :='SL_MEDIUM'; end;
+      SL_ENHANCED: begin jo.S['serviceLevel'] :='SL_ENHANCED'; end;
+      SL_PREMIUM: begin jo.S['serviceLevel'] :='SL_PREMIUM'; end;
+    end;
+
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
       jo.A['categoryInfo'].Add( supplierInfoSchema(catID, suppliersInfo[catID, supplierID]) );
