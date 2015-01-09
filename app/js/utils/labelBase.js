@@ -686,7 +686,10 @@ var getLabelBase = function(){
 		//需要翻译
 		{id:'Online Business Profit Info',  ENG:'These two tables give the online business Profit & Loss statements for both categories by brand. When moving the cursor on the brand name, the Profit & Loss statement of that brand and all its variants will appear.',  CHN:'线上业务利润介绍',  RUS:''},
 		{id:'Online Store',  ENG:'Online Store',  CHN:'线上商城',  RUS:''},
-		{id:'Share of Trade Profit',  ENG:'Share of Trade Profit',  CHN:'通路利润份额',  RUS:''},
+		
+		{id:'Share in Shelf Space',  ENG:'Share in Shelf Space',  CHN:'各渠道所占货架份额',  RUS:''},
+		{id:'Share in trade support',  ENG:'Share in trade support',  CHN:'各渠道所占通路费用份额',  RUS:''},
+		{id:'Share of Trade Profit',  ENG:'Share of Trade Profit',  CHN:'各渠道所占通路利润份额',  RUS:''},
 		{id:'Share of Gross Sales',  ENG:'Share of Gross Sales',  CHN:'销售额所占百分比',  RUS:''},
 		{id:'Share of Volume Sales',  ENG:'Share of Volume Sales',  CHN:'销量占比',  RUS:''},
 		{id:'Gross Sales',  ENG:'Gross Sales',  CHN:'销售额',  RUS:''},
@@ -995,6 +998,7 @@ var getLabelBase = function(){
 		{id:'Advertising Local Urban Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'控制当地门店广告投入预算（户外广告、传单）；促进门店便利性',  RUS:''},
 		{id:'In-Store Service Level',  ENG:'In-Store Service Level',  CHN:'店内服务水平',  RUS:''},
 		{id:'In-Store Service',  ENG:'In-Store Service',  CHN:'店内服务水平',  RUS:''},
+		{id:'Online Store Service Level',  ENG:'Online Store Service Level',  CHN:'店内服务水平',  RUS:''},
 		{id:'In-Store Service Level Info',  ENG:'is a synthetic variable encompassing such aspects of store functioning like: opening hours, accessibility, number of open check-outs, friendliness and competence of the stuff, overall store layout, etc. The value ranges from 1 to 5, 1 being the lowest or basic and 5 being the highest or premium in-store service level',  CHN:'店内服务水平是综合变量，提供\“基础\”、\“一般\”、\“中等\”、\“好\”和\“优质\”五种选择，直接影响购物者对你门店的便利性和产品组合感知，对价格感知起反作用。',  RUS:''},
 		/*retailer marketingend*/
 		/*retailer Store Management start*/
@@ -1183,6 +1187,7 @@ var getLabelBase = function(){
 		{id:'check ReductionRate Error',  ENG:'check ReductionRate Error',  CHN:'check ReductionRate Error',  RUS:''},
 		{id:'Buy All Reports',  ENG:'Buy All Reports',  CHN:'购买所有报告',  RUS:''},
 		{id:'All',  ENG:'All',  CHN:'全选',  RUS:''},
+		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
 
 
 	]
