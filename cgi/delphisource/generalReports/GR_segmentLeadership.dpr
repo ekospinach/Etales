@@ -33,30 +33,30 @@ var
     result := jo;
   end;
 
-  function shopperInfoSchema(catID : Integer; marketID : Integer; segmentID : Integer; Shopper : TShoppersKind; binaryReport : TGR_SegmentLeadership):ISuperObject;
+
+  function divisionInfoSchema(catID : Integer; marketID : Integer; segmentID : Integer; division : TProducerDivisions; binaryReport : TGR_SegmentLeadership):ISuperObject;
   var
     jo : ISuperObject;
-    ShopperStr : string;
+    divisionStr : string;
     valueLeaders : TSegmentVariantLeaders;
     volumeLeaders : TSegmentVariantLeaders;
     i : Integer;
   begin
     jo := SO;
-    case Shopper of
-       BMS: ShopperStr := 'BMS'; 
-       NETIZENS: ShopperStr := 'NETIZENS';   
-       MIXED: ShopperStr := 'MIXED';  
-       ALLSHOPPERS: ShopperStr := 'ALLSHOPPERS'; 
+    case division of
+       TRADITIONAL: divisionStr := 'TRADITIONAL'; 
+       INTERNET: divisionStr := 'INTERNET';   
+       CORPORATE: divisionStr := 'CORPORATE';  
        else
-        ShopperStr := 'wrong';
+        divisionStr := 'wrong';
     end;
 
-    jo.S['shopperKind'] := ShopperStr;
+    jo.S['divisionKind'] := divisionStr;
     jo.O['grsl_ValueLeaders'] := SA([]);
     jo.O['grsl_VolumeLeaders'] := SA([]);
 
-    valueLeaders := binaryReport.grsl_ValueLeaders[marketID, catID, segmentID, Shopper];
-    volumeLeaders := binaryReport.grsl_VolumeLeaders[marketID, catID, segmentID, Shopper];
+    valueLeaders := binaryReport.grsl_ValueLeaders[marketID, catID, segmentID, division];
+    volumeLeaders := binaryReport.grsl_VolumeLeaders[marketID, catID, segmentID, division];
     for i := Low(TLeaders) to High(TLeaders) do begin
       jo.A['grsl_ValueLeaders'].add( variantInfoSchema( valueLeaders[i]) );    
       jo.A['grsl_VolumeLeaders'].add( variantInfoSchema( volumeLeaders[i]) );
@@ -65,16 +65,17 @@ var
     result := jo;
   end;
 
+
   function segmentInfoSchema(catID : Integer; marketID : Integer; segmentID : Integer; binaryReport : TGR_SegmentLeadership):ISuperObject;
   var
     jo : ISuperObject;
-    Shopper : TShoppersKind;
+    division : TProducerDivisions;
   begin
     jo := SO;
     jo.I['segmentID'] := segmentID;
-    jo.O['shopperInfo'] := SA([]);
-    for shopper := Low(TShoppersKind) to High(TShoppersKind) do
-      jo.A['shopperInfo'].Add( shopperInfoSchema(catID, marketID, segmentID, Shopper, binaryReport) );
+    jo.O['divisionInfo'] := SA([]);
+    for division := Low(TProducerDivisions) to High(TProducerDivisions) do
+      jo.A['divisionInfo'].Add( divisionInfoSchema(catID, marketID, segmentID, division, binaryReport) );
 
     result := jo;
   end;

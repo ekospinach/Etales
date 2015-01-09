@@ -76,7 +76,10 @@ var retMarketDecisionSchema = mongoose.Schema({
     emptySpaceOptimised : Boolean,
     localAdvertising : [Number], //0-Price, 1-Convenience
     serviceLevel : String, //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
-    retMarketAssortmentDecision : [retQuarterAssortmentDecisionSchema] //length : TCategories(1~2)
+    retMarketAssortmentDecision : [retQuarterAssortmentDecisionSchema], //length : TCategories(1~2)
+
+    exceptionalCostsProfits : [Number], //0-E, 1-H
+
 })
 
 var retDecisionSchema = mongoose.Schema({
@@ -89,7 +92,10 @@ var retDecisionSchema = mongoose.Schema({
     tradtionalAdvertising : [Number], //0-Price, 1-Convenience
     retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
     retMarketDecision: [retMarketDecisionSchema], //length: TMarkets(1~2)
-    marketResearchOrder : [Boolean]    
+    marketResearchOrder : [Boolean],
+
+    immediateBudgetExtension : Number,
+
 })
 
 exports.retDecision = mongoose.model('retailerDecision', retDecisionSchema);

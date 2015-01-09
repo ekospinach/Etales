@@ -73,7 +73,9 @@ var proCatDecisionSchema = mongoose.Schema({
     investInDesign : Number,/*E*/
     investInProductionFlexibility : Number,
     investInTechnology : Number,
-    proBrandsDecision : [proBrandDecisionSchema] //Length: TProBrands(1~5) 
+    proBrandsDecision : [proBrandDecisionSchema], //Length: TProBrands(1~5) 
+
+    exceptionalCostsProfits : [Number], //0-traditional, 1-Internet 
 })
 
 var proDecisionSchema = mongoose.Schema({
@@ -84,7 +86,8 @@ var proDecisionSchema = mongoose.Schema({
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
     proCatDecision : [proCatDecisionSchema], //Length: TCategories(1~2)    
-    marketResearchOrder : [Boolean]
+    marketResearchOrder : [Boolean],
+    immediateBudgetExtension : Number, // Added 08/01/2015
 })
 
 exports.proDecision = proDecision = mongoose.model('proDecision', proDecisionSchema);

@@ -111,7 +111,7 @@ Const
   LastBrand_ID             = ( IDM * TraditionalTrade_ID + PLsMax );
   LastVar_ID               = IDM * LastBrand_ID + VarsMax;
 
-  LeadersMax               = 2;
+  LeadersMax               = 5;  { 04/01/2015 }
 
   MarketsUniverse          =  9;                                     
   MaxDesignLevel           = 20;

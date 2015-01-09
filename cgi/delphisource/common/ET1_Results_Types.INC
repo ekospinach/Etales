@@ -147,8 +147,8 @@ TGR_MarketSales =
 
 TGR_SegmentLeadership =
   record
-    grsl_ValueLeaders  : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of TSegmentVariantLeaders;
-    grsl_VolumeLeaders : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of TSegmentVariantLeaders;
+    grsl_ValueLeaders  : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TProducerDivisions] of TSegmentVariantLeaders;
+    grsl_VolumeLeaders : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TProducerDivisions] of TSegmentVariantLeaders;
   end;
 
 TGR_CrossSegmentSales =
@@ -326,15 +326,17 @@ TSCR_SupplierBrands = array[TCategories, TProBrands] of TSCR_OneBrand;
 
 TSCR_CategoryChannelProfitability = { for R1, R2, TT use specific market details, for OnLine use [TMarketsTotal] value }
   record
-    scrcp_VolumeOrdered    : single;
-    scrcp_VolumeSold       : single;
-    scrcp_VolumeSoldShare  : single;
-    scrcp_SalesValue       : single;
-    scrcp_SalesValueShare  : single;
-    scrcp_CostOfGoodsSold  : single;
-    scrcp_TradeSupport     : single;
-    scrcp_TradeProfit      : single;
-    scrcp_TradeProfitShare : single;
+    scrcp_VolumeOrdered     : single;
+    scrcp_VolumeSold        : single;
+    scrcp_VolumeSoldShare   : single;
+    scrcp_SalesValue        : single;
+    scrcp_SalesValueShare   : single;
+    scrcp_CostOfGoodsSold   : single;
+    scrcp_TradeSupport      : single;
+    scrcp_TradeSupportShare : single;  { 04/01/2015 }
+    scrcp_ShelfSpaceShare   : single;  { 04/01/2015 }
+    scrcp_TradeProfit       : single;
+    scrcp_TradeProfitShare  : single;
   end;
 
 TSCR_ChannelsProfitability = array[TCategoriesTotal, TAccounts, TMarketsTotal] of TSCR_CategoryChannelProfitability;  
@@ -682,7 +684,7 @@ TMR_CrossSegmentsDetails = array[TMarkets, TCategories] of TMR_OneQuarterCrossSe
 
 TMR_VariantNetPrices =
   record
-    { overloaded with prices at TT }
+    { overloaded with prices at TT & On-Line as TAccounts = Two Modern Retailers + Traditional Trade + On-Line }
     mrnmp_VariantID              : TVariantID;
     mrnmp_VariantName            : TVariantName;
     mrnmp_ParentBrandID          : TBrandID;
@@ -699,7 +701,7 @@ TMR_NetMarketPrices = array[TCategories, TVariants] of TMR_VariantNetPrices;
 
 TMR_VariantPromotions =
   record
-    { overloaded with promotions at TT  }
+    { overloaded with promotions at TT & On-Line as TAccounts = Two Modern Retailers + Traditional Trade + On-Line }
     mrpp_VariantID       : TVariantID;
     mrpp_VariantName     : TVariantName;
     mrpp_ParentBrandID   : TBrandID;
@@ -718,6 +720,7 @@ TMR_SupplierInvestments =
     mrsi_AdvertisingOnLine             : single;
     mrsi_ActualTradeSupport            : array[TMarketsTotal, TAccountsTotal] of single;
     mrsi_NegotiatedTradeSupport        : array[TMarketsTotal, TAccountsTotal] of single;
+    mrsi_ServiceLevel                  : TServiceLevel;   { 04/01/2015 }  { actually only the value for CatsMaxTotal matters }
     mrsi_OnLine_Visibility             : single;
     mrsi_OnLine_Other                  : single;
     mrsi_AcquiredTechnologyLevel       : TTechnology;

@@ -21,6 +21,10 @@ var SCR_channelsProfitabilitySchema = mongoose.Schema({
     scrcp_TradeSupport     : [categoryInfoSchema],
     scrcp_TradeProfit      : [categoryInfoSchema],
     scrcp_TradeProfitShare : [categoryInfoSchema],
+
+    scrcp_TradeSupportShare : [categoryInfoSchema],
+    scrcp_ShelfSpaceShare   : [categoryInfoSchema],
+
 })
 
 var categoryInfoSchema = mongoose.Schema({
@@ -84,7 +88,9 @@ exports.addReports = function(options){
                                 scrcp_CostOfGoodsSold  : singleReport.scrcp_CostOfGoodsSold,
                                 scrcp_TradeSupport     : singleReport.scrcp_TradeSupport,
                                 scrcp_TradeProfit      : singleReport.scrcp_TradeProfit,
-                                scrcp_TradeProfitShare : singleReport.scrcp_TradeProfitShare,                                    
+                                scrcp_TradeProfitShare : singleReport.scrcp_TradeProfitShare, 
+                                scrcp_TradeSupportShare : singleReport.scrcp_TradeSupportShare,
+                                scrcp_ShelfSpaceShare   : singleReport.scrcp_ShelfSpaceShare,
                                 },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

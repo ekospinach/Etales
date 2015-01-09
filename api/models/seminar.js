@@ -134,14 +134,13 @@ exports.localStrategy = new LocalStrategy(function(username, password, done) {
 	var para_seminar = parameters[0],
 		para_role = parameters[1],
 		para_roleID = parameters[2];
-	console.log('seminar:' + para_seminar + ',role:' + para_role + ',roleID:' + para_roleID);
+
 	seminar.findOne({
 		seminarCode: para_seminar
 	}, function(err, doc) {
 		if (err) {
 			return done(err);
 		}
-		console.log(doc);
 		if (!doc) {		
 			return done(null, false, {
 				message: 'Incorrect seminar code.'

@@ -41,11 +41,11 @@ var segmentInfoSchema = mongoose.Schema({
         3-Health Conscious
         4-Impatient      
     */
-    shopperInfo : [shopperInfoSchema]
+    divisionInfo : [divisionInfoSchema]
 })
 
-var shopperInfoSchema = mongoose.Schema({
-    shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
+var divisionInfoSchema = mongoose.Schema({
+    divisionKind : String, // TRADITIONAL, INTERNET, CORPORATE
     grsl_ValueLeaders : [segmentVariantLeadersSchema],
     grsl_VolumeLeaders : [segmentVariantLeadersSchema]
 })

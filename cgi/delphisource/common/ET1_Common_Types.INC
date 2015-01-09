@@ -112,6 +112,8 @@ Type
                                          discount_Rate          : single;
                                        end;
 
+  TCategoriesData                    = array[TCategories] of single;           { 04/01/2015 }
+  TDivisionsData                     = array[TRADITIONAL..INTERNET] of single; { 04/01/2015 }
   TServiceLevelsData                 = array[TServiceLevel] of single;
   TShoppersData                      = array[TShoppersKind] of single;
   TSegmentsShoppersData              = array[TSegmentsTotal] of TShoppersData;

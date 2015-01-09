@@ -37,6 +37,7 @@
 
   TProCatDecision = record
                       dpc_CategoryID                    : TCategories;
+		      drm_ExceptionalCostsProfits       : TDivisionsData;  { 04/01/2015 }
                       dpc_Brands                        : TProBrandsDecisions;
                       dpc_CapacityChange                : single;
                       dpc_InvestInDesign                : single;
@@ -47,12 +48,13 @@
   TProCatsDecisions = array[TCategories] of TProCatDecision;
 
   TProDecision = record
-                   dp_ProducerID              : TProducers;
-                   dp_CatDecisions            : TProCatsDecisions;
-                   dp_ServiceLevel            : TServiceLevel;    { modified on Dec-4, 2014 }
-                   dp_NextBudgetExtension     : single;
-                   dp_ApprovedBudgetExtension : single;
-                   dp_MarketResearch          : TMarketResearchOrders;  
+                   dp_ProducerID               : TProducers;
+                   dp_CatDecisions             : TProCatsDecisions;
+                   dp_ServiceLevel             : TServiceLevel;    { modified on Dec-4, 2014 }
+                   dp_NextBudgetExtension      : single;
+		   dp_ImmediateBudgetExtension : single;  { 04/01/2015 }
+                   dp_ApprovedBudgetExtension  : single;
+                   dp_MarketResearch           : TMarketResearchOrders;  
                  end;
 
   TProsDecisions = array[TAllProducers] of TProDecision;
@@ -122,12 +124,13 @@
   TRetMarketAssortmentDecision = array[TCategories] of TRetQuarterAssortmentDecision;
 
   TRetMarketDecision = record
-                         drm_MarketID             : TMarkets;
-                         drm_Assortment           : TRetMarketAssortmentDecision;
-                         drm_CategorySurfaceShare : TCategoriesShares;
-                         drm_EmptySpaceOptimised  : boolean;
-                         drm_LocalAdvertising     : TStorePerceptionsData;
-                         drm_ServiceLevel         : TServiceLevel;
+                         drm_MarketID                : TMarkets;
+			 drm_ExceptionalCostsProfits : TCategoriesData;  { 04/01/2015 }
+                         drm_Assortment              : TRetMarketAssortmentDecision;
+                         drm_CategorySurfaceShare    : TCategoriesShares;
+                         drm_EmptySpaceOptimised     : boolean;
+                         drm_LocalAdvertising        : TStorePerceptionsData;
+                         drm_ServiceLevel            : TServiceLevel;
                        end;
 
   TRetMarketsDecisions = array[TMarkets] of TRetMarketDecision;
@@ -139,7 +142,9 @@
                    dr_OnlineAdvertising        : TStorePerceptionsData;
                    dr_TraditionalAdvertising   : TStorePerceptionsData;
                    dr_NextBudgetExtension      : single; 
-                   dr_ApprovedBudgetExtension  : single;                           { ### }
+		   dr_ImmediateBudgetExtension : single;  { 04/01/2015 }
+                   dr_ApprovedBudgetExtension  : single;                          
+		   
                    dr_MarketResearch           : TMarketResearchOrders;  
                  end;
 

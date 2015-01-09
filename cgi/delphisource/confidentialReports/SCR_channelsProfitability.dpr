@@ -15,6 +15,8 @@ const
     scrcp_TradeSupport     = 107;
     scrcp_TradeProfit      = 108;
     scrcp_TradeProfitShare = 109;
+    scrcp_TradeSupportShare = 110;
+    scrcp_ShelfSpaceShare   = 111;
 
 var
   DataDirectory : string;
@@ -44,6 +46,10 @@ var
       scrcp_TradeSupport     : begin jo.D['value'] := binaryReprot[catID, accountID, marketID].scrcp_TradeSupport; end;
       scrcp_TradeProfit      : begin jo.D['value'] := binaryReprot[catID, accountID, marketID].scrcp_TradeProfit; end;
       scrcp_TradeProfitShare : begin jo.D['value'] := binaryReprot[catID, accountID, marketID].scrcp_TradeProfitShare; end;
+
+      scrcp_TradeSupportShare : begin jo.D['value'] := binaryReprot[catID, accountID, marketID].scrcp_TradeSupportShare; end;
+      scrcp_ShelfSpaceShare : begin jo.D['value'] := binaryReprot[catID, accountID, marketID].scrcp_ShelfSpaceShare; end;
+
     end;
     
     result := jo;    
@@ -102,6 +108,8 @@ var
     oJsonFile.O['scrcp_TradeProfit'] := SA([]);
     oJsonFile.O['scrcp_TradeProfitShare'] := SA([]);
 
+    oJsonFile.O['scrcp_TradeSupportShare'] := SA([]);
+    oJsonFile.O['scrcp_ShelfSpaceShare'] := SA([]);
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
@@ -114,6 +122,10 @@ var
       oJsonFile.A['scrcp_TradeSupport'].Add( categoryInfoSchema(scrcp_TradeSupport, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ProfitabilityByChannels ));
       oJsonFile.A['scrcp_TradeProfit'].Add( categoryInfoSchema(scrcp_TradeProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ProfitabilityByChannels ));
       oJsonFile.A['scrcp_TradeProfitShare'].Add( categoryInfoSchema(scrcp_TradeProfitShare, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ProfitabilityByChannels ));
+
+      oJsonFile.A['scrcp_TradeSupportShare'].Add( categoryInfoSchema(scrcp_TradeSupportShare, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ProfitabilityByChannels ));
+      oJsonFile.A['scrcp_ShelfSpaceShare'].Add( categoryInfoSchema(scrcp_ShelfSpaceShare, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ProfitabilityByChannels ));
+
     end;
 
     //for debug used
