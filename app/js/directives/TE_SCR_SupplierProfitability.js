@@ -49,6 +49,9 @@ define(['directives', 'services'], function(directives) {
                         scope.tradeSupports     = data.scrcp_TradeSupport;
                         scope.tradeProfits      = data.scrcp_TradeProfit;
                         scope.tradeProfitShares = data.scrcp_TradeProfitShare;
+                        
+                        scope.tradeSupportShare = data.scrcp_TradeSupportShare;
+                        scope.shelfSpaceShare   = data.scrcp_ShelfSpaceShare;
 
                         deferred.resolve({
                             msg: 'Array is ready.'

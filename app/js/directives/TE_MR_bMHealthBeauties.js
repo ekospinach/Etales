@@ -41,6 +41,11 @@ define(['directives', 'services'], function(directives) {
                                     urban2Value = singleData.accountInfo[StaticValues.player.r2].latestNetMarketPrice[StaticValues.market.urban];
                                     urban2ValueChange = singleData.accountInfo[StaticValues.player.r2].netMarketPriceChange[StaticValues.market.urban] * 100;
                                 }
+                                if (singleData.accountInfo[StaticValues.player.r4] != undefined) {
+                                    onlineValue = singleData.accountInfo[StaticValues.player.r4].latestNetMarketPrice[StaticValues.market.urban];
+                                    onlineChange = singleData.accountInfo[StaticValues.player.r4].netMarketPriceChange[StaticValues.market.urban];
+                                }
+
                                 switch (singleData.parentCompanyID) {
                                     case 1:
                                         scope.player1s.push({
@@ -52,7 +57,9 @@ define(['directives', 'services'], function(directives) {
                                             'rural2Value': rural2Value,
                                             'rural2ValueChange': rural2ValueChange,
                                             'urban2Value': urban2Value,
-                                            'urban2ValueChange': urban2ValueChange
+                                            'urban2ValueChange': urban2ValueChange,
+                                            'onlineValue': onlineValue,
+                                            'onlineChange': onlineChange
                                         });
                                         break;
                                     case 2:
@@ -65,7 +72,9 @@ define(['directives', 'services'], function(directives) {
                                             'rural2Value': rural2Value,
                                             'rural2ValueChange': rural2ValueChange,
                                             'urban2Value': urban2Value,
-                                            'urban2ValueChange': urban2ValueChange
+                                            'urban2ValueChange': urban2ValueChange,
+                                            'onlineValue': onlineValue,
+                                            'onlineChange': onlineChange
                                         });
                                         break;
                                     case 3:
@@ -78,7 +87,9 @@ define(['directives', 'services'], function(directives) {
                                             'rural2Value': rural2Value,
                                             'rural2ValueChange': rural2ValueChange,
                                             'urban2Value': urban2Value,
-                                            'urban2ValueChange': urban2ValueChange
+                                            'urban2ValueChange': urban2ValueChange,
+                                            'onlineValue': onlineValue,
+                                            'onlineChange': onlineChange
                                         });
                                         break;
                                     case 5:
@@ -91,7 +102,9 @@ define(['directives', 'services'], function(directives) {
                                             'rural2Value': rural2Value,
                                             'rural2ValueChange': rural2ValueChange,
                                             'urban2Value': urban2Value,
-                                            'urban2ValueChange': urban2ValueChange
+                                            'urban2ValueChange': urban2ValueChange,
+                                            'onlineValue': onlineValue,
+                                            'onlineChange': onlineChange
                                         });
                                         break;
                                     case 6:
@@ -104,7 +117,9 @@ define(['directives', 'services'], function(directives) {
                                             'rural2Value': rural2Value,
                                             'rural2ValueChange': rural2ValueChange,
                                             'urban2Value': urban2Value,
-                                            'urban2ValueChange': urban2ValueChange
+                                            'urban2ValueChange': urban2ValueChange,
+                                            'onlineValue': onlineValue,
+                                            'onlineChange': onlineChange
                                         });
                                         break;
                                 }
