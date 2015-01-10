@@ -35,7 +35,9 @@
     
                     <general-cross-segment-sales ng-show='Cross' is-page-shown='Cross' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-cross-segment-sales>
 
-                    <general-segment-leadership ng-show='Segment' is-page-shown='Segment' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-segment-leadership>
+                    <general-elecssories-segment-leadership ng-show='EleSegment' is-page-shown='EleSegment' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-elecssories-segment-leadership>
+
+                    <general-health-beauties-segment-leadership ng-show='HeaSegment' is-page-shown='HeaSegment' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-health-beauties-segment-leadership>
 
                     <general-product-portfolio ng-show='Product' is-page-shown='Product' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-product-portfolio>
 
@@ -65,7 +67,15 @@
                         <a href="/#/generalReport" style="color:#EEA236" ng-click='showMarketSales()'>{{Label.getContent('Sales')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/generalReport" style="color:#EEA236" ng-click='showSegment()'>{{Label.getContent('Segment Leadership')}}</a>
+                        <a href="/#/generalReport" style="color:#EEA236" ng-click='showEleSegment()'>{{Label.getContent('Segment Leadership')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/generalReport" style="color:#EEA236;" ng-click='showEleSegment()'>{{Label.getContent('Elecssories')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/generalReport" style="color:#EEA236;" ng-click='showHeaSegment()'>{{Label.getContent('HealthBeauties')}}</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="">
                         <a href="/#/generalReport" style="color:#EEA236" ng-click='showCross()'>{{Label.getContent('Cross-Segment Sales Volumes')}}</a>

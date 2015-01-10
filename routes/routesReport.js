@@ -10,7 +10,7 @@ module.exports = function(app, io){
 	app.get('/marketShare/:seminar/:period',                              require('./../api/models/GR_marketShare.js').getMarketShare);
 	app.get('/performanceHighlights/:seminar/:period',                    require('./../api/models/GR_performanceHighlights.js').getPerformanceHighlights);
 	app.get('/productPortfolio/:seminar/:period',                         require('./../api/models/GR_productPortfolio.js').getProductPortfolio);
-	app.get('/segmentLeadership/:seminar/:period',                        require('./../api/models/GR_segmentLeadership.js').getSegmentLeadership);
+	app.get('/segmentLeadership/:seminar/:period/:categoryID',            require('./../api/models/GR_segmentLeadership.js').getSegmentLeadership);
 	
 	
 	//get producer report record 

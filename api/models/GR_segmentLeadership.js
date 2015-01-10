@@ -114,19 +114,92 @@ exports.addReports = function(options){
     return deferred.promise;
 }
 
+var setData = function(data,kind){
+    var result=[];
+    data.forEach(function(singleDivision){
+        if(singleDivision.divisionKind==kind){
+            singleDivision.grsl_ValueLeaders.forEach(function(singleValue){
+                result.push({
+                    //name:singleValue.parentBrandName+singleValue.varName,
+                    name:singleValue.varName,
+                    value:singleValue.share,
+                    parentID:parseInt(singleValue.parentBrandID/10)
+
+                });
+            })
+        }
+    });
+    return result;
+}
+
 exports.getSegmentLeadership = function(req, res, next) {
     var data = {
         'seminar': req.params.seminar,
         'period': req.params.period
     };
-    segmentLeadership.find(data, function(err, docs) {
+    segmentLeadership.findOne(data, function(err, doc) {
         if (err) {
             return next(new Error(err));
         }
-        if (docs) {
-            res.send(200, docs);
-        } else {
+        if (!doc) {
             res.send(404, 'failed');
+        } else {
+            var result = {
+                priceSensitive:{
+                    CORPORATE: {},
+                    TRADITIONAL: {},
+                    INTERNET: {}
+                },
+                value:{
+                    CORPORATE: {},
+                    TRADITIONAL: {},
+                    INTERNET: {}
+                },
+                fashion:{
+                    CORPORATE: {},
+                    TRADITIONAL: {},
+                    INTERNET: {}
+                },
+                freaks:{
+                    CORPORATE: {},
+                    TRADITIONAL: {},
+                    INTERNET: {}
+                }
+                
+            };
+            doc.categoryInfo.forEach(function(singleCate) {
+                if (singleCate.categoryID == req.params.categoryID) {
+                    singleCate.marketInfo.forEach(function(singleMarket) {
+                        if (singleMarket.marketID == 3) {
+                            singleMarket.segmentInfo.forEach(function(singleSegment) {
+                                switch (singleSegment.segmentID) {
+                                    case 1:
+                                        result.priceSensitive.CORPORATE = setData(singleSegment.divisionInfo, 'CORPORATE');
+                                        result.priceSensitive.TRADITIONAL = setData(singleSegment.divisionInfo, 'TRADITIONAL');
+                                        result.priceSensitive.INTERNET = setData(singleSegment.divisionInfo, 'INTERNET');
+                                        break;
+                                    case 2:
+                                        result.value.CORPORATE = setData(singleSegment.divisionInfo, 'CORPORATE');
+                                        result.value.TRADITIONAL = setData(singleSegment.divisionInfo, 'TRADITIONAL');
+                                        result.value.INTERNET = setData(singleSegment.divisionInfo, 'INTERNET');
+                                        break;
+                                    case 3:
+                                        result.fashion.CORPORATE = setData(singleSegment.divisionInfo, 'CORPORATE');
+                                        result.fashion.TRADITIONAL = setData(singleSegment.divisionInfo, 'TRADITIONAL');
+                                        result.fashion.INTERNET = setData(singleSegment.divisionInfo, 'INTERNET');
+                                        break;
+                                    case 4:
+                                        result.freaks.CORPORATE = setData(singleSegment.divisionInfo, 'CORPORATE');
+                                        result.freaks.TRADITIONAL = setData(singleSegment.divisionInfo, 'TRADITIONAL');
+                                        result.freaks.INTERNET = setData(singleSegment.divisionInfo, 'INTERNET');
+                                        break;
+                                }
+                            })
+                        }
+                    })
+                }
+            });
+            res.send(200, result);
         }
     })
 }

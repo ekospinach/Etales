@@ -645,6 +645,491 @@ define(['directives'], function(directives) {
                 })
             }
         })
+        .directive('priceSensitiveSerie1',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#priceSensitiveSerie1').empty();
+                        var draw=function(){
+                            $('#priceSensitiveSerie1').highcharts({
+                                xAxis:scope.priceSensitiveSerie1Config.options.xAxis,
+                                yAxis:scope.priceSensitiveSerie1Config.options.yAxis,
+                                tooltip:scope.priceSensitiveSerie1Config.options.tooltip,
+                                series:scope.priceSensitiveSerie1Config.series,
+                                title:scope.priceSensitiveSerie1Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('valueSerie1',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#valueSerie1').empty();
+                        var draw=function(){
+                            $('#valueSerie1').highcharts({
+                                xAxis:scope.valueSerie1Config.options.xAxis,
+                                yAxis:scope.valueSerie1Config.options.yAxis,
+                                tooltip:scope.valueSerie1Config.options.tooltip,
+                                series:scope.valueSerie1Config.series,
+                                title:scope.valueSerie1Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('fashionSerie1',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#fashionSerie1').empty();
+                        var draw=function(){
+                            $('#fashionSerie1').highcharts({
+                                xAxis:scope.fashionSerie1Config.options.xAxis,
+                                yAxis:scope.fashionSerie1Config.options.yAxis,
+                                tooltip:scope.fashionSerie1Config.options.tooltip,
+                                series:scope.fashionSerie1Config.series,
+                                title:scope.fashionSerie1Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('freaksSerie1',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#freaksSerie1').empty();
+                        var draw=function(){
+                            $('#freaksSerie1').highcharts({
+                                xAxis:scope.freaksSerie1Config.options.xAxis,
+                                yAxis:scope.freaksSerie1Config.options.yAxis,
+                                tooltip:scope.freaksSerie1Config.options.tooltip,
+                                series:scope.freaksSerie1Config.series,
+                                title:scope.freaksSerie1Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+
+        .directive('priceSensitiveSerie2',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#priceSensitiveSerie2').empty();
+                        var draw=function(){
+                            $('#priceSensitiveSerie2').highcharts({
+                                xAxis:scope.priceSensitiveSerie2Config.options.xAxis,
+                                yAxis:scope.priceSensitiveSerie2Config.options.yAxis,
+                                tooltip:scope.priceSensitiveSerie2Config.options.tooltip,
+                                series:scope.priceSensitiveSerie2Config.series,
+                                title:scope.priceSensitiveSerie2Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('valueSerie2',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#valueSerie2').empty();
+                        var draw=function(){
+                            $('#valueSerie2').highcharts({
+                                xAxis:scope.valueSerie2Config.options.xAxis,
+                                yAxis:scope.valueSerie2Config.options.yAxis,
+                                tooltip:scope.valueSerie2Config.options.tooltip,
+                                series:scope.valueSerie2Config.series,
+                                title:scope.valueSerie2Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('fashionSerie2',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#fashionSerie2').empty();
+                        var draw=function(){
+                            $('#fashionSerie2').highcharts({
+                                xAxis:scope.fashionSerie2Config.options.xAxis,
+                                yAxis:scope.fashionSerie2Config.options.yAxis,
+                                tooltip:scope.fashionSerie2Config.options.tooltip,
+                                series:scope.fashionSerie2Config.series,
+                                title:scope.fashionSerie2Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('freaksSerie2',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#freaksSerie2').empty();
+                        var draw=function(){
+                            $('#freaksSerie2').highcharts({
+                                xAxis:scope.freaksSerie2Config.options.xAxis,
+                                yAxis:scope.freaksSerie2Config.options.yAxis,
+                                tooltip:scope.freaksSerie2Config.options.tooltip,
+                                series:scope.freaksSerie2Config.series,
+                                title:scope.freaksSerie2Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+
+        .directive('priceSensitiveSerie3',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#priceSensitiveSerie3').empty();
+                        var draw=function(){
+                            $('#priceSensitiveSerie3').highcharts({
+                                xAxis:scope.priceSensitiveSerie3Config.options.xAxis,
+                                yAxis:scope.priceSensitiveSerie3Config.options.yAxis,
+                                tooltip:scope.priceSensitiveSerie3Config.options.tooltip,
+                                series:scope.priceSensitiveSerie3Config.series,
+                                title:scope.priceSensitiveSerie3Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('valueSerie3',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#valueSerie3').empty();
+                        var draw=function(){
+                            $('#valueSerie3').highcharts({
+                                xAxis:scope.valueSerie3Config.options.xAxis,
+                                yAxis:scope.valueSerie3Config.options.yAxis,
+                                tooltip:scope.valueSerie3Config.options.tooltip,
+                                series:scope.valueSerie3Config.series,
+                                title:scope.valueSerie3Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('fashionSerie3',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#fashionSerie3').empty();
+                        var draw=function(){
+                            $('#fashionSerie3').highcharts({
+                                xAxis:scope.fashionSerie3Config.options.xAxis,
+                                yAxis:scope.fashionSerie3Config.options.yAxis,
+                                tooltip:scope.fashionSerie3Config.options.tooltip,
+                                series:scope.fashionSerie3Config.series,
+                                title:scope.fashionSerie3Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('freaksSerie3',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#freaksSerie3').empty();
+                        var draw=function(){
+                            $('#freaksSerie3').highcharts({
+                                xAxis:scope.freaksSerie3Config.options.xAxis,
+                                yAxis:scope.freaksSerie3Config.options.yAxis,
+                                tooltip:scope.freaksSerie3Config.options.tooltip,
+                                series:scope.freaksSerie3Config.series,
+                                title:scope.freaksSerie3Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('priceSensitiveSerie4',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#priceSensitiveSerie4').empty();
+                        var draw=function(){
+                            $('#priceSensitiveSerie4').highcharts({
+                                xAxis:scope.priceSensitiveSerie4Config.options.xAxis,
+                                yAxis:scope.priceSensitiveSerie4Config.options.yAxis,
+                                tooltip:scope.priceSensitiveSerie4Config.options.tooltip,
+                                series:scope.priceSensitiveSerie4Config.series,
+                                title:scope.priceSensitiveSerie4Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('valueSerie4',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#valueSerie4').empty();
+                        var draw=function(){
+                            $('#valueSerie4').highcharts({
+                                xAxis:scope.valueSerie4Config.options.xAxis,
+                                yAxis:scope.valueSerie4Config.options.yAxis,
+                                tooltip:scope.valueSerie4Config.options.tooltip,
+                                series:scope.valueSerie4Config.series,
+                                title:scope.valueSerie4Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('fashionSerie4',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#fashionSerie4').empty();
+                        var draw=function(){
+                            $('#fashionSerie4').highcharts({
+                                xAxis:scope.fashionSerie4Config.options.xAxis,
+                                yAxis:scope.fashionSerie4Config.options.yAxis,
+                                tooltip:scope.fashionSerie4Config.options.tooltip,
+                                series:scope.fashionSerie4Config.series,
+                                title:scope.fashionSerie4Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('freaksSerie4',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#freaksSerie4').empty();
+                        var draw=function(){
+                            $('#freaksSerie4').highcharts({
+                                xAxis:scope.freaksSerie4Config.options.xAxis,
+                                yAxis:scope.freaksSerie4Config.options.yAxis,
+                                tooltip:scope.freaksSerie4Config.options.tooltip,
+                                series:scope.freaksSerie4Config.series,
+                                title:scope.freaksSerie4Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+
+        .directive('priceSensitiveSerie5',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#priceSensitiveSerie5').empty();
+                        var draw=function(){
+                            $('#priceSensitiveSerie5').highcharts({
+                                xAxis:scope.priceSensitiveSerie5Config.options.xAxis,
+                                yAxis:scope.priceSensitiveSerie5Config.options.yAxis,
+                                tooltip:scope.priceSensitiveSerie5Config.options.tooltip,
+                                series:scope.priceSensitiveSerie5Config.series,
+                                title:scope.priceSensitiveSerie5Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('valueSerie5',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#valueSerie5').empty();
+                        var draw=function(){
+                            $('#valueSerie5').highcharts({
+                                xAxis:scope.valueSerie5Config.options.xAxis,
+                                yAxis:scope.valueSerie5Config.options.yAxis,
+                                tooltip:scope.valueSerie5Config.options.tooltip,
+                                series:scope.valueSerie5Config.series,
+                                title:scope.valueSerie5Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('fashionSerie5',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#fashionSerie5').empty();
+                        var draw=function(){
+                            $('#fashionSerie5').highcharts({
+                                xAxis:scope.fashionSerie5Config.options.xAxis,
+                                yAxis:scope.fashionSerie5Config.options.yAxis,
+                                tooltip:scope.fashionSerie5Config.options.tooltip,
+                                series:scope.fashionSerie5Config.series,
+                                title:scope.fashionSerie5Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('freaksSerie5',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#freaksSerie5').empty();
+                        var draw=function(){
+                            $('#freaksSerie5').highcharts({
+                                xAxis:scope.freaksSerie5Config.options.xAxis,
+                                yAxis:scope.freaksSerie5Config.options.yAxis,
+                                tooltip:scope.freaksSerie5Config.options.tooltip,
+                                series:scope.freaksSerie5Config.series,
+                                title:scope.freaksSerie5Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+
+        .directive('priceSensitiveSerie6',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#priceSensitiveSerie6').empty();
+                        var draw=function(){
+                            $('#priceSensitiveSerie6').highcharts({
+                                xAxis:scope.priceSensitiveSerie6Config.options.xAxis,
+                                yAxis:scope.priceSensitiveSerie6Config.options.yAxis,
+                                tooltip:scope.priceSensitiveSerie6Config.options.tooltip,
+                                series:scope.priceSensitiveSerie6Config.series,
+                                title:scope.priceSensitiveSerie6Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('valueSerie6',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#valueSerie6').empty();
+                        var draw=function(){
+                            $('#valueSerie6').highcharts({
+                                xAxis:scope.valueSerie6Config.options.xAxis,
+                                yAxis:scope.valueSerie6Config.options.yAxis,
+                                tooltip:scope.valueSerie6Config.options.tooltip,
+                                series:scope.valueSerie6Config.series,
+                                title:scope.valueSerie6Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('fashionSerie6',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#fashionSerie6').empty();
+                        var draw=function(){
+                            $('#fashionSerie6').highcharts({
+                                xAxis:scope.fashionSerie6Config.options.xAxis,
+                                yAxis:scope.fashionSerie6Config.options.yAxis,
+                                tooltip:scope.fashionSerie6Config.options.tooltip,
+                                series:scope.fashionSerie6Config.series,
+                                title:scope.fashionSerie6Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('freaksSerie6',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#freaksSerie6').empty();
+                        var draw=function(){
+                            $('#freaksSerie6').highcharts({
+                                xAxis:scope.freaksSerie6Config.options.xAxis,
+                                yAxis:scope.freaksSerie6Config.options.yAxis,
+                                tooltip:scope.freaksSerie6Config.options.tooltip,
+                                series:scope.freaksSerie6Config.series,
+                                title:scope.freaksSerie6Config.title,
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+    
 
 
 

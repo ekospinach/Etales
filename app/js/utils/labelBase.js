@@ -607,7 +607,7 @@ var getLabelBase = function(){
 		{id:'Market Sales Info',  ENG:'These graphs show the consumer sales figures for suppliers and retailers (private label) by market, consumer segment and shopper segment. More detailed information can be obtained by moving the cursor over the colors in the bar charts.',  CHN:'市场销售介绍',  RUS:''},	
 		{id:'Segment Leadership',  ENG:'Segment Leadership',  CHN:'细分市场领导者',  RUS:''},	
 		//需要翻译
-		{id:'Segment Leadership Info',  ENG:'This table shows the top two consumer share leaders by category, consumer segment and shopper segment.',  CHN:'领导力介绍',  RUS:''},			
+		{id:'Segment Leadership Info',  ENG:'This table shows the top 5 SKU’s for Elecssories for each consumer segment Across Markets, B&M and Online.',  CHN:'领导力介绍',  RUS:''},			
 		{id:'Cross-Segment Sales Volumes',  ENG:'Cross-Segment Sales Volumes',  CHN:'细分市场销量',  RUS:''},	
 		//需要翻译
 		{id:'Cross-Segment Sales Volumes Info',  ENG:'These graphs show, by category and by market, the sales volume bought by each shopper segment.',  CHN:'细分市场销量',  RUS:''},	
@@ -1187,6 +1187,10 @@ var getLabelBase = function(){
 		{id:'check ReductionRate Error',  ENG:'check ReductionRate Error',  CHN:'check ReductionRate Error',  RUS:''},
 		{id:'Buy All Reports',  ENG:'Buy All Reports',  CHN:'购买所有报告',  RUS:''},
 		{id:'All',  ENG:'All',  CHN:'全选',  RUS:''},
+		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
+		
+		{id:'Across Markets',  ENG:'Across Markets',  CHN:'Across Markets',  RUS:''},
+		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
 		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
 
 
