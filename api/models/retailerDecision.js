@@ -843,6 +843,9 @@ exports.updateRetailerDecision = function(io) {
                             }
                         }
                         break;
+                    case 'updateBudgetExtension':
+                        doc[queryCondition.location] = queryCondition.value;
+                        break;
                 }
                 if (isUpdated) {
                     doc.markModified('tradtionalAdvertising');
@@ -892,6 +895,8 @@ exports.updateRetailerDecision = function(io) {
                                     page:req.body.page
                                 });
                                 break;
+                                case 'updateBudgetExtension':break;
+
                                 case 'updateGeneralDecision':
                                 case 'updateMarketDecision':
                                 case 'updatePrivateLabel':
@@ -1285,4 +1290,47 @@ exports.getRetailerMarketResearchOrders = function(req,res,next){
             res.send(404,'fail');
         }
     });
+}
+
+exports.getRetailerBudgetExtension = function(seminar) {
+    var d = q.defer();
+    var result = {
+        retailers: [{
+            retailerID: 1,
+            data: []
+        }, {
+            retailerID: 2,
+            data: []
+        }, {
+            retailerID: 3,
+            data: []
+        }]
+    };
+    retDecision.find({
+        seminar: seminar
+    }, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
+        }
+        if (docs) {
+            docs.forEach(function(single){
+                if(single.period>=0){
+                    result.retailers[single.retailerID - 1].data.push({
+                        'retailerID': single.retailerID,
+                        'period': single.period,
+                        'nextBudgetExtension': single.nextBudgetExtension === undefined ? 0 : single.nextBudgetExtension,
+                        'immediateBudgetExtension': single.immediateBudgetExtension === undefined ? 0 : single.immediateBudgetExtension
+                    })
+                }
+            });
+            result.retailers.forEach(function(single){
+                single.data.sort(function(a,b){return a.period>b.period?1:-1});
+            })
+            d.resolve(result);
+        } else {
+            d.reject('fail');
+        }
+    })
+
+    return d.promise;
 }

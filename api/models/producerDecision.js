@@ -330,7 +330,12 @@ exports.updateProducerDecision = function(io) {
 
         - MarketResearchOrders
         updateMarketResearchOrders : additionalIdx value
+        
+
+        -updateProducerDecision
+
         */
+
             categoryID: req.body.categoryID,
             brandName: req.body.brandName,
             varName: req.body.varName,
@@ -579,6 +584,9 @@ exports.updateProducerDecision = function(io) {
                                 doc.marketResearchOrder[i] = queryCondition.value;
                             }
                             break;
+                        case 'updateBudgetExtension':
+                            doc[queryCondition.location]=queryCondition.value;
+                        break;
                         default:
                             isUpdated = false;
                             res.send(404, 'cannot find matched query behaviour:' + queryCondition.behaviour);
@@ -596,12 +604,14 @@ exports.updateProducerDecision = function(io) {
                         doc.save(function(err, doc, numberAffected) {
                             if (err) return next(new Error(err));
                             console.log('save updated, number affected:' + numberAffected);
-                            io.sockets.emit('socketIO:producerBaseChanged', {
-                                period: queryCondition.period,
-                                producerID: queryCondition.producerID,
-                                seminar: queryCondition.seminar,
-                                page:req.body.page
-                            });
+                            if(queryCondition.behaviour!="updateBudgetExtension"&&numberAffected!=0){
+                                io.sockets.emit('socketIO:producerBaseChanged', {
+                                    period: queryCondition.period,
+                                    producerID: queryCondition.producerID,
+                                    seminar: queryCondition.seminar,
+                                    page:req.body.page
+                                });
+                            }
                             if (queryCondition.behaviour == "deleteProduct") {
                                 res.send(200, {
                                     index: index
@@ -1458,7 +1468,7 @@ exports.getBrand = function(categoryCount, brandCount, producerID, seminar, peri
                 msg: 'No Brand with producerID:' + producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount
             });
         }
-    })
+    });
     return deferred.promise;
 }
 
@@ -1502,4 +1512,50 @@ exports.getSupplierMarketResearchOrders = function(req,res,next){
             res.send(404,'fail');
         }
     });
+}
+
+exports.getProducerBudgetExtension = function(seminar) {
+    var d = q.defer();
+    var result = {
+        producers: [{
+            producerID: 1,
+            data: []
+        }, {
+            producerID: 2,
+            data: []
+        }, {
+            producerID: 3,
+            data: []
+        },{
+            producerID:4,
+            data:[]
+        }]
+    };
+    proDecision.find({
+        seminar: seminar
+    }, function(err, docs) {
+        if (err) {
+            return next(new Error(err));
+        }
+        if (docs) {
+            docs.forEach(function(single){
+                if(single.period>=0){
+                    result.producers[single.producerID - 1].data.push({
+                        'producerID': single.producerID,
+                        'period': single.period,
+                        'nextBudgetExtension': single.nextBudgetExtension === undefined ? 0 : single.nextBudgetExtension,
+                        'immediateBudgetExtension': single.immediateBudgetExtension === undefined ? 0 : single.immediateBudgetExtension
+                    })
+                }
+            });
+            result.producers.forEach(function(single){
+                single.data.sort(function(a,b){return a.period>b.period?1:-1});
+            })
+            d.resolve(result);
+        } else {
+            d.reject('fail');
+        }
+    })
+
+    return d.promise;
 }

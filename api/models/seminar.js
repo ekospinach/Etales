@@ -1555,3 +1555,20 @@ exports.checkProducerDecisionStatusByAdmin = function(seminarCode, period, produ
 		});
 	return d.promise;
 }
+
+exports.getBudgetExtension = function(req, res, next) {
+	var result = {
+		producers: {},
+		retailers: {}
+	}
+	require('./producerDecision.js').getProducerBudgetExtension(req.params.seminar).then(function(data) {
+		result.producers = data.producers;
+		return require('./retailerDecision.js').getRetailerBudgetExtension(req.params.seminar);
+	}).then(function(data) {
+		result.retailers = data.retailers;
+		res.send(result);
+	}, function(data) {
+		res.send(400, 'fail');
+	});
+
+}

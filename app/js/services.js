@@ -836,6 +836,22 @@ define(['angular',
 					 	
 					 })
 				},
+				updateBudgetExtension:function(seminar,period,producerID,location,value){
+					var queryCondition = {
+						producerID:producerID,
+						period:period,
+						seminar:seminar,
+						behaviour : 'updateBudgetExtension', 
+						location : location,
+						value : value
+					}
+					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
+				},
+
 				submitDecision:function(){
 					//
 					var queryCondition={
@@ -1324,6 +1340,21 @@ define(['angular',
 					 },function(res){
 						console.log('Failed:' + res);
 					});					
+				},
+				updateBudgetExtension:function(seminar,period,retailerID,location,value){
+					var queryCondition = {
+						retailerID:retailerID,
+						period:period,
+						seminar:seminar,
+						behaviour : 'updateBudgetExtension', 
+						location : location,
+						value : value
+					}
+					$http({method:'POST',url:'/retailerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
 				},
 				getBase : function(){
 					return base;

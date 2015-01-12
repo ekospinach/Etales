@@ -19,8 +19,8 @@ module.exports = function(app, io){
 	
 	//getPlayerReportOrder
 	app.get('/getPlayerReportOrder/:seminar/:period/:userType/:playerID',		 require('./../api/models/seminar.js').getPlayerReportOrder);
- 
-	
+ 	//getBudgetExtension
+ 	app.get('/budgetExtension/:seminar',										 require('./../api/models/seminar.js').getBudgetExtension);
 	//export data to excel
 	//app.get('/excel',                                                          require('./../api/utils/excel.js').testGet);
 	app.post('/excel',                                                           require('./../api/utils/excel.js').exportExcel);
