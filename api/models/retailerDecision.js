@@ -843,9 +843,18 @@ exports.updateRetailerDecision = function(io) {
                             }
                         }
                         break;
-                    case 'updateBudgetExtension':
-                        doc[queryCondition.location] = queryCondition.value;
-                        break;
+                        case 'updateBudgetExtension':
+                            doc[queryCondition.location] = queryCondition.value;
+                            break;
+                        case 'updateExceptionalCost':
+                        console.log('hello');
+                            doc.retMarketDecision.forEach(function(singleMarket) {
+                                if (singleMarket.marketID == queryCondition.marketID) {
+                                    singleMarket.exceptionalCostsProfits[queryCondition.additionalIdx] = queryCondition.value;
+                                    console.log(singleMarket.exceptionalCostsProfits);
+                                }
+                            });
+                            break;
                 }
                 if (isUpdated) {
                     doc.markModified('tradtionalAdvertising');
@@ -896,6 +905,7 @@ exports.updateRetailerDecision = function(io) {
                                 });
                                 break;
                                 case 'updateBudgetExtension':break;
+                                case 'updateExceptionalCost':break;
 
                                 case 'updateGeneralDecision':
                                 case 'updateMarketDecision':
@@ -1292,19 +1302,11 @@ exports.getRetailerMarketResearchOrders = function(req,res,next){
     });
 }
 
-exports.getRetailerBudgetExtension = function(seminar) {
+exports.getRetailerBudgetExtensionAndExceptionalCost = function(seminar) {
     var d = q.defer();
     var result = {
-        retailers: [{
-            retailerID: 1,
-            data: []
-        }, {
-            retailerID: 2,
-            data: []
-        }, {
-            retailerID: 3,
-            data: []
-        }]
+        retailerBudget: [{retailerID: 1,data: []}, {retailerID: 2,data: []}, {retailerID: 3,data: []}],
+        retailerExceptionalCost: [{retailerID: 1,data: []}, {retailerID: 2,data: []}, {retailerID: 3,data: []}]
     };
     retDecision.find({
         seminar: seminar
@@ -1313,24 +1315,46 @@ exports.getRetailerBudgetExtension = function(seminar) {
             return next(new Error(err));
         }
         if (docs) {
-            docs.forEach(function(single){
-                if(single.period>=0){
-                    result.retailers[single.retailerID - 1].data.push({
+            docs.forEach(function(single) {
+                if (single.period >= 0) {
+                    result.retailerBudget[single.retailerID - 1].data.push({
                         'retailerID': single.retailerID,
                         'period': single.period,
                         'nextBudgetExtension': single.nextBudgetExtension === undefined ? 0 : single.nextBudgetExtension,
                         'immediateBudgetExtension': single.immediateBudgetExtension === undefined ? 0 : single.immediateBudgetExtension
-                    })
+                    });
+                    single.retMarketDecision.forEach(function(singleMarket) {
+                        if (singleMarket.exceptionalCostsProfits[0] === undefined)
+                            singleMarket.exceptionalCostsProfits[0] = 0;
+                        if (singleMarket.exceptionalCostsProfits[1] === undefined)
+                            singleMarket.exceptionalCostsProfits[1] = 0;
+                        if (singleMarket.marketID == 1) {
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period] = {};
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].exceptionalCostsProfits = [0, 0, 0, 0];
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].retailerID = single.retailerID;
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].period = single.period;
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].marketID = singleMarket.marketID;
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].exceptionalCostsProfits[0] = singleMarket.exceptionalCostsProfits[0];
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].exceptionalCostsProfits[1] = singleMarket.exceptionalCostsProfits[1];
+                        } else if (singleMarket.marketID == 2) {
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].retailerID = single.retailerID;
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].period = single.period;
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].marketID = singleMarket.marketID;
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].exceptionalCostsProfits[2] = singleMarket.exceptionalCostsProfits[0];
+                            result.retailerExceptionalCost[single.retailerID - 1].data[single.period].exceptionalCostsProfits[3] = singleMarket.exceptionalCostsProfits[1];
+                        }
+                    });
                 }
             });
-            result.retailers.forEach(function(single){
-                single.data.sort(function(a,b){return a.period>b.period?1:-1});
+            result.retailerBudget.forEach(function(single) {
+                single.data.sort(function(a, b) {
+                    return a.period > b.period ? 1 : -1
+                });
             })
             d.resolve(result);
         } else {
             d.reject('fail');
         }
-    })
-
+    });
     return d.promise;
 }

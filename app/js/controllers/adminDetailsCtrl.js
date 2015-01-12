@@ -40,26 +40,39 @@ define(['app', 'socketIO'], function(app) {
 					producers:{},
 					retailers:{}
 				}
+				$scope.exceptionalCost={
+					producers:{},
+					retailers:{}
+				}
 				if($scope.seminar){
 					$http({
 						method: 'GET',
-						url: '/budgetExtension/' + $scope.seminar.seminarCode
+						url: '/budgetExtensionAndExceptionalCost/' + $scope.seminar.seminarCode
 					}).then(function(data){
-						$scope.budget.producers=data.data.producers;
-						$scope.budget.retailers=data.data.retailers;
-
-					})
+						$scope.budget.producers=data.data.producerBudget;
+						$scope.budget.retailers=data.data.retailerBudget;
+						$scope.exceptionalCost.producers=data.data.producerExceptionalCost;
+						$scope.exceptionalCost.retailers=data.data.retailerExceptionalCost;
+					});
 				}
 				
 			}
 			$scope.showView=showView;
 			showView();
 
-			$scope.updatBudget=function(period,playerID,userRole,location,value){
-				if(userRole=="Producer"){
-					ProducerDecisionBase.updateBudgetExtension($scope.seminar.seminarCode,period,playerID,location,value);
-				}else{
-					RetailerDecisionBase.updateBudgetExtension($scope.seminar.seminarCode,period,playerID,location,value);
+			$scope.updatBudget = function(period, playerID, userRole, location, value) {
+				if (userRole == "Producer") {
+					ProducerDecisionBase.updateBudgetExtension($scope.seminar.seminarCode, period, playerID, location, value);
+				} else {
+					RetailerDecisionBase.updateBudgetExtension($scope.seminar.seminarCode, period, playerID, location, value);
+				}
+			}
+
+			$scope.updateExceptionalCost = function(period, playerID, userRole, cateOrMarket, location, additionalIdx, value) {
+				if (userRole == "Producer") {
+					ProducerDecisionBase.updateExceptionalCost($scope.seminar.seminarCode, period, cateOrMarket, playerID, location, additionalIdx, value);
+				} else {
+					RetailerDecisionBase.updateExceptionalCost($scope.seminar.seminarCode, period, cateOrMarket, playerID, location, additionalIdx, value);
 				}
 			}
 

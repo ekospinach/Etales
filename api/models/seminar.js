@@ -1556,16 +1556,20 @@ exports.checkProducerDecisionStatusByAdmin = function(seminarCode, period, produ
 	return d.promise;
 }
 
-exports.getBudgetExtension = function(req, res, next) {
+exports.getBudgetExtensionAndExceptionalCost = function(req, res, next) {
 	var result = {
-		producers: {},
-		retailers: {}
+		producerBudget: {},
+		retailerBudget: {},
+		producerExceptionalCost:{},
+		retailerExceptionalCost:{}
 	}
-	require('./producerDecision.js').getProducerBudgetExtension(req.params.seminar).then(function(data) {
-		result.producers = data.producers;
-		return require('./retailerDecision.js').getRetailerBudgetExtension(req.params.seminar);
+	require('./producerDecision.js').getProducerBudgetExtensionAndExceptionalCost(req.params.seminar).then(function(data) {
+		result.producerBudget = data.producerBudget;
+		result.producerExceptionalCost = data.producerExceptionalCost;
+		return require('./retailerDecision.js').getRetailerBudgetExtensionAndExceptionalCost(req.params.seminar);
 	}).then(function(data) {
-		result.retailers = data.retailers;
+		result.retailerBudget = data.retailerBudget;
+		result.retailerExceptionalCost = data.retailerExceptionalCost;
 		res.send(result);
 	}, function(data) {
 		res.send(400, 'fail');

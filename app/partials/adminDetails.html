@@ -274,8 +274,8 @@
 							<thead>
 								<tr>
 									<td></td>
-									<td>Next Budget Extension</td>
-									<td>Immediate Budget Extension</td>
+									<td><p class="text-center">Next Budget Extension</p></td>
+									<td><p class="text-center">Immediate Budget Extension</p></td>
 								</tr>
 							</thead>
 							<tbody>
@@ -300,8 +300,8 @@
 							<thead>
 								<tr>
 									<td></td>
-									<td>Next Budget Extension</td>
-									<td>Immediate Budget Extension</td>
+									<td><p class="text-center">Next Budget Extension</p></td>
+									<td><p class="text-center">Immediate Budget Extension</p></td>
 								</tr>
 							</thead>
 							<tbody>
@@ -322,13 +322,94 @@
 		</tab>
 		<tab heading="Exceptional Cost / Profit Modification">
 			<div class="row" style="margin-top:10px">
-				exceptionalCost
+				<div class="col-md-6">
+					<div class="panel panel-info" ng-repeat='supplier in exceptionalCost.producers'>
+						<div class="panel-heading">Supplier {{supplier.producerID}}</div>
+
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td rowspan="2"></td>
+									<td colspan="2">
+										<p class="text-center">Elecssories
+										</p>
+									</td>
+									<td colspan="2">
+										<p class="text-center">HealthBeauties</p>
+									</td>
+								</tr>
+								<tr>
+									<td><p class="text-center">Traditional</p></td>
+									<td><p class="text-center">Internet</p></td>
+									<td><p class="text-center">Traditional</p></td>
+									<td><p class="text-center">Internet</p></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='exceptionalCost in supplier.data'>
+									<td><strong>Period {{exceptionalCost.period}}</strong></td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[0]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',1,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[0]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[1]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',1,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[1]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[2]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',2,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[2]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[3]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',2,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[3]}} </a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>			
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-success" ng-repeat='retailer in exceptionalCost.retailers'>
+						<div class="panel-heading">Retailer {{retailer.retailerID}}</div>
+
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td rowspan="2"></td>
+									<td colspan="2">
+										<p class="text-center">Urban</p>
+									</td>
+									<td colspan="2">
+										<p class="text-center">Rural</p>
+									</td>
+								</tr>
+								<tr>
+									<td><p class="text-center">Traditional</p></td>
+									<td><p class="text-center">Internet</p></td>
+									<td><p class="text-center">Traditional</p></td>
+									<td><p class="text-center">Internet</p></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='exceptionalCost in retailer.data'>
+									<td><strong>Period {{exceptionalCost.period}}</strong></td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[0]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',1,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[0]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[1]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',1,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[1]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[2]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',2,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[2]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[3]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',2,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[3]}} </a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
 			</div>
 		</tab>
-	</tabset>		
-
-
-
+	</tabset>
 </div>
 
 

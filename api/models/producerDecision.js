@@ -585,8 +585,15 @@ exports.updateProducerDecision = function(io) {
                             }
                             break;
                         case 'updateBudgetExtension':
-                            doc[queryCondition.location]=queryCondition.value;
-                        break;
+                            doc[queryCondition.location] = queryCondition.value;
+                            break;
+                        case 'updateExceptionalCost':
+                            doc.proCatDecision.forEach(function(singleCategory) {
+                                if (singleCategory.categoryID == queryCondition.categoryID) {
+                                    singleCategory.exceptionalCostsProfits[queryCondition.additionalIdx] = queryCondition.value;
+                                }
+                            })
+                            break;
                         default:
                             isUpdated = false;
                             res.send(404, 'cannot find matched query behaviour:' + queryCondition.behaviour);
@@ -604,12 +611,12 @@ exports.updateProducerDecision = function(io) {
                         doc.save(function(err, doc, numberAffected) {
                             if (err) return next(new Error(err));
                             console.log('save updated, number affected:' + numberAffected);
-                            if(queryCondition.behaviour!="updateBudgetExtension"&&numberAffected!=0){
+                            if (queryCondition.behaviour != "updateBudgetExtension" && numberAffected != 0 && queryCondition.behaviour != "updateExceptionalCost") {
                                 io.sockets.emit('socketIO:producerBaseChanged', {
                                     period: queryCondition.period,
                                     producerID: queryCondition.producerID,
                                     seminar: queryCondition.seminar,
-                                    page:req.body.page
+                                    page: req.body.page
                                 });
                             }
                             if (queryCondition.behaviour == "deleteProduct") {
@@ -1514,22 +1521,11 @@ exports.getSupplierMarketResearchOrders = function(req,res,next){
     });
 }
 
-exports.getProducerBudgetExtension = function(seminar) {
+exports.getProducerBudgetExtensionAndExceptionalCost = function(seminar) {
     var d = q.defer();
     var result = {
-        producers: [{
-            producerID: 1,
-            data: []
-        }, {
-            producerID: 2,
-            data: []
-        }, {
-            producerID: 3,
-            data: []
-        },{
-            producerID:4,
-            data:[]
-        }]
+        producerBudget: [{producerID: 1,data: []}, {producerID: 2,data: []}, {producerID: 3,data: []}],
+        producerExceptionalCost: [{producerID: 1,data: []}, {producerID: 2,data: []}, {producerID: 3,data: []}]
     };
     proDecision.find({
         seminar: seminar
@@ -1538,24 +1534,46 @@ exports.getProducerBudgetExtension = function(seminar) {
             return next(new Error(err));
         }
         if (docs) {
-            docs.forEach(function(single){
-                if(single.period>=0){
-                    result.producers[single.producerID - 1].data.push({
+            docs.forEach(function(single) {
+                if (single.period >= 0 && single.producerID != 4) {
+                    result.producerBudget[single.producerID - 1].data.push({
                         'producerID': single.producerID,
                         'period': single.period,
                         'nextBudgetExtension': single.nextBudgetExtension === undefined ? 0 : single.nextBudgetExtension,
                         'immediateBudgetExtension': single.immediateBudgetExtension === undefined ? 0 : single.immediateBudgetExtension
-                    })
+                    });
+                    single.proCatDecision.forEach(function(singleCategory) {
+                        if (singleCategory.exceptionalCostsProfits[0] === undefined)
+                            singleCategory.exceptionalCostsProfits[0] = 0;
+                        if (singleCategory.exceptionalCostsProfits[1] === undefined)
+                            singleCategory.exceptionalCostsProfits[1] = 0;
+                        if (singleCategory.categoryID == 1) {
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period] = {};
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].exceptionalCostsProfits = [0, 0, 0, 0];
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].producerID = single.producerID;
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].period = single.period;
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].categoryID = singleCategory.categoryID;
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].exceptionalCostsProfits[0] = singleCategory.exceptionalCostsProfits[0];
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].exceptionalCostsProfits[1] = singleCategory.exceptionalCostsProfits[1];
+                        } else if (singleCategory.categoryID == 2) {
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].producerID = single.producerID;
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].period = single.period;
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].categoryID = singleCategory.categoryID;
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].exceptionalCostsProfits[2] = singleCategory.exceptionalCostsProfits[0];
+                            result.producerExceptionalCost[single.producerID - 1].data[single.period].exceptionalCostsProfits[3] = singleCategory.exceptionalCostsProfits[1];
+                        }
+                    });
                 }
             });
-            result.producers.forEach(function(single){
-                single.data.sort(function(a,b){return a.period>b.period?1:-1});
-            })
+            result.producerBudget.forEach(function(single) {
+                single.data.sort(function(a, b) {
+                    return a.period > b.period ? 1 : -1
+                });
+            });
             d.resolve(result);
         } else {
             d.reject('fail');
         }
-    })
-
+    });
     return d.promise;
 }
