@@ -1324,10 +1324,12 @@ exports.getRetailerBudgetExtensionAndExceptionalCost = function(seminar) {
                         'immediateBudgetExtension': single.immediateBudgetExtension === undefined ? 0 : single.immediateBudgetExtension
                     });
                     single.retMarketDecision.forEach(function(singleMarket) {
-                        if (singleMarket.exceptionalCostsProfits[0] === undefined)
+                        if (singleMarket.exceptionalCostsProfits[0] === undefined || singleMarket.exceptionalCostsProfits[0] === null){
                             singleMarket.exceptionalCostsProfits[0] = 0;
-                        if (singleMarket.exceptionalCostsProfits[1] === undefined)
+                        }
+                        if (singleMarket.exceptionalCostsProfits[1] === undefined || singleMarket.exceptionalCostsProfits[1] === null){
                             singleMarket.exceptionalCostsProfits[1] = 0;
+                        }
                         if (singleMarket.marketID == 1) {
                             result.retailerExceptionalCost[single.retailerID - 1].data[single.period] = {};
                             result.retailerExceptionalCost[single.retailerID - 1].data[single.period].exceptionalCostsProfits = [0, 0, 0, 0];

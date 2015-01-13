@@ -1543,10 +1543,12 @@ exports.getProducerBudgetExtensionAndExceptionalCost = function(seminar) {
                         'immediateBudgetExtension': single.immediateBudgetExtension === undefined ? 0 : single.immediateBudgetExtension
                     });
                     single.proCatDecision.forEach(function(singleCategory) {
-                        if (singleCategory.exceptionalCostsProfits[0] === undefined)
+                        if (singleCategory.exceptionalCostsProfits[0] === undefined || singleCategory.exceptionalCostsProfits[0] === null){
                             singleCategory.exceptionalCostsProfits[0] = 0;
-                        if (singleCategory.exceptionalCostsProfits[1] === undefined)
+                        }
+                        if (singleCategory.exceptionalCostsProfits[1] === undefined || singleCategory.exceptionalCostsProfits[1] === null){
                             singleCategory.exceptionalCostsProfits[1] = 0;
+                        }
                         if (singleCategory.categoryID == 1) {
                             result.producerExceptionalCost[single.producerID - 1].data[single.period] = {};
                             result.producerExceptionalCost[single.producerID - 1].data[single.period].exceptionalCostsProfits = [0, 0, 0, 0];
