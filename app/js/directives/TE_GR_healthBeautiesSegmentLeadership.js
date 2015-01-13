@@ -58,7 +58,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             result.priceSensitive.push({
                                 name:single.name,
-                                data:[[Label.getContent('Price Sensitive'),single.value*100]],
+                                data:[[single.name,single.value*100]],
                                 type:'column',
                                 color:color,
                                 stack: single.name
@@ -75,7 +75,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             result.value.push({
                                 name:single.name,
-                                data:[[Label.getContent('Value for Money'),single.value*100]],
+                                data:[[single.name,single.value*100]],
                                 type:'column',
                                 color:color,
                                 stack: single.name
@@ -92,7 +92,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             result.fashion.push({
                                 name:single.name,
-                                data:[[Label.getContent('Fashion'),single.value*100]],
+                                data:[[single.name,single.value*100]],
                                 type:'column',
                                 color:color,
                                 stack: single.name
@@ -109,7 +109,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             result.freaks.push({
                                 name:single.name,
-                                data:[[Label.getContent('Freaks'),single.value*100]],
+                                data:[[single.name,single.value*100]],
                                 type:'column',
                                 color:color,
                                 stack: single.name
