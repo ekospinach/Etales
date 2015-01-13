@@ -258,7 +258,6 @@ define(['directives', 'services'], function(directives) {
                         }
                     })
                     scope.$watch('selectedPlayer', function(newValue, oldValue) {
-                        console.log(newValue + ':' + oldValue);
                         if (newValue != oldValue && scope.isPageShown && scope.producerShow) {
                             initializePage();
                         }

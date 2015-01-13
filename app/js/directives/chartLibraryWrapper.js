@@ -657,7 +657,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.priceSensitiveSerie1Config.options.tooltip,
                                 series:scope.priceSensitiveSerie1Config.series,
                                 title:scope.priceSensitiveSerie1Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -679,7 +680,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.valueSerie1Config.options.tooltip,
                                 series:scope.valueSerie1Config.series,
                                 title:scope.valueSerie1Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -701,7 +703,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.fashionSerie1Config.options.tooltip,
                                 series:scope.fashionSerie1Config.series,
                                 title:scope.fashionSerie1Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -723,7 +726,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.freaksSerie1Config.options.tooltip,
                                 series:scope.freaksSerie1Config.series,
                                 title:scope.freaksSerie1Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -746,7 +750,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.priceSensitiveSerie2Config.options.tooltip,
                                 series:scope.priceSensitiveSerie2Config.series,
                                 title:scope.priceSensitiveSerie2Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -768,7 +773,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.valueSerie2Config.options.tooltip,
                                 series:scope.valueSerie2Config.series,
                                 title:scope.valueSerie2Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -790,7 +796,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.fashionSerie2Config.options.tooltip,
                                 series:scope.fashionSerie2Config.series,
                                 title:scope.fashionSerie2Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -812,7 +819,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.freaksSerie2Config.options.tooltip,
                                 series:scope.freaksSerie2Config.series,
                                 title:scope.freaksSerie2Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -835,7 +843,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.priceSensitiveSerie3Config.options.tooltip,
                                 series:scope.priceSensitiveSerie3Config.series,
                                 title:scope.priceSensitiveSerie3Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -857,7 +866,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.valueSerie3Config.options.tooltip,
                                 series:scope.valueSerie3Config.series,
                                 title:scope.valueSerie3Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -879,7 +889,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.fashionSerie3Config.options.tooltip,
                                 series:scope.fashionSerie3Config.series,
                                 title:scope.fashionSerie3Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -901,7 +912,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.freaksSerie3Config.options.tooltip,
                                 series:scope.freaksSerie3Config.series,
                                 title:scope.freaksSerie3Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -923,7 +935,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.priceSensitiveSerie4Config.options.tooltip,
                                 series:scope.priceSensitiveSerie4Config.series,
                                 title:scope.priceSensitiveSerie4Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -945,7 +958,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.valueSerie4Config.options.tooltip,
                                 series:scope.valueSerie4Config.series,
                                 title:scope.valueSerie4Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -967,7 +981,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.fashionSerie4Config.options.tooltip,
                                 series:scope.fashionSerie4Config.series,
                                 title:scope.fashionSerie4Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -989,7 +1004,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.freaksSerie4Config.options.tooltip,
                                 series:scope.freaksSerie4Config.series,
                                 title:scope.freaksSerie4Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1012,7 +1028,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.priceSensitiveSerie5Config.options.tooltip,
                                 series:scope.priceSensitiveSerie5Config.series,
                                 title:scope.priceSensitiveSerie5Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1034,7 +1051,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.valueSerie5Config.options.tooltip,
                                 series:scope.valueSerie5Config.series,
                                 title:scope.valueSerie5Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1056,7 +1074,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.fashionSerie5Config.options.tooltip,
                                 series:scope.fashionSerie5Config.series,
                                 title:scope.fashionSerie5Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1078,7 +1097,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.freaksSerie5Config.options.tooltip,
                                 series:scope.freaksSerie5Config.series,
                                 title:scope.freaksSerie5Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1101,7 +1121,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.priceSensitiveSerie6Config.options.tooltip,
                                 series:scope.priceSensitiveSerie6Config.series,
                                 title:scope.priceSensitiveSerie6Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1123,7 +1144,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.valueSerie6Config.options.tooltip,
                                 series:scope.valueSerie6Config.series,
                                 title:scope.valueSerie6Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1145,7 +1167,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.fashionSerie6Config.options.tooltip,
                                 series:scope.fashionSerie6Config.series,
                                 title:scope.fashionSerie6Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })
@@ -1167,7 +1190,8 @@ define(['directives'], function(directives) {
                                 tooltip:scope.freaksSerie6Config.options.tooltip,
                                 series:scope.freaksSerie6Config.series,
                                 title:scope.freaksSerie6Config.title,
-                                plotOptions: { series: { dataLabels: { enabled: true, useHTML: true,/*rotation:-90,*/formatter: function() {var result = '';for (var i = 0; i < this.key.length; i++) {result = result + this.key.substring(i, i + 1) + '<br>';}return result;/*return this.key;*/},style: {color: 'white',fontSize: '12px',fontWeight: "normal",lineHeight: '12px'}}},column: {stacking: 'normal'}},
+                                chart: {type: 'column'},
+                                plotOptions: { series: { dataLabels: { enabled: true, rotation: -90, formatter: function() { return this.key; }, style: { color: 'white', fontSize:'12px' } }, pointPadding: 0.01, groupPadding: 0.01 }, column: { stacking: 'normal' } },
                                 legend: {enabled: false},
                                 credits: {enabled: false}
                             })

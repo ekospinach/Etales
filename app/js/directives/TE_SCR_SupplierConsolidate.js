@@ -72,7 +72,6 @@ define(['directives', 'services'], function(directives) {
                         deferred.resolve({
                             msg: 'Array is ready.'
                         });
-                        console.log(scope.ServiceCosts);
                         return deferred.promise;
                     }
 
