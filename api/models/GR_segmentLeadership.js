@@ -116,19 +116,21 @@ exports.addReports = function(options){
 
 var setData = function(data,kind){
     var result=[];
-    data.forEach(function(singleDivision){
-        if(singleDivision.divisionKind==kind){
-            singleDivision.grsl_ValueLeaders.forEach(function(singleValue){
-                result.push({
-                    //name:singleValue.parentBrandName+singleValue.varName,
-                    name:singleValue.varName,
-                    value:singleValue.share,
-                    parentID:parseInt(singleValue.parentBrandID/10)
+    if(data){
+        data.forEach(function(singleDivision){
+            if(singleDivision.divisionKind==kind){
+                singleDivision.grsl_ValueLeaders.forEach(function(singleValue){
+                    result.push({
+                        //name:singleValue.parentBrandName+singleValue.varName,
+                        name:singleValue.varName,
+                        value:singleValue.share,
+                        parentID:parseInt(singleValue.parentBrandID/10)
 
-                });
-            })
-        }
-    });
+                    });
+                })
+            }
+        });
+    }
     return result;
 }
 
