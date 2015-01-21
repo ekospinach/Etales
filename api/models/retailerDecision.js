@@ -1305,8 +1305,8 @@ exports.getRetailerMarketResearchOrders = function(req,res,next){
 exports.getRetailerBudgetExtensionAndExceptionalCost = function(seminar) {
     var d = q.defer();
     var result = {
-        retailerBudget: [{retailerID: 1,data: []}, {retailerID: 2,data: []}, {retailerID: 3,data: []}],
-        retailerExceptionalCost: [{retailerID: 1,data: []}, {retailerID: 2,data: []}, {retailerID: 3,data: []}]
+        retailerBudget: [{retailerID: 1,data: []}, {retailerID: 2,data: []}],
+        retailerExceptionalCost: [{retailerID: 1,data: []}, {retailerID: 2,data: []}]
     };
     retDecision.find({
         seminar: seminar
@@ -1316,7 +1316,7 @@ exports.getRetailerBudgetExtensionAndExceptionalCost = function(seminar) {
         }
         if (docs) {
             docs.forEach(function(single) {
-                if (single.period >= 0) {
+                if (single.period >= 0 && single.retailerID < 3) {
                     result.retailerBudget[single.retailerID - 1].data.push({
                         'retailerID': single.retailerID,
                         'period': single.period,
