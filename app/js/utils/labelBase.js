@@ -1183,8 +1183,8 @@ var getLabelBase = function(){
 		{id:'Service Level',  ENG:'Service Level',  CHN:'服务水平',  RUS:''},
 		{id:'Service Level Info',  ENG:'Encompasses such aspects of online store operations such as days for shipment, return policy and after sales service. The value ranges from 1 to 5 (LOW to PREMIUM) with 1 being the lowest or basic service level and 5 being the highest or premium online store operation service level.',  CHN:'服务水平是综合变量，提供\“基础\”、\“一般\”、\“中等\”、\“好\”和\“优质\”五种选择，直接影响一些在线购物体验如物流速度和质量，退换货政策，售后服务等。',  RUS:''},
 		//check PromototionFrequency and checkReductionRate
-		{id:'check PromototionFrequency Error',  ENG:'check PromototionFrequency Error',  CHN:'check PromototionFrequency Error',  RUS:''},
-		{id:'check ReductionRate Error',  ENG:'check ReductionRate Error',  CHN:'check ReductionRate Error',  RUS:''},
+		{id:'check PromototionFrequency Error',  ENG:'Promotion Frequency cannot be zero',  CHN:'促销频率不能为零',  RUS:''},
+		{id:'check ReductionRate Error',  ENG:'Promotion Depth Cannot be zero',  CHN:'折扣率不能为零',  RUS:''},
 		{id:'Buy All Reports',  ENG:'Buy All Reports',  CHN:'购买所有报告',  RUS:''},
 		{id:'All',  ENG:'All',  CHN:'全选',  RUS:''},
 		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},

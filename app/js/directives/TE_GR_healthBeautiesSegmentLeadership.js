@@ -40,10 +40,26 @@ define(['directives', 'services'], function(directives) {
                         //dataC = data.fashion.xxxx
                         //dataD = data.freaks.xxxx
                         var result={
-                            priceSensitive:[],
-                            value:[],
-                            fashion:[],
-                            freaks:[]
+                            priceSensitive:[{
+                                name:Label.getContent('Price Sensitive'),
+                                data:[]
+                            }],
+                            value:[{
+                                name:Label.getContent('Value for Money'),
+                                data:[]
+                            }],
+                            fashion:[{
+                                name:Label.getContent('Health Conscious'),
+                                data:[]
+                            }],
+                            freaks:[{
+                                name:Label.getContent('Impatient'),
+                                data:[]
+                            }],
+                            priceSensitiveCate:[],
+                            valueCate:[],
+                            fashionCate:[],
+                            freaksCate:[],
                         };
                         var color="";
 
@@ -56,13 +72,11 @@ define(['directives', 'services'], function(directives) {
                                 case 6:color=PlayerColor.r1;break;
                                 default:color=PlayerColor.s1;break;
                             }
-                            result.priceSensitive.push({
-                                name:single.name,
-                                data:[[Label.getContent('Price Sensitive'),single.value*100]],
-                                type:'column',
-                                color:color,
-                                stack: single.name
+                            result.priceSensitive[0].data.push({
+                                y:single.value*100,
+                                color:color
                             });
+                            result.priceSensitiveCate.push(single.name);
                         });
                         dataB.forEach(function(single){
                             switch(single.parentID){
@@ -73,13 +87,11 @@ define(['directives', 'services'], function(directives) {
                                 case 6:color=PlayerColor.r1;break;
                                 default:color=PlayerColor.s1;break;
                             }
-                            result.value.push({
-                                name:single.name,
-                                data:[[Label.getContent('Value for Money'),single.value*100]],
-                                type:'column',
-                                color:color,
-                                stack: single.name
+                            result.value[0].data.push({
+                                y:single.value*100,
+                                color:color
                             });
+                            result.valueCate.push(single.name);
                         });
                         dataC.forEach(function(single){
                             switch(single.parentID){
@@ -90,13 +102,11 @@ define(['directives', 'services'], function(directives) {
                                 case 6:color=PlayerColor.r1;break;
                                 default:color=PlayerColor.s1;break;
                             }
-                            result.fashion.push({
-                                name:single.name,
-                                data:[[Label.getContent('Fashion'),single.value*100]],
-                                type:'column',
-                                color:color,
-                                stack: single.name
+                            result.fashion[0].data.push({
+                                y:single.value*100,
+                                color:color
                             });
+                            result.fashionCate.push(single.name);
                         });
                         dataD.forEach(function(single){
                             switch(single.parentID){
@@ -107,13 +117,11 @@ define(['directives', 'services'], function(directives) {
                                 case 6:color=PlayerColor.r1;break;
                                 default:color=PlayerColor.s1;break;
                             }
-                            result.freaks.push({
-                                name:single.name,
-                                data:[[Label.getContent('Freaks'),single.value*100]],
-                                type:'column',
-                                color:color,
-                                stack: single.name
+                            result.freaks[0].data.push({
+                                y:single.value*100,
+                                color:color
                             });
+                            result.freaksCate.push(single.name);
                         });
                         return result;
                     }
@@ -137,26 +145,59 @@ define(['directives', 'services'], function(directives) {
                         scope.freaksSerie5s=[];
                         scope.freaksSerie6s=[];
 
+                        scope.priceSensitiveSerie4Cate=[];
+                        scope.priceSensitiveSerie5Cate=[];
+                        scope.priceSensitiveSerie6Cate=[];
+
+                        scope.valueSerie4Cate=[];
+                        scope.valueSerie5Cate=[];
+                        scope.valueSerie6Cate=[];
+
+                        scope.fashionSerie4Cate=[];
+                        scope.fashionSerie5Cate=[];
+                        scope.fashionSerie6Cate=[];
+
+                        scope.freaksSerie4Cate=[];
+                        scope.freaksSerie5Cate=[];
+                        scope.freaksSerie6Cate=[];
+
+
+
+
+
                         var CORPORATEResult=setData(data.priceSensitive.CORPORATE,data.value.CORPORATE,data.fashion.CORPORATE,data.freaks.CORPORATE);
                         
                         scope.priceSensitiveSerie4s=CORPORATEResult.priceSensitive;
+                        scope.priceSensitiveSerie4Cate=CORPORATEResult.priceSensitiveCate;
                         scope.valueSerie4s=CORPORATEResult.value;
+                        scope.valueSerie4Cate=CORPORATEResult.valueCate;
                         scope.fashionSerie4s=CORPORATEResult.fashion;
+                        scope.fashionSerie4Cate=CORPORATEResult.fashionCate;
                         scope.freaksSerie4s=CORPORATEResult.freaks;
+                        scope.freaksSerie4Cate=CORPORATEResult.freaksCate;
 
                         var TRADITIONALResult=setData(data.priceSensitive.TRADITIONAL,data.value.TRADITIONAL,data.fashion.TRADITIONAL,data.freaks.TRADITIONAL);
                         
                         scope.priceSensitiveSerie5s=TRADITIONALResult.priceSensitive;
+                        scope.priceSensitiveSerie5Cate=TRADITIONALResult.priceSensitiveCate;
                         scope.valueSerie5s=TRADITIONALResult.value;
+                        scope.valueSerie5Cate=TRADITIONALResult.valueCate;
                         scope.fashionSerie5s=TRADITIONALResult.fashion;
+                        scope.fashionSerie5Cate=TRADITIONALResult.fashionCate;
                         scope.freaksSerie5s=TRADITIONALResult.freaks;
+                        scope.freaksSerie5Cate=TRADITIONALResult.freaksCate;
+
 
                         var INTERNETResult=setData(data.priceSensitive.INTERNET,data.value.INTERNET,data.fashion.INTERNET,data.freaks.INTERNET);
                         
                         scope.priceSensitiveSerie6s=INTERNETResult.priceSensitive;
+                        scope.priceSensitiveSerie6Cate=INTERNETResult.priceSensitiveCate;
                         scope.valueSerie6s=INTERNETResult.value;
+                        scope.valueSerie6Cate=INTERNETResult.valueCate;
                         scope.fashionSerie6s=INTERNETResult.fashion;
+                        scope.fashionSerie6Cate=INTERNETResult.fashionCate;
                         scope.freaksSerie6s=INTERNETResult.freaks;
+                        scope.freaksSerie6Cate=INTERNETResult.freaksCate;
                         
 
                         scope.priceSensitiveSerie4Config = {
@@ -164,7 +205,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.priceSensitiveSerie4Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -193,7 +236,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.valueSerie4Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -222,7 +267,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.fashionSerie4Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -238,7 +285,7 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.fashionSerie4s,
                             title: {
-                                text: Label.getContent('Fashion')
+                                text: Label.getContent('Health Conscious')
                             },
                             credits: {
                                 enabled: false
@@ -251,7 +298,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.freaksSerie4Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -267,7 +316,7 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.freaksSerie4s,
                             title: {
-                                text: Label.getContent('Freaks')
+                                text: Label.getContent('Impatient')
                             },
                             credits: {
                                 enabled: false
@@ -281,7 +330,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.priceSensitiveSerie5Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -310,7 +361,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.valueSerie5Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -339,7 +392,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.fashionSerie5Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -355,7 +410,7 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.fashionSerie5s,
                             title: {
-                                text: Label.getContent('Fashion')
+                                text: Label.getContent('Health Conscious')
                             },
                             credits: {
                                 enabled: false
@@ -368,7 +423,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.freaksSerie5Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -384,7 +441,7 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.freaksSerie5s,
                             title: {
-                                text: Label.getContent('Freaks')
+                                text: Label.getContent('Impatient')
                             },
                             credits: {
                                 enabled: false
@@ -398,7 +455,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.priceSensitiveSerie6Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -427,7 +486,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.valueSerie6Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -456,7 +517,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.fashionSerie6Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -472,7 +535,7 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.fashionSerie6s,
                             title: {
-                                text: Label.getContent('Fashion')
+                                text: Label.getContent('Health Conscious')
                             },
                             credits: {
                                 enabled: false
@@ -485,7 +548,9 @@ define(['directives', 'services'], function(directives) {
                                 xAxis: {
                                     labels: {
                                         enabled: false //是否显示x轴刻度值
-                                    }
+                                    },
+                                    tickWidth: 0,
+                                    categories:scope.freaksSerie6Cate
                                 },
                                 yAxis: {
                                     title: {
@@ -501,7 +566,7 @@ define(['directives', 'services'], function(directives) {
                             },
                             series: scope.freaksSerie6s,
                             title: {
-                                text: Label.getContent('Freaks')
+                                text: Label.getContent('Impatient')
                             },
                             credits: {
                                 enabled: false
