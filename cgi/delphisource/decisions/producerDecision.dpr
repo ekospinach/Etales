@@ -398,6 +398,10 @@ var
       for brn := Low(TProBrands) to High(TProBrands) do
         jo.A['proBrandsDecision'].Add(collectBrand(pCategory.dpc_Brands[brn]));
 
+      jo.O['exceptionalCostsProfits'] := SA([]);
+      jo.A['exceptionalCostsProfits'].D[0] := pCategory.dpc_ExceptionalCostsProfits[TRADITIONAL];
+      jo.A['exceptionalCostsProfits'].D[1] := pCategory.dpc_ExceptionalCostsProfits[INTERNET];
+
       Result := jo;
     end;
 
@@ -413,6 +417,7 @@ var
       jo.S['serviceLevel']  := GetEnumName(TypeInfo(TServiceLevel),Integer(currentDecision.dp_ServiceLevel));
       jo.D['nextBudgetExtension']  := currentDecision.dp_NextBudgetExtension;
       jo.D['approvedBudgetExtension']  := currentDecision.dp_ApprovedBudgetExtension;
+      jo.D['immediateBudgetExtension'] := currentDecision.dp_ImmediateBudgetExtension;
 
       {** Data Collection **}
       jo.O['proCatDecision'] := SA([]);
@@ -504,6 +509,9 @@ var
       for brn := Low(TProBrands) to High(TProBrands) do
         translateBrand(jo.A['proBrandsDecision'].O[brn - 1], pCategory.dpc_Brands[brn]);
 
+      pCategory.dpc_ExceptionalCostsProfits[TRADITIONAL] := jo.A['exceptionalCostsProfits'].D[0];
+      pCategory.dpc_ExceptionalCostsProfits[INTERNET] := jo.A['exceptionalCostsProfits'].D[1];
+
     end;
 
     procedure translateJson(jo : ISuperObject; var curDec : TProDecision);
@@ -515,6 +523,7 @@ var
       curDec.dp_ServiceLevel := TServiceLevel(GetEnumValue(TypeInfo(TServiceLevel), jo.S['serviceLevel']));
 
       curDec.dp_NextBudgetExtension  := jo.D['nextBudgetExtension'];
+      curDec.dp_ImmediateBudgetExtension := jo.D['immediateBudgetExtension'];
       curDec.dp_ApprovedBudgetExtension  := jo.D['approvedBudgetExtension'];
       
       for marketStudies := Low(TMarketStudies) to High(TMarketStudies) do

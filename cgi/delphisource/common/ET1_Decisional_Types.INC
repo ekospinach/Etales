@@ -37,7 +37,7 @@
 
   TProCatDecision = record
                       dpc_CategoryID                    : TCategories;
-		      drm_ExceptionalCostsProfits       : TDivisionsData;  { 04/01/2015 }
+		      dpc_ExceptionalCostsProfits       : TDivisionsData;  { 04/01/2015 }
                       dpc_Brands                        : TProBrandsDecisions;
                       dpc_CapacityChange                : single;
                       dpc_InvestInDesign                : single;

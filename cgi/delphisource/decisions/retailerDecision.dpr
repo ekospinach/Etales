@@ -416,6 +416,10 @@ var
       for I := Low(TRetMarketAssortmentDecision) to High(TRetMarketAssortmentDecision) do
         jo.A['retMarketAssortmentDecision'].Add(collectMarketAssortment(pMarket.drm_Assortment[I]));
 
+      jo.O['exceptionalCostsProfits'] := SA([]);
+      jo.A['exceptionalCostsProfits'].D[0] := pMarket.drm_ExceptionalCostsProfits[1];
+      jo.A['exceptionalCostsProfits'].D[1] := pMarket.drm_ExceptionalCostsProfits[2];
+
       Result  := jo;
     end;
 
@@ -547,6 +551,7 @@ var
       jo.I['retailerID'] := currentRetailer;
       jo.D['nextBudgetExtension']  := currentDecision.dr_NextBudgetExtension;
       jo.D['approvedBudgetExtension']  := currentDecision.dr_ApprovedBudgetExtension;
+      jo.D['immediateBudgetExtension']  := currentDecision.dr_ImmediateBudgetExtension;
 
       //fill array for MarketResearchOrder
       jo.O['marketResearchOrder'] := SA([]);
@@ -638,6 +643,10 @@ var
       pMarket.drm_ServiceLevel := TServiceLevel(GetEnumValue(TypeInfo(TServiceLevel), jo.S['serviceLevel']));
       for I := Low(TRetMarketAssortmentDecision) to High(TRetMarketAssortmentDecision) do
         translateMarketAssortment(jo.A['retMarketAssortmentDecision'].O[I - 1], pMarket.drm_Assortment[I]);
+
+      pMarket.drm_ExceptionalCostsProfits[1] := jo.A['exceptionalCostsProfits'].D[0];
+      pMarket.drm_ExceptionalCostsProfits[2] := jo.A['exceptionalCostsProfits'].D[1];
+
     end;
 
     procedure translatePLVar(jo: ISuperObject; var pVar : TPrivateLabelVariantDecision);
@@ -688,6 +697,7 @@ var
       curDec.dr_RetailerID := currentRetailer;
       currentDecision.dr_NextBudgetExtension  := jo.D['nextBudgetExtension'];
       currentDecision.dr_ApprovedBudgetExtension  := jo.D['approvedBudgetExtension'];
+      currentDecision.dr_ImmediateBudgetExtension := jo.D['immediateBudgetExtension'];
 
       for marketStudies := Low(TMarketStudies) to High(TMarketStudies) do
        curDec.dr_MarketResearch[marketStudies] := jo.A['marketResearchOrder'].B[marketStudies-1];
