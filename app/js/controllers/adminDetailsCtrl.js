@@ -1,7 +1,7 @@
 define(['app', 'socketIO'], function(app) {
 
-	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q','Label','$timeout','PeriodInfo',
-		function($scope, $http, $rootScope, EditSeminarInfo,$q,Label,$timeout, PeriodInfo) {
+	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q','Label','$timeout','PeriodInfo', 'ProducerDecisionBase', 'RetailerDecisionBase',
+		function($scope, $http, $rootScope, EditSeminarInfo,$q,Label,$timeout, PeriodInfo, ProducerDecisionBase, RetailerDecisionBase) {
 
 			var socket = io.connect();
 			socket.on('AdminProcessLog', function(data) {
@@ -35,6 +35,46 @@ define(['app', 'socketIO'], function(app) {
 			$scope.seminar = EditSeminarInfo.getSelectedSeminar();
 			$scope.isMessageShown = false;
 
+			var showView = function(){
+				$scope.budget={
+					producers:{},
+					retailers:{}
+				}
+				$scope.exceptionalCost={
+					producers:{},
+					retailers:{}
+				}
+				if($scope.seminar){
+					$http({
+						method: 'GET',
+						url: '/budgetExtensionAndExceptionalCost/' + $scope.seminar.seminarCode
+					}).then(function(data){
+						$scope.budget.producers=data.data.producerBudget;
+						$scope.budget.retailers=data.data.retailerBudget;
+						$scope.exceptionalCost.producers=data.data.producerExceptionalCost;
+						$scope.exceptionalCost.retailers=data.data.retailerExceptionalCost;
+					});
+				}
+				
+			}
+			$scope.showView=showView;
+			showView();
+
+			$scope.updatBudget = function(period, playerID, userRole, location, value) {
+				if (userRole == "Producer") {
+					ProducerDecisionBase.updateBudgetExtension($scope.seminar.seminarCode, period, playerID, location, value);
+				} else {
+					RetailerDecisionBase.updateBudgetExtension($scope.seminar.seminarCode, period, playerID, location, value);
+				}
+			}
+
+			$scope.updateExceptionalCost = function(period, playerID, userRole, cateOrMarket, location, additionalIdx, value) {
+				if (userRole == "Producer") {
+					ProducerDecisionBase.updateExceptionalCost($scope.seminar.seminarCode, period, cateOrMarket, playerID, location, additionalIdx, value);
+				} else {
+					RetailerDecisionBase.updateExceptionalCost($scope.seminar.seminarCode, period, cateOrMarket, playerID, location, additionalIdx, value);
+				}
+			}
 
 
 			$scope.getSeminarStatus = function(value) {
@@ -634,6 +674,8 @@ define(['app', 'socketIO'], function(app) {
 			});
 
 			$scope.isActive = true;
+			$scope.gameProgress = true;
+
 			$scope.overwriteNextDecision = false;
 			$scope.overwriteNextDecisionForRunKernel = false;
 		}

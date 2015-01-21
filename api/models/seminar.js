@@ -1555,3 +1555,24 @@ exports.checkProducerDecisionStatusByAdmin = function(seminarCode, period, produ
 		});
 	return d.promise;
 }
+
+exports.getBudgetExtensionAndExceptionalCost = function(req, res, next) {
+	var result = {
+		producerBudget: {},
+		retailerBudget: {},
+		producerExceptionalCost:{},
+		retailerExceptionalCost:{}
+	}
+	require('./producerDecision.js').getProducerBudgetExtensionAndExceptionalCost(req.params.seminar).then(function(data) {
+		result.producerBudget = data.producerBudget;
+		result.producerExceptionalCost = data.producerExceptionalCost;
+		return require('./retailerDecision.js').getRetailerBudgetExtensionAndExceptionalCost(req.params.seminar);
+	}).then(function(data) {
+		result.retailerBudget = data.retailerBudget;
+		result.retailerExceptionalCost = data.retailerExceptionalCost;
+		res.send(result);
+	}, function(data) {
+		res.send(400, 'fail');
+	});
+
+}

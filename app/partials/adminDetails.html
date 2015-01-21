@@ -1,3 +1,8 @@
+<style type="text/css">
+	.editable-wrap{
+		float: none;
+	}
+</style>
 <div class="container bs-docs-container">		
 	<div class="page-header">
 		<h3>{{seminar.seminarCode}}, Basic information
@@ -186,87 +191,225 @@
 		</div>
 	</div>      
 
-	<div class="page-header">
-		<h3>Game progress monitor
-			<small>
-	
-			</small>
-		</h3>
-	</div>        		
+	<tabset>
+		<tab heading="Game progress Monitor">
+			<div class="row" style="margin-top:10px">
+				<div class="col-md-6">
+					<div class="panel panel-info" ng-repeat='supplier in seminar.producers'>
+						<div class="panel-heading">Supplier {{supplier.producerID}}</div>
 
-	<div class="row">
-		<div class="col-md-6">
-			<div class="panel panel-info" ng-repeat='supplier in seminar.producers'>
-				<div class="panel-heading">Supplier {{supplier.producerID}}</div>
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td></td>
+									<td>Is portfolio decision committed?</td>
+									<td>Is contract deal?</td>
+									<td>Is contract finalized?</td>
+									<td>Is decision committed(Lock)?</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='periodInfo in supplier.decisionCommitStatus'>
+									<td><strong>Period {{periodInfo.period}}</strong></td>
+									<td>
+										<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>		
+									</td>
+									<td>
+										<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}} </a>		
+									</td>
+									<td>
+										<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}} </a>
+									</td>
+									<td>
+										<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>			
+				</div>
 
-				<table class="table table-condensed table-bordered">
-					<thead>
-						<tr>
-							<td></td>
-							<td>Is portfolio decision committed?</td>
-							<td>Is contract deal?</td>
-							<td>Is contract finalized?</td>
-							<td>Is decision committed(Lock)?</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat='periodInfo in supplier.decisionCommitStatus'>
-							<td><strong>Period {{periodInfo.period}}</strong></td>
-							<td>
-								<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>		
-							</td>
-							<td>
-								<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}} </a>		
-							</td>
-							<td>
-								<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}} </a>
-							</td>
-							<td>
-								<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>			
-		</div>
+				<div class="col-md-6">
+					<div class="panel panel-success" ng-repeat='retailer in seminar.retailers'>
+						<div class="panel-heading">Retailer {{retailer.retailerID}}</div>
 
-		<div class="col-md-6">
-			<div class="panel panel-success" ng-repeat='retailer in seminar.retailers'>
-				<div class="panel-heading">Retailer {{retailer.retailerID}}</div>
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td></td>
+									<td>Is contract deal?</td>
+									<td>Is contract finalized?</td>
+									<td>Is decision committed(Lock)?</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='periodInfo in retailer.decisionCommitStatus'>
+									<td>
+										<strong>Period {{periodInfo.period}}</strong>
+									</td>
+									<td>
+										<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}}</a>
+									</td>
+									<td>
+										<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}}</a>
+									</td>
+									<td>
+										<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
 
-				<table class="table table-condensed table-bordered">
-					<thead>
-						<tr>
-							<td></td>
-							<td>Is contract deal?</td>
-							<td>Is contract finalized?</td>
-							<td>Is decision committed(Lock)?</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat='periodInfo in retailer.decisionCommitStatus'>
-							<td>
-								<strong>Period {{periodInfo.period}}</strong>
-							</td>
-							<td>
-								<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}}</a>
-							</td>
-							<td>
-								<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}}</a>
-							</td>
-							<td>
-								<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>					
-		</div>
+			</div>
+		</tab>
+		<tab heading="Budget Modification">
+			<div class="row" style="margin-top:10px">
+				<div class="col-md-6">
+					<div class="panel panel-info" ng-repeat='supplier in budget.producers'>
+						<div class="panel-heading">Supplier {{supplier.producerID}}</div>
 
-	</div>
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td></td>
+									<td><p class="text-center">Next Budget Extension</p></td>
+									<td><p class="text-center">Immediate Budget Extension</p></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='budget in supplier.data'>
+									<td><strong>Period {{budget.period}}</strong></td>
+									<td>
+										<a href="#" editable-text="budget.nextBudgetExtension" onaftersave="updatBudget(budget.period,supplier.producerID,'Producer','nextBudgetExtension',$data)">{{budget.nextBudgetExtension}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="budget.immediateBudgetExtension" onaftersave="updatBudget(budget.period,supplier.producerID,'Producer','immediateBudgetExtension',$data)">{{budget.immediateBudgetExtension}} </a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>			
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-success" ng-repeat='retailer in budget.retailers'>
+						<div class="panel-heading">Retailer {{retailer.retailerID}}</div>
 
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td></td>
+									<td><p class="text-center">Next Budget Extension</p></td>
+									<td><p class="text-center">Immediate Budget Extension</p></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='budget in retailer.data'>
+									<td><strong>Period {{budget.period}}</strong></td>
+									<td>
+										<a href="#" editable-text="budget.nextBudgetExtension" onaftersave="updatBudget(budget.period,retailer.retailerID,'Retailer','nextBudgetExtension',$data)">{{budget.nextBudgetExtension}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="budget.immediateBudgetExtension" onaftersave="updatBudget(budget.period,retailer.retailerID,'Retailer','immediateBudgetExtension',$data)">{{budget.immediateBudgetExtension}} </a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
+			</div>
+		</tab>
+		<tab heading="Exceptional Cost / Profit Modification">
+			<div class="row" style="margin-top:10px">
+				<div class="col-md-6">
+					<div class="panel panel-info" ng-repeat='supplier in exceptionalCost.producers'>
+						<div class="panel-heading">Supplier {{supplier.producerID}}</div>
 
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td rowspan="2"></td>
+									<td colspan="2">
+										<p class="text-center">Elecssories
+										</p>
+									</td>
+									<td colspan="2">
+										<p class="text-center">HealthBeauties</p>
+									</td>
+								</tr>
+								<tr>
+									<td><p class="text-center">Traditional</p></td>
+									<td><p class="text-center">Internet</p></td>
+									<td><p class="text-center">Traditional</p></td>
+									<td><p class="text-center">Internet</p></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='exceptionalCost in supplier.data'>
+									<td><strong>Period {{exceptionalCost.period}}</strong></td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[0]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',1,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[0]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[1]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',1,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[1]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[2]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',2,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[2]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[3]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.producerID,'Producer',2,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[3]}} </a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>			
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-success" ng-repeat='retailer in exceptionalCost.retailers'>
+						<div class="panel-heading">Retailer {{retailer.retailerID}}</div>
 
+						<table class="table table-condensed table-bordered">
+							<thead>
+								<tr>
+									<td rowspan="2"></td>
+									<td colspan="2">
+										<p class="text-center">Urban</p>
+									</td>
+									<td colspan="2">
+										<p class="text-center">Rural</p>
+									</td>
+								</tr>
+								<tr>
+									<td><p class="text-center">Elecssories</p></td>
+									<td><p class="text-center">HealthBeauties</p></td>
+									<td><p class="text-center">Elecssories</p></td>
+									<td><p class="text-center">HealthBeauties</p></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='exceptionalCost in retailer.data'>
+									<td><strong>Period {{exceptionalCost.period}}</strong></td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[0]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',1,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[0]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[1]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',1,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[1]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[2]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',2,'exceptionalCostsProfits',0,$data)">{{exceptionalCost.exceptionalCostsProfits[2]}} </a>
+									</td>
+									<td>
+										<a href="#" editable-text="exceptionalCost.exceptionalCostsProfits[3]" onaftersave="updateExceptionalCost(exceptionalCost.period,exceptionalCost.retailerID,'Retailer',2,'exceptionalCostsProfits',1,$data)">{{exceptionalCost.exceptionalCostsProfits[3]}} </a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
+			</div>
+		</tab>
+	</tabset>
 </div>
 
 

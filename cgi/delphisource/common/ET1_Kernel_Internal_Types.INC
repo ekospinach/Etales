@@ -400,7 +400,8 @@ TProducerInternal =
     p_AverageOnLinePrice                       : array[TCategories] of single;
     p_AveragePostSalesCost                     : array[TCategories, TProducerDivisions] of single;  
     p_BudgetAvailable                          : single; { operational budget available for current period }
-    p_BudgetExtension                          : single;
+    p_BudgetExtensionImmediate                 : single;
+    p_BudgetExtensionNextPeriod                : single;
     p_BudgetExtensionRequestsTillNow           : byte;   { # of budget extension requests till now }
     p_BudgetOverspent                          : single; { operational budget spent in excess of available }
     p_BudgetSpentToDate                        : single; { cumulated operational budget spent }
@@ -562,7 +563,8 @@ TRetailerInternal =
     r_AssortmentWidth                          : array[TMarketsTotal, TCategoriesTotal] of single;  
     r_AverageAcquisitionCost                   : array[TMarketsTotal, TCategories, TFactoriesTotal] of single;
     r_BudgetAvailable                          : single; { operational budget available for current period }
-    r_BudgetExtension                          : single;
+    r_BudgetExtensionImmediate                 : single;
+    r_BudgetExtensionNextPeriod                : single;
     r_BudgetExtensionRequestsTillNow           : byte;
     r_BudgetIncreaseFromNegotiations           : single; 
     r_BudgetOverspent                          : single; { operational budget spent in excess of available }
