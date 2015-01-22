@@ -1192,7 +1192,7 @@ var getLabelBase = function(){
 		{id:'Across Markets',  ENG:'Across Markets',  CHN:'Across Markets',  RUS:''},
 		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
 		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
-		{id:'Internal Transfers Cost',  ENG:'Internal Transfers Cost',  CHN:'Internal Transfers Cost',  RUS:''},
+		{id:'Internal Transfers Cost',  ENG:'Internal Transfers Cost',  CHN:'内部转移成本',  RUS:''},
 
 
 	]
