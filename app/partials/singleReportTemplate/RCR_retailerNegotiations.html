@@ -24,9 +24,6 @@
                 <th>
                     <p class="text-center">{{Label.getContent('Other Compensation')}}</p>
                 </th>
-                <th>
-                    <p class="text-center">{{Label.getContent('Contract Honored')}}</p>
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -67,14 +64,6 @@
                         {{product.vnd_OtherCompensation | number : 1 }}
                     </p>
                 </td>
-                <td>
-                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                </td>
             </tr>
             <tr class="danger" ng-repeat='product in product1hs'>
                 <td>
@@ -108,14 +97,6 @@
                 <td>
                     <p class="text-right">
                         {{product.vnd_OtherCompensation | number : 1 }}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
-                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
@@ -156,14 +137,6 @@
                         {{product.vnd_OtherCompensation | number : 1 }}
                     </p>
                 </td>
-                <td>
-                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                </td>
             </tr>
             <tr class="danger" ng-repeat='product in product2hs'>
                 <td>
@@ -197,14 +170,6 @@
                 <td>
                     <p class="text-right">
                         {{product.vnd_OtherCompensation | number : 1 }}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
-                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
@@ -245,14 +210,6 @@
                         {{product.vnd_OtherCompensation | number : 1 }}
                     </p>
                 </td>
-                <td>
-                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                </td>
             </tr>
             <tr class="danger" ng-repeat='product in product3hs'>
                 <td>
@@ -286,14 +243,6 @@
                 <td>
                     <p class="text-right">
                         {{product.vnd_OtherCompensation | number : 1 }}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center" ng-show="product.vnd_ContractHonoured=='yes'">
-                        {{product.vnd_ContractHonoured}}
-                    </p>
-                    <p class="text-center" style='color:red' ng-show="product.vnd_ContractHonoured=='no'">
-                        {{product.vnd_ContractHonoured}}
                     </p>
                 </td>
             </tr>
