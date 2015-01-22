@@ -1134,8 +1134,8 @@ var getOrderedProducts = function(data, category, market) {
     var netRetailerPrice = 0;
     var allRetCatDecisions = loadSelectCategory(data, category, market);
     allRetCatDecisions.forEach(function(singleCat) {
-        singleCat.retVariantDecision.forEach(function(singeVar) {
-            if (singeVar.brandID != 0 && singeVar.variantID != 0) {
+        singleCat.retVariantDecision.forEach(function(singleVar) {
+            if (singleVar.brandID != 0 && singleVar.variantID != 0) {
                 var product = {
                     "order": 0,
                     "shelfSpace": 0,
@@ -1154,23 +1154,23 @@ var getOrderedProducts = function(data, category, market) {
                         "promo_Frequency": 0
                     }
                 };
-                product.order = parseFloat(singeVar.order).toFixed(2);
-                if (singeVar.shelfSpace >= 0 && singeVar.shelfSpace <= 1) {
-                    product.shelfSpace = (parseFloat(singeVar.shelfSpace) * 100).toFixed(2);
+                product.order = parseFloat(singleVar.order).toFixed(2);
+                if (singleVar.shelfSpace >= 0 && singleVar.shelfSpace <= 1) {
+                    product.shelfSpace = (parseFloat(singleVar.shelfSpace) * 100).toFixed(2);
                 }
-                product.retailerPrice = parseFloat(singeVar.retailerPrice).toFixed(2);
-                product.dateOfBirth = singeVar.dateOfBirth;
-                product.dateOfDeath = singeVar.dateOfDeath;
-                product.brandID = singeVar.brandID;
-                product.brandName = singeVar.brandName;
-                product.variantID = singeVar.variantID;
-                product.varName = singeVar.varName;
-                product._id = singeVar._id;
-                product.netRetailerPrice = (singeVar.retailerPrice * (1 - singeVar.pricePromotions.promo_Frequency * singeVar.pricePromotions.promo_Rate / 26)).toFixed(2);
-                if (singeVar.pricePromotions.promo_Rate >= 0 && singeVar.pricePromotions.promo_Rate <= 1) {
-                    product.pricePromotions.promo_Rate = (parseFloat(singeVar.pricePromotions.promo_Rate) * 100).toFixed(2);
+                product.retailerPrice = parseFloat(singleVar.retailerPrice).toFixed(2);
+                product.dateOfBirth = singleVar.dateOfBirth;
+                product.dateOfDeath = singleVar.dateOfDeath;
+                product.brandID = singleVar.brandID;
+                product.brandName = singleVar.brandName;
+                product.variantID = singleVar.variantID;
+                product.varName = singleVar.varName;
+                product._id = singleVar._id;
+                product.netRetailerPrice = (singleVar.retailerPrice * (1 - singleVar.pricePromotions.promo_Frequency * singleVar.pricePromotions.promo_Rate / 26)).toFixed(2);
+                if (singleVar.pricePromotions.promo_Rate >= 0 && singleVar.pricePromotions.promo_Rate <= 1) {
+                    product.pricePromotions.promo_Rate = (parseFloat(singleVar.pricePromotions.promo_Rate) * 100).toFixed(2);
                 }
-                product.pricePromotions.promo_Frequency = singeVar.pricePromotions.promo_Frequency;
+                product.pricePromotions.promo_Frequency = singleVar.pricePromotions.promo_Frequency;
                 products.push(product);
             }
         })

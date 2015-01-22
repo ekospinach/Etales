@@ -195,14 +195,14 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
                promise.then(function(doc) {
 
                     doc.proCatDecision.forEach(function(singleCategroy) {
-                         singleCategroy.proBrandsDecision.forEach(function(singeBrand) {
-                              singeBrand.proVarDecision.forEach(function(singeVar) {
-                                   if (singeVar.varName != "" && singeVar.channelPreference != 1) {
-                                        singeVar.parentBrandName = singeBrand.brandName;
-                                        products.push(singeVar);
+                         singleCategroy.proBrandsDecision.forEach(function(singleBrand) {
+                              singleBrand.proVarDecision.forEach(function(singleVar) {
+                                   if (singleVar.varName != "" && singleVar.channelPreference != 1) {
+                                        singleVar.parentBrandName = singleBrand.brandName;
+                                        products.push(singleVar);
                                    }
-                                   if(singeVar.channelPreference == 1){
-                                        singeVar.saledOnline = true;
+                                   if(singleVar.channelPreference == 1){
+                                        singleVar.saledOnline = true;
                                    }
                               })
                          })

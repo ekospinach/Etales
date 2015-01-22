@@ -113,12 +113,12 @@ exports.UpdateIsMadeForOnlineBeforeNegos = function(seminar, period, producers) 
             promise.then(function(doc) {
                 if (doc) {
                     doc.proCatDecision.forEach(function(singleCategroy) {
-                        singleCategroy.proBrandsDecision.forEach(function(singeBrand) {
-                            singeBrand.proVarDecision.forEach(function(singeVar) {
-                                if (singeVar.channelPreference == 1) {
-                                    singeVar.isMadeForOnlineBeforeNego = true;
+                        singleCategroy.proBrandsDecision.forEach(function(singleBrand) {
+                            singleBrand.proVarDecision.forEach(function(singleVar) {
+                                if (singleVar.channelPreference == 1) {
+                                    singleVar.isMadeForOnlineBeforeNego = true;
                                 }else{
-                                    singeVar.isMadeForOnlineBeforeNego = false;
+                                    singleVar.isMadeForOnlineBeforeNego = false;
                                 }
                             })
                         })
