@@ -772,7 +772,7 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                 singleCat.proBrandsDecision.forEach(function(singleBrand) {
                     if (singleBrand.brandName != "") {
                         singleBrand.proVarDecision.forEach(function(singleVar) {
-                            if (singleVar.varName != "" && singeVar.channelPreference != 1) {
+                            if (singleVar.varName != "" && singleVar.channelPreference != 1) {
                                 products.push({
                                     'categoryID': category,
                                     'brandName': singleBrand.brandName,
