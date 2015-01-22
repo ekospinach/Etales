@@ -188,6 +188,7 @@ TSCR_DivisionProfitAndLoss =
     scrpl_CostOfGoodsSold                      : single;
     scrpl_DiscontinuedGoodsCost                : single;
     scrpl_InventoryHoldingCost                 : single;
+    scrpl_InternalTransfersCost                : single;   { 22/01/2015 }
     scrpl_eMallCommission                      : single;
     scrpl_ServiceCost                          : single;   { modified on Dec-1, 2014 }
     scrpl_GrossProfit                          : single;
@@ -234,6 +235,7 @@ TSCR_OneVariant =
     scrv_CostOfGoodsSold                      : array[TProducerDivisions] of single;
     scrv_DiscontinuedGoodsCost                : array[TProducerDivisions] of single;
     scrv_InventoryHoldingCost                 : array[TProducerDivisions] of single;
+    scrv_InternalTransfersCost                : array[TProducerDivisions] of single;   { 22/01/2015 }
     scrv_eMallCommission                      : array[TProducerDivisions] of single;
     scrv_ServiceCost                          : array[TProducerDivisions] of single;   { modified on Dec 1, 2014 }
     scrv_GrossProfit                          : array[TProducerDivisions] of single;
@@ -287,7 +289,8 @@ TSCR_OneBrand =
     scrb_CostOfGoodsSold                      : array[TProducerDivisions] of single;
     scrb_DiscontinuedGoodsCost                : array[TProducerDivisions] of single;
     scrb_InventoryHoldingCost                 : array[TProducerDivisions] of single;
-    scrb_eMallCommission                      : array[TProducerDivisions] of single;
+    scrb_InternalTransfersCost                : array[TProducerDivisions] of single;   { 22/01/2015 }
+    scrb_eMallCommission                      : array[TProducerDivisions] of single;   
     scrb_ServiceCost                          : array[TProducerDivisions] of single;   { modified on Dec-1, 2014 }
     scrb_GrossProfit                          : array[TProducerDivisions] of single;
     scrb_GrossProfitChange                    : array[TProducerDivisions] of single;
