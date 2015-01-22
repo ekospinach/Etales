@@ -34,7 +34,7 @@ var proVarDecisionSchema = mongoose.Schema({
 
     //if true, means channelPreference had been set as 100 before negotiation
     //else set false as default 
-    isOnlineProduct : {type:Boolean,default:false}
+    isMadeForOnlineBeforeNego : {type:Boolean,default:false}
 })
 
 var proBrandDecisionSchema = mongoose.Schema({
@@ -96,13 +96,13 @@ var proVarDecision=mongoose.model('proVarDecision',proVarDecisionSchema);
 var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
 
 
-//set isOnlineProduct = true if ChannelPreference = 1
-exports.UpdateIsOnlineProducts = function(seminar, period, producers) {
+//set isMadeForOnlineBeforeNego = true if ChannelPreference = 1
+exports.UpdateIsMadeForOnlineBeforeNegos = function(seminar, period, producers) {
     var deferred = q.defer();
 
-    console.log('UpdateIsOnlineProduct');
+    console.log('UpdateIsMadeForOnlineBeforeNego');
 
-    (function updateIsOnlineProduct(seminar, period, producers, idx) {
+    (function updateIsMadeForOnlineBeforeNego(seminar, period, producers, idx) {
         var d = q.defer();
         if (idx < producers.length) {
             var promise = proDecision.findOne({
@@ -116,9 +116,9 @@ exports.UpdateIsOnlineProducts = function(seminar, period, producers) {
                         singleCategroy.proBrandsDecision.forEach(function(singeBrand) {
                             singeBrand.proVarDecision.forEach(function(singeVar) {
                                 if (singeVar.channelPreference == 1) {
-                                    singeVar.isOnlineProduct = true;
+                                    singeVar.isMadeForOnlineBeforeNego = true;
                                 }else{
-                                    singeVar.isOnlineProduct = false;
+                                    singeVar.isMadeForOnlineBeforeNego = false;
                                 }
                             })
                         })
@@ -129,12 +129,12 @@ exports.UpdateIsOnlineProducts = function(seminar, period, producers) {
                     d.resolve('cannot find the doc');
                 }
             }).then(function(result) {
-                console.log('updateIsOnlineProduct:' + result);
+                console.log('updateIsMadeForOnlineBeforeNego:' + result);
                 idx++;
-                return updateIsOnlineProduct(seminar, period, producers, idx);
+                return updateIsMadeForOnlineBeforeNego(seminar, period, producers, idx);
             })
         } else {
-            deferred.resolve('updateIsOnlineProduct done');
+            deferred.resolve('updateIsMadeForOnlineBeforeNego done');
         }
         return d.promise;
     })(seminar, period, producers, 0);
@@ -724,7 +724,7 @@ exports.getProducerProductList = function(req, res, next) {
                     if (allProCatDecisions[i].proBrandsDecision[j] != undefined && allProCatDecisions[i].proBrandsDecision[j].brandID != undefined && allProCatDecisions[i].proBrandsDecision[j].brandID != 0) {
                         for (var k = 0; k < allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length; k++) {
                             //edit for contract maybe have a bug
-                            if (allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k] != undefined && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID != undefined &&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].isOnlineProduct != true) {
+                            if (allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k] != undefined && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID != undefined &&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].isMadeForOnlineBeforeNego != true) {
                                 //if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
                                 products.push({
                                     'categoryID': req.params.categoryID,
@@ -772,7 +772,7 @@ exports.getProducerProductListByAdmin = function(seminar, period, category, prod
                 singleCat.proBrandsDecision.forEach(function(singleBrand) {
                     if (singleBrand.brandName != "") {
                         singleBrand.proVarDecision.forEach(function(singleVar) {
-                            if (singleVar.varName != "" && singeVar.isOnlineProduct == false) {
+                            if (singleVar.varName != "" && singeVar.channelPreference != 1) {
                                 products.push({
                                     'categoryID': category,
                                     'brandName': singleBrand.brandName,

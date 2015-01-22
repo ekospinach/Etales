@@ -1238,7 +1238,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 		--- 如果上一阶段有 相关细节 拷贝
 		--- 否则 重新生成
 	修改生产商决策
-		--- 如果产品channel为1 修改IsOnlineProduct
+		--- 如果产品channel为1 修改IsMadeForOnlineBeforeNego
  */
 var commitPortfolioDecision = function(seminar, period, producers) {
 	var d = q.defer();
@@ -1255,7 +1255,7 @@ var commitPortfolioDecision = function(seminar, period, producers) {
 			return require('./contract.js').addContractDetailsByAdmin(seminar, period, producers);
 		}).then(function(data) {
 			//step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
-			return require('./producerDecision.js').UpdateIsOnlineProducts(seminar, period, producers);
+			return require('./producerDecision.js').UpdateIsMadeForOnlineBeforeNegos(seminar, period, producers);
 		}).then(function(data) {
 			d.resolve('commitPortfolioDecision Dond');
 		}).fail(function(data) {

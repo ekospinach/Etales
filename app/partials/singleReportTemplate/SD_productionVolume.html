@@ -58,10 +58,10 @@
                     </p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted&&!producte.isOnlineProduct' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index,$data)">
+                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted&&!producte.isMadeForOnlineBeforeNego' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index,$data)">
                         <p class="text-right">{{ producte.channelPreference || 0 }}</p>
                     </a>
-                    <p ng-show='isDecisionCommitted||producte.isOnlineProduct' class="text-right text-muted">
+                    <p ng-show='isDecisionCommitted||producte.isMadeForOnlineBeforeNego' class="text-right text-muted">
                         {{ producte.channelPreference || 0 }}
                     </p>
                 </td>
@@ -115,10 +115,10 @@
                     <p class="text-right text-muted" ng-show='isDecisionCommitted'>{{ producth.production || 0 }}</p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted&&!producth.isOnlineProduct' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index,$data)">
+                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted&&!producth.isMadeForOnlineBeforeNego' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index,$data)">
                         <p class="text-right">{{ producth.channelPreference || 0 }}</p>
                     </a>
-                    <p class="text-right text-muted" ng-show='isDecisionCommitted||producth.isOnlineProduct'>{{ producth.channelPreference || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isDecisionCommitted||producth.isMadeForOnlineBeforeNego'>{{ producth.channelPreference || 0 }}</p>
                 </td>
     		</tr>
     	</tbody>
