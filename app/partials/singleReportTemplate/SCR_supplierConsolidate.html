@@ -248,7 +248,39 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-40">(4) {{Label.getContent('eMall Commission')}} ({{Label.getContent('$mln')}})</p>
+                    <p class="padding-40">(4) {{Label.getContent('Internal Transfers Cost')}} ({{Label.getContent('$mln')}})</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">-
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">-
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">-
+                    </p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">
+                        {{InternalTransfersCosts[2].value[1] | number : 1 }}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{InternalTransfersCosts[0].value[1] | number : 1 }}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{InternalTransfersCosts[1].value[1] | number : 1 }}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-40">(5) {{Label.getContent('eMall Commission')}} ({{Label.getContent('$mln')}})</p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">-
@@ -280,7 +312,7 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-40">(5) {{Label.getContent('Service Cost')}} ({{Label.getContent('$mln')}})</p>
+                    <p class="padding-40">(6) {{Label.getContent('Service Cost')}} ({{Label.getContent('$mln')}})</p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">-

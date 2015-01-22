@@ -46,6 +46,7 @@ define(['directives', 'services'], function(directives) {
                         scope.costGoodsSolds         = data.scrpl_CostOfGoodsSold;
                         scope.discontinuedGoodsCosts = data.scrpl_DiscontinuedGoodsCost;
                         scope.holdingCosts           = data.scrpl_InventoryHoldingCost;
+                        scope.InternalTransfersCosts = data.scrpl_InternalTransfersCost;
                         scope.eMallCommissions       = data.scrpl_eMallCommission;
                         scope.ServiceCosts           = data.scrpl_ServiceCost;
                         scope.grossProfits           = data.scrpl_GrossProfit;

@@ -80,7 +80,15 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-40">(4) {{Label.getContent('eMall Commission')}} ({{Label.getContent('$mln')}})
+                    <p class="padding-40">(4) {{Label.getContent('Internal Transfers Cost')}} ({{Label.getContent('$mln')}})</p>
+                </td>
+                <td ng-repeat='variant in variants'>
+                    <p class="text-right">{{variant.InternalTransfersCost | number : 1 }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-40">(5) {{Label.getContent('eMall Commission')}} ({{Label.getContent('$mln')}})
                 </td>
                 <td ng-repeat='variant in variants'>
                     <p class="text-right">{{variant.eMallCommission | number : 1 }}</p>
@@ -88,7 +96,7 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-40">(5) {{Label.getContent('Service Cost')}} ({{Label.getContent('$mln')}})
+                    <p class="padding-40">(6) {{Label.getContent('Service Cost')}} ({{Label.getContent('$mln')}})
                 </td>
                 <td ng-repeat='variant in variants'>
                     <p class="text-right">{{variant.ServiceCost | number : 1 }}</p>

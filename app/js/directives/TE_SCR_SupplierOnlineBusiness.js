@@ -36,6 +36,7 @@ define(['directives', 'services'], function(directives) {
                         scope.costGoodsSolds         = data.scrpl_CostOfGoodsSold;
                         scope.discontinuedGoodsCosts = data.scrpl_DiscontinuedGoodsCost;
                         scope.holdingCosts           = data.scrpl_InventoryHoldingCost;
+                        scope.InternalTransfersCosts = data.scrpl_InternalTransfersCost;
                         scope.eMallCommissions       = data.scrpl_eMallCommission;
                         scope.ServiceCosts           = data.scrpl_ServiceCost;
                         scope.grossProfits           = data.scrpl_GrossProfit;
@@ -76,6 +77,7 @@ define(['directives', 'services'], function(directives) {
                                 var CostOfGoodsSold                      = loadValue(data.scrb_CostOfGoodsSold, brandName, num);
                                 var DiscontinuedGoodsCost                = loadValue(data.scrb_DiscontinuedGoodsCost, brandName, num);
                                 var InventoryHoldingCost                 = loadValue(data.scrb_InventoryHoldingCost, brandName, num);
+                                var InternalTransfersCost                = loadValue(data.scrb_InternalTransfersCost, brandName, num);
                                 var eMallCommission                      = loadValue(data.scrb_eMallCommission, brandName, num);
                                 var ServiceCost                          = loadValue(data.scrb_ServiceCost, brandName, num);
                                 var GrossProfit                          = loadValue(data.scrb_GrossProfit, brandName, num);
@@ -111,6 +113,7 @@ define(['directives', 'services'], function(directives) {
                                         'CostOfGoodsSold': CostOfGoodsSold,
                                         'DiscontinuedGoodsCost': DiscontinuedGoodsCost,
                                         'InventoryHoldingCost': InventoryHoldingCost,
+                                        'InternalTransfersCost':InternalTransfersCost,
                                         'eMallCommission': eMallCommission,
                                         'ServiceCost': ServiceCost,
                                         'GrossProfit': GrossProfit,
@@ -148,6 +151,7 @@ define(['directives', 'services'], function(directives) {
                                         'CostOfGoodsSold': CostOfGoodsSold,
                                         'DiscontinuedGoodsCost': DiscontinuedGoodsCost,
                                         'InventoryHoldingCost': InventoryHoldingCost,
+                                        'InternalTransfersCost':InternalTransfersCost,
                                         'eMallCommission': eMallCommission,
                                         'ServiceCost': ServiceCost,
                                         'GrossProfit': GrossProfit,
@@ -216,6 +220,7 @@ define(['directives', 'services'], function(directives) {
                                     var CostOfGoodsSold                      = loadVariantValue(data.data[0].scrv_CostOfGoodsSold, brandName, variantName, num);
                                     var DiscontinuedGoodsCost                = loadVariantValue(data.data[0].scrv_DiscontinuedGoodsCost, brandName, variantName, num);
                                     var InventoryHoldingCost                 = loadVariantValue(data.data[0].scrv_InventoryHoldingCost, brandName, variantName, num);
+                                    var InternalTransfersCost                = loadVariantValue(data.data[0].scrv_InternalTransfersCost, brandName, variantName, num);
                                     var eMallCommission                      = loadVariantValue(data.data[0].scrv_eMallCommission, brandName, variantName, num);
                                     var ServiceCost                          = loadVariantValue(data.data[0].scrv_ServiceCost, brandName, variantName, num);
                                     var GrossProfit                          = loadVariantValue(data.data[0].scrv_GrossProfit, brandName, variantName, num);
@@ -250,6 +255,7 @@ define(['directives', 'services'], function(directives) {
                                         'CostOfGoodsSold'                      : CostOfGoodsSold,
                                         'DiscontinuedGoodsCost'                : DiscontinuedGoodsCost,
                                         'InventoryHoldingCost'                 : InventoryHoldingCost,
+                                        'InternalTransfersCost'                : InternalTransfersCost,
                                         'eMallCommission'                      : eMallCommission,
                                         'ServiceCost'                          : ServiceCost,
                                         'GrossProfit'                          : GrossProfit,
