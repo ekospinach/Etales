@@ -166,7 +166,7 @@ define(['directives', 'services'], function(directives) {
                             url: url
                         }).then(function(data) {
                             production = data.data.production;
-                            url = '/SCR-ClosingInternetInventoryVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName;
+                            url = '/SCR-ClosingTotalInventoryVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -181,7 +181,7 @@ define(['directives', 'services'], function(directives) {
                                 d.resolve();
                             }
                         }, function(err) {
-                            //if error comes from request to /SCR-ClosingInternetInventoryVolume/...
+                            //if error comes from request to /SCR-ClosingTotalInventoryVolume/...
                             var limited = production;
                             if (value > limited) {
                                 d.resolve(Label.getContent('Input range') + ':0~' + (Math.floor((limited * 100) / 100)));

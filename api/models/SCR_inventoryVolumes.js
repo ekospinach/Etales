@@ -126,7 +126,7 @@ exports.getSCR_inventoryVolumes = function(req, res, next) {
     })
 }
 
-exports.getSCR_ClosingInternetInventoryVolume = function(req, res, next) {
+exports.getSCR_ClosingTotalInventoryVolume = function(req, res, next) {
     var data = {
         'seminar': req.params.seminar,
         'period': req.params.period,
@@ -140,7 +140,7 @@ exports.getSCR_ClosingInternetInventoryVolume = function(req, res, next) {
         if (doc) {
             for (i = 0; i < doc.scrviv_Closing.length; i++) {
                 if (doc.scrviv_Closing[i].parentBrandName == req.params.brandName && doc.scrviv_Closing[i].variantName == req.params.varName) {
-                    responseResult = doc.scrviv_Closing[i].value[1];
+                    responseResult = doc.scrviv_Closing[i].value[1] + doc.scrviv_Closing[i].value[0];
                 }
             }
         }
