@@ -8,7 +8,10 @@
     "url": "git://github.com/ludwiksh/Etales"
   },
   "scripts": {
-    "start": "NODE_ENV=development node server.js"
+    "start": "NODE_ENV=development node server.js",
+    "downloaditems" : "",
+    "deleteitems" : "",
+    "importitmes" : "",
   },
   "dependencies": {
     "connect-flash": "~0.1.1",
