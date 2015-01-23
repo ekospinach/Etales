@@ -1193,6 +1193,8 @@ var getLabelBase = function(){
 		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
 		{id:'Online Price',  ENG:'Online Price',  CHN:'线上价格',  RUS:''},
 		{id:'Internal Transfers Cost',  ENG:'Internal Transfers Cost',  CHN:'内部转移成本',  RUS:''},
+		{id:'Company Overall Financial Result',  ENG:'Overall Financial Result',  CHN:'综合财务状况',  RUS:''},
+		{id:'Overall',  ENG:'Overall',  CHN:'综合',  RUS:''},
 
 
 	]

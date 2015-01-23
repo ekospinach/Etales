@@ -211,7 +211,9 @@
                     <p class="text-right">{{salesValues[11].value[2] | number : 1}}</p>
                 </td>
             </tr>
-
+            <tr>
+                <td colspan="10">&nbsp;</td>
+            </tr>
             <tr>
                 <td colspan="10">{{Label.getContent('Consumer Market Shares')}}</td>
             </tr>
@@ -281,6 +283,28 @@
                     <p class="text-right">{{(volumeShares[num].value*100) | number : 1}}</p>
                 </td>
             </tr>
+            <tr>
+                <td colspan="10">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{Label.getContent('Company Overall Financial Result')}}</td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Retailer')}} 1 ({{Label.getContent('Overall')}})</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Retailer')}} 1 ({{Label.getContent('Overall')}})</p>
+                </td>
+            </tr>
+
             <tr>
                 <td colspan="2">
                     {{Label.getContent('Operating Profit')}} ({{Label.getContent('$mln')}})
