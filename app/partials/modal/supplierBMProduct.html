@@ -79,6 +79,14 @@
                     <p class="text-right">{{variant.InventoryHoldingCost | number : 1 }}</p>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">- {{Label.getContent('Internal Transfers Cost')}} ({{Label.getContent('$mln')}})</p>
+                </td>
+                <td ng-repeat='variant in variants'>
+                    <p class="text-right">{{variant.InternalTransfersCost | number : 1 }}</p>
+                </td>
+            </tr>
             <tr class="tr-info">
                 <td>
                     <p>{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>

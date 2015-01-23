@@ -64,6 +64,11 @@
                         <p class="padding-20" ng-show='true'>- {{Label.getContent('Inventory Holding Cost')}} ({{Label.getContent('$mln')}})</p>
                     </td>
                 </tr>
+                <tr>
+                    <td style="white-space: nowrap">
+                        <p class="padding-20" ng-show='true'>- {{Label.getContent('Internal Transfers Cost')}} ({{Label.getContent('$mln')}})</p>
+                    </td>
+                </tr>
                 <tr class="tr-info">
                     <td style="white-space: nowrap">
                         <p>{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
@@ -251,6 +256,14 @@
                     </td>
                     <td ng-repeat='brand in brand1s'>
                         <p class="text-right">{{brand.InventoryHoldingCost | number : 1 }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{transfersCosts[0].value[0] | number : 1 }}</p>
+                    </td>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.InternalTransfersCost | number : 1 }}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
@@ -497,6 +510,11 @@
                         <p class="padding-20" ng-show='true'>- {{Label.getContent('Inventory Holding Cost')}} ({{Label.getContent('$mln')}})</p>
                     </td>
                 </tr>
+                <tr>
+                    <td style="white-space: nowrap">
+                        <p class="padding-20" ng-show='true'>- {{Label.getContent('Internal Transfers Cost')}} ({{Label.getContent('$mln')}})</p>
+                    </td>
+                </tr>
                 <tr class="tr-info">
                     <td style="white-space: nowrap">
                         <p>{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
@@ -684,6 +702,14 @@
                     </td>
                     <td ng-repeat='brand in brand2s'>
                         <p class="text-right">{{brand.InventoryHoldingCost | number : 1 }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{transfersCosts[1].value[0] | number : 1 }}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.InternalTransfersCost | number : 1 }}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">

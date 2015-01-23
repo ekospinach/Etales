@@ -251,15 +251,18 @@
                     <p class="padding-40">(4) {{Label.getContent('Internal Transfers Cost')}} ({{Label.getContent('$mln')}})</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">-
+                    <p class="text-right">
+                        {{InternalTransfersCosts[2].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
-                    <p class="text-right">-
+                    <p class="text-right">
+                        {{InternalTransfersCosts[0].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td>
-                    <p class="text-right">-
+                    <p class="text-right">
+                        {{InternalTransfersCosts[1].value[0] | number : 1 }}
                     </p>
                 </td>
                 <td class="td-info">

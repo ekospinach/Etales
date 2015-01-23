@@ -35,6 +35,8 @@ define(['directives', 'services'], function(directives) {
                         scope.costGoodsSolds         = data.scrpl_CostOfGoodsSold;
                         scope.discontinuedGoodsCosts = data.scrpl_DiscontinuedGoodsCost;
                         scope.holdingCosts           = data.scrpl_InventoryHoldingCost;
+                        scope.transfersCosts         = data.scrpl_InternalTransfersCost;
+                        
                         scope.grossProfits           = data.scrpl_GrossProfit;
                         scope.grossProfitChanges     = data.scrpl_GrossProfitChange;
                         scope.grossProfitMargins     = data.scrpl_GrossProfitMargin;
@@ -73,6 +75,7 @@ define(['directives', 'services'], function(directives) {
                                 var CostOfGoodsSold                      = loadValue(data.scrb_CostOfGoodsSold, brandName, num);
                                 var DiscontinuedGoodsCost                = loadValue(data.scrb_DiscontinuedGoodsCost, brandName, num);
                                 var InventoryHoldingCost                 = loadValue(data.scrb_InventoryHoldingCost, brandName, num);
+                                var InternalTransfersCost                = loadValue(data.scrb_InternalTransfersCost, brandName, num);
                                 var GrossProfit                          = loadValue(data.scrb_GrossProfit, brandName, num);
                                 var GrossProfitChange                    = loadValue(data.scrb_GrossProfitChange, brandName, num) * 100;
                                 var GrossProfitMargin                    = loadValue(data.scrb_GrossProfitMargin, brandName, num) * 100;
@@ -106,6 +109,7 @@ define(['directives', 'services'], function(directives) {
                                         'CostOfGoodsSold'                      : CostOfGoodsSold,
                                         'DiscontinuedGoodsCost'                : DiscontinuedGoodsCost,
                                         'InventoryHoldingCost'                 : InventoryHoldingCost,
+                                        'InternalTransfersCost'                : InternalTransfersCost,
                                         'GrossProfit'                          : GrossProfit,
                                         'GrossProfitChange'                    : GrossProfitChange,
                                         'TradeAndMarketing'                    : TradeAndMarketing,
@@ -141,6 +145,7 @@ define(['directives', 'services'], function(directives) {
                                         'CostOfGoodsSold'                      : CostOfGoodsSold,
                                         'DiscontinuedGoodsCost'                : DiscontinuedGoodsCost,
                                         'InventoryHoldingCost'                 : InventoryHoldingCost,
+                                        'InternalTransfersCost'                : InternalTransfersCost,
                                         'GrossProfit'                          : GrossProfit,
                                         'GrossProfitChange'                    : GrossProfitChange,
                                         'TradeAndMarketing'                    : TradeAndMarketing,
@@ -206,6 +211,7 @@ define(['directives', 'services'], function(directives) {
                                     var CostOfGoodsSold                      = loadVariantValue(data.data[0].scrv_CostOfGoodsSold, brandName, variantName, num);
                                     var DiscontinuedGoodsCost                = loadVariantValue(data.data[0].scrv_DiscontinuedGoodsCost, brandName, variantName, num);
                                     var InventoryHoldingCost                 = loadVariantValue(data.data[0].scrv_InventoryHoldingCost, brandName, variantName, num);
+                                    var InternalTransfersCost                = loadVariantValue(data.data[0].scrv_InternalTransfersCost, brandName, variantName, num);
                                     var GrossProfit                          = loadVariantValue(data.data[0].scrv_GrossProfit, brandName, variantName, num);
                                     var GrossProfitChange                    = loadVariantValue(data.data[0].scrv_GrossProfitChange, brandName, variantName, num) * 100;
                                     var GrossProfitMargin                    = loadVariantValue(data.data[0].scrv_GrossProfitMargin, brandName, variantName, num) * 100;
@@ -238,6 +244,7 @@ define(['directives', 'services'], function(directives) {
                                         'CostOfGoodsSold'                      : CostOfGoodsSold,
                                         'DiscontinuedGoodsCost'                : DiscontinuedGoodsCost,
                                         'InventoryHoldingCost'                 : InventoryHoldingCost,
+                                        'InternalTransfersCost'                : InternalTransfersCost,
                                         'GrossProfit'                          : GrossProfit,
                                         'GrossProfitChange'                    : GrossProfitChange,
                                         'TradeAndMarketing'                    : TradeAndMarketing,
