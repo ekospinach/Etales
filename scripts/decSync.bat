@@ -18,8 +18,8 @@ pause
 
 echo Step 3 : Import dec into local database, Seminar: %1  
 
-mongoimport -d Etales -c prodecisions %1prodecisions.data
-mongoimport -d Etales -c retailerdecisions %1retailerdecisions.data
-mongoimport -d Etales -c contractvariantdetails %1contractvariantdetails.data
-mongoimport -d Etales -c contracts %1contracts.data
+mongoimport -d Etales -c prodecisions %2prodecisions.data
+mongoimport -d Etales -c retailerdecisions %2retailerdecisions.data
+mongoimport -d Etales -c contractvariantdetails %2contractvariantdetails.data
+mongoimport -d Etales -c contracts %2contracts.data
 
