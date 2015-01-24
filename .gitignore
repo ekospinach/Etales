@@ -15,6 +15,7 @@ node_modules/*
 *.sublime-project
 *.sublime-workspace
 upload/*
+app/upload/*
 *.log
 
 #ignore these files for Delphi project 

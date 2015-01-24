@@ -1,7 +1,7 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('retailerUrbanProfit', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerInfo', '$modal', 'StaticValues',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerInfo, $modal, StaticValues) {
+    directives.directive('retailerUrbanProfit', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q', 'PlayerInfo', '$modal', 'StaticValues', '$window',
+        function(Label, SeminarInfo, $http, PeriodInfo, $q, PlayerInfo, $modal, StaticValues, $window) {
             return {
                 scope: {
                     isPageShown: '=',
@@ -318,6 +318,137 @@ define(['directives', 'services'], function(directives) {
                             msg: 'Array is ready.'
                         });
                         return deferred.promise;
+                    }
+
+                    scope.exportExcel = function(category,market) {
+                        var data = [],
+                            brands = {},
+                            categoryID = 0,
+                            marketID = 0;
+                        if (market == "Urban") {
+                            marketID = 1;
+                        } else {
+                            marketID = 2;
+                        }
+                        if (category == "Elecssories") {
+                            brands = scope.brand1s;
+                            categoryID = 1;
+                        } else {
+                            brands = scope.brand2s;
+                            categoryID = 2;
+                        }
+                        for (var i = 0; i < 28; i++) {
+                            data[i] = new Array();
+                        }
+                        data[0][0]  = '';
+                        data[1][0]  = Label.getContent('Sales') + '(' + Label.getContent('$mln') + ')';
+                        data[2][0]  = Label.getContent('Cost of Price Promotions') + '(' + Label.getContent('$mln') + ')';
+                        data[3][0]  = Label.getContent('Other Compensation') + '(' + Label.getContent('$mln') + ')';
+                        data[4][0]  = Label.getContent('Net Sales Value') + '(' + Label.getContent('$mln') + ')';
+                        data[5][0]  = Label.getContent('Change from Previous Period') + '(%)';
+                        data[6][0]  = Label.getContent('Value Share in Category') + '(%)';
+                        data[7][0]  = Label.getContent('Cost of Goods Sold') + '(' + Label.getContent('$mln') + ')';
+                        data[8][0]  = Label.getContent('Value of Quantity Discounts') + '(' + Label.getContent('$mln') + ')';
+                        data[9][0]  = Label.getContent('Value of Performance Bonus') + '(' + Label.getContent('$mln') + ')';
+                        data[10][0] = Label.getContent('Discontinued Goods Cost') + '(' + Label.getContent('$mln') + ')';
+                        data[11][0] = Label.getContent('Inventory Holding Cost') + '(' + Label.getContent('$mln') + ')';
+                        data[12][0] = Label.getContent('Gross Profit') + '(' + Label.getContent('$mln') + ')';
+                        data[13][0] = Label.getContent('Change from Previous Period') + '(%)';
+                        data[14][0] = Label.getContent('Gross Profit Margin') + '(%)';
+                        data[15][0] = Label.getContent('Share of Gross Profit/Loss in Category') + '(%)';
+                        data[16][0] = Label.getContent('General Expenses') + '(' + Label.getContent('$mln') + ')';
+                        data[17][0] = Label.getContent('Operating Profit') + '(' + Label.getContent('$mln') + ')';
+                        data[18][0] = Label.getContent('Change from Previous Period') + '(%)';
+                        data[19][0] = Label.getContent('Operating Profit Margin') + '(%)';
+                        data[20][0] = Label.getContent('Share of Operating Profit/Loss in Category') + '(%)';
+                        data[21][0] = Label.getContent('Interest') + '(' + Label.getContent('$mln') + ')';
+                        data[22][0] = Label.getContent('Taxes') + '(' + Label.getContent('$mln') + ')';
+                        data[23][0] = Label.getContent('Exceptional Costs/Profits') + '(' + Label.getContent('$mln') + ')';
+                        data[24][0] = Label.getContent('Net Profit') + '(' + Label.getContent('$mln') + ')';
+                        data[25][0] = Label.getContent('Change from Previous Period') + '(%)';
+                        data[26][0] = Label.getContent('Net Profit Margin') + '(%)';
+                        data[27][0] = Label.getContent('Share of Net Profit/Loss in Category') + '(%)';
+
+
+                        data[0][1]  = Label.getContent('TOTAL');
+                        data[1][1]  = scope.Sales[categoryID - 1][marketID - 1].toFixed(1);
+                        data[2][1]  = scope.PromotionsCost[categoryID - 1][marketID - 1].toFixed(1);
+                        data[3][1]  = scope.OtherCompensation[categoryID - 1][marketID - 1].toFixed(1);
+                        data[4][1]  = scope.NetSales[categoryID - 1][marketID - 1].toFixed(1);
+                        data[5][1]  = (scope.NetSalesChange[categoryID - 1][marketID - 1] * 100).toFixed(1);
+                        data[6][1]  = 100;
+                        data[7][1]  = scope.CostOfGoodsSold[categoryID - 1][marketID - 1].toFixed(1);
+                        data[8][1]  = scope.ValueOfQuantityDiscounts[categoryID - 1][marketID - 1].toFixed(1);
+                        data[9][1]  = scope.ValueOfPerformanceBonus[categoryID - 1][marketID - 1].toFixed(1);
+                        data[10][1] = scope.DiscontinuedGoodsCost[categoryID - 1][marketID - 1].toFixed(1);
+                        data[11][1] = scope.InventoryHoldingCost[categoryID - 1][marketID - 1].toFixed(1);
+                        data[12][1] = scope.GrossProfit[categoryID - 1][marketID - 1].toFixed(1);
+                        data[13][1] = (scope.GrossProfitChange[categoryID - 1][marketID - 1] * 100).toFixed(1);
+                        data[14][1] = (scope.GrossProfitMargin[categoryID - 1][marketID - 1] * 100).toFixed(1);
+                        data[15][1] = 100;
+                        data[16][1] = scope.GeneralExpenses[categoryID - 1][marketID - 1].toFixed(1);
+                        data[17][1] = scope.OperatingProfit[categoryID - 1][marketID - 1].toFixed(1);
+                        data[18][1] = (scope.OperatingProfitChange[categoryID - 1][marketID - 1] * 100).toFixed(1);
+                        data[19][1] = (scope.OperatingProfitMargin[categoryID - 1][marketID - 1] * 100).toFixed(1);
+                        data[20][1] = 100;
+                        data[21][1] = scope.Interest[categoryID - 1][marketID - 1].toFixed(1);
+                        data[22][1] = scope.Taxes[categoryID - 1][marketID - 1].toFixed(1);
+                        data[23][1] = scope.ExceptionalItems[categoryID - 1][marketID - 1].toFixed(1);
+                        data[24][1] = scope.NetProfit[categoryID - 1][marketID - 1].toFixed(1);
+                        data[25][1] = (scope.NetProfitChange[categoryID - 1][marketID - 1] * 100).toFixed(1);
+                        data[26][1] = (scope.NetProfitMargin[categoryID - 1][marketID - 1] * 100).toFixed(1);
+                        data[27][1] = 100;
+
+                        for (var i = 0; i < brands.length; i++) {
+                            data[0][i + 2]  = brands[i].brandName;
+                            data[1][i + 2]  = brands[i].Sales.toFixed(1);
+                            data[2][i + 2]  = brands[i].PromotionsCost.toFixed(1);
+                            data[3][i + 2]  = brands[i].OtherCompensation.toFixed(1);
+                            data[4][i + 2]  = brands[i].NetSales.toFixed(1);
+                            data[5][i + 2]  = brands[i].NetSalesChange.toFixed(1);
+                            data[6][i + 2]  = brands[i].NetSalesShareInCategory.toFixed(1);
+                            data[7][i + 2]  = brands[i].CostOfGoodsSold.toFixed(1);
+                            data[8][i + 2]  = brands[i].ValueOfQuantityDiscounts.toFixed(1);
+                            data[9][i + 2]  = brands[i].ValueOfPerformanceBonus.toFixed(1);
+                            data[10][i + 2] = brands[i].DiscontinuedGoodsCost.toFixed(1);
+                            data[11][i + 2] = brands[i].InventoryHoldingCost.toFixed(1);
+                            data[12][i + 2] = brands[i].GrossProfit.toFixed(1);
+                            data[13][i + 2] = brands[i].GrossProfitChange.toFixed(1);
+                            data[14][i + 2] = brands[i].GrossProfitMargin.toFixed(1);
+                            data[15][i + 2] = brands[i].GrossProfitShareInCategory.toFixed(1);
+                            data[16][i + 2] = brands[i].GeneralExpenses.toFixed(1);
+                            data[17][i + 2] = brands[i].OperatingProfit.toFixed(1);
+                            data[18][i + 2] = brands[i].OperatingProfitChange.toFixed(1);
+                            data[19][i + 2] = brands[i].OperatingProfitMargin.toFixed(1);
+                            data[20][i + 2] = brands[i].OperatingProfitShareInCategory.toFixed(1);
+                            data[21][i + 2] = brands[i].Interest.toFixed(1);
+                            data[22][i + 2] = brands[i].Taxes.toFixed(1);
+                            data[23][i + 2] = brands[i].ExceptionalItems.toFixed(1);
+                            data[24][i + 2] = brands[i].NetProfit.toFixed(1);
+                            data[25][i + 2] = brands[i].NetProfitChange.toFixed(1);
+                            data[26][i + 2] = brands[i].NetProfitMargin.toFixed(1);
+                            data[27][i + 2] = brands[i].NetProfitShareInCategory.toFixed(1);
+
+                        }
+                        var postData = {
+                            name: SeminarInfo.getSelectedSeminar().seminarCode + '_Period' + scope.selectedPeriod + '_' + market + '_R' + scope.selectedPlayer + '_' + category,
+                            data: data
+                        };
+                        console.log(postData);
+                        $http({
+                            method: 'POST',
+                            url: '/excel',
+                            data: postData
+                        }).then(function(data) {
+
+                            if (data.data.msg == "success") {
+                                var path = data.data.path.substr(3);
+                                $window.location = path;
+                            }
+
+                        }, function() {
+                            console.log('fail');
+                        });
                     }
 
                     scope.$watch('isPageShown', function(newValue, oldValue) {

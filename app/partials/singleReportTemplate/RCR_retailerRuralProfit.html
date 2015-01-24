@@ -5,8 +5,10 @@
 </style>
 <div class="panel my-panel-success panel-danger" ng-show='isResultShown' style="overflow-X:scroll" scroll-bind>
     <div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Rural Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})</h3>
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Rural Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})<span class="pull-right btn btn-warning btn-xs" ng-click="exportExcel('Elecssories','Rural')">{{Label.getContent('Export Excel')}}</span></h3>
+        
     </div>
+
     <div style="height:1px">
         <table fixed-header>
             <thead><tr><th>&nbsp;</th><th>&nbsp;</th></tr></thead>
@@ -401,7 +403,7 @@
 </div>
 <div class="panel my-panel-success panel-danger" ng-show='isResultShown' style="overflow-X:scroll" scroll-bind>
     <div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}- {{Label.getContent('Rural Profit & Loss Statement')}} ({{Label.getContent('HealthBeauties')}})</h3>
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}- {{Label.getContent('Rural Profit & Loss Statement')}} ({{Label.getContent('HealthBeauties')}})<span class="pull-right btn btn-warning btn-xs" ng-click="exportExcel('HealthBeauties','Rural')">{{Label.getContent('Export Excel')}}</span></h3>
     </div>
     <div> 
         <table class="double-scroll-table table-condensed table-bordered table-success" style="float:left;width:33%;" fixed-header>

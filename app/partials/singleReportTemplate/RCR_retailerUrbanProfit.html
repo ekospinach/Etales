@@ -5,7 +5,7 @@
 </style>
 <div class="panel my-panel-success panel-danger" ng-show='isResultShown' scroll="no" scroll-bind>
     <div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('Urban Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Urban Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})</h3>
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Urban Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Urban Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})<span class="pull-right btn btn-warning btn-xs" ng-click="exportExcel('Elecssories','Urban')">{{Label.getContent('Export Excel')}}</span></h3>
     </div>
 
     <div style="height:1px">
@@ -403,7 +403,7 @@
 </div>
 <div class="panel my-panel-success panel-danger" ng-show='isResultShown' scroll-bind>
     <div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('Urban Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Urban Profit & Loss Statement')}} ({{Label.getContent('HealthBeauties')}})</h3>
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Urban Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Urban Profit & Loss Statement')}} ({{Label.getContent('HealthBeauties')}})<span class="pull-right btn btn-warning btn-xs" ng-click="exportExcel('HealthBeauties','Urban')">{{Label.getContent('Export Excel')}}</span></h3>
     </div>
 
     <div> 
