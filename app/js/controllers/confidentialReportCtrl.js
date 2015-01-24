@@ -219,6 +219,25 @@ define(['app','socketIO','routingConfig'], function(app) {
 				return ($scope.showPlayer && selected.length) ? selected[0].text : 'Not set';
 			};
 			
+			$scope.$on('SeminarPeriodChanged', function(event, data) {
+				if (data.seminarCode == SeminarInfo.getSelectedSeminar().seminarCode) {
+					$scope.currentPeriod = data.currentPeriod;
+					$scope.span = data.simulationSpan;
+					$scope.seminar = data.seminarCode;
+					if ($scope.selectedPeriod < PeriodInfo.getCurrentPeriod() - 1) {
+						$scope.nextBtn = true;
+					} else {
+						$scope.nextBtn = false;
+					}
+					if ($scope.selectedPeriod > -3) {
+						$scope.previousBtn = true;
+					} else {
+						$scope.previousBtn = false;
+					}
+				}
+			});
+
+
 			$scope.changePeriod = function(type) {
 				if (type == "add") {
 					$scope.selectedPeriod = $scope.selectedPeriod + 1;

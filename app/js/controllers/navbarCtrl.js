@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window','$routeParams','TimerBase','Page', 
-									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window,$routeParams, TimerBase, Page) {												
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window','$routeParams','TimerBase','Page', 'PeriodInfo',
+									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window,$routeParams, TimerBase, Page, PeriodInfo) {												
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -69,6 +69,7 @@ define(['app'], function(app) {
 			console.log('currentPeriod');
 			if(data.seminarCode == SeminarInfo.getSelectedSeminar().seminarCode ){
 				notify('Period has been changed to ' + data.currentPeriod + ' / ' + data.simulationSpan);
+				PeriodInfo.setCurrentPeriod(data.currentPeriod);
 				$scope.currentPeriod = data.currentPeriod;
 				$scope.span = data.simulationSpan;
 				$scope.seminar = data.seminarCode;				
