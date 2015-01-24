@@ -48,7 +48,7 @@ define(['directives', 'services'], function(directives) {
                                     if (singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.hea] != 0) {
                                         rural2Depth = (Math.floor(singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.hea] * 100 * 100) / 100);
                                     } else {
-                                        rural1Depth = singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.hea];
+                                        rural2Depth = singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.hea];
                                     }
                                     rural2Length = singleData.accountInfo[StaticValues.player.r2].promoFrequency[StaticValues.category.hea];
                                     if (singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.ele] != 0) {
