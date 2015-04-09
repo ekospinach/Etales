@@ -6,7 +6,7 @@
     </div>
     <table class="table table-condensed table-bordered table-danger special-table">
         <thead>
-            <tr>
+            <!-- <tr>
                 <th></th>
                 <th colspan="4">
                     <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
@@ -33,7 +33,37 @@
                     <p class="text-center">{{Label.getContent('Rural')}}</p>
                 </td>
                 <td colspan="2"></td>
+            </tr> -->
+            <tr>
+                <th></th>
+                <th colspan="4">
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+                <th colspan="4">
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                </th>
             </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                </td>
+                <td colspan="2"></td>
+            </tr>
+
+
             <tr>
                 <td></td>
                 <td>
@@ -84,17 +114,17 @@
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
-                </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
-                </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                 </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
@@ -124,17 +154,17 @@
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
-                </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
-                </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                 </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
@@ -164,17 +194,17 @@
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
-                </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
-                </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                 </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
@@ -201,14 +231,9 @@
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                 </td>
+
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
-                </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
-                </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
@@ -216,6 +241,13 @@
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
                 </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                </td>
+                
                 <td class="td-info">
                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                 </td>
@@ -244,18 +276,19 @@
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
-                </td>
-                <td class="td-info">
-                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
-                </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                 </td>
                 <td class="td-warning">
                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
                 </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                </td>
+                
                 <td class="td-info">
                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                 </td>
