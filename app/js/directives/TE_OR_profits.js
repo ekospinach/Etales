@@ -144,9 +144,9 @@ define(['directives', 'services'], function(directives) {
 								if (singleData.period == data) {
 									if (singleData.categoryID == 3) {
 										if (singleData.actorID < 4) {
-											currentNetProfits[singleData.actorID - 1].data.push(singleData.value * 100);
+											currentNetProfits[singleData.actorID - 1].data.push(singleData.value);
 										} else if (singleData.actorID > 4 && singleData.actorID < 7) {
-											currentNetProfits[singleData.actorID - 2].data.push(singleData.value * 100);
+											currentNetProfits[singleData.actorID - 2].data.push(singleData.value);
 										}
 									}
 								}
