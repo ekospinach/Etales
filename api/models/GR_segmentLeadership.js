@@ -119,6 +119,8 @@ var setData = function(data,kind){
     if(data){
         data.forEach(function(singleDivision){
             if(singleDivision.divisionKind==kind){
+
+                //take Sales Value Leaders instead of Sale Volume Leaders 
                 singleDivision.grsl_ValueLeaders.forEach(function(singleValue){
                     result.push({
                         //name:singleValue.parentBrandName+singleValue.varName,
