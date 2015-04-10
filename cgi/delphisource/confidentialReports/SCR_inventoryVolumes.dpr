@@ -105,7 +105,7 @@ var
     oJsonFile.O['scrviv_Orders'] := SA([]);
     oJsonFile.O['scrviv_Shipments'] := SA([]);
     oJsonFile.O['scrviv_UnitProductionCost'] := SA([]);
-    oJsonFile.O['scrviv_UnitProductionCost'] := SA([]);
+    oJsonFile.O['scrviv_ChannelPreference'] := SA([]);
 
     for catID := Low(TCategories) to High(TCategories) do
     begin
