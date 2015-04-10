@@ -58,7 +58,7 @@
                         {{Label.getContent('Channel Preference')}} ({{Label.getContent('%')}})
                     </p>
                 </th>
-                
+
             </tr>
             <tr>
                 <td></td>
@@ -151,6 +151,9 @@
                 </td>
                 <td>
                     <p class="text-right">{{product.unitProductionCost.value[2] | number : 2 }}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product.channelPreference.value[2]*100 | number : 2 }}</p>
                 </td>
             </tr>
         </tbody>
