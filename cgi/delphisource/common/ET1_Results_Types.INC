@@ -364,6 +364,7 @@ TSCR_VariantInventoryVolume =
     scrviv_Discontinued       : single;
     scrviv_Closing            : array[TProducerDivisions] of single;
     scrviv_UnitProductionCost : single;
+    scrviv_ChannelPreference  : single;       { added on 10-April-2015 }
   end;
 
 TSCR_InventoryVolumes = array[TCategories, TProBrands, TOneBrandVariants] of TSCR_VariantInventoryVolume;
