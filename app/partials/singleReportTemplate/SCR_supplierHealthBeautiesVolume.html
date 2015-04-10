@@ -2,162 +2,164 @@
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}} - {{Label.getContent('Volume')}} ({{Label.getContent('Total')}})</h3>
     </div>
-    <table class="table table-condensed table-bordered table-success">
-        <thead  style='font-size:12px'>
-            <tr>
-                <th>
-                    <p class="padding-20">({{Label.getContent('units mln')}})</p>
-                </th>
-                <th colspan="3">
-                    <p class="text-center">
-                        {{Label.getContent('Initial Inventory')}}
-                    </p>
-                </th>
-                <th rowspan="2">
-                    <p class="text-center">
-                        {{Label.getContent('Production Volume')}}
-                    </p>
-                </th>
-                <th colspan="3">
-                    <p class="text-center">
-                        {{Label.getContent('Available Inventory(including production +/- internal transfers)')}}
-                    </p>
-                </th>
+    <div style="overflow-X:scroll;margin:-6px 0">
+        <table class="table table-condensed table-bordered table-success">
+            <thead  style='font-size:12px'>
+                <tr>
+                    <th>
+                        <p class="padding-10">({{Label.getContent('units mln')}})</p>
+                    </th>
+                    <th colspan="3">
+                        <p class="text-center">
+                            {{Label.getContent('Initial Inventory')}}
+                        </p>
+                    </th>
+                    <th rowspan="2">
+                        <p class="text-center">
+                            {{Label.getContent('Production Volume')}}
+                        </p>
+                    </th>
+                    <th colspan="3">
+                        <p class="text-center">
+                            {{Label.getContent('Available Inventory(including production +/- internal transfers)')}}
+                        </p>
+                    </th>
 
 
-                <th rowspan="2">
-                    <p class="text-center">
-                        {{Label.getContent('Shipped to Retailers')}}
-                    </p>
-                </th>
+                    <th rowspan="2">
+                        <p class="text-center">
+                            {{Label.getContent('Shipped to Retailers')}}
+                        </p>
+                    </th>
 
-                <th rowspan="2">
-                    <p class="text-center">
-                        {{Label.getContent('Sold Online')}}
-                    </p>
-                </th>
+                    <th rowspan="2">
+                        <p class="text-center">
+                            {{Label.getContent('Sold Online')}}
+                        </p>
+                    </th>
 
-                <th rowspan="2">
-                    <p class="text-center">
-                        {{Label.getContent('Discontinued Goods Volume')}}
-                    </p>
-                </th>
-                <th colspan="2">
-                    <p class="text-center">
-                        {{Label.getContent('Closing Inventory')}}
-                    </p>
-                </th>
-                <th rowspan="2">
-                    <p class="text-center">
-                        {{Label.getContent('Unit Production cost')}} ({{Label.getContent('$')}})
-                    </p>
-                </th>
+                    <th rowspan="2">
+                        <p class="text-center">
+                            {{Label.getContent('Discontinued Goods Volume')}}
+                        </p>
+                    </th>
+                    <th colspan="2">
+                        <p class="text-center">
+                            {{Label.getContent('Closing Inventory')}}
+                        </p>
+                    </th>
+                    <th rowspan="2">
+                        <p class="text-center">
+                            {{Label.getContent('Unit Production cost')}} ({{Label.getContent('$')}})
+                        </p>
+                    </th>
 
-                <th rowspan="2">
-                    <p class="text-center">
-                        {{Label.getContent('Channel Preference')}} ({{Label.getContent('%')}})
-                    </p>
-                </th>
+                    <th rowspan="2">
+                        <p class="text-center">
+                            {{Label.getContent('Channel Preference')}} (%)
+                        </p>
+                    </th>
 
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Offline')}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Online')}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Total')}}
-                    </p>
-                </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Offline')}}
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Online')}}
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Total')}}
+                        </p>
+                    </td>
 
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Offline')}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Online')}}
-                    </p>
-                </td>
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Offline')}}
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Online')}}
+                        </p>
+                    </td>
 
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Total')}}
-                    </p>
-                </td>
-                
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Offline')}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-center">
-                        {{Label.getContent('Online')}}
-                    </p>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat='product in products'>
-                <td>
-                    <p class="padding-20">{{product.fullName}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.initial.value[0] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.initial.value[1] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.initial.value[2] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.production.value[2] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.available.value[0] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.available.value[1] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.available.value[2] | number : 1 }}</p>
-                </td>
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Total')}}
+                        </p>
+                    </td>
+                    
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Offline')}}
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-center">
+                            {{Label.getContent('Online')}}
+                        </p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='product in products'>
+                    <td>
+                        <p class="padding-10">{{product.fullName}}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.initial.value[0] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.initial.value[1] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.initial.value[2] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.production.value[2] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.available.value[0] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.available.value[1] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.available.value[2] | number : 1 }}</p>
+                    </td>
 
-                <td>
-                    <p class="text-right">{{product.sales.value[0] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.sales.value[1] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.discontinued.value[2] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.closing.value[0] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.closing.value[1] | number : 1 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.unitProductionCost.value[2] | number : 2 }}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{product.channelPreference.value[2]*100 | number : 2 }}</p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <td>
+                        <p class="text-right">{{product.sales.value[0] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.sales.value[1] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.discontinued.value[2] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.closing.value[0] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.closing.value[1] | number : 1 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.unitProductionCost.value[2] | number : 2 }}</p>
+                    </td>
+                    <td>
+                        <p class="text-right">{{product.channelPreference.value[2]*100 | number : 2 }}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="panel my-panel-success panel-danger" ng-show='isResultShown'>
     <div class="panel-heading">
