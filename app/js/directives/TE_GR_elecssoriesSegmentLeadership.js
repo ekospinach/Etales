@@ -208,7 +208,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -239,7 +239,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -270,7 +270,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -301,7 +301,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -333,7 +333,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -364,7 +364,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -395,7 +395,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -426,7 +426,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -458,7 +458,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -489,7 +489,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -520,7 +520,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
@@ -551,7 +551,7 @@ define(['directives', 'services'], function(directives) {
                                 },
                                 yAxis: {
                                     title: {
-                                        text:''
+                                        text:'%'
                                     }
                                 },
                                 tooltip: {
