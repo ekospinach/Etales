@@ -139,7 +139,7 @@ module.exports = function(){
 			return {
 				cgi : {
 				  port                                : 800,
-				  host                                : '192.168.1.103',
+				  host                                : '192.168.1.112',
 				  path_marketReport                   : '/cgi-bin/marketReport.exe',
 				  path_lineChart                      : '/cgi-bin/lineChart.exe',
 				  path_perceptionMap                  : '/cgi-bin/perceptionMap.exe',		

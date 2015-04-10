@@ -48,6 +48,9 @@ define(['directives', 'services'], function(directives) {
                                 unitProductionCost = _.find(data.scrviv_UnitProductionCost, function(obj) {
                                     return (obj.variantName == varName && obj.parentBrandName == brandName);
                                 });
+                                channelPreference = _.find(data.scrviv_ChannelPreference, function(obj) {
+                                    return (obj.variantName == varName && obj.parentBrandName == brandName);
+                                });
                                 scope.products.push({
                                     'fullName': brandName + varName,
                                     'initial': initial,
@@ -56,7 +59,8 @@ define(['directives', 'services'], function(directives) {
                                     'sales': sales,
                                     'discontinued': discontinued,
                                     'closing': closing,
-                                    'unitProductionCost': unitProductionCost
+                                    'unitProductionCost': unitProductionCost,
+                                    'channelPreference': channelPreference
                                 });
                             } 
                         })
