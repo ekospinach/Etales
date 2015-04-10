@@ -16,6 +16,8 @@ const
   scrviv_UnitProductionCost = 107;
   scrviv_Available        = 108;
 
+  scrviv_ChannelPreference  = 109;
+
 var
   DataDirectory : string;
   sListData: tStrings;
@@ -76,6 +78,8 @@ var
        scrviv_Closing:   begin jo.A['value'].D[0] := variant.scrviv_Closing[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Closing[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Closing[CORPORATE]; end;
        scrviv_UnitProductionCost : begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_UnitProductionCost; end;
        scrviv_Available:   begin jo.A['value'].D[0] := variant.scrviv_Available[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Available[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Available[CORPORATE]; end;
+       scrviv_ChannelPreference : begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_ChannelPreference; end;
+
      end;
      result := jo;
   end;
@@ -101,6 +105,7 @@ var
     oJsonFile.O['scrviv_Orders'] := SA([]);
     oJsonFile.O['scrviv_Shipments'] := SA([]);
     oJsonFile.O['scrviv_UnitProductionCost'] := SA([]);
+    oJsonFile.O['scrviv_UnitProductionCost'] := SA([]);
 
     for catID := Low(TCategories) to High(TCategories) do
     begin
@@ -118,7 +123,7 @@ var
               oJsonFile.A['scrviv_Discontinued'].Add( variantInfoSchema(scrviv_Discontinued, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Closing'].Add( variantInfoSchema(scrviv_Closing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_UnitProductionCost'].Add( variantInfoSchema(scrviv_UnitProductionCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
-
+              oJsonFile.A['scrviv_ChannelPreference'].Add( variantInfoSchema(scrviv_ChannelPreference, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
               begin
                 for accountID := Low(TAccountsTotal) to High(TAccountsTotal) do
@@ -130,7 +135,7 @@ var
             end;
           end;
         end;
-    end;    
+    end;
 
 
     //for debug used
