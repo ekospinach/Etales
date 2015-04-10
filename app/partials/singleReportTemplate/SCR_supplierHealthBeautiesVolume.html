@@ -2,13 +2,33 @@
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}} - {{Label.getContent('Volume')}} ({{Label.getContent('Total')}})</h3>
     </div>
-    <div style="overflow-X:scroll;margin:-6px 0">
-        <table class="table table-condensed table-bordered table-success">
-            <thead  style='font-size:12px'>
+    <div style="margin:-6px 0">
+        <table class="table table-condensed table-bordered table-success" style="float:left;width:10%;">
+            <thead>
                 <tr>
                     <th>
-                        <p class="padding-10">({{Label.getContent('units mln')}})</p>
+                        <p class="padding-10"></br></br></br>({{Label.getContent('units mln')}})</p>
                     </th>
+                </tr>
+                <tr><th>&nbsp;</th></tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='product in products'>
+                    <td>
+                        <p class="padding-10">{{product.fullName}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="overflow-X:scroll;margin:-6px 0">
+        <table class="table table-condensed table-bordered table-success" style="float:left;width:90%">
+            <thead>
+                <tr>
+<!--                     <th>
+                        <p class="padding-10">({{Label.getContent('units mln')}})</p>
+                    </th> -->
                     <th colspan="3">
                         <p class="text-center">
                             {{Label.getContent('Initial Inventory')}}
@@ -62,7 +82,7 @@
 
                 </tr>
                 <tr>
-                    <td></td>
+<!--                     <td></td> -->
                     <td>
                         <p class="text-center">
                             {{Label.getContent('Offline')}}
@@ -110,9 +130,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat='product in products'>
-                    <td>
+<!--                     <td>
                         <p class="padding-10">{{product.fullName}}</p>
-                    </td>
+                    </td> -->
                     <td>
                         <p class="text-right">{{product.initial.value[0] | number : 1 }}</p>
                     </td>
@@ -161,6 +181,7 @@
         </table>
     </div>
 </div>
+<div style="clear:both"></div>
 <div class="panel my-panel-success panel-danger" ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}} - {{Label.getContent('Volume')}} ({{Label.getContent('by Retailer and Market')}})</h3>
