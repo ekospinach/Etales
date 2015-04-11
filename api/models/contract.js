@@ -292,7 +292,7 @@ function createContractDetails(contractCode, previousPeriodCode, producerID, ret
                               nc_SalesTargetVolume_lastModifiedBy: 'P',
                               nc_PerformanceBonusRate: 0,
                               nc_PerformanceBonusRate_lastModifiedBy: 'P',
-                              nc_PaymentDays: 0,
+                              nc_PaymentDays: 60,
                               nc_PaymentDays_lastModifiedBy: 'P',
                               nc_OtherCompensation: 0,
                               nc_OtherCompensation_lastModifiedBy: 'P',
