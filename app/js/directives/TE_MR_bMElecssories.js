@@ -43,7 +43,7 @@ define(['directives', 'services'], function(directives) {
                                 }
                                 if (singleData.accountInfo[StaticValues.player.r4] != undefined) {
                                     onlineValue = singleData.accountInfo[StaticValues.player.r4].latestNetMarketPrice[StaticValues.market.urban];
-                                    onlineChange = singleData.accountInfo[StaticValues.player.r4].netMarketPriceChange[StaticValues.market.urban];
+                                    onlineChange = singleData.accountInfo[StaticValues.player.r4].netMarketPriceChange[StaticValues.market.urban] * 100;
                                 }
 
                                 switch (singleData.parentCompanyID) {
