@@ -33,7 +33,6 @@ exports.addReports = function(options){
     var startFrom = options.startFrom,
     endWith = options.endWith;
 
-    console.log('add repots:' + options);
    (function sendRequest(currentPeriod){        
       var reqOptions = {
           hostname: options.cgiHost,
