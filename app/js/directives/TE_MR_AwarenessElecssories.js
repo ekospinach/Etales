@@ -167,6 +167,8 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             return organiseArray(data.data[0]);
                         }).then(function(data) {
+                            var curP = scope.selectedPeriod;
+                            scope.myModel = 'awarenessElecssories' + curP;
                             scope.isResultShown = true;
                             scope.isPageLoading = false;
                         }, function() {
