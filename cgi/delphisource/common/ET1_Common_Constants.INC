@@ -64,6 +64,8 @@ Const
   ProBrandsMax             = 5;                 { max # of brands per supplier per category, there will be 4 active }
   ProBrandsMaxTotal        = ProBrandsMax + 1;  { for one producer totals }
   ActiveProBrandsMax       = ProBrandsMax - 1;  { we leave space for a swap an old for a new one }
+  
+  ProVariantsMax           = ProBrandsMax * VarsMax;
 
   ProsMax                  = 3;                 { # of supplier teams }
   ProsMaxPlus              = ProsMax + 1;       { 3 Producer teams Plus one virtual }

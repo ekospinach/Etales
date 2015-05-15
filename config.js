@@ -57,6 +57,7 @@ module.exports = function(){
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 				  path_MR_salesByChannel              : '/cgi-bin/MR_salesByChannel.exe',
 
+				  path_MR_webTrawlerScores			  : '/cgi-bin/MR_webTrawlerScores.exe',
 
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  
@@ -124,6 +125,8 @@ module.exports = function(){
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 				  path_MR_salesByChannel              : '/cgi-bin/MR_salesByChannel.exe',
+				  path_MR_webTrawlerScores			  : '/cgi-bin/MR_webTrawlerScores.exe',
+
 
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  
@@ -191,6 +194,8 @@ module.exports = function(){
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 				  path_MR_salesByChannel              : '/cgi-bin/MR_salesByChannel.exe',
+				  path_MR_webTrawlerScores			  : '/cgi-bin/MR_webTrawlerScores.exe',
+
 
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',
@@ -258,6 +263,7 @@ module.exports = function(){
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 				  path_MR_salesByChannel              : '/cgi-bin/MR_salesByChannel.exe',
+				  path_MR_webTrawlerScores			  : '/cgi-bin/MR_webTrawlerScores.exe',
 
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  

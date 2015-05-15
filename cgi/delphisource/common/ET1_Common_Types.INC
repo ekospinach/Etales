@@ -7,11 +7,13 @@ Type
   TAllProducersTotal       = 1..ProsMaxPlusTotal;
   TAllStores               = 1..AllStoresMax;
   TAllStoresTotal          = 1..AllStoresMaxTotal;
+  TAggregatedChannels      = ( MODERN_RETAILERS, TRADITIONAL_TRADE, ONLINE_SALES, TOTAL_MARKET ); 
   TBMRetailers             = 1..BMRetsMax;
   TBMRetailersTotal        = 1..BMRetsMaxTotal;
   TBrandID                 = 0..LastBrand_ID;    { we keep 0 for non-active brands }
   TBrandName               = array[0..BrandNameLength] of WideChar;
   TBrandOwners             = Prod_1_ID..Ret_2_ID;
+  TBrandOwnersTotal        = Prod_1_ID..Ret_2_ID + 1; { last element for total }
   TFactories               = 1..FactoriesMax; { four suppliers of brands + PL Supplier }
   TFactoriesTotal          = 1..FactoriesMaxTotal;
   TForecastCoverage        = NearHistory..NearFuture;
@@ -44,6 +46,7 @@ Type
   TPeriodNumber            = HistoryStart..FutureEnd;
   TPrivateLabels           = 1..PLsMax;
   TProBrands               = 1..ProBrandsMax;
+  TProVariants             = 1..ProVariantsMax;
   TProducers               = 1..ProsMax;
   TProducersPlus           = 1..ProsMaxPlus;
   TActiveActors            = 1..ActiveActorsMax;

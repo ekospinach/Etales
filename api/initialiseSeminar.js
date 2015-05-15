@@ -407,6 +407,18 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 		         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			         
 
+
+		        console.log('get into web ...');
+				options.cgiPath = conf.cgi.path_MR_webTrawlerScores;
+				options.schemaName = 'MR_webTrawlerScores';
+
+			 	console.log('options:' + util.inspect(options));
+
+			 	return require('./models/MR_webTrawlerScores.js').addReports(options);			
+			}).then(function(result){ 
+		         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			         
+
+
 				options.cgiPath = conf.cgi.path_MR_forecasts;
 				options.schemaName = 'MR_forecasts';
 				return require('./models/MR_forecasts.js').addReports(options);			

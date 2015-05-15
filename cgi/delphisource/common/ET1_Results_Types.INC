@@ -9,6 +9,7 @@ TVariantCharacteristics = record
                             vc_PackFormat         : TVariantPackFormat;
                             vc_Composition        : TVariantComposition;
                             vc_CurrentBMListPrice : single;
+			  vc_BMListPriceChange  : single;   { added on 14-April-2015 }    
                           end;
 
 
@@ -121,8 +122,6 @@ TGR_PerformanceHighlights =
     grph_OperatingProfit             : array[TActiveActors] of single;
     grph_OperatingProfitChange       : array[TActiveActors] of single;
     grph_CumulativeInvestment        : array[TActiveActors] of single;
-
-    { added on 13 October 2014 for channel perspective }
     grph_ConsumersOffTakeVolume      : array[TAllStores, TMarketsTotal, TCategories] of single;
     grph_ConsumersOffTakeVolumeShare : array[TAllStores, TMarketsTotal, TCategories] of single;
     grph_ConsumersOffTakeValue       : array[TAllStores, TMarketsTotal, TCategoriesTotal] of single;
@@ -188,9 +187,9 @@ TSCR_DivisionProfitAndLoss =
     scrpl_CostOfGoodsSold                      : single;
     scrpl_DiscontinuedGoodsCost                : single;
     scrpl_InventoryHoldingCost                 : single;
-    scrpl_InternalTransfersCost                : single;   { 22/01/2015 }
+    scrpl_InternalTransfersCost                : single;   
     scrpl_eMallCommission                      : single;
-    scrpl_ServiceCost                          : single;   { modified on Dec-1, 2014 }
+    scrpl_ServiceCost                          : single;   
     scrpl_GrossProfit                          : single;
     scrpl_GrossProfitChange                    : single;
     scrpl_GrossProfitMargin                    : single;
@@ -235,9 +234,9 @@ TSCR_OneVariant =
     scrv_CostOfGoodsSold                      : array[TProducerDivisions] of single;
     scrv_DiscontinuedGoodsCost                : array[TProducerDivisions] of single;
     scrv_InventoryHoldingCost                 : array[TProducerDivisions] of single;
-    scrv_InternalTransfersCost                : array[TProducerDivisions] of single;   { 22/01/2015 }
+    scrv_InternalTransfersCost                : array[TProducerDivisions] of single;   
     scrv_eMallCommission                      : array[TProducerDivisions] of single;
-    scrv_ServiceCost                          : array[TProducerDivisions] of single;   { modified on Dec 1, 2014 }
+    scrv_ServiceCost                          : array[TProducerDivisions] of single;   
     scrv_GrossProfit                          : array[TProducerDivisions] of single;
     scrv_GrossProfitChange                    : array[TProducerDivisions] of single;
     scrv_GrossProfitMargin                    : array[TProducerDivisions] of single;
@@ -289,9 +288,9 @@ TSCR_OneBrand =
     scrb_CostOfGoodsSold                      : array[TProducerDivisions] of single;
     scrb_DiscontinuedGoodsCost                : array[TProducerDivisions] of single;
     scrb_InventoryHoldingCost                 : array[TProducerDivisions] of single;
-    scrb_InternalTransfersCost                : array[TProducerDivisions] of single;   { 22/01/2015 }
+    scrb_InternalTransfersCost                : array[TProducerDivisions] of single;   
     scrb_eMallCommission                      : array[TProducerDivisions] of single;   
-    scrb_ServiceCost                          : array[TProducerDivisions] of single;   { modified on Dec-1, 2014 }
+    scrb_ServiceCost                          : array[TProducerDivisions] of single;   
     scrb_GrossProfit                          : array[TProducerDivisions] of single;
     scrb_GrossProfitChange                    : array[TProducerDivisions] of single;
     scrb_GrossProfitMargin                    : array[TProducerDivisions] of single;
@@ -320,7 +319,6 @@ TSCR_OneBrand =
     {--- additional for info windows -----------------------------------------------------------------------------------------------------------}
     scrb_Awareness                            : array[TMarkets] of single;
     scrb_Perception                           : array[TMarkets, TVariantThreePerceptions] of single;
-    scrb_SocialNetworksScore                  : TWebTrawlerIndices;
   end;
 
 TSCR_SupplierBrands = array[TCategories, TProBrands] of TSCR_OneBrand;
@@ -336,8 +334,8 @@ TSCR_CategoryChannelProfitability = { for R1, R2, TT use specific market details
     scrcp_SalesValueShare   : single;
     scrcp_CostOfGoodsSold   : single;
     scrcp_TradeSupport      : single;
-    scrcp_TradeSupportShare : single;  { 04/01/2015 }
-    scrcp_ShelfSpaceShare   : single;  { 04/01/2015 }
+    scrcp_TradeSupportShare : single;  
+    scrcp_ShelfSpaceShare   : single;  
     scrcp_TradeProfit       : single;
     scrcp_TradeProfitShare  : single;
   end;
@@ -347,7 +345,7 @@ TSCR_ChannelsProfitability = array[TCategoriesTotal, TAccounts, TMarketsTotal] o
 
 TSCR_Negotiations = array[TCategories, TBMRetailers, TProBrands, TOneBrandVariants] of TVariantNegotiationsDetails;
 
-TSCR_CrossSegments = array[TCategories, TMarkets, TProBrands, TOneBrandVariants] of TVariantCrossSegmentDetails;  {@@@@@@@@}
+TSCR_CrossSegments = array[TCategories, TMarkets, TProBrands, TOneBrandVariants] of TVariantCrossSegmentDetails; 
 
 TSCR_VariantInventoryVolume =
   record
@@ -357,7 +355,7 @@ TSCR_VariantInventoryVolume =
     scrviv_ParentBrandName    : TBrandName;
     scrviv_Initial            : array[TProducerDivisions] of single;
     scrviv_Production         : single;
-    scrviv_Available          : array[TProducerDivisions] of single;                { added on 1-Dec-2014 }
+    scrviv_Available          : array[TProducerDivisions] of single;                
     scrviv_Sales              : array[TProducerDivisions] of single;
     scrviv_Orders             : array[TMarketsTotal, TAccountsTotal] of single;
     scrviv_Shipments          : array[TMarketsTotal, TAccountsTotal] of single;
@@ -537,7 +535,6 @@ TRCR_OneBrand =
     {--- additional for info windows -----------------------------------------------------------------------------------------------------------}
     rcrb_Awareness                      : single;
     rcrb_Perception                     : array[TVariantThreePerceptions] of single;
-    rcrb_SocialNetworksScore            : TWebTrawlerIndices;
     rcrb_VisibilityShare                : single;
   end;
 
@@ -575,21 +572,22 @@ TRCR_CrossSegments = array[TMarkets, TCategories, TBrands, TOneBrandVariants] of
 
 TRCR_VariantInventoryVolume =
   record
-    rcrviv_VariantID        : TVariantID;
-    rcrviv_VariantName      : TVariantName;
-    rcrviv_ParentBrandID    : TBrandID;
-    rcrviv_ParentBrandName  : TBrandName;
-    rcrviv_ParentCompany    : TActors;  { use ParentCompany to filter which variants should be displayed.             }
-                                        { For Retailer 1 allowed set is [1, 2, 3, 5]                                  }
-					                              { For Retailer 2 allowed set is [1, 2, 3, 6]                                  }
+    rcrviv_VariantID          : TVariantID;
+    rcrviv_VariantName        : TVariantName;
+    rcrviv_ParentBrandID      : TBrandID;
+    rcrviv_ParentBrandName    : TBrandName;
+    rcrviv_ParentCompany      : TActors;  { use ParentCompany to filter which variants should be displayed.             }
+                                          { For Retailer 1 allowed set is [1, 2, 3, 5]                                  }
+				      	                              { For Retailer 2 allowed set is [1, 2, 3, 6]                                  }
 					                              { For Retailer 3 allowed set is [1, 2, 3] (no private labels at TT            }
 					                              { Should Supplier 4 become ACTIVE, then [4] must be added to all allowed sets }
-    rcrviv_Initial          : single;
-    rcrviv_Purchase         : single;
-    rcrviv_Sales            : single;
-    rcrviv_Discontinued     : single;
-    rcrviv_Closing          : single;
-    rcrviv_NetRetailPrice   : single;
+    rcrviv_Initial            : single;
+    rcrviv_Purchase           : single;
+    rcrviv_Sales              : single;
+    rcrviv_Discontinued       : single;
+    rcrviv_Closing            : single;
+    rcrviv_NetRetailPrice     : single;
+    rcrviv_NetAcquisitionCost : single;    { added on 14-April-2015 }
   end;
 
 TRCR_InventoryVolumes = array[TMarkets, TCategories, TVariants] of TRCR_VariantInventoryVolume;
@@ -654,17 +652,18 @@ TMR_AwarenessEvolution = array[TMarkets, TCategories, TBrands] of TMR_BrandAware
 
 TMR_VariantPerception = 
   record
-    mrvp_VariantID          : TVariantID;
-    mrvp_VariantName        : TVariantName;
-    mrvp_ParentBrandID      : TBrandID;
-    mrvp_ParentBrandName    : TBrandName;
-    mrvp_DateOfBirth        : TTimeSpan;
-    mrvp_DateOfDeath        : TTimeSpan;
-    mrvp_ParentCompanyID    : TActors;
-    mrvp_Shown              : boolean;
-    mrvp_PreviousPerception : array[TVariantThreePerceptions] of single;
-    mrvp_LatestPerception   : array[TVariantThreePerceptions] of single;
-    mrvp_PerceptionChange   : array[TVariantThreePerceptions] of single;
+    mrvp_VariantID             : TVariantID;
+    mrvp_VariantName           : TVariantName;
+    mrvp_ParentBrandID         : TBrandID;
+    mrvp_ParentBrandName       : TBrandName;
+    mrvp_DateOfBirth           : TTimeSpan;
+    mrvp_DateOfDeath           : TTimeSpan;
+    mrvp_ParentCompanyID       : TActors;
+    mrvp_Shown                 : boolean;
+    mrvp_PreviousPerception    : array[TVariantThreePerceptions] of single;
+    mrvp_LatestPerception      : array[TVariantThreePerceptions] of single;
+    mrvp_PerceptionChange      : array[TVariantThreePerceptions] of single;
+    mrvp_SegmentAttractiveness : TSegmentsData;  { Added on 14-April-2015 }
   end;
 
 TMR_VariantPerceptionEvolution = array[TMarkets, TCategories, TVariants] of TMR_VariantPerception;
@@ -724,7 +723,7 @@ TMR_SupplierInvestments =
     mrsi_AdvertisingOnLine             : single;
     mrsi_ActualTradeSupport            : array[TMarketsTotal, TAccountsTotal] of single;
     mrsi_NegotiatedTradeSupport        : array[TMarketsTotal, TAccountsTotal] of single;
-    mrsi_ServiceLevel                  : TServiceLevel;   { 04/01/2015 }  { actually only the value for CatsMaxTotal matters }
+    mrsi_ServiceLevel                  : TServiceLevel;   { actually only the value for CatsMaxTotal matters }
     mrsi_OnLine_Visibility             : single;
     mrsi_OnLine_Other                  : single;
     mrsi_AcquiredTechnologyLevel       : TTechnology;
@@ -755,7 +754,7 @@ TMR_RetailerInvestments =
     mrri_OnLineAdvertising    : array[TMarketsTotal] of single;
     mrri_OffLineAdvertising   : array[TMarketsTotal] of single;
     mrri_LocalAdvertising     : array[TMarketsTotal] of single;
-    mrri_SellingSpace         : array[TMarketsTotal] of single;  { added on 11/12/2014 }
+    mrri_SellingSpace         : array[TMarketsTotal] of single;  
     mrri_StoreServiceLevel    : array[TMarketsTotal] of TServiceLevel;
     mrri_ShelfSpaceAllocation : array[TCategories, TVariants] of TMR_VariantShelfSpace;
   end;
@@ -784,6 +783,26 @@ TMR_OneQuarterSalesByChannel = record
 
 TMR_SalesByChannel = array[TMarketsTotal, TCategories] of TMR_OneQuarterSalesByChannel;
 
+TMR_WebTrawlerBrandScore = 
+  record
+    mrwtb_BrandID           : TBrandID;
+    mrwtb_BrandName         : TBrandName;
+    mrwtb_DateOfBirth       : TTimeSpan;
+    mrwtb_DateOfDeath       : TTimeSpan;
+    mrwtb_ParentCompanyID   : TActors;
+    mrwtb_WebTrawlerIndices : TWebTrawlerIndices;
+  end;
+  
+TMR_WebTrawlerBrandsScores = array[TCategories, TBrands] of TMR_WebTrawlerBrandScore;
+
+TMR_WebTrawlersPlayersScores = array[TActors] of TWebTrawlerIndices;  { R1, R2, TT, S1, S2, S3, S4 }
+
+TMR_WebTrawlerScores = 
+  record
+    mrwt_Brands  : TMR_WebTrawlerBrandsScores; 
+    mrwt_Players : TMR_WebTrawlersPlayersScores;
+  end;  
+
 TMarketResearch =
   record
     mr_AwarenessEvolution      : TMR_AwarenessEvolution;
@@ -800,6 +819,8 @@ TMarketResearch =
 
     mr_SuppliersIntelligence   : TMR_SuppliersIntelligence;
     mr_RetailersIntelligence   : TMR_RetailersIntelligence;
+    
+    mr_SocialNetworksTrawler   : TMR_WebTrawlerScores;
 
     mr_Forecasts               : TMR_Forecasts;
   end;
@@ -878,8 +899,163 @@ TFeedback =
     f_TotalMarketValue                : TF_MarketSummary;
     f_AverageTotalMarketNetPrice      : TF_MarketSummary;
 
-    { Added on October 14, 2014 }
     f_FinalScores                     : TF_Scores;  
+  end;
+
+{-----------------------------------------------------------------------------------------------------------------------------------------------}
+
+{ all below added on 16-April-2015 }
+
+TXF_StoreServiceLevelEvolution = array[TMarkets, TTimeSpan, TAllStores] of TServiceLevel;
+
+TXF_OneShoppersSegmentDetails = 
+  record
+    xfss_Importance  : array[TShoppersKind] of single;
+    xfss_TotalMarket : single;
+  end;  
+  
+TXF_ShoppersSegmentsDetails = array[TMarketsTotal, TCategories, TTimeSpan] of TXF_OneShoppersSegmentDetails; 
+
+TXF_ShoppersSegmentStoreDetails =
+  record 
+    xfsss_Absolute   : single;
+    xfsss_Importance : single;
+  end;  
+
+TXF_ChannelShoppersSegmentsRetailSalesValue = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TShoppersKind, TAllStoresTotal] of TXF_ShoppersSegmentStoreDetails;
+      { It is a bit overloaded with data. For absolute values in the top line you only need: [market, category, period, ALLSHOPPERS, ALlStoresMaxTotal].xfsss_Absolute element } 
+      { For left side bar charts use: [market, category, period, BMS/NETIZENS/MIXED, ALlStoresMaxTotal].xfsss_Importance }
+      { For right side bar use: [market, category, period, ALLSHOPPERS, store].xfsss_Importance }
+
+TXF_ProductPortfolio = 
+  record
+    xfpp_AttributesSKUCount : array[TSpecs, TSpecsIndices, TBrandOwners, 0..1] of byte; { 0 for existing SKUs }
+    xfpp_PackFormatSKUCount : array[TVariantPackFormat, TBrandOwners, 0..1] of byte;    { 1 for new SKUs      }
+  end;
+
+TXF_ProductPortfolios = array[TCategories] of TXF_ProductPortfolio;
+
+TXF_VariantAvailability = 
+  record
+    xfva_ShelfSpace       : single;  { or Visibility } 
+    xfva_InventoryVolume  : single;
+  end;
+
+TXF_AvailabilityAtBMStores = array[TMarkets, TCategories, TBMRetailers, TVariants] of TXF_VariantAvailability;
+
+TXF_RetailerProfitsPerSupplier =
+  record
+    xfrpps_ShelfSpace             : single;  { or Visibility } 
+    xfrpps_SalesValue             : single;
+    xfrpps_Rotation               : single;  { Sales per 1% of shelf space }
+    xfrpps_SalesValueShare        : single;
+    xfrpps_GrossContribution      : single;
+    xfrpps_GrossContributionShare : single;
+  end;
+  
+TXF_ProfitabilityPerSupplier = array[TMarketsTotal, TCategoriesTotal, TModernRetailers, TAllProducers] of TXF_RetailerProfitsPerSupplier;
+                                                                                        { highest index for Private Labels }
+TXF_MarketRetailerDetails = array[TMarketsTotal, TTimeSpan, TModernRetailers] of single;
+
+TXF_MarketStoreDetails = array[TMarketsTotal, TTimeSpan, TAllStores] of single;
+
+TXF_MarketStoreBrandOwnerDetails = array[TMarketsTotal, TTimeSpan, TAllStores, TBrandOwners] of single;
+
+TXF_OneSupplierCapitalInvestments =
+  record
+    xfci_InvestedInTechnology    : single;
+    xfci_InvestedInDesign        : single;
+    xfci_InvestedInFlexibility   : single;
+    xfci_InvestedInCapacity      : single;
+    xfci_AcquiredTechnologyLevel : single;
+    xfci_AcquiredDesignLevel     : single;
+    xfci_AcquiredFlexibility     : single;
+    xfci_AvailableCapacity       : single;
+  end; 
+  
+TXF_SuppliersCapitalInvestments = array[TCategoriesTotal, TTimeSpan, TAllProducers] of TXF_OneSupplierCapitalInvestments;
+
+TXF_ConsumersSegmentsDetails = array[TMarketsTotal, TCategories, TTimeSpan, TSegmentsTotal] of single;
+
+TXF_AvailabilityOnline = array[TCategories, TAllProducers, TProVariants] of TXF_VariantAvailability; 
+
+TXF_ConsumerSegmentBrandOwnerDetails =
+  record 
+    xfcsbo_Absolute   : single;
+    xfcsbo_Importance : single;
+  end;  
+
+TXF_BrandOwnerConsumerSegmentsRetailSalesValue = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TSegmentsTotal, TBrandOwnersTotal] of TXF_ConsumerSegmentBrandOwnerDetails;
+
+TXF_BrandOwnersChannelDetails = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TBrandOwners, TAccounts] of single;
+
+TXF_AggregatedChannelsDetails = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TAggregatedChannels] of single;
+
+TXF_SupplierProfitsPerCustomer =
+  record
+    xfsppr_SalesValue             : single;
+    xfsppr_GrossProfit            : single;  
+    xfsppr_TradeSupport           : single;
+    xfsppr_TradeProfit            : single;
+    xfsppr_VisibilityShare        : single;
+    xfsppr_TradeSupportShare      : single;    
+    xfsppr_SalesValueShare        : single;
+    xfsppr_GrossProfitShare       : single;
+    xfsppr_TradeProfitShare       : single;
+  end;
+  
+TXF_ProfitabilityPerCustomer = array[TMarketsTotal, TCategoriesTotal, TAllProducers, TAccounts] of TXF_SupplierProfitsPerCustomer;
+
+TExtendedFeedback =                   
+  record
+    xf_StoresPerception                           : TMR_RetailerPerceptionEvolution;
+    xf_StoresServiceLevel                         : TXF_StoreServiceLevelEvolution;
+    xf_RetailPrices                               : TMR_NetMarketPrices;
+    xf_ShoppersSegmentsShares                     : TXF_ShoppersSegmentsDetails;
+    xf_ShareOfShoppers                            : TF_ShoppersShare;
+    xf_ChannelShoppersSegmentsRetailSalesValue    : TXF_ChannelShoppersSegmentsRetailSalesValue; 
+    xf_ProductPortfolios                          : TXF_ProductPortfolios;
+    xf_AvailabilityAtBMStores                     : TXF_AvailabilityAtBMStores;   
+    xf_AvailabilityOnline                         : TXF_AvailabilityOnline;  { no private labels here } 
+    xf_DiscountsValue                             : TF_NegotiationsItems;
+    xf_PerformanceBonusesValue                    : TF_NegotiationsItems;
+    xf_OtherCompensationsValue                    : TF_NegotiationsItems;
+    xf_TransactionsPerTOP                         : TF_TransactionsPerTOP;
+    xf_RetailersProfitabilityPerSupplier          : TXF_ProfitabilityPerSupplier;  { to be revised }
+    xf_PromotionalActivities                      : TMR_PricePromotions;
+    xf_RetailersLocalAdvertising                  : TXF_MarketRetailerDetails;
+    xf_StoreGrossProfitPerBrandOwner              : TXF_MarketStoreBrandOwnerDetails;
+    xf_StoreOperatingProfitPerBrandOwner          : TXF_MarketStoreBrandOwnerDetails;
+    xf_StoreNetProfitPerBrandOwner                : TXF_MarketStoreBrandOwnerDetails;
+    xf_StoreGrossProfitMargin                     : TXF_MarketStoreDetails;
+    xf_StoreOperatingProfitMargin                 : TXF_MarketStoreDetails;
+    xf_StoreNetProfitPerMargin                    : TXF_MarketStoreDetails;
+    xf_RetailersValueRotationIndex                : TF_RetailersKPIs;
+    xf_RetailersVolumeRotationIndex               : TF_RetailersKPIs;
+    xf_RetailersProfitabilityIndex                : TF_RetailersKPIs;
+    xf_RetailersStocksCover                       : TF_RetailersKPIs; { stock cover should be per category not per market or we should have four charts }
+    xf_VariantPerception                          : TMR_VariantPerceptionEvolution;
+    xf_CapitalInvestments                         : TXF_SuppliersCapitalInvestments; {change the chart by adding capacity and split per category }
+    xf_ConsumerSegmentsShares                     : TXF_ConsumersSegmentsDetails;
+    xf_AwarenessEvolution                         : TMR_AwarenessEvolution; 
+    xf_SuppliersProfitabilityPerCustomer          : TXF_ProfitabilityPerCustomer;  { needs to be revised }
+    xf_BrandOwnerConsumerSegmentsRetailSalesValue : TXF_BrandOwnerConsumerSegmentsRetailSalesValue;
+    xf_BrandOwnersChannelSalesValue               : TXF_BrandOwnersChannelDetails;
+    xf_BrandOwnersChannelGrossProfit              : TXF_BrandOwnersChannelDetails;
+    xf_BrandOwnersChannelTradeProfit              : TXF_BrandOwnersChannelDetails; { not in the slide show, should replace the next two }
+    xf_BrandOwnersChannelOperatingProfit          : TXF_BrandOwnersChannelDetails; { should be removed; it is artificial, some costs/expenses are not account specific }
+    xf_BrandOwnersChannelNetProfit                : TXF_BrandOwnersChannelDetails; { should be removed; it is artificial, some costs/expenses are not account specific }
+    xf_PortfolioStrength                          : TF_SuppliersKPIsExtended;
+    xf_SuppliersBMValueSalesShare                 : TF_SuppliersKPIs;
+    xf_SuppliersBMVolumeSalesShare                : TF_SuppliersKPIs;
+    xf_SuppliersBMShareOfShoppers                 : TF_SuppliersKPIs;
+    xf_SuppliersOnlineValueSalesShare             : TF_SuppliersKPIs;
+    xf_SuppliersOnlineVolumeSalesShare            : TF_SuppliersKPIs;
+    xf_SuppliersOnlineShareOfShoppers             : TF_SuppliersKPIs;
+    xf_AggregatedChannelsSalesVolume              : TXF_AggregatedChannelsDetails; { there must be two charts, one per category }
+    xf_AggregatedChannelsSalesValue               : TXF_AggregatedChannelsDetails; 
+    xf_AggregatedChannelsNetProfit                : TXF_AggregatedChannelsDetails;
+
   end;
 
 {-----------------------------------------------------------------------------------------------------------------------------------------------}
@@ -892,6 +1068,7 @@ TAllResults =
     r_RetailersConfidentialReports : TRetailersConfidentialReports;
     r_MarketResearch               : TMarketResearch;
     r_Feedback                     : TFeedback;
+    r_ExtendedFeedback             : TExtendedFeedback;
   end;
 
 TAllResultsFile = file of TAllResults;

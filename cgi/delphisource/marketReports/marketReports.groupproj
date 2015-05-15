@@ -36,6 +36,9 @@
 			<Projects Include="MR_salesByChannel.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="MR_webTrawlerScores.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -143,14 +146,23 @@
 		<Target Name="MR_salesByChannel:Make">
 			<MSBuild Projects="MR_salesByChannel.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="MR_webTrawlerScores">
+			<MSBuild Projects="MR_webTrawlerScores.dproj"/>
+		</Target>
+		<Target Name="MR_webTrawlerScores:Clean">
+			<MSBuild Projects="MR_webTrawlerScores.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_webTrawlerScores:Make">
+			<MSBuild Projects="MR_webTrawlerScores.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="MR_awarenessEvolution;MR_forecasts;MR_netMarketPrices;MR_pricePromotions;MR_retailersIntelligence;MR_salesCrossSegment;MR_sharesCrossSegment;MR_suppliersIntelligence;MR_variantPerceptionEvolution;MR_retailerPerceptionEvolution;MR_salesByChannel"/>
+			<CallTarget Targets="MR_awarenessEvolution;MR_forecasts;MR_netMarketPrices;MR_pricePromotions;MR_retailersIntelligence;MR_salesCrossSegment;MR_sharesCrossSegment;MR_suppliersIntelligence;MR_variantPerceptionEvolution;MR_retailerPerceptionEvolution;MR_salesByChannel;MR_webTrawlerScores"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="MR_awarenessEvolution:Clean;MR_forecasts:Clean;MR_netMarketPrices:Clean;MR_pricePromotions:Clean;MR_retailersIntelligence:Clean;MR_salesCrossSegment:Clean;MR_sharesCrossSegment:Clean;MR_suppliersIntelligence:Clean;MR_variantPerceptionEvolution:Clean;MR_retailerPerceptionEvolution:Clean;MR_salesByChannel:Clean"/>
+			<CallTarget Targets="MR_awarenessEvolution:Clean;MR_forecasts:Clean;MR_netMarketPrices:Clean;MR_pricePromotions:Clean;MR_retailersIntelligence:Clean;MR_salesCrossSegment:Clean;MR_sharesCrossSegment:Clean;MR_suppliersIntelligence:Clean;MR_variantPerceptionEvolution:Clean;MR_retailerPerceptionEvolution:Clean;MR_salesByChannel:Clean;MR_webTrawlerScores:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="MR_awarenessEvolution:Make;MR_forecasts:Make;MR_netMarketPrices:Make;MR_pricePromotions:Make;MR_retailersIntelligence:Make;MR_salesCrossSegment:Make;MR_sharesCrossSegment:Make;MR_suppliersIntelligence:Make;MR_variantPerceptionEvolution:Make;MR_retailerPerceptionEvolution:Make;MR_salesByChannel:Make"/>
+			<CallTarget Targets="MR_awarenessEvolution:Make;MR_forecasts:Make;MR_netMarketPrices:Make;MR_pricePromotions:Make;MR_retailersIntelligence:Make;MR_salesCrossSegment:Make;MR_sharesCrossSegment:Make;MR_suppliersIntelligence:Make;MR_variantPerceptionEvolution:Make;MR_retailerPerceptionEvolution:Make;MR_salesByChannel:Make;MR_webTrawlerScores:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
