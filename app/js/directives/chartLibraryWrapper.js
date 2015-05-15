@@ -1201,7 +1201,266 @@ define(['directives'], function(directives) {
                 })
             }
         })
-    
+        .directive('marketShare1',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketShare1').empty();
+                        var draw=function(){
+                            $('#marketShare1').highcharts({
+                                xAxis:scope.marketShare1Config.options.xAxis,
+                                yAxis:scope.marketShare1Config.options.yAxis,
+                                tooltip:scope.marketShare1Config.options.tooltip,
+                                series:scope.marketShare1Config.series,
+                                title:scope.marketShare1Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('marketShare2',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketShare2').empty();
+                        var draw=function(){
+                            $('#marketShare2').highcharts({
+                                xAxis:scope.marketShare2Config.options.xAxis,
+                                yAxis:scope.marketShare2Config.options.yAxis,
+                                tooltip:scope.marketShare2Config.options.tooltip,
+                                series:scope.marketShare2Config.series,
+                                title:scope.marketShare2Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('marketShare3',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketShare3').empty();
+                        var draw=function(){
+                            $('#marketShare3').highcharts({
+                                xAxis:scope.marketShare3Config.options.xAxis,
+                                yAxis:scope.marketShare3Config.options.yAxis,
+                                tooltip:scope.marketShare3Config.options.tooltip,
+                                series:scope.marketShare3Config.series,
+                                title:scope.marketShare3Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('marketShare4',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketShare4').empty();
+                        var draw=function(){
+                            $('#marketShare4').highcharts({
+                                xAxis:scope.marketShare4Config.options.xAxis,
+                                yAxis:scope.marketShare4Config.options.yAxis,
+                                tooltip:scope.marketShare4Config.options.tooltip,
+                                series:scope.marketShare4Config.series,
+                                title:scope.marketShare4Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('marketSales1',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketSales1').empty();
+                        var draw=function(){
+                            $('#marketSales1').highcharts({
+                                xAxis:scope.marketSales1Config.options.xAxis,
+                                yAxis:scope.marketSales1Config.options.yAxis,
+                                tooltip:scope.marketSales1Config.options.tooltip,
+                                series:scope.marketSales1Config.series,
+                                title:scope.marketSales1Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('marketSales2',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketSales2').empty();
+                        var draw=function(){
+                            $('#marketSales2').highcharts({
+                                xAxis:scope.marketSales2Config.options.xAxis,
+                                yAxis:scope.marketSales2Config.options.yAxis,
+                                tooltip:scope.marketSales2Config.options.tooltip,
+                                series:scope.marketSales2Config.series,
+                                title:scope.marketSales2Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('marketSales3',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketSales3').empty();
+                        var draw=function(){
+                            $('#marketSales3').highcharts({
+                                xAxis:scope.marketSales3Config.options.xAxis,
+                                yAxis:scope.marketSales3Config.options.yAxis,
+                                tooltip:scope.marketSales3Config.options.tooltip,
+                                series:scope.marketSales3Config.series,
+                                title:scope.marketSales3Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('marketSales4',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#marketSales4').empty();
+                        var draw=function(){
+                            $('#marketSales4').highcharts({
+                                xAxis:scope.marketSales4Config.options.xAxis,
+                                yAxis:scope.marketSales4Config.options.yAxis,
+                                tooltip:scope.marketSales4Config.options.tooltip,
+                                series:scope.marketSales4Config.series,
+                                title:scope.marketSales4Config.options.title,
+                                plotOptions: {column: {stacking: 'precent'}},
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })
+        .directive('crossSegment1',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#crossSegment1').empty();
+                        var draw=function(){
+                            $('#crossSegment1').highcharts({
+                                xAxis:scope.crossSegment1Config.options.xAxis,
+                                yAxis:scope.crossSegment1Config.options.yAxis,
+                                tooltip:scope.crossSegment1Config.options.tooltip,
+                                series:scope.crossSegment1Config.series,
+                                title:scope.crossSegment1Config.options.title,
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        }) 
+        .directive('crossSegment2',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#crossSegment2').empty();
+                        var draw=function(){
+                            $('#crossSegment2').highcharts({
+                                xAxis:scope.crossSegment2Config.options.xAxis,
+                                yAxis:scope.crossSegment2Config.options.yAxis,
+                                tooltip:scope.crossSegment2Config.options.tooltip,
+                                series:scope.crossSegment2Config.series,
+                                title:scope.crossSegment2Config.options.title,
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        }) 
+        .directive('crossSegment3',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#crossSegment3').empty();
+                        var draw=function(){
+                            $('#crossSegment3').highcharts({
+                                xAxis:scope.crossSegment3Config.options.xAxis,
+                                yAxis:scope.crossSegment3Config.options.yAxis,
+                                tooltip:scope.crossSegment3Config.options.tooltip,
+                                series:scope.crossSegment3Config.series,
+                                title:scope.crossSegment3Config.options.title,
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        }) 
+        .directive('crossSegment4',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(v){
+                    if(v != undefined){
+                        $('#crossSegment4').empty();
+                        var draw=function(){
+                            $('#crossSegment4').highcharts({
+                                xAxis:scope.crossSegment4Config.options.xAxis,
+                                yAxis:scope.crossSegment4Config.options.yAxis,
+                                tooltip:scope.crossSegment4Config.options.tooltip,
+                                series:scope.crossSegment4Config.series,
+                                title:scope.crossSegment4Config.options.title,
+                                legend: {enabled: true},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);
+                    }
+                })
+            }
+        })      
 
 
 

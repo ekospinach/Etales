@@ -169,7 +169,8 @@ define(['directives', 'services'], function(directives) {
                                     categories: [Label.getContent('Total'), '', Label.getContent('Urban'), Label.getContent('Rural'), '', Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks'), '', Label.getContent('B&M Only'), Label.getContent('Online Only'), Label.getContent('Mixed')]
                                 },
                                 yAxis: {
-                                    title: ''
+                                    title: '',
+                                    max:100
                                 },
                                 chart: {
                                     type: 'areaspline'
@@ -259,7 +260,8 @@ define(['directives', 'services'], function(directives) {
                                     categories: [Label.getContent('Total'), '', Label.getContent('Urban'), Label.getContent('Rural'), '', Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks'), '', Label.getContent('B&M Only'), Label.getContent('Online Only'), Label.getContent('Mixed')]
                                 },
                                 yAxis: {
-                                    title: ''
+                                    title: '',
+                                    max:100
                                 },
                                 chart: {
                                     type: 'areaspline'
@@ -348,7 +350,8 @@ define(['directives', 'services'], function(directives) {
                                     categories: [Label.getContent('Total'), '', Label.getContent('Urban'), Label.getContent('Rural'), '', Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Health Conscious'), Label.getContent('Impatient'), '', Label.getContent('B&M Only'), Label.getContent('Online Only'), Label.getContent('Mixed')]
                                 },
                                 yAxis: {
-                                    title: ''
+                                    title: '',
+                                    max:100
                                 },
                                 chart: {
                                     type: 'areaspline'
@@ -437,7 +440,8 @@ define(['directives', 'services'], function(directives) {
                                     categories: [Label.getContent('Total'), '', Label.getContent('Urban'), Label.getContent('Rural'), '', Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Health Conscious'), Label.getContent('Impatient'), '', Label.getContent('B&M Only'), Label.getContent('Online Only'), Label.getContent('Mixed')]
                                 },
                                 yAxis: {
-                                    title: ''
+                                    title: '',
+                                    max:100
                                 },
                                 chart: {
                                     type: 'areaspline'
