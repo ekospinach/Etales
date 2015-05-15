@@ -1196,6 +1196,14 @@ var getLabelBase = function(){
 		{id:'Internal Transfers Cost',  ENG:'Internal Transfers Cost',  CHN:'内部转移成本',  RUS:''},
 		{id:'Company Overall Financial Result',  ENG:'Overall Financial Result',  CHN:'综合财务状况',  RUS:''},
 		{id:'Overall',  ENG:'Overall',  CHN:'综合',  RUS:''},
+		
+		{id:'Social Network Trawlers',  ENG:'Social Network Trawlers',  CHN:'Social Network Trawlers',  RUS:''},
+		{id:'Social Network Trawlers Brands',  ENG:'Brands',  CHN:'Brands',  RUS:''},
+		{id:'Social Network Trawlers Players',  ENG:'Players',  CHN:'Players',  RUS:''},
+
+		{id:'Web Sentiment Index',  ENG:'Web Sentiment Index',  CHN:'Web Sentiment Index',  RUS:''},
+		{id:'Web Strength Index',  ENG:'Web Strength Index',  CHN:'Web Strength Index',  RUS:''},
+
 
 
 	]

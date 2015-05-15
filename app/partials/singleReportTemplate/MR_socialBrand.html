@@ -1,0 +1,13 @@
+<div class="panel panel-danger my-panel-danger" ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">
+            {{Label.getContent('Social Network Trawlers')}} - {{Label.getContent('Social Network Trawlers Brands')}}
+        </h3>
+    </div>
+    <div id="sentimentElecssories" style="float:left;width:410px;height:600px" ng-model='myModel' sentiment-elecssories></div>
+    <div id="strengthElecssories" style="float:left;width:410px;height:600px" ng-model='myModel' strength-elecssories></div>
+    <div style="clear:both"></div>
+    <div id="sentimentHealthBeauties" style="float:left;width:410px;height:600px" ng-model='myModel' sentiment-health-beauties></div>
+    <div id="strengthHealthBeauties" style="float:left;width:410px;height:600px" ng-model='myModel' strength-health-beauties></div>
+    <div style="clear:both;padding:1px 0"></div>
+</div>

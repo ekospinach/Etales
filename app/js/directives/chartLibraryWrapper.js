@@ -2058,6 +2058,151 @@ define(['directives'], function(directives) {
                 });
             }
         })
+
+        .directive('sentimentElecssories', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#sentimentElecssories').empty();
+                        var draw = function(){
+                            $('#sentimentElecssories').highcharts({
+                                xAxis:scope.sentimentElecssoriesConfig.options.xAxis,
+                                yAxis:scope.sentimentElecssoriesConfig.options.yAxis,
+                                tooltip:scope.sentimentElecssoriesConfig.options.tooltip,
+                                series:scope.sentimentElecssoriesConfig.series,
+                                plotOptions:scope.sentimentElecssoriesConfig.options.plotOptions,
+                                title:scope.sentimentElecssoriesConfig.title,
+                                chart: {type: 'bar'},
+                                legend: {enabled: false},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+        .directive('strengthElecssories', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#strengthElecssories').empty();
+                        var draw=function(){
+                            $('#strengthElecssories').highcharts({
+                                xAxis:scope.strengthElecssoriesConfig.options.xAxis,
+                                yAxis:scope.strengthElecssoriesConfig.options.yAxis,
+                                tooltip:scope.strengthElecssoriesConfig.options.tooltip,
+                                series:scope.strengthElecssoriesConfig.series,
+                                title:scope.strengthElecssoriesConfig.title,
+                                chart: {type: 'bar'},
+                                legend: {enabled: false},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+        .directive('sentimentHealthBeauties', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#sentimentHealthBeauties').empty();
+                        var draw = function(){
+                            $('#sentimentHealthBeauties').highcharts({
+                                xAxis:scope.sentimentHealthBeautiesConfig.options.xAxis,
+                                yAxis:scope.sentimentHealthBeautiesConfig.options.yAxis,
+                                tooltip:scope.sentimentHealthBeautiesConfig.options.tooltip,
+                                series:scope.sentimentHealthBeautiesConfig.series,
+                                plotOptions:scope.sentimentHealthBeautiesConfig.options.plotOptions,
+                                title:scope.sentimentHealthBeautiesConfig.title,
+                                chart: {type: 'bar'},
+                                legend: {enabled: false},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+        .directive('strengthHealthBeauties', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#strengthHealthBeauties').empty();
+                        var draw=function(){
+                            $('#strengthHealthBeauties').highcharts({
+                                xAxis:scope.strengthHealthBeautiesConfig.options.xAxis,
+                                yAxis:scope.strengthHealthBeautiesConfig.options.yAxis,
+                                tooltip:scope.strengthHealthBeautiesConfig.options.tooltip,
+                                series:scope.strengthHealthBeautiesConfig.series,
+                                title:scope.strengthHealthBeautiesConfig.title,
+                                chart: {type: 'bar'},
+                                legend: {enabled: false},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+
+        .directive('playerSentiment', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#playerSentiment').empty();
+                        var draw = function(){
+                            $('#playerSentiment').highcharts({
+                                xAxis:scope.playerSentimentConfig.options.xAxis,
+                                yAxis:scope.playerSentimentConfig.options.yAxis,
+                                tooltip:scope.playerSentimentConfig.options.tooltip,
+                                series:scope.playerSentimentConfig.series,
+                                plotOptions:scope.playerSentimentConfig.options.plotOptions,
+                                title:scope.playerSentimentConfig.title,
+                                chart: {type: 'bar'},
+                                legend: {enabled: false},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+        .directive('playerStrength', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#playerStrength').empty();
+                        var draw=function(){
+                            $('#playerStrength').highcharts({
+                                xAxis:scope.playerStrengthConfig.options.xAxis,
+                                yAxis:scope.playerStrengthConfig.options.yAxis,
+                                tooltip:scope.playerStrengthConfig.options.tooltip,
+                                series:scope.playerStrengthConfig.series,
+                                title:scope.playerStrengthConfig.title,
+                                chart: {type: 'bar'},
+                                legend: {enabled: false},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+
+
         .directive('wizard', function() {
             return function(scope, elem, attrs) {
                 $("#wizard").steps({
