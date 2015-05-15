@@ -167,7 +167,7 @@ define(['directives', 'services'], function(directives) {
                                 enabled: false
                             },
                             title: {
-                                text: Label.getContent('Web Sentiment Index') - Label.getContent('Elecssories')
+                                text: Label.getContent('Web Sentiment Index')
                             }
                         };
                         scope.playerStrengthConfig = {
@@ -215,7 +215,7 @@ define(['directives', 'services'], function(directives) {
                                 enabled: false
                             },
                             title: {
-                                text: Label.getContent('Web Strength Index') - Label.getContent('Elecssories')
+                                text: Label.getContent('Web Strength Index')
                             }
                         }
                     

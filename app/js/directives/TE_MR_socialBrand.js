@@ -157,7 +157,7 @@ define(['directives', 'services'], function(directives) {
                                 enabled: false
                             },
                             title: {
-                                text: Label.getContent('Web Sentiment Index') - Label.getContent('Elecssories')
+                                text: Label.getContent('Web Sentiment Index')
                             }
                         };
                         scope.strengthElecssoriesConfig = {
@@ -205,7 +205,7 @@ define(['directives', 'services'], function(directives) {
                                 enabled: false
                             },
                             title: {
-                                text: Label.getContent('Web Strength Index') - Label.getContent('Elecssories')
+                                text: Label.getContent('Web Strength Index') 
                             }
                         }
                         scope.sentimentHealthBeautiesConfig = {
@@ -245,7 +245,7 @@ define(['directives', 'services'], function(directives) {
                                 enabled: false
                             },
                             title: {
-                                text: Label.getContent('Web Sentiment Index') - Label.getContent('HealthBeauties')
+                                text: Label.getContent('Web Sentiment Index')
                             }
                         };
                         scope.strengthHealthBeautiesConfig = {
@@ -293,11 +293,12 @@ define(['directives', 'services'], function(directives) {
                                 enabled: false
                             },
                             title: {
-                                text: Label.getContent('Web Strength Index') - Label.getContent('HealthBeauties')
+                                text: Label.getContent('Web Strength Index')
                             }
                         }
                     
                         var curP = scope.selectedPeriod;
+
                         scope.myModel = 'Socail' + curP;
                         deferred.resolve({
                             msg: 'Array is ready.'
