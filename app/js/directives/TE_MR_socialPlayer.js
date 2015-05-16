@@ -150,11 +150,7 @@ define(['directives', 'services'], function(directives) {
                                     title: {
                                         text: null
                                     },
-                                    labels: {
-                                        formatter: function() {
-                                            return (Math.abs(this.value));
-                                        }
-                                    },
+                                    tickPositions: [-5,-4,-3,-2,-1,0,1,2,3,4,5],
                                     min: -5,
                                     max: 5
                                 },
