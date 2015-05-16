@@ -134,19 +134,17 @@ define(['directives', 'services'], function(directives) {
                                     }
                                 },
                                 xAxis: {
-                                    categories: scope.eleBrandNames
+                                    categories: scope.eleBrandNames,
+                                    tickLength: 0
                                 },
                                 yAxis: {
                                     title: {
                                         text: null
                                     },
-                                    labels: {
-                                        formatter: function() {
-                                            return (Math.abs(this.value));
-                                        }
-                                    },
+                                    tickPositions: [-5,-4,-3,-2,-1,0,1,2,3,4,5],
                                     min: -5,
-                                    max: 5
+                                    max: 5,
+                                    tickLength: 0
                                 },
                                 legend: {
                                     enabled: false
@@ -179,7 +177,8 @@ define(['directives', 'services'], function(directives) {
                                         formatter: function() {
                                             return ' ';
                                         }
-                                    }
+                                    },
+                                    tickLength: 0
                                 },
                                 yAxis: {
                                     title: {
@@ -191,7 +190,8 @@ define(['directives', 'services'], function(directives) {
                                         }
                                     },
                                     min: 0,
-                                    max: 1
+                                    max: 1,
+                                    tickLength: 0
                                 },
                                 legend: {
                                     enabled: false
@@ -222,19 +222,17 @@ define(['directives', 'services'], function(directives) {
                                     }
                                 },
                                 xAxis: {
-                                    categories: scope.heaBrandNames
+                                    categories: scope.heaBrandNames,
+                                    tickLength: 0
                                 },
                                 yAxis: {
                                     title: {
                                         text: null
                                     },
-                                    labels: {
-                                        formatter: function() {
-                                            return (Math.abs(this.value));
-                                        }
-                                    },
+                                    tickPositions: [-5,-4,-3,-2,-1,0,1,2,3,4,5],
                                     min: -5,
-                                    max: 5
+                                    max: 5,
+                                    tickLength: 0
                                 },
                                 legend: {
                                     enabled: false
@@ -267,7 +265,8 @@ define(['directives', 'services'], function(directives) {
                                         formatter: function() {
                                             return ' ';
                                         }
-                                    }
+                                    },
+                                    tickLength: 0
                                 },
                                 yAxis: {
                                     title: {
@@ -278,6 +277,7 @@ define(['directives', 'services'], function(directives) {
                                             return (Math.abs(this.value));
                                         }
                                     },
+                                    tickLength: 0,
                                     min: 0,
                                     max: 1
                                 },

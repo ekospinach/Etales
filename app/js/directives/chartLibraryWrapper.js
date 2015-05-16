@@ -1461,7 +1461,99 @@ define(['directives'], function(directives) {
                 })
             }
         })      
+        .directive('awarenessElecssories1', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#awarenessElecssories1').empty();
+                        var draw = function(){
+                            $('#awarenessElecssories1').highcharts({
+                                xAxis:scope.awarenessElecssories1Config.options.xAxis,
+                                yAxis:scope.awarenessElecssories1Config.options.yAxis,
+                                tooltip:scope.awarenessElecssories1Config.options.tooltip,
+                                series:scope.awarenessElecssories1Config.series,
+                                plotOptions:scope.awarenessElecssories1Config.options.plotOptions,
+                                title:scope.awarenessElecssories1Config.title,
+                                chart: {type: 'bar'},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
 
+                });
+            }
+        })
+        .directive('awarenessElecssories2', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#awarenessElecssories2').empty();
+                        var draw = function(){
+                            $('#awarenessElecssories2').highcharts({
+                                xAxis:scope.awarenessElecssories2Config.options.xAxis,
+                                yAxis:scope.awarenessElecssories2Config.options.yAxis,
+                                tooltip:scope.awarenessElecssories2Config.options.tooltip,
+                                series:scope.awarenessElecssories2Config.series,
+                                plotOptions:scope.awarenessElecssories2Config.options.plotOptions,
+                                title:scope.awarenessElecssories2Config.title,
+                                chart: {type: 'bar'},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+
+        .directive('awarenessHealthBeauties1', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#awarenessHealthBeauties1').empty();
+                        var draw = function(){
+                            $('#awarenessHealthBeauties1').highcharts({
+                                xAxis:scope.awarenessHealthBeauties1Config.options.xAxis,
+                                yAxis:scope.awarenessHealthBeauties1Config.options.yAxis,
+                                tooltip:scope.awarenessHealthBeauties1Config.options.tooltip,
+                                series:scope.awarenessHealthBeauties1Config.series,
+                                plotOptions:scope.awarenessHealthBeauties1Config.options.plotOptions,
+                                title:scope.awarenessHealthBeauties1Config.title,
+                                chart: {type: 'bar'},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
+        .directive('awarenessHealthBeauties2', function() {
+            return function(scope, elem, attrs) {
+                scope.$watch(attrs.ngModel, function(v) {
+                    if (v != undefined) {
+                        $('#awarenessHealthBeauties2').empty();
+                        var draw = function(){
+                            $('#awarenessHealthBeauties2').highcharts({
+                                xAxis:scope.awarenessHealthBeauties2Config.options.xAxis,
+                                yAxis:scope.awarenessHealthBeauties2Config.options.yAxis,
+                                tooltip:scope.awarenessHealthBeauties2Config.options.tooltip,
+                                series:scope.awarenessHealthBeauties2Config.series,
+                                plotOptions:scope.awarenessHealthBeauties2Config.options.plotOptions,
+                                title:scope.awarenessHealthBeauties2Config.title,
+                                chart: {type: 'bar'},
+                                credits: {enabled: false}
+                            })
+                        }
+                        setTimeout(draw,100);  
+                    }
+
+                });
+            }
+        })
 
 
         .directive('ruralElecssoriesBrand1', function() {
