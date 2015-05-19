@@ -23,7 +23,8 @@ app.provider('Label', function() {
                         if (item) {
                             return item.ENG;
                         } else {
-                            items.push(value);
+                            //items.push(value);
+                            console.log(item);
                             return '**NotFound**';
                         }
                         break;
@@ -44,6 +45,7 @@ app.provider('Label', function() {
                         } else return '**NotFound**';
                         break;
                     default:
+                        console.log(self.labelBase);
                         return '**NotFound**'
                 }
             },
@@ -83,6 +85,15 @@ app.factory('PlayerColor', function($rootScope) {
 
     }
 });
+app.filter('out', function() {
+    return function(item) {
+        if (item == 0 || item == 0.00) {
+            return 'Out of stack';
+        }else{
+            return item
+        }
+    }
+})
 app.factory('StaticValues', function($rootScope) {
     return {
         'player': {'s1': 0,'s2': 1,'s3': 2,'s4': 3,'r1': 0,'r2': 1,'r3': 2,'r4': 3},

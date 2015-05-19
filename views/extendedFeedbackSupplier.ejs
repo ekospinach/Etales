@@ -1,361 +1,507 @@
 <!doctype html>
 <html lang="en" ng-app="supplierExtend">
 
-    <head>
-
-        <meta charset="utf-8">
-
-        <title>eTales feedback session - Suppliers</title>
-
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-        <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
-        <link rel="stylesheet" href="bower_components/reveal.js/css/theme/beige.css" id="theme">
-
-        <!-- For syntax highlighting -->
-        <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
-
-        <style>
-            .greenLetter { color  : #39b54a;}
-            .orangeLetter { color : #ff983d;}
-            .blueLetter { color   : #0087f0;}
-            .purpleLetter { color : #8781bd;}    
-            .redLetter { color    : #f26c4f;}
-            .roseLetter { color   : #bd8cbf;}
-            .highcharts-title{
-                width: 100%;
-                text-align: center;
-                font-size: 20px;
-            }
-            .p-font{
-                font-family: "League Gothic",Impact,sans-serif;
-                text-shadow: none;
-                text-transform: uppercase; 
-                font-size: 20px;
-                line-height: 20px;
-            }
-            .line-font p{
-                font-family: "League Gothic",Impact,sans-serif;
-                font-size: 20px;
-                line-height: 20px;
-            }
-            .highcharts-subtitle{
-                width: 75%;
-            }
-            .text-left {
-                width: 33%;
-                font-size: 20px;
-                float: left;
-                margin-bottom:0px;
-                text-align: left;
-            }
-            .text-right {
-                width: 33%;
-                font-size: 20px;
-                float: left;
-                margin-bottom:0px;
-                text-align: right;
-            }
-            .text-center {
-                width: 33%;
-                font-size: 20px;
-                float: left;
-                margin-bottom:0px;
-                text-align: center;
-            }
-            table{
-                font-size: 16px;
-            }
-            .p-center{
-                text-align: center;
-                margin: 0;
-            }
-
-            .normal-left{
-                width: 500px;
-                height: 500px;
-                float: left;
-            }
-            .normal-sp-left{
-                width: 500px;
-                height: 450px;
-                float: left;
-            }
-            .normal-sp-right{
-                width: 500px;
-                height: 450px;
-                float: right;
-            }
-            .normal-right{
-                width: 500px;
-                height: 500px;
-                float: right;
-            }
-            .large-small{
-                width: 1024px;
-                height: 250px;
-            }
-            .large-normal{
-                width: 1024px;
-                height: 500px;
-            }
-            .small-small-left{
-                width: 500px;
-                height: 300px;
-                float: left;
-            }
-            .small-small-right{
-                width: 500px;
-                height: 300px;
-                float: right;
-            }
-            .clear-both{
-                clear: both;
-            }
-            .paddingtop-20{
-                padding-top: 20px;
-            }
-            .padding-0{
-                padding: 0;
-            }
-            .table-bordered .supplier1{
-                background-color: #D4DCE6;
-            }
-            .table-bordered .supplier2{
-                background-color: #D69492;
-            }
-            .table-bordered .supplier3{
-                background-color: #FFF2CC;
-            }
-            .table-bordered .retailer1{
-                background-color: #DFDAE4;
-            }
-            .table-bordered .retailer2{
-                background-color: #FCD5B5;
-            }
-            .table-title{
-                font-size: 26px;
-                padding: 8px;
-                text-align: center;
-                margin: 0;
-            }
-
-            .table-bordered {
-                border-collapse:collapse;
-                font-size: 16px;
-            }
-            .table-bordered span{
-                display: inline-block;
-                height: 19px;
-                width: 19px;
-            }
-            .table-bordered p{
-                padding: 8px;
-                margin: 0;
-                line-height: 18px;
-            }
-            .table-bordered h4{
-                font-size: 26px;
-                font-family: "League Gothic",Impact,sans-serif;
-                font-variant: 
-            }
-            .table-bordered > thead > tr > th,
-            .table-bordered > tbody > tr > th,
-            .table-bordered > tfoot > tr > th,
-            .table-bordered > thead > tr > td,
-            .table-bordered > tbody > tr > td,
-            .table-bordered > tfoot > tr > td {
-                border: 2px solid #000;
-            }
-            .table-bordered > thead > tr > th,
-            .table-bordered > thead > tr > td {
-                border-bottom-width: 2px;
-            }
-            .legend li {
-                cursor: pointer;
-                display: inline-block;
-                font-size: 16px;
-                line-height: 16px;
-                margin: 0 10px;
-            }
-            li.hidden {
-                color: #ddd !important;    
-            }
-            .circle {
-                width: 16px;
-                height: 16px;
-                -moz-border-radius: 8px;
-                -webkit-border-radius: 8px;
-                border-radius: 8px;
-                display: inherit;
-            }
-            .modal-chart {
-                width: 1024px;
-                height: 600px;
-            }
-            .fragment{
-                font-size: 25px !important;
-                font-weight: 600px !important;
-            }
-        </style>
-        <!--[if lt IE 9]>
+<head>
+    <meta charset="utf-8">
+    <title>eTales feedback session - Suppliers</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/theme/beige.css" id="theme">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+    <style>
+    .greenLetter {
+        color: #39b54a;
+    }
+    
+    .orangeLetter {
+        color: #ff983d;
+    }
+    
+    .blueLetter {
+        color: #0087f0;
+    }
+    
+    .purpleLetter {
+        color: #8781bd;
+    }
+    
+    .redLetter {
+        color: #f26c4f;
+    }
+    
+    .roseLetter {
+        color: #bd8cbf;
+    }
+    
+    .highcharts-title {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    .p-font {
+        font-family: "League Gothic", Impact, sans-serif;
+        text-shadow: none;
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 20px;
+    }
+    
+    .line-font p {
+        font-family: "League Gothic", Impact, sans-serif;
+        font-size: 20px;
+        line-height: 20px;
+    }
+    
+    .text-left {
+        text-align: left;
+    }
+    
+    .text-right {
+        text-align: right;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+    
+    .text-small {
+        font-size: 21px !important;
+        line-height: 20px !important;
+        margin-bottom: 0 !important;
+    }
+    .text-danger{
+        color: #c9302c;
+    }
+    
+    .padding-0 {
+        padding: 0;
+    }
+    
+    .table-bordered {
+        border-collapse: collapse;
+        font-size: 16px;
+    }
+    
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+        border: 2px solid #000;
+    }
+    
+    .table-bordered > thead > tr > th,
+    .table-bordered > thead > tr > td {
+        border-bottom-width: 2px;
+    }
+    </style>
+    <!--[if lt IE 9]>
             <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
         <![endif]-->
-    </head>
-    <body>
-        <div class="reveal">
-            <!-- Any section element inside of this container is displayed as a slide -->
-            <div class="slides" ng-controller='supplierExtendCtrl'>
-                <section>
-                    <h1>{{Label.getContent('Extended Supplier')}}</h1>
-                    <h3>{{Label.getContent('Seminar')}} : <%=  seminar %></h3>
-                    <h3>{{Label.getContent('Period')}} : <%= period %></h3>
-                    <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
-                </section>
+</head>
 
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides" ng-controller='supplierExtendCtrl'>
+            <section>
+                <h1>{{Label.getContent('Extended Supplier')}}</h1>
+                <h3>{{Label.getContent('Seminar')}} : <%=  seminar %></h3>
+                <h3>{{Label.getContent('Period')}} : <%= period %></h3>
+                <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
+            </section>
+            <section>
                 <section>
-                    <section>
-                        <h3><a> Brand Perception </a> - Elecssories - Urban</h3>
-                        <hr>
-
-                    </section>
-                    <section>
-                        <h3><a> Brand Perception </a> - Elecssories - Rural</h3>
-                        <hr>
-                    </section>
-                    <section>
-                        <h3><a> Brand Perception </a> - HealthBeauties - Urban</h3>
-                        <hr>
-                    </section>
-                    <section>
-                        <h3><a> Brand Perception </a> - HealthBeauties - Rural</h3>
-                        <hr>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h3><a> Net Retailer Prices </a> - Elecssories</h3>
-                        <hr>
-                    </section>
-                    <section>
-                        <h3><a> Net Retailer Prices </a> - HealthBeauties</h3>
-                        <hr>
-                    </section>
+                    <h3><a> Brand Perception </a> - Elecssories - Urban</h3>
+                    <hr>
                 </section>
                 <section>
-                    <section>
-                        <h3><a> Available Product Portfolio </a> - Elecssories</h3>
-                        <hr>
-                    </section>
-                    <section>
-                        <h3><a> Available Product Portfolio </a> - HealthBeauties</h3>
-                        <hr>
-                    </section>
+                    <h3><a> Brand Perception </a> - Elecssories - Rural</h3>
+                    <hr>
                 </section>
-
-                <section ng-controller='supplierProductAvailabilityCtrl'><!--7-->
-                    <section>
-                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('Elecssories')}}</h3>
-                        <hr>
-                        <h1 style="color:{{PlayerColor.s1}}">,nice</h1>
-                    </section>
-                    <section>
-                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('HealthBeauties')}}</h3>
-                        <hr>
-                    </section>
-                    <section>
-                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('Elecssories')}}</h3>
-                        <hr>
-                    </section>
-                    <section>
-                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('HealthBeauties')}}</h3>
-                        <hr>
-                    </section>
-                </section>
-
                 <section>
-                    <h1>{{Label.getContent('THE END')}}</h1>
-                    <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
+                    <h3><a> Brand Perception </a> - HealthBeauties - Urban</h3>
+                    <hr>
                 </section>
-            </div>
-
+                <section>
+                    <h3><a> Brand Perception </a> - HealthBeauties - Rural</h3>
+                    <hr>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3><a> Net Retailer Prices </a> - Elecssories</h3>
+                    <hr>
+                </section>
+                <section>
+                    <h3><a> Net Retailer Prices </a> - HealthBeauties</h3>
+                    <hr>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3><a> Available Product Portfolio </a> - Elecssories</h3>
+                    <hr>
+                </section>
+                <section>
+                    <h3><a> Available Product Portfolio </a> - HealthBeauties</h3>
+                    <hr>
+                </section>
+            </section>
+            <section ng-controller='supplierProductAvailabilityCtrl'>
+                <!--7-->
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Elecssories')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='product in productLists.urban_ele'>
+                                <td>
+                                    <p class="text-center text-small">{{product.name}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Elecssories')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='product in productLists.urban_hea'>
+                                <td>
+                                    <p class="text-center text-small">{{product.name}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Elecssories')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='product in productLists.rural_ele'>
+                                <td>
+                                    <p class="text-center text-small">{{product.name}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Elecssories')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory Volume')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='product in productLists.rural_hea'>
+                                <td>
+                                    <p class="text-center text-small">{{product.name}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+            <section>
+                <h1>{{Label.getContent('THE END')}}</h1>
+                <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
+            </section>
         </div>
+    </div>
+    <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/highcharts/highcharts.js"></script>
+    <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="js/utils/labelBase.js"></script>
+    <script src="js/feedBackAppControllers/directives.js"></script>
+    <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
+    <script src="js/feedBackAppControllers/supplierProductAvailabilityCtrl.js"></script>
+    <script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1024,
+        height: 768,
+        minScale: 1.0,
 
-        <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
-        <script src="bower_components/reveal.js/js/reveal.min.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/highcharts/highcharts.js"></script>
-        <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
-        <script src="bower_components/requirejs/require.js"></script>
-        <script src="bower_components/underscore/underscore.js"></script>
-        <script src="js/utils/labelBase.js"></script>
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
-        <script src="js/feedBackAppControllers/directives.js"></script>
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
 
-        <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
-        <script src="js/feedBackAppControllers/supplierProductAvailabilityCtrl.js"></script>
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: 'bower_components/reveal.js/lib/js/classList.js',
+            condition: function() {
+                return !document.body.classList;
+            }
+        }, {
+            src: 'bower_components/reveal.js/plugin/markdown/marked.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'bower_components/reveal.js/plugin/markdown/markdown.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }, {
+            src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'bower_components/reveal.js/plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }]
+    });
+    </script>
+</body>
 
-
-        <script >
-            // Full list of configuration options available here:
-            // https://github.com/hakimel/reveal.js#configuration
-            Reveal.initialize({
-                controls: true,
-                progress: true,
-                history: true,
-                center: true,
-                width: 1024,
-                height: 768,
-                minScale: 1.0,
-
-                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
-
-                // Parallax scrolling
-                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-                // parallaxBackgroundSize: '2100px 900px',
-
-                // Optional libraries used to extend on reveal.js
-                dependencies: [{
-                    src: 'bower_components/reveal.js/lib/js/classList.js',
-                    condition: function() {
-                        return !document.body.classList;
-                    }
-                }, {
-                    src: 'bower_components/reveal.js/plugin/markdown/marked.js',
-                    condition: function() {
-                        return !!document.querySelector('[data-markdown]');
-                    }
-                }, {
-                    src: 'bower_components/reveal.js/plugin/markdown/markdown.js',
-                    condition: function() {
-                        return !!document.querySelector('[data-markdown]');
-                    }
-                }, {
-                    src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
-                    async: true,
-                    callback: function() {
-                        hljs.initHighlightingOnLoad();
-                    }
-                }, {
-                    src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js',
-                    async: true,
-                    condition: function() {
-                        return !!document.body.classList;
-                    }
-                }, {
-                    src: 'bower_components/reveal.js/plugin/notes/notes.js',
-                    async: true,
-                    condition: function() {
-                        return !!document.body.classList;
-                    }
-                }]
-            });
-        </script>
-    </body>
 </html>

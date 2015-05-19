@@ -1211,7 +1211,9 @@ var getLabelBase = function(){
 
 		//supplierExtend
 		{id:'Product Availability at Stores',  ENG:'Product Availability at Stores',  CHN:'Product Availability at Stores',  RUS:''},
-
+		{id:'Shelf space allocated',  ENG:'Shelf space allocated',  CHN:'Shelf space allocated',  RUS:''},
+		{id:'Inventory Volume',  ENG:'Inventory Volume',  CHN:'Inventory Volume',  RUS:''},
+		{id:'mln units',  ENG:'mln units',  CHN:'mln units',  RUS:''},
 		//retailerExtend		
 
 	]

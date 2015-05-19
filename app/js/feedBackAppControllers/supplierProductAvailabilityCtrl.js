@@ -34,11 +34,11 @@ var supplierProductAvailabilityCtrl = function($scope, $http, PlayerColor) {
             var variantName = singleData.variantName;
             var brandName = singleData.parentBrandName;
             product.name = singleData.parentBrandName + '_' + singleData.variantName;
-            product.retailer_1_shelfSpace = singleData.shelfSpace;
+            product.retailer_1_shelfSpace = singleData.shelfSpace*100;
             product.retailer_1_inventoryVolume = singleData.inventoryVolume;
-            product.retailer_2_shelfSpace = getResult(data, variantName, brandName, 2).shelfSpace;
+            product.retailer_2_shelfSpace = getResult(data, variantName, brandName, 2).shelfSpace*100;
             product.retailer_2_inventoryVolume = getResult(data, variantName, brandName, 2).inventoryVolume;
-            product.tt_shelfSpace = getResult(data, variantName, brandName, 3).shelfSpace;
+            product.tt_shelfSpace = getResult(data, variantName, brandName, 3).shelfSpace*100;
             product.tt_inventoryVolume = getResult(data, variantName, brandName, 3).inventoryVolume;
             productList.push(product);
         });
