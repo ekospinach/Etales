@@ -27,67 +27,67 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
         }
 
         var currentShelfSpaceElecssories = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1,
             actorID: 1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2,
             actorID: 2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3,
             actorID: 3
         },
-        //{name:$scope.newLabel.getContent('Supplier')+'-4',data:[],color:PlayerColor.s4, actorID : 4},
+        //{name:$scope.Label.getContent('Supplier')+'-4',data:[],color:PlayerColor.s4, actorID : 4},
         {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1,
             actorID: 5
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2,
             actorID: 6
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3,
             actorID: 7
         });
         var currentShelfSpaceHealthBeauties = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1,
             actorID: 1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2,
             actorID: 2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3,
             actorID: 3
         },
-        //{name:$scope.newLabel.getContent('Supplier')+'-4',data:[],color:PlayerColor.s4, actorID : 4},
+        //{name:$scope.Label.getContent('Supplier')+'-4',data:[],color:PlayerColor.s4, actorID : 4},
         {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1,
             actorID: 5
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2,
             actorID: 6
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3,
             actorID: 7
@@ -120,7 +120,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
         $scope.currentShelfSpaceElecssories = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Elecssories'),
+                    text: $scope.Label.getContent('Elecssories'),
                     style: {
                         'font-size': '16px'
                     }
@@ -131,7 +131,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Shelf Space Allocation')+' (%)',
+                        text: $scope.Label.getContent('Shelf Space Allocation')+' (%)',
                         style: {
                             'font-size': '16px'
                         }
@@ -142,7 +142,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -150,7 +150,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Shelf Space Allocation')+':' + this.point.y.toFixed(2) + '%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Shelf Space Allocation')+':' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -166,7 +166,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
         $scope.currentShelfSpaceHealthBeauties = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('HealthBeauties'),
+                    text: $scope.Label.getContent('HealthBeauties'),
                     style: {
                         'font-size': '16px'
                     }
@@ -177,7 +177,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Shelf Space Allocation')+' (%)',
+                        text: $scope.Label.getContent('Shelf Space Allocation')+' (%)',
                         style: {
                             'font-size': '16px'
                         }
@@ -187,7 +187,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -195,7 +195,7 @@ var shelfSpaceCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Shelf Space Allocation')+':' + this.point.y.toFixed(2) + '%</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Shelf Space Allocation')+':' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,

@@ -25,7 +25,7 @@ app.controller('retailerExtendCtrl', ['$scope', '$http', '$q', 'Label', 'StaticV
                 if (Request['language'] != 'English')
                     language = 'CHN';
                 Label.changeLanguage(language);
-                $scope.newLabel = Label;
+                $scope.Label = Label;
             });
         }
         initPage();

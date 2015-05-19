@@ -27,234 +27,234 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         }
 
         var currentElecssoriesVolume = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
         var currentElecssoriesValue = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
         var previousElecssoriesVolume = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
         var previousElecssoriesValue = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
         var currentHealthBeautiesVolume = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
         var currentHealthBeautiesValue = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
         var previousHealthBeautiesVolume = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
         var previousHealthBeautiesValue = new Array({
-            name: $scope.newLabel.getContent('Supplier')+'-1',
+            name: $scope.Label.getContent('Supplier')+'-1',
             data: [],
             color: PlayerColor.s1
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-2',
+            name: $scope.Label.getContent('Supplier')+'-2',
             data: [],
             color: PlayerColor.s2
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-3',
+            name: $scope.Label.getContent('Supplier')+'-3',
             data: [],
             color: PlayerColor.s3
         }, {
-            name: $scope.newLabel.getContent('Supplier')+'-4',
+            name: $scope.Label.getContent('Supplier')+'-4',
             data: [],
             color: PlayerColor.s4
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-3',
+            name: $scope.Label.getContent('Retailer')+'-3',
             data: [],
             color: PlayerColor.r3
         })
@@ -305,7 +305,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.previousSalesVolumeElecssories = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Volumes'),
+                    text: $scope.Label.getContent('Sales Volumes'),
                     style: {
                         'font-size': '16px'
                     }
@@ -316,7 +316,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('units mln'),
+                        text: $scope.Label.getContent('units mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -326,7 +326,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -335,7 +335,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -351,7 +351,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.previousSalesVolumeHealthBeauties = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Volumes'),
+                    text: $scope.Label.getContent('Sales Volumes'),
                     style: {
                         'font-size': '16px'
                     }
@@ -362,7 +362,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('units mln'),
+                        text: $scope.Label.getContent('units mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -372,7 +372,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -380,7 +380,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -396,7 +396,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.previousSalesValueElecssories = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Values'),
+                    text: $scope.Label.getContent('Sales Values'),
                     style: {
                         'font-size': '16px'
                     }
@@ -407,7 +407,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('$mln'),
+                        text: $scope.Label.getContent('$mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -417,7 +417,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -426,7 +426,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -442,7 +442,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.previousSalesValueHealthBeauties = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Values'),
+                    text: $scope.Label.getContent('Sales Values'),
                     style: {
                         'font-size': '16px'
                     }
@@ -453,7 +453,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('$mln'),
+                        text: $scope.Label.getContent('$mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -463,7 +463,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: previousCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -471,7 +471,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -487,7 +487,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.currentSalesVolumeElecssories = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Volumes'),
+                    text: $scope.Label.getContent('Sales Volumes'),
                     style: {
                         'font-size': '16px'
                     }
@@ -498,7 +498,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('units mln'),
+                        text: $scope.Label.getContent('units mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -508,7 +508,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -516,7 +516,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -532,7 +532,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.currentSalesVolumeHealthBeauties = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Volumes'),
+                    text: $scope.Label.getContent('Sales Volumes'),
                     style: {
                         'font-size': '16px'
                     }
@@ -543,7 +543,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('units mln'),
+                        text: $scope.Label.getContent('units mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -553,7 +553,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -561,7 +561,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -577,7 +577,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.currentSalesValueElecssories = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Values'),
+                    text: $scope.Label.getContent('Sales Values'),
                     style: {
                         'font-size': '16px'
                     }
@@ -588,7 +588,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('$mln'),
+                        text: $scope.Label.getContent('$mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -598,7 +598,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -606,7 +606,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -622,7 +622,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
         $scope.currentSalesValueHealthBeauties = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Sales Values'),
+                    text: $scope.Label.getContent('Sales Values'),
                     style: {
                         'font-size': '16px'
                     }
@@ -633,7 +633,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('$mln'),
+                        text: $scope.Label.getContent('$mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -643,7 +643,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -651,7 +651,7 @@ var salesCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,

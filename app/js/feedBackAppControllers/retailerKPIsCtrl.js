@@ -33,131 +33,131 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
         var salesValueElecssories = [];
 
         var rotationIndexSalesValueElecssories = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var rotationIndexSalesValueHealthBeauties = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var rotationIndexSalesVolumeElecssories = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var rotationIndexSalesVolumeHealthBeauties = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
 
         var previousUrbanProfitabilityIndex = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var currentUrbanProfitabilityIndex = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var previousRuralProfitabilityIndex = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var currentRuralProfitabilityIndex = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
 
         var ruralStockCover = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var urbanStockCover = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var EStockCover = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var HStockCover = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
 
         var ruralShareOfShoppers = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
         var urbanShareOfShoppers = new Array({
-            name: $scope.newLabel.getContent('Retailer')+'-1',
+            name: $scope.Label.getContent('Retailer')+'-1',
             data: [],
             color: PlayerColor.r1
         }, {
-            name: $scope.newLabel.getContent('Retailer')+'-2',
+            name: $scope.Label.getContent('Retailer')+'-2',
             data: [],
             color: PlayerColor.r2
         });
@@ -288,7 +288,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: showCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -296,7 +296,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('$mln'),
+                        text: $scope.Label.getContent('$mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -309,7 +309,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -326,13 +326,13 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
             },
             series: rotationIndexSalesValueElecssories,
             title: {
-                text: $scope.newLabel.getContent('Elecssories')+'-'+$scope.newLabel.getContent('Sales Values'),
+                text: $scope.Label.getContent('Elecssories')+'-'+$scope.Label.getContent('Sales Values'),
                 style: {
                     'font-size': '16px'
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.newLabel.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.newLabel.getContent('Rural Market')+'</p>',
+                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.Label.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.Label.getContent('Rural Market')+'</p>',
                 useHTML: true,
 
             },
@@ -346,7 +346,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: showCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -354,7 +354,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('$mln'),
+                        text: $scope.Label.getContent('$mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -367,7 +367,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('$mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -384,13 +384,13 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
             },
             series: rotationIndexSalesValueHealthBeauties,
             title: {
-                text: $scope.newLabel.getContent('HealthBeauties')+'-'+$scope.newLabel.getContent('Sales Values'),
+                text: $scope.Label.getContent('HealthBeauties')+'-'+$scope.Label.getContent('Sales Values'),
                 style: {
                     'font-size': '16px'
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.newLabel.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.newLabel.getContent('Rural Market')+'</p>',
+                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.Label.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.Label.getContent('Rural Market')+'</p>',
                 useHTML: true,
 
             },
@@ -404,7 +404,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: showCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -412,7 +412,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('units mln'),
+                        text: $scope.Label.getContent('units mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -425,7 +425,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -442,13 +442,13 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
             },
             series: rotationIndexSalesVolumeElecssories,
             title: {
-                text: $scope.newLabel.getContent('Elecssories')+'-'+$scope.newLabel.getContent('Sales Volume'),
+                text: $scope.Label.getContent('Elecssories')+'-'+$scope.Label.getContent('Sales Volume'),
                 style: {
                     'font-size': '16px'
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.newLabel.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.newLabel.getContent('Rural Market')+'</p>',
+                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.Label.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.Label.getContent('Rural Market')+'</p>',
                 useHTML: true,
 
             },
@@ -462,7 +462,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: showCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -470,7 +470,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('units mln'),
+                        text: $scope.Label.getContent('units mln'),
                         style: {
                             'font-size': '16px'
                         }
@@ -483,7 +483,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('units mln')+':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -500,13 +500,13 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
             },
             series: rotationIndexSalesVolumeHealthBeauties,
             title: {
-                text: $scope.newLabel.getContent('HealthBeauties')+'-'+$scope.newLabel.getContent('Sales Volume'),
+                text: $scope.Label.getContent('HealthBeauties')+'-'+$scope.Label.getContent('Sales Volume'),
                 style: {
                     'font-size': '16px'
                 }
             },
             subtitle: {
-                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.newLabel.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.newLabel.getContent('Rural Market')+'</p>',
+                text: '<p style="font-size:20px;float:left;" class="text-left">'+$scope.Label.getContent('Urban Market')+'</p><p style="font-size:20px;float:right;" class="text-right">'+$scope.Label.getContent('Rural Market')+'</p>',
                 useHTML: true,
 
             },
@@ -519,7 +519,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
         $scope.previousRuralProfitabilityIndex = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Rural Market'),
+                    text: $scope.Label.getContent('Rural Market'),
                     style: {
                         'font-size': '16px'
                     }
@@ -530,7 +530,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Profitability Index')+'('+$scope.newLabel.getContent('$mln')+')',
+                        text: $scope.Label.getContent('Profitability Index')+'('+$scope.Label.getContent('$mln')+')',
                         style: {
                             'font-size': '16px'
                         }
@@ -540,7 +540,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -548,7 +548,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.newLabel.getContent('$mln')+')</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.Label.getContent('$mln')+')</p>';
                         return s;
                     },
                     shared: false,
@@ -564,7 +564,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
         $scope.previousUrbanProfitabilityIndex = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Urban Market'),
+                    text: $scope.Label.getContent('Urban Market'),
                     style: {
                         'font-size': '16px'
                     }
@@ -576,7 +576,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Profitability Index')+'('+$scope.newLabel.getContent('$mln')+')',
+                        text: $scope.Label.getContent('Profitability Index')+'('+$scope.Label.getContent('$mln')+')',
                         style: {
                             'font-size': '16px'
                         }
@@ -586,7 +586,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -594,7 +594,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.newLabel.getContent('$mln')+')</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.Label.getContent('$mln')+')</p>';
                         return s;
                     },
                     shared: false,
@@ -610,7 +610,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
         $scope.currentRuralProfitabilityIndex = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Rural Market'),
+                    text: $scope.Label.getContent('Rural Market'),
                     style: {
                         'font-size': '16px'
                     }
@@ -622,7 +622,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Profitability Index')+'('+$scope.newLabel.getContent('$mln')+')',
+                        text: $scope.Label.getContent('Profitability Index')+'('+$scope.Label.getContent('$mln')+')',
                         style: {
                             'font-size': '16px'
                         }
@@ -632,7 +632,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -640,7 +640,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.newLabel.getContent('$mln')+')</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.Label.getContent('$mln')+')</p>';
                         return s;
                     },
                     shared: false,
@@ -656,7 +656,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
         $scope.currentUrbanProfitabilityIndex = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Urban Market'),
+                    text: $scope.Label.getContent('Urban Market'),
                     style: {
                         'font-size': '16px'
                     }
@@ -668,7 +668,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Profitability Index')+'('+$scope.newLabel.getContent('$mln')+')',
+                        text: $scope.Label.getContent('Profitability Index')+'('+$scope.Label.getContent('$mln')+')',
                         style: {
                             'font-size': '16px'
                         }
@@ -678,7 +678,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -686,7 +686,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.newLabel.getContent('$mln')+')</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Profitability Index')+':' + this.point.y.toFixed(2) + '('+$scope.Label.getContent('$mln')+')</p>';
                         return s;
                     },
                     shared: false,
@@ -703,7 +703,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
         $scope.EStockCover = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Elecssories'),
+                    text: $scope.Label.getContent('Elecssories'),
                     style: {
                         'font-size': '16px'
                     }
@@ -715,7 +715,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Stock Cover')+'('+$scope.newLabel.getContent('in Weeks')+')',
+                        text: $scope.Label.getContent('Stock Cover')+'('+$scope.Label.getContent('in Weeks')+')',
                         style: {
                             'font-size': '16px'
                         }
@@ -725,7 +725,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -733,7 +733,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Stock Cover')+':' + this.point.y.toFixed(2) + '('+$scope.newLabel.getContent('in Weeks')+')</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Stock Cover')+':' + this.point.y.toFixed(2) + '('+$scope.Label.getContent('in Weeks')+')</p>';
                         return s;
                     },
                     shared: false,
@@ -749,7 +749,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
         $scope.HStockCover = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('HealthBeauties'),
+                    text: $scope.Label.getContent('HealthBeauties'),
                     style: {
                         'font-size': '16px'
                     }
@@ -761,7 +761,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.newLabel.getContent('Stock Cover')+'('+$scope.newLabel.getContent('in Weeks')+')',
+                        text: $scope.Label.getContent('Stock Cover')+'('+$scope.Label.getContent('in Weeks')+')',
                         style: {
                             'font-size': '16px'
                         }
@@ -771,7 +771,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 xAxis: {
                     categories: currentCategories,
                     title: {
-                        text: $scope.newLabel.getContent('Period'),
+                        text: $scope.Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -779,7 +779,7 @@ var retailerKPIsCtrl = function($scope, $http, PlayerColor) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.newLabel.getContent('Stock Cover')+':' + this.point.y.toFixed(2) + '('+$scope.newLabel.getContent('in Weeks')+')</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Period')+':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">'+$scope.Label.getContent('Stock Cover')+':' + this.point.y.toFixed(2) + '('+$scope.Label.getContent('in Weeks')+')</p>';
                         return s;
                     },
                     shared: false,

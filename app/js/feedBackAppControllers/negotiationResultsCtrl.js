@@ -18,7 +18,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
         $scope.supplierNegotiationResults = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Breakdown of Volume Discounts given by Suppliers'),
+                    text: $scope.Label.getContent('Breakdown of Volume Discounts given by Suppliers'),
                     style: {
                         'font-size': '16px'
                     }
@@ -32,7 +32,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.newLabel.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.Label.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -44,7 +44,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                             distance: -100,
                             rotation: 0,
                             color: 'white',
-                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.newLabel.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.Label.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
                             useHTML: true
                         },
                         showInLegend: true
@@ -57,15 +57,15 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
             series: [{
                 type: 'pie',
                 data: [{
-                    'name': $scope.newLabel.getContent('Supplier')+'-1',
+                    'name': $scope.Label.getContent('Supplier')+'-1',
                     y: $scope.feedBack.f_DiscountsValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s1].value,
                     color: PlayerColor.s1
                 }, {
-                    'name': $scope.newLabel.getContent('Supplier')+'-2',
+                    'name': $scope.Label.getContent('Supplier')+'-2',
                     y: $scope.feedBack.f_DiscountsValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s2].value,
                     color: PlayerColor.s2
                 }, {
-                    'name': $scope.newLabel.getContent('Supplier')+'-3',
+                    'name': $scope.Label.getContent('Supplier')+'-3',
                     y: $scope.feedBack.f_DiscountsValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s3].value,
                     color: PlayerColor.s3
                 }]
@@ -78,7 +78,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
         $scope.retailerNegotiationResults = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Breakdown of Volume Discounts given by Retailers'),
+                    text: $scope.Label.getContent('Breakdown of Volume Discounts given by Retailers'),
                     style: {
                         'font-size': '16px'
                     }
@@ -92,7 +92,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.newLabel.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.Label.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -104,7 +104,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                             distance: -100,
                             rotation: 0,
                             color: 'white',
-                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.newLabel.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.Label.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
                             useHTML: true
                         },
                         showInLegend: true
@@ -117,11 +117,11 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
             series: [{
                 type: 'pie',
                 data: [{
-                    'name': $scope.newLabel.getContent('Retailer')+'-1',
+                    'name': $scope.Label.getContent('Retailer')+'-1',
                     y: $scope.feedBack.f_DiscountsValue[StaticValues.category.total].fcni_RetailersBenefits[StaticValues.player.r1].value,
                     color: PlayerColor.r1
                 }, {
-                    'name': $scope.newLabel.getContent('Retailer')+'-2',
+                    'name': $scope.Label.getContent('Retailer')+'-2',
                     y: $scope.feedBack.f_DiscountsValue[StaticValues.category.total].fcni_RetailersBenefits[StaticValues.player.r2].value,
                     color: PlayerColor.r2
                 }]
@@ -132,7 +132,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
         $scope.supplierPerformanceBonuses = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Breakdown of Performance Bonuses given by Suppliers'),
+                    text: $scope.Label.getContent('Breakdown of Performance Bonuses given by Suppliers'),
                     style: {
                         'font-size': '16px'
                     }
@@ -146,7 +146,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.newLabel.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.Label.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -158,7 +158,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                             distance: -100,
                             rotation: 0,
                             color: 'white',
-                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.newLabel.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.Label.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
                             useHTML: true
                         },
                         showInLegend: true
@@ -171,15 +171,15 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
             series: [{
                 type: 'pie',
                 data: [{
-                    'name': $scope.newLabel.getContent('Supplier')+'-1',
+                    'name': $scope.Label.getContent('Supplier')+'-1',
                     y: $scope.feedBack.f_PerformanceBonusesValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s1].value,
                     color: PlayerColor.s1
                 }, {
-                    'name': $scope.newLabel.getContent('Supplier')+'-2',
+                    'name': $scope.Label.getContent('Supplier')+'-2',
                     y: $scope.feedBack.f_PerformanceBonusesValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s2].value,
                     color: PlayerColor.s2
                 }, {
-                    'name': $scope.newLabel.getContent('Supplier')+'-3',
+                    'name': $scope.Label.getContent('Supplier')+'-3',
                     y: $scope.feedBack.f_PerformanceBonusesValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s3].value,
                     color: PlayerColor.s3
                 }]
@@ -192,7 +192,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
         $scope.retailerPerformanceBonuses = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Breakdown of Performance Bonuses received by Retailers'),
+                    text: $scope.Label.getContent('Breakdown of Performance Bonuses received by Retailers'),
                     style: {
                         'font-size': '16px'
                     }
@@ -206,7 +206,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.newLabel.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.Label.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -218,7 +218,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                             distance: -100,
                             rotation: 0,
                             color: 'white',
-                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.newLabel.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.Label.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
                             useHTML: true
                         },
                         showInLegend: true
@@ -231,11 +231,11 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
             series: [{
                 type: 'pie',
                 data: [{
-                    'name': $scope.newLabel.getContent('Retailer')+'-1',
+                    'name': $scope.Label.getContent('Retailer')+'-1',
                     y: $scope.feedBack.f_PerformanceBonusesValue[StaticValues.category.total].fcni_RetailersBenefits[StaticValues.player.r1].value,
                     color: PlayerColor.r1
                 }, {
-                    'name': $scope.newLabel.getContent('Retailer')+'-2',
+                    'name': $scope.Label.getContent('Retailer')+'-2',
                     y: $scope.feedBack.f_PerformanceBonusesValue[StaticValues.category.total].fcni_RetailersBenefits[StaticValues.player.r2].value,
                     color: PlayerColor.r2
                 }]
@@ -246,7 +246,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
         $scope.supplierOtherCompensation = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Breakdown of Other Compensation given by Suppliers'),
+                    text: $scope.Label.getContent('Breakdown of Other Compensation given by Suppliers'),
                     style: {
                         'font-size': '16px'
                     }
@@ -261,7 +261,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.newLabel.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.Label.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -273,7 +273,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                             distance: -100,
                             rotation: 0,
                             color: 'white',
-                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.newLabel.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.Label.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
                             useHTML: true
                         },
                         showInLegend: true
@@ -286,15 +286,15 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
             series: [{
                 type: 'pie',
                 data: [{
-                    'name': $scope.newLabel.getContent('Supplier')+'-1',
+                    'name': $scope.Label.getContent('Supplier')+'-1',
                     y: $scope.feedBack.f_OtherCompensationsValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s1].value,
                     color: PlayerColor.s1
                 }, {
-                    'name': $scope.newLabel.getContent('Supplier')+'-2',
+                    'name': $scope.Label.getContent('Supplier')+'-2',
                     y: $scope.feedBack.f_OtherCompensationsValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s2].value,
                     color: PlayerColor.s2
                 }, {
-                    'name': $scope.newLabel.getContent('Supplier')+'-3',
+                    'name': $scope.Label.getContent('Supplier')+'-3',
                     y: $scope.feedBack.f_OtherCompensationsValue[StaticValues.category.total].fcni_SuppliersCost[StaticValues.player.s3].value,
                     color: PlayerColor.s3
                 }]
@@ -307,7 +307,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
         $scope.retailerOtherCompensation = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Breakdown of Other Compensation received by Retailers'),
+                    text: $scope.Label.getContent('Breakdown of Other Compensation received by Retailers'),
                     style: {
                         'font-size': '16px'
                     }
@@ -322,7 +322,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.newLabel.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.Label.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -334,7 +334,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                             distance: -100,
                             rotation: 0,
                             color: 'white',
-                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.newLabel.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.Label.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
                             useHTML: true
                         },
                         showInLegend: true
@@ -347,11 +347,11 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
             series: [{
                 type: 'pie',
                 data: [{
-                    'name': $scope.newLabel.getContent('Retailer')+'-1',
+                    'name': $scope.Label.getContent('Retailer')+'-1',
                     y: $scope.feedBack.f_OtherCompensationsValue[StaticValues.category.total].fcni_RetailersBenefits[StaticValues.player.r1].value,
                     color: PlayerColor.r1
                 }, {
-                    'name': $scope.newLabel.getContent('Retailer')+'-2',
+                    'name': $scope.Label.getContent('Retailer')+'-2',
                     y: $scope.feedBack.f_OtherCompensationsValue[StaticValues.category.total].fcni_RetailersBenefits[StaticValues.player.r2].value,
                     color: PlayerColor.r2
                 }]
@@ -367,14 +367,14 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 if (singleData.topDays == 0) {
                     if (singleData.value != 0) {
                         termsofPayment.push({
-                            name: $scope.newLabel.getContent('COD'),
+                            name: $scope.Label.getContent('COD'),
                             y: singleData.value
                         })
                     }
                 } else {
                     if (singleData.value != 0) {
                         termsofPayment.push({
-                            name: singleData.topDays * 15 + ' ' + $scope.newLabel.getContent('Days'),
+                            name: singleData.topDays * 15 + ' ' + $scope.Label.getContent('Days'),
                             y: singleData.value
                         })
                     }
@@ -386,7 +386,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
         $scope.termsofPayment = {
             options: {
                 title: {
-                    text: $scope.newLabel.getContent('Transaction Values by Terms of Payment'),
+                    text: $scope.Label.getContent('Transaction Values by Terms of Payment'),
                     style: {
                         'font-size': '16px'
                     }
@@ -402,7 +402,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.newLabel.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.point.y.toFixed(2) + $scope.Label.getContent('$mln')+'</p>' + '<p>' + this.point.percentage.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -414,7 +414,7 @@ var negotiationResultsCtrl = function($scope, $http, $q, StaticValues, PlayerCol
                             distance: -80,
                             rotation: 0,
                             color: 'white',
-                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.newLabel.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
+                            format: '<p style="font-size:16px">{point.name}</br>' + '{point.y:.2f}'+ $scope.Label.getContent('$mln')+'</br>' + '{point.percentage:.2f}%</br></p>',
                             useHTML: true
                         },
                         showInLegend: true
