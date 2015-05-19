@@ -467,6 +467,13 @@ function runPromiseChain(io, options, res){
 		}).then(function(result){ 
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 	            
 
+			options.cgiPath = conf.cgi.path_BG_extendedFeedbackSlides;
+			options.schemaName = 'BG_extendedFeedbackSlides';
+			return require('./models/BG_extendedFeedbackSlides.js').addInfos(options);							
+		}).then(function(result){ 
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 	            
+
+
 	       	//import background data 
 			options.cgiPath = conf.cgi.path_companyHistoryInfo;
 			options.schemaName = 'companyHistoryInfo';
@@ -912,6 +919,13 @@ function runPromiseChainWithOutImportingNewDecisions(io, options, res){
 			return require('./models/BG_feedbackSlides.js').addInfos(options);							
 		}).then(function(result){ 
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 	            
+
+			options.cgiPath = conf.cgi.path_BG_extendedFeedbackSlides;
+			options.schemaName = 'BG_extendedFeedbackSlides';
+			return require('./models/BG_extendedFeedbackSlides.js').addInfos(options);							
+		}).then(function(result){ 
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 	            
+
 
 	        //deal with promises chain 
 	        res.send(200, 'Run period start from ' + options.startFrom + ' to ' + options.endWith + ' done.');

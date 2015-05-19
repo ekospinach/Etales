@@ -62,6 +62,7 @@ module.exports = function(){
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  
 				  path_BG_feedbackSlides              : '/cgi-bin/BG_feedbackSlides.exe',
+				  path_BG_extendedFeedbackSlides              : '/cgi-bin/BG_extendedFeedbackSlides.exe',
 
    			  	  uploadFileAbsDir                    : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
 				},
@@ -132,6 +133,8 @@ module.exports = function(){
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  
 				  path_BG_feedbackSlides              : '/cgi-bin/BG_feedbackSlides.exe',
 
+				  path_BG_extendedFeedbackSlides              : '/cgi-bin/BG_extendedFeedbackSlides.exe',
+
 
 				},
 				server : {
@@ -201,6 +204,8 @@ module.exports = function(){
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',
 				  path_BG_feedbackSlides              : '/cgi-bin/BG_feedbackSlides.exe',
 				  
+				  path_BG_extendedFeedbackSlides              : '/cgi-bin/BG_extendedFeedbackSlides.exe',
+
 
 				},
 				server : {
@@ -268,6 +273,9 @@ module.exports = function(){
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
 				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  
 				  path_BG_feedbackSlides              : '/cgi-bin/BG_feedbackSlides.exe',
+
+				  path_BG_extendedFeedbackSlides              : '/cgi-bin/BG_extendedFeedbackSlides.exe',
+				  
 				},
 				server : {
 				  port : 8000

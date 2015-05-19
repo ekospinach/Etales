@@ -425,6 +425,7 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 		         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 			
+
 				options.cgiPath = conf.cgi.path_BG_feedbackSlides;
 				options.schemaName = 'BG_feedbackSlides';
 				//return require('./models/companyHistoryInfo.js').addInfos(options);
@@ -432,6 +433,14 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 			
+				options.cgiPath = conf.cgi.path_BG_extendedFeedbackSlides;
+				options.schemaName = 'BG_extendedFeedbackSlides';
+				//return require('./models/companyHistoryInfo.js').addInfos(options);
+				return require('./models/BG_extendedFeedbackSlides.js').addInfos(options);							
+			}).then(function(result){ 
+		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
+
+
 		    //import Supplier decision 
 		        if(options.isKeepExistedPeriod1Decision){					        	
 		        	options.endWith = 0;
