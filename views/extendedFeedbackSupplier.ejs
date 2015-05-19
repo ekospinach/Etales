@@ -153,7 +153,7 @@
                     <hr>
                 </section>
             </section>
-            <section ng-controller='supplierProductAvailabilityCtrl'>
+            <section ng-controller='productAvailabilityCtrl'>
                 <!--7-->
                 <section>
                     <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('Elecssories')}}</h3>
@@ -242,7 +242,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <p class="text-center text-small">{{Label.getContent('Elecssories')}}</p>
+                                    <p class="text-center text-small">{{Label.getContent('HealthBeauties')}}</p>
                                 </th>
                                 <th>
                                     <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
@@ -378,7 +378,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <p class="text-center text-small">{{Label.getContent('Elecssories')}}</p>
+                                    <p class="text-center text-small">{{Label.getContent('HealthBeauties')}}</p>
                                 </th>
                                 <th>
                                     <p class="text-center text-small">{{Label.getContent('Shelf space allocated')}}</p>
@@ -427,6 +427,142 @@
                         </tbody>
                     </table>
                 </section>
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Online')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Elecssories')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Visibility')}} ({{Label.getContent('$mln')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Visibility')}} ({{Label.getContent('$mln')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Visibility')}} ({{Label.getContent('$mln')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='product in productLists.online_ele'>
+                                <td>
+                                    <p class="text-center text-small">{{product.name}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">{{product.supplier_1_visibility | number:2 | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.supplier_1_inventoryVolume==0}">{{product.supplier_1_inventoryVolume | number:2 | out | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">{{product.supplier_2_visibility | number:2 | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.supplier_2_inventoryVolume==0}">{{product.supplier_2_inventoryVolume | number:2 | out | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">{{product.supplier_3_visibility | number:2 | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.supplier_3_inventoryVolume==0}">{{product.supplier_3_inventoryVolume | number:2 | out | minus}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Online')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('HealthBeauties')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Visibility')}} ({{Label.getContent('$mln')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Visibility')}} ({{Label.getContent('$mln')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Visibility')}} ({{Label.getContent('$mln')}})</p>
+                                </th>
+                                <th>
+                                    <p class="text-center text-small">{{Label.getContent('Inventory')}} ({{Label.getContent('mln units')}})</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='product in productLists.online_hea'>
+                                <td>
+                                    <p class="text-center text-small">{{product.name}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">{{product.supplier_1_visibility | number:2 | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.supplier_1_inventoryVolume==0}">{{product.supplier_1_inventoryVolume | number:2 | out | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">{{product.supplier_2_visibility | number:2 | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.supplier_2_inventoryVolume==0}">{{product.supplier_2_inventoryVolume | number:2 | out | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">{{product.supplier_3_visibility | number:2 | minus}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small" ng-class="{'text-danger':product.supplier_3_inventoryVolume==0}">{{product.supplier_3_inventoryVolume | number:2 | out | minus}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
             </section>
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
@@ -445,7 +581,7 @@
     <script src="js/utils/labelBase.js"></script>
     <script src="js/feedBackAppControllers/directives.js"></script>
     <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
-    <script src="js/feedBackAppControllers/supplierProductAvailabilityCtrl.js"></script>
+    <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration

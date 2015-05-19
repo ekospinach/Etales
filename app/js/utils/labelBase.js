@@ -1213,6 +1213,8 @@ var getLabelBase = function(){
 		{id:'Product Availability at Stores',  ENG:'Product Availability at Stores',  CHN:'Product Availability at Stores',  RUS:''},
 		{id:'Shelf space allocated',  ENG:'Shelf space allocated',  CHN:'Shelf space allocated',  RUS:''},
 		{id:'Inventory Volume',  ENG:'Inventory Volume',  CHN:'Inventory Volume',  RUS:''},
+		{id:'Inventory',  ENG:'Inventory',  CHN:'Inventory',  RUS:''},
+		{id:'units mln',  ENG:'units mln',  CHN:'units mln',  RUS:''},
 		{id:'mln units',  ENG:'mln units',  CHN:'mln units',  RUS:''},
 		//retailerExtend		
 

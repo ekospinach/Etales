@@ -15,17 +15,18 @@ app.controller('retailerExtendCtrl', ['$scope', '$http', '$q', 'Label', 'StaticV
         }
         var initPage = function() {
             var Request = GetRequest();
-            var url = '/getFeedBack/' + Request['seminar'] + '/' + Request['period'];
+            var url = '/getExtendedFeedback/' + Request['seminar'] + '/' + Request['period'];
             $http({
                 method: 'GET',
                 url: url
             }).then(function(data) {
-                $scope.feedBack = data.data;
+                $scope.feedback = data.data;
                 var language = 'ENG';
                 if (Request['language'] != 'English')
                     language = 'CHN';
                 Label.changeLanguage(language);
                 $scope.Label = Label;
+                $scope.PlayerColor= PlayerColor;
             });
         }
         initPage();

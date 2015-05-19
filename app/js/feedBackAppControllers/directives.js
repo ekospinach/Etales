@@ -90,7 +90,16 @@ app.filter('out', function() {
         if (item == 0 || item == 0.00) {
             return 'Out of stack';
         }else{
-            return item
+            return item;
+        }
+    }
+});
+app.filter('minus', function() {
+    return function(item) {
+        if (item == -99 || item == -99.00) {
+            return '-';
+        }else{
+            return item;
         }
     }
 })
