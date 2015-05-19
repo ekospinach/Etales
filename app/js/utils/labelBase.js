@@ -1150,6 +1150,11 @@ var getLabelBase = function(){
 		{id:'Choose Language',  ENG:'Choose Language',  CHN:'选择语言',  RUS:''},
 		{id:'English',  ENG:'English',  CHN:'英文',  RUS:''},
 		{id:'Chinese',  ENG:'Chinese',  CHN:'中文',  RUS:''},
+		{id:'Choose Feedback Type',  ENG:'Choose Feedback Type',  CHN:'选择类型',  RUS:''},
+		{id:'Normal Feedback',  ENG:'Feedback Session',  CHN:'普通',  RUS:''},
+		{id:'Extended Supplier',  ENG:'Supplier Extended',  CHN:'生产商拓展',  RUS:''},
+		{id:'Extended Retailer',  ENG:'Retailer Extended',  CHN:'零售商商拓展',  RUS:''},
+
 		{id:'Feedback session',  ENG:'Feedback session',  CHN:'Feedback session中文',  RUS:''},
 		{id:'Designed by',  ENG:'Designed by',  CHN:'设计',  RUS:''},
 		{id:'HCD Learning',  ENG:'HCD Learning',  CHN:'合得教育',  RUS:''},
@@ -1204,7 +1209,10 @@ var getLabelBase = function(){
 		{id:'Web Sentiment Index',  ENG:'Web Sentiment Index',  CHN:'Web Sentiment Index',  RUS:''},
 		{id:'Web Strength Index',  ENG:'Web Strength Index',  CHN:'Web Strength Index',  RUS:''},
 
+		//supplierExtend
+		{id:'Product Availability at Stores',  ENG:'Product Availability at Stores',  CHN:'Product Availability at Stores',  RUS:''},
 
+		//retailerExtend		
 
 	]
 }

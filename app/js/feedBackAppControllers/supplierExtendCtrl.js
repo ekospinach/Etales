@@ -1,5 +1,5 @@
-var app = angular.module('feedback', ['highcharts-ng', 'directive']);
-app.controller('feedBackCtrl', ['$scope', '$http', '$q', 'Label', 'StaticValues', 'PlayerColor',
+var app = angular.module('supplierExtend', ['highcharts-ng', 'directive']);
+app.controller('supplierExtendCtrl', ['$scope', '$http', '$q', 'Label', 'StaticValues', 'PlayerColor',
     function($scope, $http, $q, Label, StaticValues, PlayerColor) {
         function GetRequest() {
             var url = document.location.search; //获取url中"?"符后的字串
@@ -15,17 +15,18 @@ app.controller('feedBackCtrl', ['$scope', '$http', '$q', 'Label', 'StaticValues'
         }
         var initPage = function() {
             var Request = GetRequest();
-            var url = '/getFeedBack/' + Request['seminar'] + '/' + Request['period'];
+            var url = '/getExtendedFeedback/' + Request['seminar'] + '/' + Request['period'];
             $http({
                 method: 'GET',
                 url: url
             }).then(function(data) {
-                $scope.feedBack = data.data;
+                $scope.feedback = data.data;
                 var language = 'ENG';
                 if (Request['language'] != 'English')
                     language = 'CHN';
                 Label.changeLanguage(language);
                 $scope.Label = Label;
+                $scope.PlayerColor= PlayerColor;
             });
         }
         initPage();

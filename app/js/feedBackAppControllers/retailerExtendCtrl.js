@@ -1,5 +1,5 @@
-var app = angular.module('feedback', ['highcharts-ng', 'directive']);
-app.controller('feedBackCtrl', ['$scope', '$http', '$q', 'Label', 'StaticValues', 'PlayerColor',
+var app = angular.module('retailerExtend', ['highcharts-ng', 'directive']);
+app.controller('retailerExtendCtrl', ['$scope', '$http', '$q', 'Label', 'StaticValues', 'PlayerColor',
     function($scope, $http, $q, Label, StaticValues, PlayerColor) {
         function GetRequest() {
             var url = document.location.search; //获取url中"?"符后的字串
@@ -25,7 +25,7 @@ app.controller('feedBackCtrl', ['$scope', '$http', '$q', 'Label', 'StaticValues'
                 if (Request['language'] != 'English')
                     language = 'CHN';
                 Label.changeLanguage(language);
-                $scope.Label = Label;
+                $scope.newLabel = Label;
             });
         }
         initPage();

@@ -62,9 +62,25 @@ var path    = require('path'),
 	app.use(express.static(path.join(__dirname, '/app')));
 	app.use(express.logger());
 
-	app.get('/feedbackENG', function(req, res, next){
-		res.render('feedbackENG.ejs', {seminar : req.query.seminar, 
-									   period : req.query.period});
+	app.get('/feedbackENG', function(req, res, next) {
+	    res.render('feedbackENG.ejs', {
+	        seminar: req.query.seminar,
+	        period: req.query.period
+	    });
+	});
+
+	app.get('/extendedFeedbackSupplier', function(req, res, next) {
+	    res.render('extendedFeedbackSupplier.ejs', {
+	        seminar: req.query.seminar,
+	        period: req.query.period
+	    });
+	});
+
+	app.get('/extendedFeedbackRetailer', function(req, res, next) {
+	    res.render('extendedFeedbackRetailer.ejs', {
+	        seminar: req.query.seminar,
+	        period: req.query.period
+	    });
 	});
 
 	//user authenticate

@@ -51,5 +51,6 @@ module.exports = function(app, io){
 
 	//bg_feedback
 	app.get('/getFeedBack/:seminar/:period',							  require('./../api/models/BG_feedbackSlides.js').getFeedBack);
+	app.get('/getExtendedFeedback/:seminar/:period',					  require('./../api/models/BG_extendedFeedbackSlides.js').getFeedBack);
 }
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="feedback">
+<html lang="en" ng-app="supplierExtend">
 
     <head>
 
@@ -208,18 +208,19 @@
     <body>
         <div class="reveal">
             <!-- Any section element inside of this container is displayed as a slide -->
-            <div class="slides" ng-controller='feedBackCtrl'>
+            <div class="slides" ng-controller='supplierExtendCtrl'>
                 <section>
-                    <h1>{{newLabel.getContent('Feedback session')}}</h1>
-                    <h3>{{newLabel.getContent('Seminar')}} : <%=  seminar %></h3>
-                    <h3>{{newLabel.getContent('Period')}} : <%= period %></h3>
-                    <small>{{newLabel.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{newLabel.getContent('HCD Learning')}}</a></small>
+                    <h1>{{Label.getContent('Extended Supplier')}}</h1>
+                    <h3>{{Label.getContent('Seminar')}} : <%=  seminar %></h3>
+                    <h3>{{Label.getContent('Period')}} : <%= period %></h3>
+                    <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
                 </section>
 
                 <section>
                     <section>
                         <h3><a> Brand Perception </a> - Elecssories - Urban</h3>
                         <hr>
+
                     </section>
                     <section>
                         <h3><a> Brand Perception </a> - Elecssories - Rural</h3>
@@ -256,9 +257,29 @@
                     </section>
                 </section>
 
+                <section ng-controller='supplierProductAvailabilityCtrl'><!--7-->
+                    <section>
+                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('Elecssories')}}</h3>
+                        <hr>
+                        <h1 style="color:{{PlayerColor.s1}}">,nice</h1>
+                    </section>
+                    <section>
+                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                        <hr>
+                    </section>
+                    <section>
+                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('Elecssories')}}</h3>
+                        <hr>
+                    </section>
+                    <section>
+                        <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                        <hr>
+                    </section>
+                </section>
+
                 <section>
-                    <h1>{{newLabel.getContent('THE END')}}</h1>
-                    <small>{{newLabel.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{newLabel.getContent('HCD Learning')}}</a></small>
+                    <h1>{{Label.getContent('THE END')}}</h1>
+                    <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
                 </section>
             </div>
 
@@ -276,17 +297,8 @@
 
         <script src="js/feedBackAppControllers/directives.js"></script>
 
-        <script src="js/feedBackAppControllers/feedBackCtrl.js"></script>
-        <script src="js/feedBackAppControllers/negotiationResultsCtrl.js"></script>
-        <script src="js/feedBackAppControllers/salesCtrl.js"></script>
-        <script src="js/feedBackAppControllers/marketSharesCtrl.js"></script>
-        <script src="js/feedBackAppControllers/profitsCtrl.js"></script>
-        <script src="js/feedBackAppControllers/shelfSpaceCtrl.js"></script>
-        <script src="js/feedBackAppControllers/supplierKPIsCtrl.js"></script>
-        <script src="js/feedBackAppControllers/retailerKPIsCtrl.js"></script>
-        <script src="js/feedBackAppControllers/finalScoreCtrl.js"></script>
-        <script src="js/feedBackAppControllers/shareOfShoppersCtrl.js"></script>
-
+        <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
+        <script src="js/feedBackAppControllers/supplierProductAvailabilityCtrl.js"></script>
 
 
         <script >
