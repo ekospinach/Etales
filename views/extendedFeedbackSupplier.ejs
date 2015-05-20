@@ -252,7 +252,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in productLists.urban_ele' class="success">
+                            <tr ng-repeat='product in productLists.urban_ele | orderBy:"index"' class="success">
                                 <td>
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
@@ -320,7 +320,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in productLists.urban_hea' class="danger">
+                            <tr ng-repeat='product in productLists.urban_hea | orderBy:"index"' class="danger">
                                 <td>
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
@@ -388,7 +388,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in productLists.rural_ele' class="success">
+                            <tr ng-repeat='product in productLists.rural_ele | orderBy:"index"' class="success">
                                 <td>
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
@@ -456,7 +456,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in productLists.rural_hea' class="danger">
+                            <tr ng-repeat='product in productLists.rural_hea | orderBy:"index"' class="danger">
                                 <td>
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>

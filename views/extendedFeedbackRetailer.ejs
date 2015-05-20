@@ -252,7 +252,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in productLists.urban_ele' class="success">
+                            <tr ng-repeat='product in productLists.urban_ele | orderBy:"index"' class="success">
                                 <td>
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
@@ -320,7 +320,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in productLists.urban_hea' class="danger">
+                            <tr ng-repeat='product in productLists.urban_hea | orderBy:"index"' class="danger">
                                 <td>
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
@@ -456,7 +456,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in productLists.rural_hea' class="danger">
+                            <tr ng-repeat='product in productLists.rural_hea | orderBy:"index"' class="danger">
                                 <td>
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
@@ -620,6 +620,7 @@
                 </section>
             </section>
             <section ng-controller='retailersProfitabilityPerSupplierCtrl'>
+                <!--8-->
                 <section>
                     <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}</h3>
                     <hr>
@@ -627,7 +628,7 @@
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 1</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
@@ -805,7 +806,7 @@
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 2</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
@@ -987,7 +988,7 @@
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 1</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
@@ -1165,7 +1166,7 @@
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 2</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
@@ -1347,7 +1348,7 @@
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 1</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
@@ -1525,7 +1526,7 @@
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 2</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
@@ -1707,7 +1708,7 @@
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 1</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
@@ -1885,7 +1886,7 @@
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                    <p class="text-small">{{Label.getContent('Retailer')}} 2</p>
                                 </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>

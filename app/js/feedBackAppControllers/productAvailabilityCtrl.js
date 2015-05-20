@@ -14,6 +14,7 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
         });
         list.forEach(function(singleData) {
             var product = {
+                index:0,
                 name: '',
                 'retailer_1_shelfSpace': 0,
                 'retailer_1_inventoryVolume': 0,
@@ -24,6 +25,7 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
             };
             var variantName = singleData.variantName;
             var brandName = singleData.parentBrandName;
+            product.index =brandName.substr(brandName.length-1,1);
             product.name = singleData.parentBrandName +  singleData.variantName;
             product.retailer_1_shelfSpace = singleData.shelfSpace*100;
             product.retailer_1_inventoryVolume = singleData.inventoryVolume;
