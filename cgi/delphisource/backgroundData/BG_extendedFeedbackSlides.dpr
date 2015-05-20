@@ -108,6 +108,8 @@ var
     jo := SO;
     jo.I['marketID'] := marketID;
     jo.I['categoryID'] := categoryID;
+    jo.I['supplierID'] := producerID;
+    jo.I['accountID'] := accountID;
 
     jo.D['xfsppr_SalesValue'] := info.xfsppr_SalesValue;      
     jo.D['xfsppr_GrossProfit'] := info.xfsppr_GrossProfit;       

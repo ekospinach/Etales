@@ -64,8 +64,10 @@ var retailersProfitabilityPerSupplierSchema = mongoose.Schema({
 })
 
 var supplierProfitabilityPerCustomerSchema = mongoose.Schema({
-    marketID                      : Number,
-    categoryID                    : Number,    
+    marketID                      : Number, //1-urban 2-rural 3-total
+    supplierID                    : Number, // 
+    categoryID                    : Number, // 3-Total
+    accountID                     : Number, // { Two Modern Retailers + Traditional Trade + On-Line }
 
     xfsppr_SalesValue             : Number,
     xfsppr_GrossProfit            : Number,  
