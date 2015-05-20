@@ -1,14 +1,14 @@
 var retailersProfitabilityPerSupplierCtrl = function($scope, $http, PlayerColor) {
 
-    var organiseTableArray=function(data,marketID,categoryID,retailerID){
+    var organiseTableArray = function(data, marketID, categoryID, retailerID) {
         var retailerDetail = {
-            salesValues:{},
-            rotations:{},
-            grossContributions:{},
-            grossContributionPerShelfSpaces:{},
-            shelfSpaces:{},
-            salesValueShare:{},
-            grossContributionShares:{}
+            salesValues: {},
+            rotations: {},
+            grossContributions: {},
+            grossContributionPerShelfSpaces: {},
+            shelfSpaces: {},
+            salesValueShare: {},
+            grossContributionShares: {}
         };
         var list = _.filter(data, function(obj) {
             return (obj.marketID == marketID && obj.categoryID == categoryID && obj.BMRetailerID == retailerID);
@@ -57,30 +57,29 @@ var retailersProfitabilityPerSupplierCtrl = function($scope, $http, PlayerColor)
     }
 
     var initPage = function() {
-        var data={
-            'retailer_1':{
-                'urban_ele':{},
-                'urban_hea':{},
-                'rural_ele':{},
-                'rural_hea':{}
+        var data = {
+            'retailer_1': {
+                'urban_ele': {},
+                'urban_hea': {},
+                'rural_ele': {},
+                'rural_hea': {}
             },
-            'retailer_2':{
-                'urban_ele':{},
-                'urban_hea':{},
-                'rural_ele':{},
-                'rural_hea':{}
+            'retailer_2': {
+                'urban_ele': {},
+                'urban_hea': {},
+                'rural_ele': {},
+                'rural_hea': {}
             }
         }
-        data.retailer_1.urban_ele=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,1,1,1); // market category retailer
-        data.retailer_1.urban_hea=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,1,2,1);
-        data.retailer_1.rural_ele=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,2,1,1);
-        data.retailer_1.rural_hea=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,2,2,1);
-        data.retailer_2.urban_ele=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,1,1,2);
-        data.retailer_2.urban_hea=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,1,2,2);
-        data.retailer_2.rural_ele=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,2,1,2);
-        data.retailer_2.rural_hea=organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier,2,2,2);
-        $scope.data=data;
-        console.log($scope.data);
+        data.retailer_1.urban_ele = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 1, 1, 1); // market category retailer
+        data.retailer_1.urban_hea = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 1, 2, 1);
+        data.retailer_1.rural_ele = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 2, 1, 1);
+        data.retailer_1.rural_hea = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 2, 2, 1);
+        data.retailer_2.urban_ele = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 1, 1, 2);
+        data.retailer_2.urban_hea = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 1, 2, 2);
+        data.retailer_2.rural_ele = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 2, 1, 2);
+        data.retailer_2.rural_hea = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 2, 2, 2);
+        $scope.data = data;
     }
     $scope.$watch('feedback', function(newValue, oldValue) {
         if (newValue != undefined) {
