@@ -1216,6 +1216,14 @@ var getLabelBase = function(){
 		{id:'Inventory',  ENG:'Inventory',  CHN:'Inventory',  RUS:''},
 		{id:'units mln',  ENG:'units mln',  CHN:'units mln',  RUS:''},
 		{id:'mln units',  ENG:'mln units',  CHN:'mln units',  RUS:''},
+		{id:'Partner Relations Outcomes',  ENG:'Partner Relations & Outcomes',  CHN:'Partner Relations & Outcomes',  RUS:''},
+		
+
+		{id:'Sales per 1% of shelf Space',  ENG:'Sales per 1% of shelf Space',  CHN:'Sales per 1% of shelf Space',  RUS:''},
+		{id:'Gross Profit per 1% of Shelf Space',  ENG:'Gross Profit per 1% of Shelf Space',  CHN:'Gross Profit per 1% of Shelf Space',  RUS:''},
+		{id:'Share in Sales Value',  ENG:'Share in Sales Value',  CHN:'Share in Sales Value',  RUS:''},
+		{id:'Share in Gross Profit',  ENG:'Share in Gross Profit',  CHN:'Share in Gross Profit',  RUS:''},
+
 		//retailerExtend		
 
 	]

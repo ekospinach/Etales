@@ -24,7 +24,7 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
             };
             var variantName = singleData.variantName;
             var brandName = singleData.parentBrandName;
-            product.name = singleData.parentBrandName + '_' + singleData.variantName;
+            product.name = singleData.parentBrandName +  singleData.variantName;
             product.retailer_1_shelfSpace = singleData.shelfSpace*100;
             product.retailer_1_inventoryVolume = singleData.inventoryVolume;
             product.retailer_2_shelfSpace = getStoreResult(data, variantName, brandName, 2).shelfSpace*100;
@@ -53,8 +53,7 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
             };
             var variantName = singleData.variantName;
             var brandName = singleData.parentBrandName;
-            product.name = singleData.parentBrandName + '_' + singleData.variantName;
-            console.log(brandName.substr(brandName.length-1,1));
+            product.name = singleData.parentBrandName + singleData.variantName;
 
             switch (brandName.substr(brandName.length-1,1)) {
                 case '1':

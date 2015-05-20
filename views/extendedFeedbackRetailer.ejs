@@ -55,7 +55,10 @@
         font-size: 20px;
         line-height: 20px;
     }
-    
+    table th,table td{
+        padding:0 !important;
+    }
+
     .text-left {
         text-align: left;
     }
@@ -72,6 +75,14 @@
         font-size: 21px !important;
         line-height: 20px !important;
         margin-bottom: 0 !important;
+    }
+    .roate-270 {
+        -ms-transform: rotate(270deg);
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+    .pull-left{
+        float: left;
     }
     
     .text-danger {
@@ -95,10 +106,46 @@
     .table-bordered > tfoot > tr > td {
         border: 2px solid #000;
     }
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+        vertical-align: middle;
+    }
     
     .table-bordered > thead > tr > th,
     .table-bordered > thead > tr > td {
         border-bottom-width: 2px;
+    }
+    .table-bordered > thead > tr > td.success,
+    .table-bordered > tbody > tr > td.success,
+    .table-bordered > tfoot > tr > td.success,
+    .table-bordered > thead > tr > th.success,
+    .table-bordered > tbody > tr > th.success,
+    .table-bordered > tfoot > tr > th.success,
+    .table-bordered > thead > tr.success > td,
+    .table-bordered > tbody > tr.success > td,
+    .table-bordered > tfoot > tr.success > td,
+    .table-bordered > thead > tr.success > th,
+    .table-bordered > tbody > tr.success > th,
+    .table-bordered > tfoot > tr.success > th {
+      background-color: #dff0d8;
+    }
+    .table-bordered > thead > tr > td.danger,
+    .table-bordered > tbody > tr > td.danger,
+    .table-bordered > tfoot > tr > td.danger,
+    .table-bordered > thead > tr > th.danger,
+    .table-bordered > tbody > tr > th.danger,
+    .table-bordered > tfoot > tr > th.danger,
+    .table-bordered > thead > tr.danger > td,
+    .table-bordered > tbody > tr.danger > td,
+    .table-bordered > tfoot > tr.danger > td,
+    .table-bordered > thead > tr.danger > th,
+    .table-bordered > tbody > tr.danger > th,
+    .table-bordered > tfoot > tr.danger > th {
+      background-color: #f2dede;
     }
     </style>
     <!--[if lt IE 9]>
@@ -565,6 +612,1445 @@
                     </table>
                 </section>
             </section>
+            <section ng-controller='retailersProfitabilityPerSupplierCtrl'>
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}</h3>
+                    <hr>
+                    <table class="table-bordered" style="width:100%;">
+                        <tbody>
+                            <tr class="success">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_ele.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_ele.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.urban_ele.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.urban_ele.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_ele.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_ele.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.urban_ele.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.urban_ele.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_ele.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_ele.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.urban_ele.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.urban_ele.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_ele.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.urban_ele.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table-bordered" style="width:100%;margin-top:20px;">
+                        <tbody>
+                            <tr class="success">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_ele.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_ele.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.urban_ele.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.urban_ele.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_ele.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_ele.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.urban_ele.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.urban_ele.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_ele.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_ele.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.urban_ele.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.urban_ele.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_ele.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.urban_ele.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Rural')}}</h3>
+                    <hr>
+                    <table class="table-bordered" style="width:100%;">
+                        <tbody>
+                            <tr class="success">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_ele.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_ele.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.rural_ele.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.rural_ele.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_ele.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_ele.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.rural_ele.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.rural_ele.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_ele.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_ele.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.rural_ele.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.rural_ele.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_ele.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.rural_ele.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table-bordered" style="width:100%;margin-top:20px;">
+                        <tbody>
+                            <tr class="success">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_ele.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_ele.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.rural_ele.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.rural_ele.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_ele.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_ele.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.rural_ele.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.rural_ele.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_ele.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_ele.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.rural_ele.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.rural_ele.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_ele.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.rural_ele.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban')}}</h3>
+                    <hr>
+                    <table class="table-bordered" style="width:100%;">
+                        <tbody>
+                            <tr class="danger">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.urban_hea.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_hea.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.urban_hea.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.urban_hea.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_hea.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_hea.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.urban_hea.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.urban_hea.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_hea.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_hea.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.urban_hea.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.urban_hea.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.urban_hea.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.urban_hea.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table-bordered" style="width:100%;margin-top:20px;">
+                        <tbody>
+                            <tr class="danger">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.urban_hea.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_hea.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.urban_hea.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.urban_hea.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_hea.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_hea.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.urban_hea.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.urban_hea.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_hea.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_hea.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.urban_hea.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.urban_hea.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.urban_hea.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.urban_hea.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Rural')}}</h3>
+                    <hr>
+                    <table class="table-bordered" style="width:100%;">
+                        <tbody>
+                            <tr class="danger">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_1.rural_hea.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_hea.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.rural_hea.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.rural_hea.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_hea.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_hea.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.rural_hea.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.rural_hea.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_hea.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_hea.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_1.rural_hea.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_1.rural_hea.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_1.rural_hea.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_1.rural_hea.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table-bordered" style="width:100%;margin-top:20px;">
+                        <tbody>
+                            <tr class="danger">
+                                <th style="width:40%;">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Supplier')}} 3</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Private label')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.salesValues.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.salesValues.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.salesValues.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.salesValues.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales per 1% of shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.rotations.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.rotations.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.rotations.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.rotations.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributions.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributions.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributions.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributions.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit per 1% of Shelf Space')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributionPerShelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributionPerShelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributionPerShelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.retailer_2.rural_hea.grossContributionPerShelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Shelf Space')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_hea.shelfSpaces.supplier1}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.shelfSpaces.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.rural_hea.shelfSpaces.supplier2}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.shelfSpaces.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.rural_hea.shelfSpaces.supplier3}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.shelfSpaces.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_hea.shelfSpaces.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.shelfSpaces.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_hea.salesValueShare.supplier1}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.salesValueShare.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.rural_hea.salesValueShare.supplier2}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.salesValueShare.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.rural_hea.salesValueShare.supplier3}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.salesValueShare.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_hea.salesValueShare.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.salesValueShare.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_hea.grossContributionShares.supplier1}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.grossContributionShares.supplier1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s2}};width:{{data.retailer_2.rural_hea.grossContributionShares.supplier2}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.grossContributionShares.supplier2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s3}};width:{{data.retailer_2.rural_hea.grossContributionShares.supplier3}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.grossContributionShares.supplier3 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.s1}};width:{{data.retailer_2.rural_hea.grossContributionShares.privateLabel}}%;color:white;">
+                                        {{data.retailer_2.rural_hea.grossContributionShares.privateLabel | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
@@ -583,6 +2069,7 @@
     <script src="js/feedBackAppControllers/directives.js"></script>
     <script src="js/feedBackAppControllers/retailerExtendCtrl.js"></script>
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
+    <script src="js/feedBackAppControllers/retailersProfitabilityPerSupplierCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
