@@ -55,10 +55,12 @@
         font-size: 20px;
         line-height: 20px;
     }
-    table th,table td{
-        padding:0 !important;
+    
+    table th,
+    table td {
+        padding: 0 !important;
     }
-
+    
     .text-left {
         text-align: left;
     }
@@ -76,12 +78,14 @@
         line-height: 20px !important;
         margin-bottom: 0 !important;
     }
+    
     .roate-270 {
         -ms-transform: rotate(270deg);
         -webkit-transform: rotate(270deg);
         transform: rotate(270deg);
     }
-    .pull-left{
+    
+    .pull-left {
         float: left;
     }
     
@@ -106,6 +110,7 @@
     .table-bordered > tfoot > tr > td {
         border: 2px solid #000;
     }
+    
     .table-bordered > thead > tr > th,
     .table-bordered > tbody > tr > th,
     .table-bordered > tfoot > tr > th,
@@ -119,6 +124,7 @@
     .table-bordered > thead > tr > td {
         border-bottom-width: 2px;
     }
+    
     .table-bordered > thead > tr > td.success,
     .table-bordered > tbody > tr > td.success,
     .table-bordered > tfoot > tr > td.success,
@@ -131,8 +137,9 @@
     .table-bordered > thead > tr.success > th,
     .table-bordered > tbody > tr.success > th,
     .table-bordered > tfoot > tr.success > th {
-      background-color: #dff0d8;
+        background-color: #dff0d8;
     }
+    
     .table-bordered > thead > tr > td.danger,
     .table-bordered > tbody > tr > td.danger,
     .table-bordered > tfoot > tr > td.danger,
@@ -145,7 +152,7 @@
     .table-bordered > thead > tr.danger > th,
     .table-bordered > tbody > tr.danger > th,
     .table-bordered > tfoot > tr.danger > th {
-      background-color: #f2dede;
+        background-color: #f2dede;
     }
     </style>
     <!--[if lt IE 9]>
@@ -250,19 +257,19 @@
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -318,19 +325,19 @@
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -386,19 +393,19 @@
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -454,19 +461,19 @@
                                     <p class="text-center text-small">{{product.name}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}">{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}">{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace}}%">&nbsp;</p>
+                                    <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%">&nbsp;</p>
                                 </td>
                                 <td>
                                     <p class="text-center text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}">{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -620,7 +627,8 @@
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
@@ -793,12 +801,12 @@
                             </tr>
                         </tbody>
                     </table>
-
                     <table class="table-bordered" style="width:100%;margin-top:20px;">
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
@@ -979,7 +987,8 @@
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
@@ -1152,12 +1161,12 @@
                             </tr>
                         </tbody>
                     </table>
-
                     <table class="table-bordered" style="width:100%;margin-top:20px;">
                         <tbody>
                             <tr class="success">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
@@ -1331,7 +1340,6 @@
                         </tbody>
                     </table>
                 </section>
-
                 <section>
                     <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban')}}</h3>
                     <hr>
@@ -1339,7 +1347,8 @@
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
@@ -1512,12 +1521,12 @@
                             </tr>
                         </tbody>
                     </table>
-
                     <table class="table-bordered" style="width:100%;margin-top:20px;">
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
@@ -1698,7 +1707,8 @@
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
@@ -1871,12 +1881,12 @@
                             </tr>
                         </tbody>
                     </table>
-
                     <table class="table-bordered" style="width:100%;margin-top:20px;">
                         <tbody>
                             <tr class="danger">
                                 <th style="width:40%;">
-                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p></th>
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
                                 <th style="width:15%">
                                     <p class="text-center text-small">{{Label.getContent('Supplier')}} 1</p>
                                 </th>
