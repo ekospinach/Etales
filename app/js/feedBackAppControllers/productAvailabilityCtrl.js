@@ -43,6 +43,7 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
         });
         list.forEach(function(singleData) {
             var product = {
+                index: 0,
                 name: '',
                 'supplier_1_visibility': -99,
                 'supplier_1_inventoryVolume': -99,
@@ -54,18 +55,19 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
             var variantName = singleData.variantName;
             var brandName = singleData.parentBrandName;
             product.name = singleData.parentBrandName + singleData.variantName;
+            product.index =brandName.substr(brandName.length-1,1);
 
             switch (brandName.substr(brandName.length-1,1)) {
                 case '1':
-                    product.supplier_1_visibility = singleData.visibility;
+                    product.supplier_1_visibility = singleData.shelfSpace;
                     product.supplier_1_inventoryVolume = singleData.inventoryVolume;
                     break;
                 case '2':
-                    product.supplier_2_visibility = singleData.visibility;
+                    product.supplier_2_visibility = singleData.shelfSpace;
                     product.supplier_2_inventoryVolume = singleData.inventoryVolume;
                     break;
                 case '3':
-                    product.supplier_3_visibility = singleData.visibility;
+                    product.supplier_3_visibility = singleData.shelfSpace;
                     product.supplier_3_inventoryVolume = singleData.inventoryVolume;
                     break;
             }
