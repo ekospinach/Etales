@@ -619,6 +619,1327 @@
                     </table>
                 </section>
             </section>
+            <section ng-controller='suppliersProfitabilityPerCustomerCtrl'>
+                <!--8-->
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}} </a>- {{Label.getContent('Supplier')}} 1</h3>
+                    <hr>
+                    <table></table>
+                    <table class="table-bordered" style="width:100%;">
+                        <tbody>
+                            <tr class="success">
+                                <th style="width:40%;">
+                                    
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Online')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.salesValues.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.salesValues.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.salesValues.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.salesValues.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.grossProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.grossProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.grossProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.grossProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Total Trade Support')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeSupports.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeSupports.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeSupports.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeSupports.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Trade Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.ele.tradeProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Relative Visibility Share')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.ele.visibilityShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.ele.visibilityShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.ele.visibilityShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.ele.visibilityShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.ele.visibilityShares.tt}}%;color:white;">
+                                        {{data.supplier_1.ele.visibilityShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.ele.visibilityShares.online}}%;color:white;">
+                                        {{data.supplier_1.ele.visibilityShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Support')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.ele.tradeSupportShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeSupportShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.ele.tradeSupportShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeSupportShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.ele.tradeSupportShares.tt}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeSupportShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.ele.tradeSupportShares.online}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeSupportShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.ele.salesValueShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.ele.salesValueShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.ele.salesValueShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.ele.salesValueShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.ele.salesValueShares.tt}}%;color:white;">
+                                        {{data.supplier_1.ele.salesValueShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.ele.salesValueShares.online}}%;color:white;">
+                                        {{data.supplier_1.ele.salesValueShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.ele.grossProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.ele.grossProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.ele.grossProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.ele.grossProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.ele.grossProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_1.ele.grossProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.ele.grossProfitShares.online}}%;color:white;">
+                                        {{data.supplier_1.ele.grossProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.ele.tradeProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.ele.tradeProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.ele.tradeProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.ele.tradeProfitShares.online}}%;color:white;">
+                                        {{data.supplier_1.ele.tradeProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table-bordered" style="width:100%;margin-top:20px">
+                        <tbody>
+                            <tr class="danger">
+                                <th style="width:40%;">
+                                    
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Online')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.salesValues.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.salesValues.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.salesValues.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.salesValues.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.grossProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.grossProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.grossProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.grossProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Total Trade Support')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeSupports.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeSupports.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeSupports.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeSupports.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Trade Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_1.hea.tradeProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Relative Visibility Share')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.hea.visibilityShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.hea.visibilityShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.hea.visibilityShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.hea.visibilityShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.hea.visibilityShares.tt}}%;color:white;">
+                                        {{data.supplier_1.hea.visibilityShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.hea.visibilityShares.online}}%;color:white;">
+                                        {{data.supplier_1.hea.visibilityShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Support')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.hea.tradeSupportShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeSupportShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.hea.tradeSupportShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeSupportShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.hea.tradeSupportShares.tt}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeSupportShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.hea.tradeSupportShares.online}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeSupportShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.hea.salesValueShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.hea.salesValueShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.hea.salesValueShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.hea.salesValueShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.hea.salesValueShares.tt}}%;color:white;">
+                                        {{data.supplier_1.hea.salesValueShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.hea.salesValueShares.online}}%;color:white;">
+                                        {{data.supplier_1.hea.salesValueShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.hea.grossProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.hea.grossProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.hea.grossProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.hea.grossProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.hea.grossProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_1.hea.grossProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.hea.grossProfitShares.online}}%;color:white;">
+                                        {{data.supplier_1.hea.grossProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_1.hea.tradeProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_1.hea.tradeProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_1.hea.tradeProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_1.hea.tradeProfitShares.online}}%;color:white;">
+                                        {{data.supplier_1.hea.tradeProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <!--supplier2-->
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}} </a>- {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table></table>
+                    <table class="table-bordered" style="width:100%;">
+                        <tbody>
+                            <tr class="success">
+                                <th style="width:40%;">
+                                    
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Online')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.salesValues.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.salesValues.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.salesValues.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.salesValues.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.grossProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.grossProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.grossProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.grossProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Total Trade Support')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeSupports.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeSupports.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeSupports.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeSupports.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Trade Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.ele.tradeProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Relative Visibility Share')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.ele.visibilityShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.ele.visibilityShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.ele.visibilityShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.ele.visibilityShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.ele.visibilityShares.tt}}%;color:white;">
+                                        {{data.supplier_2.ele.visibilityShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.ele.visibilityShares.online}}%;color:white;">
+                                        {{data.supplier_2.ele.visibilityShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Support')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.ele.tradeSupportShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeSupportShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.ele.tradeSupportShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeSupportShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.ele.tradeSupportShares.tt}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeSupportShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.ele.tradeSupportShares.online}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeSupportShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.ele.salesValueShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.ele.salesValueShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.ele.salesValueShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.ele.salesValueShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.ele.salesValueShares.tt}}%;color:white;">
+                                        {{data.supplier_2.ele.salesValueShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.ele.salesValueShares.online}}%;color:white;">
+                                        {{data.supplier_2.ele.salesValueShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.ele.grossProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.ele.grossProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.ele.grossProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.ele.grossProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.ele.grossProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_2.ele.grossProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.ele.grossProfitShares.online}}%;color:white;">
+                                        {{data.supplier_2.ele.grossProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.ele.tradeProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.ele.tradeProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.ele.tradeProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.ele.tradeProfitShares.online}}%;color:white;">
+                                        {{data.supplier_2.ele.tradeProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table-bordered" style="width:100%;margin-top:20px">
+                        <tbody>
+                            <tr class="danger">
+                                <th style="width:40%;">
+                                    
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Online')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.salesValues.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.salesValues.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.salesValues.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.salesValues.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.grossProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.grossProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.grossProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.grossProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Total Trade Support')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeSupports.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeSupports.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeSupports.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeSupports.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Trade Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_2.hea.tradeProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Relative Visibility Share')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.hea.visibilityShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.hea.visibilityShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.hea.visibilityShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.hea.visibilityShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.hea.visibilityShares.tt}}%;color:white;">
+                                        {{data.supplier_2.hea.visibilityShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.hea.visibilityShares.online}}%;color:white;">
+                                        {{data.supplier_2.hea.visibilityShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Support')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.hea.tradeSupportShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeSupportShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.hea.tradeSupportShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeSupportShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.hea.tradeSupportShares.tt}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeSupportShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.hea.tradeSupportShares.online}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeSupportShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.hea.salesValueShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.hea.salesValueShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.hea.salesValueShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.hea.salesValueShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.hea.salesValueShares.tt}}%;color:white;">
+                                        {{data.supplier_2.hea.salesValueShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.hea.salesValueShares.online}}%;color:white;">
+                                        {{data.supplier_2.hea.salesValueShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.hea.grossProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.hea.grossProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.hea.grossProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.hea.grossProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.hea.grossProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_2.hea.grossProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.hea.grossProfitShares.online}}%;color:white;">
+                                        {{data.supplier_2.hea.grossProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_2.hea.tradeProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_2.hea.tradeProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_2.hea.tradeProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_2.hea.tradeProfitShares.online}}%;color:white;">
+                                        {{data.supplier_2.hea.tradeProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <!--supplier3-->
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}} </a>- {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table></table>
+                    <table class="table-bordered" style="width:100%;">
+                        <tbody>
+                            <tr class="success">
+                                <th style="width:40%;">
+                                    
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Online')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.salesValues.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.salesValues.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.salesValues.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.salesValues.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.grossProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.grossProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.grossProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.grossProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Total Trade Support')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeSupports.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeSupports.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeSupports.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeSupports.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Trade Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.ele.tradeProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Relative Visibility Share')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.ele.visibilityShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.ele.visibilityShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.ele.visibilityShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.ele.visibilityShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.ele.visibilityShares.tt}}%;color:white;">
+                                        {{data.supplier_3.ele.visibilityShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.ele.visibilityShares.online}}%;color:white;">
+                                        {{data.supplier_3.ele.visibilityShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Support')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.ele.tradeSupportShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeSupportShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.ele.tradeSupportShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeSupportShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.ele.tradeSupportShares.tt}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeSupportShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.ele.tradeSupportShares.online}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeSupportShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.ele.salesValueShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.ele.salesValueShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.ele.salesValueShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.ele.salesValueShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.ele.salesValueShares.tt}}%;color:white;">
+                                        {{data.supplier_3.ele.salesValueShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.ele.salesValueShares.online}}%;color:white;">
+                                        {{data.supplier_3.ele.salesValueShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.ele.grossProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.ele.grossProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.ele.grossProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.ele.grossProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.ele.grossProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_3.ele.grossProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.ele.grossProfitShares.online}}%;color:white;">
+                                        {{data.supplier_3.ele.grossProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.ele.tradeProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.ele.tradeProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.ele.tradeProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.ele.tradeProfitShares.online}}%;color:white;">
+                                        {{data.supplier_3.ele.tradeProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table-bordered" style="width:100%;margin-top:20px">
+                        <tbody>
+                            <tr class="danger">
+                                <th style="width:40%;">
+                                    
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 1</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Retailer')}} 2</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Traditional Trade')}}</p>
+                                </th>
+                                <th style="width:15%">
+                                    <p class="text-center text-small">{{Label.getContent('Online')}} </p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Sales')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.salesValues.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.salesValues.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.salesValues.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.salesValues.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Gross Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.grossProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.grossProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.grossProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.grossProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Total Trade Support')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeSupports.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeSupports.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeSupports.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeSupports.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Trade Profit')}} ({{Label.getContent('$mln')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeProfits.retailer1 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeProfits.retailer2 | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeProfits.tt | number :2}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center text-small">
+                                        {{data.supplier_3.hea.tradeProfits.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Relative Visibility Share')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.hea.visibilityShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.hea.visibilityShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.hea.visibilityShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.hea.visibilityShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.hea.visibilityShares.tt}}%;color:white;">
+                                        {{data.supplier_3.hea.visibilityShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.hea.visibilityShares.online}}%;color:white;">
+                                        {{data.supplier_3.hea.visibilityShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Support')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.hea.tradeSupportShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeSupportShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.hea.tradeSupportShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeSupportShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.hea.tradeSupportShares.tt}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeSupportShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.hea.tradeSupportShares.online}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeSupportShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Sales Value')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.hea.salesValueShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.hea.salesValueShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.hea.salesValueShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.hea.salesValueShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.hea.salesValueShares.tt}}%;color:white;">
+                                        {{data.supplier_3.hea.salesValueShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.hea.salesValueShares.online}}%;color:white;">
+                                        {{data.supplier_3.hea.salesValueShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Gross Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.hea.grossProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.hea.grossProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.hea.grossProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.hea.grossProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.hea.grossProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_3.hea.grossProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.hea.grossProfitShares.online}}%;color:white;">
+                                        {{data.supplier_3.hea.grossProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="text-small">{{Label.getContent('Share in Trade Profit')}} (%)</p>
+                                </td>
+                                <td colspan="4">
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r1}};width:{{data.supplier_3.hea.tradeProfitShares.retailer1}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeProfitShares.retailer1 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r2}};width:{{data.supplier_3.hea.tradeProfitShares.retailer2}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeProfitShares.retailer2 | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.r3}};width:{{data.supplier_3.hea.tradeProfitShares.tt}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeProfitShares.tt | number :2}}
+                                    </p>
+                                    <p class="text-center text-small pull-left" style="background:{{PlayerColor.online}};width:{{data.supplier_3.hea.tradeProfitShares.online}}%;color:white;">
+                                        {{data.supplier_3.hea.tradeProfitShares.online | number :2}}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </section>
+
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>

@@ -88,7 +88,7 @@ app.factory('PlayerColor', function($rootScope) {
 app.filter('out', function() {
     return function(item) {
         if (item == 0 || item == 0.00) {
-            return 'Out of stack';
+            return 'Out of stock';
         }else{
             return item;
         }

@@ -1223,6 +1223,11 @@ var getLabelBase = function(){
 		{id:'Gross Profit per 1% of Shelf Space',  ENG:'Gross Profit per 1% of Shelf Space',  CHN:'Gross Profit per 1% of Shelf Space',  RUS:''},
 		{id:'Share in Sales Value',  ENG:'Share in Sales Value',  CHN:'Share in Sales Value',  RUS:''},
 		{id:'Share in Gross Profit',  ENG:'Share in Gross Profit',  CHN:'Share in Gross Profit',  RUS:''},
+		
+		{id:'Total Trade Support',  ENG:'Total Trade Support',  CHN:'Total Trade Support',  RUS:''},
+		{id:'Relative Visibility Share',  ENG:'Relative Visibility Share',  CHN:'Relative Visibility Share',  RUS:''},
+		{id:'Share in Trade Support',  ENG:'Share in Trade Support',  CHN:'Share in Trade Support',  RUS:''},
+		{id:'Share in Trade Profit',  ENG:'Share in Trade Profit',  CHN:'Share in Trade Profit',  RUS:''},
 
 		//retailerExtend		
 

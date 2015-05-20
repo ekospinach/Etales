@@ -28,53 +28,53 @@ var suppliersProfitabilityPerCustomerCtrl = function($scope, $http, PlayerColor)
             tradeProfitShares: {}
         };
         var list = _.filter(data, function(obj) {
-            return (obj.categoryID == categoryID && obj.marketID == supplierID); //supplierID
+            return (obj.categoryID == categoryID && obj.supplierID == supplierID && obj.marketID == 3); //supplierID
         });
         list.forEach(function(singleData) {
-            switch (singleData.BMRetailerID) { //bmretailerid
+            switch (singleData.accountID) { //bmretailerid
                 case 1:
                     supplierDetail.salesValues.retailer1 = singleData.xfsppr_SalesValue;
                     supplierDetail.grossProfits.retailer1 = singleData.xfsppr_GrossProfit;
                     supplierDetail.tradeSupports.retailer1 = singleData.xfsppr_TradeSupport;
                     supplierDetail.tradeProfits.retailer1 = singleData.xfsppr_TradeProfit;
-                    supplierDetail.visibilityShares.retailer1 = singleData.xfsppr_VisibilityShare;
-                    supplierDetail.tradeSupportShares.retailer1 = singleData.xfsppr_TradeSupportShare;
-                    supplierDetail.salesValueShares.retailer1 = singleData.xfsppr_SalesValueShare;
-                    supplierDetail.grossProfitShares.retailer1 = singleData.xfsppr_GrossProfitShare;
-                    supplierDetail.tradeProfitShares.retailer1 = singleData.xfsppr_TradeProfitShare;
+                    supplierDetail.visibilityShares.retailer1 = singleData.xfsppr_VisibilityShare*100;
+                    supplierDetail.tradeSupportShares.retailer1 = singleData.xfsppr_TradeSupportShare*100;
+                    supplierDetail.salesValueShares.retailer1 = singleData.xfsppr_SalesValueShare*100;
+                    supplierDetail.grossProfitShares.retailer1 = singleData.xfsppr_GrossProfitShare*100;
+                    supplierDetail.tradeProfitShares.retailer1 = singleData.xfsppr_TradeProfitShare*100;
                     break;
                 case 2:
                     supplierDetail.salesValues.retailer2 = singleData.xfsppr_SalesValue;
                     supplierDetail.grossProfits.retailer2 = singleData.xfsppr_GrossProfit;
                     supplierDetail.tradeSupports.retailer2 = singleData.xfsppr_TradeSupport;
                     supplierDetail.tradeProfits.retailer2 = singleData.xfsppr_TradeProfit;
-                    supplierDetail.visibilityShares.retailer2 = singleData.xfsppr_VisibilityShare;
-                    supplierDetail.tradeSupportShares.retailer2 = singleData.xfsppr_TradeSupportShare;
-                    supplierDetail.salesValueShares.retailer2 = singleData.xfsppr_SalesValueShare;
-                    supplierDetail.grossProfitShares.retailer2 = singleData.xfsppr_GrossProfitShare;
-                    supplierDetail.tradeProfitShares.retailer2 = singleData.xfsppr_TradeProfitShare;
+                    supplierDetail.visibilityShares.retailer2 = singleData.xfsppr_VisibilityShare*100;
+                    supplierDetail.tradeSupportShares.retailer2 = singleData.xfsppr_TradeSupportShare*100;
+                    supplierDetail.salesValueShares.retailer2 = singleData.xfsppr_SalesValueShare*100;
+                    supplierDetail.grossProfitShares.retailer2 = singleData.xfsppr_GrossProfitShare*100;
+                    supplierDetail.tradeProfitShares.retailer2 = singleData.xfsppr_TradeProfitShare*100;
                     break;
                 case 3:
                     supplierDetail.salesValues.tt = singleData.xfsppr_SalesValue;
                     supplierDetail.grossProfits.tt = singleData.xfsppr_GrossProfit;
                     supplierDetail.tradeSupports.tt = singleData.xfsppr_TradeSupport;
                     supplierDetail.tradeProfits.tt = singleData.xfsppr_TradeProfit;
-                    supplierDetail.visibilityShares.tt = singleData.xfsppr_VisibilityShare;
-                    supplierDetail.tradeSupportShares.tt = singleData.xfsppr_TradeSupportShare;
-                    supplierDetail.salesValueShares.tt = singleData.xfsppr_SalesValueShare;
-                    supplierDetail.grossProfitShares.tt = singleData.xfsppr_GrossProfitShare;
-                    supplierDetail.tradeProfitShares.tt = singleData.xfsppr_TradeProfitShare;
+                    supplierDetail.visibilityShares.tt = singleData.xfsppr_VisibilityShare*100;
+                    supplierDetail.tradeSupportShares.tt = singleData.xfsppr_TradeSupportShare*100;
+                    supplierDetail.salesValueShares.tt = singleData.xfsppr_SalesValueShare*100;
+                    supplierDetail.grossProfitShares.tt = singleData.xfsppr_GrossProfitShare*100;
+                    supplierDetail.tradeProfitShares.tt = singleData.xfsppr_TradeProfitShare*100;
                     break;
                 case 4:
                     supplierDetail.salesValues.online = singleData.xfsppr_SalesValue;
                     supplierDetail.grossProfits.online = singleData.xfsppr_GrossProfit;
                     supplierDetail.tradeSupports.online = singleData.xfsppr_TradeSupport;
                     supplierDetail.tradeProfits.online = singleData.xfsppr_TradeProfit;
-                    supplierDetail.visibilityShares.online = singleData.xfsppr_VisibilityShare;
-                    supplierDetail.tradeSupportShares.online = singleData.xfsppr_TradeSupportShare;
-                    supplierDetail.salesValueShares.online = singleData.xfsppr_SalesValueShare;
-                    supplierDetail.grossProfitShares.online = singleData.xfsppr_GrossProfitShare;
-                    supplierDetail.tradeProfitShares.online = singleData.xfsppr_TradeProfitShare;
+                    supplierDetail.visibilityShares.online = singleData.xfsppr_VisibilityShare*100;
+                    supplierDetail.tradeSupportShares.online = singleData.xfsppr_TradeSupportShare*100;
+                    supplierDetail.salesValueShares.online = singleData.xfsppr_SalesValueShare*100;
+                    supplierDetail.grossProfitShares.online = singleData.xfsppr_GrossProfitShare*100;
+                    supplierDetail.tradeProfitShares.online = singleData.xfsppr_TradeProfitShare*100;
                     break;
             }
         });
@@ -97,14 +97,14 @@ var suppliersProfitabilityPerCustomerCtrl = function($scope, $http, PlayerColor)
                 'hea': {}
             },
         };
-        data.supplier_1.ele = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 1, 1);
-        data.supplier_1.hea = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 1, 2);
+        data.supplier_1.ele = organiseTableArray($scope.feedback.xf_SuppliersProfitabilityPerCustomer, 1, 1);
+        data.supplier_1.hea = organiseTableArray($scope.feedback.xf_SuppliersProfitabilityPerCustomer, 1, 2);
 
-        data.supplier_2.ele = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 2, 1);
-        data.supplier_2.hea = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 2, 2);
+        data.supplier_2.ele = organiseTableArray($scope.feedback.xf_SuppliersProfitabilityPerCustomer, 2, 1);
+        data.supplier_2.hea = organiseTableArray($scope.feedback.xf_SuppliersProfitabilityPerCustomer, 2, 2);
 
-        data.supplier_3.ele = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 3, 1);
-        data.supplier_3.hea = organiseTableArray($scope.feedback.xf_RetailersProfitabilityPerSupplier, 3, 2);
+        data.supplier_3.ele = organiseTableArray($scope.feedback.xf_SuppliersProfitabilityPerCustomer, 3, 1);
+        data.supplier_3.hea = organiseTableArray($scope.feedback.xf_SuppliersProfitabilityPerCustomer, 3, 2);
         $scope.data = data;
     }
     $scope.$watch('feedback', function(newValue, oldValue) {
