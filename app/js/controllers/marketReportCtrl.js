@@ -7,126 +7,126 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			})
 
 			var switching = function(type) {
-				$scope.Performance = $scope.MarketShare = $scope.MarketSales = $scope.Segment = $scope.Cross = $scope.Product = $scope.EMallPrices = $scope.ProducerConsolidate = $scope.ProducerBMBusiness = $scope.ProducerOnlineBusiness = $scope.ProducerProfitability = $scope.ProducerNegotiations = $scope.ElecssoriesConsumer = $scope.ElecssoriesShopper = $scope.ElecssoriesVolume = $scope.HealthBeautiesConsumer = $scope.HealthBeautiesShopper = $scope.HealthBeautiesVolume = $scope.ProducerKey = $scope.RuralConsumer = $scope.RuralShopper = $scope.RuralVolume = $scope.UrbanConsumer = $scope.UrbanShopper = $scope.UrbanVolume = $scope.RetailerKey = $scope.RetailerConsolidate = $scope.RetailerRuralProfit = $scope.RetailerUrbanProfit = $scope.RetailerProfitability = $scope.RetailerNegotiations = false;
-				$scope.AwarenessElecssories = $scope.AwarenessHealthBeauties = $scope.RuralElecssoriesBrand = $scope.UrbanElecssoriesBrand = $scope.RuralHealthBeautiesBrand = $scope.UrbanHealthBeautiesBrand = $scope.RetailerPerceptions = $scope.RuralElecssoriesConsumerShare = $scope.UrbanElecssoriesConsumerShare = $scope.RuralHealthBeautiesConsumerShare = $scope.UrbanHealthBeautiesConsumerShare = $scope.RuralElecssoriesConsumerSales = $scope.UrbanElecssoriesConsumerSales = $scope.RuralHealthBeautiesConsumerSales = $scope.UrbanHealthBeautiesConsumerSales = $scope.RuralElecssoriesShopperShare = $scope.UrbanElecssoriesShopperShare = $scope.RuralHealthBeautiesShopperShare = $scope.UrbanHealthBeautiesShopperShare = $scope.RuralElecssoriesShopperSales = $scope.UrbanElecssoriesShopperSales = $scope.RuralHealthBeautiesShopperSales = $scope.UrbanHealthBeautiesShopperSales = $scope.RuralElecssoriesSalesByChannel = $scope.UrbanElecssoriesSalesByChannel = $scope.RuralHealthBeautiesSalesByChannel = $scope.UrbanHealthBeautiesSalesByChannel = $scope.BMElecssories = $scope.BMHealthBeauties = $scope.PromotionElecssories = $scope.PromotionHealthBeauties = $scope.SupplierIntelligence = $scope.RetailerIntelligence = $scope.ForecastsConsumer = $scope.ForecastsShopper = $scope.ForecastsCategory = $scope.ForecastsInternet = false;
-				$scope.SocialBrand = $scope.SocialPlayer = false;
+				$scope.Performance = $scope.MarketShare = $scope.MarketSales = $scope.Segment = $scope.Cross = $scope.Product = $scope.EMallPrices = $scope.ProducerConsolidate = $scope.ProducerBMBusiness = $scope.ProducerOnlineBusiness = $scope.ProducerProfitability = $scope.ProducerNegotiations = $scope.ElecssoriesConsumer = $scope.ElecssoriesShopper = $scope.ElecssoriesVolume = $scope.HealthBeautiesConsumer = $scope.HealthBeautiesShopper = $scope.HealthBeautiesVolume = $scope.ProducerKey = $scope.RuralConsumer = $scope.RuralShopper = $scope.RuralVolume = $scope.UrbanConsumer = $scope.UrbanShopper = $scope.UrbanVolume = $scope.RetailerKey = $scope.RetailerConsolidate = $scope.RetailerRuralProfit = $scope.RetailerUrbanProfit = $scope.RetailerProfitability = $scope.RetailerNegotiations = 0;
+				$scope.AwarenessElecssories = $scope.AwarenessHealthBeauties = $scope.RuralElecssoriesBrand = $scope.UrbanElecssoriesBrand = $scope.RuralHealthBeautiesBrand = $scope.UrbanHealthBeautiesBrand = $scope.RetailerPerceptions = $scope.RuralElecssoriesConsumerShare = $scope.UrbanElecssoriesConsumerShare = $scope.RuralHealthBeautiesConsumerShare = $scope.UrbanHealthBeautiesConsumerShare = $scope.RuralElecssoriesConsumerSales = $scope.UrbanElecssoriesConsumerSales = $scope.RuralHealthBeautiesConsumerSales = $scope.UrbanHealthBeautiesConsumerSales = $scope.RuralElecssoriesShopperShare = $scope.UrbanElecssoriesShopperShare = $scope.RuralHealthBeautiesShopperShare = $scope.UrbanHealthBeautiesShopperShare = $scope.RuralElecssoriesShopperSales = $scope.UrbanElecssoriesShopperSales = $scope.RuralHealthBeautiesShopperSales = $scope.UrbanHealthBeautiesShopperSales = $scope.RuralElecssoriesSalesByChannel = $scope.UrbanElecssoriesSalesByChannel = $scope.RuralHealthBeautiesSalesByChannel = $scope.UrbanHealthBeautiesSalesByChannel = $scope.BMElecssories = $scope.BMHealthBeauties = $scope.PromotionElecssories = $scope.PromotionHealthBeauties = $scope.SupplierIntelligence = $scope.RetailerIntelligence = $scope.ForecastsConsumer = $scope.ForecastsShopper = $scope.ForecastsCategory = $scope.ForecastsInternet = 0;
+				$scope.SocialBrand = $scope.SocialPlayer = 0;
 				switch (type) {
 					case 'showAwarenessElecssories':
-						$scope.AwarenessElecssories = true;
+						$scope.AwarenessElecssories = 1;
 						break;
 					case 'showAwarenessHealthBeauties':
-						$scope.AwarenessHealthBeauties = true;
+						$scope.AwarenessHealthBeauties = 1;
 						break;
 					case 'showRuralElecssoriesBrand':
-						$scope.RuralElecssoriesBrand = true;
+						$scope.RuralElecssoriesBrand = 1;
 						break;
 					case 'showUrbanElecssoriesBrand':
-						$scope.UrbanElecssoriesBrand = true;
+						$scope.UrbanElecssoriesBrand = 1;
 						break;
 					case 'showRuralHealthBeautiesBrand':
-						$scope.RuralHealthBeautiesBrand = true;
+						$scope.RuralHealthBeautiesBrand = 1;
 						break;
 					case 'showUrbanHealthBeautiesBrand':
-						$scope.UrbanHealthBeautiesBrand = true;
+						$scope.UrbanHealthBeautiesBrand = 1;
 						break;
 					case 'showRetailerPerceptions':
-						$scope.RetailerPerceptions = true;
+						$scope.RetailerPerceptions = 1;
 						break;
 					case 'showRuralElecssoriesConsumerShare':
-						$scope.RuralElecssoriesConsumerShare = true;
+						$scope.RuralElecssoriesConsumerShare = 1;
 						break;
 					case 'showUrbanElecssoriesConsumerShare':
-						$scope.UrbanElecssoriesConsumerShare = true;
+						$scope.UrbanElecssoriesConsumerShare = 1;
 						break;
 					case 'showRuralHealthBeautiesConsumerShare':
-						$scope.RuralHealthBeautiesConsumerShare = true;
+						$scope.RuralHealthBeautiesConsumerShare = 1;
 						break;
 					case 'showUrbanHealthBeautiesConsumerShare':
-						$scope.UrbanHealthBeautiesConsumerShare = true;
+						$scope.UrbanHealthBeautiesConsumerShare = 1;
 						break;
 					case 'showRuralElecssoriesConsumerSales':
-						$scope.RuralElecssoriesConsumerSales = true;
+						$scope.RuralElecssoriesConsumerSales = 1;
 						break;
 					case 'showUrbanElecssoriesConsumerSales':
-						$scope.UrbanElecssoriesConsumerSales = true;
+						$scope.UrbanElecssoriesConsumerSales = 1;
 						break;
 					case 'showRuralHealthBeautiesConsumerSales':
-						$scope.RuralHealthBeautiesConsumerSales = true;
+						$scope.RuralHealthBeautiesConsumerSales = 1;
 						break;
 					case 'showUrbanHealthBeautiesConsumerSales':
-						$scope.UrbanHealthBeautiesConsumerSales = true;
+						$scope.UrbanHealthBeautiesConsumerSales = 1;
 						break;
 					case 'showRuralElecssoriesShopperShare':
-						$scope.RuralElecssoriesShopperShare = true;
+						$scope.RuralElecssoriesShopperShare = 1;
 						break;
 					case 'showUrbanElecssoriesShopperShare':
-						$scope.UrbanElecssoriesShopperShare = true;
+						$scope.UrbanElecssoriesShopperShare = 1;
 						break;
 					case 'showRuralHealthBeautiesShopperShare':
-						$scope.RuralHealthBeautiesShopperShare = true;
+						$scope.RuralHealthBeautiesShopperShare = 1;
 						break;
 					case 'showUrbanHealthBeautiesShopperShare':
-						$scope.UrbanHealthBeautiesShopperShare = true;
+						$scope.UrbanHealthBeautiesShopperShare = 1;
 						break;
 					case 'showRuralElecssoriesShopperSales':
-						$scope.RuralElecssoriesShopperSales = true;
+						$scope.RuralElecssoriesShopperSales = 1;
 						break;
 					case 'showUrbanElecssoriesShopperSales':
-						$scope.UrbanElecssoriesShopperSales = true;
+						$scope.UrbanElecssoriesShopperSales = 1;
 						break;
 					case 'showRuralHealthBeautiesShopperSales':
-						$scope.RuralHealthBeautiesShopperSales = true;
+						$scope.RuralHealthBeautiesShopperSales = 1;
 						break;
 					case 'showUrbanHealthBeautiesShopperSales':
-						$scope.UrbanHealthBeautiesShopperSales = true;
+						$scope.UrbanHealthBeautiesShopperSales = 1;
 						break;
 					case 'showRuralElecssoriesSalesByChannel':
-						$scope.RuralElecssoriesSalesByChannel = true;
+						$scope.RuralElecssoriesSalesByChannel = 1;
 						break;
 					case 'showUrbanElecssoriesSalesByChannel':
-						$scope.UrbanElecssoriesSalesByChannel = true;
+						$scope.UrbanElecssoriesSalesByChannel = 1;
 						break;
 					case 'showRuralHealthBeautiesSalesByChannel':
-						$scope.RuralHealthBeautiesSalesByChannel = true;
+						$scope.RuralHealthBeautiesSalesByChannel = 1;
 						break;
 					case 'showUrbanHealthBeautiesSalesByChannel':
-						$scope.UrbanHealthBeautiesSalesByChannel = true;
+						$scope.UrbanHealthBeautiesSalesByChannel = 1;
 						break;
 					case 'showBMElecssories':
-						$scope.BMElecssories = true;
+						$scope.BMElecssories = 1;
 						break;
 					case 'showBMHealthBeauties':
-						$scope.BMHealthBeauties = true;
+						$scope.BMHealthBeauties = 1;
 						break;
 					case 'showPromotionElecssories':
-						$scope.PromotionElecssories = true;
+						$scope.PromotionElecssories = 1;
 						break;
 					case 'showPromotionHealthBeauties':
-						$scope.PromotionHealthBeauties = true;
+						$scope.PromotionHealthBeauties = 1;
 						break;
 					case 'showSupplierIntelligence':
-						$scope.SupplierIntelligence = true;
+						$scope.SupplierIntelligence = 1;
 						break;
 					case 'showRetailerIntelligence':
-						$scope.RetailerIntelligence = true;
+						$scope.RetailerIntelligence = 1;
 						break;
 					case 'showForecastsConsumer':
-						$scope.ForecastsConsumer = true;
+						$scope.ForecastsConsumer = 1;
 						break;
 					case 'showForecastsShopper':
-						$scope.ForecastsShopper = true;
+						$scope.ForecastsShopper = 1;
 						break;
 					case 'showForecastsCategory':
-						$scope.ForecastsCategory = true;
+						$scope.ForecastsCategory = 1;
 						break;
 					case 'showForecastsInternet':
-						$scope.ForecastsInternet = true;
+						$scope.ForecastsInternet = 1;
 						break;
 					case 'showSocialBrand':
-					    $scope.SocialBrand = true;
+					    $scope.SocialBrand = 1;
 					    break;
 					case 'showSocialPlayer':
-					    $scope.SocialPlayer = true;
+					    $scope.SocialPlayer = 1;
 					    break;
 				}
 			}
@@ -266,41 +266,52 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			$scope.showAwarenessElecssories = showAwarenessElecssories;
 			$scope.showSocialBrand = showSocialBrand;
 			var setReportShown = function(data, type) {
-				$scope.forecasts                    = true;
-				$scope.retailerIntelligence         = true;
-				$scope.supplierIntelligence         = true;
-				$scope.promotionIntensity           = true;
-				$scope.BMRetailerPrices             = true;
-				$scope.salesByShopperSegment        = true;
-				$scope.marketShareByShopperSegment  = true;
-				$scope.salesByConsumerSegment       = true;
-				$scope.marketShareByConsumerSegment = true;
-				$scope.salesByChannel               = true;
-				$scope.retailerPerceptions          = true;
-				$scope.brandPerceptions             = true;
-				$scope.awareness                    = true;
-				$scope.social                       = true;
+				$scope.forecasts                    = 1;
+				$scope.retailerIntelligence         = 1;
+				$scope.supplierIntelligence         = 1;
+				$scope.promotionIntensity           = 1;
+				$scope.BMRetailerPrices             = 1;
+				$scope.salesByShopperSegment        = 1;
+				$scope.marketShareByShopperSegment  = 1;
+				$scope.salesByConsumerSegment       = 1;
+				$scope.marketShareByConsumerSegment = 1;
+				$scope.salesByChannel               = 1;
+				$scope.retailerPerceptions          = 1;
+				$scope.brandPerceptions             = 1;
+				$scope.awareness                    = 1;
+				$scope.social                       = 1;
 				//if()
 				if (type != 'Full') {
 					//not set now
-					$scope.social                       = data[13];
-					$scope.salesByChannel               = data[12];
-					$scope.forecasts                    = data[11];
-					$scope.retailerIntelligence         = data[10];
-					$scope.supplierIntelligence         = data[9];
-					$scope.promotionIntensity           = data[8];
-					$scope.BMRetailerPrices             = data[7];
-					$scope.salesByShopperSegment        = data[6];
-					$scope.marketShareByShopperSegment  = data[5];
-					$scope.salesByConsumerSegment       = data[4];
-					$scope.marketShareByConsumerSegment = data[3];
-					$scope.retailerPerceptions          = data[2];
-					$scope.brandPerceptions             = data[1];
-					$scope.awareness                    = data[0];
+					$scope.social                       = data[13] ? 1 : 0;
+					$scope.salesByChannel               = data[12] ? 1 : 0; //
+					$scope.forecasts                    = data[11] ? 1 : 0; //
+					$scope.retailerIntelligence         = data[10] ? 1 : 0;
+					$scope.supplierIntelligence         = data[9] ? 1 : 0;
+					$scope.promotionIntensity           = data[8] ? 1 : 0;
+					$scope.BMRetailerPrices             = data[7] ? 1 : 0; //
+					$scope.salesByShopperSegment        = data[6] ? 1 : 0;
+					$scope.marketShareByShopperSegment  = data[5] ? 1 : 0;
+					$scope.salesByConsumerSegment       = data[4] ? 1 : 0;
+					$scope.marketShareByConsumerSegment = data[3] ? 1 : 0;
+					$scope.retailerPerceptions          = data[2] ? 1 : 0; //
+					$scope.brandPerceptions             = data[1] ? 1 : 0; //
+					$scope.awareness                    = data[0] ? 1 : 0; //
+					if(type=="SP"){//special producer
+						$scope.social                       = -1;
+						$scope.retailerIntelligence         = -1;
+						$scope.supplierIntelligence         = -1;
+						$scope.promotionIntensity           = -1;
+						$scope.salesByShopperSegment        = -1;
+						$scope.marketShareByShopperSegment  = -1;
+						$scope.salesByConsumerSegment       = -1;
+						$scope.marketShareByConsumerSegment = -1;
+					}
 				}
-				if ($scope.awareness) {
+				if ($scope.awareness==1) {
 					showAwarenessElecssories();
 				}
+				console.log($scope.social);
 			}
 
 			var userRoles = routingConfig.userRoles;
@@ -344,17 +355,36 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 						$scope.isPageLoading = false;
 					})
 				} else if ($rootScope.user.role == userRoles.producer) {
-					var url = '/getSupplierReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) +'/'+  PlayerInfo.getPlayer();
-					$http({
-						method: 'GET',
-						url: url
-					}).then(function(data) {
-						setReportShown(data.data, 'P');
-						$scope.isPageLoading = false;
-					}, function() {
-						console.log('fail');
-						$scope.isPageLoading = false;
-					})
+
+					if (PeriodInfo.getCurrentPeriod() == 1) {
+					    $q.all([
+					        $http.get('/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer()),
+					        $http.get('/getSupplierReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer())
+					    ]).then(function(data) {
+					        if(data[0].data.isPortfolioDecisionCommitted){
+					        	setReportShown(data[1].data, 'P');
+					        }else{
+					        	setReportShown(data[1].data, 'SP');
+					        }
+
+					    }, function(data) {
+					        console.log('fail');
+					        $scope.isPageLoading = false;
+					    })
+					} else {
+
+					    var url = '/getSupplierReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer();
+					    $http({
+					        method: 'GET',
+					        url: url
+					    }).then(function(data) {
+					        setReportShown(data.data, 'P');
+					        $scope.isPageLoading = false;
+					    }, function() {
+					        console.log('fail');
+					        $scope.isPageLoading = false;
+					    })
+					}
 				}
 			}
 

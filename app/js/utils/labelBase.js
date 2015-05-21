@@ -903,6 +903,7 @@ var getLabelBase = function(){
 		{id:'Market Shares by Shopper Segment HealthBeauties Urban Info',  ENG:'This table shows the volume and value market shares for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'该表反映出城市市场上在售的所有美容保健品类的市场份额（以销量和销售额计）。将光标置于任何品牌名上，即可看到所有动态结果',  RUS:''},
 
 		{id:"Dont Purchase Info",  ENG:"You didn't purchase this report in previous period.",  CHN:'上阶段你并没有购买该报告',  RUS:''},
+		{id:"Dont commit Info",  ENG:"It will only open after you commit portfolio decision for period 1.",  CHN:'第一阶段产品组合提交后显示.',  RUS:''},
 		{id:'Not enough budget',  ENG:'You Dont have enough budget',  CHN:'预算不足',  RUS:''},
 		{id:'eMall Commission and Shipping Cost',  ENG:'eMall Commission and Shipping Cost',  CHN:'电子商城佣金和递送成本',  RUS:''},
 
