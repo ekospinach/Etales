@@ -19,11 +19,10 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     //Retailer : 7.Product Availability at Stores - Online 
     xf_AvailabilityOnline             : [variantOnlineAvailabilitySchema],
 
-    //Supplier : 9.Partner Relations & Outcomes - Two Categories / Markets
+    //Retailer : 9.Partner Relations & Outcomes - Two Categories / Markets
     xf_RetailersProfitabilityPerSupplier : [retailersProfitabilityPerSupplierSchema],
 
-
-    //Retailer : 9.Partner Relations & Outcomes - Two Categories / Markets
+    //Supplier : 9.Partner Relations & Outcomes - Two Categories / Markets
     xf_SuppliersProfitabilityPerCustomer : [supplierProfitabilityPerCustomerSchema],
 
 })  

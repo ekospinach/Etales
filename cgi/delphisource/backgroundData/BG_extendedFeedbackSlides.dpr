@@ -170,7 +170,7 @@ var
           tempVariantAvailability := currentResult.r_ExtendedFeedback.xf_AvailabilityOnline[categoryID, producerID, variantID];
           if(tempVariantAvailability.xfva_VariantName <> '')then
           begin
-            oJsonFile.A['xf_AvailabilityOnline'].add( variantOnlineAvailabilitySchema(categoryID, tempVariantAvailability) );
+            oJsonFile.A['xf_AvailabilityOnline'].add( variantOnlineAvailabilitySchema(categoryID, producerID, variantID, tempVariantAvailability) );
           end;
         end;
       end;

@@ -11,7 +11,7 @@
     "start": "NODE_ENV=development node server.js",
     "downloaditems" : "",
     "deleteitems" : "",
-    "importitmes" : "",
+    "importitmes" : ""
   },
   "dependencies": {
     "connect-flash": "~0.1.1",
