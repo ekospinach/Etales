@@ -311,7 +311,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				if ($scope.awareness==1) {
 					showAwarenessElecssories();
 				}
-				console.log($scope.social);
 			}
 
 			var userRoles = routingConfig.userRoles;
