@@ -65,15 +65,15 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
 
             switch (brandName.substr(brandName.length - 1, 1)) {
                 case '1':
-                    product.supplier_1_visibility = singleData.shelfSpace;
+                    product.supplier_1_visibility = singleData.shelfSpace * 100;
                     product.supplier_1_inventoryVolume = singleData.inventoryVolume;
                     break;
                 case '2':
-                    product.supplier_2_visibility = singleData.shelfSpace;
+                    product.supplier_2_visibility = singleData.shelfSpace * 100;
                     product.supplier_2_inventoryVolume = singleData.inventoryVolume;
                     break;
                 case '3':
-                    product.supplier_3_visibility = singleData.shelfSpace;
+                    product.supplier_3_visibility = singleData.shelfSpace * 100;
                     product.supplier_3_inventoryVolume = singleData.inventoryVolume;
                     break;
             }
