@@ -1212,7 +1212,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketShare1Config.options.yAxis,
                                 tooltip:scope.marketShare1Config.options.tooltip,
                                 series:scope.marketShare1Config.series,
-                                title:scope.marketShare1Config.options.title,
+                                title:scope.marketShare1Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
@@ -1234,7 +1234,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketShare2Config.options.yAxis,
                                 tooltip:scope.marketShare2Config.options.tooltip,
                                 series:scope.marketShare2Config.series,
-                                title:scope.marketShare2Config.options.title,
+                                title:scope.marketShare2Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
@@ -1256,7 +1256,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketShare3Config.options.yAxis,
                                 tooltip:scope.marketShare3Config.options.tooltip,
                                 series:scope.marketShare3Config.series,
-                                title:scope.marketShare3Config.options.title,
+                                title:scope.marketShare3Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
@@ -1278,7 +1278,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketShare4Config.options.yAxis,
                                 tooltip:scope.marketShare4Config.options.tooltip,
                                 series:scope.marketShare4Config.series,
-                                title:scope.marketShare4Config.options.title,
+                                title:scope.marketShare4Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
@@ -1300,7 +1300,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketSales1Config.options.yAxis,
                                 tooltip:scope.marketSales1Config.options.tooltip,
                                 series:scope.marketSales1Config.series,
-                                title:scope.marketSales1Config.options.title,
+                                title:scope.marketSales1Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
@@ -1322,7 +1322,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketSales2Config.options.yAxis,
                                 tooltip:scope.marketSales2Config.options.tooltip,
                                 series:scope.marketSales2Config.series,
-                                title:scope.marketSales2Config.options.title,
+                                title:scope.marketSales2Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
@@ -1344,7 +1344,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketSales3Config.options.yAxis,
                                 tooltip:scope.marketSales3Config.options.tooltip,
                                 series:scope.marketSales3Config.series,
-                                title:scope.marketSales3Config.options.title,
+                                title:scope.marketSales3Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
@@ -1366,7 +1366,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.marketSales4Config.options.yAxis,
                                 tooltip:scope.marketSales4Config.options.tooltip,
                                 series:scope.marketSales4Config.series,
-                                title:scope.marketSales4Config.options.title,
+                                title:scope.marketSales4Config.title,
                                 plotOptions: {column: {stacking: 'precent'}},
                                 legend: {enabled: true},
                                 credits: {enabled: false}
