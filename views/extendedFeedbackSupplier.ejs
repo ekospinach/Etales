@@ -253,8 +253,9 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat='product in productLists.urban_ele | orderBy:"index"' class="success">
-                                <td>
-                                    <p class="text-center text-small">{{product.name}}</p>
+                                <td style="width:150px;">
+                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
@@ -321,8 +322,9 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat='product in productLists.urban_hea | orderBy:"index"' class="danger">
-                                <td>
-                                    <p class="text-center text-small">{{product.name}}</p>
+                                <td style="width:150px;">
+                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
@@ -389,8 +391,9 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat='product in productLists.rural_ele | orderBy:"index"' class="success">
-                                <td>
-                                    <p class="text-center text-small">{{product.name}}</p>
+                                <td style="width:150px;">
+                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
@@ -457,8 +460,9 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat='product in productLists.rural_hea | orderBy:"index"' class="danger">
-                                <td>
-                                    <p class="text-center text-small">{{product.name}}</p>
+                                <td style="width:150px;">
+                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%">&nbsp;</p>
@@ -525,8 +529,9 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat='product in productLists.online_ele | orderBy:"index"' class="success">
-                                <td>
-                                    <p class="text-center text-small">{{product.name}}</p>
+                                <td style="width:150px;">
+                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-right text-small">{{product.supplier_1_visibility | number:2 | minus}}</p>
@@ -593,8 +598,9 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat='product in productLists.online_hea | orderBy:"index"' class="danger">
-                                <td>
-                                    <p class="text-center text-small">{{product.name}}</p>
+                                <td style="width:150px;">
+                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-right text-small">{{product.supplier_1_visibility | number:2 | minus}}</p>

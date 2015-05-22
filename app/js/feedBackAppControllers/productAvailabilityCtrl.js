@@ -14,8 +14,9 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
         });
         list.forEach(function(singleData) {
             var product = {
-                index:0,
-                name: '',
+                'index': 0,
+                'brandName': '',
+                'variantName': '',
                 'retailer_1_shelfSpace': 0,
                 'retailer_1_inventoryVolume': 0,
                 'retailer_2_shelfSpace': 0,
@@ -25,28 +26,30 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
             };
             var variantName = singleData.variantName;
             var brandName = singleData.parentBrandName;
-            product.index =brandName.substr(brandName.length-1,1);
-            product.name = singleData.parentBrandName +  singleData.variantName;
-            product.retailer_1_shelfSpace = singleData.shelfSpace*100;
+            product.index = brandName.substr(brandName.length - 1, 1);
+            product.brandName = singleData.parentBrandName;
+            product.variantName = singleData.variantName;
+            product.retailer_1_shelfSpace = singleData.shelfSpace * 100;
             product.retailer_1_inventoryVolume = singleData.inventoryVolume;
-            product.retailer_2_shelfSpace = getStoreResult(data, variantName, brandName, 2).shelfSpace*100;
+            product.retailer_2_shelfSpace = getStoreResult(data, variantName, brandName, 2).shelfSpace * 100;
             product.retailer_2_inventoryVolume = getStoreResult(data, variantName, brandName, 2).inventoryVolume;
-            product.tt_shelfSpace = getStoreResult(data, variantName, brandName, 3).shelfSpace*100;
+            product.tt_shelfSpace = getStoreResult(data, variantName, brandName, 3).shelfSpace * 100;
             product.tt_inventoryVolume = getStoreResult(data, variantName, brandName, 3).inventoryVolume;
             productList.push(product);
         });
         return productList;
     }
 
-    var organiseOnlineArray = function(data,categoryID){
-        var productList =[];
+    var organiseOnlineArray = function(data, categoryID) {
+        var productList = [];
         var list = _.filter(data, function(obj) {
             return (obj.categoryID == categoryID);
         });
         list.forEach(function(singleData) {
             var product = {
-                index: 0,
-                name: '',
+                'index': 0,
+                'brandName': '',
+                'variantName': '',
                 'supplier_1_visibility': -99,
                 'supplier_1_inventoryVolume': -99,
                 'supplier_2_visibility': -99,
@@ -56,10 +59,11 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
             };
             var variantName = singleData.variantName;
             var brandName = singleData.parentBrandName;
-            product.name = singleData.parentBrandName + singleData.variantName;
-            product.index =brandName.substr(brandName.length-1,1);
+            product.brandName = singleData.parentBrandName;
+            product.variantName = singleData.variantName;
+            product.index = brandName.substr(brandName.length - 1, 1);
 
-            switch (brandName.substr(brandName.length-1,1)) {
+            switch (brandName.substr(brandName.length - 1, 1)) {
                 case '1':
                     product.supplier_1_visibility = singleData.shelfSpace;
                     product.supplier_1_inventoryVolume = singleData.inventoryVolume;
