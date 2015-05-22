@@ -1388,7 +1388,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.crossSegment1Config.options.yAxis,
                                 tooltip:scope.crossSegment1Config.options.tooltip,
                                 series:scope.crossSegment1Config.series,
-                                title:scope.crossSegment1Config.options.title,
+                                title:scope.crossSegment1Config.title,
                                 legend: {enabled: true},
                                 credits: {enabled: false}
                             })
@@ -1409,7 +1409,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.crossSegment2Config.options.yAxis,
                                 tooltip:scope.crossSegment2Config.options.tooltip,
                                 series:scope.crossSegment2Config.series,
-                                title:scope.crossSegment2Config.options.title,
+                                title:scope.crossSegment2Config.title,
                                 legend: {enabled: true},
                                 credits: {enabled: false}
                             })
@@ -1430,7 +1430,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.crossSegment3Config.options.yAxis,
                                 tooltip:scope.crossSegment3Config.options.tooltip,
                                 series:scope.crossSegment3Config.series,
-                                title:scope.crossSegment3Config.options.title,
+                                title:scope.crossSegment3Config.title,
                                 legend: {enabled: true},
                                 credits: {enabled: false}
                             })
@@ -1451,7 +1451,7 @@ define(['directives'], function(directives) {
                                 yAxis:scope.crossSegment4Config.options.yAxis,
                                 tooltip:scope.crossSegment4Config.options.tooltip,
                                 series:scope.crossSegment4Config.series,
-                                title:scope.crossSegment4Config.options.title,
+                                title:scope.crossSegment4Config.title,
                                 legend: {enabled: true},
                                 credits: {enabled: false}
                             })
