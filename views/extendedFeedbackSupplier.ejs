@@ -64,12 +64,14 @@
     .text-left {
         text-align: left;
     }
-    
+    .text-center {
+        text-align: center;
+    }
     .text-right {
         text-align: right;
+        padding-right: 15px !important;
     }
-    
-    .text-center {
+    .name-text-right{
         text-align: center;
     }
     
@@ -254,7 +256,7 @@
                         <tbody>
                             <tr ng-repeat='product in productLists.urban_ele | orderBy:"index"' class="success">
                                 <td style="width:150px;">
-                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
                                     <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
@@ -323,7 +325,7 @@
                         <tbody>
                             <tr ng-repeat='product in productLists.urban_hea | orderBy:"index"' class="danger">
                                 <td style="width:150px;">
-                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
                                     <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
@@ -392,7 +394,7 @@
                         <tbody>
                             <tr ng-repeat='product in productLists.rural_ele | orderBy:"index"' class="success">
                                 <td style="width:150px;">
-                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
                                     <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
@@ -461,7 +463,7 @@
                         <tbody>
                             <tr ng-repeat='product in productLists.rural_hea | orderBy:"index"' class="danger">
                                 <td style="width:150px;">
-                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
                                     <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
@@ -530,7 +532,7 @@
                         <tbody>
                             <tr ng-repeat='product in productLists.online_ele | orderBy:"index"' class="success">
                                 <td style="width:150px;">
-                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
                                     <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
@@ -599,7 +601,7 @@
                         <tbody>
                             <tr ng-repeat='product in productLists.online_hea | orderBy:"index"' class="danger">
                                 <td style="width:150px;">
-                                    <span class="text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
+                                    <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
                                     <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
