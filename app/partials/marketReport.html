@@ -64,10 +64,10 @@
                 <market-forecasts-shopper ng-show='ForecastsShopper' is-page-shown='ForecastsShopper' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-forecasts-shopper>
                 <market-forecasts-category ng-show='ForecastsCategory' is-page-shown='ForecastsCategory' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-forecasts-category>
                 <market-forecasts-internet ng-show='ForecastsInternet' is-page-shown='ForecastsInternet' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-forecasts-internet>
-<!-- 
+
                 <market-social-brand ng-show='SocialBrand' is-page-shown='SocialBrand' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-social-brand>
 
-                <market-social-player ng-show='SocialPlayer' is-page-shown='SocialPlayer' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-social-player> -->
+                <market-social-player ng-show='SocialPlayer' is-page-shown='SocialPlayer' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-social-player>
                 <!--market report end-->
             </div>
         </div>
@@ -295,7 +295,7 @@
                     <li style='padding-left:6px' ng-show='forecasts==0'>
                         <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-shopping-cart"></span>{{Label.getContent('Forecasts')}}</p>
                     </li>
-<!--                     <li class="" ng-show='social==1'>
+                    <li class="" ng-show='social==1'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showSocialBrand()'>{{Label.getContent('Social Network Trawlers')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -311,7 +311,7 @@
                     </li>
                     <li style='padding-left:6px' ng-show='social==-1'>
                         <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont commit Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Social Network Trawlers')}}</p>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
         </div>

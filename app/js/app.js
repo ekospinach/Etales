@@ -77,8 +77,8 @@
  	'directives/TE_MR_ruralHealthBeautiesSalesByChannel',
  	'directives/TE_MR_ruralHealthBeautiesSalesByChannel',
  	
- 	// 'directives/TE_MR_socialBrand',
- 	// 'directives/TE_MR_socialPlayer',
+ 	'directives/TE_MR_socialBrand',
+ 	'directives/TE_MR_socialPlayer',
 
  	'directives/TE_SD_productPortfolioManagement',
  	'directives/TE_SD_negotiationAgreements',
