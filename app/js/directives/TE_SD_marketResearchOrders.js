@@ -143,14 +143,14 @@ define(['directives', 'services'], function(directives) {
                             'reportPrice': prices[12],
                             'playerStatus': scope.pageBase.marketResearchOrder[12]
                         });
-                        playDatas.push({
-                            'name': 'Social Network Trawlers',
-                            'realName': 'socialNetworkTrawlers',
-                            'reportPrice': prices[13],
-                            'playerStatus': scope.pageBase.marketResearchOrder[13]
-                        });
+                        // playDatas.push({
+                        //     'name': 'Social Network Trawlers',
+                        //     'realName': 'socialNetworkTrawlers',
+                        //     'reportPrice': prices[13],
+                        //     'playerStatus': scope.pageBase.marketResearchOrder[13]
+                        // });
                         scope.buyAll = true;
-                        for (var i = 0; i < 14; i++) {
+                        for (var i = 0; i < 13; i++) {
                             if (!scope.pageBase.marketResearchOrder[i]) {
                                 scope.buyAll = false;
                                 break;
