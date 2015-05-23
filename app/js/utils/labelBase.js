@@ -1219,6 +1219,8 @@ var getLabelBase = function(){
 		{id:'mln units',  ENG:'mln units',  CHN:'mln units',  RUS:''},
 		{id:'Partner Relations Outcomes',  ENG:'Partner Relations & Outcomes',  CHN:'Partner Relations & Outcomes',  RUS:''},
 		
+		{id:'Not Listed',  ENG:'Not Listed',  CHN:'Not Listed',  RUS:''},
+		
 
 		{id:'Sales per 1% of shelf Space',  ENG:'Sales per 1% of shelf Space',  CHN:'Sales per 1% of shelf Space',  RUS:''},
 		{id:'Gross Profit per 1% of Shelf Space',  ENG:'Gross Profit per 1% of Shelf Space',  CHN:'Gross Profit per 1% of Shelf Space',  RUS:''},
