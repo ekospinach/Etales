@@ -34,6 +34,16 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 color: PlayerColor.mixed,
                 xAxis: 0
             }, {
+                name: ' ',
+                data: [null, null],
+                color: 'transparent',
+                xAxis: 1, //第二个X轴
+            }, {
+                name: ' ',
+                data: [],
+                color: 'transparent',
+                xAxis: 2, //第二个X轴
+            }, {
                 name: Label.getContent('Retailer') + ' 1',
                 data: [],
                 color: PlayerColor.r1,
@@ -63,16 +73,6 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 data: [],
                 color: PlayerColor.s3,
                 xAxis: 0
-            }, {
-                name: ' ',
-                data: [null, null],
-                color: 'transparent',
-                xAxis: 1, //第二个X轴
-            }, {
-                name: ' ',
-                data: [],
-                color: 'transparent',
-                xAxis: 2, //第二个X轴
             }],
             categories: []
         };
@@ -82,12 +82,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
             result.data[0].data[i] = null;
             result.data[1].data[i] = null;
             result.data[2].data[i] = null;
-            result.data[3].data[i] = null;
             result.data[4].data[i] = null;
             result.data[5].data[i] = null;
             result.data[6].data[i] = null;
             result.data[7].data[i] = null;
             result.data[8].data[i] = null;
+            result.data[9].data[i] = null;
             result.data[10].data[i] = null;
             result.categories[i] = ' ';
         }
@@ -102,41 +102,41 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     switch (singleList.shopperKind) {
                         case 'BMS':
                             if (singleList.storeID == 8) {
-                                result.data[0].data[singlePeriod + periods.length - 1] = singleList.importance;
+                                result.data[0].data[singlePeriod + periods.length - 1] = singleList.importance * 100;
                             }
                             break;
                         case 'NETIZENS':
                             if (singleList.storeID == 8) {
-                                result.data[1].data[singlePeriod + periods.length - 1] = singleList.importance;
+                                result.data[1].data[singlePeriod + periods.length - 1] = singleList.importance * 100;
                             }
                             break;
                         case 'MIXED':
                             if (singleList.storeID == 8) {
-                                result.data[2].data[singlePeriod + periods.length - 1] = singleList.importance;
+                                result.data[2].data[singlePeriod + periods.length - 1] = singleList.importance * 100;
                             }
                             break;
                         case 'ALLSHOPPERS':
                             if (singleList.storeID == 4) {
-                                result.data[3].data[2 * periods.length + singlePeriod] = singleList.importance;
+                                result.data[5].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 5) {
-                                result.data[4].data[2 * periods.length + singlePeriod] = singleList.importance;
+                                result.data[6].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 6) {
-                                result.data[5].data[2 * periods.length + singlePeriod] = singleList.importance;
+                                result.data[7].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 1) {
-                                result.data[6].data[2 * periods.length + singlePeriod] = singleList.importance;
+                                result.data[8].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 2) {
-                                result.data[7].data[2 * periods.length + singlePeriod] = singleList.importance;
+                                result.data[9].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 3) {
-                                result.data[8].data[2 * periods.length + singlePeriod] = singleList.importance;
+                                result.data[10].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 8) {
-                                result.categories[singlePeriod + periods.length - 1] = singleList.absolute;
-                                result.categories[2 * periods.length + singlePeriod] = singleList.importance;
+                                result.categories[singlePeriod + periods.length - 1] = singleList.absolute.toFixed(2);
+                                result.categories[2 * periods.length + singlePeriod] = singleList.absolute.toFixed(2);
                             }
                             break;
                     }
@@ -193,7 +193,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: [Label.getContent('Feedback By Shopper Segment'), Label.getContent('Feedback By Market Players')],
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                             'text-align': 'right'
                         },
@@ -204,7 +204,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: result.urban_ele.categories,
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                         y: -30
@@ -212,7 +212,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     title: {
                         text: Label.getContent('Total Sales'),
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f'
                         }
                     },
@@ -229,6 +229,14 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     type: 'column',
                     backgroundColor: 'transparent'
                 },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -236,11 +244,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             enabled: true,
                             color: 'white',
                             style: {
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 3px black',
+                                fontSize: '18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2)+'%'
+                                    return this.y.toFixed(2) + '%'
                                 } else {
                                     return "";
                                 }
@@ -272,7 +281,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: [Label.getContent('Feedback By Shopper Segment'), Label.getContent('Feedback By Market Players')],
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                             'text-align': 'right'
                         },
@@ -283,7 +292,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: result.urban_hea.categories,
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                         y: -30
@@ -291,7 +300,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     title: {
                         text: Label.getContent('Total Sales'),
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f'
                         }
                     },
@@ -308,6 +317,14 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     type: 'column',
                     backgroundColor: 'transparent'
                 },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -315,11 +332,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             enabled: true,
                             color: 'white',
                             style: {
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 3px black',
+                                fontSize: '18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2)+'%'
+                                    return this.y.toFixed(2) + '%'
                                 } else {
                                     return "";
                                 }
@@ -351,7 +369,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: [Label.getContent('Feedback By Shopper Segment'), Label.getContent('Feedback By Market Players')],
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                             'text-align': 'right'
                         },
@@ -362,7 +380,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: result.rural_ele.categories,
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                         y: -30
@@ -370,7 +388,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     title: {
                         text: Label.getContent('Total Sales'),
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f'
                         }
                     },
@@ -387,6 +405,14 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     type: 'column',
                     backgroundColor: 'transparent'
                 },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -394,11 +420,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             enabled: true,
                             color: 'white',
                             style: {
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 3px black',
+                                fontSize: '18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2)+'%'
+                                    return this.y.toFixed(2) + '%'
                                 } else {
                                     return "";
                                 }
@@ -430,7 +457,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: [Label.getContent('Feedback By Shopper Segment'), Label.getContent('Feedback By Market Players')],
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                             'text-align': 'right'
                         },
@@ -441,7 +468,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: result.rural_hea.categories,
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                         y: -30
@@ -449,7 +476,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     title: {
                         text: Label.getContent('Total Sales'),
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f'
                         }
                     },
@@ -466,6 +493,14 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     type: 'column',
                     backgroundColor: 'transparent'
                 },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -473,11 +508,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             enabled: true,
                             color: 'white',
                             style: {
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 3px black',
+                                fontSize: '18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2)+'%'
+                                    return this.y.toFixed(2) + '%'
                                 } else {
                                     return "";
                                 }
