@@ -12,7 +12,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
         return theRequest;
     }
 
-    var organiseGrossArray=function(data,periods){
+    var organiseGrossArray = function(data, periods) {
 
     }
 
@@ -20,61 +20,57 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
 
         var result = {
             data: [{
-                name: Label.getContent('B&M Only'),
+                name: Label.getContent('Retailer') + ' 1',
                 data: [],
-                color: PlayerColor.bm,
-                xAxis: 0
+                color: PlayerColor.r1
             }, {
-                name: Label.getContent('Online Only'),
+                name: Label.getContent('Retailer') + ' 2',
                 data: [],
-                color: PlayerColor.online,
-                xAxis: 0
+                color: PlayerColor.r2
             }, {
-                name: Label.getContent('Mixed'),
+                name: Label.getContent('Supplier') + ' 1',
                 data: [],
-                color: PlayerColor.mixed,
-                xAxis: 0
+                color: PlayerColor.s1
             }, {
-                name: ' ',
-                data: [null, null],
-                color: 'transparent',
-                xAxis: 1, //第二个X轴
-            }, {
-                name: ' ',
+                name: Label.getContent('Supplier') + ' 2',
                 data: [],
-                color: 'transparent',
-                xAxis: 2, //第3个X轴
-            }],
-            categories: []
+                color: PlayerColor.s2
+            }, {
+                name: Label.getContent('Supplier') + ' 3',
+                data: [],
+                color: PlayerColor.s3
+            }]
         }
-
-        for (var i = 0; i < 2 * periods.length + 1; i++) {
-            result.data[0].data[i] = null;
-            result.data[1].data[i] = null;
-            result.data[2].data[i] = null;
-            result.data[4].data[i] = null;
-            result.categories[i] = ' ';
-        }
+        var lists;
 
         periods.forEach(function(singlePeriod) {
-            data.forEach(function(singleData) {
-                if (singleData.marketID == marketID && singleData.period == singlePeriod) {
-                    switch (singleData.categoryID) {
-                        case 1:
-                            result.data[0].data[singlePeriod + periods.length - 1] = singleData.BMS_importance;
-                            result.data[1].data[singlePeriod + periods.length - 1] = singleData.NETIZENS_importance;
-                            result.data[2].data[singlePeriod + periods.length - 1] = singleData.MIXED_importance;
-                            result.data[4].data[singlePeriod + periods.length - 1] = null;
-                            result.categories[singlePeriod + periods.length - 1] = singleData.totalMarket;
-                            break;
-                        case 2:
-                            result.data[0].data[2 * periods.length + singlePeriod] = singleData.BMS_importance;
-                            result.data[1].data[2 * periods.length + singlePeriod] = singleData.NETIZENS_importance;
-                            result.data[2].data[2 * periods.length + singlePeriod] = singleData.MIXED_importance;
-                            result.data[4].data[2 * periods.length + singlePeriod] = null;
-                            result.categories[2 * periods.length + singlePeriod] = singleData.totalMarket;
-                            break;
-                    }
+
+            lists = _.filter(data, function(obj) {
+                return (obj.categoryID == 3 && obj.marketID == 3 && obj.period == singlePeriod);
+            })
+            lists.forEach(function(singleList) {
+                switch (singleList.storeID) {
+                    case 1:
+                        result.data[2].data[singlePeriod + 3] = singleList.value;
+                        break;
+                    case 2:
+                        result.data[3].data[singlePeriod + 3] = singleList.value;
+                        break;
+                    case 3:
+                        result.data[4].data[singlePeriod + 3] = singleList.value;
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        result.data[0].data[singlePeriod + 3] = singleList.value;
+                        break;
+                    case 6:
+                        result.data[1].data[singlePeriod + 3] = singleList.value;
+                        break;
+                    case 7:
+                        break;
+                    default:
+                        break;
                 }
             })
         })
@@ -84,184 +80,127 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
     var initPage = function() {
         var Request = GetRequest();
         var periods = [];
-        $scope.categories = [];
-        $scope.subCategories = [];
-        for (var i = Request['period'] - 1; i <= Request['period']; i++) {
-            $scope.categories.push('Period:' + i);
+        for (var i = -3; i <= Request['period']; i++) {
             periods.push(i);
         }
-        $scope.categories.push(' ');
-        $scope.subCategories.push(' ');
-        for (var i = Request['period'] - 1; i <= Request['period']; i++) {
-            $scope.categories.push('Period:' + i);
-        }
         var result = {
-            'urban': {
-                data: {},
-                categories: {}
+            'gross': {
+                data: {}
             },
-            'rural': {
-                data: {},
-                categories: {}
+            'operating': {
+                data: {}
+            },
+            'net': {
+                data: {}
             }
         }
-        result.urban = organiseArray($scope.feedback.xf_ShoppersSegmentsShares, periods, 1);
-        result.rural = organiseArray($scope.feedback.xf_ShoppersSegmentsShares, periods, 2);
+        result.gross = organiseMarginArray($scope.feedback.xf_StoreGrossProfitMargin, periods);
+        result.operating = organiseMarginArray($scope.feedback.xf_StoreOperatingProfitMargin, periods);
+        result.net = organiseMarginArray($scope.feedback.xf_StoreNetProfitMargin, periods);
 
-        $scope.urbanShopperSegmentEvolution = {
+        $scope.grossProfitsMargins = {
             options: {
-                xAxis: [{
-                    categories: $scope.categories,
-                    tickWidth: 0,
-                    gridLineWidth: 0
-                }, {
-                    categories: [Label.getContent('Elecssories'), Label.getContent('HealthBeauties')],
-                    labels: {
-                        style: {
-                            'font-size': '16px',
-                            'color': '#f26c4f',
-                        },
-                    },
-                    lineWidth: 0,
-                    tickWidth: 0
-                }, {
-                    categories: result.urban.categories,
-                    labels: {
-                        style: {
-                            'font-size': '16px',
-                            'color': '#f26c4f',
-                        },
-                        y: -30
-                    },
-                    title: {
-                        text: Label.getContent('Total Market Size'),
-                        style: {
-                            'font-size': '16px',
-                            'color': '#f26c4f'
-                        }
-                    },
-                    tickWidth: 0,
-                    opposite: true //对立面 表示显示在上方
-                }],
-                yAxis: {
-                    title: {
-                        text: '%'
-                    },
-                    max: 100
+                title: {
+                    text: Label.getContent('Gross Profit Margin'),
                 },
                 chart: {
-                    type: 'column',
-                    backgroundColor: 'transparent'
+                    type: 'line',
+                    backgroundColor: 'transparent',
                 },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black'
-                            },
-                            formatter: function() {
-                                if (this.y != null) {
-                                    return this.y.toFixed(2) +'%'
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
-                    },
-                    series: {
-                        stacking: 'percent'
+                yAxis: {
+                    title: {
+                        text: Label.getContent('$mln')
                     }
+                },
+                xAxis: {
+                    categories: periods,
+                    title: {
+                        text: Label.getContent('Period')
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
                 }
             },
-            title: {
-                text: ''
-            },
-            series: result.urban.data,
-            credits: {
-                enabled: false
-            },
+            series: result.gross.data,
             loading: false
         }
-        $scope.ruralShopperSegmentEvolution = {
+        $scope.operatingProfitsMargins = {
             options: {
-                xAxis: [{
-                    categories: $scope.categories,
-                    tickWidth: 0,
-                    gridLineWidth: 0
-                }, {
-                    categories: [Label.getContent('Elecssories'), Label.getContent('HealthBeauties')],
-                    labels: {
-                        style: {
-                            'font-size': '16px',
-                            'color': '#f26c4f',
-                        },
-                    },
-                    lineWidth: 0,
-                    tickWidth: 0
-                }, {
-                    categories: result.rural.categories,
-                    labels: {
-                        style: {
-                            'font-size': '16px',
-                            'color': '#f26c4f',
-                        },
-                        y: -30
-                    },
-                    title: {
-                        text: Label.getContent('Total Market Size'),
-                        style: {
-                            'font-size': '16px',
-                            'color': '#f26c4f'
-                        }
-                    },
-                    tickWidth: 0,
-                    opposite: true //对立面 表示显示在上方
-                }],
-                yAxis: {
-                    title: {
-                        text: '%'
-                    },
-                    max: 100
+                title: {
+                    text: Label.getContent('Operating Profit Margin'),
                 },
                 chart: {
-                    type: 'column',
-                    backgroundColor: 'transparent'
+                    type: 'line',
+                    backgroundColor: 'transparent',
                 },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black'
-                            },
-                            formatter: function() {
-                                if (this.y != null) {
-                                    return this.y.toFixed(2) +'%'
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
-                    },
-                    series: {
-                        stacking: 'percent'
+                yAxis: {
+                    title: {
+                        text: Label.getContent('$mln')
                     }
+                },
+                xAxis: {
+                    categories: periods,
+                    title: {
+                        text: Label.getContent('Period')
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
                 }
             },
-            title: {
-                text: ''
+            series: result.operating.data,
+            loading: false
+        }
+        $scope.netProfitsMargins = {
+            options: {
+                title: {
+                    text: Label.getContent('Net Profit Margin'),
+                },
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: Label.getContent('$mln')
+                    }
+                },
+                xAxis: {
+                    categories: periods,
+                    title: {
+                        text: Label.getContent('Period')
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                }
             },
-            series: result.rural.data,
-            credits: {
-                enabled: false
-            },
+            series: result.net.data,
             loading: false
         }
     }
