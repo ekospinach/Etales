@@ -259,7 +259,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     },
                     series: {
                         stacking: 'percent'
-                    }
+                    },
+
+                },
+                legend: {
+                    borderWidth: 0,
+                    x: 50,
                 }
             },
             title: {
@@ -347,7 +352,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     },
                     series: {
                         stacking: 'percent'
-                    }
+                    },
+
+                },
+                legend: {
+                    borderWidth: 0,
+                    x: 50,
                 }
             },
             title: {
@@ -435,7 +445,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     },
                     series: {
                         stacking: 'percent'
-                    }
+                    },
+
+                },
+                legend: {
+                    borderWidth: 0,
+                    x: 50,
                 }
             },
             title: {
@@ -523,7 +538,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     },
                     series: {
                         stacking: 'percent'
-                    }
+                    },
+
+                },
+                legend: {
+                    borderWidth: 0,
+                    x: 50,
                 }
             },
             title: {
