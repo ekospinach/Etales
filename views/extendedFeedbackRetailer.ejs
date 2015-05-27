@@ -2143,27 +2143,18 @@
             <section ng-controller='retailerProfitCtrl'>
                 <!--11-->
                 <section>
+                    <h3><a> {{Label.getContent('Profits – Gross Profits')}} </a></h3>
+                    <hr>
+                    <highchart id="chart111" class="large-size" config="grossProfitsMargins"></highchart>
+                </section>
+                <section>
                     <h3><a> {{Label.getContent('Profit - Margin')}} </a></h3>
                     <hr>
                     <highchart id="chart1121" class="small-size" config="grossProfitsMargins"></highchart>
                     <highchart id="chart1122" class="small-size" config="operatingProfitsMargins"></highchart>
                     <highchart id="chart1123" class="small-size" config="netProfitsMargins"></highchart>
                 </section>
-                <section>
-                    <h3><a> {{Label.getContent('Retail Sales')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('HealthBeauties')}}</h3>
-                    <hr>
-                    <highchart id="chart61" class="large-size" config="urban_heaRetailSales"></highchart>
-                </section>
-                <section>
-                    <h3><a> {{Label.getContent('Retail Sales')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('Elecssories')}}</h3>
-                    <hr>
-                    <highchart id="chart61" class="large-size" config="rural_eleRetailSales"></highchart>
-                </section>
-                <section>
-                    <h3><a> {{Label.getContent('Retail Sales')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('HealthBeauties')}}</h3>
-                    <hr>
-                    <highchart id="chart61" class="large-size" config="rural_heaRetailSales"></highchart>
-                </section>
+
             </section>
 
 

@@ -1239,8 +1239,8 @@ var getLabelBase = function(){
 		{id:'Feedback By Market Players',  ENG:'By Market Players',  CHN:'By Market Players',  RUS:''},		
 		{id:'Total Sales',  ENG:'Total Sales ($mln)',  CHN:'Total Sales ($mln)',  RUS:''},
 
+		{id:'Profits – Gross Profits',  ENG:'Profits – Gross Profits',  CHN:'Profits – Gross Profits',  RUS:''},	
 		{id:'Profit - Margin',  ENG:'Profit - Margin',  CHN:'Profit - Margin',  RUS:''},	
-
 		//retailerExtend		
 
 	]

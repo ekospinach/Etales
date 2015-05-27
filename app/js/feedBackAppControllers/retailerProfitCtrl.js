@@ -51,21 +51,21 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
             lists.forEach(function(singleList) {
                 switch (singleList.storeID) {
                     case 1:
-                        result.data[2].data[singlePeriod + 3] = singleList.value;
+                        result.data[0].data[singlePeriod + 3] = singleList.value;
                         break;
                     case 2:
-                        result.data[3].data[singlePeriod + 3] = singleList.value;
+                        result.data[1].data[singlePeriod + 3] = singleList.value;
                         break;
                     case 3:
-                        result.data[4].data[singlePeriod + 3] = singleList.value;
                         break;
                     case 4:
                         break;
+                        result.data[2].data[singlePeriod + 3] = singleList.value;
                     case 5:
-                        result.data[0].data[singlePeriod + 3] = singleList.value;
+                        result.data[3].data[singlePeriod + 3] = singleList.value;
                         break;
                     case 6:
-                        result.data[1].data[singlePeriod + 3] = singleList.value;
+                        result.data[4].data[singlePeriod + 3] = singleList.value;
                         break;
                     case 7:
                         break;
