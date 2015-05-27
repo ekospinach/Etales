@@ -13,10 +13,6 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
     }
 
     var organiseArray = function(data, periods, marketID, categoryID) {
-        // BMS, NETIZENS, MIXED, ALLSHOPPERS
-        // { It is a bit overloaded with data. For absolute values in the top line you only need: [market, category, period, ALLSHOPPERS, ALlStoresMaxTotal].xfsss_Absolute element } 
-        // { For left side bar charts use: [market, category, period, BMS/NETIZENS/MIXED, ALlStoresMaxTotal].xfsss_Importance }
-        // { For right side bar use: [market, category, period, ALLSHOPPERS, store].xfsss_Importance }
         var result = {
             data: [{
                 name: Label.getContent('B&M Only'),
@@ -79,16 +75,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
         var list = {};
 
         for (var i = 0; i < 2 * periods.length + 1; i++) {
-            result.data[0].data[i] = null;
-            result.data[1].data[i] = null;
-            result.data[2].data[i] = null;
-            result.data[4].data[i] = null;
-            result.data[5].data[i] = null;
-            result.data[6].data[i] = null;
-            result.data[7].data[i] = null;
-            result.data[8].data[i] = null;
-            result.data[9].data[i] = null;
-            result.data[10].data[i] = null;
+            result.data[0].data[i] = result.data[1].data[i] = result.data[2].data[i] = result.data[4].data[i] = result.data[5].data[i] = result.data[6].data[i] = result.data[7].data[i] = result.data[8].data[i] = result.data[9].data[i] = result.data[10].data[i] = null;
             result.categories[i] = ' ';
         }
 
