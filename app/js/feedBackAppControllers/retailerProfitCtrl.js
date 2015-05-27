@@ -17,88 +17,199 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
         var result = {
             data: [{
                 name: Label.getContent('Retailer') + ' 1',
-                data: [1,1,1,1,null,1,1,1,1,null,1,1,1,1,null,1,1],
+                data: [],
                 color: PlayerColor.r1,
                 xAxis: 0
             }, {
                 name: Label.getContent('Retailer') + ' 2',
-                data: [1,1,1,1,null,1,1,1,1,null,1,1,1,1,null,1,1],
+                data: [],
                 color: PlayerColor.r2,
                 xAxis: 0
             }, {
                 name: Label.getContent('Supplier') + ' 1',
-                data: [1,1,1,1,null,1,1,1,1,null,1,1,1,1,null,1,1],
+                data: [],
                 color: PlayerColor.s1,
                 xAxis: 0
             }, {
                 name: Label.getContent('Supplier') + ' 2',
-                data: [1,1,1,1,null,1,1,1,1,null,1,1,1,1,null,1,1],
+                data: [],
                 color: PlayerColor.s2,
                 xAxis: 0
             }, {
                 name: Label.getContent('Supplier') + ' 3',
-                data: [1,1,1,1,null,1,1,1,1,null,1,1,1,1,null,1,1],
+                data: [],
                 color: PlayerColor.s3,
                 xAxis: 0
             }, {
                 name: ' ',
-                data: [null, null, null, null, null, null, null, null, null, null],
+                data: [],
                 color: 'transparent',
                 xAxis: 1, //第2个X轴
             }, {
                 name: ' ',
-                data: [null,null,null,null],
+                data: [],
                 color: 'transparent',
                 xAxis: 2, //第3个X轴
             }],
             categories: [],
-            subCategories:[],
-            thirdCategories:[]
+            subCategories: [],
+            thirdCategories: []
         }
 
-        // for (var i = 0; i < 7 * periods.length + 4; i++) {
-        //     result.data[0].data[i] = 1;
-        //     result.data[1].data[i] = 1;
-        //     result.data[2].data[i] = 1;
-        //     result.data[3].data[i] = 1;
-        //     result.data[4].data[i] = 1;
-        // }
-        for(var i=0;i<2;i++){
-            result.categories.push(periods[i]);
-        }
-        for(var i=0;i<2;i++){
-            result.categories.push(periods[i]);
-        }
-        result.categories.push(' ');
-        for(var i=0;i<2;i++){
-            result.categories.push(periods[i]);
-        }
-        for(var i=0;i<2;i++){
-            result.categories.push(periods[i]);
-        }
-        result.categories.push(' ');
-        for(var i=0;i<2;i++){
-            result.categories.push(periods[i]);
-        }
-        for(var i=0;i<2;i++){
-            result.categories.push(periods[i]);
-        }
-        result.categories.push(' ');
-        for(var i=0;i<2;i++){
-            result.categories.push(periods[i]);
+        var lists;
+
+        for (var i = 0; i < 17; i++) {
+            result.data[0].data[i] = result.data[1].data[i] = result.data[2].data[i] = result.data[3].data[i] = result.data[4].data[i] = null;
+            result.data[5].data[i] = result.data[6].data[i] = null;
         }
 
+        result.categories = [periods[0], periods[1], periods[0], periods[1], ' ', periods[0], periods[1], periods[0], periods[1], ' ', periods[0], periods[1], periods[0], periods[1], ' ', periods[0], periods[1]];
+        result.subCategories = [Label.getContent('Retailer'), '1', Label.getContent('Retailer'), '2', ' ', Label.getContent('Retailer'), '1', Label.getContent('Retailer'), '2', ' ', Label.getContent('Retailer'), '1', Label.getContent('Retailer'), '2', ' ', ' ', ' ']
+        result.thirdCategories = [' ', Label.getContent('Urban'), Label.getContent('Market'), ' ', ' ', ' ', Label.getContent('Rural'), Label.getContent('Market'), ' ', ' ', ' ', Label.getContent('feedback Total'), Label.getContent('Market'), ' ', ' ', Label.getContent('feedback Online'), Label.getContent('Market')];
 
-        result.subCategories=[Label.getContent('Retailer')+' 1',Label.getContent('Retailer')+' 2',' ',Label.getContent('Retailer')+' 1',Label.getContent('Retailer')+' 2',' ',Label.getContent('Retailer')+' 1',Label.getContent('Retailer')+' 2',' ',' ']
-        result.thirdCategories=[Label.getContent('Urban Market'),Label.getContent('Rural Market'),Label.getContent('Total Market'),Label.getContent('Online Market')]
 
+        // { last third dimension (TBMRetailersTotal/BMRetailerID), highest index(4) is for On-line combined across all Producers }
+        //bmretailerID 4 ===> online
+        //bmretailerID 1 ===> retailer 1
+        //bmretailerID 2 ===> retailer 2
+        periods.forEach(function(singlePeriod, periodIndex) {
+            lists = _.filter(data, function(obj) {
+                return (obj.categoryID == 3 && obj.period == singlePeriod);
+            });
+            lists.forEach(function(singleList) {
+
+                switch (singleList.BMRetailerID) {
+                    case 1:
+                        if (singleList.marketID == 1) {
+                            if (singleList.brandOwnerID == 1) {
+                                result.data[2].data[periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 2) {
+                                result.data[3].data[periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 3) {
+                                result.data[4].data[periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 5) {
+                                result.data[0].data[periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 6) {
+                                result.data[1].data[periodIndex] = singleList.value;
+                            }
+                        } else if (singleList.marketID == 2) {
+                            if (singleList.brandOwnerID == 1) {
+                                result.data[2].data[5 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 2) {
+                                result.data[3].data[5 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 3) {
+                                result.data[4].data[5 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 5) {
+                                result.data[0].data[5 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 6) {
+                                result.data[1].data[5 + periodIndex] = singleList.value;
+                            }
+                        } else if (singleList.marketID == 3) {
+                            if (singleList.brandOwnerID == 1) {
+                                result.data[2].data[10 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 2) {
+                                result.data[3].data[10 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 3) {
+                                result.data[4].data[10 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 5) {
+                                result.data[0].data[10 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 6) {
+                                result.data[1].data[10 + periodIndex] = singleList.value;
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (singleList.marketID == 1) {
+                            if (singleList.brandOwnerID == 1) {
+                                result.data[2].data[periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 2) {
+                                result.data[3].data[periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 3) {
+                                result.data[4].data[periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 5) {
+                                result.data[0].data[periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 6) {
+                                result.data[1].data[periodIndex + 2] = singleList.value;
+                            }
+                        } else if (singleList.marketID == 2) {
+                            if (singleList.brandOwnerID == 1) {
+                                result.data[2].data[5 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 2) {
+                                result.data[3].data[5 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 3) {
+                                result.data[4].data[5 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 5) {
+                                result.data[0].data[5 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 6) {
+                                result.data[1].data[5 + periodIndex + 2] = singleList.value;
+                            }
+                        } else if (singleList.marketID == 3) {
+                            if (singleList.brandOwnerID == 1) {
+                                result.data[2].data[10 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 2) {
+                                result.data[3].data[10 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 3) {
+                                result.data[4].data[10 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 5) {
+                                result.data[0].data[10 + periodIndex + 2] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 6) {
+                                result.data[1].data[10 + periodIndex + 2] = singleList.value;
+                            }
+                        }
+
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        if (singleList.marketID == 3) {
+                            if (singleList.brandOwnerID == 1) {
+                                result.data[2].data[15 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 2) {
+                                result.data[3].data[15 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 3) {
+                                result.data[4].data[15 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 5) {
+                                result.data[0].data[15 + periodIndex] = singleList.value;
+                            }
+                            if (singleList.brandOwnerID == 6) {
+                                result.data[1].data[15 + periodIndex] = singleList.value;
+                            }
+                        }
+
+                        break; //online
+                }
+            })
+        })
         return result;
 
-
-        // periods.forEach(function(singlePeriod){
-
-        // })
-    }   
+    }
 
     var organiseMarginArray = function(data, periods) {
 
@@ -187,7 +298,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 data: {}
             }
         }
-        result.profit = organiseGrossArray($scope.xf_RetailerGrossProfitPerBrandOwner, grossPeriods);
+        result.profit = organiseGrossArray($scope.feedback.xf_RetailerGrossProfitPerBrandOwner, grossPeriods);
         result.gross = organiseMarginArray($scope.feedback.xf_StoreGrossProfitMargin, periods);
         result.operating = organiseMarginArray($scope.feedback.xf_StoreOperatingProfitMargin, periods);
         result.net = organiseMarginArray($scope.feedback.xf_StoreNetProfitMargin, periods);
@@ -202,9 +313,9 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: result.profit.subCategories,
                     labels: {
                         style: {
-                            fontSize: '18px',
+                            fontSize: '16px',
                             'color': '#f26c4f',
-                            'align': 'right'
+                            'text-align': 'right'
                         },
                     },
                     lineWidth: 0,
@@ -213,7 +324,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                     categories: result.profit.thirdCategories,
                     labels: {
                         style: {
-                            fontSize: '18px',
+                            fontSize: '16px',
                             'color': '#f26c4f',
                         },
                         y: -30
@@ -223,9 +334,8 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 }],
                 yAxis: {
                     title: {
-                        text: '%'
+                        text: Label.getContent('$mln')
                     },
-                    max: 100
                 },
                 chart: {
                     type: 'column',
@@ -233,7 +343,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -242,26 +352,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 plotOptions: {
                     column: {
                         stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black',
-                                fontSize: '18px'
-                            },
-                            formatter: function() {
-                                if (this.y != null) {
-                                    return this.y.toFixed(2) + '%'
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
-                    },
-                    series: {
-                        stacking: 'percent'
-                    },
+                    }
 
                 },
                 legend: {
@@ -290,7 +381,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 yAxis: {
                     title: {
-                        text: Label.getContent('$mln')
+                        text: '%'
                     }
                 },
                 xAxis: {
@@ -325,7 +416,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 yAxis: {
                     title: {
-                        text: Label.getContent('$mln')
+                        text: '%'
                     }
                 },
                 xAxis: {
@@ -360,7 +451,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 yAxis: {
                     title: {
-                        text: Label.getContent('$mln')
+                        text: '%'
                     }
                 },
                 xAxis: {
