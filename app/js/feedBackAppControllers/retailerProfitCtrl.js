@@ -43,7 +43,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 name: ' ',
                 data: [],
                 color: 'transparent',
-                xAxis: 2, //第二个X轴
+                xAxis: 2, //第3个X轴
             }],
             categories: []
         }
@@ -164,7 +164,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2) +'%'
+                                    return this.y.toFixed(2) +'%'
                                 } else {
                                     return "";
                                 }
@@ -242,7 +242,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2) +'%'
+                                    return this.y.toFixed(2) +'%'
                                 } else {
                                     return "";
                                 }
