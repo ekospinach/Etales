@@ -101,40 +101,40 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 lists.forEach(function(singleList) {
                     switch (singleList.shopperKind) {
                         case 'BMS':
-                            if (singleList.storeID == 7) {
+                            if (singleList.storeID == 8) {
                                 result.data[0].data[singlePeriod + periods.length - 1] = singleList.importance;
                             }
                             break;
                         case 'NETIZENS':
-                            if (singleList.storeID == 7) {
+                            if (singleList.storeID == 8) {
                                 result.data[1].data[singlePeriod + periods.length - 1] = singleList.importance;
                             }
                             break;
                         case 'MIXED':
-                            if (singleList.storeID == 7) {
+                            if (singleList.storeID == 8) {
                                 result.data[2].data[singlePeriod + periods.length - 1] = singleList.importance;
                             }
                             break;
                         case 'ALLSHOPPERS':
-                            if (singleData.storeID == 4) {
+                            if (singleList.storeID == 4) {
                                 result.data[3].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
-                            if (singleData.storeID == 5) {
+                            if (singleList.storeID == 5) {
                                 result.data[4].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
-                            if (singleData.storeID == 6) {
+                            if (singleList.storeID == 6) {
                                 result.data[5].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
-                            if (singleData.storeID == 1) {
+                            if (singleList.storeID == 1) {
                                 result.data[6].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
-                            if (singleData.storeID == 2) {
+                            if (singleList.storeID == 2) {
                                 result.data[7].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
-                            if (singleData.storeID == 3) {
+                            if (singleList.storeID == 3) {
                                 result.data[8].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
-                            if (singleList.storeID == 7) {
+                            if (singleList.storeID == 8) {
                                 result.categories[singlePeriod + periods.length - 1] = singleList.absolute;
                                 result.categories[2 * periods.length + singlePeriod] = singleList.importance;
                             }
