@@ -34,6 +34,16 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 color: PlayerColor.mixed,
                 xAxis: 0
             }, {
+                name: ' ',
+                data: [null, null],
+                color: 'transparent',
+                xAxis: 1, //第二个X轴
+            }, {
+                name: ' ',
+                data: [],
+                color: 'transparent',
+                xAxis: 2, //第二个X轴
+            }, {
                 name: Label.getContent('Retailer') + ' 1',
                 data: [],
                 color: PlayerColor.r1,
@@ -63,16 +73,6 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 data: [],
                 color: PlayerColor.s3,
                 xAxis: 0
-            }, {
-                name: ' ',
-                data: [null, null],
-                color: 'transparent',
-                xAxis: 1, //第二个X轴
-            }, {
-                name: ' ',
-                data: [],
-                color: 'transparent',
-                xAxis: 2, //第二个X轴
             }],
             categories: []
         };
@@ -82,12 +82,12 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
             result.data[0].data[i] = null;
             result.data[1].data[i] = null;
             result.data[2].data[i] = null;
-            result.data[3].data[i] = null;
             result.data[4].data[i] = null;
             result.data[5].data[i] = null;
             result.data[6].data[i] = null;
             result.data[7].data[i] = null;
             result.data[8].data[i] = null;
+            result.data[9].data[i] = null;
             result.data[10].data[i] = null;
             result.categories[i] = ' ';
         }
@@ -117,22 +117,22 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             break;
                         case 'ALLSHOPPERS':
                             if (singleList.storeID == 4) {
-                                result.data[3].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
-                            }
-                            if (singleList.storeID == 5) {
-                                result.data[4].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
-                            }
-                            if (singleList.storeID == 6) {
                                 result.data[5].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 1) {
+                            if (singleList.storeID == 5) {
                                 result.data[6].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 2) {
+                            if (singleList.storeID == 6) {
                                 result.data[7].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 3) {
+                            if (singleList.storeID == 1) {
                                 result.data[8].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                            }
+                            if (singleList.storeID == 2) {
+                                result.data[9].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                            }
+                            if (singleList.storeID == 3) {
+                                result.data[10].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 8) {
                                 result.categories[singlePeriod + periods.length - 1] = singleList.absolute.toFixed(2);
