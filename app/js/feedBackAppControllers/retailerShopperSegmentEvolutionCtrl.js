@@ -157,6 +157,9 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     shared: false,
                     useHTML: true
                 },
+                legend: {
+                    borderWidth: 0,
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -180,7 +183,8 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     series: {
                         stacking: 'percent'
                     }
-                }
+                },
+
             },
             title: {
                 text: ''
@@ -244,6 +248,9 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     shared: false,
                     useHTML: true
                 },
+                legend: {
+                    borderWidth: 0,
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -267,7 +274,8 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     series: {
                         stacking: 'percent'
                     }
-                }
+                },
+
             },
             title: {
                 text: ''
