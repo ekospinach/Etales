@@ -23,10 +23,72 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     xf_RetailersProfitabilityPerSupplier : [retailersProfitabilityPerSupplierSchema],
 
 
+
     //Retailer : 9.Partner Relations & Outcomes - Two Categories / Markets
     xf_SuppliersProfitabilityPerCustomer : [supplierProfitabilityPerCustomerSchema],
 
+    //------------- Added May-26-2015
+
+    //Retailer : 4.Shopper Segment Evolution - Two Markets 
+    xf_ShoppersSegmentsShares  : [shoppersSegmentsSchema],
+    //Retailer : 6.Retailer Sales - Two Categories / Markets
+    xf_ChannelShoppersSegmentsRetailSalesValue : [channelShoppersSegmentsRetailSalesValueSchema],
+
+
+    //Retailer : 11.Profits - Gross Profits
+    xf_RetailerGrossProfitPerBrandOwner : [marketRetailerBrandOwnerSchema],
+    //Retailer : 11.Profits - Margins (3 line charts)
+    xf_StoreGrossProfitMargin  : [marketStoreSchema],
+    xf_StoreOperatingProfitMargin : [marketStoreSchema],   
+    xf_StoreNetProfitMargin : [marketStoreSchema],
+
+    //------------ Added May-27-2015
+
+
 })  
+
+
+var marketStoreSchema = mongoose.Schema({
+    marketID : Number,
+    categoryID : Number,
+    period : Number,
+    storeID : Number,
+    value : Number
+})
+
+// { last third dimension (TBMRetailersTotal/BMRetailerID), highest index(4) is for On-line combined across all Producers }
+var marketRetailerBrandOwnerSchema = mongoose.Schema({
+    marketID : Number,
+    categoryID : Number,
+    period : Number,
+    BMRetailerID : Number,
+    brandOwnerID : Number, // Prod_1_ID..Ret_2_ID; 1,2,3,4,5,6
+    value : Number
+})
+
+// { It is a bit overloaded with data. For absolute values in the top line you only need: [market, category, period, ALLSHOPPERS, ALlStoresMaxTotal].xfsss_Absolute element } 
+// { For left side bar charts use: [market, category, period, BMS/NETIZENS/MIXED, ALlStoresMaxTotal].xfsss_Importance }
+// { For right side bar use: [market, category, period, ALLSHOPPERS, store].xfsss_Importance }
+var channelShoppersSegmentsRetailSalesValueSchema = mongoose.Schema({
+    marketID : Number,
+    categoryID : Number,
+    period : Number,
+    shopperKind : String,
+    storeID : Number,
+    absolute : Number,
+    importance : Number
+})
+
+var shoppersSegmentsSchema = mongoose.Schema({
+    period           : Number,
+    categoryID       : Number,
+    marketID         : Number,
+    totalMarket      : Number,
+    BMS_importance               : Number,
+    NETIZENS_importance          : Number,
+    MIXED_importance             : Number,
+    ALLSHOPPERS_importance       : Number,
+})
 
 var variantStoreAvailabilitySchema = mongoose.Schema({
     marketID : Number,
@@ -124,6 +186,13 @@ exports.addInfos = function(options){
                                 xf_AvailabilityOnline             : singleReport.xf_AvailabilityOnline,
                                 xf_RetailersProfitabilityPerSupplier : singleReport.xf_RetailersProfitabilityPerSupplier,
                                 xf_SuppliersProfitabilityPerCustomer : singleReport.xf_SuppliersProfitabilityPerCustomer,
+
+                                xf_ShoppersSegmentsShares : singleReport.xf_ShoppersSegmentsShares,
+                                xf_ChannelShoppersSegmentsRetailSalesValue : singleReport.xf_ChannelShoppersSegmentsRetailSalesValue,
+                                xf_RetailerGrossProfitPerBrandOwner : singleReport.xf_RetailerGrossProfitPerBrandOwner,
+                                xf_StoreGrossProfitMargin : singleReport.xf_StoreGrossProfitMargin,
+                                xf_StoreOperatingProfitMargin : singleReport.xf_StoreOperatingProfitMargin,
+                                xf_StoreNetProfitMargin : singleReport.xf_StoreNetProfitMargin,
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

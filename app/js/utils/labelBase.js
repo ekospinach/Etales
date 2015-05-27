@@ -1231,6 +1231,13 @@ var getLabelBase = function(){
 		{id:'Relative Visibility Share',  ENG:'Relative Visibility Share',  CHN:'Relative Visibility Share',  RUS:''},
 		{id:'Share in Trade Support',  ENG:'Share in Trade Support',  CHN:'Share in Trade Support',  RUS:''},
 		{id:'Share in Trade Profit',  ENG:'Share in Trade Profit',  CHN:'Share in Trade Profit',  RUS:''},
+		{id:'Shopper Segment Evolution',  ENG:'Shopper Segment Evolution',  CHN:'Shopper Segment Evolution',  RUS:''},
+		
+		{id:'Retail Sales',  ENG:'Retail Sales',  CHN:'Retail Sales',  RUS:''},
+		{id:'Total Market Size',  ENG:'Total Market Size (Million People)',  CHN:'Total Market Size (Million People)',  RUS:''},
+		{id:'Feedback By Shopper Segment',  ENG:'By Shopper Segment',  CHN:'By Shopper Segment',  RUS:''},		
+		{id:'Feedback By Market Players',  ENG:'By Market Players',  CHN:'By Market Players',  RUS:''},		
+		{id:'Total Sales',  ENG:'Total Sales ($mln)',  CHN:'Total Sales ($mln)',  RUS:''},
 
 		//retailerExtend		
 

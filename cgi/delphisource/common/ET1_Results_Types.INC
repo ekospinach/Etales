@@ -904,8 +904,6 @@ TFeedback =
 
 {-----------------------------------------------------------------------------------------------------------------------------------------------}
 
-{ all below added on 16-April-2015 }
-
 TXF_StoreServiceLevelEvolution = array[TMarkets, TTimeSpan, TAllStores] of TServiceLevel;
 
 TXF_OneShoppersSegmentDetails = 
@@ -928,7 +926,7 @@ TXF_ChannelShoppersSegmentsRetailSalesValue = array[TMarketsTotal, TCategoriesTo
       { For right side bar use: [market, category, period, ALLSHOPPERS, store].xfsss_Importance }
 
 TXF_ProductPortfolio = 
-  record                                                             { last dimension modified on 15 May 2015 }
+  record                                                             
     xfpp_AttributesSKUCount : array[TSpecs, TSpecsIndices, TBrandOwners, Boolean] of byte; { FALSE for existing SKUs }
     xfpp_PackFormatSKUCount : array[TVariantPackFormat, TBrandOwners, Boolean] of byte;    { TRUE for new SKUs      }
   end;
@@ -937,13 +935,13 @@ TXF_ProductPortfolios = array[TCategories] of TXF_ProductPortfolio;
 
 TXF_VariantAvailability = 
   record
-    xfva_VariantID            : TVariantID;     { added on 15-May-2015 }
-    xfva_VariantName          : TVariantName;   { added on 15-May-2015 }
-    xfva_ParentBrandID        : TBrandID;       { added on 15-May-2015 }
-    xfva_ParentBrandName      : TBrandName;     { added on 15-May-2015 }
-    xfva_DateOfBirth          : TTimeSpan;      { added on 15-May-2015 }
-    xfva_DateOfDeath          : TTimeSpan;      { added on 15-May-2015 }
-    xfva_ParentCompanyID      : TActors;        { added on 15-May-2015 }
+    xfva_VariantID            : TVariantID;     
+    xfva_VariantName          : TVariantName;   
+    xfva_ParentBrandID        : TBrandID;       
+    xfva_ParentBrandName      : TBrandName;     
+    xfva_DateOfBirth          : TTimeSpan;      
+    xfva_DateOfDeath          : TTimeSpan;      
+    xfva_ParentCompanyID      : TActors;        
     xfva_ShelfSpace           : single;  { or Visibility } 
     xfva_InventoryVolume      : single;
   end;
@@ -957,21 +955,20 @@ TXF_RetailerProfitsPerSupplier =
     xfrpps_Rotation                       : single;  { Sales per 1% of shelf space } 
     xfrpps_SalesValueShare                : single;  
     xfrpps_GrossContribution              : single;  
-    xfrpps_GrossContributionPerShelfSpace : single;  { added on 15-May-2015 }  
+    xfrpps_GrossContributionPerShelfSpace : single;   
     xfrpps_GrossContributionShare         : single;
   end;
-                                                                      { Dimensions changed on 15-May-2015 }
+
+{ highest index for Private Labels }
 TXF_ProfitabilityPerSupplier = array[TMarketsTotal, TCategories, TBMRetailers, TAllProducers] of TXF_RetailerProfitsPerSupplier;
-                                                                                        { highest index for Private Labels }
-TXF_MarketRetailerDetails = array[TMarketsTotal, TTimeSpan, TBMRetailers] of single; { Dimensions changed on 15-May-2015 }
-{ removed on 18-May-2015 }
+
+TXF_MarketRetailerDetails = array[TMarketsTotal, TTimeSpan, TBMRetailers] of single;
+
 TXF_MarketStoreDetails = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TAllStores] of single;
 
-{ added on 18-May-2015; last third dimension (TBMRetailersTotal), highest index is for On-line combined across all Producers }
+{ last third dimension (TBMRetailersTotal), highest index is for On-line combined across all Producers }
 TXF_MarketRetailerBrandOwnerDetails = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TBMRetailersTotal, TBrandOwners] of single;
-{ removed on 18-May-2015 
-TXF_MarketStoreBrandOwnerDetails = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TAllStores, TBrandOwners] of single;
-}
+
 TXF_OneSupplierCapitalInvestments =
   record
     xfci_InvestedInTechnology    : single;
@@ -1036,26 +1033,22 @@ TExtendedFeedback =
     xf_PromotionalActivities                      : TMR_PricePromotions;
     xf_RetailersLocalAdvertising                  : TXF_MarketRetailerDetails;
     xf_RetailerGrossProfitPerBrandOwner           : TXF_MarketRetailerBrandOwnerDetails;
-    xf_RetailerOperatingProfitPerBrandOwner       : TXF_MarketRetailerBrandOwnerDetails;
-    xf_RetailerNetProfitPerBrandOwner             : TXF_MarketRetailerBrandOwnerDetails;
     xf_StoreGrossProfitMargin                     : TXF_MarketStoreDetails;
     xf_StoreOperatingProfitMargin                 : TXF_MarketStoreDetails;
     xf_StoreNetProfitMargin                       : TXF_MarketStoreDetails;
     xf_RetailersValueRotationIndex                : TF_RetailersKPIs;
     xf_RetailersVolumeRotationIndex               : TF_RetailersKPIs;
     xf_RetailersProfitabilityIndex                : TF_RetailersKPIs;
-    xf_RetailersStocksCover                       : TF_RetailersKPIs; { stock cover should be per category not per market or we should have four charts }
+    xf_RetailersStocksCover                       : TF_RetailersKPIs;
     xf_VariantPerception                          : TMR_VariantPerceptionEvolution;
-    xf_CapitalInvestments                         : TXF_SuppliersCapitalInvestments; {change the chart by adding capacity and split per category }
+    xf_CapitalInvestments                         : TXF_SuppliersCapitalInvestments;
     xf_ConsumerSegmentsShares                     : TXF_ConsumersSegmentsDetails;
-    xf_AwarenessEvolution                         : TMR_AwarenessEvolution; 
-    xf_SuppliersProfitabilityPerCustomer          : TXF_ProfitabilityPerCustomer;  { needs to be revised }
+    xf_AwarenessEvolution                         : TMR_AwarenessEvolution;
+    xf_SuppliersProfitabilityPerCustomer          : TXF_ProfitabilityPerCustomer;
     xf_BrandOwnerConsumerSegmentsRetailSalesValue : TXF_BrandOwnerConsumerSegmentsRetailSalesValue;
     xf_BrandOwnersChannelSalesValue               : TXF_BrandOwnersChannelDetails;
     xf_BrandOwnersChannelGrossProfit              : TXF_BrandOwnersChannelDetails;
-    xf_BrandOwnersChannelTradeProfit              : TXF_BrandOwnersChannelDetails; { not in the slide show, should replace the next two }
-{    xf_BrandOwnersChannelOperatingProfit          : TXF_BrandOwnersChannelDetails; { removed on 15-May-2015  }
-{    xf_BrandOwnersChannelNetProfit                : TXF_BrandOwnersChannelDetails; { removed on 15-May-2015  }
+    xf_BrandOwnersChannelTradeProfit              : TXF_BrandOwnersChannelDetails;
     xf_PortfolioStrength                          : TF_SuppliersKPIsExtended;
     xf_SuppliersBMValueSalesShare                 : TF_SuppliersKPIs;
     xf_SuppliersBMVolumeSalesShare                : TF_SuppliersKPIs;
@@ -1063,10 +1056,10 @@ TExtendedFeedback =
     xf_SuppliersOnlineValueSalesShare             : TF_SuppliersKPIs;
     xf_SuppliersOnlineVolumeSalesShare            : TF_SuppliersKPIs;
     xf_SuppliersOnlineShareOfShoppers             : TF_SuppliersKPIs;
-    xf_AggregatedChannelsSalesVolume              : TXF_AggregatedChannelsDetails; { there must be two charts, one per category }
+    xf_AggregatedChannelsSalesVolume              : TXF_AggregatedChannelsDetails;
     xf_AggregatedChannelsSalesValue               : TXF_AggregatedChannelsDetails; 
     xf_AggregatedChannelsNetProfit                : TXF_AggregatedChannelsDetails;
-    xf_FinalScores                                : TF_Scores;  { added on 15-May-2015 }
+    xf_FinalScores                                : TF_Scores;
   end;
 
 {-----------------------------------------------------------------------------------------------------------------------------------------------}
@@ -1083,4 +1076,3 @@ TAllResults =
   end;
 
 TAllResultsFile = file of TAllResults;
-
