@@ -1241,6 +1241,9 @@ var getLabelBase = function(){
 
 		{id:'Profits – Gross Profits',  ENG:'Profits – Gross Profits',  CHN:'Profits – Gross Profits',  RUS:''},	
 		{id:'Profit - Margin',  ENG:'Profit - Margin',  CHN:'Profit - Margin',  RUS:''},	
+		
+		{id:'Total Market',  ENG:'Total Market',  CHN:'Total Market',  RUS:''},	
+		{id:'Online Market',  ENG:'Online Market',  CHN:'Online Market',  RUS:''},	
 		//retailerExtend		
 
 	]

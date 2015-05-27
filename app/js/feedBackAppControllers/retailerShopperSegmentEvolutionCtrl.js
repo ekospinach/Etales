@@ -52,23 +52,23 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
             result.categories[i] = ' ';
         }
 
-        periods.forEach(function(singlePeriod) {
+        periods.forEach(function(singlePeriod, periodIndex) {
             data.forEach(function(singleData) {
                 if (singleData.marketID == marketID && singleData.period == singlePeriod) {
                     switch (singleData.categoryID) {
                         case 1:
-                            result.data[0].data[singlePeriod + periods.length - 1] = singleData.BMS_importance * 100;
-                            result.data[1].data[singlePeriod + periods.length - 1] = singleData.NETIZENS_importance * 100;
-                            result.data[2].data[singlePeriod + periods.length - 1] = singleData.MIXED_importance * 100;
-                            result.data[4].data[singlePeriod + periods.length - 1] = null;
-                            result.categories[singlePeriod + periods.length - 1] = singleData.totalMarket.toFixed(2);
+                            result.data[0].data[periodIndex] = singleData.BMS_importance * 100;
+                            result.data[1].data[periodIndex] = singleData.NETIZENS_importance * 100;
+                            result.data[2].data[periodIndex] = singleData.MIXED_importance * 100;
+                            result.data[4].data[periodIndex] = null;
+                            result.categories[periodIndex] = singleData.totalMarket.toFixed(2);
                             break;
                         case 2:
-                            result.data[0].data[2 * periods.length + singlePeriod] = singleData.BMS_importance * 100;
-                            result.data[1].data[2 * periods.length + singlePeriod] = singleData.NETIZENS_importance * 100;
-                            result.data[2].data[2 * periods.length + singlePeriod] = singleData.MIXED_importance * 100;
-                            result.data[4].data[2 * periods.length + singlePeriod] = null;
-                            result.categories[2 * periods.length + singlePeriod] = singleData.totalMarket.toFixed(2);
+                            result.data[0].data[3 + periodIndex] = singleData.BMS_importance * 100;
+                            result.data[1].data[3 + periodIndex] = singleData.NETIZENS_importance * 100;
+                            result.data[2].data[3 + periodIndex] = singleData.MIXED_importance * 100;
+                            result.data[4].data[3 + periodIndex] = null;
+                            result.categories[3 + periodIndex] = singleData.totalMarket.toFixed(2);
                             break;
                     }
                 }
@@ -168,7 +168,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                             color: 'white',
                             style: {
                                 textShadow: '0 0 3px black',
-                                fontSize:'18px'
+                                fontSize: '18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
@@ -259,7 +259,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                             color: 'white',
                             style: {
                                 textShadow: '0 0 3px black',
-                                fontSize:'18px'
+                                fontSize: '18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
