@@ -84,6 +84,10 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
             periods.push(i);
         }
         var result = {
+            'profit': {
+                data: {},
+                categories:{}
+            },
             'gross': {
                 data: {}
             },
@@ -94,6 +98,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 data: {}
             }
         }
+        result.profit = organiseGrossArray($scope.xf_RetailerGrossProfitPerBrandOwner, periods);
         result.gross = organiseMarginArray($scope.feedback.xf_StoreGrossProfitMargin, periods);
         result.operating = organiseMarginArray($scope.feedback.xf_StoreOperatingProfitMargin, periods);
         result.net = organiseMarginArray($scope.feedback.xf_StoreNetProfitMargin, periods);
@@ -120,7 +125,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -155,7 +160,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -190,7 +195,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
