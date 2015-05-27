@@ -92,7 +92,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
             result.categories[i] = ' ';
         }
 
-        periods.forEach(function(singlePeriod) {
+        periods.forEach(function(singlePeriod, periodIndex) {
             //period
             data.forEach(function(singleData) {
                 lists = _.filter(data, function(obj) {
@@ -102,41 +102,41 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     switch (singleList.shopperKind) {
                         case 'BMS':
                             if (singleList.storeID == 8) {
-                                result.data[0].data[singlePeriod + periods.length - 1] = singleList.importance * 100;
+                                result.data[0].data[periodIndex] = singleList.importance * 100;
                             }
                             break;
                         case 'NETIZENS':
                             if (singleList.storeID == 8) {
-                                result.data[1].data[singlePeriod + periods.length - 1] = singleList.importance * 100;
+                                result.data[1].data[periodIndex] = singleList.importance * 100;
                             }
                             break;
                         case 'MIXED':
                             if (singleList.storeID == 8) {
-                                result.data[2].data[singlePeriod + periods.length - 1] = singleList.importance * 100;
+                                result.data[2].data[periodIndex] = singleList.importance * 100;
                             }
                             break;
                         case 'ALLSHOPPERS':
                             if (singleList.storeID == 4) {
-                                result.data[5].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                                result.data[5].data[3 + periodIndex] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 5) {
-                                result.data[6].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                                result.data[6].data[3 + periodIndex] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 6) {
-                                result.data[7].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                                result.data[7].data[3 + periodIndex] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 1) {
-                                result.data[8].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                                result.data[8].data[3 + periodIndex] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 2) {
-                                result.data[9].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                                result.data[9].data[3 + periodIndex] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 3) {
-                                result.data[10].data[2 * periods.length + singlePeriod] = singleList.importance * 100;
+                                result.data[10].data[3 + periodIndex] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 8) {
-                                result.categories[singlePeriod + periods.length - 1] = singleList.absolute.toFixed(2);
-                                result.categories[2 * periods.length + singlePeriod] = singleList.absolute.toFixed(2);
+                                result.categories[periodIndex] = singleList.absolute.toFixed(2);
+                                result.categories[3 + periodIndex] = singleList.absolute.toFixed(2);
                             }
                             break;
                     }
