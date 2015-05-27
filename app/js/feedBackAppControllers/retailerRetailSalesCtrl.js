@@ -1151,7 +1151,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.y.toFixed(2)
+                                    return this.percentage.toFixed(2)+'%'
                                 } else {
                                     return "";
                                 }
@@ -1230,7 +1230,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.y.toFixed(2)
+                                    return this.percentage.toFixed(2)+'%'
                                 } else {
                                     return "";
                                 }
@@ -1309,7 +1309,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.y.toFixed(2)
+                                    return this.percentage.toFixed(2)+'%'
                                 } else {
                                     return "";
                                 }
@@ -1388,7 +1388,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.y.toFixed(2)
+                                    return this.percentage.toFixed(2)+'%'
                                 } else {
                                     return "";
                                 }

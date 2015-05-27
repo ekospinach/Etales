@@ -309,7 +309,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.y.toFixed(2)
+                                    return this.percentage.toFixed(2) +'%'
                                 } else {
                                     return "";
                                 }
@@ -387,7 +387,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.y.toFixed(2)
+                                    return this.percentage.toFixed(2) +'%'
                                 } else {
                                     return "";
                                 }
