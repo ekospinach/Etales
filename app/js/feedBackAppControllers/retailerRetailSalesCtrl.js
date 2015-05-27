@@ -976,7 +976,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 xAxis: 0
             }, {
                 name: ' ',
-                data: [0, 0],
+                data: [null, null],
                 color: 'transparent',
                 xAxis: 1, //第二个X轴
             }, {
@@ -990,16 +990,16 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
         var list = {};
 
         for (var i = 0; i < 2 * periods.length + 1; i++) {
-            result.data[0].data[i] = 0;
-            result.data[1].data[i] = 0;
-            result.data[2].data[i] = 0;
-            result.data[3].data[i] = 0;
-            result.data[4].data[i] = 0;
-            result.data[5].data[i] = 0;
-            result.data[6].data[i] = 0;
-            result.data[7].data[i] = 0;
-            result.data[8].data[i] = 0;
-            result.data[10].data[i] = 0;
+            result.data[0].data[i] = null;
+            result.data[1].data[i] = null;
+            result.data[2].data[i] = null;
+            result.data[3].data[i] = null;
+            result.data[4].data[i] = null;
+            result.data[5].data[i] = null;
+            result.data[6].data[i] = null;
+            result.data[7].data[i] = null;
+            result.data[8].data[i] = null;
+            result.data[10].data[i] = null;
             result.categories[i] = ' ';
         }
 
@@ -1013,42 +1013,41 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     switch (singleList.shopperKind) {
                         case 'BMS':
                             if (singleList.storeID == 7) {
-                                result.data[0].data[singlePeriod + 3] = singleList.importance;
+                                result.data[0].data[singlePeriod + periods.length - 1] = singleList.importance;
                             }
                             break;
                         case 'NETIZENS':
                             if (singleList.storeID == 7) {
-                                result.data[1].data[singlePeriod + 3] = singleList.importance;
+                                result.data[1].data[singlePeriod + periods.length - 1] = singleList.importance;
                             }
                             break;
                         case 'MIXED':
                             if (singleList.storeID == 7) {
-                                result.data[2].data[singlePeriod + 3] = singleList.importance;
+                                result.data[2].data[singlePeriod + periods.length - 1] = singleList.importance;
                             }
                             break;
                         case 'ALLSHOPPERS':
                             if (singleData.storeID == 4) {
-                                result.data[3].data[($scope.categories.length - 1) / 2 + singlePeriod + 4] = singleList.importance;
+                                result.data[3].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
                             if (singleData.storeID == 5) {
-                                result.data[4].data[($scope.categories.length - 1) / 2 + singlePeriod + 4] = singleList.importance;
+                                result.data[4].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
                             if (singleData.storeID == 6) {
-                                result.data[5].data[($scope.categories.length - 1) / 2 + singlePeriod + 4] = singleList.importance;
+                                result.data[5].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
                             if (singleData.storeID == 1) {
-                                result.data[6].data[($scope.categories.length - 1) / 2 + singlePeriod + 4] = singleList.importance;
+                                result.data[6].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
                             if (singleData.storeID == 2) {
-                                result.data[7].data[($scope.categories.length - 1) / 2 + singlePeriod + 4] = singleList.importance;
+                                result.data[7].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
                             if (singleData.storeID == 3) {
-                                result.data[8].data[($scope.categories.length - 1) / 2 + singlePeriod + 4] = singleList.importance;
+                                result.data[8].data[2 * periods.length + singlePeriod] = singleList.importance;
                             }
                             if (singleList.storeID == 7) {
-                                result.categories[singlePeriod + 3] = singleList.absolute;
-                                //bug
-                                result.categories[($scope.categories.length - 1) / 2 + singlePeriod + 4] = singleList.importance;
+                                result.categories[singlePeriod + periods.length - 1] = singleList.absolute;
+                                result.categories[2 * periods.length + singlePeriod] = singleList.importance;
                             }
                             break;
                     }
@@ -1056,7 +1055,6 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
 
             })
         });
-        console.log(result);
         return result;
     }
 
@@ -1065,13 +1063,13 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
         var periods = [];
         $scope.categories = [];
         $scope.subCategories = [];
-        for (var i = -3; i <= Request['period']; i++) {
+        for (var i = Request['period'] - 1; i <= Request['period']; i++) {
             $scope.categories.push('Period:' + i);
             periods.push(i);
         }
         $scope.categories.push(' ');
         $scope.subCategories.push(' ');
-        for (var i = -3; i <= Request['period']; i++) {
+        for (var i = Request['period'] - 1; i <= Request['period']; i++) {
             $scope.categories.push('Period:' + i);
         }
         var result = {
@@ -1143,6 +1141,24 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     backgroundColor: 'transparent'
                 },
                 plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2)
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
+                    },
                     series: {
                         stacking: 'percent'
                     }
@@ -1204,6 +1220,24 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     backgroundColor: 'transparent'
                 },
                 plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2)
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
+                    },
                     series: {
                         stacking: 'percent'
                     }
@@ -1265,6 +1299,24 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     backgroundColor: 'transparent'
                 },
                 plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2)
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
+                    },
                     series: {
                         stacking: 'percent'
                     }
@@ -1326,6 +1378,24 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     backgroundColor: 'transparent'
                 },
                 plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2)
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
+                    },
                     series: {
                         stacking: 'percent'
                     }

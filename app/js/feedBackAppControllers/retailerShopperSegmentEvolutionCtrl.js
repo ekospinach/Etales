@@ -161,7 +161,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
     }
 
 
-    var organiseArray = function(data,periods, marketID) {
+    var organiseArray = function(data, periods, marketID) {
 
         var result = {
             data: [{
@@ -181,7 +181,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                 xAxis: 0
             }, {
                 name: ' ',
-                data: [0, 0],
+                data: [null, null],
                 color: 'transparent',
                 xAxis: 1, //第二个X轴
             }, {
@@ -193,34 +193,36 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
             categories: []
         }
 
-        periods.forEach(function(singlePeriod){
+        for (var i = 0; i < 2 * periods.length + 1; i++) {
+            result.data[0].data[i] = null;
+            result.data[1].data[i] = null;
+            result.data[2].data[i] = null;
+            result.data[4].data[i] = null;
+            result.categories[i] = ' ';
+        }
+
+        periods.forEach(function(singlePeriod) {
             data.forEach(function(singleData) {
-                if (singleData.marketID == marketID&&singleData.period==singlePeriod) {
+                if (singleData.marketID == marketID && singleData.period == singlePeriod) {
                     switch (singleData.categoryID) {
                         case 1:
-                            result.data[0].data[singleData.period + 3] = singleData.BMS_importance;
-                            result.data[1].data[singleData.period + 3] = singleData.NETIZENS_importance;
-                            result.data[2].data[singleData.period + 3] = singleData.MIXED_importance;
-                            result.data[4].data[singleData.period + 3] = 0;
-                            result.categories[singleData.period + 3] = singleData.totalMarket;
+                            result.data[0].data[singlePeriod + periods.length - 1] = singleData.BMS_importance;
+                            result.data[1].data[singlePeriod + periods.length - 1] = singleData.NETIZENS_importance;
+                            result.data[2].data[singlePeriod + periods.length - 1] = singleData.MIXED_importance;
+                            result.data[4].data[singlePeriod + periods.length - 1] = null;
+                            result.categories[singlePeriod + periods.length - 1] = singleData.totalMarket;
                             break;
                         case 2:
-                            result.data[0].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.BMS_importance;
-                            result.data[1].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.NETIZENS_importance;
-                            result.data[2].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.MIXED_importance;
-                            result.data[4].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = 0;
-                            result.categories[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.totalMarket;
+                            result.data[0].data[2 * periods.length + singlePeriod] = singleData.BMS_importance;
+                            result.data[1].data[2 * periods.length + singlePeriod] = singleData.NETIZENS_importance;
+                            result.data[2].data[2 * periods.length + singlePeriod] = singleData.MIXED_importance;
+                            result.data[4].data[2 * periods.length + singlePeriod] = null;
+                            result.categories[2 * periods.length + singlePeriod] = singleData.totalMarket;
                             break;
                     }
                 }
             })
         })
-
-        result.data[0].data[($scope.categories.length - 1) / 2] = 0;
-        result.data[1].data[($scope.categories.length - 1) / 2] = 0;
-        result.data[2].data[($scope.categories.length - 1) / 2] = 0;
-        result.data[4].data[($scope.categories.length - 1) / 2] = 0;
-        result.categories[($scope.categories.length - 1) / 2] = ' ';
         return result;
     }
 
@@ -229,13 +231,13 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
         var periods = [];
         $scope.categories = [];
         $scope.subCategories = [];
-        for (var i = -3; i <= Request['period']; i++) {
+        for (var i = Request['period'] - 1; i <= Request['period']; i++) {
             $scope.categories.push('Period:' + i);
             periods.push(i);
         }
         $scope.categories.push(' ');
         $scope.subCategories.push(' ');
-        for (var i = -3; i <= Request['period']; i++) {
+        for (var i = Request['period'] - 1; i <= Request['period']; i++) {
             $scope.categories.push('Period:' + i);
         }
         var result = {
@@ -248,8 +250,8 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                 categories: {}
             }
         }
-        result.urban = organiseArray(feedback.xf_ShoppersSegmentsShares,periods, 1);
-        result.rural = organiseArray(feedback.xf_ShoppersSegmentsShares,periods, 2);
+        result.urban = organiseArray(feedback.xf_ShoppersSegmentsShares, periods, 1);
+        result.rural = organiseArray(feedback.xf_ShoppersSegmentsShares, periods, 2);
 
         $scope.urbanShopperSegmentEvolution = {
             options: {
@@ -297,6 +299,24 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     backgroundColor: 'transparent'
                 },
                 plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2)
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
+                    },
                     series: {
                         stacking: 'percent'
                     }
@@ -357,6 +377,24 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     backgroundColor: 'transparent'
                 },
                 plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2)
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
+                    },
                     series: {
                         stacking: 'percent'
                     }
