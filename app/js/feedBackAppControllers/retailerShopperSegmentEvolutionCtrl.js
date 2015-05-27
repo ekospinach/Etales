@@ -39,7 +39,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                 name: ' ',
                 data: [],
                 color: 'transparent',
-                xAxis: 2, //第二个X轴
+                xAxis: 2, //第3个X轴
             }],
             categories: []
         }
@@ -57,18 +57,18 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                 if (singleData.marketID == marketID && singleData.period == singlePeriod) {
                     switch (singleData.categoryID) {
                         case 1:
-                            result.data[0].data[singlePeriod + periods.length - 1] = singleData.BMS_importance;
-                            result.data[1].data[singlePeriod + periods.length - 1] = singleData.NETIZENS_importance;
-                            result.data[2].data[singlePeriod + periods.length - 1] = singleData.MIXED_importance;
+                            result.data[0].data[singlePeriod + periods.length - 1] = singleData.BMS_importance * 100;
+                            result.data[1].data[singlePeriod + periods.length - 1] = singleData.NETIZENS_importance * 100;
+                            result.data[2].data[singlePeriod + periods.length - 1] = singleData.MIXED_importance * 100;
                             result.data[4].data[singlePeriod + periods.length - 1] = null;
-                            result.categories[singlePeriod + periods.length - 1] = singleData.totalMarket;
+                            result.categories[singlePeriod + periods.length - 1] = singleData.totalMarket.toFixed(2);
                             break;
                         case 2:
-                            result.data[0].data[2 * periods.length + singlePeriod] = singleData.BMS_importance;
-                            result.data[1].data[2 * periods.length + singlePeriod] = singleData.NETIZENS_importance;
-                            result.data[2].data[2 * periods.length + singlePeriod] = singleData.MIXED_importance;
+                            result.data[0].data[2 * periods.length + singlePeriod] = singleData.BMS_importance * 100;
+                            result.data[1].data[2 * periods.length + singlePeriod] = singleData.NETIZENS_importance * 100;
+                            result.data[2].data[2 * periods.length + singlePeriod] = singleData.MIXED_importance * 100;
                             result.data[4].data[2 * periods.length + singlePeriod] = null;
-                            result.categories[2 * periods.length + singlePeriod] = singleData.totalMarket;
+                            result.categories[2 * periods.length + singlePeriod] = singleData.totalMarket.toFixed(2);
                             break;
                     }
                 }
@@ -114,7 +114,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     categories: [Label.getContent('Elecssories'), Label.getContent('HealthBeauties')],
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                     },
@@ -124,7 +124,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     categories: result.urban.categories,
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                         y: -30
@@ -132,7 +132,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     title: {
                         text: Label.getContent('Total Market Size'),
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f'
                         }
                     },
@@ -149,6 +149,14 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     type: 'column',
                     backgroundColor: 'transparent'
                 },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -156,11 +164,12 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                             enabled: true,
                             color: 'white',
                             style: {
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 3px black',
+                                fontSize:'18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2) +'%'
+                                    return this.y.toFixed(2) + '%'
                                 } else {
                                     return "";
                                 }
@@ -192,7 +201,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     categories: [Label.getContent('Elecssories'), Label.getContent('HealthBeauties')],
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                     },
@@ -202,7 +211,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     categories: result.rural.categories,
                     labels: {
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f',
                         },
                         y: -30
@@ -210,7 +219,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     title: {
                         text: Label.getContent('Total Market Size'),
                         style: {
-                            'font-size': '16px',
+                            fontSize: '20px',
                             'color': '#f26c4f'
                         }
                     },
@@ -227,6 +236,14 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                     type: 'column',
                     backgroundColor: 'transparent'
                 },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
                 plotOptions: {
                     column: {
                         stacking: 'normal',
@@ -234,11 +251,12 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                             enabled: true,
                             color: 'white',
                             style: {
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 3px black',
+                                fontSize:'18px'
                             },
                             formatter: function() {
                                 if (this.y != null) {
-                                    return this.percentage.toFixed(2) +'%'
+                                    return this.y.toFixed(2) + '%'
                                 } else {
                                     return "";
                                 }
