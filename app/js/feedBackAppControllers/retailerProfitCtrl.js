@@ -59,8 +59,8 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                     case 3:
                         break;
                     case 4:
-                        break;
                         result.data[2].data[singlePeriod + 3] = singleList.value;
+                        break;
                     case 5:
                         result.data[3].data[singlePeriod + 3] = singleList.value;
                         break;
