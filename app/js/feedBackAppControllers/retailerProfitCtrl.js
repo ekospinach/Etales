@@ -51,21 +51,21 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
             lists.forEach(function(singleList) {
                 switch (singleList.storeID) {
                     case 1:
-                        result.data[0].data[singlePeriod + 3] = singleList.value;
+                        result.data[0].data[singlePeriod + 3] = singleList.value * 100;
                         break;
                     case 2:
-                        result.data[1].data[singlePeriod + 3] = singleList.value;
+                        result.data[1].data[singlePeriod + 3] = singleList.value * 100;
                         break;
                     case 3:
                         break;
                     case 4:
+                        result.data[2].data[singlePeriod + 3] = singleList.value * 100;
                         break;
-                        result.data[2].data[singlePeriod + 3] = singleList.value;
                     case 5:
-                        result.data[3].data[singlePeriod + 3] = singleList.value;
+                        result.data[3].data[singlePeriod + 3] = singleList.value * 100;
                         break;
                     case 6:
-                        result.data[4].data[singlePeriod + 3] = singleList.value;
+                        result.data[4].data[singlePeriod + 3] = singleList.value * 100;
                         break;
                     case 7:
                         break;
@@ -84,6 +84,10 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
             periods.push(i);
         }
         var result = {
+            'profit': {
+                data: {},
+                categories:{}
+            },
             'gross': {
                 data: {}
             },
@@ -94,6 +98,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 data: {}
             }
         }
+        result.profit = organiseGrossArray($scope.xf_RetailerGrossProfitPerBrandOwner, periods);
         result.gross = organiseMarginArray($scope.feedback.xf_StoreGrossProfitMargin, periods);
         result.operating = organiseMarginArray($scope.feedback.xf_StoreOperatingProfitMargin, periods);
         result.net = organiseMarginArray($scope.feedback.xf_StoreNetProfitMargin, periods);
@@ -120,7 +125,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -155,7 +160,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
@@ -190,7 +195,7 @@ var retailerProfitCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + Label.getContent('$mln') + ':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p>' + this.series.name + '</p>' + '<p>' + Label.getContent("Period") + ':' + this.key + '</p>' + '<p>' + this.point.y.toFixed(2) + '%</p>';
                         return s;
                     },
                     shared: false,
