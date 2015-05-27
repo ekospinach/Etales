@@ -206,7 +206,6 @@ var
   var
     s_str : string;
     accountID, catID,ownerID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx, categoryID,variantID, BMRetailerID: Integer;
-    period : Integer;
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
 
@@ -331,7 +330,7 @@ var
             for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
             begin
               oJsonFile.A['xf_RetailerGrossProfitPerBrandOwner'].add(
-                 marketRetailerBrandOwnerSchema(marketID, categoryID, period, BMRetailerID, ownerID, currentResult.r_ExtendedFeedback.xf_RetailerGrossProfitPerBrandOwner[marketID, categoryID, period, BMRetailerID, ownerID]) );
+                 marketRetailerBrandOwnerSchema(marketID, categoryID, period, BMRetailerID, ownerID) );
             end;
           end;
         end;
