@@ -161,7 +161,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
     }
 
 
-    var organiseArray = function(data, marketID) {
+    var organiseArray = function(data,periods, marketID) {
 
         var result = {
             data: [{
@@ -193,26 +193,29 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
             categories: []
         }
 
-        data.forEach(function(singleData) {
-            if (singleData.marketID == marketID) {
-                switch (singleData.categoryID) {
-                    case 1:
-                        result.data[0].data[singleData.period + 3] = singleData.BMS_importance;
-                        result.data[1].data[singleData.period + 3] = singleData.NETIZENS_importance;
-                        result.data[2].data[singleData.period + 3] = singleData.MIXED_importance;
-                        result.data[4].data[singleData.period + 3] = 0;
-                        result.categories[singleData.period + 3] = singleData.totalMarket;
-                        break;
-                    case 2:
-                        result.data[0].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.BMS_importance;
-                        result.data[1].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.NETIZENS_importance;
-                        result.data[2].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.MIXED_importance;
-                        result.data[4].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = 0;
-                        result.categories[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.totalMarket;
-                        break;
+        periods.forEach(function(singlePeriod){
+            data.forEach(function(singleData) {
+                if (singleData.marketID == marketID&&singleData.period==singlePeriod) {
+                    switch (singleData.categoryID) {
+                        case 1:
+                            result.data[0].data[singleData.period + 3] = singleData.BMS_importance;
+                            result.data[1].data[singleData.period + 3] = singleData.NETIZENS_importance;
+                            result.data[2].data[singleData.period + 3] = singleData.MIXED_importance;
+                            result.data[4].data[singleData.period + 3] = 0;
+                            result.categories[singleData.period + 3] = singleData.totalMarket;
+                            break;
+                        case 2:
+                            result.data[0].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.BMS_importance;
+                            result.data[1].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.NETIZENS_importance;
+                            result.data[2].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.MIXED_importance;
+                            result.data[4].data[($scope.categories.length - 1) / 2 + singleData.period + 4] = 0;
+                            result.categories[($scope.categories.length - 1) / 2 + singleData.period + 4] = singleData.totalMarket;
+                            break;
+                    }
                 }
-            }
+            })
         })
+
         result.data[0].data[($scope.categories.length - 1) / 2] = 0;
         result.data[1].data[($scope.categories.length - 1) / 2] = 0;
         result.data[2].data[($scope.categories.length - 1) / 2] = 0;
@@ -223,10 +226,12 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
 
     var initPage = function() {
         var Request = GetRequest();
+        var periods = [];
         $scope.categories = [];
         $scope.subCategories = [];
         for (var i = -3; i <= Request['period']; i++) {
             $scope.categories.push('Period:' + i);
+            periods.push(i);
         }
         $scope.categories.push(' ');
         $scope.subCategories.push(' ');
@@ -243,8 +248,8 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                 categories: {}
             }
         }
-        result.urban = organiseArray(feedback.xf_ShoppersSegmentsShares, 1);
-        result.rural = organiseArray(feedback.xf_ShoppersSegmentsShares, 2);
+        result.urban = organiseArray(feedback.xf_ShoppersSegmentsShares,periods, 1);
+        result.rural = organiseArray(feedback.xf_ShoppersSegmentsShares,periods, 2);
 
         $scope.urbanShopperSegmentEvolution = {
             options: {
