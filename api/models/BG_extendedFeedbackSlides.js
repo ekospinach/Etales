@@ -42,6 +42,9 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     xf_StoreOperatingProfitMargin : [marketStoreSchema],   
     xf_StoreNetProfitMargin : [marketStoreSchema],
 
+    //------------ Added May-27-2015
+
+
 })  
 
 
@@ -183,6 +186,13 @@ exports.addInfos = function(options){
                                 xf_AvailabilityOnline             : singleReport.xf_AvailabilityOnline,
                                 xf_RetailersProfitabilityPerSupplier : singleReport.xf_RetailersProfitabilityPerSupplier,
                                 xf_SuppliersProfitabilityPerCustomer : singleReport.xf_SuppliersProfitabilityPerCustomer,
+
+                                xf_ShoppersSegmentsShares : singleReport.xf_ShoppersSegmentsShares,
+                                xf_ChannelShoppersSegmentsRetailSalesValue : singleReport.xf_ChannelShoppersSegmentsRetailSalesValue,
+                                xf_RetailerGrossProfitPerBrandOwner : singleReport.xf_RetailerGrossProfitPerBrandOwner,
+                                xf_StoreGrossProfitMargin : singleReport.xf_StoreGrossProfitMargin,
+                                xf_StoreOperatingProfitMargin : singleReport.xf_StoreOperatingProfitMargin,
+                                xf_StoreNetProfitMargin : singleReport.xf_StoreNetProfitMargin,
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

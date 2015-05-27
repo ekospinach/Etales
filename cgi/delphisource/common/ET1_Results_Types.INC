@@ -1033,11 +1033,6 @@ TExtendedFeedback =
     xf_PromotionalActivities                      : TMR_PricePromotions;
     xf_RetailersLocalAdvertising                  : TXF_MarketRetailerDetails;
     xf_RetailerGrossProfitPerBrandOwner           : TXF_MarketRetailerBrandOwnerDetails;
-{ 
-    deleted on 22-May-2015 
-    xf_RetailerOperatingProfitPerBrandOwner       : TXF_MarketRetailerBrandOwnerDetails;
-    xf_RetailerNetProfitPerBrandOwner             : TXF_MarketRetailerBrandOwnerDetails;
-}
     xf_StoreGrossProfitMargin                     : TXF_MarketStoreDetails;
     xf_StoreOperatingProfitMargin                 : TXF_MarketStoreDetails;
     xf_StoreNetProfitMargin                       : TXF_MarketStoreDetails;
