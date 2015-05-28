@@ -42,18 +42,45 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     xf_StoreOperatingProfitMargin : [marketStoreSchema],   
     xf_StoreNetProfitMargin : [marketStoreSchema],
 
-    //------------ Added May-27-2015
+    //------------ Added May-28-2015
+
+    //Supplier : 9.Retailer Sales of Brand - two categories 
+    xf_BrandOwnerConsumerSegmentsRetailSalesValue : [brandOwnerConsumerSegmentsRetailSalesValueSchema],
+    //Supplier : 10.Financial - Sales 
+    xf_BrandOwnersChannelSalesValue               : [brandOwnersChannelDetailsSchema],
+    //Supplier : 10.Financial - Gross Profits 
+    xf_BrandOwnersChannelGrossProfit              : [brandOwnersChannelDetailsSchema],
+    //Supplier : 10.Financial - Trade Profits 
+    xf_BrandOwnersChannelTradeProfit              : [brandOwnersChannelDetailsSchema],
 
 
 })  
 
+var brandOwnerConsumerSegmentsRetailSalesValueSchema = mongoose.Schema({
+    marketID : Number,
+    categoryID : Number,
+    period : Number,
+    segmentid : Number, //TSegmentsTotal           = 1..SegmentsMaxTotal(5); 
+    ownerID : Number,
+    xfcsbo_Absolute : Number,
+    sfcsbo_Importance : Number,
+})
+
+var brandOwnersChannelDetailsSchema = mongoose.Schema({
+    marketID : Number,
+    categoryID : Number,
+    period : Number,
+    ownerID : Number,
+    accountID : Number,
+    value : Number
+})
 
 var marketStoreSchema = mongoose.Schema({
     marketID : Number,
     categoryID : Number,
     period : Number,
     storeID : Number,
-    value : Number
+    value : Number,
 })
 
 // { last third dimension (TBMRetailersTotal/BMRetailerID), highest index(4) is for On-line combined across all Producers }

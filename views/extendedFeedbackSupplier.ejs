@@ -75,6 +75,16 @@
         text-align: center;
     }
     
+    .large-size{
+        width: 1024px;
+        height: 500px;
+    }
+    .small-size{
+        width: 340px;
+        float: left;
+        height: 500px;
+    }
+
     .text-small {
         font-size: 21px !important;
         line-height: 20px !important;
@@ -1971,6 +1981,55 @@
                 </section>
 
             </section>
+            <section ng-controller='supplierRetailSalesCtrl'>
+                <!--9-->
+                <section>
+                    <h3><a> {{Label.getContent('Retail Sales of Brands')}} </a> - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <highchart id="chart91" class="large-size" config="eleRetailSales"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Retail Sales of Brands')}} </a> - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart92" class="large-size" config="heaRetailSales"></highchart>
+                </section>
+
+            </section>
+            <section ng-controller='supplierFinancialandKPICtrl'>
+                <!--10-->
+                <section>
+                    <h3><a> {{Label.getContent('Financials')}} </a> - {{Label.getContent('Sales')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <highchart id="chart101" class="large-size" config="sales_eleFinancial"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Financials')}} </a> - {{Label.getContent('Sales')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart102" class="large-size" config="sales_heaFinancial"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Financials')}} </a> - {{Label.getContent('Gross Profits')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <highchart id="chart103" class="large-size" config="gross_eleFinancial"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Financials')}} </a> - {{Label.getContent('Gross Profits')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart104" class="large-size" config="gross_heaFinancial"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Financials')}} </a> - {{Label.getContent('Trade Profits')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <highchart id="chart105" class="large-size" config="trade_eleFinancial"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Financials')}} </a> - {{Label.getContent('Trade Profits')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart106" class="large-size" config="trade_heaFinancial"></highchart>
+                </section>
+
+            </section>
+
 
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
@@ -1990,6 +2049,8 @@
     <script src="js/feedBackAppControllers/directives.js"></script>
     <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
+    <script src="js/feedBackAppControllers/supplierFinancialandKPICtrl.js"></script>
+    <script src="js/feedBackAppControllers/supplierRetailSalesCtrl.js"></script>
     <script src="js/feedBackAppControllers/suppliersProfitabilityPerCustomerCtrl.js"></script>
     <script>
     // Full list of configuration options available here:

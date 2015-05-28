@@ -151,7 +151,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) + ' %</b></p>';
                         return s;
                     },
                     shared: false,
@@ -242,7 +242,7 @@ var retailerShopperSegmentEvolutionCtrl = function($scope, $http, PlayerColor, L
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) + ' %</b></p>';
                         return s;
                     },
                     shared: false,

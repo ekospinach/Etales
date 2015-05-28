@@ -103,22 +103,22 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                             }
                             break;
                         case 'ALLSHOPPERS':
-                            if (singleList.storeID == 4) {
+                            if (singleList.storeID == 1) {
                                 result.data[5].data[3 + periodIndex] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 5) {
+                            if (singleList.storeID == 2) {
                                 result.data[6].data[3 + periodIndex] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 6) {
+                            if (singleList.storeID == 3) {
                                 result.data[7].data[3 + periodIndex] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 1) {
+                            if (singleList.storeID == 4) {
                                 result.data[8].data[3 + periodIndex] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 2) {
+                            if (singleList.storeID == 5) {
                                 result.data[9].data[3 + periodIndex] = singleList.importance * 100;
                             }
-                            if (singleList.storeID == 3) {
+                            if (singleList.storeID == 6) {
                                 result.data[10].data[3 + periodIndex] = singleList.importance * 100;
                             }
                             if (singleList.storeID == 8) {
@@ -218,7 +218,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) + ' %</b></p>';
                         return s;
                     },
                     shared: false,
@@ -311,7 +311,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) + ' %</b></p>';
                         return s;
                     },
                     shared: false,
@@ -404,7 +404,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) + ' %</b></p>';
                         return s;
                     },
                     shared: false,
@@ -497,7 +497,7 @@ var retailerRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ':' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) + ' %</b></p>';
                         return s;
                     },
                     shared: false,
