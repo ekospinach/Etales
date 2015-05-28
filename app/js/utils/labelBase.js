@@ -1246,5 +1246,14 @@ var getLabelBase = function(){
 		{id:'feedback Online',  ENG:'Online',  CHN:'Online',  RUS:''},	
 		//retailerExtend		
 
+		//supplier
+		{id:'Retail Sales of Brands',  ENG:'Retail Sales of Brands',  CHN:'Retail Sales of Brands',  RUS:''},	
+		{id:'Total Market',  ENG:'Total Market',  CHN:'Total Market',  RUS:''},	
+		
+		{id:'Financials',  ENG:'Financials',  CHN:'Financials',  RUS:''},	
+		{id:'Gross Profits',  ENG:'Gross Profits',  CHN:'Gross Profits',  RUS:''},	
+		{id:'Trade Profits',  ENG:'Trade Profits',  CHN:'Trade Profits',  RUS:''},	
+		
+
 	]
 }
