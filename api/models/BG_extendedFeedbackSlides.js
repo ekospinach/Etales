@@ -63,7 +63,7 @@ var brandOwnerConsumerSegmentsRetailSalesValueSchema = mongoose.Schema({
     segmentid : Number, //TSegmentsTotal           = 1..SegmentsMaxTotal(5); 
     ownerID : Number,
     xfcsbo_Absolute : Number,
-    sfcsbo_Importance : Number,
+    xfcsbo_Importance : Number,
 })
 
 var brandOwnersChannelDetailsSchema = mongoose.Schema({
