@@ -86,6 +86,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
         return result;
     }
 
+
     var initPage = function() {
         var Request = GetRequest();
         var periods = [];
@@ -171,23 +172,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black',
-                                fontSize: '16px'
-                            },
-                            formatter: function() {
-                                if (this.y != null && this.y != 0) {
-                                    return this.y.toFixed(2);
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
+                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -240,23 +225,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black',
-                                fontSize: '14px'
-                            },
-                            formatter: function() {
-                                if (this.y != null && this.y != 0) {
-                                    return this.y.toFixed(2);
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
+                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -310,23 +279,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black',
-                                fontSize: '16px'
-                            },
-                            formatter: function() {
-                                if (this.y != null && this.y != 0) {
-                                    return this.y.toFixed(2);
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
+                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -379,23 +332,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black',
-                                fontSize: '14px'
-                            },
-                            formatter: function() {
-                                if (this.y != null && this.y != 0) {
-                                    return this.y.toFixed(2);
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
+                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -449,23 +386,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black',
-                                fontSize: '16px'
-                            },
-                            formatter: function() {
-                                if (this.y != null && this.y != 0) {
-                                    return this.y.toFixed(2);
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
+                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -518,23 +439,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 plotOptions: {
                     column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: 'white',
-                            style: {
-                                textShadow: '0 0 3px black',
-                                fontSize: '14px'
-                            },
-                            formatter: function() {
-                                if (this.y != null && this.y != 0) {
-                                    return this.y.toFixed(2);
-                                } else {
-                                    return "";
-                                }
-
-                            }
-                        }
+                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -551,6 +456,8 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
             loading: false
         }
     }
+
+
     $scope.$watch('feedback', function(newValue, oldValue) {
         if (newValue != undefined) {
             initPage();
