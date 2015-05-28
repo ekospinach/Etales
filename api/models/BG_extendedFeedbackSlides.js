@@ -102,6 +102,13 @@ var channelShoppersSegmentsRetailSalesValueSchema = mongoose.Schema({
     period : Number,
     shopperKind : String,
     storeID : Number,
+    //1- Retailer 1
+    //2- Retailer 2
+    //3- Traditional Trade 
+    //4- Supplier 1
+    //5- Supplier 2
+    //6- supplier 3
+    //7- Supplier 4
     absolute : Number,
     importance : Number
 })
