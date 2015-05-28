@@ -86,6 +86,41 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
         return result;
     }
 
+    var dataTest=function(){
+        console.log('Financialand Page Test:');
+        var result=0;
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.ownerID==1&&obj.accountID==1);
+        });
+        console.log('supplier 1 Period -1 retailer 1 value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.ownerID==2&&obj.accountID==2);
+        });
+        console.log('supplier 2 Period 0 retailer 2 value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.ownerID==3&&obj.accountID==3);
+        });
+        console.log('supplier 3 Period -1 trade value:'+result.value);
+
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.ownerID==3&&obj.accountID==4);
+        });
+        console.log('supplier 3 Period 0 online value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.ownerID==5&&obj.accountID==1);
+        });
+        console.log('retailer 1 Period 0  retailer1 value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.ownerID==6&&obj.accountID==2);
+        });
+        console.log('retailer 2 Period -1 retailer1 value:'+result.value);
+
+
+    }
 
     var initPage = function() {
         var Request = GetRequest();
@@ -125,6 +160,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 subCategories: {}
             },
         }
+        dataTest();
         result.sales_ele = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelSalesValue, periods, 1);
         result.sales_hea = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelSalesValue, periods, 2);
 
