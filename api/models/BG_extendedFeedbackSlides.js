@@ -60,7 +60,7 @@ var brandOwnerConsumerSegmentsRetailSalesValueSchema = mongoose.Schema({
     marketID : Number,
     categoryID : Number,
     period : Number,
-    segmentid : Number, //TSegmentsTotal           = 1..SegmentsMaxTotal(5); 
+    segmentID : Number, //TSegmentsTotal           = 1..SegmentsMaxTotal(5); 
     ownerID : Number,
     xfcsbo_Absolute : Number,
     xfcsbo_Importance : Number,
@@ -70,8 +70,8 @@ var brandOwnersChannelDetailsSchema = mongoose.Schema({
     marketID : Number,
     categoryID : Number,
     period : Number,
-    ownerID : Number,
-    accountID : Number,
+    ownerID : Number,//supplier 1-4 retailer 1-2
+    accountID : Number,//TAccounts : 1~ 4, Two Modern Retailers + Traditional Trade + On-Line 
     value : Number
 })
 
@@ -216,17 +216,22 @@ exports.addInfos = function(options){
                               seminar: singleReport.seminar, 
                               period: singleReport.period},
                               {
-                                xf_AvailabilityAtBMStores         : singleReport.xf_AvailabilityAtBMStores,
-                                xf_AvailabilityOnline             : singleReport.xf_AvailabilityOnline,
+                                xf_AvailabilityAtBMStores            : singleReport.xf_AvailabilityAtBMStores,
+                                xf_AvailabilityOnline                : singleReport.xf_AvailabilityOnline,
                                 xf_RetailersProfitabilityPerSupplier : singleReport.xf_RetailersProfitabilityPerSupplier,
                                 xf_SuppliersProfitabilityPerCustomer : singleReport.xf_SuppliersProfitabilityPerCustomer,
 
-                                xf_ShoppersSegmentsShares : singleReport.xf_ShoppersSegmentsShares,
+                                xf_ShoppersSegmentsShares                  : singleReport.xf_ShoppersSegmentsShares,
                                 xf_ChannelShoppersSegmentsRetailSalesValue : singleReport.xf_ChannelShoppersSegmentsRetailSalesValue,
-                                xf_RetailerGrossProfitPerBrandOwner : singleReport.xf_RetailerGrossProfitPerBrandOwner,
-                                xf_StoreGrossProfitMargin : singleReport.xf_StoreGrossProfitMargin,
-                                xf_StoreOperatingProfitMargin : singleReport.xf_StoreOperatingProfitMargin,
-                                xf_StoreNetProfitMargin : singleReport.xf_StoreNetProfitMargin,
+                                xf_RetailerGrossProfitPerBrandOwner        : singleReport.xf_RetailerGrossProfitPerBrandOwner,
+                                xf_StoreGrossProfitMargin                  : singleReport.xf_StoreGrossProfitMargin,
+                                xf_StoreOperatingProfitMargin              : singleReport.xf_StoreOperatingProfitMargin,
+                                xf_StoreNetProfitMargin                    : singleReport.xf_StoreNetProfitMargin,
+                                
+                                xf_BrandOwnerConsumerSegmentsRetailSalesValue : singleReport.xf_BrandOwnerConsumerSegmentsRetailSalesValue,
+                                xf_BrandOwnersChannelSalesValue               : singleReport.xf_BrandOwnersChannelSalesValue,
+                                xf_BrandOwnersChannelGrossProfit              : singleReport.xf_BrandOwnersChannelGrossProfit,
+                                xf_BrandOwnersChannelTradeProfit              : singleReport.xf_BrandOwnersChannelTradeProfit,
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

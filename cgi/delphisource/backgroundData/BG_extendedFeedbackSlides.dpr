@@ -217,6 +217,23 @@ var
     result := jo;    
   end;
 
+  function brandOwnersChannelDetailsSchema(marketID:integer; categoryID:integer; period:integer; ownerID:integer; accountID:integer; data: single) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.I['categoryID'] := categoryID;
+    jo.I['period'] := period;
+    jo.I['ownerID'] := ownerID;
+    jo.I['accountID'] := accountID;
+
+    jo.D['value'] := data;
+    
+    result := jo;    
+  end;
+
+
   procedure makeJson();
   var
     s_str : string;
@@ -397,9 +414,14 @@ var
       begin
         for period := Low(TTimeSpan) to High(TTimeSpan) do
         begin
-          for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
+          for ownerID := Low(TBrandOwners) to High(TBrandOwners) do            
           begin
-            
+            for accountID := Low(TAccounts) to High(TAccounts) do
+            begin
+              oJsonFile.A['xf_BrandOwnersChannelSalesValue'].add(brandOwnersChannelDetailsSchema(marketID, categoryID, period, ownerID, accountID, currentResult.r_ExtendedFeedback.xf_BrandOwnersChannelSalesValue[marketID, categoryID, period, ownerID, accountID]));
+              oJsonFile.A['xf_BrandOwnersChannelGrossProfit'].add(brandOwnersChannelDetailsSchema(marketID, categoryID, period, ownerID, accountID, currentResult.r_ExtendedFeedback.xf_BrandOwnersChannelGrossProfit[marketID, categoryID, period, ownerID, accountID]));
+              oJsonFile.A['xf_BrandOwnersChannelTradeProfit'].add(brandOwnersChannelDetailsSchema(marketID, categoryID, period, ownerID, accountID, currentResult.r_ExtendedFeedback.xf_BrandOwnersChannelTradeProfit[marketID, categoryID, period, ownerID, accountID]));
+            end;
           end;
         end;
       end;
