@@ -201,11 +201,26 @@ var
     result := jo;
   end;
 
+  function brandOwnerConsumerSegmentsRetailSalesValueSchema(marketID: integer; categoryID:integer; period:integer; segmentID:integer; ownerID : integer; data : TXF_ConsumerSegmentBrandOwnerDetails):ISuperObject;
+  var
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.I['categoryID'] := categoryID;
+    jo.I['period'] := period;
+    jo.I['segmentID'] := segmentID;
+    jo.I['ownerID'] := ownerID;
+    jo.D['xfcsbo_Absolute'] := data.xfcsbo_Absolute;
+    jo.D['xfcsbo_Importance'] := data.xfcsbo_Importance;
+    
+    result := jo;    
+  end;
 
   procedure makeJson();
   var
     s_str : string;
-    accountID, catID,ownerID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx, categoryID,variantID, BMRetailerID: Integer;
+    segmentID, accountID, catID,ownerID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx, categoryID,variantID, BMRetailerID: Integer;
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
 
@@ -228,6 +243,10 @@ var
     oJsonFile.O['xf_StoreOperatingProfitMargin']              := SA([]);
     oJsonFile.O['xf_StoreNetProfitMargin']                    := SA([]);
 
+    oJsonFile.O['xf_BrandOwnerConsumerSegmentsRetailSalesValue']    := SA([]);
+    oJsonFile.O['xf_BrandOwnersChannelSalesValue']                  := SA([]);
+    oJsonFile.O['xf_BrandOwnersChannelGrossProfit']                  := SA([]);
+    oJsonFile.O['xf_BrandOwnersChannelTradeProfit']                  := SA([]);
 
     for marketID := Low(TMarkets) to High(TCategories) do
     begin
@@ -354,6 +373,37 @@ var
     end;
 
 
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+      for categoryID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+      begin
+        for period := Low(TTimeSpan) to High(TTimeSpan) do
+        begin
+          for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do
+          begin
+            for ownerID := Low(TBrandOwnersTotal) to High(TBrandOwnersTotal) do
+            begin
+              oJsonFile.A['xf_BrandOwnerConsumerSegmentsRetailSalesValue'].add(  
+                brandOwnerConsumerSegmentsRetailSalesValueSchema(marketID, categoryID, period, segmentID, ownerID, currentResult.r_ExtendedFeedback.xf_BrandOwnerConsumerSegmentsRetailSalesValue[marketID, categoryID, period, segmentID, ownerID]));
+            end;
+          end;
+        end;
+      end;
+    end;
+
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+      for categoryID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+      begin
+        for period := Low(TTimeSpan) to High(TTimeSpan) do
+        begin
+          for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
+          begin
+            
+          end;
+        end;
+      end;
+    end;    
 
     s_str := 'out' + '.json';
     writeln( oJsonFile.AsJSon(False,False));

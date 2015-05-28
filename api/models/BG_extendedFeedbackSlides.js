@@ -63,7 +63,7 @@ var brandOwnerConsumerSegmentsRetailSalesValueSchema = mongoose.Schema({
     segmentid : Number, //TSegmentsTotal           = 1..SegmentsMaxTotal(5); 
     ownerID : Number,
     xfcsbo_Absolute : Number,
-    sfcsbo_Importance : Number,
+    xfcsbo_Importance : Number,
 })
 
 var brandOwnersChannelDetailsSchema = mongoose.Schema({
@@ -102,6 +102,13 @@ var channelShoppersSegmentsRetailSalesValueSchema = mongoose.Schema({
     period : Number,
     shopperKind : String,
     storeID : Number,
+    //1- Retailer 1
+    //2- Retailer 2
+    //3- Traditional Trade 
+    //4- Supplier 1
+    //5- Supplier 2
+    //6- supplier 3
+    //7- Supplier 4
     absolute : Number,
     importance : Number
 })
