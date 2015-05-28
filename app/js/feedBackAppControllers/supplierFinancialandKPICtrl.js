@@ -12,7 +12,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
         return theRequest;
     }
 
-    var organiseFinancialArray = function(data, periods, marketID, categoryID) {
+    var organiseFinancialArray = function(data, periods, categoryID) {
         var result = {
             data: [{
                 name: Label.getContent('Retailer') + ' 1',
@@ -41,67 +41,48 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 xAxis: 1, //第二个X轴
             }],
             categories: [periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1]],
-            subCategories: [Label.getContent('Supplier')+' 1', Label.getContent('Supplier')+' 2',Label.getContent('Supplier')+' 3',Label.getContent('Retailer')+' 1',Label.getContent('Retailer')+' 2']
+            subCategories: [Label.getContent('Supplier') + ' 1', Label.getContent('Supplier') + ' 2', Label.getContent('Supplier') + ' 3', Label.getContent('Retailer') + ' 1', Label.getContent('Retailer') + ' 2']
 
         };
         var list = {};
 
         for (var i = 0; i < 5 * periods.length; i++) {
-            result.data[0].data[i] = result.data[1].data[i] = result.data[2].data[i] = result.data[3].data[i] = 1;
+            result.data[0].data[i] = result.data[1].data[i] = result.data[2].data[i] = result.data[3].data[i] = null;
         }
 
-        // periods.forEach(function(singlePeriod, periodIndex) {
-        //     //period
-        //     data.forEach(function(singleData) {
-        //         lists = _.filter(data, function(obj) {
-        //             return (obj.period == singlePeriod && obj.categoryID == categoryID && obj.marketID == marketID);
-        //         })
-        //         lists.forEach(function(singleList) {
-        //             switch (singleList.shopperKind) {
-        //                 case 'BMS':
-        //                     if (singleList.storeID == 8) {
-        //                         result.data[0].data[periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     break;
-        //                 case 'NETIZENS':
-        //                     if (singleList.storeID == 8) {
-        //                         result.data[1].data[periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     break;
-        //                 case 'MIXED':
-        //                     if (singleList.storeID == 8) {
-        //                         result.data[2].data[periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     break;
-        //                 case 'ALLSHOPPERS':
-        //                     if (singleList.storeID == 4) {
-        //                         result.data[5].data[3 + periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     if (singleList.storeID == 5) {
-        //                         result.data[6].data[3 + periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     if (singleList.storeID == 6) {
-        //                         result.data[7].data[3 + periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     if (singleList.storeID == 1) {
-        //                         result.data[8].data[3 + periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     if (singleList.storeID == 2) {
-        //                         result.data[9].data[3 + periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     if (singleList.storeID == 3) {
-        //                         result.data[10].data[3 + periodIndex] = singleList.importance * 100;
-        //                     }
-        //                     if (singleList.storeID == 8) {
-        //                         result.categories[periodIndex] = singleList.absolute.toFixed(2);
-        //                         result.categories[3 + periodIndex] = singleList.absolute.toFixed(2);
-        //                     }
-        //                     break;
-        //             }
-        //         })
+        periods.forEach(function(singlePeriod, periodIndex) {
+            //period
+            data.forEach(function(singleData) {
+                lists = _.filter(data, function(obj) {
+                    return (obj.period == singlePeriod && obj.categoryID == categoryID && obj.marketID == 3);
+                })
+                lists.forEach(function(singleList) {
+                    if (singleList.accountID <= 4) {
 
-        //     })
-        // });
+                        switch (singleList.ownerID) {
+                            case 1:
+                                result.data[singleList.accountID - 1].data[periodIndex] = singleList.value;
+                                break;
+                            case 2:
+                                result.data[singleList.accountID - 1].data[periodIndex + 2] = singleList.value;
+                                break;
+                            case 3:
+                                result.data[singleList.accountID - 1].data[periodIndex + 4] = singleList.value;
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                result.data[singleList.accountID - 1].data[periodIndex + 6] = singleList.value;
+                                break;
+                            case 6:
+                                result.data[singleList.accountID - 1].data[periodIndex + 8] = singleList.value;
+                                break;
+                        }
+                    }
+                })
+
+            })
+        });
         return result;
     }
 
@@ -143,14 +124,14 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 subCategories: {}
             },
         }
-        result.sales_ele = organiseFinancialArray($scope.feedback.xf_ChannelShoppersSegmentsRetailSalesValue, periods, 1, 1);
-        result.sales_hea = organiseFinancialArray($scope.feedback.xf_ChannelShoppersSegmentsRetailSalesValue, periods, 1, 2);
+        result.sales_ele = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelSalesValue, periods, 1);
+        result.sales_hea = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelSalesValue, periods, 2);
 
-        result.gross_ele = organiseFinancialArray($scope.feedback.xf_ChannelShoppersSegmentsRetailSalesValue, periods, 1, 1);
-        result.gross_hea = organiseFinancialArray($scope.feedback.xf_ChannelShoppersSegmentsRetailSalesValue, periods, 1, 2);
+        result.gross_ele = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelGrossProfit, periods, 1);
+        result.gross_hea = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelGrossProfit, periods, 2);
 
-        result.trade_ele = organiseFinancialArray($scope.feedback.xf_ChannelShoppersSegmentsRetailSalesValue, periods, 1, 1);
-        result.trade_hea = organiseFinancialArray($scope.feedback.xf_ChannelShoppersSegmentsRetailSalesValue, periods, 1, 2);
+        result.trade_ele = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelTradeProfit, periods, 1);
+        result.trade_hea = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelTradeProfit, periods, 2);
 
 
         $scope.sales_eleFinancial = {
@@ -199,7 +180,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                                 fontSize: '16px'
                             },
                             formatter: function() {
-                                if (this.y != null) {
+                                if (this.y != null && this.y != 0) {
                                     return this.y.toFixed(2);
                                 } else {
                                     return "";
@@ -268,7 +249,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                                 fontSize: '14px'
                             },
                             formatter: function() {
-                                if (this.y != null) {
+                                if (this.y != null && this.y != 0) {
                                     return this.y.toFixed(2);
                                 } else {
                                     return "";
@@ -338,7 +319,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                                 fontSize: '16px'
                             },
                             formatter: function() {
-                                if (this.y != null) {
+                                if (this.y != null && this.y != 0) {
                                     return this.y.toFixed(2);
                                 } else {
                                     return "";
@@ -407,7 +388,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                                 fontSize: '14px'
                             },
                             formatter: function() {
-                                if (this.y != null) {
+                                if (this.y != null && this.y != 0) {
                                     return this.y.toFixed(2);
                                 } else {
                                     return "";
@@ -477,7 +458,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                                 fontSize: '16px'
                             },
                             formatter: function() {
-                                if (this.y != null) {
+                                if (this.y != null && this.y != 0) {
                                     return this.y.toFixed(2);
                                 } else {
                                     return "";
@@ -546,7 +527,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                                 fontSize: '14px'
                             },
                             formatter: function() {
-                                if (this.y != null) {
+                                if (this.y != null && this.y != 0) {
                                     return this.y.toFixed(2);
                                 } else {
                                     return "";

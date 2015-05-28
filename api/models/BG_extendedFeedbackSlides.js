@@ -70,8 +70,8 @@ var brandOwnersChannelDetailsSchema = mongoose.Schema({
     marketID : Number,
     categoryID : Number,
     period : Number,
-    ownerID : Number,
-    accountID : Number,
+    ownerID : Number,//supplier 1-4 retailer 1-2
+    accountID : Number,//TAccounts : 1~ 4, Two Modern Retailers + Traditional Trade + On-Line 
     value : Number
 })
 
