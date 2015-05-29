@@ -61,13 +61,34 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
 
                         switch (singleList.ownerID) {
                             case 1:
-                                result.data[singleList.accountID - 1].data[periodIndex] = singleList.value;
+                                if (singleList.accountID != 4) {
+                                    result.data[singleList.accountID - 1].data[periodIndex] = singleList.value;
+                                } else {
+                                    result.data[singleData.accountID - 1].data[periodIndex] = {
+                                        y: singleList.value,
+                                        color: PlayerColor.s1
+                                    }
+                                }
                                 break;
                             case 2:
-                                result.data[singleList.accountID - 1].data[periodIndex + 2] = singleList.value;
+                                if (singleList.accountID != 4) {
+                                    result.data[singleList.accountID - 1].data[periodIndex + 2] = singleList.value;
+                                } else {
+                                    result.data[singleData.accountID - 1].data[periodIndex + 2] = {
+                                        y: singleList.value,
+                                        color: PlayerColor.s2
+                                    }
+                                }
                                 break;
                             case 3:
-                                result.data[singleList.accountID - 1].data[periodIndex + 4] = singleList.value;
+                                if (singleList.accountID != 4) {
+                                    result.data[singleList.accountID - 1].data[periodIndex + 4] = singleList.value;
+                                } else {
+                                    result.data[singleData.accountID - 1].data[periodIndex + 4] = {
+                                        y: singleList.value,
+                                        color: PlayerColor.s3
+                                    }
+                                }
                                 break;
                             case 4:
                                 break;
@@ -84,6 +105,35 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
             })
         });
         return result;
+    }
+
+    var originPortfolioAarray=function(data,periods,categoryID){
+        var result = {
+            data: [{
+                name: Label.getContent('Retailer') + ' 1',
+                data: [],
+                color: PlayerColor.r1
+            }, {
+                name: Label.getContent('Retailer') + ' 2',
+                data: [],
+                color: PlayerColor.r2
+            }, {
+                name: Label.getContent('Supplier')+' 1',
+                data: [],
+                color: PlayerColor.s1
+            }, {
+                name: Label.getContent('Supplier')+' 2',
+                data: [],
+                color: PlayerColor.s2
+            }, {
+                name: Label.getContent('Supplier')+' 3',
+                data: [],
+                color: PlayerColor.s3
+            }],
+            categories: [periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1]],
+            subCategories: [Label.getContent('Supplier') + ' 1', Label.getContent('Supplier') + ' 2', Label.getContent('Supplier') + ' 3', Label.getContent('Retailer') + ' 1', Label.getContent('Retailer') + ' 2']
+
+        };
     }
 
     var dataTest=function(){
@@ -118,8 +168,6 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
             return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.ownerID==6&&obj.accountID==2);
         });
         console.log('retailer 2 Period -1 retailer1 value:'+result.value);
-
-
     }
 
     var initPage = function() {
