@@ -807,6 +807,10 @@ exports.initialiseSeminar = function(io) {
                 console.log('BG_oneQuarterParameterData Finish');
                 console.log('Initialization Done');
                 status = 'actived';
+                io.sockets.emit('AdminProcessLog', {
+                    msg: 'Initialization Done',
+                    isError: false
+                });
                 res.send(200, 'Initialization done.');
             }, function(error) { //log the error
                 io.sockets.emit('AdminProcessLog', {
