@@ -45,7 +45,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('seminar Finish');
+                
                 options.producerID = '1';
                 //Import General reports        
                 options.cgiPath = conf.cgi.path_producerDecision;
@@ -57,7 +57,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('GR_performanceHighlights Finish');
+                
                 options.cgiPath = conf.cgi.path_GR_crossSegmentSales;
                 options.schemaName = 'GR_crossSegmentSales';
                 return require('./models/GR_crossSegmentSales.js').addReports(options);
@@ -66,7 +66,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('GR_crossSegmentSales Finish');
+                
 
                 options.cgiPath = conf.cgi.path_GR_emallPrices;
                 options.schemaName = 'GR_emallPrices';
@@ -76,7 +76,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('GR_emallPrices Finish');
+                
                 options.cgiPath = conf.cgi.path_GR_marketSales;
                 options.schemaName = 'GR_marketSales';
                 return require('./models/GR_marketSales.js').addReports(options);
@@ -85,7 +85,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('GR_marketSales Finish');
+                
                 options.cgiPath = conf.cgi.path_GR_marketShare;
                 options.schemaName = 'GR_marketShare';
                 return require('./models/GR_marketShare.js').addReports(options);
@@ -94,7 +94,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('GR_marketShare Finish');
+                
                 options.cgiPath = conf.cgi.path_GR_productPortfolio;
                 options.schemaName = 'GR_productPortfolio';
                 return require('./models/GR_productPortfolio.js').addReports(options);
@@ -103,7 +103,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('GR_productPortfolio Finish');
+                
                 options.cgiPath = conf.cgi.path_GR_segmentLeadership;
                 options.schemaName = 'GR_segmentLeadership';
                 return require('./models/GR_segmentLeadership.js').addReports(options);
@@ -112,7 +112,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('GR_segmentLeadership Finish');
+                
                 //Import SCR(Supplier confidential) reports
                 options.cgiPath = conf.cgi.path_SCR_channelsProfitability;
                 options.schemaName = 'SCR_channelsProfitability';
@@ -122,7 +122,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_channelsProfitability Finish');
+                
                 options.cgiPath = conf.cgi.path_SCR_consolidatedProfitAndLoss;
                 options.schemaName = 'SCR_consolidatedProfitAndLoss';
                 return require('./models/SCR_consolidatedProfitAndLoss.js').addReports(options);
@@ -131,7 +131,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_consolidatedProfitAndLoss Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_inventoryVolumes;
                 options.schemaName = 'SCR_inventoryVolumes';
@@ -141,7 +141,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_inventoryVolumes Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_keyPerformanceIndicators;
                 options.schemaName = 'SCR_keyPerformanceIndicators';
@@ -151,7 +151,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_keyPerformanceIndicators Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_negotiations;
                 options.schemaName = 'SCR_negotiations';
@@ -161,7 +161,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_negotiations Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
                 options.schemaName = 'SCR_sharesCrossSegment';
@@ -171,7 +171,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_sharesCrossSegment Finish');
+                
 
                 options.producerID = 2;
                 options.cgiPath = conf.cgi.path_SCR_channelsProfitability;
@@ -182,7 +182,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_channelsProfitability Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_consolidatedProfitAndLoss;
                 options.schemaName = 'SCR_consolidatedProfitAndLoss';
@@ -192,7 +192,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_consolidatedProfitAndLoss Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_inventoryVolumes;
                 options.schemaName = 'SCR_inventoryVolumes';
@@ -202,7 +202,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_inventoryVolumes Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_keyPerformanceIndicators;
                 options.schemaName = 'SCR_keyPerformanceIndicators';
@@ -212,7 +212,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_keyPerformanceIndicators Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_negotiations;
                 options.schemaName = 'SCR_negotiations';
@@ -222,7 +222,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_negotiations Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
                 options.schemaName = 'SCR_sharesCrossSegment';
@@ -232,7 +232,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_sharesCrossSegment Finish');
+                
 
                 options.producerID = 3;
                 options.cgiPath = conf.cgi.path_SCR_channelsProfitability;
@@ -243,7 +243,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_channelsProfitability Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_consolidatedProfitAndLoss;
                 options.schemaName = 'SCR_consolidatedProfitAndLoss';
@@ -253,7 +253,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_consolidatedProfitAndLoss Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_inventoryVolumes;
                 options.schemaName = 'SCR_inventoryVolumes';
@@ -263,7 +263,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_inventoryVolumes Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_keyPerformanceIndicators;
                 options.schemaName = 'SCR_keyPerformanceIndicators';
@@ -273,7 +273,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_keyPerformanceIndicators Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_negotiations;
                 options.schemaName = 'SCR_negotiations';
@@ -283,7 +283,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_negotiations Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
                 options.schemaName = 'SCR_sharesCrossSegment';
@@ -293,7 +293,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_sharesCrossSegment Finish');
+                
 
                 options.producerID = 4;
                 options.cgiPath = conf.cgi.path_SCR_channelsProfitability;
@@ -304,7 +304,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_channelsProfitability Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_consolidatedProfitAndLoss;
                 options.schemaName = 'SCR_consolidatedProfitAndLoss';
@@ -314,7 +314,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_consolidatedProfitAndLoss Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_inventoryVolumes;
                 options.schemaName = 'SCR_inventoryVolumes';
@@ -324,7 +324,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_inventoryVolumes Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_keyPerformanceIndicators;
                 options.schemaName = 'SCR_keyPerformanceIndicators';
@@ -334,7 +334,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_keyPerformanceIndicators Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_negotiations;
                 options.schemaName = 'SCR_negotiations';
@@ -344,7 +344,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_negotiations Finish');
+                
 
                 options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
                 options.schemaName = 'SCR_sharesCrossSegment';
@@ -354,7 +354,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('SCR_sharesCrossSegment Finish');
+                
 
                 //Import RCR(Retailer confidential) reports
                 options.cgiPath = conf.cgi.path_RCR_consolidatedProfitAndLoss;
@@ -365,7 +365,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_consolidatedProfitAndLoss Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_inventoryVolumes;
                 options.schemaName = 'RCR_inventoryVolumes';
@@ -375,7 +375,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_inventoryVolumes Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_keyPerformanceIndicators;
                 options.schemaName = 'RCR_keyPerformanceIndicators';
@@ -385,7 +385,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_keyPerformanceIndicators Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_negotiations;
                 options.schemaName = 'RCR_negotiations';
@@ -395,7 +395,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_negotiations Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_profitabilityBySupplier;
                 options.schemaName = 'RCR_profitabilityBySupplier';
@@ -405,7 +405,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_profitabilityBySupplier Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
                 options.schemaName = 'RCR_sharesCrossSegment';
@@ -415,7 +415,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_sharesCrossSegment Finish');
+                
 
                 options.retailerID = 2;
                 options.cgiPath = conf.cgi.path_RCR_consolidatedProfitAndLoss;
@@ -426,7 +426,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_consolidatedProfitAndLoss Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_inventoryVolumes;
                 options.schemaName = 'RCR_inventoryVolumes';
@@ -436,7 +436,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_inventoryVolumes Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_keyPerformanceIndicators;
                 options.schemaName = 'RCR_keyPerformanceIndicators';
@@ -446,7 +446,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_keyPerformanceIndicators Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_negotiations;
                 options.schemaName = 'RCR_negotiations';
@@ -456,7 +456,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_negotiations Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_profitabilityBySupplier;
                 options.schemaName = 'RCR_profitabilityBySupplier';
@@ -466,7 +466,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_profitabilityBySupplier Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
                 options.schemaName = 'RCR_sharesCrossSegment';
@@ -476,7 +476,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_sharesCrossSegment Finish');
+                
 
                 options.retailerID = 3;
                 options.cgiPath = conf.cgi.path_RCR_consolidatedProfitAndLoss;
@@ -487,7 +487,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_consolidatedProfitAndLoss Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_inventoryVolumes;
                 options.schemaName = 'RCR_inventoryVolumes';
@@ -497,7 +497,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_inventoryVolumes Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_keyPerformanceIndicators;
                 options.schemaName = 'RCR_keyPerformanceIndicators';
@@ -507,7 +507,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_keyPerformanceIndicators Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_negotiations;
                 options.schemaName = 'RCR_negotiations';
@@ -517,7 +517,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_negotiations Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_profitabilityBySupplier;
                 options.schemaName = 'RCR_profitabilityBySupplier';
@@ -527,7 +527,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_profitabilityBySupplier Finish');
+                
 
                 options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
                 options.schemaName = 'RCR_sharesCrossSegment';
@@ -537,7 +537,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('RCR_sharesCrossSegment Finish');
+                
 
                 //Import Market Reports
                 options.cgiPath = conf.cgi.path_MR_awarenessEvolution;
@@ -548,7 +548,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_awarenessEvolution Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_netMarketPrices;
                 options.schemaName = 'MR_netMarketPrices';
@@ -558,7 +558,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_netMarketPrices Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_pricePromotions;
                 options.schemaName = 'MR_pricePromotions';
@@ -568,7 +568,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_pricePromotions Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_retailerPerceptionEvolution;
                 options.schemaName = 'MR_retailerPerceptionEvolution';
@@ -578,7 +578,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_pricePromotions Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_retailersIntelligence;
                 options.schemaName = 'MR_retailersIntelligence';
@@ -588,7 +588,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_retailersIntelligence Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_suppliersIntelligence;
                 options.schemaName = 'MR_suppliersIntelligence';
@@ -598,7 +598,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_suppliersIntelligence Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_variantPerceptionEvolution;
                 options.schemaName = 'MR_variantPerceptionEvolution';
@@ -608,7 +608,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_variantPerceptionEvolution Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_salesCrossSegment;
                 options.schemaName = 'MR_salesCrossSegment';
@@ -618,7 +618,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_salesCrossSegment Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_sharesCrossSegment;
                 options.schemaName = 'MR_sharesCrossSegment';
@@ -628,7 +628,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_sharesCrossSegment Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_salesByChannel;
                 options.schemaName = 'MR_salesByChannel';
@@ -638,9 +638,9 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_salesByChannel Finish');
+                
 
-                console.log('get into web ...');
+                
                 options.cgiPath = conf.cgi.path_MR_webTrawlerScores;
                 options.schemaName = 'MR_webTrawlerScores';
                 return require('./models/MR_webTrawlerScores.js').addReports(options);
@@ -649,7 +649,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_webTrawlerScores Finish');
+                
 
                 options.cgiPath = conf.cgi.path_MR_forecasts;
                 options.schemaName = 'MR_forecasts';
@@ -659,7 +659,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('MR_forecasts Finish');
+                
 
                 //import bg_feedback
                 options.cgiPath = conf.cgi.path_BG_feedbackSlides;
@@ -670,7 +670,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('BG_feedbackSlides Finish');
+                
 
                 options.cgiPath = conf.cgi.path_BG_extendedFeedbackSlides;
                 options.schemaName = 'BG_extendedFeedbackSlides';
@@ -680,7 +680,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('BG_extendedFeedbackSlides Finish');
+                
 
                 //import Supplier decision 
                 if (options.isKeepExistedPeriod1Decision) {
@@ -698,7 +698,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('producerDecision 1 Finish');
+                
 
                 options.producerID = '2';
                 options.cgiPath = conf.cgi.path_producerDecision;
@@ -709,7 +709,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('producerDecision 2 Finish');
+                
 
                 options.producerID = '3';
                 options.cgiPath = conf.cgi.path_producerDecision;
@@ -720,7 +720,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('producerDecision 3 Finish');
+                
 
                 options.endWith = 0;
                 options.producerID = '4';
@@ -732,7 +732,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('producerDecision 4 Finish');
+                
 
                 //import retailer decision 
                 if (options.isKeepExistedPeriod1Decision) {
@@ -749,7 +749,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('retailerDecision 1 Finish');
+                
 
                 options.retailerID = '2';
                 options.cgiPath = conf.cgi.path_retailerDecision;
@@ -760,7 +760,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('retailerDecision 2 Finish');
+                
 
                 options.endWith = 0;
                 options.retailerID = '3';
@@ -772,7 +772,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('retailerDecision 3 Finish');
+                
 
 
                 //import background data 
@@ -784,7 +784,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('companyHistoryInfo Finish');
+                
 
                 options.cgiPath = conf.cgi.path_BG_oneQuarterExogenousData;
                 options.schemaName = 'BG_oneQuarterExogenousData';
@@ -794,7 +794,7 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('BG_oneQuarterExogenousData Finish');
+                
 
                 options.cgiPath = conf.cgi.path_BG_oneQuarterParameterData;
                 options.schemaName = 'BG_oneQuarterParameterData';
@@ -804,13 +804,14 @@ exports.initialiseSeminar = function(io) {
                     msg: result.msg,
                     isError: false
                 });
-                console.log('BG_oneQuarterParameterData Finish');
-                console.log('Initialization Done');
+                
+                
                 status = 'actived';
                 io.sockets.emit('AdminProcessLog', {
                     msg: 'Initialization Done',
                     isError: false
                 });
+                console.log('Initialization Done');
                 res.send(200, 'Initialization done.');
             }, function(error) { //log the error
                 io.sockets.emit('AdminProcessLog', {
@@ -844,7 +845,7 @@ exports.initialiseSeminarRetailer = function(io) {
             cgiPort: conf.cgi.port,
             cgiPath: conf.cgi.path_retailerDecision,
         }
-        console.log('ini on the server');
+        
         require('./models/retailerDecision.js').addRetailerDecisions(options).then(function(result) {
             io.sockets.emit('AdminProcessLog', {
                 msg: result.msg,
