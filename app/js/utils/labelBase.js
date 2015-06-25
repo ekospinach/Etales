@@ -1254,6 +1254,10 @@ var getLabelBase = function(){
 		{id:'Gross Profits',  ENG:'Gross Profits',  CHN:'Gross Profits',  RUS:''},	
 		{id:'Trade Profits',  ENG:'Trade Profits',  CHN:'Trade Profits',  RUS:''},	
 		
+		{id:'Retailer Local Advertising',  ENG:'Retailer Local Advertising',  CHN:'Retailer Local Advertising',  RUS:''},	
+			
+
+
 
 	]
 }

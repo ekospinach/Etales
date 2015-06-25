@@ -579,3 +579,108 @@ app.directive('feedbackHeaRural', function() {
         });
     }
 });
+app.directive('retailerPerceptions1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.perception != undefined) {
+                $('#chart11').empty();
+                $('#chart11').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: scope.ruralTitle
+                    },
+                    xAxis: {
+                        title: {
+                            text: scope.xTitle3
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle3
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 15,
+                            maxSize: 50
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            if (this.point.z == 10) {
+                                var s = '<p>' + this.series.name + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            } else {
+                                var s = '<p>' + scope.previousInfo + '</p><p>' + this.series.name + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            }
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.perception.retailerPerceptionsSeries1
+                });
+            }
+
+        });
+    }
+})
+app.directive('retailerPerceptions2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            console.log(scope.perception);
+            if (v != undefined && scope.perception != undefined) {
+                $('#chart12').empty();
+                $('#chart12').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: scope.urbanTitle
+                    },
+                    xAxis: {
+                        title: {
+                            text: scope.xTitle3
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle3
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 15,
+                            maxSize: 50
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            if (this.point.z == 10) {
+                                var s = '<p>' + this.series.name + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            } else {
+                                var s = '<p>' + scope.previousInfo + '</p><p>' + this.series.name + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            }
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.perception.retailerPerceptionsSeries2
+                });
+            }
+
+        });
+    }
+})

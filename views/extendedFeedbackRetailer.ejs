@@ -182,14 +182,16 @@
                 <h3>{{Label.getContent('Period')}} : <%= period %></h3>
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
             </section>
-            <section>
+            <section ng-controller='retailerPerceptionsCtrl'>
                 <section>
                     <h3><a> Brand Perception </a> - Elecssories - Urban</h3>
                     <hr>
+                    <div id="chart12" ng-model='myModel' retailer-perceptions2></div>
                 </section>
                 <section>
                     <h3><a> Brand Perception </a> - Elecssories - Rural</h3>
                     <hr>
+                    <div id="chart11" ng-model='myModel' retailer-perceptions1></div>
                 </section>
                 <section>
                     <h3><a> Brand Perception </a> - HealthBeauties - Urban</h3>
@@ -2140,6 +2142,17 @@
                     </table>
                 </section>
             </section>
+
+            <section ng-controller='retailerPromotionalCtrl'>
+                <!--10-->
+                <section>
+                    <h3><a> {{Label.getContent('Retailer Local Advertising')}} </a></h3>
+                    <hr>
+                    <highchart id="chart101" class="large-size" config="retailerLocalAdvertising"></highchart>
+                </section>
+
+            </section>
+
             <section ng-controller='retailerProfitCtrl'>
                 <!--11-->
                 <section>
@@ -2170,6 +2183,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/highcharts/highcharts.js"></script>
     <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+    <script src="bower_components/highcharts/highcharts-more.js"></script>
     <script src="bower_components/requirejs/require.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="js/utils/labelBase.js"></script>
@@ -2180,6 +2194,8 @@
     <script src="js/feedBackAppControllers/retailerProfitCtrl.js"></script>
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailersProfitabilityPerSupplierCtrl.js"></script>
+    <script src="js/feedBackAppControllers/retailerPromotionalCtrl.js"></script>
+    <script src="js/feedBackAppControllers/retailerPerceptionsCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
