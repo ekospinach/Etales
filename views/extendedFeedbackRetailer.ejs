@@ -323,35 +323,49 @@
                                     <p class="padding-20">{{player.fullName}}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}
-                                    </p>
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -438,31 +452,46 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -549,31 +578,46 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -660,31 +704,46 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -771,36 +830,52 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </section>
+                <!--hea-->
                 <section>
                     <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 1</h3>
                     <hr>
@@ -882,31 +957,46 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}<span></p>
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -917,7 +1007,6 @@
                     <hr>
                     <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
                         <thead>
-
                             <tr>
                                 <th></th>
                                 <th colspan="4">
@@ -946,8 +1035,6 @@
                                 </td>
                                 <td colspan="2"></td>
                             </tr>
-
-
                             <tr>
                                 <td></td>
                                 <td>
@@ -983,9 +1070,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
-
-
                             <tr>
                                 <td colspan="11">
                                     <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
@@ -999,31 +1083,46 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -1034,7 +1133,6 @@
                     <hr>
                     <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
                         <thead>
-
                             <tr>
                                 <th></th>
                                 <th colspan="4">
@@ -1063,8 +1161,6 @@
                                 </td>
                                 <td colspan="2"></td>
                             </tr>
-
-
                             <tr>
                                 <td></td>
                                 <td>
@@ -1113,31 +1209,46 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
                         </tbody>
@@ -1148,7 +1259,6 @@
                     <hr>
                     <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
                         <thead>
-
                             <tr>
                                 <th></th>
                                 <th colspan="4">
@@ -1177,8 +1287,6 @@
                                 </td>
                                 <td colspan="2"></td>
                             </tr>
-
-
                             <tr>
                                 <td></td>
                                 <td>
@@ -1226,37 +1334,49 @@
                                 <td class="warning">
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
-
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
-                                
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </section>
@@ -1265,7 +1385,6 @@
                     <hr>
                     <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
                         <thead>
-
                             <tr>
                                 <th></th>
                                 <th colspan="4">
@@ -1294,8 +1413,6 @@
                                 </td>
                                 <td colspan="2"></td>
                             </tr>
-
-
                             <tr>
                                 <td></td>
                                 <td>
@@ -1344,39 +1461,51 @@
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="warning">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="warning">
-                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td class="info">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
                                 </td>
-                                
                                 <td class="info">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td class="info">
-                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
                                 </td>
                                 <td>
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
                                 </td>
-                                
                             </tr>
                         </tbody>
                     </table>
                 </section>
-
             </section>
             <section>
                 <section>
@@ -1471,7 +1600,7 @@
                             <tr ng-repeat='product in productLists.urban_ele | orderBy:"index"' class="success">
                                 <td style="width:150px;">
                                     <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
-                                        <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
+                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>

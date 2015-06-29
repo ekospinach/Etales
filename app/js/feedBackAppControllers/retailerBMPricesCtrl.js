@@ -52,27 +52,16 @@ var retailerBMPricesCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                     case 1:
                         result.player1s.push({
                             'fullName': fullName,
-                            // 'rural1Value': rural1Value,
-                            // 'rural1ValueChange': rural1ValueChange,
-                            // 'urban1Value': urban1Value,
-                            // 'urban1ValueChange': urban1ValueChange,
-                            // 'rural2Value': rural2Value,
-                            // 'rural2ValueChange': rural2ValueChange,
-                            // 'urban2Value': urban2Value,
-                            // 'urban2ValueChange': urban2ValueChange,
-                            // 'onlineValue': onlineValue,
-                            // 'onlineChange': onlineChange,
-                            
                             'rural1Value': rural1Value,
-                            'rural1ValueChange': -0.1,
+                            'rural1ValueChange': rural1ValueChange,
                             'urban1Value': urban1Value,
-                            'urban1ValueChange': 0.1,
+                            'urban1ValueChange': urban1ValueChange,
                             'rural2Value': rural2Value,
-                            'rural2ValueChange': 0,
+                            'rural2ValueChange': rural2ValueChange,
                             'urban2Value': urban2Value,
-                            'urban2ValueChange': 1,
+                            'urban2ValueChange': urban2ValueChange,
                             'onlineValue': onlineValue,
-                            'onlineChange': 2
+                            'onlineChange': onlineChange
                         });
                         break;
                     case 2:

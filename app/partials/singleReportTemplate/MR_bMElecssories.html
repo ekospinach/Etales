@@ -6,34 +6,6 @@
     </div>
     <table class="table table-condensed table-bordered table-danger special-table">
         <thead>
-            <!-- <tr>
-                <th></th>
-                <th colspan="4">
-                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
-                </th>
-                <th colspan="4">
-                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
-                </th>
-                <th colspan="2">
-                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
-                </th>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="2">
-                    <p class="text-center">{{Label.getContent('Urban')}}</p>
-                </td>
-                <td colspan="2">
-                    <p class="text-center">{{Label.getContent('Rural')}}</p>
-                </td>
-                <td colspan="2">
-                    <p class="text-center">{{Label.getContent('Urban')}}</p>
-                </td>
-                <td colspan="2">
-                    <p class="text-center">{{Label.getContent('Rural')}}</p>
-                </td>
-                <td colspan="2"></td>
-            </tr> -->
             <tr>
                 <th></th>
                 <th colspan="4">
@@ -62,8 +34,6 @@
                 </td>
                 <td colspan="2"></td>
             </tr>
-
-
             <tr>
                 <td></td>
                 <td>
@@ -231,7 +201,6 @@
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                 </td>
-
                 <td class="td-warning">
                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
@@ -247,7 +216,6 @@
                 <td class="td-info">
                     <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
-                
                 <td class="td-info">
                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                 </td>
@@ -288,7 +256,6 @@
                 <td class="td-info">
                     <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
                 </td>
-                
                 <td class="td-info">
                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                 </td>
@@ -301,7 +268,6 @@
                 <td>
                     <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
                 </td>
-                
             </tr>
         </tbody>
     </table>
