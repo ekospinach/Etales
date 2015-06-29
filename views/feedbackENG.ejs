@@ -112,6 +112,17 @@
                 height: 300px;
                 float: right;
             }
+
+            .sp-small-left{
+                width: 500px;
+                height: 250px;
+                float: left;
+            }
+            .sp-small-right{
+                width: 500px;
+                height: 250px;
+                float: right;
+            }
             .clear-both{
                 clear: both;
             }
@@ -405,10 +416,10 @@
                         <h3><span class="orangeLetter">{{Label.getContent('Share of Shoppers')}}</span> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban Market')}}</h3>
                         <hr>
                         <div class="chart-container" feedback-ele-urban ng-model='myModel'>
-                            <div id="shareChart50" class="feedbackEleUrbanChart small-small-left"></div>
-                            <div id="shareChart51" class="feedbackEleUrbanChart small-small-right"></div>
-                            <div id="shareChart52" class="feedbackEleUrbanChart small-small-left"></div>
-                            <div id="shareChart53" class="feedbackEleUrbanChart small-small-right"></div>
+                            <div id="shareChart50" class="feedbackEleUrbanChart sp-small-left"></div>
+                            <div id="shareChart51" class="feedbackEleUrbanChart sp-small-right"></div>
+                            <div id="shareChart52" class="feedbackEleUrbanChart sp-small-left"></div>
+                            <div id="shareChart53" class="feedbackEleUrbanChart sp-small-right"></div>
                         </div>
                         <ul id="feedBackEleUrbanLegend" class="legend"></ul>
                     </section>
@@ -416,10 +427,10 @@
                         <h3><span class="orangeLetter">{{Label.getContent('Share of Shoppers')}}</span> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Rural Market')}}</h3>
                         <hr>
                         <div class="chart-container" feedback-ele-rural ng-model='myModel'>
-                            <div id="shareChart54" class="feedbackEleRuralChart small-small-left"></div>
-                            <div id="shareChart55" class="feedbackEleRuralChart small-small-right"></div>
-                            <div id="shareChart56" class="feedbackEleRuralChart small-small-left"></div>
-                            <div id="shareChart57" class="feedbackEleRuralChart small-small-right"></div>
+                            <div id="shareChart54" class="feedbackEleRuralChart sp-small-left"></div>
+                            <div id="shareChart55" class="feedbackEleRuralChart sp-small-right"></div>
+                            <div id="shareChart56" class="feedbackEleRuralChart sp-small-left"></div>
+                            <div id="shareChart57" class="feedbackEleRuralChart sp-small-right"></div>
                         </div>
                         <ul id="feedBackEleRuralLegend" class="legend"></ul>
                     </section>
@@ -428,10 +439,10 @@
                         <h3><span class="orangeLetter">{{Label.getContent('Share of Shoppers')}}</span> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban Market')}}</h3>
                         <hr>
                         <div feedback-hea-urban ng-model='myModel'>
-                            <div id="shareChart58" class="feedbackHeaUrbanChart small-small-left"></div>
-                            <div id="shareChart59" class="feedbackHeaUrbanChart small-small-right"></div>
-                            <div id="shareChart60" class="feedbackHeaUrbanChart small-small-left"></div>
-                            <div id="shareChart61" class="feedbackHeaUrbanChart small-small-right"></div>
+                            <div id="shareChart58" class="feedbackHeaUrbanChart sp-small-left"></div>
+                            <div id="shareChart59" class="feedbackHeaUrbanChart sp-small-right"></div>
+                            <div id="shareChart60" class="feedbackHeaUrbanChart sp-small-left"></div>
+                            <div id="shareChart61" class="feedbackHeaUrbanChart sp-small-right"></div>
                         </div>
                         <ul id="feedBackHeaUrbanLegend" class="legend"></ul>
                     </section>
@@ -439,10 +450,10 @@
                         <h3><span class="orangeLetter">{{Label.getContent('Share of Shoppers')}}</span> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Rural Market')}}</h3>
                         <hr>
                         <div feedback-hea-rural ng-model='myModel'>
-                            <div id="shareChart62" class="feedbackHeaRuralChart small-small-left"></div>
-                            <div id="shareChart63" class="feedbackHeaRuralChart small-small-right"></div>
-                            <div id="shareChart64" class="feedbackHeaRuralChart small-small-left"></div>
-                            <div id="shareChart65" class="feedbackHeaRuralChart small-small-right"></div>
+                            <div id="shareChart62" class="feedbackHeaRuralChart sp-small-left"></div>
+                            <div id="shareChart63" class="feedbackHeaRuralChart sp-small-right"></div>
+                            <div id="shareChart64" class="feedbackHeaRuralChart sp-small-left"></div>
+                            <div id="shareChart65" class="feedbackHeaRuralChart sp-small-right"></div>
                         </div>
                         <ul id="feedBackHeaRuralLegend" class="legend"></ul>
                     </section>          
@@ -556,7 +567,7 @@
         <script src="js/feedBackAppControllers/supplierKPIsCtrl.js"></script>
         <script src="js/feedBackAppControllers/retailerKPIsCtrl.js"></script>
         <script src="js/feedBackAppControllers/finalScoreCtrl.js"></script>
-        <script src="js/feedBackAppControllers/shareOfShoppersCtrl.js"></script>
+        <script src="js/feedBackAppControllers/shareOfShoppersCtrl.js"></script>        
 
 
 
