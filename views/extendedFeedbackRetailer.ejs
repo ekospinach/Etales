@@ -112,6 +112,19 @@
         height: 250px;
         float: right;
     }
+    .highcharts-subtitle{
+        width: 75%;
+    }
+        .normal-left{
+        width: 500px;
+        height: 500px;
+        float: left;
+    }
+                .normal-right{
+        width: 500px;
+        height: 500px;
+        float: right;
+    }
     
     .legend li {
         cursor: pointer;
@@ -4495,6 +4508,37 @@
                     <highchart id="chart1123" class="small-size" config="netProfitsMargins"></highchart>
                 </section>
             </section>
+            <section ng-controller="retailerKPICtrl">
+                <section>
+                    <h3><span class="orangeLetter">{{Label.getContent('Retailer KPIs')}}</span> - {{Label.getContent('Rotation Index')}}</h3>
+                    <hr>
+                    <highchart id="chart40" config="rotationIndexSalesValueElecssories" class="small-small-left"></highchart>
+                    <highchart id="chart41" config="rotationIndexSalesVolumeElecssories" class="small-small-right"></highchart>
+                    <highchart id="chart42" config="rotationIndexSalesValueHealthBeauties" class="small-small-left"></highchart>
+                    <highchart id="chart43" config="rotationIndexSalesVolumeHealthBeauties" class="small-small-right"></highchart>
+                </section>          
+                <section>
+                    <h3><span class="orangeLetter">{{Label.getContent('Retailer KPIs')}}</span> - {{Label.getContent('Profitability Index')}} - {{Label.getContent('Previous')}}</h3>
+                    <hr>
+                    <highchart id="chart45" config="previousUrbanProfitabilityIndex" class="normal-left"></highchart>
+                    <highchart id="chart44" config="previousRuralProfitabilityIndex" class="normal-right"></highchart>
+                </section>     
+                <section>
+                    <h3><span class="orangeLetter">{{Label.getContent('Retailer KPIs')}}</span> - {{Label.getContent('Profitability Index')}} - {{Label.getContent('Current')}}</h3>
+                    <hr>
+                    <highchart id="chart47" config="currentUrbanProfitabilityIndex" class="normal-left"></highchart>
+                    <highchart id="chart46" config="currentRuralProfitabilityIndex" class="normal-right"></highchart>
+                </section>     
+                <section>
+                    <h3><span class="orangeLetter">{{Label.getContent('Retailer KPIs')}}</span> - {{Label.getContent('Stock Cover')}}</h3>
+                    <hr>
+                    <highchart id="chart49" config="EStockCover" class="normal-left"></highchart>
+                    <highchart id="chart48" config="HStockCover" class="normal-right"></highchart>
+                    <!--<highchart id="chart49" config="urbanStockCover" class="normal-left"></highchart>
+                    <highchart id="chart48" config="ruralStockCover" class="normal-right"></highchart>-->
+                </section>                                           
+            </section>
+
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
@@ -4521,6 +4565,7 @@
     <script src="js/feedBackAppControllers/retailerPromotionalCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerBMPricesCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerShareOfShoppersCtrl.js"></script>
+    <script src="js/feedBackAppControllers/retailerKPICtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerPerceptionsCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
