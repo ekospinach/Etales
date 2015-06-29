@@ -1,4 +1,4 @@
-var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label) {
+var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label, StaticValues) {
     function GetRequest() {
         var url = document.location.search; //获取url中"?"符后的字串
         var theRequest = new Object();
@@ -12,24 +12,141 @@ var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label) {
         return theRequest;
     }
 
-    var organiseTableArray = function(data, categoryID,marketID){
-        
+    var loadPromotion = function(data, category) {
+        var result = {
+            player1s: [],
+            player2s: [],
+            player3s: [],
+            player5s: [],
+            player6s: []
+        }
+
+        data.variantInfo.forEach(function(singleData) {
+            if (singleData.parentCategoryID == category) {
+                var fullName = singleData.parentBrandName + singleData.variantName;
+                var rural1Length = rural1Depth = urban1Length = urban1Depth = rural2Length = rural2Depth = urban2Length = urban2Depth = 0;
+
+                //depth=variantInfo[].accountInfo[retailerID-1].promoRate[catrgoryID-1]
+                //length=variantInfo[].accountInfo[retailerID-1].promoFrequency[categoryID-1]
+                //variantInfo[].parentCompanyID decide player num
+                //player 1 2 3 -->supplier
+                //player 5 6 -->retailer
+
+                if (singleData.accountInfo[StaticValues.player.r1] != undefined) {
+                    if (singleData.accountInfo[StaticValues.player.r1].promoRate[StaticValues.category.hea] != 0) {
+                        rural1Depth = (Math.floor(singleData.accountInfo[StaticValues.player.r1].promoRate[StaticValues.category.hea] * 100 * 100) / 100);
+                    } else {
+                        rural1Depth = singleData.accountInfo[StaticValues.player.r1].promoRate[StaticValues.category.hea];
+                    }
+                    rural1Length = singleData.accountInfo[StaticValues.player.r1].promoFrequency[StaticValues.category.hea];
+                    if (singleData.accountInfo[StaticValues.player.r1].promoRate[StaticValues.category.ele] != 0) {
+                        urban1Depth = (Math.floor(singleData.accountInfo[StaticValues.player.r1].promoRate[StaticValues.category.ele] * 100 * 100) / 100);
+                    } else {
+                        urban1Depth = singleData.accountInfo[StaticValues.player.r1].promoRate[StaticValues.category.ele];
+                    }
+                    urban1Length = singleData.accountInfo[StaticValues.player.r1].promoFrequency[StaticValues.category.ele];
+                }
+                if (singleData.accountInfo[StaticValues.player.r2] != undefined) {
+                    if (singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.hea] != 0) {
+                        rural2Depth = (Math.floor(singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.hea] * 100 * 100) / 100);
+                    } else {
+                        rural2Depth = singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.hea];
+                    }
+                    rural2Length = singleData.accountInfo[StaticValues.player.r2].promoFrequency[StaticValues.category.hea];
+                    if (singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.ele] != 0) {
+                        urban2Depth = (Math.floor(singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.ele] * 100 * 100) / 100);
+                    } else {
+                        urban2Depth = singleData.accountInfo[StaticValues.player.r2].promoRate[StaticValues.category.ele];
+
+                    }
+                    urban2Length = singleData.accountInfo[StaticValues.player.r2].promoFrequency[StaticValues.category.ele];
+                }
+                switch (singleData.parentCompanyID) {
+                    case 1:
+                        result.player1s.push({
+                            'fullName': fullName,
+                            'rural1Length': rural1Length,
+                            'rural1Depth': rural1Depth,
+                            'urban1Length': urban1Length,
+                            'urban1Depth': urban1Depth,
+                            'rural2Length': rural2Length,
+                            'rural2Depth': rural2Depth,
+                            'urban2Length': urban2Length,
+                            'urban2Depth': urban2Depth
+                        });
+                        break;
+                    case 2:
+                        result.player2s.push({
+                            'fullName': fullName,
+                            'rural1Length': rural1Length,
+                            'rural1Depth': rural1Depth,
+                            'urban1Length': urban1Length,
+                            'urban1Depth': urban1Depth,
+                            'rural2Length': rural2Length,
+                            'rural2Depth': rural2Depth,
+                            'urban2Length': urban2Length,
+                            'urban2Depth': urban2Depth
+                        });
+                        break;
+                    case 3:
+                        result.player3s.push({
+                            'fullName': fullName,
+                            'rural1Length': rural1Length,
+                            'rural1Depth': rural1Depth,
+                            'urban1Length': urban1Length,
+                            'urban1Depth': urban1Depth,
+                            'rural2Length': rural2Length,
+                            'rural2Depth': rural2Depth,
+                            'urban2Length': urban2Length,
+                            'urban2Depth': urban2Depth
+                        });
+                        break;
+                    case 5:
+                        result.player5s.push({
+                            'fullName': fullName,
+                            'rural1Length': rural1Length,
+                            'rural1Depth': rural1Depth,
+                            'urban1Length': urban1Length,
+                            'urban1Depth': urban1Depth,
+                            'rural2Length': rural2Length,
+                            'rural2Depth': rural2Depth,
+                            'urban2Length': urban2Length,
+                            'urban2Depth': urban2Depth
+                        });
+                        break;
+                    case 6:
+                        result.player6s.push({
+                            'fullName': fullName,
+                            'rural1Length': rural1Length,
+                            'rural1Depth': rural1Depth,
+                            'urban1Length': urban1Length,
+                            'urban1Depth': urban1Depth,
+                            'rural2Length': rural2Length,
+                            'rural2Depth': rural2Depth,
+                            'urban2Length': urban2Length,
+                            'urban2Depth': urban2Depth
+                        });
+                        break;
+                }
+            }
+        })
+        return result;
     }
 
     var organiseChartArray = function(data, periods) {
 
         var result = {
             data: [{
-                name: Label.getContent('Retailer') +' 1',
-                data: [5,4,null,2,1],
+                name: Label.getContent('Retailer') + ' 1',
+                data: [5, 4, null, 2, 1],
                 color: PlayerColor.r1,
                 xAxis: 0
             }, {
-                name: Label.getContent('Retailer') +' 2',
-                data: [1,2,null,4,5],
+                name: Label.getContent('Retailer') + ' 2',
+                data: [1, 2, null, 4, 5],
                 color: PlayerColor.r2,
                 xAxis: 0
-            },{
+            }, {
                 name: ' ',
                 data: [null, null],
                 color: 'transparent',
@@ -84,7 +201,9 @@ var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label) {
         var result = {
             'retailerLocalAdvertising': {
                 data: {}
-            }
+            },
+            'ele': {},
+            'hea': {}
         }
         result.retailerLocalAdvertising = organiseChartArray($scope.feedback.xf_ShoppersSegmentsShares, periods);
 
@@ -124,7 +243,7 @@ var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) +' '+ Label.getContent('$mln')+'</b></p>';
+                        var s = '<p><b>' + this.key + '</b></p>' + '<p>' + this.series.name + ' : <b>' + this.point.y.toFixed(2) + ' ' + Label.getContent('$mln') + '</b></p>';
                         return s;
                     },
                     shared: false,
@@ -168,6 +287,10 @@ var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label) {
             },
             loading: false
         }
+
+        result.ele = loadPromotion($scope.pricePromotions, StaticValues.categoryID.ele);
+        result.hea = loadPromotion($scope.pricePromotions, StaticValues.categoryID.hea);
+        $scope.result = result;
     }
     $scope.$watch('feedback', function(newValue, oldValue) {
         if (newValue != undefined) {

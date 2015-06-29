@@ -140,7 +140,7 @@ var retailerBMPricesCtrl = function($scope, $http, PlayerColor, Label, StaticVal
         result.hea = loadRetailerPrice($scope.netMarketPrices, StaticValues.categoryID.hea);
         $scope.result = result;
     }
-    $scope.$watch('feedback', function(newValue, oldValue) {
+    $scope.$watch('netMarketPrices', function(newValue, oldValue) {
         if (newValue != undefined) {
             initPage();
         }

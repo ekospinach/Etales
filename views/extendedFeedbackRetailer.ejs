@@ -88,27 +88,31 @@
         float: left;
         height: 500px;
     }
-    .small-small-left{
+    
+    .small-small-left {
         width: 500px;
         height: 300px;
         float: left;
     }
-    .small-small-right{
+    
+    .small-small-right {
         width: 500px;
         height: 300px;
         float: right;
     }
-
-    .sp-small-left{
+    
+    .sp-small-left {
         width: 500px;
         height: 250px;
         float: left;
     }
-    .sp-small-right{
+    
+    .sp-small-right {
         width: 500px;
         height: 250px;
         float: right;
     }
+    
     .legend li {
         cursor: pointer;
         display: inline-block;
@@ -116,9 +120,11 @@
         line-height: 16px;
         margin: 0 10px;
     }
+    
     li.hidden {
-        color: #ddd !important;    
+        color: #ddd !important;
     }
+    
     .circle {
         width: 16px;
         height: 16px;
@@ -1538,7 +1544,6 @@
                     </table>
                 </section>
             </section>
-
             <section ng-controller="retailerShareOfShoppersCtrl">
                 <!--5-->
                 <section>
@@ -1563,7 +1568,6 @@
                     </div>
                     <ul id="feedBackEleRuralLegend" class="legend"></ul>
                 </section>
-
                 <section>
                     <h3><span class="orangeLetter">{{Label.getContent('Share of Shoppers')}}</span> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban Market')}}</h3>
                     <hr>
@@ -1585,10 +1589,8 @@
                         <div id="shareChart65" class="feedbackHeaRuralChart sp-small-right"></div>
                     </div>
                     <ul id="feedBackHeaRuralLegend" class="legend"></ul>
-                </section> 
-
-            </section>   
-
+                </section>
+            </section>
             <section>
                 <section>
                     <h3><a> Available Product Portfolio </a> - Elecssories</h3>
@@ -3522,6 +3524,957 @@
             <section ng-controller='retailerPromotionalCtrl'>
                 <!--10-->
                 <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player1s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player2s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player3s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Retailer')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player5s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Retailer')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player6s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <!--hea-->
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player1s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player2s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player3s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Retailer')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player5s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Retailer')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player6s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Length | NulltoMinOr1Number}}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Depth | NulltoMinOr1Number}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
                     <h3><a> {{Label.getContent('Retailer Local Advertising')}} </a></h3>
                     <hr>
                     <highchart id="chart101" class="large-size" config="retailerLocalAdvertising"></highchart>
@@ -3570,7 +4523,6 @@
     <script src="js/feedBackAppControllers/retailerShareOfShoppersCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerPerceptionsCtrl.js"></script>
     <script>
-
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({

@@ -803,7 +803,7 @@ var retailerShareOfShoppersCtrl = function($scope, $http, PlayerColor) {
     }
 
 
-    $scope.$watch('feedback', function(newValue, oldValue) {
+    $scope.$watch('normalfeedback', function(newValue, oldValue) {
         if (newValue != undefined) {
             initPage();
         }

@@ -161,7 +161,7 @@ var retailerPerceptionsCtrl = function($scope, $http, PlayerColor, Label , Stati
 
 
     }
-    $scope.$watch('feedback', function(newValue, oldValue) {
+    $scope.$watch('retailerPerception', function(newValue, oldValue) {
         if (newValue != undefined) {
             initPage();
         }
