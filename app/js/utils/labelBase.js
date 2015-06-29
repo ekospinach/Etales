@@ -1255,6 +1255,7 @@ var getLabelBase = function(){
 		{id:'Trade Profits',  ENG:'Trade Profits',  CHN:'Trade Profits',  RUS:''},	
 		
 		{id:'Retailer Local Advertising',  ENG:'Retailer Local Advertising',  CHN:'Retailer Local Advertising',  RUS:''},	
+		{id:'Store Perceptions',  ENG:'Store Perceptions',  CHN:'Store Perceptions',  RUS:''},	
 			
 
 

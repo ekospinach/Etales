@@ -225,22 +225,14 @@
             <section ng-controller='retailerPerceptionsCtrl'>
                 <!--1-->
                 <section>
-                    <h3><a> Brand Perception </a> - Elecssories - Urban</h3>
+                    <h3><a> {{Label.getContent('Store Perceptions')}} </a> - {{Label.getContent('Urban')}}</h3>
                     <hr>
                     <div id="chart12" ng-model='myModel' retailer-perceptions2></div>
                 </section>
                 <section>
-                    <h3><a> Brand Perception </a> - Elecssories - Rural</h3>
+                    <h3><a> {{Label.getContent('Store Perceptions')}} </a> - {{Label.getContent('Rural')}}</h3>
                     <hr>
                     <div id="chart11" ng-model='myModel' retailer-perceptions1></div>
-                </section>
-                <section>
-                    <h3><a> Brand Perception </a> - HealthBeauties - Urban</h3>
-                    <hr>
-                </section>
-                <section>
-                    <h3><a> Brand Perception </a> - HealthBeauties - Rural</h3>
-                    <hr>
                 </section>
             </section>
             <section ng-controller="retailerBMPricesCtrl">
