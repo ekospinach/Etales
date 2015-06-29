@@ -103,6 +103,27 @@ app.filter('minus', function() {
         }
     }
 })
+
+app.filter('NulltoMinOr1Number', function() {
+    return function(item) {
+        if (item == 0 || item == -100 || item == undefined) {
+            return '-';
+        } else if (item < 0.1 && item > 0) {
+            return '< 0.1';
+        } else {
+            return item.toFixed(1);
+        }
+    }
+})
+app.filter('NulltoMinOr2Number', function() {
+    return function(item) {
+        if (item == 0 || item == -100 || item == undefined) {
+            return '-';
+        } else {
+            return item.toFixed(2);
+        }
+    }
+})
 app.factory('StaticValues', function($rootScope) {
     return {
         'player': {'s1': 0,'s2': 1,'s3': 2,'s4': 3,'r1': 0,'r2': 1,'r3': 2,'r4': 3},
@@ -634,7 +655,6 @@ app.directive('retailerPerceptions1', function() {
 app.directive('retailerPerceptions2', function() {
     return function(scope, elem, attrs) {
         scope.$watch(attrs.ngModel, function(v) {
-            console.log(scope.perception);
             if (v != undefined && scope.perception != undefined) {
                 $('#chart12').empty();
                 $('#chart12').highcharts({

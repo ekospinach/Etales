@@ -64,27 +64,31 @@
     .text-left {
         text-align: left;
     }
+    
     .text-center {
         text-align: center;
     }
+    
     .text-right {
         text-align: right;
         padding-right: 15px !important;
     }
-    .name-text-right{
+    
+    .name-text-right {
         text-align: center;
     }
-
-    .large-size{
+    
+    .large-size {
         width: 1024px;
         height: 500px;
     }
-    .small-size{
+    
+    .small-size {
         width: 340px;
         float: left;
         height: 500px;
     }
-
+    
     .text-small {
         font-size: 21px !important;
         line-height: 20px !important;
@@ -166,6 +170,42 @@
     .table-bordered > tfoot > tr.danger > th {
         background-color: #f2dede;
     }
+    
+    .table-bordered > thead > tr > td.warning,
+    .table-bordered > tbody > tr > td.warning,
+    .table-bordered > tfoot > tr > td.warning,
+    .table-bordered > thead > tr > th.warning,
+    .table-bordered > tbody > tr > th.warning,
+    .table-bordered > tfoot > tr > th.warning,
+    .table-bordered > thead > tr.warning > td,
+    .table-bordered > tbody > tr.warning > td,
+    .table-bordered > tfoot > tr.warning > td,
+    .table-bordered > thead > tr.warning > th,
+    .table-bordered > tbody > tr.warning > th,
+    .table-bordered > tfoot > tr.warning > th {
+        background-color: #fcf8e3;
+    }
+    
+    .table-bordered > thead > tr > td.info,
+    .table-bordered > tbody > tr > td.info,
+    .table-bordered > tfoot > tr > td.info,
+    .table-bordered > thead > tr > th.info,
+    .table-bordered > tbody > tr > th.info,
+    .table-bordered > tfoot > tr > th.info,
+    .table-bordered > thead > tr.info > td,
+    .table-bordered > tbody > tr.info > td,
+    .table-bordered > tfoot > tr.info > td,
+    .table-bordered > thead > tr.info > th,
+    .table-bordered > tbody > tr.info > th,
+    .table-bordered > tfoot > tr.info > th {
+        background-color: #d9edf7;
+    }
+    
+    .up,
+    .down {
+        border: 0 !important;
+        margin: 0 !important;
+    }
     </style>
     <!--[if lt IE 9]>
             <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
@@ -183,6 +223,7 @@
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
             </section>
             <section ng-controller='retailerPerceptionsCtrl'>
+                <!--1-->
                 <section>
                     <h3><a> Brand Perception </a> - Elecssories - Urban</h3>
                     <hr>
@@ -202,15 +243,1140 @@
                     <hr>
                 </section>
             </section>
-            <section>
+            <section ng-controller="retailerBMPricesCtrl">
+                <!--3-->
                 <section>
-                    <h3><a> Net Retailer Prices </a> - Elecssories</h3>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 1</h3>
                     <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player1s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
                 <section>
-                    <h3><a> Net Retailer Prices </a> - HealthBeauties</h3>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 2</h3>
                     <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player2s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player3s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Retailer')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player5s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Retailer')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player6s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player1s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}<span></p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player2s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player3s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Retailer')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player5s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Retailer')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player6s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}</p>
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
             </section>
             <section>
                 <section>
@@ -305,7 +1471,7 @@
                             <tr ng-repeat='product in productLists.urban_ele | orderBy:"index"' class="success">
                                 <td style="width:150px;">
                                     <span class="name-text-right pull-left text-small" style="width:90px">{{product.brandName}}</span>
-                                    <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
+                                        <span class="text-left pull-left text-small" style="width:60px">{{product.variantName}}</span>
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
@@ -2142,7 +3308,6 @@
                     </table>
                 </section>
             </section>
-
             <section ng-controller='retailerPromotionalCtrl'>
                 <!--10-->
                 <section>
@@ -2150,9 +3315,7 @@
                     <hr>
                     <highchart id="chart101" class="large-size" config="retailerLocalAdvertising"></highchart>
                 </section>
-
             </section>
-
             <section ng-controller='retailerProfitCtrl'>
                 <!--11-->
                 <section>
@@ -2167,10 +3330,7 @@
                     <highchart id="chart1122" class="small-size" config="operatingProfitsMargins"></highchart>
                     <highchart id="chart1123" class="small-size" config="netProfitsMargins"></highchart>
                 </section>
-
             </section>
-
-
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
@@ -2195,6 +3355,7 @@
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailersProfitabilityPerSupplierCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerPromotionalCtrl.js"></script>
+    <script src="js/feedBackAppControllers/retailerBMPricesCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerPerceptionsCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
