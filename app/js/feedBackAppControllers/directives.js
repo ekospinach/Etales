@@ -60,28 +60,28 @@ app.provider('Label', function() {
 });
 app.factory('PlayerColor', function($rootScope) {
     return {
-        's1':'#3257A7',
-        's2':'#B11E22',
-        's3':'#F6B920',
-        's4':'#666666',
-        'r1':'#8B288B',
-        'r2':'#329444',
-        'r3':'#00AFEF',
-        'bm':'#B11E22',
-        'online':'#3257A7',
-        'mixed':'#329444',
-        'drop':'#B11E22',
-        'increase':'#329444',
-        'awareness':'#3257A7',
-        'price':'#B11E22',//红
-        'value':'#F6B920',//黄
-        'fashion':'#3257A7',//蓝
-        'freaks':'#329444',//绿
-        'final_s1':'#D4DCE6',
-        'final_s2':'#D69492',
-        'final_s3':'#FFF2CC',
-        'final_r1':'#DFDAE4',
-        'final_r1':'#FCD5B5',
+        's1': '#3257A7',
+        's2': '#B11E22',
+        's3': '#F6B920',
+        's4': '#666666',
+        'r1': '#8B288B',
+        'r2': '#329444',
+        'r3': '#00AFEF',
+        'bm': '#B11E22',
+        'online': '#3257A7',
+        'mixed': '#329444',
+        'drop': '#B11E22',
+        'increase': '#329444',
+        'awareness': '#3257A7',
+        'price': '#B11E22', //红
+        'value': '#F6B920', //黄
+        'fashion': '#3257A7', //蓝
+        'freaks': '#329444', //绿
+        'final_s1': '#D4DCE6',
+        'final_s2': '#D69492',
+        'final_s3': '#FFF2CC',
+        'final_r1': '#DFDAE4',
+        'final_r1': '#FCD5B5',
 
     }
 });
@@ -89,7 +89,7 @@ app.filter('out', function() {
     return function(item) {
         if (item == 0 || item == 0.00) {
             return 'Out of stock';
-        }else{
+        } else {
             return item;
         }
     }
@@ -98,7 +98,7 @@ app.filter('minus', function() {
     return function(item) {
         if (item == -99 || item == -99.00) {
             return '-';
-        }else{
+        } else {
             return item;
         }
     }
@@ -126,20 +126,101 @@ app.filter('NulltoMinOr2Number', function() {
 })
 app.factory('StaticValues', function($rootScope) {
     return {
-        'player': {'s1': 0,'s2': 1,'s3': 2,'s4': 3,'r1': 0,'r2': 1,'r3': 2,'r4': 3},
-        'playerID': {'s1': 1,'s2': 2,'s3': 3,'s4': 4,'r1': 5,'r2': 6,'r3': 7,'r4': 8},
-        'retailerID': {'r1': 1,'r2': 2,'r3': 3,'r4': 4},
-        'chartOwner': {'s1': 0,'s2': 1,'s3': 2,'s4': 3,'r1': 4,'r2': 5,'r3': 6,'r4': 7},
-        'store': {'r1': 0,'r2': 1,'tt': 2,'s1': 3,'s2': 4,'s3': 5,'s4': 6},
-        'shopper': {'bm': 0,'online': 1,'mixed': 2,'all': 3},
-        'segment': {'price': 0,'value': 1,'fashion': 2,'freaks': 3,'total': 4},
-        'market': {'urban': 0,'rural': 1,'total': 2},
-        'marketID': {'urban': 1,'rural': 2,'total': 2},
-        'category': {'ele': 0,'hea': 1,'total': 2},
-        'categoryID': {'ele': 1,'hea': 2,'total': 3},
-        'CandV': {'eleVolume': 0,'eleValue': 1,'heaVolume': 2,'heaValue': 3}, //category and volume or value
-        'CandM': {'eleUrban': 0,'eleRural': 1,'heaUrban': 2,'heaRural': 3}, //category and Market
-        'perception': {'easy': 0,'quality': 1,'appeal': 2}
+        'player': {
+            's1': 0,
+            's2': 1,
+            's3': 2,
+            's4': 3,
+            'r1': 0,
+            'r2': 1,
+            'r3': 2,
+            'r4': 3
+        },
+        'playerID': {
+            's1': 1,
+            's2': 2,
+            's3': 3,
+            's4': 4,
+            'r1': 5,
+            'r2': 6,
+            'r3': 7,
+            'r4': 8
+        },
+        'retailerID': {
+            'r1': 1,
+            'r2': 2,
+            'r3': 3,
+            'r4': 4
+        },
+        'chartOwner': {
+            's1': 0,
+            's2': 1,
+            's3': 2,
+            's4': 3,
+            'r1': 4,
+            'r2': 5,
+            'r3': 6,
+            'r4': 7
+        },
+        'store': {
+            'r1': 0,
+            'r2': 1,
+            'tt': 2,
+            's1': 3,
+            's2': 4,
+            's3': 5,
+            's4': 6
+        },
+        'shopper': {
+            'bm': 0,
+            'online': 1,
+            'mixed': 2,
+            'all': 3
+        },
+        'segment': {
+            'price': 0,
+            'value': 1,
+            'fashion': 2,
+            'freaks': 3,
+            'total': 4
+        },
+        'market': {
+            'urban': 0,
+            'rural': 1,
+            'total': 2
+        },
+        'marketID': {
+            'urban': 1,
+            'rural': 2,
+            'total': 2
+        },
+        'category': {
+            'ele': 0,
+            'hea': 1,
+            'total': 2
+        },
+        'categoryID': {
+            'ele': 1,
+            'hea': 2,
+            'total': 3
+        },
+        'CandV': {
+            'eleVolume': 0,
+            'eleValue': 1,
+            'heaVolume': 2,
+            'heaValue': 3
+        }, //category and volume or value
+        'CandM': {
+            'eleUrban': 0,
+            'eleRural': 1,
+            'heaUrban': 2,
+            'heaRural': 3
+        }, //category and Market
+        'perception': {
+            'easy': 0,
+            'quality': 1,
+            'appeal': 2
+        }
     }
 });
 app.directive('feedbackEleUrban', function() {
@@ -698,6 +779,225 @@ app.directive('retailerPerceptions2', function() {
                         enabled: false
                     },
                     series: scope.perception.retailerPerceptionsSeries2
+                });
+            }
+
+        });
+    }
+})
+app.directive('retailerServiceLevel1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.serviceLevels != undefined) {
+                $('#chart21').empty();
+                Highcharts.wrap(Highcharts.seriesTypes.bubble.prototype, 'translate', function(proceed) {
+                    proceed.call(this);
+                    Highcharts.each(this.data, function(point) {
+                        point.shapeType = 'rect';
+                        point.shapeArgs = point.dlBox;
+                    });
+                });
+                $('#chart21').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: scope.urbanTitle
+                    },
+                    xAxis: {
+                        title: {
+                            text: ''
+                        },
+                        labels: {
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle
+                        },
+                        //categories: scope.categories,
+                        labels: {
+
+                            formatter: function() {
+                                var label = '';
+
+                                switch (this.value) {
+                                    case 1:
+                                        label = scope.Label.getContent('SL_BASE');
+                                        break;
+                                    case 2:
+                                        label = scope.Label.getContent('SL_FAIR');
+                                        break;
+                                    case 3:
+                                        label = scope.Label.getContent('SL_MEDIUM');
+                                        break;
+                                    case 4:
+                                        label = scope.Label.getContent('SL_ENHANCED');
+                                        break;
+                                    case 5:
+                                        label = scope.Label.getContent('SL_PREMIUM');
+                                        break;
+                                    default:
+                                        label = '';
+                                        break;
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 15,
+                            maxSize: 50
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var label = '';
+
+                            switch (this.point.y) {
+                                case 1:
+                                    label = scope.Label.getContent('SL_BASE');
+                                    break;
+                                case 2:
+                                    label = scope.Label.getContent('SL_FAIR');
+                                    break;
+                                case 3:
+                                    label = scope.Label.getContent('SL_MEDIUM');
+                                    break;
+                                case 4:
+                                    label = scope.Label.getContent('SL_ENHANCED');
+                                    break;
+                                case 5:
+                                    label = scope.Label.getContent('SL_PREMIUM');
+                                    break;
+                                default:
+                                    label = '';
+                                    break;
+                            }
+                            if (this.point.z == 100) {
+                                var s = '<p>' + this.series.name + '</p>' + label + '</p>';
+                            } else {
+                                var s = '<p>' + scope.previousInfo + '</p><p>' + this.series.name + '</p>' + '<p>' + label + '</p>';
+                            }
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.serviceLevels.urban
+                });
+            }
+
+        });
+    }
+})
+app.directive('retailerServiceLevel2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.serviceLevels != undefined) {
+                $('#chart22').empty();
+                $('#chart22').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: scope.ruralTitle
+                    },
+                    xAxis: {
+                        title: {
+                            text: ''
+                        },
+                        labels: {
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle
+                        },
+                        //categories: scope.categories,
+                        labels: {
+
+                            formatter: function() {
+                                var label = '';
+
+                                switch (this.value) {
+                                    case 1:
+                                        label = scope.Label.getContent('SL_BASE');
+                                        break;
+                                    case 2:
+                                        label = scope.Label.getContent('SL_FAIR');
+                                        break;
+                                    case 3:
+                                        label = scope.Label.getContent('SL_MEDIUM');
+                                        break;
+                                    case 4:
+                                        label = scope.Label.getContent('SL_ENHANCED');
+                                        break;
+                                    case 5:
+                                        label = scope.Label.getContent('SL_PREMIUM');
+                                        break;
+                                    default:
+                                        label = '';
+                                        break;
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 15,
+                            maxSize: 50
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var label = '';
+
+                            switch (this.point.y) {
+                                case 1:
+                                    label = scope.Label.getContent('SL_BASE');
+                                    break;
+                                case 2:
+                                    label = scope.Label.getContent('SL_FAIR');
+                                    break;
+                                case 3:
+                                    label = scope.Label.getContent('SL_MEDIUM');
+                                    break;
+                                case 4:
+                                    label = scope.Label.getContent('SL_ENHANCED');
+                                    break;
+                                case 5:
+                                    label = scope.Label.getContent('SL_PREMIUM');
+                                    break;
+                                default:
+                                    label = '';
+                                    break;
+                            }
+                            if (this.point.z == 100) {
+                                var s = '<p>' + this.series.name + '</p>' + label + '</p>';
+                            } else {
+                                var s = '<p>' + scope.previousInfo + '</p><p>' + this.series.name + '</p>' + '<p>' + label + '</p>';
+                            }
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.serviceLevels.rural
                 });
             }
 

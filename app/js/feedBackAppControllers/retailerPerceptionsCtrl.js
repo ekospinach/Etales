@@ -1,4 +1,4 @@
-var retailerPerceptionsCtrl = function($scope, $http, PlayerColor, Label , StaticValues) {
+var retailerPerceptionsCtrl = function($scope, $http, PlayerColor, Label, StaticValues) {
     function GetRequest() {
         var url = document.location.search; //获取url中"?"符后的字串
         var theRequest = new Object();
@@ -19,7 +19,7 @@ var retailerPerceptionsCtrl = function($scope, $http, PlayerColor, Label , Stati
         return array;
     }
 
-    var organiseArray = function(data,period) {
+    var organiseArray = function(data, period) {
         var result = {
             'latestPlayer1urban': [],
             'latestPlayer2urban': [],
@@ -33,8 +33,8 @@ var retailerPerceptionsCtrl = function($scope, $http, PlayerColor, Label , Stati
             'latestPlayer4rural': [],
             'latestPlayer5rural': [],
             'latestPlayer6rural': [],
-            'retailerPerceptionsSeries1':{},
-            'retailerPerceptionsSeries2':{}
+            'retailerPerceptionsSeries1': {},
+            'retailerPerceptionsSeries2': {}
         }
 
         data.storeInfo.forEach(function(singleData) {

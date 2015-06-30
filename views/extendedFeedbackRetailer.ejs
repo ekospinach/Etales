@@ -115,12 +115,12 @@
     .highcharts-subtitle{
         width: 75%;
     }
-        .normal-left{
+    .normal-left{
         width: 500px;
         height: 500px;
         float: left;
     }
-                .normal-right{
+    .normal-right{
         width: 500px;
         height: 500px;
         float: right;
@@ -293,6 +293,20 @@
                     <div id="chart11" ng-model='myModel' retailer-perceptions1></div>
                 </section>
             </section>
+            <section ng-controller='retailerServiceLevelsCtrl'>
+                <!--2-->
+                <section>
+                    <h3><a> {{Label.getContent('Service Level')}} </a> - {{Label.getContent('Urban')}}</h3>
+                    <hr>
+                    <div id="chart21" ng-model='myModel' retailer-service-level1></div>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Service Level')}} </a> - {{Label.getContent('Rural')}}</h3>
+                    <hr>
+                    <div id="chart22" ng-model='myModel' retailer-service-level2></div>
+                </section>
+            </section>
+            
             <section ng-controller="retailerBMPricesCtrl">
                 <!--3-->
                 <section>
@@ -2091,6 +2105,18 @@
                     </table>
                 </section>
             </section>
+            <section ng-controller='retailerProductPortfolioCtrl'>
+                <!--8-->
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}</h3>
+                    <hr>
+                    <highchart id="chart81" config="ele_technology" class="small-small-left"></highchart>
+                    <highchart id="chart82" config="ele_design" class="small-small-right"></highchart>
+                    <highchart id="chart83" config="ele_active" class="small-small-left"></highchart>
+                    <highchart id="chart84" config="ele_pack" class="small-small-right"></highchart>
+                </section>
+            </section>
+
             <section ng-controller='retailersProfitabilityPerSupplierCtrl'>
                 <!--9-->
                 <section>
@@ -4566,6 +4592,8 @@
     <script src="js/feedBackAppControllers/retailerBMPricesCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerShareOfShoppersCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerKPICtrl.js"></script>
+    <script src="js/feedBackAppControllers/retailerServiceLevelsCtrl.js"></script>
+    <script src="js/feedBackAppControllers/retailerProductPortfolioCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerPerceptionsCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
