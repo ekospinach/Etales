@@ -42,6 +42,18 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     xf_StoreOperatingProfitMargin : [marketStoreSchema],   
     xf_StoreNetProfitMargin : [marketStoreSchema],
 
+    //------------ add 7-1-2015
+    /****************          2         ******************/
+    xf_StoresServiceLevel : [serviceLevelSchema],
+    /****************          7         ******************/
+    //xf_ProductPortfolios : [productPortfolioSchema],
+    // TXF_ProductPortfolios = array[TCategories] of TXF_ProductPortfolio;
+    /****************          9         ******************/
+    // xf_DiscountsValue                             : TF_NegotiationsItems;
+    // xf_PerformanceBonusesValue                    : TF_NegotiationsItems;
+    // xf_OtherCompensationsValue                    : TF_NegotiationsItems;
+    // xf_TransactionsPerTOP   
+
     //------------ Added May-28-2015
 
     //Supplier : 9.Retailer Sales of Brand - two categories 
@@ -54,7 +66,22 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     xf_BrandOwnersChannelTradeProfit              : [brandOwnersChannelDetailsSchema],
 
 
+
 })  
+
+
+// xfpp_AttributesSKUCount : array[TSpecs, TSpecsIndices, TBrandOwners, Boolean] of byte; { FALSE for existing SKUs }
+// xfpp_PackFormatSKUCount : array[TVariantPackFormat, TBrandOwners, Boolean] of byte;    { TRUE for new SKUs      }
+
+// var attributesSchema = mongoose.Schema({
+
+// })
+// var productPortfolioSchema = mongoose.Schema({
+//     categoryID: Number,
+//     period: Number,
+//     xfpp_Attributes: [Number,Number,Number,Boolean],
+//     xfpp_PackFormat: [Number,Number,Boolean]
+// })
 
 var brandOwnerConsumerSegmentsRetailSalesValueSchema = mongoose.Schema({
     marketID : Number,
@@ -81,6 +108,13 @@ var marketStoreSchema = mongoose.Schema({
     period : Number,
     storeID : Number,
     value : Number,
+})
+
+var serviceLevelSchema = mongoose.Schema({
+    marketID : Number,
+    period : Number,
+    storeID : Number,
+    serviceLevel : String,
 })
 
 // { last third dimension (TBMRetailersTotal/BMRetailerID), highest index(4) is for On-line combined across all Producers }
@@ -227,6 +261,7 @@ exports.addInfos = function(options){
                                 xf_StoreGrossProfitMargin                  : singleReport.xf_StoreGrossProfitMargin,
                                 xf_StoreOperatingProfitMargin              : singleReport.xf_StoreOperatingProfitMargin,
                                 xf_StoreNetProfitMargin                    : singleReport.xf_StoreNetProfitMargin,
+                                xf_StoresServiceLevel                      : singleReport.xf_StoresServiceLevel,
                                 
                                 xf_BrandOwnerConsumerSegmentsRetailSalesValue : singleReport.xf_BrandOwnerConsumerSegmentsRetailSalesValue,
                                 xf_BrandOwnersChannelSalesValue               : singleReport.xf_BrandOwnersChannelSalesValue,

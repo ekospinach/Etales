@@ -201,6 +201,26 @@ var
     result := jo;
   end;
 
+
+  function serviceLevelSchema(marketID : integer; period:integer; storeID:integer; serviceLevel : TServiceLevel ) : ISuperObject;
+  var 
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.I['period'] := period;
+    jo.I['storeID'] := storeID;
+
+    case (serviceLevel) of
+      SL_BASE     : begin jo.S['serviceLevel']:='SL_BASE'; end;
+      SL_FAIR     : begin jo.S['serviceLevel']:='SL_FAIR'; end;
+      SL_MEDIUM   : begin jo.S['serviceLevel']:='SL_MEDIUM'; end;
+      SL_ENHANCED : begin jo.S['serviceLevel']:='SL_ENHANCED'; end;
+      SL_PREMIUM  : begin jo.S['serviceLevel']:='SL_PREMIUM'; end;
+    end ;
+    result := jo;
+  end;
+
   function brandOwnerConsumerSegmentsRetailSalesValueSchema(marketID: integer; categoryID:integer; period:integer; segmentID:integer; ownerID : integer; data : TXF_ConsumerSegmentBrandOwnerDetails):ISuperObject;
   var
     jo : ISuperObject;
@@ -240,6 +260,7 @@ var
     segmentID, accountID, catID,ownerID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx, categoryID,variantID, BMRetailerID: Integer;
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
+    serviceLevel : TServiceLevel;
 
     tempVariantAvailability : TXF_VariantAvailability;
   begin
@@ -259,6 +280,8 @@ var
     oJsonFile.O['xf_StoreGrossProfitMargin']                  := SA([]);
     oJsonFile.O['xf_StoreOperatingProfitMargin']              := SA([]);
     oJsonFile.O['xf_StoreNetProfitMargin']                    := SA([]);
+
+    oJsonFile.O['xf_StoresServiceLevel']                      := SA([]);
 
     oJsonFile.O['xf_BrandOwnerConsumerSegmentsRetailSalesValue']    := SA([]);
     oJsonFile.O['xf_BrandOwnersChannelSalesValue']                  := SA([]);
@@ -388,6 +411,21 @@ var
         end;
       end;
     end;
+
+
+  for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+        for period := Low(TTimeSpan) to High(TTimeSpan) do
+        begin
+          for storeID := Low(TAllStores) to High(TAllStores) do
+          begin
+              oJsonFile.A['xf_StoresServiceLevel'].add(serviceLevelSchema(marketID, period, storeID, 
+              currentResult.r_ExtendedFeedback.xf_StoresServiceLevel[marketID, period, storeID]
+              ));
+          end;
+        end;
+    end;
+
 
 
     for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do

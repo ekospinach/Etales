@@ -2,6 +2,7 @@ module.exports = function(app, io){
 	// Admin process(init, run, passive, handle seminars) 
 	app.post('/initialiseSeminar',                                               require('./../api/initialiseSeminar.js').initialiseSeminar(io));
 	app.post('/initialiseSeminarRetailer',                                       require('./../api/initialiseSeminar.js').initialiseSeminarRetailer(io));
+	app.post('/initialiseExtendedFeedbackSlides',                                require('./../api/initialiseSeminar.js').initialiseExtendedFeedbackSlides(io));
 	app.post('/passiveSeminar',                                                  require('./../api/passiveSeminar.js').passiveSeminar(io));
 	app.post('/getPassiveDecision',                                              require('./../api/passiveSeminar.js').getPassiveDecision(io));
 	app.post('/setPassiveDecision',                                              require('./../api/passiveSeminar.js').setPassiveDecision(io));

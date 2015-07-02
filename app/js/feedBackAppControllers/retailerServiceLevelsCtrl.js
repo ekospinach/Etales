@@ -12,11 +12,30 @@ var retailerServiceLevelsCtrl = function($scope, $http, PlayerColor, Label, Stat
         return theRequest;
     }
 
-    var loadValue = function(data, store, market) {
+    var loadValue = function(data, storeID, market, period) {
+        var result = 0;
         var array = _.find(data, function(obj) {
-            return (obj.storeID == store && obj.marketID == market)
+            return (obj.storeID == storeID && obj.marketID == market && obj.period == period)
         });
-        return array;
+        switch (array.serviceLevel) {
+            case 'SL_BASE':
+                result = 1;
+                break;
+            case 'SL_FAIR':
+                result = 2;
+                break;
+            case 'SL_MEDIUM':
+                result = 3;
+                break;
+            case 'SL_ENHANCED':
+                result = 4;
+                break;
+            case 'SL_PREMIUM':
+                result = 5;
+                break;
+        }
+
+        return result;
     }
 
     var organiseArray = function(data, market) {
@@ -24,47 +43,55 @@ var retailerServiceLevelsCtrl = function($scope, $http, PlayerColor, Label, Stat
             config: [{
                 name: Label.getContent('Retailer') + ' 1',
                 data: [
-                    [1, 3, 10],
-                    [1, 5, 100]
+                    [1, 0, 10],
+                    [1, 0, 100]
                 ],
                 color: PlayerColor.r1
             }, {
                 name: Label.getContent('Retailer') + ' 2',
                 data: [
-                    [2, 4, 10],
-                    [2, 4, 100]
+                    [2, 0, 10],
+                    [2, 0, 100]
                 ],
                 color: PlayerColor.r2
             }, {
                 name: Label.getContent('Traditional Trade'),
                 data: [
-                    [3, 3, 10],
-                    [3, 5, 100]
+                    [3, 0, 10],
+                    [3, 0, 100]
                 ],
                 color: PlayerColor.r3
             }, {
-                name: Label.getContent('Supplier 1 Online'),
+                name: Label.getContent('Supplier') + ' 1',
                 data: [
-                    [4, 1, 10],
-                    [4, 5, 100]
+                    [4, 0, 10],
+                    [4, 0, 100]
                 ],
                 color: PlayerColor.s1
             }, {
-                name: Label.getContent('Supplier 2 Online'),
+                name: Label.getContent('Supplier') + ' 2',
                 data: [
-                    [5, 2, 10],
-                    [5, 2, 100]
+                    [5, 0, 10],
+                    [5, 0, 100]
                 ],
                 color: PlayerColor.s2
             }, {
-                name: Label.getContent('Supplier 3 Online'),
+                name: Label.getContent('Supplier') + ' 3',
                 data: [
-                    [6, 3, 10],
-                    [6, 5, 100]
+                    [6, 0, 10],
+                    [6, 0, 100]
                 ],
                 color: PlayerColor.s3
             }]
         }
+
+        var Request = GetRequest();
+        var period = Request['period'];
+        for (var i = 1; i < 7; i++) {
+            result.config[i - 1].data[1][1] = loadValue(data, i, market, period);
+            result.config[i - 1].data[0][1] = loadValue(data, i, market, period - 1);
+        }
+
         $scope.myModel = "retailerServiceLevels" + market;
         return result;
     }
@@ -76,8 +103,8 @@ var retailerServiceLevelsCtrl = function($scope, $http, PlayerColor, Label, Stat
             'rural': {}
         }
 
-        result.urban = organiseArray($scope.feedback, 1).config;
-        result.rural = organiseArray($scope.feedback, 2).config;
+        result.urban = organiseArray($scope.feedback.xf_StoresServiceLevel, 1).config;
+        result.rural = organiseArray($scope.feedback.xf_StoresServiceLevel, 2).config;
         $scope.categories = [Label.getContent('SL_BASE'), Label.getContent('SL_FAIR'), Label.getContent('SL_MEDIUM'), Label.getContent('SL_ENHANCED'), Label.getContent('SL_PREMIUM')]
         $scope.yTitle = Label.getContent('Service Level');
         $scope.ruralTitle = Label.getContent('Rural');

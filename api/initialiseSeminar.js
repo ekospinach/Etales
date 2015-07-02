@@ -832,6 +832,29 @@ exports.initialiseSeminar = function(io) {
 }
 
 
+exports.initialiseExtendedFeedbackSlides = function(io) {
+    return function(req, res, next) {
+        var options = {
+            producerID: '1',
+            retailerID: '1',
+            seminar: req.body.seminar,
+            startFrom: -3,
+            endWith: 0,
+            cgiHost: conf.cgi.host,
+            cgiPort: conf.cgi.port,
+            cgiPath: conf.cgi.path_BG_extendedFeedbackSlides,
+        }
+
+        require('./models/BG_extendedFeedbackSlides.js').addInfos(options).then(function(result) {
+            io.sockets.emit('AdminProcessLog', {
+                msg: result.msg,
+                isError: false
+            });
+            console.log('Initialization Done');
+            res.send(200, 'Initialization done.');
+        });
+    }
+}
 
 exports.initialiseSeminarRetailer = function(io) {
     return function(req, res, next) {
