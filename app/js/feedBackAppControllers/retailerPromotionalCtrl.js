@@ -133,17 +133,17 @@ var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label, Static
         return result;
     }
 
-    var organiseChartArray = function(data, periods) {
+    var organiseChartArray = function(data,periods) {
 
         var result = {
             data: [{
                 name: Label.getContent('Retailer') + ' 1',
-                data: [5, 4, null, 2, 1],
+                data: [null, null, null, null, null],
                 color: PlayerColor.r1,
                 xAxis: 0
             }, {
                 name: Label.getContent('Retailer') + ' 2',
-                data: [1, 2, null, 4, 5],
+                data: [null, null, null, null, null],
                 color: PlayerColor.r2,
                 xAxis: 0
             }, {
@@ -154,35 +154,35 @@ var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label, Static
             }]
         }
 
-        // for (var i = 0; i < 2 * periods.length + 1; i++) {
-        //     result.data[0].data[i] = 1;
-        //     result.data[1].data[i] = 1;
-        //     result.data[2].data[i] = 1;
-        //     result.data[4].data[i] = 1;
-        // }
 
-        // periods.forEach(function(singlePeriod, periodIndex) {
-        //     data.forEach(function(singleData) {
-        //         if (singleData.marketID == marketID && singleData.period == singlePeriod) {
-        //             switch (singleData.categoryID) {
-        //                 case 1:
-        //                     result.data[0].data[periodIndex] = singleData.BMS_importance * 100;
-        //                     result.data[1].data[periodIndex] = singleData.NETIZENS_importance * 100;
-        //                     result.data[2].data[periodIndex] = singleData.MIXED_importance * 100;
-        //                     result.data[4].data[periodIndex] = null;
-        //                     result.categories[periodIndex] = singleData.totalMarket.toFixed(2);
-        //                     break;
-        //                 case 2:
-        //                     result.data[0].data[3 + periodIndex] = singleData.BMS_importance * 100;
-        //                     result.data[1].data[3 + periodIndex] = singleData.NETIZENS_importance * 100;
-        //                     result.data[2].data[3 + periodIndex] = singleData.MIXED_importance * 100;
-        //                     result.data[4].data[3 + periodIndex] = null;
-        //                     result.categories[3 + periodIndex] = singleData.totalMarket.toFixed(2);
-        //                     break;
-        //             }
-        //         }
-        //     })
-        // })
+
+        periods.forEach(function(singlePeriod, periodIndex) {
+            data.forEach(function(singleData) {
+                if (singleData.period == singlePeriod) {
+
+                    if (singleData.marketID == 1) {
+                        switch (singleData.retailerID) {
+                            case 1:
+                                result.data[0].data[periodIndex] = singleData.value;
+                                break;
+                            case 2:
+                                result.data[1].data[periodIndex] = singleData.value;
+                                break;
+                        }
+                    } else if (singleData.marketID == 2) {
+                        switch (singleData.retailerID) {
+                            case 1:
+                                result.data[0].data[3 + periodIndex] = singleData.value;
+                                break;
+                            case 2:
+                                result.data[1].data[3 + periodIndex] = singleData.value;
+                                break;
+                        }
+                    }
+
+                }
+            })
+        })
         return result;
     }
 
@@ -205,7 +205,7 @@ var retailerPromotionalCtrl = function($scope, $http, PlayerColor, Label, Static
             'ele': {},
             'hea': {}
         }
-        result.retailerLocalAdvertising = organiseChartArray($scope.feedback.xf_ShoppersSegmentsShares, periods);
+        result.retailerLocalAdvertising = organiseChartArray($scope.feedback.xf_RetailersLocalAdvertising, periods);
 
         $scope.retailerLocalAdvertising = {
             options: {

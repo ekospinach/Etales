@@ -46,7 +46,9 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     /****************          2         ******************/
     xf_StoresServiceLevel : [serviceLevelSchema],
     /****************          7         ******************/
-    //xf_ProductPortfolios : [productPortfolioSchema],
+    xf_ProductPortfolios : [productPortfolioSchema],
+
+    xf_RetailersLocalAdvertising : [retailersLocalAdvertisingSchema],
     // TXF_ProductPortfolios = array[TCategories] of TXF_ProductPortfolio;
     /****************          9         ******************/
     // xf_DiscountsValue                             : TF_NegotiationsItems;
@@ -76,12 +78,24 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
 // var attributesSchema = mongoose.Schema({
 
 // })
-// var productPortfolioSchema = mongoose.Schema({
-//     categoryID: Number,
-//     period: Number,
-//     xfpp_Attributes: [Number,Number,Number,Boolean],
-//     xfpp_PackFormat: [Number,Number,Boolean]
-// })
+var productPortfolioSchema = mongoose.Schema({
+    categoryID: Number,
+    
+    period: Number,
+    DesignIndex: Number,
+    TechnologdyLevel: Number,
+    RawMaterialsQuality: Number,
+    isNewProduct: Boolean,
+    packFormat: String,
+    ownerID: Number
+})
+
+var retailersLocalAdvertisingSchema = mongoose.Schema({
+    marketID : Number,
+    period : Number,
+    retailerID : Number,
+    value : Number,
+})
 
 var brandOwnerConsumerSegmentsRetailSalesValueSchema = mongoose.Schema({
     marketID : Number,
@@ -262,6 +276,7 @@ exports.addInfos = function(options){
                                 xf_StoreOperatingProfitMargin              : singleReport.xf_StoreOperatingProfitMargin,
                                 xf_StoreNetProfitMargin                    : singleReport.xf_StoreNetProfitMargin,
                                 xf_StoresServiceLevel                      : singleReport.xf_StoresServiceLevel,
+                                xf_RetailersLocalAdvertising               : singleReport.xf_RetailersLocalAdvertising,
                                 
                                 xf_BrandOwnerConsumerSegmentsRetailSalesValue : singleReport.xf_BrandOwnerConsumerSegmentsRetailSalesValue,
                                 xf_BrandOwnersChannelSalesValue               : singleReport.xf_BrandOwnersChannelSalesValue,

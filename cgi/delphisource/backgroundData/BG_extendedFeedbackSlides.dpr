@@ -201,6 +201,19 @@ var
     result := jo;
   end;
 
+  function retailersLocalAdvertisingSchema(marketID : integer;  period:integer; retailerID:integer; data : single ) : ISuperObject;
+  var 
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.I['period'] := period;
+    jo.I['retailerID'] := retailerID;
+    jo.D['value'] := data;
+    
+    result := jo;
+  end;
+
 
   function serviceLevelSchema(marketID : integer; period:integer; storeID:integer; serviceLevel : TServiceLevel ) : ISuperObject;
   var 
@@ -257,12 +270,13 @@ var
   procedure makeJson();
   var
     s_str : string;
-    segmentID, accountID, catID,ownerID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx, categoryID,variantID, BMRetailerID: Integer;
+    segmentID, accountID, catID,ownerID,marketID,brandID,topDays,period,actorID, producerID, retailerID,storeID, supplierID, evaluationIdx, categoryID,variantID, BMRetailerID,spec: Integer;
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
     serviceLevel : TServiceLevel;
 
     tempVariantAvailability : TXF_VariantAvailability;
+    tempProductPortfolio: TXF_ProductPortfolio;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -282,6 +296,13 @@ var
     oJsonFile.O['xf_StoreNetProfitMargin']                    := SA([]);
 
     oJsonFile.O['xf_StoresServiceLevel']                      := SA([]);
+    oJsonFile.O['xf_RetailersLocalAdvertising']               := SA([]);
+
+
+
+    oJsonFile.O['xf_ProductPortfolios']                      := SA([]);
+    
+    oJsonFile.O['xf_RetailersLocalAdvertising']                     := SA([]);
 
     oJsonFile.O['xf_BrandOwnerConsumerSegmentsRetailSalesValue']    := SA([]);
     oJsonFile.O['xf_BrandOwnersChannelSalesValue']                  := SA([]);
@@ -412,6 +433,17 @@ var
       end;
     end;
 
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+        for period := Low(TTimeSpan) to High(TTimeSpan) do
+        begin
+          for retailerID := Low(TBMRetailers) to High(TBMRetailers) do
+          begin
+            oJsonFile.A['xf_RetailersLocalAdvertising'].add(retailersLocalAdvertisingSchema(marketID, period, retailerID, currentResult.r_ExtendedFeedback.xf_RetailersLocalAdvertising[marketID, period, retailerID]));
+          end;
+        end;
+    end;
+
 
   for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin
@@ -425,6 +457,7 @@ var
           end;
         end;
     end;
+
 
 
 
