@@ -48,13 +48,8 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     /****************          7         ******************/
     xf_ProductPortfolios : [productPortfolioSchema],
 
+    /****************          10        ******************/
     xf_RetailersLocalAdvertising : [retailersLocalAdvertisingSchema],
-    // TXF_ProductPortfolios = array[TCategories] of TXF_ProductPortfolio;
-    /****************          9         ******************/
-    // xf_DiscountsValue                             : TF_NegotiationsItems;
-    // xf_PerformanceBonusesValue                    : TF_NegotiationsItems;
-    // xf_OtherCompensationsValue                    : TF_NegotiationsItems;
-    // xf_TransactionsPerTOP   
 
     //------------ Added May-28-2015
 
@@ -78,6 +73,26 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
 // var attributesSchema = mongoose.Schema({
 
 // })
+
+var xfpp_AttributesSchema = mongoose.Schema({
+    designIndex: Number,
+    technologdyLevel: Number,
+    rawMaterialsQuality: Number,
+    isNewProduct: Boolean,
+    ownerID : Number
+});
+var xfpp_PackFormatSchema = mongoose.Schema({
+    packFormat: String,
+    isNewProduct: Boolean,
+    ownerID : Number
+});
+
+var productPortfolioSchema = mongoose.Schema({
+    categoryID: Number,
+    xfpp_Attributes: [xfpp_AttributesSchema],
+    xfpp_PackFormat: [xfpp_PackFormatSchema]
+})
+
 var productPortfolioSchema = mongoose.Schema({
     categoryID: Number,
     

@@ -234,6 +234,65 @@ var
     result := jo;
   end;
 
+  function productPortfolioSchema(data:byte) : ISuperObject;
+  var
+    jo : ISuperObject;
+    spec : Integer;
+  begin
+    jo := SO;
+    jo.O['data'] := SA([]);
+    jo.A['data'].add(data);
+    result := jo;
+  end;
+
+  function productPackFormSchema(data:byte ) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.O['data'] := SA([]);
+    jo.A['data'].add(data);
+    result := jo;
+  end;
+
+  function productPortfoliosSchema(categoryID: integer;tempProductPortfolio:TXF_ProductPortfolio) : ISuperObject;
+    var 
+    jo : ISuperObject;
+    pack :  TVariantPackFormat ;
+    bool : boolean;
+    spec,specndice,ownerID : Integer;
+  begin
+    jo := SO;
+    jo.I['categoryID'] := categoryID;
+    jo.O['xfpp_Attributes'] := SA([]);
+    jo.O['xfpp_PackFormat'] := SA([]);
+    for spec := Low(TSpecs) to High(TSpecs) do
+    begin
+      for specndice := Low(TSpecsIndices) to High(TSpecsIndices) do
+      begin
+        for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
+        begin
+          for bool := Low(Boolean) to High(Boolean) do
+          begin
+            jo.A['xfpp_PackFormat'].add(productPortfolioSchema(tempProductPortfolio.xfpp_AttributesSKUCount[spec,specndice,ownerID,bool]));
+          end;
+        end;
+      end;
+    end;
+
+    for pack := Low(TVariantPackFormat) to High(TVariantPackFormat) do
+      begin
+        for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
+        begin
+          for bool := Low(Boolean) to High(Boolean) do
+          begin
+            jo.A['xfpp_PackFormat'].add(productPackFormSchema(tempProductPortfolio.xfpp_PackFormatSKUCount[pack,ownerID,bool]));
+          end;
+        end;
+      end;
+    result := jo;
+  end;
+
   function brandOwnerConsumerSegmentsRetailSalesValueSchema(marketID: integer; categoryID:integer; period:integer; segmentID:integer; ownerID : integer; data : TXF_ConsumerSegmentBrandOwnerDetails):ISuperObject;
   var
     jo : ISuperObject;
@@ -274,6 +333,7 @@ var
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
     serviceLevel : TServiceLevel;
+
 
     tempVariantAvailability : TXF_VariantAvailability;
     tempProductPortfolio: TXF_ProductPortfolio;
@@ -442,6 +502,11 @@ var
             oJsonFile.A['xf_RetailersLocalAdvertising'].add(retailersLocalAdvertisingSchema(marketID, period, retailerID, currentResult.r_ExtendedFeedback.xf_RetailersLocalAdvertising[marketID, period, retailerID]));
           end;
         end;
+    end;
+
+    for categoryID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+    begin
+      oJsonFile.A['xf_ProductPortfolios'].add(productPortfoliosSchema(categoryID, currentResult.r_ExtendedFeedback.xf_ProductPortfolios[categoryID]));
     end;
 
 
