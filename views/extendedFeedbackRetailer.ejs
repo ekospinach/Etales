@@ -82,7 +82,16 @@
         width: 1024px;
         height: 500px;
     }
-    
+    .normal-sp-left{
+        width: 500px;
+        height: 450px;
+        float: left;
+    }
+    .normal-sp-right{
+        width: 500px;
+        height: 450px;
+        float: right;
+    }
     .small-size {
         width: 340px;
         float: left;
@@ -307,7 +316,7 @@
                 </section>
             </section>
             
-            <section ng-controller="retailerBMPricesCtrl">
+            <section ng-controller="bmPricesCtrl">
                 <!--3-->
                 <section>
                     <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 1</h3>
@@ -2120,6 +2129,36 @@
             <section ng-controller='retailersProfitabilityPerSupplierCtrl'>
                 <!--9-->
                 <section>
+                    <h3><a>{{Label.getContent('Negotiation Results')}}</a> - {{Label.getContent('Volume Discounts')}}</h3>
+                    <hr>
+                    <highchart id="chart1" config="supplierNegotiationResults" class="normal-sp-left"></highchart>
+                    <highchart id="chart2" config="retailerNegotiationResults" class="normal-sp-right"></highchart>
+                    <div class="clear-both paddingtop-20"></div>
+                    <h5>{{Label.getContent('Total Volume Discounts')}} : {{supplierNegotiationResultsTotal}} ({{Label.getContent('$mln')}})</h5>
+                </section>
+                <section>
+                    <h3><a>{{Label.getContent('Negotiation Results')}}</a> - {{Label.getContent('Performance Bonus')}}</h3>
+                    <hr>
+                    <highchart id="chart3" config="supplierPerformanceBonuses" class="normal-sp-left"></highchart>
+                    <highchart id="chart4" config="retailerPerformanceBonuses" class="normal-sp-right"></highchart>
+                    <div class="clear-both paddingtop-20"></div>
+                    <h4>{{Label.getContent('Total Performance Bonuses')}} : {{supplierPerformanceBonusesTotal}} ({{Label.getContent('$mln')}})</h4>
+                </section>
+                <section>
+                    <h3><a>{{Label.getContent('Negotiation Results')}}</a> - {{Label.getContent('Other Compensation')}}</h3>
+                    <hr>
+                    <highchart id="chart5" config="supplierOtherCompensation" class="normal-left"></highchart>
+                    <highchart id="chart6" config="retailerOtherCompensation" class="normal-right"></highchart>
+                    <div class="clear-both paddingtop-20"></div>
+                    <h4>{{Label.getContent('Total Transaction Value of Other Compensation')}} : {{supplierOtherCompensationTotal}} ({{Label.getContent('$mln')}})</h4>
+                </section>
+                <section>
+                    <h3><a>{{Label.getContent('Negotiation Results')}}</a> - {{Label.getContent('Terms of Payment')}}</h3>
+                    <hr>
+                    <highchart id="chart7" config="termsofPayment" class="large-normal"></highchart>
+                </section>
+
+                <section>
                     <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}</h3>
                     <hr>
                     <table class="table-bordered" style="width:100%;">
@@ -3559,6 +3598,8 @@
                         </tbody>
                     </table>
                 </section>
+
+
             </section>
             <section ng-controller='retailerPromotionalCtrl'>
                 <!--10-->
@@ -4589,7 +4630,7 @@
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailersProfitabilityPerSupplierCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerPromotionalCtrl.js"></script>
-    <script src="js/feedBackAppControllers/retailerBMPricesCtrl.js"></script>
+    <script src="js/feedBackAppControllers/bmPricesCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerShareOfShoppersCtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerKPICtrl.js"></script>
     <script src="js/feedBackAppControllers/retailerServiceLevelsCtrl.js"></script>

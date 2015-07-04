@@ -1,4 +1,4 @@
-var retailerBMPricesCtrl = function($scope, $http, PlayerColor, Label, StaticValues) {
+var bmPricesCtrl = function($scope, $http, PlayerColor, Label, StaticValues) {
     function GetRequest() {
         var url = document.location.search; //获取url中"?"符后的字串
         var theRequest = new Object();

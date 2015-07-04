@@ -64,27 +64,98 @@
     .text-left {
         text-align: left;
     }
+    
     .text-center {
         text-align: center;
     }
+    
     .text-right {
         text-align: right;
         padding-right: 15px !important;
     }
-    .name-text-right{
+    
+    .name-text-right {
         text-align: center;
     }
     
-    .large-size{
+    .large-size {
         width: 1024px;
         height: 500px;
     }
-    .small-size{
+    .normal-sp-left{
+        width: 500px;
+        height: 450px;
+        float: left;
+    }
+    .normal-sp-right{
+        width: 500px;
+        height: 450px;
+        float: right;
+    }
+    .small-size {
         width: 340px;
         float: left;
         height: 500px;
     }
-
+    
+    .small-small-left {
+        width: 500px;
+        height: 300px;
+        float: left;
+    }
+    
+    .small-small-right {
+        width: 500px;
+        height: 300px;
+        float: right;
+    }
+    
+    .sp-small-left {
+        width: 500px;
+        height: 250px;
+        float: left;
+    }
+    
+    .sp-small-right {
+        width: 500px;
+        height: 250px;
+        float: right;
+    }
+    .highcharts-subtitle{
+        width: 75%;
+    }
+    .normal-left{
+        width: 500px;
+        height: 500px;
+        float: left;
+    }
+    .normal-right{
+        width: 500px;
+        height: 500px;
+        float: right;
+    }
+    
+    .legend li {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 16px;
+        line-height: 16px;
+        margin: 0 10px;
+    }
+    
+    li.hidden {
+        color: #ddd !important;
+    }
+    
+    .circle {
+        width: 16px;
+        height: 16px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+        display: inherit;
+    }
+    
     .text-small {
         font-size: 21px !important;
         line-height: 20px !important;
@@ -166,6 +237,42 @@
     .table-bordered > tfoot > tr.danger > th {
         background-color: #f2dede;
     }
+    
+    .table-bordered > thead > tr > td.warning,
+    .table-bordered > tbody > tr > td.warning,
+    .table-bordered > tfoot > tr > td.warning,
+    .table-bordered > thead > tr > th.warning,
+    .table-bordered > tbody > tr > th.warning,
+    .table-bordered > tfoot > tr > th.warning,
+    .table-bordered > thead > tr.warning > td,
+    .table-bordered > tbody > tr.warning > td,
+    .table-bordered > tfoot > tr.warning > td,
+    .table-bordered > thead > tr.warning > th,
+    .table-bordered > tbody > tr.warning > th,
+    .table-bordered > tfoot > tr.warning > th {
+        background-color: #fcf8e3;
+    }
+    
+    .table-bordered > thead > tr > td.info,
+    .table-bordered > tbody > tr > td.info,
+    .table-bordered > tfoot > tr > td.info,
+    .table-bordered > thead > tr > th.info,
+    .table-bordered > tbody > tr > th.info,
+    .table-bordered > tfoot > tr > th.info,
+    .table-bordered > thead > tr.info > td,
+    .table-bordered > tbody > tr.info > td,
+    .table-bordered > tfoot > tr.info > td,
+    .table-bordered > thead > tr.info > th,
+    .table-bordered > tbody > tr.info > th,
+    .table-bordered > tfoot > tr.info > th {
+        background-color: #d9edf7;
+    }
+    
+    .up,
+    .down {
+        border: 0 !important;
+        margin: 0 !important;
+    }
     </style>
     <!--[if lt IE 9]>
             <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
@@ -220,6 +327,1271 @@
                     <hr>
                 </section>
             </section>
+            <section ng-controller="bmPricesCtrl">
+                <!--3-->
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player1s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player2s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player3s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Retailer')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player5s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Retailer')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.ele.player6s'>
+                                <td style='background-color:#DFF0D8'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <!--hea-->
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player1s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player2s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Supplier')}} 3</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player3s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Retailer')}} 1</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player5s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Retailer')}} 2</h3>
+                    <hr>
+                    <table class="table table-condensed table-bordered table-danger special-table" style="font-size:25px;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Online Price')}}</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <p class="padding-10">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr ng-repeat='player in result.hea.player6s'>
+                                <td style='background-color:#F2DEDE'>
+                                    <p class="padding-20">{{player.fullName}}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="warning">
+                                    <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td class="info">
+                                    <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
+                                        <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
+                                        <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+
             <section ng-controller='productAvailabilityCtrl'>
                 <!--7-->
                 <section>
@@ -2048,6 +3420,7 @@
     <script src="js/utils/labelBase.js"></script>
     <script src="js/feedBackAppControllers/directives.js"></script>
     <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
+    <script src="js/feedBackAppControllers/bmPricesCtrl.js"></script>
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierFinancialandKPICtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierRetailSalesCtrl.js"></script>

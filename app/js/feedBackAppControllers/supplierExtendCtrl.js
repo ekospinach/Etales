@@ -15,12 +15,23 @@ app.controller('supplierExtendCtrl', ['$scope', '$http', '$q', 'Label', 'StaticV
         }
         var initPage = function() {
             var Request = GetRequest();
-            var url = '/getExtendedFeedback/' + Request['seminar'] + '/' + Request['period'];
-            $http({
-                method: 'GET',
-                url: url
-            }).then(function(data) {
-                $scope.feedback = data.data;
+
+            var extendedFeedbackUrl = '/getExtendedFeedback/' + Request['seminar'] + '/' + Request['period'];
+            var normalfeedbackUrl = '/getFeedBack/' + Request['seminar'] + '/' + Request['period'];
+            var retailerPerceptionEvolutionUrl = '/getMR-retailerPerceptionEvolution/' + Request['seminar'] + '/' + Request['period'];
+            var netMarketPricesUrl = '/getMR-netMarketPrices/' + Request['seminar'] + '/' + Request['period'];
+            var pricePromotionsUrl = '/getMR-pricePromotions/' + Request['seminar'] + '/' + Request['period'];
+
+
+            $q.all([
+                $http.get(extendedFeedbackUrl), $http.get(normalfeedbackUrl), $http.get(retailerPerceptionEvolutionUrl), $http.get(netMarketPricesUrl), $http.get(pricePromotionsUrl)
+            ]).then(function(data) {
+                $scope.feedback = data[0].data;
+                $scope.normalfeedback = data[1].data;
+                $scope.retailerPerception = data[2].data[0];
+                $scope.netMarketPrices = data[3].data[0];
+                $scope.pricePromotions = data[4].data[0];
+
                 var language = 'ENG';
                 if (Request['language'] != 'English')
                     language = 'CHN';
