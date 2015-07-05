@@ -1376,3 +1376,117 @@ app.directive('ruralHealthBeautiesBrand2', function() {
         });
     }
 })
+
+app.directive('awarenessElecssories1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined) {
+                $('#awarenessElecssories1').empty();
+                var draw = function() {
+                    $('#awarenessElecssories1').highcharts({
+                        xAxis: scope.awarenessResult.urban_ele.awarenessConfig.options.xAxis,
+                        yAxis: scope.awarenessResult.urban_ele.awarenessConfig.options.yAxis,
+                        tooltip: scope.awarenessResult.urban_ele.awarenessConfig.options.tooltip,
+                        series: scope.awarenessResult.urban_ele.awarenessConfig.series,
+                        plotOptions: scope.awarenessResult.urban_ele.awarenessConfig.options.plotOptions,
+                        title: scope.awarenessResult.urban_ele.awarenessConfig.title,
+                        chart: {
+                            type: 'bar',
+                            backgroundColor: 'transparent'
+                        },
+                        credits: {
+                            enabled: false
+                        }
+                    })
+                }
+                setTimeout(draw, 100);
+            }
+
+        });
+    }
+})
+app.directive('awarenessElecssories2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined) {
+                $('#awarenessElecssories2').empty();
+                var draw = function() {
+                    $('#awarenessElecssories2').highcharts({
+                        xAxis: scope.awarenessResult.rural_ele.awarenessConfig.options.xAxis,
+                        yAxis: scope.awarenessResult.rural_ele.awarenessConfig.options.yAxis,
+                        tooltip: scope.awarenessResult.rural_ele.awarenessConfig.options.tooltip,
+                        series: scope.awarenessResult.rural_ele.awarenessConfig.series,
+                        plotOptions: scope.awarenessResult.rural_ele.awarenessConfig.options.plotOptions,
+                        title: scope.awarenessResult.rural_ele.awarenessConfig.title,
+                        chart: {
+                            type: 'bar',
+                            backgroundColor: 'transparent'
+                        },
+                        credits: {
+                            enabled: false
+                        }
+                    })
+                }
+                setTimeout(draw, 100);
+            }
+
+        });
+    }
+})
+
+app.directive('awarenessHealthBeauties1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined) {
+                $('#awarenessHealthBeauties1').empty();
+                var draw = function() {
+                    $('#awarenessHealthBeauties1').highcharts({
+                        xAxis: scope.awarenessResult.urban_hea.awarenessConfig.options.xAxis,
+                        yAxis: scope.awarenessResult.urban_hea.awarenessConfig.options.yAxis,
+                        tooltip: scope.awarenessResult.urban_hea.awarenessConfig.options.tooltip,
+                        series: scope.awarenessResult.urban_hea.awarenessConfig.series,
+                        plotOptions: scope.awarenessResult.urban_hea.awarenessConfig.options.plotOptions,
+                        title: scope.awarenessResult.urban_hea.awarenessConfig.title,
+                        chart: {
+                            type: 'bar',
+                            backgroundColor: 'transparent'
+                        },
+                        credits: {
+                            enabled: false
+                        }
+                    })
+                }
+                setTimeout(draw, 100);
+            }
+
+        });
+    }
+})
+app.directive('awarenessHealthBeauties2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined) {
+                $('#awarenessHealthBeauties2').empty();
+                var draw = function() {
+                    $('#awarenessHealthBeauties2').highcharts({
+                        xAxis: scope.awarenessResult.rural_hea.awarenessConfig.options.xAxis,
+                        yAxis: scope.awarenessResult.rural_hea.awarenessConfig.options.yAxis,
+                        tooltip: scope.awarenessResult.rural_hea.awarenessConfig.options.tooltip,
+                        series: scope.awarenessResult.rural_hea.awarenessConfig.series,
+                        plotOptions: scope.awarenessResult.rural_hea.awarenessConfig.options.plotOptions,
+                        title: scope.awarenessResult.rural_hea.awarenessConfig.title,
+                        chart: {
+                            type: 'bar',
+                            backgroundColor: 'transparent'
+                        },
+                        credits: {
+                            enabled: false
+                        }
+                    })
+                }
+                setTimeout(draw, 100);
+            }
+
+        });
+    }
+})

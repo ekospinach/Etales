@@ -130,7 +130,7 @@ var supplierVariantPerceptionCtrl = function($scope, $http, PlayerColor, Label, 
         $scope.yTitle2 = Label.getContent("Price Appeal");
 
         $scope.brand = result;
-        $scope.myModel = Label.getContent("Ease of Use");
+        $scope.supplierVariantPerceptionModel = Label.getContent("Ease of Use");
     }
     $scope.$watch('variantPerception', function(newValue, oldValue) {
         if (newValue != undefined) {
