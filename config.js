@@ -183,7 +183,7 @@ module.exports = function() {
 					path_BG_extendedFeedbackSlides      : '/cgi-bin/BG_extendedFeedbackSlides.exe',
                 },
                 server: {
-                    port: 80
+                    port: 8000
                 }
             }
     }
