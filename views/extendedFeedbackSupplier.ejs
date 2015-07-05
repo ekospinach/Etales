@@ -320,28 +320,8 @@
                     <div style="clear:both;padding:1px 0"></div>
                 </section>
             </section>
-            <section>
-                <section>
-                    <h3><a> Net Retailer Prices </a> - Elecssories</h3>
-                    <hr>
-                </section>
-                <section>
-                    <h3><a> Net Retailer Prices </a> - HealthBeauties</h3>
-                    <hr>
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h3><a> Available Product Portfolio </a> - Elecssories</h3>
-                    <hr>
-                </section>
-                <section>
-                    <h3><a> Available Product Portfolio </a> - HealthBeauties</h3>
-                    <hr>
-                </section>
-            </section>
             <section ng-controller="bmPricesCtrl">
-                <!--3-->
+                <!--2-->
                 <section>
                     <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Supplier')}} 1</h3>
                     <hr>
@@ -1605,6 +1585,32 @@
                 </section>
             </section>
 
+            <section ng-controller='awarenessCtrl'>
+            <!--6-->
+                <section>
+                    <h3><a> {{Label.getContent('Awareness')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <div id="awarenessElecssories1" style="height:500px;width:100%" ng-model='myModel' awareness-elecssories1></div>
+                    
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <div id="awarenessElecssories2" style="height:500px;width:100%" ng-model='myModel' awareness-elecssories2></div>
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('Awareness')}} </a> - {{Label.getContent('Urban')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <div id="awarenessHealthBeauties1" style="height:500px;width:100%" ng-model='myModel' awareness-health-beauties1></div>
+                    
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <div id="awarenessHealthBeauties2" style="height:500px;width:100%" ng-model='myModel' awareness-health-beauties2></div>
+                </section>
+            </section>
             <section ng-controller='productAvailabilityCtrl'>
                 <!--7-->
                 <section>
@@ -3394,7 +3400,6 @@
                         </tbody>
                     </table>
                 </section>
-
             </section>
             <section ng-controller='supplierRetailSalesCtrl'>
                 <!--9-->
@@ -3408,7 +3413,6 @@
                     <hr>
                     <highchart id="chart92" class="large-size" config="heaRetailSales"></highchart>
                 </section>
-
             </section>
             <section ng-controller='supplierFinancialandKPICtrl'>
                 <!--10-->
@@ -3442,9 +3446,11 @@
                     <hr>
                     <highchart id="chart106" class="large-size" config="trade_heaFinancial"></highchart>
                 </section>
-
             </section>
 
+            <section>
+                <!--11-->
+            </section>
 
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
@@ -3465,6 +3471,7 @@
     <script src="js/feedBackAppControllers/directives.js"></script>
     <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
     <script src="js/feedBackAppControllers/bmPricesCtrl.js"></script>
+    <script src="js/feedBackAppControllers/awarenessCtrl.js"></script>
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierFinancialandKPICtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierRetailSalesCtrl.js"></script>
