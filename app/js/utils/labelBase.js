@@ -1259,6 +1259,5 @@ var getLabelBase = function(){
 		{id:'Promotional Activities',  ENG:'Promotional Activities',  CHN:'Promotional Activities',  RUS:''},	
 
 
-
 	]
 }
