@@ -176,7 +176,7 @@ var awarenessCtrl = function($scope, $http, PlayerColor, Label, StaticValues) {
         result.urban_hea = loadAwareness($scope.awareness, StaticValues.categoryID.hea, StaticValues.marketID.urban);
         result.rural_hea = loadAwareness($scope.awareness, StaticValues.categoryID.hea, StaticValues.marketID.rural);
         $scope.awarenessResult = result;
-        $scope.myModel = 'awareness';
+        $scope.awarenessModel = 'awareness';
     }
     $scope.$watch('awareness', function(newValue, oldValue) {
         if (newValue != undefined) {
