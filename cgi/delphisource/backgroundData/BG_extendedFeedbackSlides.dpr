@@ -234,24 +234,37 @@ var
     result := jo;
   end;
 
-  function productPortfolioSchema(data:byte) : ISuperObject;
+  function productPortfolioSchema(index:integer,level:integer,ownerID:integer,isNewProduct:boolean,count:integer) : ISuperObject;
   var
     jo : ISuperObject;
     spec : Integer;
   begin
     jo := SO;
-    jo.O['data'] := SA([]);
-    jo.A['data'].add(data);
+
+    jo.I['index']:=index;
+    jo.I['level']:=level;
+    jo.I['ownerID']:=ownerID;
+    jo.B['isNewProduct']:=isNewProduct;
+    jo.I['cound']:=count;
+
     result := jo;
   end;
 
-  function productPackFormSchema(data:byte ) : ISuperObject;
+  function productPackFormatSchema(pack:TVariantPackFormat,ownerID:integer,isNewProduct:boolean,count:integer ) : ISuperObject;
   var
     jo : ISuperObject;
   begin
     jo := SO;
-    jo.O['data'] := SA([]);
-    jo.A['data'].add(data);
+    jo.I['ownerID'] := ownerID;
+    jo.B['isNewProduct'] := isNewProduct;
+    jo.I['count'] := count;
+
+    case (pack) of
+      ECONOMY     : begin jo.S['packFormat']:='ECONOMY'; end;
+      STANDARD     : begin jo.S['packFormat']:='STANDARD'; end;
+      PREMIUM   : begin jo.S['packFormat']:='PREMIUM'; end;
+    end ;
+
     result := jo;
   end;
 
@@ -261,20 +274,24 @@ var
     pack :  TVariantPackFormat ;
     bool : boolean;
     spec,specndice,ownerID : Integer;
-  begin
-    jo := SO;
-    jo.I['categoryID'] := categoryID;
-    jo.O['xfpp_Attributes'] := SA([]);
-    jo.O['xfpp_PackFormat'] := SA([]);
-    for spec := Low(TSpecs) to High(TSpecs) do
     begin
-      for specndice := Low(TSpecsIndices) to High(TSpecsIndices) do
+      jo := SO;
+      jo.I['categoryID'] := categoryID;
+      jo.O['xfpp_Attributes'] := SA([]);
+      jo.O['xfpp_PackFormat'] := SA([]);
+      for spec := Low(TSpecs) to High(TSpecs) do
       begin
-        for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
+        for specndice := Low(TSpecsIndices) to High(TSpecsIndices) do
         begin
-          for bool := Low(Boolean) to High(Boolean) do
+          for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
           begin
-            jo.A['xfpp_PackFormat'].add(productPortfolioSchema(tempProductPortfolio.xfpp_AttributesSKUCount[spec,specndice,ownerID,bool]));
+            for bool := Low(Boolean) to High(Boolean) do
+            begin
+              if (tempProductPortfolio.xfpp_AttributesSKUCount[spec,specndice,ownerID,bool] <> 0) then
+              begin
+                jo.A['xfpp_Attributes'].add(productPortfolioSchema(spec,specndice,ownerID,bool,tempProductPortfolio.xfpp_AttributesSKUCount[spec,specndice,ownerID,bool]));
+              end;
+            end;
           end;
         end;
       end;
@@ -286,7 +303,11 @@ var
         begin
           for bool := Low(Boolean) to High(Boolean) do
           begin
-            jo.A['xfpp_PackFormat'].add(productPackFormSchema(tempProductPortfolio.xfpp_PackFormatSKUCount[pack,ownerID,bool]));
+
+            if (tempProductPortfolio.xfpp_AttributesSKUCount[spec,specndice,ownerID,bool] <> 0) then
+            begin
+              jo.A['xfpp_Attributes'].add(productPackFormatSchema(pack,ownerID,bool,tempProductPortfolio.xfpp_PackFormatSKUCount[pack,ownerID,bool]));
+            end;
           end;
         end;
       end;
