@@ -234,7 +234,7 @@ var
     result := jo;
   end;
 
-  function productPortfolioSchema(index:integer,level:integer,ownerID:integer,isNewProduct:boolean,count:integer) : ISuperObject;
+  function productPortfolioSchema(index:integer;level:integer;ownerID:integer;isNewProduct:boolean;count:integer) : ISuperObject;
   var
     jo : ISuperObject;
     spec : Integer;
@@ -250,7 +250,7 @@ var
     result := jo;
   end;
 
-  function productPackFormatSchema(pack:TVariantPackFormat,ownerID:integer,isNewProduct:boolean,count:integer ) : ISuperObject;
+  function productPackFormatSchema(pack:TVariantPackFormat;ownerID:integer;isNewProduct:boolean;count:integer ) : ISuperObject;
   var
     jo : ISuperObject;
   begin
@@ -267,6 +267,7 @@ var
 
     result := jo;
   end;
+
 
   function productPortfoliosSchema(categoryID: integer;tempProductPortfolio:TXF_ProductPortfolio) : ISuperObject;
     var 
@@ -295,24 +296,23 @@ var
           end;
         end;
       end;
-    end;
 
-    for pack := Low(TVariantPackFormat) to High(TVariantPackFormat) do
-      begin
-        for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
+      for pack := Low(TVariantPackFormat) to High(TVariantPackFormat) do
         begin
-          for bool := Low(Boolean) to High(Boolean) do
+          for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
           begin
-
-            if (tempProductPortfolio.xfpp_AttributesSKUCount[spec,specndice,ownerID,bool] <> 0) then
+            for bool := Low(Boolean) to High(Boolean) do
             begin
-              jo.A['xfpp_Attributes'].add(productPackFormatSchema(pack,ownerID,bool,tempProductPortfolio.xfpp_PackFormatSKUCount[pack,ownerID,bool]));
+
+              if (tempProductPortfolio.xfpp_PackFormatSKUCount[pack,ownerID,bool] <> 0) then
+              begin
+                jo.A['xfpp_PackFormat'].add(productPackFormatSchema(pack,ownerID,bool,tempProductPortfolio.xfpp_PackFormatSKUCount[pack,ownerID,bool]));
+              end;
             end;
           end;
         end;
-      end;
-    result := jo;
-  end;
+      result := jo;
+    end;
 
   function brandOwnerConsumerSegmentsRetailSalesValueSchema(marketID: integer; categoryID:integer; period:integer; segmentID:integer; ownerID : integer; data : TXF_ConsumerSegmentBrandOwnerDetails):ISuperObject;
   var
