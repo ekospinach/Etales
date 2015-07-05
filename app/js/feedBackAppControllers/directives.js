@@ -1004,3 +1004,375 @@ app.directive('retailerServiceLevel2', function() {
         });
     }
 })
+
+app.directive('urbanElecssoriesBrand1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart1').empty();
+                $('#highchart1').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        title: {
+                            text: scope.xTitle1
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle1
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.urban_ele.mySeries1
+                });
+            }
+        });
+    }
+})
+app.directive('urbanElecssoriesBrand2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart2').empty();
+                $('#highchart2').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ['', '', '', '', '', '']
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle2
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.urban_ele.mySeries2
+                });
+            }
+        });
+    }
+})
+
+app.directive('ruralElecssoriesBrand1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart3').empty();
+                $('#highchart3').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        title: {
+                            text: scope.xTitle1
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle1
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.rural_ele.mySeries1
+                });
+            }
+        });
+    }
+})
+app.directive('ruralElecssoriesBrand2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart4').empty();
+                $('#highchart4').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ['', '', '', '', '', '']
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle2
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.rural_ele.mySeries2
+                });
+            }
+        });
+    }
+})
+
+app.directive('urbanHealthBeautiesBrand1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart5').empty();
+                $('#highchart5').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        title: {
+                            text: scope.xTitle1
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle1
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.urban_hea.mySeries1
+                });
+            }
+        });
+    }
+})
+app.directive('urbanHealthBeautiesBrand2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart6').empty();
+                $('#highchart6').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ['', '', '', '', '', '']
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle2
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.urban_hea.mySeries2
+                });
+            }
+        });
+    }
+})
+
+app.directive('ruralHealthBeautiesBrand1', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart7').empty();
+                $('#highchart7').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        title: {
+                            text: scope.xTitle1
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle1
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.x.toFixed(2) + ',' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.rural_hea.mySeries1
+                });
+            }
+        });
+    }
+})
+app.directive('ruralHealthBeautiesBrand2', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(v) {
+            if (v != undefined && scope.brand != undefined) {
+                $('#highchart8').empty();
+                $('#highchart8').highcharts({
+                    chart: {
+                        type: 'bubble',
+                        zoomType: 'xy',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ['', '', '', '', '', '']
+                    },
+                    yAxis: {
+                        title: {
+                            text: scope.yTitle2
+                        }
+                    },
+                    plotOptions: {
+                        bubble: {
+                            minSize: 20,
+                            maxSize: 20
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p>' + this.point.z + '</p>' + '<p>(' + this.point.y.toFixed(2) + ')</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: scope.brand.rural_hea.mySeries2
+                });
+            }
+        });
+    }
+})

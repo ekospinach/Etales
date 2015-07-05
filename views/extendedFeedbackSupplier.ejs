@@ -289,22 +289,35 @@
                 <h3>{{Label.getContent('Period')}} : <%= period %></h3>
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
             </section>
-            <section>
+            <section ng-controller='supplierVariantPerceptionCtrl'>
+                <!--1-->
                 <section>
-                    <h3><a> Brand Perception </a> - Elecssories - Urban</h3>
+                    <h3><a> {{Label.getContent('Brand Perceptions')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}</h3>
                     <hr>
+                    <div style="width:75%;float:left;" id="highchart1" ng-model='myModel' urban-elecssories-brand1></div>
+                    <div style="width:25%;float:left;" id="highchart2" ng-model='myModel' urban-elecssories-brand2></div>
+                    <div style="clear:both;padding:1px 0"></div>
                 </section>
                 <section>
-                    <h3><a> Brand Perception </a> - Elecssories - Rural</h3>
+                    <h3><a> {{Label.getContent('Brand Perceptions')}} </a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Rural')}}</h3>
                     <hr>
+                    <div style="width:75%;float:left;" id="highchart3" ng-model='myModel' rural-elecssories-brand1></div>
+                    <div style="width:25%;float:left;" id="highchart4" ng-model='myModel' rural-elecssories-brand2></div>
+                    <div style="clear:both;padding:1px 0"></div>
                 </section>
                 <section>
-                    <h3><a> Brand Perception </a> - HealthBeauties - Urban</h3>
+                    <h3><a> {{Label.getContent('Brand Perceptions')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban')}}</h3>
                     <hr>
+                    <div style="width:75%;float:left;" id="highchart5" ng-model='myModel' urban-health-beauties-brand1></div>
+                    <div style="width:25%;float:left;" id="highchart6" ng-model='myModel' urban-health-beauties-brand2></div>
+                    <div style="clear:both;padding:1px 0"></div>
                 </section>
                 <section>
-                    <h3><a> Brand Perception </a> - HealthBeauties - Rural</h3>
+                    <h3><a> {{Label.getContent('Brand Perceptions')}} </a> - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Rural')}}</h3>
                     <hr>
+                    <div style="width:75%;float:left;" id="highchart7" ng-model='myModel' rural-health-beauties-brand1></div>
+                    <div style="width:25%;float:left;" id="highchart8" ng-model='myModel' rural-health-beauties-brand2></div>
+                    <div style="clear:both;padding:1px 0"></div>
                 </section>
             </section>
             <section>
@@ -2064,7 +2077,7 @@
                     <hr>
                     <highchart id="chart7" config="termsofPayment" class="large-normal"></highchart>
                 </section>
-                
+
                 <section>
                     <h3><a> {{Label.getContent('Partner Relations Outcomes')}} </a>- {{Label.getContent('Supplier')}} 1</h3>
                     <hr>
@@ -3445,6 +3458,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/highcharts/highcharts.js"></script>
     <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+    <script src="bower_components/highcharts/highcharts-more.js"></script>
     <script src="bower_components/requirejs/require.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="js/utils/labelBase.js"></script>
@@ -3454,6 +3468,7 @@
     <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierFinancialandKPICtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierRetailSalesCtrl.js"></script>
+    <script src="js/feedBackAppControllers/supplierVariantPerceptionCtrl.js"></script>
     <script src="js/feedBackAppControllers/suppliersProfitabilityPerCustomerCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
