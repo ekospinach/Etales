@@ -109,9 +109,42 @@ var supplierRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
         return result;
     }
 
+    var dataTest=function(){
+        console.log('supplierRetailSales Page Data Test:');
+        var result=0;
+
+        result=_.find($scope.feedback.xf_BrandOwnerConsumerSegmentsRetailSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.segmentID==5&&obj.ownerID==5);
+        })
+
+        console.log('Total market period -1 retailer 1 value:'+result.xfcsbo_Absolute);
+        
+        result=_.find($scope.feedback.xf_BrandOwnerConsumerSegmentsRetailSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.segmentID==1&&obj.ownerID==6);
+        })
+        console.log('price market period 0 retailer 2 value:'+result.xfcsbo_Absolute);
+        
+        result=_.find($scope.feedback.xf_BrandOwnerConsumerSegmentsRetailSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.segmentID==2&&obj.ownerID==1);
+        })
+        console.log('value for Money -1 supplier 1 value:'+result.xfcsbo_Absolute);
+        
+        result=_.find($scope.feedback.xf_BrandOwnerConsumerSegmentsRetailSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.segmentID==3&&obj.ownerID==2);
+        })
+        console.log('fashion period 0 supplier 2 value:'+result.xfcsbo_Absolute);
+        
+        result=_.find($scope.feedback.xf_BrandOwnerConsumerSegmentsRetailSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.segmentID==4&&obj.ownerID==3);
+        })
+        console.log('freaks period -1 supplier 3 value:'+result.xfcsbo_Absolute);
+
+    }
+
     var initPage = function() {
         var Request = GetRequest();
         var periods = [];
+        dataTest();
         for (var i = Request['period'] - 1; i <= Request['period']; i++) {
             periods.push(i);
         }

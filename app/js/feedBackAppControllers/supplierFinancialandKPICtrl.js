@@ -61,13 +61,34 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
 
                         switch (singleList.ownerID) {
                             case 1:
-                                result.data[singleList.accountID - 1].data[periodIndex] = singleList.value;
+                                if (singleList.accountID != 4) {
+                                    result.data[singleList.accountID - 1].data[periodIndex] = singleList.value;
+                                } else {
+                                    result.data[singleData.accountID - 1].data[periodIndex] = {
+                                        y: singleList.value,
+                                        color: PlayerColor.s1
+                                    }
+                                }
                                 break;
                             case 2:
-                                result.data[singleList.accountID - 1].data[periodIndex + 2] = singleList.value;
+                                if (singleList.accountID != 4) {
+                                    result.data[singleList.accountID - 1].data[periodIndex + 2] = singleList.value;
+                                } else {
+                                    result.data[singleData.accountID - 1].data[periodIndex + 2] = {
+                                        y: singleList.value,
+                                        color: PlayerColor.s2
+                                    }
+                                }
                                 break;
                             case 3:
-                                result.data[singleList.accountID - 1].data[periodIndex + 4] = singleList.value;
+                                if (singleList.accountID != 4) {
+                                    result.data[singleList.accountID - 1].data[periodIndex + 4] = singleList.value;
+                                } else {
+                                    result.data[singleData.accountID - 1].data[periodIndex + 4] = {
+                                        y: singleList.value,
+                                        color: PlayerColor.s3
+                                    }
+                                }
                                 break;
                             case 4:
                                 break;
@@ -86,6 +107,68 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
         return result;
     }
 
+    var originPortfolioAarray=function(data,periods,categoryID){
+        var result = {
+            data: [{
+                name: Label.getContent('Retailer') + ' 1',
+                data: [],
+                color: PlayerColor.r1
+            }, {
+                name: Label.getContent('Retailer') + ' 2',
+                data: [],
+                color: PlayerColor.r2
+            }, {
+                name: Label.getContent('Supplier')+' 1',
+                data: [],
+                color: PlayerColor.s1
+            }, {
+                name: Label.getContent('Supplier')+' 2',
+                data: [],
+                color: PlayerColor.s2
+            }, {
+                name: Label.getContent('Supplier')+' 3',
+                data: [],
+                color: PlayerColor.s3
+            }],
+            categories: [periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1]],
+            subCategories: [Label.getContent('Supplier') + ' 1', Label.getContent('Supplier') + ' 2', Label.getContent('Supplier') + ' 3', Label.getContent('Retailer') + ' 1', Label.getContent('Retailer') + ' 2']
+
+        };
+    }
+
+    var dataTest=function(){
+        console.log('Financialand Page Test:');
+        var result=0;
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.ownerID==1&&obj.accountID==1);
+        });
+        console.log('supplier 1 Period -1 retailer 1 value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.ownerID==2&&obj.accountID==2);
+        });
+        console.log('supplier 2 Period 0 retailer 2 value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.ownerID==3&&obj.accountID==3);
+        });
+        console.log('supplier 3 Period -1 trade value:'+result.value);
+
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.ownerID==3&&obj.accountID==4);
+        });
+        console.log('supplier 3 Period 0 online value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==0&&obj.ownerID==5&&obj.accountID==1);
+        });
+        console.log('retailer 1 Period 0  retailer1 value:'+result.value);
+        
+        result=_.find($scope.feedback.xf_BrandOwnersChannelSalesValue,function(obj){
+            return (obj.marketID==3&&obj.categoryID==1&&obj.period==-1&&obj.ownerID==6&&obj.accountID==2);
+        });
+        console.log('retailer 2 Period -1 retailer1 value:'+result.value);
+    }
 
     var initPage = function() {
         var Request = GetRequest();
@@ -125,6 +208,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 subCategories: {}
             },
         }
+        dataTest();
         result.sales_ele = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelSalesValue, periods, 1);
         result.sales_hea = organiseFinancialArray($scope.feedback.xf_BrandOwnersChannelSalesValue, periods, 2);
 
