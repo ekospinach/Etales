@@ -1584,6 +1584,25 @@
                     </table>
                 </section>
             </section>
+            <section ng-controller='productPortfolioCtrl'>
+                <!--3-->
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}</h3>
+                    <hr>
+                    <highchart id="chart31" config="ele_technology" class="small-small-left"></highchart>
+                    <highchart id="chart32" config="ele_design" class="small-small-right"></highchart>
+                    <highchart id="chart33" config="ele_active" class="small-small-left"></highchart>
+                    <highchart id="chart34" config="ele_pack" class="small-small-right"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Partner Relations Outcomes')}}</a> - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart35" config="hea_technology" class="small-small-left"></highchart>
+                    <highchart id="chart36" config="hea_design" class="small-small-right"></highchart>
+                    <highchart id="chart37" config="hea_active" class="small-small-left"></highchart>
+                    <highchart id="chart38" config="hea_pack" class="small-small-right"></highchart>
+                </section>
+            </section>
 
             <section ng-controller='awarenessCtrl'>
                 <!--6-->
@@ -3472,6 +3491,7 @@
     <script src="js/feedBackAppControllers/supplierFinancialandKPICtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierRetailSalesCtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierVariantPerceptionCtrl.js"></script>
+    <script src="js/feedBackAppControllers/productPortfolioCtrl.js"></script>
     <script src="js/feedBackAppControllers/suppliersProfitabilityPerCustomerCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
