@@ -124,6 +124,29 @@ var
     result := jo;
   end;
 
+
+    function suppliersCapitalInvestmentSchema(marketID : integer; categoryID : integer;  accountID : integer; info : TXF_OneSupplierCapitalInvestments) : ISuperObject;
+  var
+    jo : ISuperObject;    
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.I['categoryID'] := categoryID;
+    jo.I['accountID'] := accountID;
+
+    jo.D['xfci_InvestedInTechnology'] := info.xfci_InvestedInTechnology;           
+    jo.D['xfci_InvestedInDesign'] := info.xfci_InvestedInDesign;    
+    jo.D['xfci_InvestedInFlexibility'] := info.xfci_InvestedInFlexibility;  
+    jo.D['xfci_InvestedInCapacity'] := info.xfci_InvestedInCapacity; 
+    jo.D['xfci_AcquiredTechnologyLevel'] := info.xfci_AcquiredTechnologyLevel;   
+    jo.D['xfci_AcquiredDesignLevel'] := info.xfci_AcquiredDesignLevel; 
+    jo.D['xfci_AcquiredFlexibility'] := info.xfci_AcquiredFlexibility;
+    jo.D['xfci_AvailableCapacity'] := info.xfci_AvailableCapacity;    
+
+    result := jo;
+  end;
+
+
   function shoppersSegmentsSchema(marketID : integer; categoryID:integer; period:integer; data:TXF_OneShoppersSegmentDetails ) : ISuperObject;
   var
     jo : ISuperObject;
@@ -367,6 +390,8 @@ var
     oJsonFile.O['xf_AvailabilityOnline']                                 := SA([]);
     oJsonFile.O['xf_RetailersProfitabilityPerSupplier']                  := SA([]);
     oJsonFile.O['xf_SuppliersProfitabilityPerCustomer']                  := SA([]);
+    oJsonFile.O['xf_CapitalInvestments']                  := SA([]);
+    
 
     oJsonFile.O['xf_ShoppersSegmentsShares']                  := SA([]);
     oJsonFile.O['xf_ChannelShoppersSegmentsRetailSalesValue'] := SA([]);
@@ -443,6 +468,17 @@ var
       begin
         for accountID := Low(TAccounts) to High(TAccounts) do
         begin
+            oJsonFile.A['xf_CapitalInvestments'].add( suppliersCapitalInvestmentSchema(marketID, categoryID, accountID, currentResult.r_ExtendedFeedback.xf_CapitalInvestments[marketID, categoryID, accountID])  );
+        end;
+      end;
+    end;
+
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+      for categoryID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+      begin
+        for accountID := Low(TAccounts) to High(TAccounts) do
+        begin
           for producerID := Low(TAllProducers) to High(TAllProducers) do
           begin
             oJsonFile.A['xf_SuppliersProfitabilityPerCustomer'].add( suppliersProfitabilityPerCustomerSchema(marketID, categoryID, producerID, accountID, currentResult.r_ExtendedFeedback.xf_SuppliersProfitabilityPerCustomer[marketID, categoryID, producerID, accountID])  );
@@ -450,6 +486,7 @@ var
         end;
       end;
     end;
+
     
     for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin

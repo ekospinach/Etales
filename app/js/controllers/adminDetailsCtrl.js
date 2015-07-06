@@ -323,7 +323,8 @@ define(['app', 'socketIO'], function(app) {
 
 				$http({
 					method: 'POST',
-					url: '/initialiseExtendedFeedbackSlides',
+					url: '/initialiseSeminar',
+					//url: '/initialiseExtendedFeedbackSlides',
 					data: postData
 				}).then(function(res) {
 					$scope.isInitializeMessageShown = true;

@@ -51,6 +51,8 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     /****************          10        ******************/
     xf_RetailersLocalAdvertising : [retailersLocalAdvertisingSchema],
 
+    xf_CapitalInvestments : [capitalInvestmentSchema],
+
     //------------ Added May-28-2015
 
     //Supplier : 9.Retailer Sales of Brand - two categories 
@@ -73,6 +75,21 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
 // var attributesSchema = mongoose.Schema({
 
 // })
+
+var capitalInvestmentSchema = mongoose.Schema({
+    marketID: Number,
+    categoryID: Number,
+    accountID: Number,
+
+    xfci_InvestedInTechnology: Number,
+    xfci_InvestedInDesign: Number,
+    xfci_InvestedInFlexibility: Number,
+    xfci_InvestedInCapacity: Number,
+    xfci_AcquiredTechnologyLevel: Number,
+    xfci_AcquiredDesignLevel: Number,
+    xfci_AcquiredFlexibility: Number,
+    xfci_AvailableCapacity: Number
+})
 
 var xfpp_AttributesSchema = mongoose.Schema({
     index: Number,
@@ -282,6 +299,7 @@ exports.addInfos = function(options){
                                 xf_StoresServiceLevel                      : singleReport.xf_StoresServiceLevel,
                                 xf_RetailersLocalAdvertising               : singleReport.xf_RetailersLocalAdvertising,
                                 xf_ProductPortfolios                       : singleReport.xf_ProductPortfolios,
+                                xf_CapitalInvestments                      : singleReport.xf_CapitalInvestments,
                                 
                                 xf_BrandOwnerConsumerSegmentsRetailSalesValue : singleReport.xf_BrandOwnerConsumerSegmentsRetailSalesValue,
                                 xf_BrandOwnersChannelSalesValue               : singleReport.xf_BrandOwnersChannelSalesValue,
