@@ -1246,6 +1246,9 @@ var getLabelBase = function(){
 		{id:'feedback Online',  ENG:'Online',  CHN:'Online',  RUS:''},	
 		//retailerExtend		
 
+		{id:'Count',  ENG:'Count',  CHN:'Count',  RUS:''},	
+
+
 		//supplier
 		{id:'Retail Sales of Brands',  ENG:'Retail Sales of Brands',  CHN:'Retail Sales of Brands',  RUS:''},	
 		{id:'Total Market',  ENG:'Total Market',  CHN:'Total Market',  RUS:''},	
