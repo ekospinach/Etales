@@ -64,8 +64,11 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     xf_BrandOwnersChannelGrossProfit              : [brandOwnersChannelDetailsSchema],
     //Supplier : 10.Financial - Trade Profits 
     xf_BrandOwnersChannelTradeProfit              : [brandOwnersChannelDetailsSchema],
-
-
+    
+    //Impact of eMall
+    xf_AggregatedChannelsSalesVolume : [aggregatedChannelsDetailSchema],
+    xf_AggregatedChannelsSalesValue  : [aggregatedChannelsDetailSchema],
+    xf_AggregatedChannelsNetProfit   : [aggregatedChannelsDetailSchema]
 
 })  
 
@@ -76,6 +79,15 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
 // var attributesSchema = mongoose.Schema({
 
 // })
+
+var aggregatedChannelsDetailSchema = mongoose.Schema({
+    marketID: Number,
+    categoryID: Number,
+    period: Number,
+    aggregatedChannels: String,
+    value: Number
+})
+
 
 var consumerSegmentsShareSchema = mongoose.Schema({
     marketID: Number,
@@ -309,27 +321,28 @@ exports.addInfos = function(options){
                               seminar: singleReport.seminar, 
                               period: singleReport.period},
                               {
-                                xf_AvailabilityAtBMStores            : singleReport.xf_AvailabilityAtBMStores,
-                                xf_AvailabilityOnline                : singleReport.xf_AvailabilityOnline,
-                                xf_RetailersProfitabilityPerSupplier : singleReport.xf_RetailersProfitabilityPerSupplier,
-                                xf_SuppliersProfitabilityPerCustomer : singleReport.xf_SuppliersProfitabilityPerCustomer,
-
-                                xf_ShoppersSegmentsShares                  : singleReport.xf_ShoppersSegmentsShares,
-                                xf_ChannelShoppersSegmentsRetailSalesValue : singleReport.xf_ChannelShoppersSegmentsRetailSalesValue,
-                                xf_RetailerGrossProfitPerBrandOwner        : singleReport.xf_RetailerGrossProfitPerBrandOwner,
-                                xf_StoreGrossProfitMargin                  : singleReport.xf_StoreGrossProfitMargin,
-                                xf_StoreOperatingProfitMargin              : singleReport.xf_StoreOperatingProfitMargin,
-                                xf_StoreNetProfitMargin                    : singleReport.xf_StoreNetProfitMargin,
-                                xf_StoresServiceLevel                      : singleReport.xf_StoresServiceLevel,
-                                xf_RetailersLocalAdvertising               : singleReport.xf_RetailersLocalAdvertising,
-                                xf_ProductPortfolios                       : singleReport.xf_ProductPortfolios,
-                                xf_CapitalInvestments                      : singleReport.xf_CapitalInvestments,
-                                xf_ConsumerSegmentsShares                  : singleReport.xf_ConsumerSegmentsShares,
-
+                                xf_AvailabilityAtBMStores                     : singleReport.xf_AvailabilityAtBMStores,
+                                xf_AvailabilityOnline                         : singleReport.xf_AvailabilityOnline,
+                                xf_RetailersProfitabilityPerSupplier          : singleReport.xf_RetailersProfitabilityPerSupplier,
+                                xf_SuppliersProfitabilityPerCustomer          : singleReport.xf_SuppliersProfitabilityPerCustomer,
+                                xf_ShoppersSegmentsShares                     : singleReport.xf_ShoppersSegmentsShares,
+                                xf_ChannelShoppersSegmentsRetailSalesValue    : singleReport.xf_ChannelShoppersSegmentsRetailSalesValue,
+                                xf_RetailerGrossProfitPerBrandOwner           : singleReport.xf_RetailerGrossProfitPerBrandOwner,
+                                xf_StoreGrossProfitMargin                     : singleReport.xf_StoreGrossProfitMargin,
+                                xf_StoreOperatingProfitMargin                 : singleReport.xf_StoreOperatingProfitMargin,
+                                xf_StoreNetProfitMargin                       : singleReport.xf_StoreNetProfitMargin,
+                                xf_StoresServiceLevel                         : singleReport.xf_StoresServiceLevel,
+                                xf_RetailersLocalAdvertising                  : singleReport.xf_RetailersLocalAdvertising,
+                                xf_ProductPortfolios                          : singleReport.xf_ProductPortfolios,
+                                xf_CapitalInvestments                         : singleReport.xf_CapitalInvestments,
+                                xf_ConsumerSegmentsShares                     : singleReport.xf_ConsumerSegmentsShares,
                                 xf_BrandOwnerConsumerSegmentsRetailSalesValue : singleReport.xf_BrandOwnerConsumerSegmentsRetailSalesValue,
                                 xf_BrandOwnersChannelSalesValue               : singleReport.xf_BrandOwnersChannelSalesValue,
                                 xf_BrandOwnersChannelGrossProfit              : singleReport.xf_BrandOwnersChannelGrossProfit,
                                 xf_BrandOwnersChannelTradeProfit              : singleReport.xf_BrandOwnersChannelTradeProfit,
+                                xf_AggregatedChannelsSalesVolume              : singleReport.xf_AggregatedChannelsSalesVolume,
+                                xf_AggregatedChannelsSalesValue               : singleReport.xf_AggregatedChannelsSalesValue,
+                                xf_AggregatedChannelsNetProfit                : singleReport.xf_AggregatedChannelsNetProfit
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

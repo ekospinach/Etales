@@ -387,6 +387,30 @@ var
     result := jo;    
   end;
 
+  function aggregatedChannelsDetailSchema(marketID:integer; categoryID:integer; period:integer; aggregatedChannel:TAggregatedChannels; data: single) : ISuperObject;
+  var
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.I['categoryID'] := categoryID;
+    jo.I['period'] := period;
+    jo.S['aggregatedChannel'] := aggregatedChannel;
+
+    case (aggregatedChannel) of
+      MODERN_RETAILERS     : begin jo.S['aggregatedChannel']:='MODERN_RETAILERS'; end;
+      TRADITIONAL_TRADE     : begin jo.S['aggregatedChannel']:='TRADITIONAL_TRADE'; end;
+      ONLINE_SALES   : begin jo.S['aggregatedChannel']:='ONLINE_SALES'; end;
+      TOTAL_MARKET : begin jo.S['aggregatedChannel']:='TOTAL_MARKET'; end;
+    end ;
+
+
+
+    jo.D['value'] := data;
+    
+    result := jo;    
+  end;
+
 
   procedure makeJson();
   var
@@ -395,6 +419,7 @@ var
     tempBrand:TMR_BrandAwareness;
     Shopper : TShoppersKind;
     serviceLevel : TServiceLevel;
+    aggregatedChannel : TAggregatedChannels;
 
 
     tempVariantAvailability : TXF_VariantAvailability;
@@ -432,8 +457,13 @@ var
 
     oJsonFile.O['xf_BrandOwnerConsumerSegmentsRetailSalesValue']    := SA([]);
     oJsonFile.O['xf_BrandOwnersChannelSalesValue']                  := SA([]);
-    oJsonFile.O['xf_BrandOwnersChannelGrossProfit']                  := SA([]);
-    oJsonFile.O['xf_BrandOwnersChannelTradeProfit']                  := SA([]);
+    oJsonFile.O['xf_BrandOwnersChannelGrossProfit']                 := SA([]);
+    oJsonFile.O['xf_BrandOwnersChannelTradeProfit']                 := SA([]);
+
+    oJsonFile.O['xf_AggregatedChannelsSalesVolume']                  := SA([]);
+    oJsonFile.O['xf_AggregatedChannelsSalesValue']                   := SA([]);
+    oJsonFile.O['xf_AggregatedChannelsNetProfit']                    := SA([]);
+
 
     for marketID := Low(TMarkets) to High(TCategories) do
     begin
@@ -655,6 +685,23 @@ var
         end;
       end;
     end;    
+
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+      for categoryID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+      begin
+        for period := Low(TTimeSpan) to High(TTimeSpan) do
+        begin
+          for aggregatedChannel := Low(TAggregatedChannels) to High(TAggregatedChannels) do            
+          begin
+            oJsonFile.A['xf_AggregatedChannelsSalesVolume'].add(aggregatedChannelsDetailSchema(marketID, categoryID, period, aggregatedChannel, currentResult.r_ExtendedFeedback.xf_AggregatedChannelsSalesVolume[marketID, categoryID, period, aggregatedChannel]));
+            oJsonFile.A['xf_AggregatedChannelsSalesValue'].add(aggregatedChannelsDetailSchema(marketID, categoryID, period, aggregatedChannel, currentResult.r_ExtendedFeedback.xf_AggregatedChannelsSalesValue[marketID, categoryID, period, aggregatedChannel]));
+            oJsonFile.A['xf_AggregatedChannelsNetProfit'].add(aggregatedChannelsDetailSchema(marketID, categoryID, period, aggregatedChannel, currentResult.r_ExtendedFeedback.xf_AggregatedChannelsNetProfit[marketID, categoryID, period, aggregatedChannel]));
+          end;
+        end;
+      end;
+    end;     
+
 
     s_str := 'out' + '.json';
     writeln( oJsonFile.AsJSon(False,False));
