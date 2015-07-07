@@ -1260,6 +1260,7 @@ var getLabelBase = function(){
 		{id:'Retailer Local Advertising',  ENG:'Retailer Local Advertising',  CHN:'Retailer Local Advertising',  RUS:''},	
 		{id:'Store Perceptions',  ENG:'Store Perceptions',  CHN:'Store Perceptions',  RUS:''},	
 		{id:'Promotional Activities',  ENG:'Promotional Activities',  CHN:'Promotional Activities',  RUS:''},	
+		{id:'Capital Investments',  ENG:'Capital Investments',  CHN:'Capital Investments',  RUS:''},	
 
 
 

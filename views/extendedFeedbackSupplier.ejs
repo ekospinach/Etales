@@ -1604,6 +1604,26 @@
                 </section>
             </section>
 
+            <section ng-controller='capitalInvestmentCtrl'>
+                <!--4-->
+                <section>
+                    <h3><a> {{Label.getContent('Capital Investments')}} </a> - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <highchart id="chart41" config="capitalInvestment.ele.investmentsConfig" class="small-small-left"></highchart>
+                    <highchart id="chart42" config="capitalInvestment.ele.resultCapabilitiesConfig" class="small-small-right"></highchart>
+                    <highchart id="chart43" config="capitalInvestment.ele.flexibilityConfig" class="small-small-left"></highchart>
+                    <highchart id="chart44" config="capitalInvestment.ele.capacityConfig" class="small-small-right"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Capital Investments')}} </a> - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart41" config="capitalInvestment.hea.investmentsConfig" class="small-small-left"></highchart>
+                    <highchart id="chart42" config="capitalInvestment.hea.resultCapabilitiesConfig" class="small-small-right"></highchart>
+                    <highchart id="chart43" config="capitalInvestment.hea.flexibilityConfig" class="small-small-left"></highchart>
+                    <highchart id="chart44" config="capitalInvestment.hea.capacityConfig" class="small-small-right"></highchart>
+                </section>
+            </section>
+
             <section ng-controller='awarenessCtrl'>
                 <!--6-->
                 <section>
@@ -3492,6 +3512,7 @@
     <script src="js/feedBackAppControllers/supplierRetailSalesCtrl.js"></script>
     <script src="js/feedBackAppControllers/supplierVariantPerceptionCtrl.js"></script>
     <script src="js/feedBackAppControllers/productPortfolioCtrl.js"></script>
+    <script src="js/feedBackAppControllers/capitalInvestmentCtrl.js"></script>
     <script src="js/feedBackAppControllers/suppliersProfitabilityPerCustomerCtrl.js"></script>
     <script>
     // Full list of configuration options available here:

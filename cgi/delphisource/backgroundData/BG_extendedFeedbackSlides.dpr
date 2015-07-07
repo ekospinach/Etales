@@ -125,14 +125,15 @@ var
   end;
 
 
-  function suppliersCapitalInvestmentSchema(marketID : integer; categoryID : integer;  accountID : integer; info : TXF_OneSupplierCapitalInvestments) : ISuperObject;
+  function suppliersCapitalInvestmentSchema( categoryID : integer;  period : integer; producerID : integer; info : TXF_OneSupplierCapitalInvestments) : ISuperObject;
   var
     jo : ISuperObject;    
   begin
     jo := SO;
-    jo.I['marketID'] := marketID;
     jo.I['categoryID'] := categoryID;
-    jo.I['accountID'] := accountID;
+    jo.I['period'] := period;
+    jo.I['producerID'] := producerID;
+
 
     jo.D['xfci_InvestedInTechnology'] := info.xfci_InvestedInTechnology;           
     jo.D['xfci_InvestedInDesign'] := info.xfci_InvestedInDesign;    
@@ -395,7 +396,6 @@ var
     jo.I['marketID'] := marketID;
     jo.I['categoryID'] := categoryID;
     jo.I['period'] := period;
-    jo.S['aggregatedChannel'] := aggregatedChannel;
 
     case (aggregatedChannel) of
       MODERN_RETAILERS     : begin jo.S['aggregatedChannel']:='MODERN_RETAILERS'; end;
@@ -512,13 +512,13 @@ var
       end;
     end;
 
-    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    for categoryID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
-      for categoryID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+      for period := Low(TTimeSpan) to High(TTimeSpan) do
       begin
-        for accountID := Low(TAccounts) to High(TAccounts) do
+        for producerID := Low(TAllProducers) to High(TAllProducers) do
         begin
-            oJsonFile.A['xf_CapitalInvestments'].add( suppliersCapitalInvestmentSchema(marketID, categoryID, accountID, currentResult.r_ExtendedFeedback.xf_CapitalInvestments[marketID, categoryID, accountID])  );
+          oJsonFile.A['xf_CapitalInvestments'].add( suppliersCapitalInvestmentSchema(categoryID, period, producerID,currentResult.r_ExtendedFeedback.xf_CapitalInvestments[categoryID, period, producerID])  );
         end;
       end;
     end;
@@ -537,7 +537,7 @@ var
         end;
       end;
     end;
-    
+
 
     for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin
