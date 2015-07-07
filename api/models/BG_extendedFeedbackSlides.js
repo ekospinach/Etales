@@ -52,6 +52,7 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
     xf_RetailersLocalAdvertising : [retailersLocalAdvertisingSchema],
 
     xf_CapitalInvestments : [capitalInvestmentSchema],
+    xf_ConsumerSegmentsShares : [consumerSegmentsShareSchema],
 
     //------------ Added May-28-2015
 
@@ -75,6 +76,29 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
 // var attributesSchema = mongoose.Schema({
 
 // })
+
+var consumerSegmentsShareSchema = mongoose.Schema({
+    marketID: Number,
+    categoryID: Number,
+    period: Number,
+    segmentID: Number,     
+    /*
+        Elecssories:
+        1-PriceSensitive
+        2-Value for Money
+        3-Fashion
+        4-Freaks
+        5-Total
+
+        HealthBeauties:
+        1-PriceSensitive
+        2-Value for Money
+        3-Health Conscious
+        4-Impatient      
+        5-Total
+    */
+    value: Number
+})
 
 var capitalInvestmentSchema = mongoose.Schema({
     marketID: Number,
@@ -300,7 +324,8 @@ exports.addInfos = function(options){
                                 xf_RetailersLocalAdvertising               : singleReport.xf_RetailersLocalAdvertising,
                                 xf_ProductPortfolios                       : singleReport.xf_ProductPortfolios,
                                 xf_CapitalInvestments                      : singleReport.xf_CapitalInvestments,
-                                
+                                xf_ConsumerSegmentsShares                  : singleReport.xf_ConsumerSegmentsShares,
+
                                 xf_BrandOwnerConsumerSegmentsRetailSalesValue : singleReport.xf_BrandOwnerConsumerSegmentsRetailSalesValue,
                                 xf_BrandOwnersChannelSalesValue               : singleReport.xf_BrandOwnersChannelSalesValue,
                                 xf_BrandOwnersChannelGrossProfit              : singleReport.xf_BrandOwnersChannelGrossProfit,
