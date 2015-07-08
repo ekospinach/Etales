@@ -84,24 +84,6 @@ var capitalInvestmentCtrl = function($scope, $http, PlayerColor, Label, StaticVa
             }]
         }
 
-        /*
-        var capitalInvestmentSchema = mongoose.Schema({
-            categoryID: Number,
-            period: Number,
-            producerID: Number,
-
-            xfci_InvestedInTechnology: Number,
-            xfci_InvestedInDesign: Number,
-            xfci_InvestedInFlexibility: Number,
-            xfci_InvestedInCapacity: Number,
-            xfci_AcquiredTechnologyLevel: Number,
-            xfci_AcquiredDesignLevel: Number,
-            xfci_AcquiredFlexibility: Number,
-            xfci_AvailableCapacity: Number
-        })
-
-        */
-
         data.forEach(function(singleData) {
             if (singleData.categoryID == category && singleData.period == period) {
 

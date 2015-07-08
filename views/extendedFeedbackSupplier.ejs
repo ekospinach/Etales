@@ -1617,11 +1617,39 @@
                 <section>
                     <h3><a> {{Label.getContent('Capital Investments')}} </a> - {{Label.getContent('HealthBeauties')}}</h3>
                     <hr>
-                    <highchart id="chart41" config="capitalInvestment.hea.investmentsConfig" class="small-small-left"></highchart>
-                    <highchart id="chart42" config="capitalInvestment.hea.resultCapabilitiesConfig" class="small-small-right"></highchart>
-                    <highchart id="chart43" config="capitalInvestment.hea.flexibilityConfig" class="small-small-left"></highchart>
-                    <highchart id="chart44" config="capitalInvestment.hea.capacityConfig" class="small-small-right"></highchart>
+                    <highchart id="chart45" config="capitalInvestment.hea.investmentsConfig" class="small-small-left"></highchart>
+                    <highchart id="chart46" config="capitalInvestment.hea.resultCapabilitiesConfig" class="small-small-right"></highchart>
+                    <highchart id="chart47" config="capitalInvestment.hea.flexibilityConfig" class="small-small-left"></highchart>
+                    <highchart id="chart48" config="capitalInvestment.hea.capacityConfig" class="small-small-right"></highchart>
                 </section>
+            </section>
+
+            <section ng-controller='marketEvolutionCtrl'>
+                <!--5-->
+                <section>
+                    <h3><a> {{Label.getContent('Market Evolution')}} </a> - {{Label.getContent('Consumer Segments')}}</h3>
+                    <hr>
+                    <div class="chart-container" market-evolution-consumer ng-model='myModel'>
+                        <div id="shareChart50" class="marketEvolutionConsumerChart sp-small-left"></div>
+                        <div id="shareChart51" class="marketEvolutionConsumerChart sp-small-right"></div>
+                        <div id="shareChart52" class="marketEvolutionConsumerChart sp-small-left"></div>
+                        <div id="shareChart53" class="marketEvolutionConsumerChart sp-small-right"></div>
+                    </div>
+                    <ul id="marketEvolutionConsumerLegend" class="legend"></ul>
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('Market Evolution')}} </a> - {{Label.getContent('Shopper Segments')}}</h3>
+                    <hr>
+                    <div class="chart-container" market-evolution-shopper ng-model='myModel'>
+                        <div id="shareChart54" class="marketEvolutionShopperChart sp-small-left"></div>
+                        <div id="shareChart55" class="marketEvolutionShopperChart sp-small-right"></div>
+                        <div id="shareChart56" class="marketEvolutionShopperChart sp-small-left"></div>
+                        <div id="shareChart57" class="marketEvolutionShopperChart sp-small-right"></div>
+                    </div>
+                    <ul id="marketEvolutionShopperLegend" class="legend"></ul>
+                </section>
+                
             </section>
 
             <section ng-controller='awarenessCtrl'>
@@ -3513,6 +3541,7 @@
     <script src="js/feedBackAppControllers/supplierVariantPerceptionCtrl.js"></script>
     <script src="js/feedBackAppControllers/productPortfolioCtrl.js"></script>
     <script src="js/feedBackAppControllers/capitalInvestmentCtrl.js"></script>
+    <script src="js/feedBackAppControllers/marketEvolutionCtrl.js"></script>
     <script src="js/feedBackAppControllers/suppliersProfitabilityPerCustomerCtrl.js"></script>
     <script>
     // Full list of configuration options available here:

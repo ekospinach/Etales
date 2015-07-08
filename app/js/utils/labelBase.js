@@ -1261,6 +1261,7 @@ var getLabelBase = function(){
 		{id:'Store Perceptions',  ENG:'Store Perceptions',  CHN:'Store Perceptions',  RUS:''},	
 		{id:'Promotional Activities',  ENG:'Promotional Activities',  CHN:'Promotional Activities',  RUS:''},	
 		{id:'Capital Investments',  ENG:'Capital Investments',  CHN:'Capital Investments',  RUS:''},	
+		{id:'Market Evolution',  ENG:'Market Evolution',  CHN:'Market Evolution',  RUS:''},	
 
 
 
