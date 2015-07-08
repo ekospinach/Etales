@@ -33,22 +33,16 @@ define(['app'], function(app) {
 
         $scope.msg = '';
         $scope.setPeriod = function(period) {
-            // if ($scope.selectedPeriod&&$scope.selectedType) {
-            //     var url = 'feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + ($scope.selectedPeriod - 1) + '&language=' + $scope.selectLanguage;
-            //     $window.open(url);
-            // } else {
-            //     $scope.msg = $scope.msg = 'Please choose period.';
-            // }
 
-            var address='';
-            if($scope.selectedType==1){
-            	address='feedbackENG';
-            }else if($scope.selectedType==2){
-            	address='extendedFeedbackSupplier';
-            }else if($scope.selectedType==3){
-            	address='extendedFeedbackRetailer';
+            var address = '';
+            if ($scope.selectedType == 1) {
+                address = 'feedback';
+            } else if ($scope.selectedType == 2) {
+                address = 'extendedFeedbackSupplier';
+            } else if ($scope.selectedType == 3) {
+                address = 'extendedFeedbackRetailer';
             }
-            url=address+'?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + ($scope.selectedPeriod - 1) + '&language=' + $scope.selectLanguage;
+            url = address + '?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + ($scope.selectedPeriod - 1) + '&language=' + $scope.selectLanguage;
             $window.open(url);
 
         }
