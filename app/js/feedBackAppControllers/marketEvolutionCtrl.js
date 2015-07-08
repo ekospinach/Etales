@@ -104,9 +104,9 @@ var marketEvolutionCtrl = function($scope, $http, PlayerColor, Label, StaticValu
         periods.forEach(function(singlePeriod) {
             data.forEach(function(singleData) {
                 if (singleData.period == singlePeriod && singleData.categoryID == category && singleData.marketID == market) {
-                    series[0].data[singleData.period + 3] = singleData.BMS_importance;
-                    series[1].data[singleData.period + 3] = singleData.NETIZENS_importance;
-                    series[2].data[singleData.period + 3] = singleData.MIXED_importance;
+                    series[0].data[singleData.period + 3] = singleData.BMS_importance * 100;
+                    series[1].data[singleData.period + 3] = singleData.NETIZENS_importance * 100;
+                    series[2].data[singleData.period + 3] = singleData.MIXED_importance * 100;
                 }
             })
         })
