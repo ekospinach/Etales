@@ -28,6 +28,559 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
         return result;
     }
 
+    // var xf_ProductPortfolios = [{
+    //     "categoryID": 1,
+    //     "xfpp_Attributes": [{
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 3,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 3,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 3,
+    //         "isNewProduct": true
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 5,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 5,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 2,
+    //         "isNewProduct": true
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 2,
+    //         "isNewProduct": true
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 2,
+    //         "ownerID": 2,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 2,
+    //         "ownerID": 3,
+    //         "count": 3,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 2,
+    //         "ownerID": 2,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 2,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 3,
+    //         "ownerID": 3,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 3,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 9,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 9,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 9,
+    //         "index": 3,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }],
+    //     "xfpp_PackFormat": [{
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 1,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 2,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 3,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 5,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 6,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "STANDARD",
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "STANDARD",
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "STANDARD",
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "PREMIUM",
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "PREMIUM",
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "PREMIUM",
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }]
+    // }, {
+    //     "categoryID": 2,
+    //     "xfpp_Attributes": [{
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 3,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 3,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 3,
+    //         "isNewProduct": true
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 5,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 5,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 2,
+    //         "isNewProduct": true
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 2,
+    //         "isNewProduct": true
+    //     }, {
+    //         "level": 5,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 1,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 1,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 1,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 2,
+    //         "ownerID": 2,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 2,
+    //         "ownerID": 3,
+    //         "count": 3,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 2,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 2,
+    //         "ownerID": 2,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 2,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 4,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 5,
+    //         "index": 3,
+    //         "ownerID": 3,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 6,
+    //         "index": 3,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 7,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 9,
+    //         "index": 3,
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 9,
+    //         "index": 3,
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "level": 9,
+    //         "index": 3,
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }],
+    //     "xfpp_PackFormat": [{
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 1,
+    //         "count": 7,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 1,
+    //         "count": 6,
+    //         "isNewProduct": true
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 2,
+    //         "count": 8,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 2,
+    //         "count": 7,
+    //         "isNewProduct": true
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 3,
+    //         "count": 6,
+    //         "isNewProduct": false
+    //     },{
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 3,
+    //         "count": 6,
+    //         "isNewProduct": true
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 5,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     },{
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 5,
+    //         "count": 2,
+    //         "isNewProduct": true
+    //     }, {
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 6,
+    //         "count": 2,
+    //         "isNewProduct": false
+    //     },{
+    //         "packFormat": "ECONOMY",
+    //         "ownerID": 6,
+    //         "count": 2,
+    //         "isNewProduct": true
+    //     }, {
+    //         "packFormat": "STANDARD",
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "STANDARD",
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "STANDARD",
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "PREMIUM",
+    //         "ownerID": 1,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "PREMIUM",
+    //         "ownerID": 2,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }, {
+    //         "packFormat": "PREMIUM",
+    //         "ownerID": 3,
+    //         "count": 1,
+    //         "isNewProduct": false
+    //     }]
+    // }];
+
     var organiseArray = function(data, category) {
         var result = {
             'technology': {},
@@ -35,13 +588,24 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             'active': {},
             'pack': {}
         }
+
+        var points_x = [0, -0.3, 0.3, 0, -0.3, 0.3, 0, -0.3, 0.3, 0, -0.3, 0.3, 0];
+        var points_y = [0, 0, 0, 0.25, 0.25, -0.25];
+        var new_points_y = [0.5, 0.5, 0.5, 0.75, 0.75, 0.75];
+
+        var pack_points_x = [0, -0.1, 0.1, -0.2, 0.2, -0.3, 0.3, -0.4, 0.4];
+        var pack_points_y = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
+        var new_pack_points_y = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+
+
         result.pack = [{
             name: Label.getContent('Supplier') + ' 1',
             data: [],
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.s1
@@ -51,7 +615,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.s2
@@ -61,7 +625,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.s3
@@ -71,7 +635,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.r1
@@ -81,7 +645,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.r2
@@ -94,7 +658,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.s1
@@ -104,7 +668,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.s2
@@ -114,7 +678,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.s3
@@ -124,7 +688,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.r1
@@ -134,125 +698,94 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
             marker: {
                 enabled: true,
                 symbol: 'circle',
-                radius: 10
+                radius: 7
             },
             lineWidth: 0,
             color: PlayerColor.r2
         }];
 
+        var temp = -1;
+
         data.forEach(function(singleData) {
             if (singleData.categoryID == category) {
 
                 singleData.xfpp_Attributes.forEach(function(singleAttributes) {
+
                     switch (singleAttributes.index) {
                         case 1:
                             if (singleAttributes.ownerID < 4) {
-                                if (singleAttributes.isNewProduct) {
-                                    result.design[singleAttributes.ownerID - 1].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID,
-                                        z: singleAttributes.count,
+                                temp = -1;
+                            } else if (singleAttributes.ownerID > 4) {
+                                temp = -2;
+                            }
+                            if (singleAttributes.isNewProduct) {
+
+                                for (var i = 0; i < singleAttributes.count; i++) {
+                                    result.design[singleAttributes.ownerID + temp].data.push({
+                                        x: singleAttributes.level + points_x[i],
+                                        y: singleAttributes.ownerID + new_points_y[i],
                                         marker: {
                                             symbol: 'triangle'
                                         }
-                                    })
-                                } else {
-                                    result.design[singleAttributes.ownerID - 1].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID,
-                                        z: singleAttributes.count
                                     })
                                 }
-                            } else if (singleAttributes.ownerID > 4) {
-                                if (singleAttributes.isNewProduct) {
-                                    result.design[singleAttributes.ownerID - 2].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID - 1,
-                                        z: singleAttributes.count,
-                                        marker: {
-                                            symbol: 'triangle'
-                                        }
-                                    })
-                                } else {
-                                    result.design[singleAttributes.ownerID - 2].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID - 1,
-                                        z: singleAttributes.count
+                            } else {
+                                for (var i = 0; i < singleAttributes.count; i++) {
+                                    result.design[singleAttributes.ownerID + temp].data.push({
+                                        x: singleAttributes.level + points_x[i],
+                                        y: singleAttributes.ownerID + points_y[i],
                                     })
                                 }
                             }
                             break;
                         case 2:
                             if (singleAttributes.ownerID < 4) {
-                                if (singleAttributes.isNewProduct) {
-                                    result.technology[singleAttributes.ownerID - 1].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID,
-                                        z: singleAttributes.count,
+                                temp = -1;
+                            } else if (singleAttributes.ownerID > 4) {
+                                temp = -2;
+                            }
+                            if (singleAttributes.isNewProduct) {
+
+                                for (var i = 0; i < singleAttributes.count; i++) {
+                                    result.technology[singleAttributes.ownerID + temp].data.push({
+                                        x: singleAttributes.level + points_x[i],
+                                        y: singleAttributes.ownerID + new_points_y[i],
                                         marker: {
                                             symbol: 'triangle'
                                         }
-                                    })
-                                } else {
-                                    result.technology[singleAttributes.ownerID - 1].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID,
-                                        z: singleAttributes.count
                                     })
                                 }
-                            } else if (singleAttributes.ownerID > 4) {
-                                if (singleAttributes.isNewProduct) {
-                                    result.technology[singleAttributes.ownerID - 2].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID - 1,
-                                        z: singleAttributes.count,
-                                        marker: {
-                                            symbol: 'triangle'
-                                        }
-                                    })
-                                } else {
-                                    result.technology[singleAttributes.ownerID - 2].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID - 1,
-                                        z: singleAttributes.count
+                            } else {
+                                for (var i = 0; i < singleAttributes.count; i++) {
+                                    result.technology[singleAttributes.ownerID + temp].data.push({
+                                        x: singleAttributes.level + points_x[i],
+                                        y: singleAttributes.ownerID + points_y[i],
                                     })
                                 }
                             }
-
                             break;
                         case 3:
                             if (singleAttributes.ownerID < 4) {
-                                if (singleAttributes.isNewProduct) {
-                                    result.active[singleAttributes.ownerID - 1].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID,
-                                        z: singleAttributes.count,
+                                temp = -1;
+                            } else if (singleAttributes.ownerID > 4) {
+                                temp = -2;
+                            }
+                            if (singleAttributes.isNewProduct) {
+
+                                for (var i = 0; i < singleAttributes.count; i++) {
+                                    result.active[singleAttributes.ownerID + temp].data.push({
+                                        x: singleAttributes.level + points_x[i],
+                                        y: singleAttributes.ownerID + new_points_y[i],
                                         marker: {
                                             symbol: 'triangle'
                                         }
-                                    })
-                                } else {
-                                    result.active[singleAttributes.ownerID - 1].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID,
-                                        z: singleAttributes.count
                                     })
                                 }
-                            } else if (singleAttributes.ownerID > 4) {
-                                if (singleAttributes.isNewProduct) {
-                                    result.active[singleAttributes.ownerID - 2].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID - 1,
-                                        z: singleAttributes.count,
-                                        marker: {
-                                            symbol: 'triangle'
-                                        }
-                                    })
-                                } else {
-                                    result.active[singleAttributes.ownerID - 2].data.push({
-                                        x: singleAttributes.level,
-                                        y: singleAttributes.ownerID - 1,
-                                        z: singleAttributes.count,
+                            } else {
+                                for (var i = 0; i < singleAttributes.count; i++) {
+                                    result.active[singleAttributes.ownerID + temp].data.push({
+                                        x: singleAttributes.level + points_x[i],
+                                        y: singleAttributes.ownerID + points_y[i],
                                     })
                                 }
                             }
@@ -261,38 +794,28 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 })
 
                 singleData.xfpp_PackFormat.forEach(function(singeFormat) {
+
                     if (singeFormat.ownerID < 4) {
-                        if (singeFormat.isNewProduct) {
-                            result.pack[singeFormat.ownerID - 1].data.push({
-                                x: getFormatValue(singeFormat.packFormat),
-                                y: singeFormat.ownerID,
-                                z: singeFormat.count,
+                        temp = -1;
+                    } else if (singeFormat.ownerID > 4) {
+                        temp = -2;
+                    }
+                    if (singeFormat.isNewProduct) {
+
+                        for (var i = 0; i < singeFormat.count; i++) {
+                            result.pack[singeFormat.ownerID + temp].data.push({
+                                x: getFormatValue(singeFormat.packFormat) + pack_points_x[i],
+                                y: singeFormat.ownerID+temp + new_pack_points_y[i],
                                 marker: {
                                     symbol: 'triangle'
                                 }
-                            })
-                        } else {
-                            result.pack[singeFormat.ownerID - 1].data.push({
-                                x: getFormatValue(singeFormat.packFormat),
-                                y: singeFormat.ownerID,
-                                z: singeFormat.count
                             })
                         }
-                    } else if (singeFormat.ownerID > 4) {
-                        if (singeFormat.isNewProduct) {
-                            result.pack[singeFormat.ownerID - 2].data.push({
-                                x: getFormatValue(singeFormat.packFormat),
-                                y: singeFormat.ownerID - 1,
-                                z: singeFormat.count,
-                                marker: {
-                                    symbol: 'triangle'
-                                }
-                            })
-                        } else {
-                            result.pack[singeFormat.ownerID - 2].data.push({
-                                x: getFormatValue(singeFormat.packFormat),
-                                y: singeFormat.ownerID - 1,
-                                z: singeFormat.count
+                    } else {
+                        for (var i = 0; i < singeFormat.count; i++) {
+                            result.pack[singeFormat.ownerID + temp].data.push({
+                                x: getFormatValue(singeFormat.packFormat) + pack_points_x[i],
+                                y: singeFormat.ownerID+temp + pack_points_y[i],
                             })
                         }
                     }
@@ -336,7 +859,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -377,7 +900,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -419,7 +942,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -481,7 +1004,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -523,7 +1046,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -565,7 +1088,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -607,7 +1130,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -669,7 +1192,7 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Count') + ':' + this.point.z + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Value') + ':' + this.point.x.toFixed(0) + '</p>';
                         return s;
                     },
                     shared: false,
