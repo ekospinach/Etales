@@ -82,6 +82,10 @@
         width: 1024px;
         height: 500px;
     }
+    .large-top{
+        width: 1024px;
+        height: 250px;
+    }
     .normal-sp-left{
         width: 500px;
         height: 450px;
@@ -3512,6 +3516,32 @@
                     <h3><a> {{Label.getContent('Financials')}} </a> - {{Label.getContent('Trade Profits')}} - {{Label.getContent('HealthBeauties')}}</h3>
                     <hr>
                     <highchart id="chart106" class="large-size" config="trade_heaFinancial"></highchart>
+                </section>
+            </section>
+
+            <section ng-controller='supplierKPIsCtrl'>
+                <!--11-->
+                <section>
+                    <h3><a> {{Label.getContent('KPIs')}} </a> - {{Label.getContent('Portfolio Strength')}}</h3>
+                    <hr>
+                    <highchart id="chart111" class="normal-sp-left" config="supplierKPI.portfolio.ele"></highchart>
+                    <highchart id="chart112" class="normal-sp-right" config="supplierKPI.portfolio.hea"></highchart>
+
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('KPIs')}} </a> - {{Label.getContent('B&M Channel Strength')}}</h3>
+                    <hr>
+                    <highchart id="chart113" class="large-top" config="supplierKPI.bm.ele"></highchart>
+                    <highchart id="chart114" class="large-top" config="supplierKPI.bm.hea"></highchart>
+
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('KPIs')}} </a> - {{Label.getContent('Online Channel Strength')}}</h3>
+                    <hr>
+                    <highchart id="chart113" class="large-top" config="supplierKPI.online.ele"></highchart>
+                    <highchart id="chart114" class="large-top" config="supplierKPI.online.hea"></highchart>
+
                 </section>
             </section>
 

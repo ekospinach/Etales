@@ -1263,6 +1263,7 @@ var getLabelBase = function(){
 		{id:'Promotional Activities',  ENG:'Promotional Activities',  CHN:'Promotional Activities',  RUS:''},	
 		{id:'Capital Investments',  ENG:'Capital Investments',  CHN:'Capital Investments',  RUS:''},	
 		{id:'Market Evolution',  ENG:'Market Evolution',  CHN:'Market Evolution',  RUS:''},	
+		{id:'KPIs',  ENG:'KPIs',  CHN:'KPIs',  RUS:''},	
 
 
 
