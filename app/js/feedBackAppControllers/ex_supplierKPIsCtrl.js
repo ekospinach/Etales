@@ -63,7 +63,7 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 yAxis: {
                     title: {
-                        text: $scope.Label.getContent('Strength Index'),
+                        text: Label.getContent('Strength Index'),
                         style: {
                             'font-size': '16px'
                         }
@@ -72,7 +72,7 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 xAxis: {
                     title: {
-                        text: $scope.Label.getContent('Period'),
+                        text: Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -80,7 +80,7 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Period') + ':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Strength Index') + ':' + this.point.y.toFixed(2) + '</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + Label.getContent('Period') + ':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + Label.getContent('Strength Index') + ':' + this.point.y.toFixed(2) + '</p>';
                         return s;
                     },
                     shared: false,
@@ -186,7 +186,7 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
                 xAxis: [{
                     categories: categories,
                     title: {
-                        text: $scope.Label.getContent('Period'),
+                        text: Label.getContent('Period'),
                         style: {
                             'font-size': '16px'
                         }
@@ -219,7 +219,7 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
                 },
                 tooltip: {
                     formatter: function() {
-                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + $scope.Label.getContent('Period') + ':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + ' %</p>';
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + Label.getContent('Period') + ':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + ' %</p>';
                         return s;
                     },
                     shared: false,
@@ -249,6 +249,136 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
         return result;
     }
 
+    var loadAggregatedChannels = function(data, category, market, periods, type) {
+
+        var series = [{
+            "name": Label.getContent('Total Sales'),
+            "data": [],
+            color: PlayerColor.s1
+        }, {
+            "name": Label.getContent('Online'),
+            "data": [],
+            color: PlayerColor.online
+        }, {
+            "name": Label.getContent('Traditional Trade'),
+            "data": [],
+            color: PlayerColor.r3
+        }, {
+            "name": Label.getContent('Modem Retailers'),
+            "data": [],
+            color: PlayerColor.r1
+        }];
+        periods.forEach(function(singlePeriod) {
+            if (type == "salesVolume") {
+
+                data.xf_AggregatedChannelsSalesVolume.forEach(function(singleData) {
+                    if (singleData.marketID == market && singleData.period == singlePeriod && singleData.categoryID == category) {
+                        switch (singleData.aggregatedChannel) {
+                            case 'TOTAL_MARKET':
+                                series[0].data.push(singleData.value);
+                                break;
+                            case 'ONLINE_SALES':
+                                series[1].data.push(singleData.value);
+                                break;
+                            case 'TRADITIONAL_TRADE':
+                                series[2].data.push(singleData.value);
+                                break;
+                            case 'MODERN_RETAILERS':
+                                series[3].data.push(singleData.value);
+                                break;
+                        }
+                    }
+                })
+
+            } else if (type == "salesValue") {
+                data.xf_AggregatedChannelsSalesValue.forEach(function(singleData) {
+                    if (singleData.marketID == market && singleData.period == singlePeriod && singleData.categoryID == category) {
+                        switch (singleData.aggregatedChannel) {
+                            case 'TOTAL_MARKET':
+                                series[0].data.push(singleData.value);
+                                break;
+                            case 'ONLINE_SALES':
+                                series[1].data.push(singleData.value);
+                                break;
+                            case 'TRADITIONAL_TRADE':
+                                series[2].data.push(singleData.value);
+                                break;
+                            case 'MODERN_RETAILERS':
+                                series[3].data.push(singleData.value);
+                                break;
+                        }
+                    }
+                })
+
+            } else if (type == "netProfit") {
+                data.xf_AggregatedChannelsNetProfit.forEach(function(singleData) {
+                    if (singleData.marketID == market && singleData.period == singlePeriod && singleData.categoryID == category) {
+                        switch (singleData.aggregatedChannel) {
+                            case 'TOTAL_MARKET':
+                                series[0].data.push(singleData.value);
+                                break;
+                            case 'ONLINE_SALES':
+                                series[1].data.push(singleData.value);
+                                break;
+                            case 'TRADITIONAL_TRADE':
+                                series[2].data.push(singleData.value);
+                                break;
+                            case 'MODERN_RETAILERS':
+                                series[3].data.push(singleData.value);
+                                break;
+                        }
+                    }
+                })
+            }
+
+        })
+        result = {
+            options: {
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                },
+                yAxis: {
+                    title: {
+                        text: '',
+                        style: {
+                            'font-size': '16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
+                },
+                xAxis: {
+                    categories: periods,
+                    title: {
+                        text: Label.getContent('Period'),
+                        style: {
+                            'font-size': '16px'
+                        }
+                    }
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + Label.getContent('Strength Index') + ':' + this.point.y.toFixed(2) + '</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: ''
+                }
+            },
+            series: series,
+            loading: false
+        }
+        console.log('aggregatedChannels:'+result);
+        return result;
+
+    }
+
     var initPage = function() {
         var Request = GetRequest();
         var result = {
@@ -263,9 +393,16 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
             'online': {
                 'ele': {},
                 'hea': {}
-            }
+            },
+            'salesVolume': {
+                'ele': {},
+                'hea': {}
+            },
+            'salesValue': {},
+            'netProfit': {},
         }
         var periodShown = [];
+        var lessPerios = [Request['period']-1,Request['period']];
 
         for (var i = -3; i <= Request['period']; i++) {
             periodShown.push(i);
@@ -273,52 +410,56 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
 
         result.portfolio.ele = loadPortfolioStrength($scope.normalfeedback.f_PortfolioStrength, 1, periodShown);
         result.portfolio.ele.options.title = {
-            text: $scope.Label.getContent('Elecssories'),
+            text: Label.getContent('Elecssories'),
             style: {
                 'font-size': '16px'
             }
         }
         result.portfolio.hea = loadPortfolioStrength($scope.normalfeedback.f_PortfolioStrength, 2, periodShown);
         result.portfolio.hea.options.title = {
-            text: $scope.Label.getContent('HealthBeauties'),
+            text: Label.getContent('HealthBeauties'),
             style: {
                 'font-size': '16px'
             }
         }
 
-        result.bm.ele = loadChannel($scope.normalfeedback, 1, [Request['period'] - 1, Request['period']], 'bm');
+        result.bm.ele = loadChannel($scope.normalfeedback, 1, lessPerios, 'bm');
         result.bm.ele.options.title = {
-            text: $scope.Label.getContent('Elecssories'),
+            text: Label.getContent('Elecssories'),
             style: {
                 'font-size': '16px'
             }
         }
-        result.bm.hea = loadChannel($scope.normalfeedback, 2, [Request['period'] - 1, Request['period']], 'bm');
+        result.bm.hea = loadChannel($scope.normalfeedback, 2, lessPerios, 'bm');
         result.bm.hea.options.title = {
-            text: $scope.Label.getContent('HealthBeauties'),
+            text: Label.getContent('HealthBeauties'),
             style: {
                 'font-size': '16px'
             }
         }
 
-        result.online.ele = loadChannel($scope.normalfeedback, 1, [Request['period'] - 1, Request['period']], 'online');
+        result.online.ele = loadChannel($scope.normalfeedback, 1, lessPerios, 'online');
         result.online.ele.options.title = {
-            text: $scope.Label.getContent('Elecssories'),
+            text: Label.getContent('Elecssories'),
             style: {
                 'font-size': '16px'
             }
         }
-        result.online.hea = loadChannel($scope.normalfeedback, 2, [Request['period'] - 1, Request['period']], 'online');
+        result.online.hea = loadChannel($scope.normalfeedback, 2, lessPerios, 'online');
         result.online.hea.options.title = {
-            text: $scope.Label.getContent('HealthBeauties'),
+            text: Label.getContent('HealthBeauties'),
             style: {
                 'font-size': '16px'
             }
         }
+
+        result.salesVolume.ele = loadAggregatedChannels($scope.feedback, 1, 3, periodShown, 'salesVolume');
+        result.salesVolume.hea = loadAggregatedChannels($scope.feedback, 2, 3, periodShown, 'salesVolume');
+        result.salesValue = loadAggregatedChannels($scope.feedback, 3, 3, periodShown, 'salesValue');
+        result.netProfit = loadAggregatedChannels($scope.feedback, 3, 3, periodShown, 'netProfit');
+
 
         $scope.supplierKPI = result;
-
-
     }
     $scope.$watch('feedback', function(newValue, oldValue) {
         if (newValue != undefined) {

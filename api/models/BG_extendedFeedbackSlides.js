@@ -73,18 +73,12 @@ var BG_extendedFeedbackSlidesSchema = mongoose.Schema({
 })
 
 
-// xfpp_AttributesSKUCount : array[TSpecs, TSpecsIndices, TBrandOwners, Boolean] of byte; { FALSE for existing SKUs }
-// xfpp_PackFormatSKUCount : array[TVariantPackFormat, TBrandOwners, Boolean] of byte;    { TRUE for new SKUs      }
-
-// var attributesSchema = mongoose.Schema({
-
-// })
 
 var aggregatedChannelsDetailSchema = mongoose.Schema({
     marketID: Number,
     categoryID: Number,
     period: Number,
-    aggregatedChannels: String,
+    aggregatedChannels: String,/*MODERN_RETAILERS TRADITIONAL_TRADE ONLINE_SALES TOTAL_MARKET*/
     value: Number
 })
 

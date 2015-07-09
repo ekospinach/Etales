@@ -1264,6 +1264,8 @@ var getLabelBase = function(){
 		{id:'Capital Investments',  ENG:'Capital Investments',  CHN:'Capital Investments',  RUS:''},	
 		{id:'Market Evolution',  ENG:'Market Evolution',  CHN:'Market Evolution',  RUS:''},	
 		{id:'KPIs',  ENG:'KPIs',  CHN:'KPIs',  RUS:''},	
+		{id:'Modem Retailers',  ENG:'Modem Retailers',  CHN:'Modem Retailers',  RUS:''},	
+		{id:'Impact of eMall on Retailers',  ENG:'Impact of eMall on Retailers',  CHN:'Impact of eMall on Retailers',  RUS:''},	
 
 
 
