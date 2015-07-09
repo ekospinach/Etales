@@ -103,7 +103,7 @@ implementation {----------------------------------------------------------------
   var
     TempResult : TVariantInventoriesDetails;
     Age        : TInventoryAgesTotal;
-    a, b, c    : single;
+    a, b, c    : double;
     i          : TSpecs;
 
   begin

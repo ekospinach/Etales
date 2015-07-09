@@ -259,9 +259,15 @@ const
   kernel_POSActivitiesIntensity_OK                   = 93974;
   kernel_InStoreActivities_OK                        = 93979;
 
-  kernel_ErrorInOtherCompletingResults               = 93991;
-  kernel_OtherCompletingResults_OK                   = 93999;
-  
+  kernel_ErrorInShelfSpaceShares                     = 93991;
+  kernel_ShelfSpaceShares_OK                         = 93992;
+  kernel_ErrorInSharesInChannel                      = 93993;
+  kernel_SharesInChannel_OK                          = 93994;
+  kernel_ErrorInPortfolioStrength                    = 93995;
+  kernel_PortfolioStrength_OK                        = 93996;
+  kernel_ErrorInFinalScores                          = 93997;
+  kernel_FinalScores_OK                              = 93998;
+
   kernel_SimulationRun_OK                            = 94000;
 
 

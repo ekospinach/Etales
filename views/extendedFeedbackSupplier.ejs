@@ -82,6 +82,10 @@
         width: 1024px;
         height: 500px;
     }
+    .large-top{
+        width: 1024px;
+        height: 250px;
+    }
     .normal-sp-left{
         width: 500px;
         height: 450px;
@@ -1583,6 +1587,73 @@
                         </tbody>
                     </table>
                 </section>
+            </section>
+            <section ng-controller='productPortfolioCtrl'>
+                <!--3-->
+                <section>
+                    <h3><a> {{Label.getContent('Available Product Portfolio')}}</a> - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <highchart id="chart31" config="ele_technology" class="small-small-left"></highchart>
+                    <highchart id="chart32" config="ele_design" class="small-small-right"></highchart>
+                    <highchart id="chart33" config="ele_active" class="small-small-left"></highchart>
+                    <highchart id="chart34" config="ele_pack" class="small-small-right"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Available Product Portfolio')}}</a> - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart35" config="hea_technology" class="small-small-left"></highchart>
+                    <highchart id="chart36" config="hea_design" class="small-small-right"></highchart>
+                    <highchart id="chart37" config="hea_active" class="small-small-left"></highchart>
+                    <highchart id="chart38" config="hea_pack" class="small-small-right"></highchart>
+                </section>
+            </section>
+
+            <section ng-controller='capitalInvestmentCtrl'>
+                <!--4-->
+                <section>
+                    <h3><a> {{Label.getContent('Capital Investments')}} </a> - {{Label.getContent('Elecssories')}}</h3>
+                    <hr>
+                    <highchart id="chart41" config="capitalInvestment.ele.investmentsConfig" class="small-small-left"></highchart>
+                    <highchart id="chart42" config="capitalInvestment.ele.resultCapabilitiesConfig" class="small-small-right"></highchart>
+                    <highchart id="chart43" config="capitalInvestment.ele.flexibilityConfig" class="small-small-left"></highchart>
+                    <highchart id="chart44" config="capitalInvestment.ele.capacityConfig" class="small-small-right"></highchart>
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Capital Investments')}} </a> - {{Label.getContent('HealthBeauties')}}</h3>
+                    <hr>
+                    <highchart id="chart45" config="capitalInvestment.hea.investmentsConfig" class="small-small-left"></highchart>
+                    <highchart id="chart46" config="capitalInvestment.hea.resultCapabilitiesConfig" class="small-small-right"></highchart>
+                    <highchart id="chart47" config="capitalInvestment.hea.flexibilityConfig" class="small-small-left"></highchart>
+                    <highchart id="chart48" config="capitalInvestment.hea.capacityConfig" class="small-small-right"></highchart>
+                </section>
+            </section>
+
+            <section ng-controller='marketEvolutionCtrl'>
+                <!--5-->
+                <section>
+                    <h3><a> {{Label.getContent('Market Evolution')}} </a> - {{Label.getContent('Consumer Segments')}}</h3>
+                    <hr>
+                    <div class="chart-container" market-evolution-consumer ng-model='myModel'>
+                        <div id="shareChart50" class="marketEvolutionConsumerChart sp-small-left"></div>
+                        <div id="shareChart51" class="marketEvolutionConsumerChart sp-small-right"></div>
+                        <div id="shareChart52" class="marketEvolutionConsumerChart sp-small-left"></div>
+                        <div id="shareChart53" class="marketEvolutionConsumerChart sp-small-right"></div>
+                    </div>
+                    <ul id="marketEvolutionConsumerLegend" class="legend"></ul>
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('Market Evolution')}} </a> - {{Label.getContent('Shopper Segments')}}</h3>
+                    <hr>
+                    <div class="chart-container" market-evolution-shopper ng-model='myModel'>
+                        <div id="shareChart54" class="marketEvolutionShopperChart sp-small-left"></div>
+                        <div id="shareChart55" class="marketEvolutionShopperChart sp-small-right"></div>
+                        <div id="shareChart56" class="marketEvolutionShopperChart sp-small-left"></div>
+                        <div id="shareChart57" class="marketEvolutionShopperChart sp-small-right"></div>
+                    </div>
+                    <ul id="marketEvolutionShopperLegend" class="legend"></ul>
+                </section>
+                
             </section>
 
             <section ng-controller='awarenessCtrl'>
@@ -3448,6 +3519,67 @@
                 </section>
             </section>
 
+            <section ng-controller='supplierKPIsCtrl'>
+                <!--11-->
+                <section>
+                    <h3><a> {{Label.getContent('KPIs')}} </a> - {{Label.getContent('Portfolio Strength')}}</h3>
+                    <hr>
+                    <highchart id="chart111" class="normal-sp-left" config="supplierKPI.portfolio.ele"></highchart>
+                    <highchart id="chart112" class="normal-sp-right" config="supplierKPI.portfolio.hea"></highchart>
+
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('KPIs')}} </a> - {{Label.getContent('B&M Channel Strength')}}</h3>
+                    <hr>
+                    <highchart id="chart113" class="large-top" config="supplierKPI.bm.ele"></highchart>
+                    <highchart id="chart114" class="large-top" config="supplierKPI.bm.hea"></highchart>
+
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('KPIs')}} </a> - {{Label.getContent('Online Channel Strength')}}</h3>
+                    <hr>
+                    <highchart id="chart115" class="large-top" config="supplierKPI.online.ele"></highchart>
+                    <highchart id="chart116" class="large-top" config="supplierKPI.online.hea"></highchart>
+
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('KPIs')}} </a> - {{Label.getContent('Online Channel Strength')}}</h3>
+                    <hr>
+                    <highchart id="chart117" class="large-top" config="supplierKPI.online.ele"></highchart>
+                    <highchart id="chart118" class="large-top" config="supplierKPI.online.hea"></highchart>
+
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('Impact of eMall on Retailers')}}</a> - {{Label.getContent('Sales')}} - {{Label.getContent('Elecssories')}} ({{Label.getContent('Volume')}})</h3>
+                    <hr>
+                    <highchart id="chart119" class="large-size" config="supplierKPI.salesVolume.ele"></highchart>
+
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Impact of eMall on Retailers')}}</a> - {{Label.getContent('Sales')}} - {{Label.getContent('HealthBeauties')}} ({{Label.getContent('Volume')}})</h3>
+                    <hr>
+                    <highchart id="chart1110" class="large-size" config="supplierKPI.salesVolume.hea"></highchart>
+
+                </section>
+                <section>
+                    <h3><a> {{Label.getContent('Impact of eMall on Retailers')}}</a> - {{Label.getContent('Sales')}} ({{Label.getContent('Value')}})</h3>
+                    <hr>
+                    <highchart id="chart1111" class="large-size" config="supplierKPI.salesValue"></highchart>
+
+                </section>
+
+                <section>
+                    <h3><a> {{Label.getContent('Impact of eMall on Retailers')}}</a> - {{Label.getContent('Net Profits')}}</h3>
+                    <hr>
+                    <highchart id="chart1112" class="large-size" config="supplierKPI.netProfit"></highchart>
+
+                </section>
+
+            </section>
+
             <section>
                 <h1>{{Label.getContent('THE END')}}</h1>
                 <small>{{Label.getContent('Designed by')}} : <a href="http://www.hcdglearning.com">{{Label.getContent('HCD Learning')}}</a></small>
@@ -3466,13 +3598,17 @@
     <script src="js/utils/labelBase.js"></script>
     <script src="js/feedBackAppControllers/directives.js"></script>
     <script src="js/feedBackAppControllers/supplierExtendCtrl.js"></script>
-    <script src="js/feedBackAppControllers/bmPricesCtrl.js"></script>
-    <script src="js/feedBackAppControllers/awarenessCtrl.js"></script>
-    <script src="js/feedBackAppControllers/productAvailabilityCtrl.js"></script>
-    <script src="js/feedBackAppControllers/supplierFinancialandKPICtrl.js"></script>
-    <script src="js/feedBackAppControllers/supplierRetailSalesCtrl.js"></script>
-    <script src="js/feedBackAppControllers/supplierVariantPerceptionCtrl.js"></script>
-    <script src="js/feedBackAppControllers/suppliersProfitabilityPerCustomerCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_bmPricesCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_supplierAwarenessCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_productAvailabilityCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_supplierFinancialandKPICtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_supplierRetailSalesCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_supplierVariantPerceptionCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_productPortfolioCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_supplierCapitalInvestmentCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_supplierMarketEvolutionCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_supplierKPIsCtrl.js"></script>
+    <script src="js/feedBackAppControllers/ex_suppliersProfitabilityPerCustomerCtrl.js"></script>
     <script>
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration

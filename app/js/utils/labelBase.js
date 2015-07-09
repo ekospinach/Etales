@@ -1211,6 +1211,7 @@ var getLabelBase = function(){
 		{id:'Web Strength Index',  ENG:'Web Strength Index',  CHN:'Web Strength Index',  RUS:''},
 
 		//supplierExtend
+		{id:'Available Product Portfolio',  ENG:'Available Product Portfolio',  CHN:'Available Product Portfolio',  RUS:''},
 		{id:'Product Availability at Stores',  ENG:'Product Availability at Stores',  CHN:'Product Availability at Stores',  RUS:''},
 		{id:'Shelf space allocated',  ENG:'Shelf space allocated',  CHN:'Shelf space allocated',  RUS:''},
 		{id:'Inventory Volume',  ENG:'Inventory Volume',  CHN:'Inventory Volume',  RUS:''},
@@ -1246,6 +1247,9 @@ var getLabelBase = function(){
 		{id:'feedback Online',  ENG:'Online',  CHN:'Online',  RUS:''},	
 		//retailerExtend		
 
+		{id:'Count',  ENG:'Count',  CHN:'Count',  RUS:''},	
+
+
 		//supplier
 		{id:'Retail Sales of Brands',  ENG:'Retail Sales of Brands',  CHN:'Retail Sales of Brands',  RUS:''},	
 		{id:'Total Market',  ENG:'Total Market',  CHN:'Total Market',  RUS:''},	
@@ -1257,6 +1261,11 @@ var getLabelBase = function(){
 		{id:'Retailer Local Advertising',  ENG:'Retailer Local Advertising',  CHN:'Retailer Local Advertising',  RUS:''},	
 		{id:'Store Perceptions',  ENG:'Store Perceptions',  CHN:'Store Perceptions',  RUS:''},	
 		{id:'Promotional Activities',  ENG:'Promotional Activities',  CHN:'Promotional Activities',  RUS:''},	
+		{id:'Capital Investments',  ENG:'Capital Investments',  CHN:'Capital Investments',  RUS:''},	
+		{id:'Market Evolution',  ENG:'Market Evolution',  CHN:'Market Evolution',  RUS:''},	
+		{id:'KPIs',  ENG:'KPIs',  CHN:'KPIs',  RUS:''},	
+		{id:'Modem Retailers',  ENG:'Modem Retailers',  CHN:'Modem Retailers',  RUS:''},	
+		{id:'Impact of eMall on Retailers',  ENG:'Impact of eMall on Retailers',  CHN:'Impact of eMall on Retailers',  RUS:''},	
 
 
 	]

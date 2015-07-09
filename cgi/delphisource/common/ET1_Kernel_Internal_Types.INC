@@ -16,6 +16,7 @@ TVariantInternal =
     v_AppliedDiscountRate                          : array[TMarketsTotal, TBMRetailersTotal] of single;
     v_Attractiveness                               : array[TMarkets, TSegments, TShoppersKind, TAllStores] of single;
     v_AverageMarketPrice                           : array[TMarkets] of single;
+    v_BMDemand                                     : single;
     v_ClosingStockCover                            : array[TMarketsTotal, TAccountsTotal] of single;  { expressed as decimal }
     v_CompositionAtSupplier                        : array[TProducerDivisions] of TVariantComposition;
     v_CompositionAtTrade                           : array[TMarketsTotal, TAllStoresTotal] of TVariantComposition;
@@ -54,6 +55,7 @@ TVariantInternal =
     v_Div_GrossSalesValueShareInBrand              : array[TMarketsTotal, TProducerDivisions] of single;
     v_Div_GrossSalesValueShareInCategory           : array[TMarketsTotal, TProducerDivisions] of single;
     v_Div_Interest                                 : array[TProducerDivisions] of single;
+    v_Div_InternalTransfersCost                    : array[TMarketsTotal, TProducerDivisions] of single;
     v_Div_InventoryHoldingCost                     : array[TMarketsTotal, TProducerDivisions] of single;  
     v_Div_MaterialCosts                            : array[TMarketsTotal, TProducerDivisions] of single;
     v_Div_NetProfit                                : array[TProducerDivisions] of single;
@@ -94,6 +96,7 @@ TVariantInternal =
     v_NextPriceBM                                  : single;
     v_OnLineActualVolume                           : single;
     v_OnLinePlannedVolume                          : single;
+    v_OnLineDemand                                 : single;
     v_OrderVolume                                  : array[TMarketsTotal, TBMRetailers] of single;
     v_OtherCompensation                            : array[TMarketsTotal, TBMRetailersTotal] of single;
     v_OutOfStockLevel                              : array[TMarkets, TSegmentsTotal, TShoppersKind, TAllStores] of single;
@@ -149,19 +152,27 @@ TVariantInternal =
     v_Ret_Taxes                                    : array[TMarketsTotal, TBMRetailers] of single;
     v_Ret_TotalAdvertising                         : array[TMarketsTotal, TBMRetailers] of single;
     v_Ret_TotalMaterialCost                        : array[TMarketsTotal, TBMRetailers] of single;
+    v_RequiredProduction                           : single;
     v_ShelfSpace                                   : array[TMarketsTotal, TAllStoresTotal] of single;
-    v_ShelfSpaceCorrectedShare                     : array[TMarketsTotal, TAllStoresTotal] of single;  { corrected for proportion Elecs. / HB. }
+    v_SocialNetworksScore                          : TWebTrawlerIndices;
     v_StartingStockCover                           : array[TMarketsTotal, TAccountsTotal] of single;  { expressed as decimal }
     v_Sup_AcquisitionCost                          : single;  { across current production and inventory }
     v_Sup_CostOfGoodsSold                          : array[TMarketsTotal, TAccountsTotal] of single;  { Three B&M retailers + On-Line }
+    v_Sup_DiscontinuedGoodsCost                    : array[TMarketsTotal, TAccountsTotal] of single; 
+    v_Sup_EMallCommission                          : array[TMarketsTotal, TAccountsTotal] of single;
+    v_Sup_GrossProfit                              : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_GrossSalesValue                          : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_GrossSalesValueChange                    : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_GrossSalesValueShareInBrand              : array[TMarketsTotal, TAccountsTotal] of single;
+    v_Sup_InternalTransfersCost                    : array[TMarketsTotal, TAccountsTotal] of single;
+    v_Sup_InventoryHoldingCost                     : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_NetSalesValue                            : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_NetSalesValueChange                      : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_NetSalesValueShareInCategory             : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_SalesVolume                              : array[TMarketsTotal, TAccountsTotal] of single;
+    v_Sup_ServiceCosts                             : array[TMarketsTotal, TAccountsTotal] of single;
     v_Sup_ShareInBrandSalesVolume                  : array[TMarketsTotal, TAccounts] of single;
+    v_Sup_TotalMaterialCost                        : array[TMarketsTotal, TAccountsTotal] of single;    
     v_TargetBonus                                  : array[TMarketsTotal, TBMRetailersTotal] of TBonusDetails;
     v_TechnicalPerception                          : array[TMarkets] of TVariantPerceptionsData;
     v_TermsOfPayment                               : array[TMarketsTotal, TBMRetailers] of TDelayOfPayment;
@@ -239,6 +250,7 @@ TBrandInternal =
     b_Div_GrossSalesValueShareInCategory           : array[TMarketsTotal, TProducerDivisions] of single;
     b_Div_Interest                                 : array[TProducerDivisions] of single;
     b_Div_InventoryHoldingCost                     : array[TMarketsTotal, TProducerDivisions] of single;
+    b_Div_InternalTransfersCost                    : array[TMarketsTotal, TProducerDivisions] of single;
     b_Div_MaterialCosts                            : array[TMarketsTotal, TProducerDivisions] of single;
     b_Div_NetProfit                                : array[TMarketsTotal, TProducerDivisions] of single;
     b_Div_NetProfitChange                          : array[TMarketsTotal, TProducerDivisions] of single;
@@ -337,11 +349,11 @@ TBrandInternal =
     b_Ret_TotalAdvertising                         : array[TMarketsTotal, TBMRetailers] of single;
     b_Ret_TotalMaterialCost                        : array[TMarketsTotal, TBMRetailers] of single;
     b_ShelfSpace                                   : array[TMarketsTotal, TAllStoresTotal] of single;
-    b_ShelfSpaceCorrectedShare                     : array[TMarketsTotal, TAllStoresTotal] of single;  { corrected for proportion Elecs. / HB. }
     b_SocialNetworksScore                          : TWebTrawlerIndices;
     b_StartingStockCover                           : array[TMarketsTotal, TAccountsTotal] of single;  { expressed as decimal }
     b_Sup_AcquisitionCost                          : single;  { across current production and inventory }
     b_Sup_CostOfGoodsSold                          : array[TMarketsTotal, TAccountsTotal] of single;  { Three B&M retailers + On-Line }
+    b_Sup_GrossProfit                              : array[TMarketsTotal, TAccountsTotal] of single;
     b_Sup_GrossSalesValue                          : array[TMarketsTotal, TAccountsTotal] of single;
     b_Sup_GrossSalesValueChange                    : array[TMarketsTotal, TAccountsTotal] of single;
     b_Sup_NetSalesValue                            : array[TMarketsTotal, TAccountsTotal] of single;
@@ -409,8 +421,11 @@ TProducerInternal =
     p_CashBeginningOfYear                      : array[TCategoriesTotal] of single;
     p_CashEndOfYear                            : array[TCategoriesTotal] of single;
     p_ChannelShareInGrossSalesValue            : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
+    p_ChannelShareInGrossProfit                : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_ChannelShareInTradeProfit                : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_ChannelShareInVolumeSales                : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
+    p_ChannelShareInTradeSupport               : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
+    p_ChannelShareInShelfSpace                 : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_ClosingInventory                         : array[TCategories, TProducerDivisions] of single;
     p_ClosingInventoryValue                    : array[TCategoriesTotal, TProducerDivisions] of single;
     p_ConsignementVolume                       : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single; 
@@ -427,30 +442,39 @@ TProducerInternal =
     p_DiscontinuedGoodsVolume                  : array[TMarketsTotal, TCategories, TProducerDivisions] of single;
     p_Div_ChannelSalesValueShare               : array[TCategoriesTotal, TProducerDivisions] of single;
     p_Div_ChannelSalesVolumeShare              : array[TCategories, TProducerDivisions] of single;
-    p_Div_ValueMarketSharePerChannel           : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
-    p_Div_VolumeMarketSharePerChannel          : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_CostOfGoodsSold                      : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_EBIT                                 : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;    
     p_Div_EMallCommission                      : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_ExceptionalCostsProfits              : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_GrossProfit                          : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_GrossProfitChange                    : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_GrossProfitMargin                    : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_GrossSalesValue                      : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_GrossSalesValueChange                : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_InitialInventoryValue                : array[TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_Interest                             : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_InternalTransfersCost                : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_InventoryHoldingCost                 : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_InvestInDesign                       : array[TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_InvestInProductionFlexibility        : array[TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_InvestInTechnology                   : array[TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_InvestmentInCapacityChange           : array[TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_MarketResearchCost                   : array[TCategoriesTotal, TProducerDivisions] of single;
     p_Div_MaterialCosts                        : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_NetSalesValue                        : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_NetSalesValueChange                  : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;   
     p_Div_ReturnOnOperationalBudget            : array[TCategoriesTotal, TProducerDivisions] of single;
     p_Div_SalesVolume                          : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_ServiceCosts                         : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_ShareInCategory                      : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_ShareInGrossSales                    : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
-    p_Div_ServiceCosts                         : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_TotalTradeSupport                    : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_TradeAndMarketing                    : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_Div_TradeAndMarketingAsPercentOfSales    : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_ValueMarketSharePerChannel           : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
+    p_Div_VolumeMarketSharePerChannel          : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_DividentsPaid                            : array[TCategoriesTotal] of single;
     p_EMallSupport                             : array[TMarketsTotal, TCategoriesTotal] of single;
-    p_ExceptionalCostsProfits                  : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_FixedAssets                              : array[TCategoriesTotal, TProducerDivisions] of single;
     p_GeneralExpenses                          : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_GrantedBudgetExtensionsToDate            : single;  
@@ -462,18 +486,10 @@ TProducerInternal =
     p_IncrementalValueMarketShare              : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_InitialBudget                            : single;
     p_InitialInventory                         : array[TCategories, TProducerDivisions] of single;
-    p_InitialInventoryValue                    : array[TCategoriesTotal, TProducerDivisions] of single;
     p_InStoreActivitiesFee                     : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
     p_Intangibles                              : array[TCategoriesTotal] of single;
-    p_Interest                                 : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
-    p_InventoryHoldingCost                     : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
-    p_InvestInDesign                           : array[TCategoriesTotal, TProducerDivisions] of single;
-    p_InvestInProductionFlexibility            : array[TCategoriesTotal, TProducerDivisions] of single;
-    p_InvestInTechnology                       : array[TCategoriesTotal, TProducerDivisions] of single;
-    p_InvestmentInCapacityChange               : array[TCategoriesTotal, TProducerDivisions] of single;
     p_LandAndEquipment                         : array[TCategoriesTotal] of single;
     p_MarketingEffectiveness                   : array[TCategoriesTotal] of single;
-    p_MarketResearchCost                       : array[TCategoriesTotal, TProducerDivisions] of single;
     p_MarketResearchOrders                     : TMarketResearchOrders;
     p_MarketSalesValue                         : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
     p_MarketSalesValueChange                   : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
@@ -526,6 +542,7 @@ TProducerInternal =
     p_SalesVolumeChange                        : array[TMarketsTotal, TCategories, TAccountsTotal] of single;
     p_ShareInCompanyGrossSalesValue            : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_ShareInGrossSales                        : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
+    p_ShelfSpaceInChannel                      : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_ShoppersShare                            : array[TCategories, TProducerDivisions] of single;
     p_SocialNetworksScore                      : TWebTrawlerIndices;
     p_SoldUnitAverageCost                      : array[TCategories] of single;     { based on sold volume }
@@ -657,7 +674,7 @@ TRetailerInternal =
     r_ServiceLevel                             : array[TMarkets] of TServiceLevel;
     r_ShareInTotalGrossSalesValue              : array[TMarketsTotal, TCategoriesTotal] of single;    
     r_ShareInTotalNetSalesValue                : array[TMarketsTotal, TCategoriesTotal] of single;    
-    r_ShelfSpacePerSupplier                    : array[TMarketsTotal, TCategoriesTotal, TFactoriesTotal] of single;
+    r_ShelfSpacePerSupplier                    : array[TMarketsTotal, TCategories, TFactoriesTotal] of single;
     r_SocialNetworksScore                      : TWebTrawlerIndices;
     r_SoldUnitAverageCost                      : array[TMarketsTotal, TCategories] of single;
     r_SpaceOptimised                           : array[TMarkets, TCategories] of boolean;

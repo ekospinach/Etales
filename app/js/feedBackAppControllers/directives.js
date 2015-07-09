@@ -1490,3 +1490,242 @@ app.directive('awarenessHealthBeauties2', function() {
         });
     }
 })
+
+
+
+
+
+
+app.directive('marketEvolutionConsumer', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(newValue) {
+            if (newValue != undefined) {
+
+                var charts = [];
+
+                //根据角标动态判断是显示还是隐藏每一个图表内对应series的数据
+                function toggleSeries(i) {
+                    var li = $('#marketEvolutionConsumerLegend li:eq(' + i + ')').toggleClass('hidden'),
+                        hidden = li.hasClass('hidden');
+                    //遍历所有图表对象
+                    for (var serie, c = 0; c < charts.length; c++) {
+                        serie = charts[c].series[i];
+                        serie[hidden ? 'hide' : 'show']();
+                    }
+                }
+                charts[0] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart50',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.consumer.ele_urban.options.xAxis,
+                    yAxis: scope.marketEvolution.consumer.ele_urban.options.yAxis,
+                    tooltip: scope.marketEvolution.consumer.ele_urban.options.tooltip,
+                    series: scope.marketEvolution.consumer.ele_urban.series,
+                    title: scope.marketEvolution.consumer.ele_urban.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }, function(chart) {
+                    var $legend = $('#marketEvolutionConsumerLegend');
+                    //动态渲染图例且给每一个li对象绑定click点击事件
+                    for (i = 0; i < chart.series.length; i++) {
+                        (function(serie, i, $legend) {
+                            $('<li>')
+                                .css('color', serie.color)
+                                .append('<span class="circle" style="background-color:' + serie.color + ';">&nbsp;</span>')
+                                .append(serie.name)
+                                .click(function() {
+                                    toggleSeries(i);
+                                })
+                                .appendTo($legend);
+                        })(chart.series[i], i, $legend);
+                    }
+                });
+                charts[1] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart51',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.consumer.ele_rural.options.xAxis,
+                    yAxis: scope.marketEvolution.consumer.ele_rural.options.yAxis,
+                    tooltip: scope.marketEvolution.consumer.ele_rural.options.tooltip,
+                    series: scope.marketEvolution.consumer.ele_rural.series,
+                    title: scope.marketEvolution.consumer.ele_rural.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                });
+                charts[2] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart52',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.consumer.hea_urban.options.xAxis,
+                    yAxis: scope.marketEvolution.consumer.hea_urban.options.yAxis,
+                    tooltip: scope.marketEvolution.consumer.hea_urban.options.tooltip,
+                    series: scope.marketEvolution.consumer.hea_urban.series,
+                    title: scope.marketEvolution.consumer.hea_urban.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                });
+                charts[3] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart53',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.consumer.hea_rural.options.xAxis,
+                    yAxis: scope.marketEvolution.consumer.hea_rural.options.yAxis,
+                    tooltip: scope.marketEvolution.consumer.hea_rural.options.tooltip,
+                    series: scope.marketEvolution.consumer.hea_rural.series,
+                    title: scope.marketEvolution.consumer.hea_rural.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                });
+
+                $('.marketEvolutionConsumerChart').bind('mousedown', function() {
+
+                    $($(this).siblings()).toggle();
+
+                    $(this).toggleClass('modal-chart');
+
+                    $(this).highcharts().reflow();
+                });
+
+
+            }
+
+        });
+    }
+});
+
+app.directive('marketEvolutionShopper', function() {
+    return function(scope, elem, attrs) {
+        scope.$watch(attrs.ngModel, function(newValue) {
+            if (newValue != undefined) {
+
+                var charts = [];
+
+                //根据角标动态判断是显示还是隐藏每一个图表内对应series的数据
+                function toggleSeries(i) {
+                    var li = $('#marketEvolutionShopperLegend li:eq(' + i + ')').toggleClass('hidden'),
+                        hidden = li.hasClass('hidden');
+                    //遍历所有图表对象
+                    for (var serie, c = 0; c < charts.length; c++) {
+                        serie = charts[c].series[i];
+                        serie[hidden ? 'hide' : 'show']();
+                    }
+                }
+                charts[0] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart54',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.shopper.ele_urban.options.xAxis,
+                    yAxis: scope.marketEvolution.shopper.ele_urban.options.yAxis,
+                    tooltip: scope.marketEvolution.shopper.ele_urban.options.tooltip,
+                    series: scope.marketEvolution.shopper.ele_urban.series,
+                    title: scope.marketEvolution.shopper.ele_urban.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }, function(chart) {
+                    var $legend = $('#marketEvolutionShopperLegend');
+                    //动态渲染图例且给每一个li对象绑定click点击事件
+                    for (i = 0; i < chart.series.length; i++) {
+                        (function(serie, i, $legend) {
+                            $('<li>')
+                                .css('color', serie.color)
+                                .append('<span class="circle" style="background-color:' + serie.color + ';">&nbsp;</span>')
+                                .append(serie.name)
+                                .click(function() {
+                                    toggleSeries(i);
+                                })
+                                .appendTo($legend);
+                        })(chart.series[i], i, $legend);
+                    }
+                });
+                charts[1] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart55',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.shopper.ele_rural.options.xAxis,
+                    yAxis: scope.marketEvolution.shopper.ele_rural.options.yAxis,
+                    tooltip: scope.marketEvolution.shopper.ele_rural.options.tooltip,
+                    series: scope.marketEvolution.shopper.ele_rural.series,
+                    title: scope.marketEvolution.shopper.ele_rural.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                });
+                charts[2] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart56',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.shopper.hea_urban.options.xAxis,
+                    yAxis: scope.marketEvolution.shopper.hea_urban.options.yAxis,
+                    tooltip: scope.marketEvolution.shopper.hea_urban.options.tooltip,
+                    series: scope.marketEvolution.shopper.hea_urban.series,
+                    title: scope.marketEvolution.shopper.hea_urban.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                });
+                charts[3] = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'shareChart57',
+                        backgroundColor: 'transparent'
+                    },
+                    xAxis: scope.marketEvolution.shopper.hea_rural.options.xAxis,
+                    yAxis: scope.marketEvolution.shopper.hea_rural.options.yAxis,
+                    tooltip: scope.marketEvolution.shopper.hea_rural.options.tooltip,
+                    series: scope.marketEvolution.shopper.hea_rural.series,
+                    title: scope.marketEvolution.shopper.hea_rural.title,
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                });
+
+                $('.marketEvolutionShopperChart').bind('mousedown', function() {
+
+                    $($(this).siblings()).toggle();
+
+                    $(this).toggleClass('modal-chart');
+
+                    $(this).highcharts().reflow();
+                });
+
+
+            }
+
+        });
+    }
+});
