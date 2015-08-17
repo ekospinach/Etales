@@ -8,6 +8,8 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+server.js
+config.js
 
 
 #ignore these files for nodejs project

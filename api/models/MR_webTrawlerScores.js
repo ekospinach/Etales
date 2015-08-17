@@ -24,6 +24,8 @@ var playerInfoSchema = mongoose.Schema({
     actorID      : Number, //{ R1, R2, TT, S1, S2, S3, S4 }
     sentimentIdx : Number,
     strengthIdx  : Number,
+    scalarIdx : Number,
+    impactIdx : Number
 })
 
 var MR_webTrawlerScores = mongoose.model('MR_webTrawlerScores',MR_webTrawlerScoresSchema);

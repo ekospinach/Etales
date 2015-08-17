@@ -27,6 +27,8 @@ var
     jo.I['actorID'] := actorID;
     jo.D['sentimentIdx'] := player[SENTIMENT];
     jo.D['strengthIdx'] := player[STRENGTH];
+    jo.D['scalarIdx'] := player[SCALAR];
+    jo.D['impactIdx'] := player[IMPACT];
 
     result := jo;
 

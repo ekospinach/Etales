@@ -74,7 +74,7 @@ Type
   TVariantPackFormat       = ( ECONOMY, STANDARD, PREMIUM );
   TVariantPerceptions      = 1..VariantDimsMaxFull;
   TVariantPriority         = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
-  TWebTrawlerDimensions    = ( SENTIMENT, STRENGTH );  
+  TWebTrawlerDimensions    = ( SENTIMENT, STRENGTH, SCALAR, IMPACT );  
   TWeeksInPeriod           = 0..PeriodLastWeek;
   TTOPDays                 = 0..DaysInPeriod;
   TMarketStudies           = 1..MarketStudiesMax;
