@@ -128,7 +128,7 @@ module.exports = function() {
         default:
             return {
                 cgi: {
-					port                                : 80,
+					port                                : 8080,
 					host                                : 'localhost',
 					path_marketReport                   : '/cgi-bin/marketReport.exe',
 					path_lineChart                      : '/cgi-bin/lineChart.exe',
@@ -183,7 +183,7 @@ module.exports = function() {
 					path_BG_extendedFeedbackSlides      : '/cgi-bin/BG_extendedFeedbackSlides.exe',
                 },
                 server: {
-                    port: 8000
+                    port: 80
                 }
             }
     }

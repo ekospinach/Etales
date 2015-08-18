@@ -97,6 +97,9 @@ var path    = require('path'),
 	app.use(express.errorHandler());
 
 	port = parseInt(process.env.PORT, 10) || conf.server.port;
+
+	console.log('port:'+port);
+
 	mongoose.connect('mongodb://Etalesadmin:sh871030@127.0.0.1:27017/Etales');
 	//mongoose.connect('mongodb://127.0.0.1:27017/Etales');	
 	var db = mongoose.connection;
