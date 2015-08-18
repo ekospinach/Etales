@@ -128,8 +128,8 @@ module.exports = function() {
         default:
             return {
                 cgi: {
-					port                                : 8080,
-					host                                : 'etales.hcdlearning.com',
+					port                                : 8090,
+					host                                : 'localhost',
 					path_marketReport                   : '/cgi-bin/marketReport.exe',
 					path_lineChart                      : '/cgi-bin/lineChart.exe',
 					path_perceptionMap                  : '/cgi-bin/perceptionMap.exe',
