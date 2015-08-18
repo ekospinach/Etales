@@ -128,7 +128,7 @@ module.exports = function() {
         default:
             return {
                 cgi: {
-					port                                : 8080,
+					port                                : 80,
 					host                                : 'localhost',
 					path_marketReport                   : '/cgi-bin/marketReport.exe',
 					path_lineChart                      : '/cgi-bin/lineChart.exe',
