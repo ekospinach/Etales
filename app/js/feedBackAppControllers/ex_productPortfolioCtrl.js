@@ -652,7 +652,110 @@ var productPortfolioCtrl = function($scope, $http, PlayerColor, Label, StaticVal
         }];
 
 
-        result.active = result.design = result.technology = [{
+
+        result.active = [{
+            name: Label.getContent('Supplier') + ' 1',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.s1
+        }, {
+            name: Label.getContent('Supplier') + ' 2',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.s2
+        }, {
+            name: Label.getContent('Supplier') + ' 3',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.s3
+        }, {
+            name: Label.getContent('Retailer') + ' 1',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.r1
+        }, {
+            name: Label.getContent('Retailer') + ' 2',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.r2
+        }];
+        result.design = [{
+            name: Label.getContent('Supplier') + ' 1',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.s1
+        }, {
+            name: Label.getContent('Supplier') + ' 2',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.s2
+        }, {
+            name: Label.getContent('Supplier') + ' 3',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.s3
+        }, {
+            name: Label.getContent('Retailer') + ' 1',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.r1
+        }, {
+            name: Label.getContent('Retailer') + ' 2',
+            data: [],
+            marker: {
+                enabled: true,
+                symbol: 'circle',
+                radius: 7
+            },
+            lineWidth: 0,
+            color: PlayerColor.r2
+        }];
+        result.technology = [{
             name: Label.getContent('Supplier') + ' 1',
             data: [],
             marker: {
