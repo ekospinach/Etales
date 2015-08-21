@@ -258,7 +258,7 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
         }, {
             "name": Label.getContent('Online'),
             "data": [],
-            color: PlayerColor.online
+            color: PlayerColor.freaks
         }, {
             "name": Label.getContent('Traditional Trade'),
             "data": [],

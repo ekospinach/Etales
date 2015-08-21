@@ -82,6 +82,13 @@
         width: 1024px;
         height: 500px;
     }
+
+    .most-large-size {
+        width: 1054px !important;
+        height: 500px;
+        margin-left: -15px !important;
+    }
+
     .normal-sp-left{
         width: 500px;
         height: 450px;
@@ -174,6 +181,10 @@
     
     .text-danger {
         color: #c9302c;
+    }
+
+    .text-muted {
+        color: #999;
     }
     
     .padding-0 {
@@ -277,11 +288,32 @@
         width: 1024px;
     }
 
+    .special-table-scroll-head{
+        display: block;
+        width: 1200px !important;
+        margin-left: -33px !important;
+    }
+
     .special-table-scroll{ 
         height: 300px;
         overflow-y: scroll;
         display: block;
+        width: 1200px !important;
+        margin-left: -33px !important;
     }
+
+    .special-table-2-scroll-head{ 
+        width: 1200px !important;
+        display: block;
+    }
+
+    .special-table-2-scroll{ 
+        height: 300px;
+        overflow-y: scroll;
+        display: block;
+        width: 1200px !important;
+    }
+
 
     </style>
     <!--[if lt IE 9]>
@@ -327,12 +359,12 @@
             </section>
             
             <section ng-controller="bmPricesCtrl">
-                <!--2-->
+                <!--3-->
                 <section>
                     <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}}</h3>
                     <hr>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:23px;">
-                        <thead>
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:20px;">
+                        <tbody>
                             <tr>
                                 <th></th>
                                 <th colspan="4">
@@ -362,43 +394,43 @@
                                 <td colspan="2"></td>
                             </tr>
                             <tr>
-                                <td style="width:144px">
+                                <td style="width:140px">
                                     <p>&nbsp;</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
-                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                    <p class="text-center">{{Label.getContent('Online Price')}}({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                             </tr>
-                        </thead>
+                        </tbody>
                     </table>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:22px;">
                         <tbody>
                             <tr>
                                 <td colspan="11">
@@ -406,13 +438,13 @@
                                 </td>
                             </tr>
                             <tr ng-repeat='player in result.ele.player1s'>
-                                <td style='background-color:#DFF0D8;width:134px'>
+                                <td style='background-color:#DFF0D8;width:140px'>
                                     <p>{{player.fullName}}</p>
                                 </td>
                                 <td class="warning" style="width:100px">
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px">
+                                <td class="warning" style="width:90px">
                                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
@@ -421,7 +453,7 @@
                                 <td class="warning" style="width:100px;">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px">
+                                <td class="warning" style="width:90px">
                                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
@@ -430,7 +462,7 @@
                                 <td class="info" style="width:100px">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px">
+                                <td class="info" style="width:90px">
                                     <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
@@ -439,7 +471,7 @@
                                 <td class="info" style="width:100px;">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px;">
+                                <td class="info" style="width:90px;">
                                     <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
@@ -448,7 +480,7 @@
                                 <td style="width:100px;">
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td style="width:78px;">
+                                <td style="width:90px;">
                                     <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
@@ -682,7 +714,7 @@
                 <section>
                     <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}}</h3>
                     <hr>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:23px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:20px;">
                         <thead>
                             <tr>
                                 <th></th>
@@ -713,43 +745,43 @@
                                 <td colspan="2"></td>
                             </tr>
                             <tr>
-                                <td style="width:144px">
+                                <td style="width:140px">
                                     <p>&nbsp;</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
-                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                    <p class="text-center">{{Label.getContent('Online Price')}}({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                             </tr>
                         </thead>
                     </table>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:22px;">
                         <tbody>
                             <tr>
                                 <td colspan="11">
@@ -757,13 +789,13 @@
                                 </td>
                             </tr>
                             <tr ng-repeat='player in result.hea.player1s'>
-                                <td style='background-color:#F2DEDE;width:134px'>
+                                <td style='background-color:#F2DEDE;width:140px'>
                                     <p>{{player.fullName}}</p>
                                 </td>
                                 <td class="warning" style="width:100px;">
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px;">
+                                <td class="warning" style="width:90px;">
                                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
@@ -772,7 +804,7 @@
                                 <td class="warning" style="width:100px;">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px;">
+                                <td class="warning" style="width:90px;">
                                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
@@ -781,7 +813,7 @@
                                 <td class="info" style="width:100px;">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px;">
+                                <td class="info" style="width:90px;">
                                     <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
@@ -790,7 +822,7 @@
                                 <td class="info" style="width:100px;">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px;">
+                                <td class="info" style="width:90px;">
                                     <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
@@ -799,7 +831,7 @@
                                 <td style="width:100px;">
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td style="width:78px;">
+                                <td style="width:90px;">
                                     <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
@@ -1031,7 +1063,7 @@
                 </section>
             </section>
             <section ng-controller="retailerShareOfShoppersCtrl">
-                <!--5-->
+                <!--4-->
                 <section>
                     <h3><span class="orangeLetter">{{Label.getContent('Share of Shoppers')}}</span> - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban Market')}}</h3>
                     <hr>
@@ -1078,7 +1110,7 @@
                 </section>
             </section>
             <section ng-controller='retailerShopperSegmentEvolutionCtrl'>
-                <!--4-->
+                <!--5-->
                 <section>
                     <h3><a> {{Label.getContent('Shopper Segment Evolution')}} </a> - {{Label.getContent('Urban')}}</h3>
                     <hr>
@@ -1164,7 +1196,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1172,7 +1204,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1180,7 +1212,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -1239,7 +1271,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1247,7 +1279,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1255,7 +1287,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -1314,7 +1346,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1322,7 +1354,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1330,7 +1362,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -1389,7 +1421,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1397,7 +1429,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1405,7 +1437,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -3055,7 +3087,7 @@
                 <section>
                     <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('Elecssories')}}</h3>
                     <hr>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-2-scroll-head" style="font-size:20px;">
                         <thead>
                             <tr>
                                 <th></th>
@@ -3082,7 +3114,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width:152px">
+                                <td style="width:140px">
                                     <p></p>
                                 </td>
                                 <td style="width:110px">
@@ -3112,7 +3144,7 @@
                             </tr>
                         </thead>
                     </table>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-2-scroll" style="font-size:22px;">
                         <tbody>
                             <tr>
                                 <td colspan="9">
@@ -3120,7 +3152,7 @@
                                 </td>
                             </tr>
                             <tr ng-repeat='player in result.ele.player1s'>
-                                <td style='background-color:#DFF0D8;width:144px'>
+                                <td style='background-color:#DFF0D8;width:140px'>
                                     <p class="padding-20">{{player.fullName}}</p>
                                 </td>
                                 <td class="warning" style="width:110px">
@@ -3291,7 +3323,7 @@
                 <section>
                     <h3><a> {{Label.getContent('Promotional Activities')}} </a> - {{Label.getContent('HealthBeauties')}}</h3>
                     <hr>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:20px;">
                         <thead>
                             <tr>
                                 <th></th>
@@ -3318,7 +3350,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width:152px">
+                                <td style="width:140px">
                                     <p></p>
                                 </td>
                                 <td style="width:110px">
@@ -3348,7 +3380,7 @@
                             </tr>
                         </thead>
                     </table>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:23px;">
                         <tbody>
                             <tr>
                                 <td colspan="9">
@@ -3356,7 +3388,7 @@
                                 </td>
                             </tr>
                             <tr ng-repeat='player in result.hea.player1s'>
-                                <td style='background-color:#F2DEDE;width:144px'>
+                                <td style='background-color:#F2DEDE;width:140px'>
                                     <p class="padding-20">{{player.fullName}}</p>
                                 </td>
                                 <td class="warning" style="width:110px;">
@@ -3535,7 +3567,7 @@
                 <section>
                     <h3><a> {{Label.getContent('Profits – Gross Profits')}} </a></h3>
                     <hr>
-                    <highchart id="chart111" class="large-size" config="profitGross"></highchart>
+                    <highchart id="chart111" class="most-large-size" config="profitGross"></highchart>
                 </section>
                 <section>
                     <h3><a> {{Label.getContent('Profit - Margin')}} </a></h3>

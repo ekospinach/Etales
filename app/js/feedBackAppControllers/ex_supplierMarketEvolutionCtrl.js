@@ -37,7 +37,7 @@ var marketEvolutionCtrl = function($scope, $http, PlayerColor, Label, StaticValu
             data.forEach(function(singleData) {
                 if (singleData.period == singlePeriod && singleData.categoryID == category && singleData.marketID == market) {
                     if (singleData.segmentID != 5) {
-                        series[singleData.segmentID - 1].data[singleData.period + 3] = singleData.value;
+                        series[singleData.segmentID - 1].data[singleData.period + 3] = singleData.value*100;
                     }
                 }
             })
