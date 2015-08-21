@@ -179,6 +179,10 @@
     .text-danger {
         color: #c9302c;
     }
+
+    .text-muted {
+        color: #999;
+    }
     
     .padding-0 {
         padding: 0;
@@ -1123,7 +1127,7 @@
                     
                 </section>
                 <section>
-                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('Elecssories')}}</h3>
+                    <h3><a> {{Label.getContent('Awareness')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('Elecssories')}}</h3>
                     <hr>
                     <div id="awarenessElecssories2" style="height:500px;width:900px" ng-model='awarenessModel' awareness-elecssories2></div>
                 </section>
@@ -1135,7 +1139,7 @@
                     
                 </section>
                 <section>
-                    <h3><a> {{Label.getContent('Product Availability at Stores')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                    <h3><a> {{Label.getContent('Awareness')}} </a> - {{Label.getContent('Rural')}} - {{Label.getContent('HealthBeauties')}}</h3>
                     <hr>
                     <div id="awarenessHealthBeauties2" style="height:500px;width:900px" ng-model='awarenessModel' awareness-health-beauties2></div>
                 </section>
@@ -1191,7 +1195,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1199,7 +1203,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1207,7 +1211,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -1266,7 +1270,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1274,7 +1278,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1282,7 +1286,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -1341,7 +1345,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1349,7 +1353,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1357,7 +1361,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
@@ -1416,7 +1420,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r1}};width:{{product.retailer_1_shelfSpace*2.5}}%" ng-show='product.retailer_1_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_1_inventoryVolume==0}" ng-show='product.retailer_1_shelfSpace!=0'>{{product.retailer_1_inventoryVolume | number:2 | out}}</p>
@@ -1424,7 +1428,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r2}};width:{{product.retailer_2_shelfSpace*2.5}}%" ng-show='product.retailer_2_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.retailer_2_inventoryVolume==0}" ng-show='product.retailer_2_shelfSpace!=0'>{{product.retailer_2_inventoryVolume | number:2 | out}}</p>
@@ -1432,7 +1436,7 @@
                                 </td>
                                 <td>
                                     <p class="text-small" style="background:{{PlayerColor.r3}};width:{{product.tt_shelfSpace*2.5}}%" ng-show='product.tt_shelfSpace!=0'>&nbsp;</p>
-                                    <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
+                                    <p class="text-right text-small" ng-class="{'text-muted':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace==0'>{{Label.getContent('Not Listed')}}</p>
                                 </td>
                                 <td>
                                     <p class="text-right text-small" ng-class="{'text-danger':product.tt_inventoryVolume==0}" ng-show='product.tt_shelfSpace!=0'>{{product.tt_inventoryVolume | number:2 | out}}</p>
