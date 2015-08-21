@@ -281,10 +281,18 @@
         width: 1024px;
     }
 
+    .special-table-scroll-head{
+        display: block;
+        width: 1200px !important;
+        margin-left: -33px !important;
+    }
+
     .special-table-scroll{ 
         height: 300px;
         overflow-y: scroll;
         display: block;
+        width: 1200px !important;
+        margin-left: -33px !important;
     }
 
     </style>
@@ -339,8 +347,8 @@
                 <section>
                     <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('Elecssories')}}</h3>
                     <hr>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:23px;">
-                        <thead>
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:20px;">
+                        <tbody>
                             <tr>
                                 <th></th>
                                 <th colspan="4">
@@ -370,43 +378,43 @@
                                 <td colspan="2"></td>
                             </tr>
                             <tr>
-                                <td style="width:144px">
+                                <td style="width:140px">
                                     <p>&nbsp;</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
-                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                    <p class="text-center">{{Label.getContent('Online Price')}}({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px;">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                             </tr>
-                        </thead>
+                        </tbody>
                     </table>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:22px;">
                         <tbody>
                             <tr>
                                 <td colspan="11">
@@ -414,13 +422,13 @@
                                 </td>
                             </tr>
                             <tr ng-repeat='player in result.ele.player1s'>
-                                <td style='background-color:#DFF0D8;width:134px'>
+                                <td style='background-color:#DFF0D8;width:140px'>
                                     <p>{{player.fullName}}</p>
                                 </td>
                                 <td class="warning" style="width:100px">
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px">
+                                <td class="warning" style="width:90px">
                                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
@@ -429,7 +437,7 @@
                                 <td class="warning" style="width:100px;">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px">
+                                <td class="warning" style="width:90px">
                                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
@@ -438,7 +446,7 @@
                                 <td class="info" style="width:100px">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px">
+                                <td class="info" style="width:90px">
                                     <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
@@ -447,7 +455,7 @@
                                 <td class="info" style="width:100px;">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px;">
+                                <td class="info" style="width:90px;">
                                     <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
@@ -456,7 +464,7 @@
                                 <td style="width:100px;">
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td style="width:78px;">
+                                <td style="width:90px;">
                                     <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
@@ -690,7 +698,7 @@
                 <section>
                     <h3><a> {{Label.getContent('B&M Retailer Prices')}} </a> - {{Label.getContent('HealthBeauties')}}</h3>
                     <hr>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:23px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll-head" style="font-size:20px;">
                         <thead>
                             <tr>
                                 <th></th>
@@ -721,43 +729,43 @@
                                 <td colspan="2"></td>
                             </tr>
                             <tr>
-                                <td style="width:144px">
+                                <td style="width:140px">
                                     <p>&nbsp;</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
                                     <p class="text-center">{{Label.getContent('Net Retail Price')}} ({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                                 <td style="width:100px">
-                                    <p class="text-center">{{Label.getContent('Online Price')}} ({{Label.getContent('$')}})</p>
+                                    <p class="text-center">{{Label.getContent('Online Price')}}({{Label.getContent('$')}})</p>
                                 </td>
-                                <td style="width:78px">
+                                <td style="width:90px">
                                     <p class="text-center">{{Label.getContent('Change')}}</p>
                                 </td>
                             </tr>
                         </thead>
                     </table>
-                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:25px;">
+                    <table class="table table-condensed table-bordered table-danger special-table special-table-scroll" style="font-size:22px;">
                         <tbody>
                             <tr>
                                 <td colspan="11">
@@ -765,13 +773,13 @@
                                 </td>
                             </tr>
                             <tr ng-repeat='player in result.hea.player1s'>
-                                <td style='background-color:#F2DEDE;width:134px'>
+                                <td style='background-color:#F2DEDE;width:140px'>
                                     <p>{{player.fullName}}</p>
                                 </td>
                                 <td class="warning" style="width:100px;">
                                     <p class="text-right">{{player.urban1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px;">
+                                <td class="warning" style="width:90px;">
                                     <p class="text-right">{{player.urban1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban1ValueChange<0&&player.urban1ValueChange!=-100">
@@ -780,7 +788,7 @@
                                 <td class="warning" style="width:100px;">
                                     <p class="text-right">{{player.urban2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="warning" style="width:78px;">
+                                <td class="warning" style="width:90px;">
                                     <p class="text-right">{{player.urban2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.urban2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.urban2ValueChange<0&&player.urban2ValueChange!=-100">
@@ -789,7 +797,7 @@
                                 <td class="info" style="width:100px;">
                                     <p class="text-right">{{player.rural1Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px;">
+                                <td class="info" style="width:90px;">
                                     <p class="text-right">{{player.rural1ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural1ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural1ValueChange<0&&player.rural1ValueChange!=-100">
@@ -798,7 +806,7 @@
                                 <td class="info" style="width:100px;">
                                     <p class="text-right">{{player.rural2Value | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td class="info" style="width:78px;">
+                                <td class="info" style="width:90px;">
                                     <p class="text-right">{{player.rural2ValueChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.rural2ValueChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.rural2ValueChange<0&&player.rural2ValueChange!=-100">
@@ -807,7 +815,7 @@
                                 <td style="width:100px;">
                                     <p class="text-right">{{player.onlineValue | NulltoMinOr2Number }}</p>
                                 </td>
-                                <td style="width:78px;">
+                                <td style="width:90px;">
                                     <p class="text-right">{{player.onlineChange | NulltoMinOr1Number }}
                                         <img src="../../img/up-arrow.png" class="up" ng-show="player.onlineChange>0">
                                         <img src="../../img/down-arrow.png" class="down" ng-show="player.onlineChange<0&&player.onlineChange!=-100">
