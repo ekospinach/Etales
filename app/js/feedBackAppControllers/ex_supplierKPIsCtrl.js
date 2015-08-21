@@ -96,6 +96,123 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
         return result;
     }
 
+    var loadBMChannel = function(data, category, periods, type) {
+        var result = {};
+        var categories = [];
+        var series = [{
+            "name": Label.getContent('Supplier') + ' 1',
+            "data": [0, 0, 0, 0],
+            color: PlayerColor.s1,
+            xAxis: 0
+        }, {
+            "name": Label.getContent('Supplier') + ' 2',
+            "data": [0, 0, 0, 0],
+            color: PlayerColor.s2,
+            xAxis: 0
+        }, {
+            "name": Label.getContent('Supplier') + ' 3',
+            "data": [0, 0, 0, 0],
+            color: PlayerColor.s3,
+            xAxis: 0
+        }, {
+            name: ' ',
+            data: [null, null],
+            color: 'transparent',
+            xAxis: 1, //第二个X轴
+        }];
+
+        periods.forEach(function(singlePeriod, index) {
+            data.f_SuppliersBMValueSalesShare.forEach(function(singleData) {
+                if (singleData.period == singlePeriod && singleData.categoryID == category) {
+                    if (singleData.supplierID < 4) {
+                        series[singleData.supplierID - 1].data[index] = singleData.value * 100;
+                    }
+                }
+            })
+            data.f_SuppliersBMVolumeSalesShare.forEach(function(singleData) {
+                if (singleData.period == singlePeriod && singleData.categoryID == category) {
+                    if (singleData.supplierID < 4) {
+                        series[singleData.supplierID - 1].data[2 + index] = singleData.value * 100;
+                    }
+                }
+            })
+        });
+
+        for (var i = 0; i < periods.length; i++) {
+            categories.push(periods[i]);
+        }
+        for (var i = 0; i < periods.length; i++) {
+            categories.push(periods[i]);
+        }
+
+        result = {
+            options: {
+                xAxis: [{
+                    categories: categories,
+                    title: {
+                        text: Label.getContent('Period'),
+                        style: {
+                            'font-size': '16px'
+                        }
+                    }
+                }, {
+                    categories: [Label.getContent('Share of Value Sales'), Label.getContent('Share of Volume Sales')],
+                    labels: {
+                        style: {
+                            fontSize: '16px',
+                            'color': '#f26c4f',
+                            'text-align': 'center'
+                        },
+                    },
+                    lineWidth: 0,
+                    tickWidth: 0,
+                    opposite: true //对立面 表示显示在上方
+                }],
+                yAxis: {
+                    title: {
+                        text: '%',
+                        style: {
+                            'font-size': '16px'
+                        }
+                    },
+                    gridLineColor: 'transparent'
+                },
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent',
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s = '<p style="font-size:20px;line-height:20px;">' + this.series.name + '</p>' + '<p style="font-size:20px;line-height:20px;">' + Label.getContent('Period') + ':' + this.key + '</p>' + '<p style="font-size:20px;line-height:20px;">' + this.point.y.toFixed(2) + ' %</p>';
+                        return s;
+                    },
+                    shared: false,
+                    useHTML: true
+                },
+                plotOptions: {
+                    series: {
+                        stacking: 'percent'
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+                credits: {
+                    enabled: false
+                }
+            },
+            series: series,
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        return result;
+    }
+
     var loadChannel = function(data, category, periods, type) {
         var result = {};
         var categories = [];
@@ -423,14 +540,14 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
             }
         }
 
-        result.bm.ele = loadChannel($scope.normalfeedback, 1, lessPerios, 'bm');
+        result.bm.ele = loadBMChannel($scope.normalfeedback, 1, lessPerios, 'bm');
         result.bm.ele.options.title = {
             text: Label.getContent('Elecssories'),
             style: {
                 'font-size': '16px'
             }
         }
-        result.bm.hea = loadChannel($scope.normalfeedback, 2, lessPerios, 'bm');
+        result.bm.hea = loadBMChannel($scope.normalfeedback, 2, lessPerios, 'bm');
         result.bm.hea.options.title = {
             text: Label.getContent('HealthBeauties'),
             style: {
