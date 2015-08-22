@@ -283,7 +283,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				//if()
 				if (type != 'Full') {
 					//not set now
-					$scope.social                       = data[13] ? 1 : 0;
+					$scope.social                       = 0;
 					$scope.salesByChannel               = data[12] ? 1 : 0; //
 					$scope.forecasts                    = data[11] ? 1 : 0; //
 					$scope.retailerIntelligence         = data[10] ? 1 : 0;
