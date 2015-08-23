@@ -394,13 +394,13 @@ define(['directives', 'services'], function(directives){
                     }
                 });
 
-                // scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                //     if(data.page=="retailerStoreManagement"&&data.action==undefined){
-                //         showNormalView(newBase);
-                //     }else if(data.page=="retailerStoreManagement"&&data.action=="saveOrder"){
-                //         showEditView(newBase);
-                //     }
-                // });
+                scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
+                    if(data.page=="retailerStoreManagement"&&data.action==undefined){
+                        showNormalView(newBase);
+                    }else if(data.page=="retailerStoreManagement"&&data.action=="saveOrder"){
+                        showEditView(newBase);
+                    }
+                });
             }
         }
     }])
