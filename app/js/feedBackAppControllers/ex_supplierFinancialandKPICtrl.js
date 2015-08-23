@@ -30,7 +30,7 @@ var supplierFinancialandKPICtrl = function($scope, $http, PlayerColor, Label) {
                 color: PlayerColor.r3,
                 xAxis: 0
             }, {
-                name: Label.getContent('Online'),
+                name: Label.getContent('BLUE RED and YELLOW'),
                 data: [],
                 color: PlayerColor.online,
                 xAxis: 0
