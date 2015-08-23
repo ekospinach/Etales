@@ -224,7 +224,7 @@ var supplierRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                     tickWidth: 0,
                     gridLineWidth: 0
                 }, {
-                    categories: result.hea.subCategories,
+                    categories: result.hea.heaSubCategories,
                     labels: {
                         style: {
                             fontSize: '14px',
