@@ -1207,12 +1207,12 @@ app.directive('urbanHealthBeautiesBrand1', function() {
                     },
                     xAxis: {
                         title: {
-                            text: scope.xTitle1
+                            text: scope.xTitle11
                         }
                     },
                     yAxis: {
                         title: {
-                            text: scope.yTitle1
+                            text: scope.yTitle11
                         }
                     },
                     plotOptions: {
@@ -1300,12 +1300,12 @@ app.directive('ruralHealthBeautiesBrand1', function() {
                     },
                     xAxis: {
                         title: {
-                            text: scope.xTitle1
+                            text: scope.xTitle11
                         }
                     },
                     yAxis: {
                         title: {
-                            text: scope.yTitle1
+                            text: scope.yTitle11
                         }
                     },
                     plotOptions: {
