@@ -46,7 +46,8 @@ var supplierRetailSalesCtrl = function($scope, $http, PlayerColor, Label) {
                 xAxis: 1, //第二个X轴
             }],
             categories: [periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1], periods[0], periods[1]],
-            subCategories: [Label.getContent('Total Market'), Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
+            subCategories: [Label.getContent('Total Market'), Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')],
+            heaSubCategories: [Label.getContent('Total Market'), Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Health Conscious'), Label.getContent('Impatient')]
 
         };
         var list = {};
