@@ -122,7 +122,7 @@ define(['directives', 'services'], function(directives){
 
                 var selectPacks = function(category,parentBrandName,varName) {
                     var selected,postion=-1;
-                    if(scope.productes.length>1&&scope.producths.length>1){
+                    if(scope.productes.length>=1&&scope.producths.length>=1){
                         if(category=="Elecssories"){
                             for(var i=0;i<scope.productes.length;i++){
                                 if(scope.productes[i].parentBrandName==parentBrandName&&scope.productes[i].varName==varName){
