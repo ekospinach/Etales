@@ -1255,6 +1255,7 @@ var getLabelBase = function(){
 		{id:'Total Market',  ENG:'Total Market',  CHN:'Total Market',  RUS:''},	
 		
 		{id:'Financials',  ENG:'Financials',  CHN:'Financials',  RUS:''},	
+		{id:'BLUE RED and YELLOW',  ENG:'BLUE=S1, RED=S2, and YELLOW=S3',  CHN:'BLUE=S1, RED=S2, and YELLOW=S3',  RUS:''},	
 		{id:'Gross Profits',  ENG:'Gross Profits',  CHN:'Gross Profits',  RUS:''},	
 		{id:'Trade Profits',  ENG:'Trade Profits',  CHN:'Trade Profits',  RUS:''},	
 		

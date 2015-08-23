@@ -129,6 +129,11 @@ var supplierVariantPerceptionCtrl = function($scope, $http, PlayerColor, Label, 
         $scope.yTitle1 = Label.getContent("Quality");
         $scope.yTitle2 = Label.getContent("Price Appeal");
 
+
+        $scope.xTitle11 = Label.getContent("Performance perception")
+        $scope.yTitle11 = Label.getContent("Gentleness");
+
+
         $scope.brand = result;
         $scope.supplierVariantPerceptionModel = Label.getContent("Ease of Use");
     }
