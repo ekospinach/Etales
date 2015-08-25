@@ -1,8 +1,8 @@
 var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
 
-    var getStoreResult = function(data, variantName, brandName, retailerID) {
+    var getStoreResult = function(data, variantName, brandName, retailerID, marketID, categoryID) {
         var result = _.find(data, function(obj) {
-            return (obj.variantName == variantName && obj.parentBrandName == brandName && obj.BMRetailerID == retailerID);
+            return (obj.variantName == variantName && obj.parentBrandName == brandName && obj.BMRetailerID == retailerID && obj.marketID==marketID && obj.categoryID==categoryID);
         })
         return result;
     }
@@ -31,10 +31,10 @@ var productAvailabilityCtrl = function($scope, $http, PlayerColor) {
             product.variantName = singleData.variantName;
             product.retailer_1_shelfSpace = singleData.shelfSpace * 100;
             product.retailer_1_inventoryVolume = singleData.inventoryVolume;
-            product.retailer_2_shelfSpace = getStoreResult(data, variantName, brandName, 2).shelfSpace * 100;
-            product.retailer_2_inventoryVolume = getStoreResult(data, variantName, brandName, 2).inventoryVolume;
-            product.tt_shelfSpace = getStoreResult(data, variantName, brandName, 3).shelfSpace * 100;
-            product.tt_inventoryVolume = getStoreResult(data, variantName, brandName, 3).inventoryVolume;
+            product.retailer_2_shelfSpace = getStoreResult(data, variantName, brandName, 2, marketID, categoryID).shelfSpace * 100;
+            product.retailer_2_inventoryVolume = getStoreResult(data, variantName, brandName, 2, marketID, categoryID).inventoryVolume;
+            product.tt_shelfSpace = getStoreResult(data, variantName, brandName, 3, marketID, categoryID).shelfSpace * 100;
+            product.tt_inventoryVolume = getStoreResult(data, variantName, brandName, 3, marketID, categoryID).inventoryVolume;
             productList.push(product);
         });
         return productList;
