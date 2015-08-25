@@ -192,7 +192,27 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
                 plotOptions: {
                     series: {
                         stacking: 'percent'
+                    },
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black',
+                                fontSize: '18px'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2) + '%'
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
                     }
+
                 },
                 legend: {
                     layout: 'vertical',
@@ -345,7 +365,27 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
                 plotOptions: {
                     series: {
                         stacking: 'percent'
+                    },
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: 'white',
+                            style: {
+                                textShadow: '0 0 3px black',
+                                fontSize: '18px'
+                            },
+                            formatter: function() {
+                                if (this.y != null) {
+                                    return this.y.toFixed(2) + '%'
+                                } else {
+                                    return "";
+                                }
+
+                            }
+                        }
                     }
+
                 },
                 legend: {
                     layout: 'vertical',
@@ -491,7 +531,6 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
             series: series,
             loading: false
         }
-        console.log('aggregatedChannels:'+result);
         return result;
 
     }
@@ -519,7 +558,7 @@ var supplierKPIsCtrl = function($scope, $http, PlayerColor, Label) {
             'netProfit': {},
         }
         var periodShown = [];
-        var lessPerios = [Request['period']-1,Request['period']];
+        var lessPerios = [Request['period'] - 1, Request['period']];
 
         for (var i = -3; i <= Request['period']; i++) {
             periodShown.push(i);
