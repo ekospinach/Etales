@@ -847,11 +847,11 @@ exports.updateRetailerDecision = function(io) {
                             doc[queryCondition.location] = queryCondition.value;
                             break;
                         case 'updateExceptionalCost':
-                        console.log('hello');
                             doc.retMarketDecision.forEach(function(singleMarket) {
+
                                 if (singleMarket.marketID == queryCondition.marketID) {
-                                    singleMarket.exceptionalCostsProfits[queryCondition.additionalIdx] = queryCondition.value;
-                                    console.log(singleMarket.exceptionalCostsProfits);
+                                    singleMarket.exceptionalCostsProfits[queryCondition.additionalIdx] = parseFloat(queryCondition.value);
+
                                 }
                             });
                             break;
