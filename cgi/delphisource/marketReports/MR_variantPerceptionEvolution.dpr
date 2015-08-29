@@ -64,7 +64,7 @@ var
         for variantID := Low(TVariants) to High(TVariants) do 
         begin
           tempVariant := currentResult.r_MarketResearch.mr_VariantPerception[marketID, catID, variantID];
-          if (tempVariant.mrvp_variantName <> '') and (tempVariant.mrvp_ParentBrandName <> '') then 
+          if (tempVariant.mrvp_variantName <> '') and (tempVariant.mrvp_ParentBrandName <> '') and (tempVariant.mrvp_Shown <> false) then 
           begin
              oJsonFile.A['variantInfo'].Add( variantInfoSchema(catID, marketID, tempVariant) );
           end;
