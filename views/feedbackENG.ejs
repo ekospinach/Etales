@@ -459,6 +459,27 @@
                     </section>          
                 </section>   
 
+                <section ng-controller="socialBrandCtrl">
+                    <section>
+                        <h3><span class="orangeLetter">{{Label.getContent('Social Network Trawlers')}}</span> - {{Label.getContent('Social Network Trawlers Brands')}} - {{Label.getContent('Elecssories')}}</h3>
+                        <hr>
+                        <div id="sentimentElecssories" style="float:left;width:75%;height:500px" ng-model='myModel' sentiment-elecssories></div>
+                        <div id="strengthElecssories" style="float:left;width:24%;height:500px" ng-model='myModel' strength-elecssories></div>
+                    </section> 
+                    <section>
+                        <h3><span class="orangeLetter">{{Label.getContent('Social Network Trawlers')}}</span> - {{Label.getContent('Social Network Trawlers Brands')}} - {{Label.getContent('HealthBeauties')}}</h3>
+                        <hr>
+                        <div id="sentimentHealthBeauties" style="float:left;width:75%;height:500px" ng-model='myModel' sentiment-health-beauties></div>
+                        <div id="strengthHealthBeauties" style="float:left;width:24%;height:500px" ng-model='myModel' strength-health-beauties></div>
+                    </section> 
+                    <section>
+                        <h3><span class="orangeLetter">{{Label.getContent('Social Network Trawlers')}}</span> - {{Label.getContent('Social Network Trawlers Players')}}</h3>
+                        <hr>
+                        <div id="playerSentiment" style="float:left;width:75%;height:500px" ng-model='myModel' player-sentiment></div>
+                        <div id="playerStrength" style="float:left;width:24%;height:500px" ng-model='myModel' player-strength></div>
+                    </section>       
+                </section> 
+
                 <section ng-controller="finalScoreCtrl">
                     <h3><span class="orangeLetter">{{Label.getContent('Final Score')}}</h3>
                     <hr>
@@ -567,7 +588,8 @@
         <script src="js/feedBackAppControllers/normal_supplierKPIsCtrl.js"></script>
         <script src="js/feedBackAppControllers/normal_retailerKPIsCtrl.js"></script>
         <script src="js/feedBackAppControllers/normal_finalScoreCtrl.js"></script>
-        <script src="js/feedBackAppControllers/normal_shareOfShoppersCtrl.js"></script>        
+        <script src="js/feedBackAppControllers/normal_shareOfShoppersCtrl.js"></script> 
+        <script src="js/feedBackAppControllers/normal_socialBrandCtrl.js"></script>        
 
 
 
